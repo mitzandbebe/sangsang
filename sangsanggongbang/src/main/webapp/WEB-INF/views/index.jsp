@@ -135,6 +135,9 @@ pull test- wonjung
                                         <li class="mb-2 megamenu-item">
                                             <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/terms.html">Terms & agreement</a>
                                         </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/table.html">table</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-6 col-lg-4">
@@ -882,7 +885,7 @@ pull test- wonjung
                             <div class="rounded bg-white p-4 text-dark mb-2">
                                 <div class="mb-3">
                                     <div class="font-weight-normal">&gt; $ npm install</div>
-                                    <div class="text-secondary">Everything’s installed!</div>
+                                    <div class="text-secondary">Everythingâs installed!</div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="font-weight-normal">&gt; $ gulp</div>
@@ -896,7 +899,7 @@ pull test- wonjung
                                 </div>
                             </div>
                         </div>
-                        <p class="mt-4 text-white text-center">Looks unfamiliar? Don’t worry! Our <a class="text-white text-underline font-weight-bold" href="https://themesberg.com/docs/spaces/getting-started/quick-start/" target="_blank">documentation</a> has got you covered.</p>
+                        <p class="mt-4 text-white text-center">Looks unfamiliar? Donât worry! Our <a class="text-white text-underline font-weight-bold" href="https://themesberg.com/docs/spaces/getting-started/quick-start/" target="_blank">documentation</a> has got you covered.</p>
                     </div>
                 </div>
             </div>
@@ -1000,7 +1003,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: 1</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> Buy now <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1019,7 +1022,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: Unlimited</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> Buy now <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1038,7 +1041,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: 1</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> Buy now <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1101,7 +1104,7 @@ pull test- wonjung
                     <img src="${pageContext.request.contextPath}/resources/assets/img/themesberg.svg" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                <p class="font-weight-normal font-small mb-0">Copyright © Themesberg
+                <p class="font-weight-normal font-small mb-0">Copyright Â© Themesberg
                     <span class="current-year">2020</span>. All rights reserved.</p>
                 </div>
             </div>
