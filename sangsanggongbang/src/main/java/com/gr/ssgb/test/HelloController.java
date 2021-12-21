@@ -12,7 +12,7 @@ public class HelloController {
 	@GetMapping("/hello")
 	public String hello(Model model) {
 
-		model.addAttribute("name", "김철수 ");
+		model.addAttribute("name", "강유빈");
 		return "thymeleaf/hello";
 
 		// => http://localhost:9091/demo/hello
