@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>뿡</title>
 </head>
 <body>
 <h1>test</h1>
