@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>테스트</title>
+<title>아무거나 안녕</title>
 </head>
 <body>
 <h1>이게맞나 test</h1>
