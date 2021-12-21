@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>뿡</title>
+<title>테스트</title>
 </head>
 <body>
-<h1>test</h1>
+<h1>이게맞나 test</h1>
 </body>
 </html>
