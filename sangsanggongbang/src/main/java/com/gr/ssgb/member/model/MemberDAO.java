@@ -8,4 +8,5 @@ public interface MemberDAO {
 	int selectBySnsId(String snsaccount);
 	int insertSnsMember(MemberVO memberVo);
 	String checkIdPwd(String mId);
+	//
 }

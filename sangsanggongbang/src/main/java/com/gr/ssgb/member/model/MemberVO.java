@@ -31,7 +31,7 @@ public class MemberVO {
 		this.mId = mId;
 		this.mName = mName;
 		this.pwd = pwd;
-		this.mNickname = mNickname;
+		this.mNickname = mNickname; //
 		this.phone = phone;
 		this.bday = bday;
 		this.mZipcode = mZipcode;

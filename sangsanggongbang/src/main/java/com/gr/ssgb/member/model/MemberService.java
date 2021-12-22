@@ -12,4 +12,4 @@ public interface MemberService {
 	int insertSnsMember(MemberVO memberVo);
 	
 	public int checkIdPwd(String mId, String pwd);
-}
+}//

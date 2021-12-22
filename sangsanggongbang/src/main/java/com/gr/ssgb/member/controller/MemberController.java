@@ -151,7 +151,7 @@ public class MemberController {
 	}
 	@RequestMapping("/login/logout")
 	public String logout(HttpSession session) {
-		logger.info("로그아웃 처리");
+		logger.info("로그아웃 처리완료!");
 		
 		session.invalidate();
 		
