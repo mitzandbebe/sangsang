@@ -135,9 +135,7 @@ pull test- wonjung
                                         <li class="mb-2 megamenu-item">
                                             <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/terms.html">Terms & agreement</a>
                                         </li>
-                                        <li class="mb-2 megamenu-item">
-                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/table.html">table !!!!</a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="col-6 col-lg-4">
