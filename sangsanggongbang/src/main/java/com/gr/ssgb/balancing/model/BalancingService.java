@@ -2,7 +2,7 @@ package com.gr.ssgb.balancing.model;
 
 import java.util.List;
 
-import com.gr.ssgb.balancing.common.SearchVO;
+import com.gr.ssgb.common.SearchVO;
 
 public interface BalancingService {
 	public int insertBoard(BalancingVO vo);
@@ -11,6 +11,7 @@ public interface BalancingService {
 	public BalancingVO selectByNo(int no) ;
 	public int updateReadCount(int no);
 	public int updateBoard(BalancingVO vo);
-	public boolean checkPwd(BalancingVO vo);
+
+	/* public boolean checkPwd(BalancingVO vo); */
 	public int deleteBoard(int no);
 }

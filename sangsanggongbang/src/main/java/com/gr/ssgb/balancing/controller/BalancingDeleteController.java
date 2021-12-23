@@ -40,7 +40,7 @@ public class BalancingDeleteController {
 		//4
 		return "board/delete";
 	}
-	
+	/*
 	@RequestMapping(value="/delete.do", method = RequestMethod.POST)
 	public String delete_post(@ModelAttribute BalancingVO vo, Model model) {
 		//1
@@ -65,6 +65,6 @@ public class BalancingDeleteController {
 		//4
 		return "common/message";
 	}
-	
+	*/
 	
 }

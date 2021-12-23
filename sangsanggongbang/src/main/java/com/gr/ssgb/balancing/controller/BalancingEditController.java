@@ -44,7 +44,7 @@ public class BalancingEditController {
 		//4.뷰페이지 리턴
 		return "board/edit";
 	}
-	
+	/*
 	@RequestMapping(value="/edit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute BalancingVO vo, Model model) {
 		//1
@@ -69,5 +69,5 @@ public class BalancingEditController {
 		//4
 		return "common/message";
 	}
-	
+	*/
 }
