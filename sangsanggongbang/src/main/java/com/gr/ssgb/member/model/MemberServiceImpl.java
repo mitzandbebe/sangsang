@@ -12,7 +12,6 @@ public class MemberServiceImpl implements MemberService{
 		super();
 		this.memberDao = memberDao;
 	}
-//
 	@Override
 	public int insertMember(MemberVO vo) {
 		return memberDao.insertMember(vo);

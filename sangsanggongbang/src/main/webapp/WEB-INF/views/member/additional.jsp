@@ -4,6 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function kakaopost() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+           document.querySelector("#zipcode").value = data.zonecode;
+           document.querySelector("#address").value = data.address
+        }
+    }).open();
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
 <title>Spaces - Sign up</title>
@@ -66,18 +77,18 @@
     </div>
 </div>
 
-        <!-- Section -->
+       <!-- Section -->
         <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="text-center text-md-center mb-5 mt-md-0 text-white">
-                            <h1 class="mb-0 h3">상상공방에 새로운 늘찬이 되어주세요!</h1>
+                            <h1 class="mb-0 h3">부가정보를 입력하고 상상공방의 서비스를 제한없이 이용하세요!</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                            <form id ="signup" method="post" action="<c:url value='/member/join'/> ">
+                            <form id ="signup" method="post" action="<c:url value='/member/addtional'/> ">
                                 <!-- Form -->
                                 <div class="form-group">
                                     <label for="exampleInputIcon4">아이디(이메일)</label>
@@ -85,19 +96,64 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" class="form-control" id="exampleInputIcon4" placeholder="example@company.com" type="text" aria-label="email adress">
+                                        <input name="mId" readonly="readonly" class="form-control" id="exampleInputIcon4" type="text" aria-label="email adress" value="${cookie.ck_userid.value }">
                                     </div>
                                 </div>
                                 <!-- End of Form -->
                                 <div class="form-group">
                                     <!-- Form -->
                                     <div class="form-group">
-                                        <label for="password">비밀번호</label>
+                                        <label for="mName">이름</label>
                                         <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                            </div>
-                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
+                                            <input name ="mName" class="form-control" id="mName" placeholder="성명" type="text" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">닉네임</label>
+                                        <div class="input-group mb-4">
+                                            <input name ="mNickname" class="form-control" id="mNickname" placeholder="닉네임을 입력해주세요." type="text" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">핸드폰번호</label>
+                                        <div class="input-group mb-4">
+                                            <input name ="phone" class="form-control" id="phone" placeholder="휴대폰 번호를 입력해주세요.(-제외)" maxlength="11" type="text" style = "width: 50px" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">생년월일</label>
+                                        <div class="input-group mb-4">
+                                            <input name ="mNickname" class="form-control" id="mNickname" placeholder="생년월일을 입력하세요.예)950720" type="text" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">우편번호 &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-sm btn-primary" onclick="kakaopost()" style="float: right;">우편번호 찾기</button></label>
+                                        <div class="input-group mb-4">
+                                           	<input name ="mZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">주소</label>
+                                        <div class="input-group mb-4">
+                                           <input name ="mAddress" class="form-control" id="address" readonly="readonly" placeholder="주소를 입력하세요." type="text" required>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="mName">상세주소</label>
+                                        <div class="input-group mb-4">
+                                         <input name ="mAddressDetail" class="form-control" id="addressDetail"  placeholder="상세주소를 입력하세요." type="text" required>
                                         </div>
                                     </div>
                                     <!-- End of Form -->

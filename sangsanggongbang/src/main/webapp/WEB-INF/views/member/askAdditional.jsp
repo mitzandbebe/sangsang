@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
 <title>Spaces - Sign up</title>
@@ -66,83 +68,26 @@
     </div>
 </div>
 
-        <!-- Section -->
-        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
+       <!-- Section -->
+         <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="text-center text-md-center mb-5 mt-md-0 text-white">
-                            <h1 class="mb-0 h3">상상공방에 새로운 늘찬이 되어주세요!</h1>
+                            <h1 class="mb-0 h3">
+                            상상공방의 늘찬이 되어주셔서 감사합니다!<br>
+                            원활한 사이트 이용을 위해 부가정보를 입력하시겠어요?</h1>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                            <form id ="signup" method="post" action="<c:url value='/member/join'/> ">
-                                <!-- Form -->
-                                <div class="form-group">
-                                    <label for="exampleInputIcon4">아이디(이메일)</label>
-                                    <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><span class="fas fa-envelope"></span></span>
-                                        </div>
-                                        <input name="mId" class="form-control" id="exampleInputIcon4" placeholder="example@company.com" type="text" aria-label="email adress">
-                                    </div>
-                                </div>
-                                <!-- End of Form -->
-                                <div class="form-group">
-                                    <!-- Form -->
-                                    <div class="form-group">
-                                        <label for="password">비밀번호</label>
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                            </div>
-                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
-                                        </div>
-                                    </div>
-                                    <!-- End of Form -->
-                                    <!-- Form -->
-                                    <div class="form-group">
-                                        <label for="password_confirm">비밀번호 확인</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                            </div>
-                                            <input class="form-control" id="password_confirm" placeholder="Confirm password" type="password" aria-label="Password" required>
-                                        </div>
-                                    </div>
-                                    <!-- End of Form -->
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" value="" id="terms">
-                                        <label class="form-check-label" for="terms">
-                                            <span class="small"><a class="text-secondary" href="./terms.html">약관</a>에 동의합니다.</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-block btn-primary">Create an account</button>
-                            </form>
-                            <div class="mt-3 mb-4 text-center">
-                                <span class="font-weight-normal">or</span>
-                            </div>
-                            <div class="btn-wrapper my-4 text-center">
-                                <button class="btn btn-icon-only btn-pill btn-outline-light text-facebook mr-2" type="button" aria-label="facebook button" title="facebook button">
-                                    <span aria-hidden="true" class="fab fa-facebook-f"></span>
-                                </button>
-                                <button class="btn btn-icon-only btn-pill btn-outline-light text-twitter mr-2" type="button" aria-label="twitter button" title="twitter button">
-                                    <span aria-hidden="true" class="fab fa-twitter"></span>
-                                </button>
-                                <button class="btn btn-icon-only btn-pill btn-outline-light text-facebook" type="button" aria-label="github button" title="github button">
-                                    <span aria-hidden="true" class="fab fa-github"></span>
-                                </button>
-                            </div>
-                            <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">
-                                <span class="font-weight-normal">
-                                    Already have an account?
-                                    <a href="./sign-in.html" class="font-weight-bold">Login here</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                      		<a href="${pageContext.request.contextPath }/member/additional">
+                      		<button class="btn mb-2 mr-2 btn-outline-secondary animate-up-2" type="button"><i class="far fa-thumbs-up mr-2"></i>네! 입력할래요</button></a>
+                      		<a href="${pageContext.request.contextPath }/main">
+                      		<button class="btn mb-2 mr-2 btn-gray animate-up-2" type="button" style="float: right;">로그인하러 갈래요.</button></a>
+                      		
+                      	</div>
+                     </div>      
                 </div>
             </div>
         </section>
