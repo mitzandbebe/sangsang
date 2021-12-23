@@ -1,26 +1,4 @@
-/**
- * 카카오페이 연동 테스트 js
- */
- 
-/* 
-$(function(){
-	$('#apibtn').click(function(){
-			$.ajax({
-				url:'/kakaopay' ,
-				dataType:'json' ,
-				success:function(data){
-					alert(data.tid);
-					/*var box = data.next_redirect_pc_url;
-					
-					window.open(box);
-				},
-				error:function(error){
-					alert(error);
-				}
-		});
-	});
-});
-*/
+
 $("#num-add").off('click').on('click', function(){
 				var quantity = parseInt($('#quantity').val(), 10) + 1;
 				var price = parseInt('40000', 10);
@@ -51,7 +29,7 @@ $(function(){
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '상품1' , //결제창에서 보여질 이름
-		    amount : 100, //실제 결제되는 가격
+		    amount : 1000, //실제 결제되는 가격
 		    buyer_email : 'wlddj22@gmail.com',
 		    buyer_name : '오정훈',
 		    buyer_tel : '010-6385-1321',

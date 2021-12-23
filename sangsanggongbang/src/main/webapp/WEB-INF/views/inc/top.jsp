@@ -19,6 +19,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +73,7 @@
 <link type="text/css" href="${pageContext.request.contextPath }/resources/css/spaces.css" rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-
+<!-- 결제모듈 -->
 </head>
 
 <body class="bg-soft">

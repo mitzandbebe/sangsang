@@ -36,13 +36,13 @@
                     <div class="col-12 col-lg-8">
                         <div class="row justify-content-center">
                             <div class="col-12 col-sm-10 col-md-6 col-lg-12">
-                                <a href="../submit-item.html" class="btn btn-outline-secondary btn-block mb-4 py-4">
+                                <a href="<c:url value='/detail'/>" class="btn btn-outline-secondary btn-block mb-4 py-4">
                                     <span class="mr-2"><span class="fas fa-plus"></span></span>Submit New Item
                                 </a>
                                 <div class="card border-light mb-4">
                                    <div class="row no-gutters align-items-center">
                                       <div class="col-12 col-lg-6 col-xl-4">
-                                         <a href="../single-space.html">
+                                         <a href="<c:url value='/detail'/>">
                                             <img src="${pageContext.request.contextPath}/resources/assets/img/meeting-office.jpg" alt="private office" class="card-img p-2 rounded-xl">
                                          </a>
                                       </div>
@@ -292,7 +292,7 @@
                                 <div class="card border-light mb-4">
                                    <div class="row no-gutters align-items-center">
                                       <div class="col-12 col-lg-6 col-xl-4">
-                                         <a href="../single-space.html">
+                                         <a href="<c:url value='/class/detail'/>">
                                          <img src="${pageContext.request.contextPath}/resources/assets/img/meeting-office.jpg" alt="private office" class="card-img p-2 rounded-xl">
                                          </a>
                                       </div>

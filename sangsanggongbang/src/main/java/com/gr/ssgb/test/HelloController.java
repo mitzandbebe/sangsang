@@ -33,9 +33,9 @@ public class HelloController {
 		return "dashboard/my-items";
 	}
 	
-	@RequestMapping(value = "/single-space")
+	@RequestMapping(value = "/detail")
 	public String singleSpace() {
-		return "single-space";
+		return "class/detail";
 	}
 	
 	@RequestMapping(value = "/balancing")
