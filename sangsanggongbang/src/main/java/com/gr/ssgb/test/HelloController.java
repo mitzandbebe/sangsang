@@ -30,7 +30,7 @@ public class HelloController {
 
 	@RequestMapping(value = "/my-items")
 	public String myitems() {
-		return "my-items";
+		return "dashboard/my-items";
 	}
 	
 	@RequestMapping(value = "/single-space")
