@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gr.ssgb.balancing.common.SearchVO;
+import com.gr.ssgb.common.SearchVO;
 
 @Service
 public class BalancingServiceImpl implements BalancingService{
@@ -39,7 +39,7 @@ public class BalancingServiceImpl implements BalancingService{
 	public int updateBoard(BalancingVO vo) {
 		return balancingDao.updateBoard(vo);
 	}
-
+/*
 	@Override
 	public boolean checkPwd(BalancingVO vo) {
 		String dbPwd=balancingDao.selectPwd(vo.getNo());
@@ -50,7 +50,7 @@ public class BalancingServiceImpl implements BalancingService{
 			return false;
 		}
 	}
-	
+	*/
 	public int deleteBoard(int no){
 		return balancingDao.deleteBoard(no);
 	}

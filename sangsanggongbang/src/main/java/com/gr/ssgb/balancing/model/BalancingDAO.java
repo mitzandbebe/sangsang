@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gr.ssgb.balancing.common.SearchVO;
+import com.gr.ssgb.common.SearchVO;
 
 @Mapper
 public interface BalancingDAO {

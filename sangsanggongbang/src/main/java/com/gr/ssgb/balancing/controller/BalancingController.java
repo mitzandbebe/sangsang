@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gr.ssgb.balancing.common.ConstUtil;
-import com.gr.ssgb.balancing.common.PaginationInfo;
-import com.gr.ssgb.balancing.common.SearchVO;
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
+import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
 
 @Controller
 @RequestMapping("/balancing")
@@ -126,5 +126,7 @@ public class BalancingController {
 		
 		return "redirect:/balancing/detail.do?no="+no;		
 	}
+	
+
 	
 }
