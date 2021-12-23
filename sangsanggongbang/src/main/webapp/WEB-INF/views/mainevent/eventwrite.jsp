@@ -86,62 +86,102 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 </head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
-</head>
+
 <body>
-	<form name="frmEwrite" method="post" enctype="multipart/form-data"
-		action="<c:url value='/mainevent/eventwrite'/> ">
-		<div class="row">
-			<div class="col-lg-12 mb-5">
-				<div
-					class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
+	<div class="card border-light p-md-2">
+		<div class="card-body p-4">
+			<form name="frmEwrite" method="post" enctype="multipart/form-data"
+				action="<c:url value='/mainevent/eventwrite'/> ">
 
-					<!-- 이벤트 글쓰기 -->
-					<div class="form-group">
-						<label for="exampleFormControlTextarea2">이벤트 등록</label>
-						<textarea class="form-control" id="content" name="content"
-							rows="20"></textarea>
+				<div class="row">
+					<div class="col-lg-12 mb-5">
+						<div
+							style="display: block; width: 100%; border-bottom: solid 1px gray">
+							<label for="title">제목 </label> <input type="text" id="title"
+								name="newsTitle" class="infobox"
+								style="border: none; outline: none;" />
+						</div>
+
+						<br>
+
+						<!-- 이벤트 글쓰기 -->
+						<div class="form-group" style="display: block; width: 100%;">
+							<label for="exampleFormControlTextarea2">이벤트 내용</label>
+							<textarea class="ckediter" id="content" name="newsContent"
+								rows="20"></textarea>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 mb-5">
-				<div
-					class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
-					<div>
-						<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
-							type="submit"> <input value="목록"
-							class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
 
+				<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
+					type="submit"> <input value="목록"
+					class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
+
+			</form>
+		</div>
+	</div>
 	<script type="text/javascript">
 		CKEDITOR.replace('content');
 
 		$(function() {
 			$('form[name=frmEwrite]').submit(function() {
-				$('#content').each(function(idx, item) {
+				$('.infobox').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
 						$(this).focus();
 						event.preventDefault();
 						return false; //each 탈출
 					}
+	
 				});
 			});
+			
+	/* 		$('form[name=frmEwrite]').submit(function() {
+				// 입력 내용 받기 = CKEDITOR.instances.textarea태그의id.getData();
+				if(CKEDITOR.instances.content.getData() =='' 
+				        || CKEDITOR.instances.content.getData().length ==0){
+				    alert("내용을 입력해주세요.");
+				    $("#content").focus();
+				    return false;
+				}
+
+			} */
 
 			$('#btlist').click(function() {
 				location.href = "<c:url value='/mainevent/eventlist'/>";
 			});
 
 		});
+	
+		$(function(){ 
+			var privacy_editor = CKEDITOR.replace("termsContent", {filebrowserUploadUrl: '${contextPath}/privacies/imgUpload'}); 
+			$("#privacyRegit").click(function(){ 
+				privacyRegit(privacy_editor); 
+			}); 
+	    }); 
+		function privacyRegit(privacy_editor){ 
+			var category = $('input[name=category]').val(); 
+			var version = $("#version").val(); 
+			var postAt = $("#postAt").val(); 
+			if(version.trim() == ''){ 
+				alert("버전을 입력해주세요."); 
+				return false; 
+			} 
+			if(postAt.trim() == ''){ 
+				alert("게시일을 선택해주세요."); 
+				return false; 
+			} 
+			if(privacy_editor.getData().trim() == ''){ 
+				alert("내용을 입력해주세요."); 
+				return false; 
+			} 
+			$("#privacyDto").submit(); 
+		}
+		
+		
 	</script>
 </body>
 </html>
