@@ -30,12 +30,12 @@ public class HelloController {
 
 	@RequestMapping(value = "/my-items")
 	public String myitems() {
-		return "my-items";
+		return "dashboard/my-items";
 	}
 	
-	@RequestMapping(value = "/single-space")
+	@RequestMapping(value = "/detail")
 	public String singleSpace() {
-		return "single-space";
+		return "class/detail";
 	}
 	
 	@RequestMapping(value = "/balancing")

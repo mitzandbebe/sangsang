@@ -50,7 +50,7 @@
                     <img src="${pageContext.request.contextPath }/resources/assets/img/themesberg.svg" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                <p class="font-weight-normal font-small mb-0">Copyright � Themesberg
+                <p class="font-weight-normal font-small mb-0">Copyright © Themesberg
                     <span class="current-year">2020</span>. All rights reserved.</p>
                 </div>
             </div>
@@ -102,6 +102,14 @@
 
 <!-- Spaces custom Javascript -->
 <script src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
+
+<!-- 결제모듈 아임포트 라이브러리 -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 결제모듈 js-->
+<script type="text/javascript"
+    src="<c:url value='/resources/assets/js/payments.js'/> "></script>
+
+
 </body>
 
 </html>
