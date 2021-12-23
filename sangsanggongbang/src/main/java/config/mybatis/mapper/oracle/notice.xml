@@ -4,10 +4,35 @@
 
 <mapper namespace="com.gr.ssgb.notice.model.NoticeDAO">
 	<insert id="insertNotice" parameterType="noticeVo">
-		<selectKey keyProperty="noticeNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="noticeNo" resultType="int"
+			order="BEFORE">
 			select NOTICE_SEQ.nextval from dual
 		</selectKey>
+
 		insert into notice(notice_No, notice_Title, notice_Content)
 		values(#{noticeNo}, #{noticeTitle}, #{noticeContent})
 	</insert>
+
+	<select id="selectNoticeAll" resultType="noticeVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from notice
+		order
+		by
+		notice_no desc
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from notice
+	</select>
 </mapper>
