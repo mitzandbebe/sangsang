@@ -21,7 +21,6 @@ public class MemberVO {
 	private String delfalg;
 	public MemberVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public MemberVO(int mNo, String mId, String mName, String pwd, String mNickname, String phone, String bday,
 			String mZipcode, String mAddress, String mAddressDetail, Timestamp regdate, String mGrade,

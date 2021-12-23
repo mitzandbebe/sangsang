@@ -31,9 +31,9 @@ public class MemberController {
 		super();
 		this.memberService = memberService;
 	}
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/main")
 	public String main() {
-		return "/index2";
+		return "/main";
 	}
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -46,24 +46,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/join")
-	public String insertMember(@ModelAttribute MemberVO memberVo, Model model) {
+	public String insertMember(@ModelAttribute MemberVO memberVo, HttpServletResponse response, Model model) {
 		logger.info("회원가입 처리화면, vo={}", memberVo);
 		
 		int cnt = memberService.insertMember(memberVo);
 		logger.info("회원가입 결과, cnt={}", cnt);
 		String msg ="회원가입 실패!", url="/member/register";
 		if(cnt > 0) {
-			msg="회원가입이 성공적으로 완료되었습니다. 로그인하세요.";
-			url="/login/login";
+			Cookie ck = new Cookie("ck_userid", memberVo.getmId());
+			ck.setPath("/");
+			ck.setMaxAge(60*60); 
+			response.addCookie(ck);
+			msg="회원가입이 성공적으로 완료되었습니다.";
+			url="/member/askAdditional";
 		}
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "common/message";
 	}
 	
 	@RequestMapping(value="login/login")
-	public void login_get() {
+	public String login_get() {
 		logger.info("로그인화면");
+		return "login/login";
 	}
 	
 	@RequestMapping(value="/login/loginSubmit")
@@ -94,7 +100,7 @@ public class MemberController {
 						response.addCookie(ck);
 					}
 					msg="SNS 계정을 통한 회원가입이 성공적으로 완료되었습니다.";
-					url="/index";
+					url="/member/askAdditional";
 				}else {
 					msg="비유효한 SNS 계정입니다.";
 					url="/login/login";
@@ -155,6 +161,14 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/main";
+	}
+	@RequestMapping("member/askAdditional")
+	public void ask_additional() {
+		logger.info("부가정보 입력여부 확인화면");
+	}
+	@RequestMapping("member/additional")
+	public void additional() {
+		logger.info("부가정보 입력화면");
 	}
 }

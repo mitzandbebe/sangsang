@@ -1,4 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
 pull test- wonjung
 =========================================================
@@ -299,7 +302,12 @@ pull test- wonjung
             </div>
             <div class="d-none d-lg-block @@cta_button_classes">
                 <a href="https://themesberg.com/docs/spaces/components/buttons/" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">Components</span></a>
-                <a href="${pageContext.request.contextPath }/login/login" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG IN</a>
+            	<c:if test="${empty session.mId }">
+ 	               <a href="${pageContext.request.contextPath }/login/login" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG IN</a>
+                </c:if>
+                <c:if test="${!empty session.mId }">
+ 	               <a href="${pageContext.request.contextPath }/login/logout" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG OUT</a>
+                </c:if>
             </div>
             <div class="d-flex d-lg-none align-items-center">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global"
@@ -882,7 +890,7 @@ pull test- wonjung
                             <div class="rounded bg-white p-4 text-dark mb-2">
                                 <div class="mb-3">
                                     <div class="font-weight-normal">&gt; $ npm install</div>
-                                    <div class="text-secondary">Everything’s installed!</div>
+                                    <div class="text-secondary">Everythingâs installed!</div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="font-weight-normal">&gt; $ gulp</div>
@@ -896,7 +904,7 @@ pull test- wonjung
                                 </div>
                             </div>
                         </div>
-                        <p class="mt-4 text-white text-center">Looks unfamiliar? Don’t worry! Our <a class="text-white text-underline font-weight-bold" href="https://themesberg.com/docs/spaces/getting-started/quick-start/" target="_blank">documentation</a> has got you covered.</p>
+                        <p class="mt-4 text-white text-center">Looks unfamiliar? Donât worry! Our <a class="text-white text-underline font-weight-bold" href="https://themesberg.com/docs/spaces/getting-started/quick-start/" target="_blank">documentation</a> has got you covered.</p>
                     </div>
                 </div>
             </div>
@@ -1000,7 +1008,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: 1</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> LOG IN <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1019,7 +1027,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: Unlimited</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-danger mr-2"><span class="fas fa-times"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> Buy now <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1038,7 +1046,7 @@ pull test- wonjung
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>End products: 1</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use for a personal client</li>
                                     <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in a free end product</li>
-                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in an end product that is “sold”</li>
+                                    <li class="list-group-item font-weight-normal p-0 pb-3 border-0"><span class="icon-success mr-2"><span class="fas fa-check"></span></span>Use in an end product that is âsoldâ</li>
                                 </ul>
                             </div>
                             <div class="card-footer bg-white pt-0 px-4 pb-4"><a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-block btn-primary rounded animate-up-2"> Buy now <span class="icon icon-xs ml-3"></span> </a> </div>
@@ -1101,7 +1109,7 @@ pull test- wonjung
                     <img src="${pageContext.request.contextPath}/resources/assets/img/themesberg.svg" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                <p class="font-weight-normal font-small mb-0">Copyright © Themesberg
+                <p class="font-weight-normal font-small mb-0">Copyright Â© Themesberg
                     <span class="current-year">2020</span>. All rights reserved.</p>
                 </div>
             </div>
