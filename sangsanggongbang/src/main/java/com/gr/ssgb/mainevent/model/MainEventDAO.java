@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MainEventDAO {
 	public int insertEvent(MainEventVO vo);
 	public List<MainEventVO> selectAll();
-	public MainEventVO selectByNo(int no);
+	public MainEventVO selectByNo(int newsNo);
 }

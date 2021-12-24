@@ -5,5 +5,5 @@ import java.util.List;
 public interface MainEventService {
 	public int insertEvent(MainEventVO vo);
 	public List<MainEventVO> selectAll();
-	public MainEventVO selectByNo(int no);
+	public MainEventVO selectByNo(int newsNo);
 }

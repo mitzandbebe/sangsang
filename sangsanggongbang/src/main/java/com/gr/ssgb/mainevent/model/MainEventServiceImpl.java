@@ -22,7 +22,7 @@ public class MainEventServiceImpl implements MainEventService{
 	}
 
 	@Override
-	public MainEventVO selectByNo(int no) {
-		return mainEventDAO.selectByNo(no);
+	public MainEventVO selectByNo(int newsNo) {
+		return mainEventDAO.selectByNo(newsNo);
 	}
 }
