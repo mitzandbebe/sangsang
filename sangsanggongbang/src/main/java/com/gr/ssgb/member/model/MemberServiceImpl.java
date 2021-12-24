@@ -18,11 +18,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectBySnsId(String snsaccount) {
-		return memberDao.selectBySnsId(snsaccount);
-	}
-
-	@Override
 	public int insertSnsMember(MemberVO memberVo) {
 		return memberDao.insertSnsMember(memberVo);
 	}
@@ -39,6 +34,18 @@ public class MemberServiceImpl implements MemberService{
 			}
 		}
 		return result;
+	}
+	@Override
+	public int updateAdditionalInfo(MemberVO vo) {
+		return memberDao.updateAdditionalInfo(vo);
+	}
+	@Override
+	public int updateAdditionalSns(MemberVO vo) {
+		return memberDao.updateAdditionalSns(vo);
+	}
+	@Override
+	public int selectMemberById(String mId) {
+		return memberDao.selectMemberById(mId);
 	}
 	
 }

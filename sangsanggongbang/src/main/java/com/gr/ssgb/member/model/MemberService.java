@@ -7,9 +7,14 @@ public interface MemberService {
 	
 	int insertMember(MemberVO vo);
 
-	int selectBySnsId(String snsaccount);
+	public int checkIdPwd(String mId, String pwd);
+
+	int updateAdditionalInfo(MemberVO vo);
+
+	int updateAdditionalSns(MemberVO vo);
+
+	int selectMemberById(String getmId);
 
 	int insertSnsMember(MemberVO memberVo);
-	
-	public int checkIdPwd(String mId, String pwd);
+
 }

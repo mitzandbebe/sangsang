@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,20 +48,48 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/join")
-	public String insertMember(@ModelAttribute MemberVO memberVo, HttpServletResponse response, Model model) {
+	public String insertMember(@ModelAttribute MemberVO memberVo,@RequestParam String snsCheck,HttpServletRequest request, HttpServletResponse response, Model model) {
 		logger.info("회원가입 처리화면, vo={}", memberVo);
 		
-		int cnt = memberService.insertMember(memberVo);
-		logger.info("회원가입 결과, cnt={}", cnt);
 		String msg ="회원가입 실패!", url="/member/register";
-		if(cnt > 0) {
-			Cookie ck = new Cookie("ck_userid", memberVo.getmId());
-			ck.setPath("/");
-			ck.setMaxAge(60*60); 
-			response.addCookie(ck);
-			msg="회원가입이 성공적으로 완료되었습니다.";
-			url="/member/askAdditional";
-		}
+		int cnt =0;
+		/*
+		 * int accountCnt = memberService.selectMemberById(memberVo.getmId());
+		 * if(accountCnt!=0) { HttpSession session = request.getSession();
+		 * session.setAttribute("mId", memberVo.getmId());
+		 * session.setAttribute("snsCheck", snsCheck); Cookie ck = new
+		 * Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
+		 * ck.setMaxAge(1000*24*60*60); response.addCookie(ck); msg="기존 아이디로 로그인합니다!";
+		 * url="/index"; }else {
+		 */
+			if(snsCheck.equals("n")) {
+				cnt = memberService.insertMember(memberVo);
+			}else {
+				cnt = memberService.insertSnsMember(memberVo);
+			}
+			logger.info("회원가입 결과, cnt={}", cnt);
+			if(cnt > 0) {
+				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
+				Cookie ck2=null;
+				if(snsCheck.equals("y")) {
+					
+					Cookie ck5 = new Cookie("mFilename"+memberVo.getmId(), memberVo.getmFilename());
+					ck2 = new Cookie("snsCheck", snsCheck);
+					ck2.setPath("/");
+					ck2.setMaxAge(60*60); 
+					response.addCookie(ck2);
+					
+					ck5.setPath("/");
+					ck5.setMaxAge(60*60); 
+					response.addCookie(ck5);
+				}
+				ck.setPath("/");
+				ck.setMaxAge(60*60); 
+				response.addCookie(ck);
+				msg="회원가입이 성공적으로 완료되었습니다.";
+				url="/member/askAdditional";
+			}	
+			/* } */
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -79,7 +109,7 @@ public class MemberController {
 		
 		String msg ="", url="";
 		if(snsCheck.equals("y")) {
-			int accountCnt = memberService.selectBySnsId(memberVo.getmId());
+			int accountCnt = memberService.selectMemberById(memberVo.getmId());
 			if(accountCnt<1) {
 				memberVo.setmId(memberVo.getmId());
 				memberVo.setPwd(memberVo.getPwd());
@@ -161,14 +191,29 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/main";
+		return "redirect:/main"; 
 	}
 	@RequestMapping("member/askAdditional")
 	public void ask_additional() {
 		logger.info("부가정보 입력여부 확인화면");
 	}
-	@RequestMapping("member/additional")
-	public void additional() {
+	@GetMapping("member/additional")
+	public void additional_get() {
 		logger.info("부가정보 입력화면");
+	}
+	@PostMapping("member/additional")
+	public void additional_post(@ModelAttribute MemberVO vo,@RequestParam String snsCheck, Model model) {
+		logger.info("부가정보 입력 처리화면");
+		
+		int cnt = 0;
+		String msg = "", url ="";
+		if(snsCheck.equals("n")) {
+			cnt = memberService.updateAdditionalInfo(vo);
+		}else{
+			cnt = memberService.updateAdditionalSns(vo);
+		}
+		if(cnt>0) {
+			
+		}
 	}
 }
