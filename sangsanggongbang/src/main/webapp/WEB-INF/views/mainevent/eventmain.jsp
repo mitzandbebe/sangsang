@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,47 +62,46 @@
 </head>
 <body>
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
-<div id="Carousel4" class="carousel slide" data-ride="carousel">
+<div id="Carousel3" class="carousel slide" data-ride="carousel" style="width: 80%; position: relative; top: 0; right: 0; bottom: 0; left: 0;margin-left: 70px;">
     <ol class="carousel-indicators">
-        <li data-target="#Carousel4" data-slide-to="0" class="active"></li>
-        <li data-target="#Carousel4" data-slide-to="1"></li>
-        <li data-target="#Carousel4" data-slide-to="2"></li>
+        <li data-target="#Carousel3" data-slide-to="0" class="active"></li>
+        <li data-target="#Carousel3" data-slide-to="1"></li>
+        <li data-target="#Carousel3" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item overlay-dark active">
-            <img class="d-block w-100" src="<c:url value='/resources/assets/img/carousel/image-1.jpg'/>" alt="First slide">
+        <div class="carousel-item active">
+               <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[0].newsNo}">
+            <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[0].newsUploadname }'/>"alt="이미지가 없습니다">
+               </a> 
             <div class="carousel-caption d-none d-md-block">
-                <h5>First Title</h5>
-                <p>Start your development with a Pixel Design System for Bootstrap 4. It is creative and it features many components that can help you create amazing websites.
-                </p>
+               <h5>${toplist[0].newsTitle }</h5>
+            </div>
+        </div>       
+        <div class="carousel-item">
+                     <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[1].newsNo}">
+            <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[1].newsUploadname }'/>"alt="이미지가 없습니다">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>${toplist[1].newsTitle }</h5>
             </div>
         </div>
-        <div class="carousel-item overlay-dark">
-            <img class="d-block w-100" src="<c:url value='/resources/assets/img/carousel/image-2.jpg'/> " alt="Second slide">
+        <div class="carousel-item">
+                     <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[2].newsNo}">
+           <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[2].newsUploadname }'/>"alt="이미지가 없습니다">
+           </a>
             <div class="carousel-caption d-none d-md-block">
-                <h5>Second Title</h5>
-                <p>Start your development with a Pixel Design System for Bootstrap 4. It is creative and it features many components that can help you create amazing websites.
-                </p>
-            </div>
-        </div>
-        <div class="carousel-item overlay-dark">
-            <img class="d-block w-100" src="<c:url value='/resources/assets/img/carousel/image-3.jpg'/> " alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third Title</h5>
-                <p>Start your development with a Pixel Design System for Bootstrap 4. It is creative and it features many components that can help you create amazing websites.
-                </p>
+                <h5>${toplist[2].newsTitle }</h5>
             </div>
         </div>
     </div>
-    <a class="carousel-control-prev" href="#Carousel4" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#Carousel3" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#Carousel4" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#Carousel3" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
 </div>
-
 </body>
 </html>
