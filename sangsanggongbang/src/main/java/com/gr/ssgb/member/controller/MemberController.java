@@ -73,7 +73,7 @@ public class MemberController {
 				Cookie ck2=null;
 				if(snsCheck.equals("y")) {
 					
-					Cookie ck5 = new Cookie("mFilename"+memberVo.getmId(), memberVo.getmFilename());
+					Cookie ck5 = new Cookie("mFilename", memberVo.getmFilename());
 					ck2 = new Cookie("snsCheck", snsCheck);
 					ck2.setPath("/");
 					ck2.setMaxAge(60*60); 
