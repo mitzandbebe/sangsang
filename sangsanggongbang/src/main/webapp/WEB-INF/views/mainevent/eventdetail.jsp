@@ -42,8 +42,28 @@
 
             </article>
         </div>
-   
+   	<div class="d-flex justify-content-between mt-3" style="margin-left: 50px;">
+			<input value="메인으로 돌아가기"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain" type="button">	
+	</div>
     </main>
-    
+<script
+	src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
+<script
+	src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+<script type="text/javascript">
+	$(function() { 
+		$('#btmain').click(function() {
+			location.href = "<c:url value='/index'/>";
+		});
+	});
+
+</script>
 <!-- 푸터삽입해야함 -->
 <%@include file="../inc/bottom.jsp" %>

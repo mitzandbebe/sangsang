@@ -99,7 +99,7 @@
 					}
 	
 				});
-				$('.ckediter').each(function(idx, item) {
+				/* $('.ckediter').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
 						$(this).focus();
@@ -107,7 +107,7 @@
 						return false; //each 탈출
 					}
 	
-				});
+				}); */
 				
 			});
 			

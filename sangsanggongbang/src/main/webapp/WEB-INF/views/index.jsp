@@ -27,6 +27,9 @@
                      </div>
                 </div>
             </div>
+        	<c:import url="/mainevent/eventmain"/>
         </section>
+        
+       
     </main>
 <%@ include file="inc/bottom.jsp" %>

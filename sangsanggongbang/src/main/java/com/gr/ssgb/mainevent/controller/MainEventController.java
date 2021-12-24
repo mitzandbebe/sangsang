@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
+import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.mainevent.model.MainEventService;
 import com.gr.ssgb.mainevent.model.MainEventVO;
 
@@ -38,14 +40,6 @@ public class MainEventController {
 		this.fileUploadUtil = fileUploadUtil;
 		logger.info("메인이벤트 생성자 주입");
 	}
-
-
-	//메인이벤트 뷰
-	@RequestMapping(value = "/eventmain")
-	public String eventlist() {
-		return "/mainevent/eventmain";
-	}
-	
 
 	@GetMapping("/eventwrite")
 	public String write_get() {
@@ -95,11 +89,25 @@ public class MainEventController {
 	}
 	
 	@RequestMapping("/eventlist")
-	public String list(Model model) {
+	public String list(@ModelAttribute SearchVO searchVo,Model model) {
 		logger.info("이벤트 목록");
 		
-		List<MainEventVO> list=mainEventService.selectAll();
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
+		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}",searchVo);
+		
+		List<MainEventVO> list=mainEventService.selectAll(searchVo);
+		logger.info("전체조회 결과 list.size={}", list.size());
+		
+		int totalRecord = mainEventService.selectTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list",list);
 		
 		return "/mainevent/eventlist";
@@ -125,5 +133,16 @@ public class MainEventController {
 		model.addAttribute("vo", vo);
 
 		return "/mainevent/eventdetail";
+	}
+	
+	@RequestMapping("/eventmain")
+	public void topevent(Model model) {
+		logger.info("공지사항 메인");
+		
+		List<MainEventVO> toplist=mainEventService.selectByTop();
+		logger.info("공지사항결과 toplist={}",toplist);
+		
+		model.addAttribute("toplist",toplist);
+		
 	}
 }

@@ -73,16 +73,20 @@
 				<div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination pagination-sm">
+					<!-- 이전블럭 -->
+					<c:if test="${pagingInfo.firstPage>1 }">
 							<li class="page-item"><a class="page-link" href="#"><i
 									class="fas fa-angle-double-left"></i></a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item active"><a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
+					</c:if>
+					<!-- 페이징처리시작 -->
+					<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
+							<li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i }</a></li>
+					</c:forEach>
+					<!-- 다음블럭으로 이동 -->
+					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 							<li class="page-item"><a class="page-link" href="#"><i
 									class="fas fa-angle-double-right"></i></a></li>
+					</c:if>
 						</ul>
 					</nav>
 				</div>
