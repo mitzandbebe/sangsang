@@ -2,16 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gr.ssgb.mainevent.model.MainEventDAO">	 
+<mapper namespace="com.gr.ssgb.mainevent.model.MainEventDAO">	
+
 	<insert id="insertEvent" parameterType="mainEventVO">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		<selectKey keyProperty="newsNo" resultType="int" order="BEFORE">
 			select NEWS_SEQ.nextval from dual
 		</selectKey>
 		insert into news(news_no, news_title, news_content, news_uploadname,
-		 news_filesize, news_originalname)
-      values(#{no}, #{NewsTitle}, #{NewsContent}, #{NewsUploadname},
-       #{NewsFilesize}, #{NewsOriginalname})
+       news_filesize, news_originalname)
+      values(#{newsNo}, #{newsTitle}, #{newsContent}, #{newsUploadname},
+       #{newsFilesize}, #{newsOriginalname})
 	</insert>
+	
+	<select id="selectAll"  resultType="mainEventVO">
+		select * from news order by news_no desc
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="mainEventVO">
+		select * from news 
+		where news_no=#{newsNo}
+	</select>
 	
 </mapper>
 

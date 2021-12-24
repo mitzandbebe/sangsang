@@ -19,13 +19,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
-<title>Spaces - Blank page</title>
+<title>상상공방</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="title" content="Spaces - Blank page">
 <meta name="author" content="Themesberg">
@@ -72,7 +73,7 @@
 <link type="text/css" href="${pageContext.request.contextPath }/resources/css/spaces.css" rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-
+<!-- 결제모듈 -->
 </head>
 
 <body class="bg-soft">

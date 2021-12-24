@@ -19530,7 +19530,7 @@ a.text-github:hover, a.text-github:focus {
   h3 {
         page-break-after: avoid;
     }
-  @    page {
+  @page {
         size: a3;
     }
 
@@ -40754,3 +40754,29 @@ blockquote {
 }
 
 /*# sourceMappingURL=spaces.css.map */
+
+/* 정훈 직접추가 시작 */
+.class-confirm03 .c03-count input {
+    width: 34px;
+    text-align: center;
+    border: 0 none;
+    font-size: 16px;
+    height: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.class-confirm03 .c03-count a {
+    display: inline-block;
+    border-radius: 3px;
+    border: 1px solid #b0bbc9;
+    color: #b0bbc9;
+    font-size: 18px;
+    height: 24px;
+    line-height: 18px;
+    width: 24px;
+    text-align: center;
+    vertical-align: middle;
+}
+/* 정훈 직접추가 끝*/

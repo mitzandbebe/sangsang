@@ -1,62 +1,64 @@
 package com.gr.ssgb.mainevent.model;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 public class MainEventVO {
-	private int NewsNo;
-	private String NewsTitle;
-	private String NewsContent;
-	private String NewsUploadname;
-	private int NewsFilesize;
-	private String NewsOriginalname;
-	private Date NewsRegdate;
+	private int newsNo;
+	private String newsTitle;
+	private String newsContent;
+	private String newsUploadname;
+	private long newsFilesize;
+	private String newsOriginalname;
+	private Timestamp newsRegdate;
 	public int getNewsNo() {
-		return NewsNo;
+		return newsNo;
 	}
 	public void setNewsNo(int newsNo) {
-		NewsNo = newsNo;
+		this.newsNo = newsNo;
 	}
 	public String getNewsTitle() {
-		return NewsTitle;
+		return newsTitle;
 	}
 	public void setNewsTitle(String newsTitle) {
-		NewsTitle = newsTitle;
+		this.newsTitle = newsTitle;
 	}
 	public String getNewsContent() {
-		return NewsContent;
+		return newsContent;
 	}
 	public void setNewsContent(String newsContent) {
-		NewsContent = newsContent;
+		this.newsContent = newsContent;
 	}
 	public String getNewsUploadname() {
-		return NewsUploadname;
+		return newsUploadname;
 	}
 	public void setNewsUploadname(String newsUploadname) {
-		NewsUploadname = newsUploadname;
+		this.newsUploadname = newsUploadname;
 	}
-	public int getNewsFilesize() {
-		return NewsFilesize;
+	public long getNewsFilesize() {
+		return newsFilesize;
 	}
-	public void setNewsFilesize(int newsFilesize) {
-		NewsFilesize = newsFilesize;
+	public void setNewsFilesize(long newsFilesize) {
+		this.newsFilesize = newsFilesize;
 	}
 	public String getNewsOriginalname() {
-		return NewsOriginalname;
+		return newsOriginalname;
 	}
 	public void setNewsOriginalname(String newsOriginalname) {
-		NewsOriginalname = newsOriginalname;
+		this.newsOriginalname = newsOriginalname;
 	}
-	public Date getNewsRegdate() {
-		return NewsRegdate;
+	public Timestamp getNewsRegdate() {
+		return newsRegdate;
 	}
-	public void setNewsRegdate(Date newsRegdate) {
-		NewsRegdate = newsRegdate;
+	public void setNewsRegdate(Timestamp newsRegdate) {
+		this.newsRegdate = newsRegdate;
 	}
 	@Override
 	public String toString() {
-		return "MainEventVO [NewsNo=" + NewsNo + ", NewsTitle=" + NewsTitle + ", NewsContent=" + NewsContent
-				+ ", NewsUploadname=" + NewsUploadname + ", NewsFilesize=" + NewsFilesize + ", NewsOriginalname="
-				+ NewsOriginalname + ", NewsRegdate=" + NewsRegdate + "]";
+		return "MainEventVO [newsNo=" + newsNo + ", newsTitle=" + newsTitle + ", newsContent=" + newsContent
+				+ ", newsUploadname=" + newsUploadname + ", newsFilesize=" + newsFilesize + ", newsOriginalname="
+				+ newsOriginalname + ", newsRegdate=" + newsRegdate + "]";
 	}
+
 
 }
