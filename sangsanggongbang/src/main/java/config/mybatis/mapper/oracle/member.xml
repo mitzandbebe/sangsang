@@ -24,6 +24,17 @@
 	<select id="checkIdPwd" parameterType="string" resultType="string">
 		select pwd from member where m_id=#{mId}
 	</select>
+	
+	<update id="updateAdditionalInfo" parameterType="memberVo">
+		update member set m_name = #{mName}, m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress},m_addressDetail= #{mAddressDetail}
+		where m_id = #{mId} 
+	</update>
+	<update id="updateAdditionalSns" parameterType="memberVo">
+		update member set m_name = #{mName}, pwd=#{pwd} m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress},m_addressDetail= #{mAddressDetail}
+		where m_id = #{mId} 
+	</update>
 </mapper>
 
 
