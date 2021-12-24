@@ -113,7 +113,7 @@ var InputImage =
 								            	<c:if test="${!empty cookie.mFilename}">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${cookie.mFilename.value }${cookie.ck_userid.value}" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${cookie.mFilename.value }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								                </c:if>
@@ -304,7 +304,7 @@ var InputImage =
                                                 </div>
                                             </div>
                                         </div>
-                                    <!-- End of Form -->
+                                    <!-- End of Form --> 
                                     <div class="form-check mb-4">
                                         <input class="form-check-input" type="checkbox" value="" id="terms">
                                         <label class="form-check-label" for="terms">
