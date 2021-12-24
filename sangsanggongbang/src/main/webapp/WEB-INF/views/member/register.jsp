@@ -86,7 +86,7 @@
 									
 									function kakaoLogin(){
 										window.Kakao.Auth.login({
-											scope:'profile_nickname, account_email, gender, birthday',
+											scope:'profile_nickname, account_email, gender, birthday, profile_image',
 											success:function(authObj){
 												console.log(authObj);
 												window.Kakao.API.request({
@@ -96,10 +96,12 @@
 														console.log(kakao_account);
 														userId = kakao_account.email;
 														console.log(userId);
+														console.log(kakao_account.profile.profile_image_url);
+														
 														document.getElementById('email').value=kakao_account.email;
 														document.getElementById('bday').value=kakao_account.birthday;
 														document.getElementById('mNickname').value=kakao_account.nickname;
-														document.getElementById('mFilename').value=kakao_account.profile_image;
+														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('password_confirm').value="temppassword";
 														document.getElementById('snsCheck').value="y";
