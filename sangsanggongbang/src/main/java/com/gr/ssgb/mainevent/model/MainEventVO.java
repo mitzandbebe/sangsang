@@ -1,5 +1,6 @@
 package com.gr.ssgb.mainevent.model;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 public class MainEventVO {
@@ -7,9 +8,9 @@ public class MainEventVO {
 	private String newsTitle;
 	private String newsContent;
 	private String newsUploadname;
-	private int newsFilesize;
+	private long newsFilesize;
 	private String newsOriginalname;
-	private Date newsRegdate;
+	private Timestamp newsRegdate;
 	public int getNewsNo() {
 		return newsNo;
 	}
@@ -34,10 +35,10 @@ public class MainEventVO {
 	public void setNewsUploadname(String newsUploadname) {
 		this.newsUploadname = newsUploadname;
 	}
-	public int getNewsFilesize() {
+	public long getNewsFilesize() {
 		return newsFilesize;
 	}
-	public void setNewsFilesize(int newsFilesize) {
+	public void setNewsFilesize(long newsFilesize) {
 		this.newsFilesize = newsFilesize;
 	}
 	public String getNewsOriginalname() {
@@ -46,10 +47,10 @@ public class MainEventVO {
 	public void setNewsOriginalname(String newsOriginalname) {
 		this.newsOriginalname = newsOriginalname;
 	}
-	public Date getNewsRegdate() {
+	public Timestamp getNewsRegdate() {
 		return newsRegdate;
 	}
-	public void setNewsRegdate(Date newsRegdate) {
+	public void setNewsRegdate(Timestamp newsRegdate) {
 		this.newsRegdate = newsRegdate;
 	}
 	@Override
@@ -58,5 +59,6 @@ public class MainEventVO {
 				+ ", newsUploadname=" + newsUploadname + ", newsFilesize=" + newsFilesize + ", newsOriginalname="
 				+ newsOriginalname + ", newsRegdate=" + newsRegdate + "]";
 	}
+
 
 }
