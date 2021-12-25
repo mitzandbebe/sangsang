@@ -2,9 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gr.ssgb.test.model.TestDAO">	 
+<mapper namespace="com.gr.ssgb.member.model.MemberDAO">	 
+	<insert id="insertMember" parameterType="memberVo">
+		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
+			select member_seq.nextval from dual
+		</selectKey>
+		insert into member(M_NO, M_ID, PWD)
+		values(#{mNo}, #{mId}, #{pwd}) 
+	</insert>
 	
+	<select id="selectBySnsId" parameterType="string" resultType="int">
+		select count(*) from member where m_id=#{snsaccount}
+	</select>
+	<insert id="insertSnsMember" parameterType="memberVo">
+		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
+			select member_seq.nextval from dual
+		</selectKey>
+		insert into member(M_NO, M_ID, PWD)
+		values(#{mNo}, #{mId}, #{pwd}) 
+	</insert>
+	<select id="checkIdPwd" parameterType="string" resultType="string">
+		select pwd from member where m_id=#{mId}
+	</select>
 	
+	<update id="updateAdditionalInfo" parameterType="memberVo">
+		update member set m_name = #{mName}, m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress},m_addressDetail= #{mAddressDetail}
+		where m_id = #{mId} 
+	</update>
+	<update id="updateAdditionalSns" parameterType="memberVo">
+		update member set m_name = #{mName}, pwd=#{pwd} m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress},m_addressDetail= #{mAddressDetail}
+		where m_id = #{mId} 
+	</update>
 </mapper>
 
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.mainevent.model.MainEventDAO">	
+
+	<insert id="insertEvent" parameterType="mainEventVO">
+		<selectKey keyProperty="newsNo" resultType="int" order="BEFORE">
+			select NEWS_SEQ.nextval from dual
+		</selectKey>
+		insert into news(news_no, news_title, news_content, news_uploadname,
+       news_filesize, news_originalname)
+      values(#{newsNo}, #{newsTitle}, #{newsContent}, #{newsUploadname},
+       #{newsFilesize}, #{newsOriginalname})
+	</insert>
+	
+	<select id="selectAll" parameterType="searchVo" resultType="mainEventVO">
+		select*
+		from
+		(
+			select rownum as RNUM, A.*
+			from
+			(
+			select * from news order by news_no desc
+			)A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>		
+	</select>
+	
+	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
+		select count(*) from news
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="mainEventVO">
+		select * from news 
+		where news_no=#{newsNo}
+	</select>
+	
+	<select id="selectByTop" resultType="mainEventVO">
+		select*
+		from
+		(
+			select rownum as RNUM, A.*
+			from
+			(
+				select * from news order by news_no desc
+			)A
+		)
+		where RNUM between 1 and 3
+	</select>
+	
+</mapper>
+
+
