@@ -37,9 +37,10 @@ public class HelloController {
 	public String singleSpace() {
 		return "class/detail";
 	}
-	
+	/*
 	@RequestMapping(value = "/balancing")
 	public String balancing() {
-		return "dashboard/balancing";
+		return "dashboard/balancing/balancing";
 	}
+	*/
 }
