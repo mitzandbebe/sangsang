@@ -1,4 +1,4 @@
-package com.gr.ssgb.balancing.controller;
+package com.gr.ssgb.paymentList.controller;
 
 import java.util.List;
 
@@ -9,42 +9,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gr.ssgb.balancing.model.BalancingService;
-import com.gr.ssgb.balancing.model.BalancingVO;
+import com.gr.ssgb.paymentList.model.PaymentListService;
+import com.gr.ssgb.paymentList.model.PaymentListVO;
 
 @Controller
-public class BalancingController {	
+@RequestMapping("/dashboard/user")
+public class PaymentListController {	
 	private static final Logger logger
-	=LoggerFactory.getLogger(BalancingController.class);
+	=LoggerFactory.getLogger(PaymentListController.class);
 
-	private final BalancingService balancingService;
+	private final PaymentListService paymentListService;
 
 	//DI - 생성자에 의한 종속객체 주입
 	@Autowired
-	public BalancingController(BalancingService balancingService) {
-		this.balancingService = balancingService;
-		logger.info("정산요청목록 생성자주입");
+	public PaymentListController(PaymentListService paymentListService) {
+		this.paymentListService = paymentListService;
+		logger.info("내 결제목록 생성자주입!");
 	}
 	
-	@RequestMapping("/dashboard/balancing") 
-	public String balancing() { 
-		return "dashboard/balancing/balancing";
+	@RequestMapping("/payment") 
+	public String paymentList() { 
+		return "dashboard/user/payment/payment";
 	}
 	
-	@RequestMapping("/dashboard/balancing/list")
-	public String bcList(Model model) {
+	@RequestMapping("/payment/list")
+	public String pmList(Model model) {
 		//1. 파라미터 읽어오기 - 출력
-		logger.info("정산요청 목록 페이지");
+		logger.info("내 결제목록 페이지");
 		
 		//2. db작업 => 매퍼 xml에서 작업, dao, service, serviceImpl
-		List<BalancingVO> list=balancingService.selectBalancingAll();
-		logger.info("정산요청 목록 조회,결과 list.size={}", list.size());
+		List<PaymentListVO> list=paymentListService.selectPaymentListAll();
+		logger.info("내 결제목록 조회,결과 list.size={}", list.size());
 		
 		//3. model에 결과 저장
 		model.addAttribute("list", list);
 		
 		//4. 뷰페이지 리턴
-		return "dashboard/balancing/list";
+		return "dashboard/user/payment/list";
 	}
 	
 /*
