@@ -46,6 +46,9 @@
 		<a href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
 			<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
 		</a>
+		<a href="<c:url value='/notice/noticeDelete?noticeNo=${vo.noticeNo }'/>">
+			<button class="btn mb-2 mr-2 btn-dark" type="button" id="noticeDelete">삭제</button>
+		</a>
 		<table>
 			<c:if test="${empty PNVo.nextTitle }">
 				<tr>
@@ -58,7 +61,7 @@
 				<th><a href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">
 						<span>다음글</span>
 				</a></th>
-				<td><a
+				<td><a 
 					href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">${PNVo.nextTitle }</a></td>
 			</tr>
 			</c:if>
@@ -101,6 +104,12 @@
 				$allLoaded.show();
 			}, 1500);
 		});
+		$('#noticeDelete').click(function(){
+			var result =confirm('공지사항을 삭제하시겠습니까');
+			if(!result){
+				event.preventDefault();
+			}
+		})
 	</script>
 </body>
 </html>
