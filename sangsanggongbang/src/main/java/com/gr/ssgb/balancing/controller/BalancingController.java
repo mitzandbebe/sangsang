@@ -13,7 +13,6 @@ import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
 
 @Controller
-@RequestMapping("/dashboard")
 public class BalancingController {	
 	private static final Logger logger
 	=LoggerFactory.getLogger(BalancingController.class);
@@ -27,12 +26,12 @@ public class BalancingController {
 		logger.info("정산요청목록 생성자주입");
 	}
 	
-	@RequestMapping("/balancing") 
+	@RequestMapping("/dashboard/balancing") 
 	public String balancing() { 
-		return "balancing/balancing";
+		return "dashboard/balancing/balancing";
 	}
 	
-	@RequestMapping("/balancing/list")
+	@RequestMapping("/dashboard/balancing/list")
 	public String bcList(Model model) {
 		//1. 파라미터 읽어오기 - 출력
 		logger.info("정산요청 목록 페이지");
@@ -42,10 +41,10 @@ public class BalancingController {
 		logger.info("정산요청 목록 조회,결과 list.size={}", list.size());
 		
 		//3. model에 결과 저장
-		model.addAttribute("bcList", list);
+		model.addAttribute("list", list);
 		
 		//4. 뷰페이지 리턴
-		return "balancing/balancing/list";
+		return "dashboard/balancing/list";
 	}
 	
 /*

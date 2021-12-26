@@ -23,21 +23,18 @@
 	  </tr>
 	</thead> 
 	<tbody>  
- 	  <c:if test="${empty bcList }">
+ 	  <c:if test="${empty list }">
 	  	<tr>
 	  		<td colspan="6">데이터가 없습니다.</td>
 	  	</tr>
 	  </c:if>	
-	  <c:if test="${!empty bcList }">
+	  <c:if test="${!empty list }">
 		  <!--게시판 내용 반복문 시작  -->		  
-		  <c:forEach var="vo" items="${bcList }">
+		  <c:forEach var="vo" items="${list }">
 			<tr style="text-align:center">
 				<td>${vo.bNo}</td>
-				<td style="text-align:center">
-					<a href
-		="<c:url value='/board/countUpdate.do?no=${vo.bNo}'/>">
-						${vo.cNo}
-					</a>
+				<td>
+				 ${vo.cNo}
 				</td>
 				<td>${vo.hNo}</td>
 				<td>${vo.bPpnum}</td>

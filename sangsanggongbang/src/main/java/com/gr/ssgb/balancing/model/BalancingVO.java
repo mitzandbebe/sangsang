@@ -18,23 +18,22 @@ public class BalancingVO {
 		this.bReqDate = bReqDate;
 		this.bFlag = bFlag;
 	}
-	
 	public int getbNo() {
 		return bNo;
 	}
 	public void setbNo(int bNo) {
 		this.bNo = bNo;
 	}
-	public int getcNO() {
+	public int getcNo() {
 		return cNo;
 	}
-	public void setcNO(int cNo) {
+	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
-	public int gethNO() {
+	public int gethNo() {
 		return hNo;
 	}
-	public void sethNO(int hNo) {
+	public void sethNo(int hNo) {
 		this.hNo = hNo;
 	}
 	public int getbPpnum() {
@@ -55,12 +54,12 @@ public class BalancingVO {
 	public void setbFlag(String bFlag) {
 		this.bFlag = bFlag;
 	}
-
 	@Override
 	public String toString() {
 		return "BalancingVO [bNo=" + bNo + ", cNo=" + cNo + ", hNo=" + hNo + ", bPpnum=" + bPpnum + ", bReqDate="
 				+ bReqDate + ", bFlag=" + bFlag + "]";
 	}
+	
 	
 	
 	
