@@ -124,4 +124,26 @@ public class NoticeController {
 		
 		return "/common/message";
 	}
+	
+	@GetMapping("/noticeDelete")
+	public String noticeDelete_post(@RequestParam int noticeNo, Model model) {
+		logger.info("공지사항 삭제화면 vo={}",noticeNo);
+		
+		if(noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다");
+			model.addAttribute("url", "/notice/noticeList");
+			
+			return "/common/message";
+		}
+		
+		int cnt =noticeService.deleteNotice(noticeNo);
+		logger.info("공지사항 삭제여부 cnt={}",cnt);
+		String msg="공지사항 삭제에 실패했습니다.", url="/notice/noticeDetail?noticeNo"+noticeNo;
+		if(cnt>0) {
+			model.addAttribute("msg","공지사항 삭제에 성공했습니다.");
+			model.addAttribute("url","/notice/noticeList");
+		}
+		
+		return "common/message";
+	}
 }
