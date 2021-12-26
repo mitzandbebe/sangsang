@@ -19,33 +19,40 @@
 	<div class="card border-light p-md-2">
 		<div class="card-body p-4">
 			<form name="frmEwrite" method="post" enctype="multipart/form-data"
-				action="<c:url value='/mainevent/eventwrite'/> ">
-
+				action="<c:url value='/mainevent/eventupdate'/> ">
+	<input type="hidden" name="newsNo" value="${param.newsNo}">
+	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}">
 				<div class="row">
 					<div class="col-lg-12 mb-5">
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 </label> <input type="text" id="title"
-								name="newsTitle" class="infobox"
-								style="border: none; outline: none;" />
+							<label for="title">제목 </label> 
+							<input type="text" id="title"
+								name="newsTitle" class="infobox" value="${vo.newsTitle }"
+								style="border: none; outline: none; width:80%" />
 						</div>
 
 						<div>
 				            <label for="upfile">대표이미지 📁  </label>
 					        <input type="file" name="upfile" id="upfile">
+				           	<br><span style="color:red;font-size:15px">
+					        <c:if test="${!empty vo.newsUploadname }">
+				           	첨부 파일을 새로 지정할 경우 기존파일 
+				           	 ${fileInfo} 은 삭제됩니다.
+				            </c:if>
+				            </span>
 				        </div>
-						
 
 						<!-- 이벤트 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
 							<label for="exampleFormControlTextarea2">이벤트 내용</label>
 							<textarea class="ckediter" id="content" name="newsContent"
-								rows="20"></textarea>
+								rows="20" >${vo.newsContent }</textarea>
 						</div>
 					</div>
 				</div>
 
-				<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
+				<input value="수정등록" class="btn mb-2 mr-2 btn-outline-gray"
 					type="submit"> 
 					<input value="목록"
 					class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
@@ -90,15 +97,7 @@
 					}
 	
 				});
-				$('#upfile').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).prev().html() + "을 입력하세요");
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					}
-	
-				});
+		
 				/* $('.ckediter').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");

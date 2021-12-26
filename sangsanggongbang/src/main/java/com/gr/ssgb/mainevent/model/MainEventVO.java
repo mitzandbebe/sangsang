@@ -1,7 +1,6 @@
 package com.gr.ssgb.mainevent.model;
 
-import java.security.Timestamp;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class MainEventVO {
 	private int newsNo;

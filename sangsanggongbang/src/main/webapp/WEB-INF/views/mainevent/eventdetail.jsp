@@ -13,7 +13,8 @@
         <img src="${pageContext.request.contextPath }/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
     </div>
 </div>
-
+	<form name="frmEdetail" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}">
         <!-- Hero -->
         <section class="section-header pb-7 bg-primary text-white">
             <div class="container">
@@ -42,10 +43,18 @@
 
             </article>
         </div>
-   	<div class="d-flex justify-content-between mt-3" style="margin-left: 50px;">
+   	<div class="" style="margin-left: 50px;">
 			<input value="메인으로 돌아가기"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain" type="button">	
+			<input value="이벤트목록"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist" type="button">	
+			<!-- 관리자세션일때로 한정해놓기 -->
+			<input value="이벤트수정"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate" type="button">	
+			<input value="이벤트삭제"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete" type="button">	
 	</div>
+	</form>
     </main>
 <script
 	src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
@@ -61,6 +70,15 @@
 	$(function() { 
 		$('#btmain').click(function() {
 			location.href = "<c:url value='/index'/>";
+		});
+		$('#btlist').click(function() {
+			location.href = "<c:url value='/mainevent/eventlist'/>";
+		});
+		$('#btupdate').click(function() {
+			location.href = "<c:url value='/mainevent/eventupdate?newsNo=${vo.newsNo}'/>";
+		});
+		$('#btdelete').click(function() {
+			location.href = "<c:url value='/mainevent/eventdelete?newsNo=${vo.newsNo}'/>";
 		});
 	});
 
