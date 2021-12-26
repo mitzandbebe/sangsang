@@ -24,7 +24,7 @@ public class PaymentListController {
 	@Autowired
 	public PaymentListController(PaymentListService paymentListService) {
 		this.paymentListService = paymentListService;
-		logger.info("내 결제목록 생성자주입");
+		logger.info("내 결제목록 생성자주입!");
 	}
 	
 	@RequestMapping("/payment") 
