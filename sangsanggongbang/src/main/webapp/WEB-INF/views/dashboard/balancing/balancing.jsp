@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp"  %>
-<%@ include file="leftNavi.jsp"  %>
+<%@ include file="../../inc/top.jsp"  %>
+<%@ include file="../leftNavi.jsp"  %>
 
 <div class="col-12 d-lg-none">
     <div class="card bg-white border-light mb-4 mb-lg-5">
@@ -100,6 +100,7 @@
                                                 </div>
                                             </li>
                                         </ul>
+       										 <c:import url="/balancing/list"></c:import>
                                     </div>
                                 </div>
                             </div>
@@ -108,5 +109,6 @@
                 </div>
             </div>
         </div>
+
     </main>
- <%@ include file="../inc/bottom.jsp" %>
+ <%@ include file="../../inc/bottom.jsp" %>
