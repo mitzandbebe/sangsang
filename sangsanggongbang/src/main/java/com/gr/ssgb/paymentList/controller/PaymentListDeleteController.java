@@ -1,4 +1,4 @@
-package com.gr.ssgb.balancing.controller;
+package com.gr.ssgb.paymentList.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ import com.gr.ssgb.balancing.model.BalancingVO;
 
 @Controller
 @RequestMapping("/balancing")
-public class BalancingDeleteController {
+public class PaymentListDeleteController {
 	private static final Logger logger
-		=LoggerFactory.getLogger(BalancingDeleteController.class);
+		=LoggerFactory.getLogger(PaymentListDeleteController.class);
 	
 	@Autowired
 	private BalancingService balancingService;

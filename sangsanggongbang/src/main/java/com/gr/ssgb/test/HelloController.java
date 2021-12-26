@@ -28,9 +28,9 @@ public class HelloController {
 
 	}
 
-	@RequestMapping(value = "/my-items")
+	@RequestMapping(value = "dashboard/user/my-items")
 	public String myitems() {
-		return "dashboard/my-items";
+		return "dashboard/user/my-items";
 	}
 	
 	@RequestMapping(value = "/detail")
