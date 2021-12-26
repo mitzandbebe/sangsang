@@ -12,4 +12,5 @@ public interface NoticeService {
 	NoticeVO selectPreNnexTitle(int noticeNo);
 	int updateNotice(NoticeVO vo);
 	int deleteNotice(int noticeNo);
+	int updateReadCount(int noticeNo);
 }
