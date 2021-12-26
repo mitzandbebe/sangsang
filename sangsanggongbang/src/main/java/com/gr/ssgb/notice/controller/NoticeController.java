@@ -104,24 +104,24 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/noticeEdit")
-	public String noticeEdit_post(@ModelAttribute NoticeVO vo ,@RequestParam(defaultValue = "0") int noticeNo,Model model) {
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo ,Model model) {
 		logger.info("글 수정 vo={}",vo);
 		
-		if(noticeNo==0) {
+		if(vo.getNoticeNo()==0) {
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/notice/noticeList");
 			
 			return "/common/message";
 		}
-		int cnt = noticeService.updateNotice(noticeNo,vo);
+		int cnt = noticeService.updateNotice(vo);
 		logger.info("수정 성공 여부 cnt={}",cnt);
-		String msg="수정에 실패했습니다", url ="/notice/noticeDetail?noticeNo="+vo.getNoticeNo();
+		String msg="수정에 실패했습니다", url ="/notice/noticeList";
 		if(cnt>0) {
 			msg="수정에 성공했습니다.";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		
-		return "notice/noticeDetail?noticeNo="+vo.getNoticeNo();
+		return "/common/message";
 	}
 }
