@@ -13,4 +13,5 @@ public interface NoticeDAO {
 	int selectTotalRecord(SearchVO searchVo);
 	NoticeVO selectNoticeByNo(int noticeNo);
 	NoticeVO selectPreNnexTitle(int noticeNo);
+	int updateNotice(int noticeNo,NoticeVO vo);
 }
