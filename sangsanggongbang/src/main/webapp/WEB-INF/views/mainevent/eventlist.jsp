@@ -25,7 +25,7 @@
 			<tr>
 				<th scope="col">✔</th>
 				<th scope="col">이벤트제목</th>
-				<th scope="col">이벤트내용</th>
+				<!-- <th scope="col">이벤트내용</th> -->
 				<th scope="col">작성일</th>
 			</tr>
 		</thead>
@@ -41,9 +41,11 @@
 					<tr>
 						<th scope="row">${vo.newsNo }</th>
 						<td>
+						<a href="<c:url value='/mainevent/eventdetail?newsNo=${vo.newsNo}'/>">
 							<div class="d-flex align-items-center">${vo.newsTitle }</div>
+						</a>
 						</td>
-						<td>
+					<%-- 	<td>
 							<a href="<c:url value='/mainevent/eventdetail?newsNo=${vo.newsNo}'/>">
 								<c:if test="${fn:length(vo.newsContent)>30 }">
 									${fn:substring(vo.newsContent ,0,30)}...
@@ -52,7 +54,7 @@
 									${vo.newsContent}
 								</c:if>
 							</a>
-						</td>
+						</td> --%>
 						<td>
 							<fmt:formatDate value= "${vo.newsRegdate }" pattern="yyyy-MM-dd HH:ss"/>
 						</td>
@@ -75,16 +77,22 @@
 						<ul class="pagination pagination-sm">
 					<!-- 이전블럭 -->
 					<c:if test="${pagingInfo.firstPage>1 }">
-							<li class="page-item"><a class="page-link" href="#"><i
+							<li class="page-item">
+					<a class="page-link" href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.firstPage -1 }'/> ">
+					<i
 									class="fas fa-angle-double-left"></i></a></li>
 					</c:if>
 					<!-- 페이징처리시작 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-							<li class="page-item"><a class="page-link" href="#" onclick="pageFunc(${i})">${i }</a></li>
+							<li class="page-item">
+					<a class="page-link" href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+					</li>
 					</c:forEach>
 					<!-- 다음블럭으로 이동 -->
 					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-							<li class="page-item"><a class="page-link" href="#"><i
+							<li class="page-item">
+					<a class="page-link" href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.lastPage +1 }'/> ">
+					<i
 									class="fas fa-angle-double-right"></i></a></li>
 					</c:if>
 						</ul>

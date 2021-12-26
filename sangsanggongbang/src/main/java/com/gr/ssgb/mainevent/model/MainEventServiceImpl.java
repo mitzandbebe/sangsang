@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.member.model.MemberVO;
 
 @Service
 public class MainEventServiceImpl implements MainEventService{
@@ -40,5 +41,13 @@ public class MainEventServiceImpl implements MainEventService{
 	@Override
 	public List<MainEventVO> selectByTop() {
 		return mainEventDAO.selectByTop();
+	}
+
+	@Override
+	public int updateEvent(MainEventVO vo) {
+		return mainEventDAO.updateEvent(vo);
+	}
+	public int deleteEvent(int newsNo) {
+		return mainEventDAO.deleteEvent(newsNo);
 	}
 }
