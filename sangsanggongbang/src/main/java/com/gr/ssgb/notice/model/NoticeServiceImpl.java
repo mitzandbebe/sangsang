@@ -26,4 +26,12 @@ public class NoticeServiceImpl implements NoticeService{
 	public int selectTotalRecord(SearchVO searchVo) {
 		return noticedao.selectTotalRecord(searchVo);
 	}
+	
+	public NoticeVO selectNoticeByNo(int NoticeNo) {
+		return noticedao.selectNoticeByNo(NoticeNo);
+	}
+	
+	public NoticeVO selectPreNnexTitle(int noticeNo) {
+		return noticedao.selectPreNnexTitle(noticeNo);
+	}
 }

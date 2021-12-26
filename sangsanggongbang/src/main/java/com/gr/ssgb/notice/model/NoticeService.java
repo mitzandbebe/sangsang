@@ -8,4 +8,6 @@ public interface NoticeService {
 	int insertNotice(NoticeVO vo);
 	List<NoticeVO> selectNoticeAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
+	NoticeVO selectNoticeByNo(int noticeNo);
+	NoticeVO selectPreNnexTitle(int noticeNo);
 }
