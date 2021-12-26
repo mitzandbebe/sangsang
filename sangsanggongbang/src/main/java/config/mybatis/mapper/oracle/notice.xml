@@ -41,7 +41,12 @@
 		resultType="noticeVo">
 		select * from notice where notice_no =#{noticeno}
 	</select>
-
+	
+	<update id="updateReadCount" parameterType="int">
+		update notice set NOTICE_READCOUNT = NOTICE_READCOUNT+1 
+		where NOTICE_NO=#{noticeNo}
+	</update>
+	
 	<select id="selectPreNnexTitle" parameterType="int"
 		resultType="noticeVo">
 		select PRE_NO,PRE_TITLE,NEXT_NO ,NEXT_TITLE
