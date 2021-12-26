@@ -28,6 +28,7 @@
 	
 		<select id="selectBalancingAll" resultType="balancingVo">
 		select * from balancing
+		order by b_no desc
 	</select>
 	
 </mapper>

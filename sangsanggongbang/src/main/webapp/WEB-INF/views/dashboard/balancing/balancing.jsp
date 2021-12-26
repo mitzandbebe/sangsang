@@ -100,7 +100,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-       										 <c:import url="/balancing/list"></c:import>
+       										 <c:import url="/dashboard/balancing/list"></c:import>
                                     </div>
                                 </div>
                             </div>
