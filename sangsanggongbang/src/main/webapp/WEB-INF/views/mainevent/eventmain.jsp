@@ -62,7 +62,7 @@
 </head>
 <body>
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
-<div id="Carousel3" class="carousel slide" data-ride="carousel" style="width: 80%; position: relative; top: 0; right: 0; bottom: 0; left: 0;margin-left: 70px;">
+<div id="Carousel3" class="carousel slide" data-ride="carousel" style="width: 80%; height:auto;position: relative; top: 0; right: 0; bottom: 0; left: 0;margin-left:10%;margin-right:10%">
     <ol class="carousel-indicators">
         <li data-target="#Carousel3" data-slide-to="0" class="active"></li>
         <li data-target="#Carousel3" data-slide-to="1"></li>
