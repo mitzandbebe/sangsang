@@ -10,5 +10,5 @@ public interface NoticeService {
 	int selectTotalRecord(SearchVO searchVo);
 	NoticeVO selectNoticeByNo(int noticeNo);
 	NoticeVO selectPreNnexTitle(int noticeNo);
-	int updateNotice(int noticeNo,NoticeVO vo);
+	int updateNotice(NoticeVO vo);
 }
