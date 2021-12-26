@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
-<title>공지사항 글쓰기</title>
+<title>공지사항 수정하기</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="title" content="Spaces - Blog post">
@@ -93,7 +93,8 @@
 </head>
 <body>
 	<form name="frmEwrite" method="post" enctype="multipart/form-data"
-		action="<c:url value='/notice/noticeWrite'/> ">
+		action="<c:url value='/notice/noticeEdit'/> ">
+		<input type="text" name="noticeNo" value="${param.noticeNo }">
 		<div class="row">
 			<div class="col-lg-12 mb-5">
 				<div
@@ -101,7 +102,7 @@
 
 					<!-- 이벤트 글쓰기 -->
 					<div class="form-group">
-						<label for="exampleFormControlTextarea2">공지사항 등록</label>
+						<label for="exampleFormControlTextarea2">공지사항 수정</label>
 						<br>
 						<input type="text" id="title" name="noticeTitle">
 						<textarea class="form-control" id="content" name="noticeContent"

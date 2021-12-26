@@ -10,6 +10,45 @@ public class NoticeVO {
 	private int noticeStep;
 	private int noticeGroupId;
 	private String noticeFlag;
+	
+	//이전 or 다음 글
+	private int preNo;
+	private int nextNo;
+	private String preTitle; //이전 글 제목
+	private String nextTitle; //다음 글 제목
+
+	
+	public int getPreNo() {
+		return preNo;
+	}
+
+	public void setPreNo(int preNo) {
+		this.preNo = preNo;
+	}
+
+	public int getNextNo() {
+		return nextNo;
+	}
+
+	public void setNextNo(int nextNo) {
+		this.nextNo = nextNo;
+	}
+
+	public String getPreTitle() {
+		return preTitle;
+	}
+
+	public void setPreTitle(String preTitle) {
+		this.preTitle = preTitle;
+	}
+
+	public String getNextTitle() {
+		return nextTitle;
+	}
+
+	public void setNextTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
 
 	public int getNoticeNo() {
 		return noticeNo;
@@ -71,6 +110,7 @@ public class NoticeVO {
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
 				+ ", noticeRegdate=" + noticeRegdate + ", noticeStep=" + noticeStep + ", noticeGroupId=" + noticeGroupId
-				+ ", noticeFlag=" + noticeFlag + "]";
+				+ ", noticeFlag=" + noticeFlag + ", preNo=" + preNo + ", nextNo=" + nextNo + ", preTitle=" + preTitle
+				+ ", nextTitle=" + nextTitle + "]";
 	}
 }

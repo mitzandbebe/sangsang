@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.PaginationInfo;
@@ -52,7 +53,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/noticeList")
-	public String notice(@ModelAttribute SearchVO searchVo , Model model) {
+	public String noticeList(@ModelAttribute SearchVO searchVo , Model model) {
 		logger.info("공지화면 등장");
 		PaginationInfo pagingInfo= new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -75,4 +76,52 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 
+	@GetMapping("/noticeDetail")
+	public String noticeDetail(@RequestParam(defaultValue = "0" )int noticeNo, Model model) {
+		logger.info("공지사항 디테일 화면 등장");
+		
+		if(noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다");
+			model.addAttribute("url", "/notice/noticeList");
+			
+			return "/common/message";
+		}
+		NoticeVO vo= noticeService.selectNoticeByNo(noticeNo);
+		NoticeVO PNVo = noticeService.selectPreNnexTitle(noticeNo);
+		logger.info("공지사항 결과값 vo={},PNVo={}",vo,PNVo);
+		
+		
+		model.addAttribute("vo",vo);
+		model.addAttribute("PNVo",PNVo);
+		
+		return "notice/noticeDetail";
+	}
+	
+	@GetMapping("/noticeEdit")
+	public void noticeEdit_get(@RequestParam(defaultValue = "0")int noticeNo, Model model) {
+		logger.info("공지사항 수정화면 noticeNo={}",noticeNo);
+		
+	}
+	
+	@PostMapping("/noticeEdit")
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo ,@RequestParam(defaultValue = "0") int noticeNo,Model model) {
+		logger.info("글 수정 vo={}",vo);
+		
+		if(noticeNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다");
+			model.addAttribute("url", "/notice/noticeList");
+			
+			return "/common/message";
+		}
+		int cnt = noticeService.updateNotice(noticeNo,vo);
+		logger.info("수정 성공 여부 cnt={}",cnt);
+		String msg="수정에 실패했습니다", url ="/notice/noticeDetail?noticeNo="+vo.getNoticeNo();
+		if(cnt>0) {
+			msg="수정에 성공했습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "notice/noticeDetail?noticeNo="+vo.getNoticeNo();
+	}
 }

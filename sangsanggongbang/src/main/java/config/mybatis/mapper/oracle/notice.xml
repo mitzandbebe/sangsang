@@ -13,7 +13,8 @@
 		values(#{noticeNo}, #{noticeTitle}, #{noticeContent})
 	</insert>
 
-	<select id="selectNoticeAll" resultType="noticeVo">
+	<select id="selectNoticeAll" resultType="noticeVo"
+		parameterType="searchVo">
 		select *
 		from
 		(
@@ -35,4 +36,29 @@
 		resultType="int">
 		select count(*) from notice
 	</select>
+
+	<select id="selectNoticeByNo" parameterType="int"
+		resultType="noticeVo">
+		select * from notice where notice_no =#{noticeno}
+	</select>
+
+	<select id="selectPreNnexTitle" parameterType="int"
+		resultType="noticeVo">
+		select PRE_NO,PRE_TITLE,NEXT_NO ,NEXT_TITLE
+		from(
+		select notice_no,
+		lag(notice_no) over (order by notice_no) as PRE_NO,
+		lead(notice_no) over (order by notice_no) as NEXT_No,
+		lag(notice_title) over (order by notice_no) as PRE_TITLE,
+		lead(notice_title) over (order by notice_no) as NEXT_TITLE
+		from notice
+		)
+		where notice_no=#{noticeNo}
+	</select>
+	
+	<update id="updateNotice" parameterType ="noticeVo">
+		update NOTICE
+		set NOTICE_TITLE = #{noticeTitle}, NOTICE_CONTENT=#{noticeContent}
+		where NOTICE_NO=#{noticeNo}
+	</update>
 </mapper>
