@@ -68,7 +68,7 @@
 							<c:if test="${i==pagingInfo.currentPage }">
 								<li class="page-item active"><a class="page-link" href="#">${i }</a>
 							</c:if>
-							<c:if test="${i!=pagingInfo.currentPage }">
+						<c:if test="${i!=pagingInfo.currentPage }">
 								<li class="page-item"><a class="page-link"
 									href="<c:url value='/notice/noticeList?currentPage=${i}'/>">
 										${i }</a></li>
