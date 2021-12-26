@@ -34,4 +34,7 @@ public class NoticeServiceImpl implements NoticeService{
 	public NoticeVO selectPreNnexTitle(int noticeNo) {
 		return noticedao.selectPreNnexTitle(noticeNo);
 	}
+	public int updateNotice(int noticeNo,NoticeVO vo) {
+		return noticedao.updateNotice(noticeNo,vo);
+	}
 }

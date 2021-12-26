@@ -43,6 +43,9 @@
 		<a href="<c:url value='/notice/noticeList'/>">
 			<button class="btn mb-2 mr-2 btn-dark" type="button">목록</button>
 		</a>
+		<a href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
+			<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
+		</a>
 		<table>
 			<c:if test="${empty PNVo.nextTitle }">
 				<tr>
