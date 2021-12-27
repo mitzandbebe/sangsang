@@ -28,35 +28,55 @@
 						<div class="card-body p-0 pt-4">
 							<span class="h5">아이디 : ${list.mId }</span>
 							<div class="d-flex align-items-center my-4">
-								<h3 class="h6 small ml-2 mb-0">지정일 : <fmt:formatDate value="${list.regdate }" pattern="yyyy-MM-dd" /> </h3>
+								<h3 class="h6 small ml-2 mb-0">
+									지정일 :
+									<fmt:formatDate value="${list.regdate }" pattern="yyyy-MM-dd" />
+								</h3>
 							</div>
-							<p class="mb-0">블랙리스트 등록 사유(이건 체크박스로 해서 가저오면 될듯 12-27에 배운 맵으로 가져오는거)</p>
+							<p class="mb-0">블랙리스트 등록 사유(이건 체크박스로 해서 가저오면 될듯 12-27에 배운 맵으로
+								가져오는거)</p>
 						</div>
+						<a href="<c:url value='/blackList/blackDelete?bno=${list.bno }'/>">
+						<button class="btn mb-2 mr-2 btn-dark" type="button"
+							id="blackListException" style="width: 190px">블랙리스트에서 제외</button>
+							</a>
 					</div>
 					<br>
 				</c:forEach>
 			</div>
-	</div>
-	<div class="d-flex justify-content-center w-100 mt-5">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#">Previous</a>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" href="#">5</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
-	</div>
-	</div>
+		</div>
+		<%-- <div class="d-flex justify-content-center w-100 mt-5">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<c:if test="${pagingInfo.firstPage>1 }">
+						<li class="page-item"><a class="page-link"
+							href="<c:url value='/blackList/blackList?currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+						</li>
+					</c:if>
+					<c:forEach var="i" begin="${pagingInfo.firstPage}"
+						end="${pagingInfo.lastPage }">
+						<c:if test="${i==pagingInfo.currentPage }">
+							<li class="page-item active"><a class="page-link" href="#">${i }</a>
+						</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='/blackList/blackList?currentPage=${i}'/>">
+									${i }</a></li>
+						</c:if>
+					</c:forEach>
+					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+						<li class="page-item"><a class="page-link"
+							href="<c:url value='/blackList/blackList?currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+						</li>
+					</c:if>
+				</ul>
+			</nav>
+		</div> --%>
 	</div>
 </section>
 </main>
 <%@ include file="../inc/bottom.jsp"%>
+<script src="../assets/js/spaces.js"></script>
 <script>
 	// here you should load content from an Ajax request and when it
 	// loads you can disable the button from loading
@@ -72,7 +92,13 @@
 			$button.hide();
 			$allLoaded.show();
 		}, 1500);
-	});
+	 });
+	$('#blackListException').click(function(){
+		var result = confirm('해당 유저를 블랙리스트에서 제외하시겠습니까?');
+		if(!result){
+			event.preventDefault();
+		}
+	})
 </script>
 
 </body>
