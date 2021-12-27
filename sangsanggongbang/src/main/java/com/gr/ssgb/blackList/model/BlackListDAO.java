@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gr.ssgb.common.SearchVO;
+
 @Mapper
 public interface BlackListDAO {
 	List<BlackListVO> selectBlackListAll(int hno);
+	int selectTotalRecord(SearchVO searchVo);
+	int deleteBlackList(int bno);
 }

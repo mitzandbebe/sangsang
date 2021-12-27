@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.common.SearchVO;
+
 @Service
 public class BlackListServiceImpl implements BlackListService{
 
@@ -17,5 +19,11 @@ public class BlackListServiceImpl implements BlackListService{
 	
 	public List<BlackListVO> selectBlackListAll(int hno){
 		return blackListdao.selectBlackListAll(hno);
+	}
+	public int selectTotalRecord(SearchVO searchVo) {
+		return blackListdao.selectTotalRecord(searchVo);
+	}
+	public int deleteBlackList(int bno) {
+		return blackListdao.deleteBlackList(bno);
 	}
 }
