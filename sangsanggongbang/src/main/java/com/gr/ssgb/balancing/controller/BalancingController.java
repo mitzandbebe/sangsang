@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
@@ -26,30 +28,37 @@ public class BalancingController {
 		this.balancingService = balancingService;
 		logger.info("정산요청목록 생성자주입");
 	}
-	
+
 	@RequestMapping("/balancing") 
 	public String balancing() { 
 		return "dashboard/host/balancing/balancing";
 	}
-	
-	@RequestMapping("/balancing/list")
-	public String bcList(Model model) {
+
+	@GetMapping("/balancing/list")
+	public String bcList(@RequestParam(required = false) String bFlag, Model model) {
 		//1. 파라미터 읽어오기 - 출력
-		logger.info("정산요청 목록 페이지");
-		
+		logger.info("정산목록 목록 페이지, 파라미터 bFlag={}", bFlag);
+
 		//2. db작업 => 매퍼 xml에서 작업, dao, service, serviceImpl
-		List<BalancingVO> list=balancingService.selectBalancingAll();
-		logger.info("정산요청 목록 조회,결과 list.size={}", list.size());
+		List<BalancingVO> list=null;
 		
+		list=balancingService.selectBalancingAll();
+		logger.info("전체정산목록 조회,결과 list.size={}", list.size());
+		if(bFlag!=null && !bFlag.isEmpty()) {
+			list=balancingService.selectBalancingComp(bFlag);
+			logger.info("정산여부목록 조회,결과 list.size={}", list.size());
+		}
+
 		//3. model에 결과 저장
 		model.addAttribute("list", list);
-		
+
 		//4. 뷰페이지 리턴
 		return "dashboard/host/balancing/list";
 	}
-	
-/*
-	
+
+
+	/*
+
 	@RequestMapping(value="/write.do", method = RequestMethod.GET)
 	public String write_get() {
 		logger.info("글쓰기 화면");
@@ -124,7 +133,7 @@ public class BalancingController {
 
 		return "balancing/detail";
 	}
-*/
+	 */
 
 
 

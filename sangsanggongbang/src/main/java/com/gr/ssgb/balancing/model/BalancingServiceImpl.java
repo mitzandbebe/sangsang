@@ -18,6 +18,11 @@ public class BalancingServiceImpl implements BalancingService{
 	public List<BalancingVO> selectBalancingAll() {
 		return balancingDao.selectBalancingAll();
 	}
+	
+	@Override
+	public List<BalancingVO> selectBalancingComp(String bFlag) {
+		return balancingDao.selectBalancingComp(bFlag);
+	}
 
 	/*
 	@Transactional

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BalancingDAO {
 	public List<BalancingVO> selectBalancingAll();
+	public List<BalancingVO> selectBalancingComp(String bFlag);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);
