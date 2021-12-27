@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.blackList.model.BlackListDAO">
+	<select id="selectBlackListAll" parameterType="int"
+		resultType="blackListVo">
+		select *
+		from
+		(
+		select b.* , m.m_id as mid,m.m_originalname as m_img_url
+		from blacklist b left join member m
+		on b.u_no = m.m_no
+		)
+		where hno = #{hno}
+	</select>
+</mapper>
