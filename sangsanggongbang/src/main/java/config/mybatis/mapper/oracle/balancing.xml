@@ -3,34 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.balancing.model.BalancingDAO">
-<!-- 	<sql id="searchWhere">
-		<if test="searchKeyword!=null and searchKeyword!=''">
-	       	where ${searchCondition} like '%' || #{searchKeyword} || '%'
-		</if>		
-	</sql>
-	
-	<select id="selectAll" parameterType="searchVo" resultType="balancingVo">
-		select *
-		from
-		(
-		select rownum as RNUM, A.*
-		from
-		(
-		select * from balancing
-		<include refid="searchWhere"></include>
-		order by no desc
-		)A
-		)
-		<![CDATA[
-		where RNUM>#{firstRecordIndex} 
-			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
-	</select> -->
-	
-		<select id="selectBalancingAll" resultType="balancingVo">
+	<!-- <sql id="searchWhere"> <if test="searchKeyword!=null and searchKeyword!=''"> 
+		where ${searchCondition} like '%' || #{searchKeyword} || '%' </if> </sql> 
+		<select id="selectAll" parameterType="searchVo" resultType="balancingVo"> 
+		select * from ( select rownum as RNUM, A.* from ( select * from balancing 
+		<include refid="searchWhere"></include> order by no desc )A ) <![CDATA[ where 
+		RNUM>#{firstRecordIndex} and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]> 
+		</select> -->
+
+	<select id="selectBalancingAll" resultType="balancingVo">
 		select * from balancing
 		order by b_no desc
 	</select>
 	
+	<select id="selectBalancingComp" parameterType="String" resultType="balancingVo">
+		select * from balancing
+		where b_flag=#{bFlag}
+		order by b_no desc
+	</select>
+
 </mapper>
 
 

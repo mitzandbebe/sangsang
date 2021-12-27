@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface BalancingService {
 	public List<BalancingVO> selectBalancingAll();
+	public List<BalancingVO> selectBalancingComp(String bFlag);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);
