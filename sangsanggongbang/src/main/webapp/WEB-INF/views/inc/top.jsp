@@ -76,7 +76,7 @@
 <!-- 결제모듈 -->
 </head>
 
-<body class="bg-soft">
+<body class="bg-soft" >
     <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
         <div class="container">
