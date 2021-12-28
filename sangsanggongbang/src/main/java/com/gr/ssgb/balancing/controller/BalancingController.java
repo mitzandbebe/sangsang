@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
@@ -36,6 +39,7 @@ public class BalancingController {
 		return "dashboard/host/balancing/balancing";
 	}
 
+
 	@RequestMapping("/balancing/list")
 	public String bcList(@ModelAttribute SearchVO searchVo, Model model) {
 		//1. 파라미터 읽어오기 - 출력
@@ -62,6 +66,7 @@ public class BalancingController {
 		//3. model에 결과 저장
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
+
 
 		//4. 뷰페이지 리턴
 		return "dashboard/host/balancing/list";

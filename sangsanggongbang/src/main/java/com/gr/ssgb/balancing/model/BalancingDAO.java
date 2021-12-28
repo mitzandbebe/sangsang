@@ -8,8 +8,10 @@ import com.gr.ssgb.common.SearchVO;
 
 @Mapper
 public interface BalancingDAO {
+
 	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
+
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

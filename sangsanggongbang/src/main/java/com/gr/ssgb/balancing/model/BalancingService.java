@@ -5,6 +5,7 @@ import java.util.List;
 import com.gr.ssgb.common.SearchVO;
 
 public interface BalancingService {
+
 	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
 	

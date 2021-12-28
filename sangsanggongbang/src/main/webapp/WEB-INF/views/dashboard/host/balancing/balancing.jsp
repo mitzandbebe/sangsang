@@ -3,7 +3,6 @@
 <%@ include file="../../../inc/top.jsp"%>
 <%@ include file="../leftNavi.jsp"%>
 
-
 <div class="col-12 col-lg-8">
 	<div class="row mb-5">
 		<div class="col-12 mb-4">
@@ -40,7 +39,9 @@
 									<h3 class="h5">전체정산내역</h3>
 									<p class="small pr-lg-10">전체 정산내역 입니다.</p>
 								</div>
+
 								<c:import url="/dashboard/host/balancing/list?currentPage=1&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"></c:import>
+
 							</div>
 							<div class="tab-pane fade" id="tabs-text-2" role="tabpanel"
 								aria-labelledby="tabs-text-2-tab">
@@ -49,7 +50,9 @@
 									<p class="small pr-lg-10">완료된 정산내역 입니다.</p>
 									
 								</div>
+
 								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=N"></c:import>
+
 							</div>
 							<div class="tab-pane fade" id="tabs-text-3" role="tabpanel"
 								aria-labelledby="tabs-text-3-tab">
@@ -58,13 +61,15 @@
 									<p class="small pr-lg-10">정산 대기중인 내역이 보여집니다.</p>
 										
 								</div>
+
 								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=Y"></c:import>
+
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- End of Tab Content -->
-				
+
 			</div>
 		</div>
 	</div>

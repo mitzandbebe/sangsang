@@ -11,7 +11,7 @@
 		#{recordCountPerPage} ]]> </select> <select id="selectTotalRecord" parameterType="searchVo" 
 		resultType="int"> select count(*) from blackList </select> -->
 
-	<select id="selectBlackListAll" resultType="blackListVo" parameterType="int">
+	<select id="selectBlackListAll" resultType="blackListVo" parameterType="blackListVo">
 		select *
 		from(
 		select b.* , m.m_id as mid,m.m_originalname as m_img_url
