@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
+	<select id="selectMemberAll" resultType="memberVo">
+		select * from member order by m_no
+	</select>
+	
+	<select id="selectHostAll" resultType="hostVo">
+		select * from host order by h_no
+	</select>
+</mapper>

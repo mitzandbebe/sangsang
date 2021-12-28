@@ -2,7 +2,9 @@ package com.gr.ssgb.blackList.model;
 
 import java.sql.Timestamp;
 
-public class BlackListVO {
+import com.gr.ssgb.common.SearchVO;
+
+public class BlackListVO extends SearchVO{
 	private int bno; //블랙리스트 번호
 	private int uNo; //유저 번호
 	private int hno; //호스트 번호
@@ -64,7 +66,8 @@ public class BlackListVO {
 	@Override
 	public String toString() {
 		return "BlackListVO [bno=" + bno + ", uNo=" + uNo + ", hno=" + hno + ", regdate=" + regdate + ", col=" + col
-				+ ", delFlag=" + delFlag + ", mId=" + mId + ", mImgUrl=" + mImgUrl + "]";
+				+ ", delFlag=" + delFlag + ", mId=" + mId + ", mImgUrl=" + mImgUrl + ", toString()=" + super.toString()
+				+ "]";
 	}
 	
 
