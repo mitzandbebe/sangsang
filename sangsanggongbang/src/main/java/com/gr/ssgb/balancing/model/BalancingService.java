@@ -2,9 +2,11 @@ package com.gr.ssgb.balancing.model;
 
 import java.util.List;
 
+import com.gr.ssgb.common.SearchVO;
+
 public interface BalancingService {
-	public List<BalancingVO> selectBalancingAll();
-	public List<BalancingVO> selectBalancingComp(String bFlag);
+	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
+	int selectTotalRecord(SearchVO searchVo);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

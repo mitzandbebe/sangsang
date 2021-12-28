@@ -5,23 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.common.SearchVO;
+
 @Service
 public class BalancingServiceImpl implements BalancingService{
-	public final BalancingDAO balancingDao;
-	
 	@Autowired
-	private BalancingServiceImpl(BalancingDAO balancingDao){
-		this.balancingDao=balancingDao;
+	public BalancingDAO balancingDao;
+	
+	public List<BalancingVO> selectBalancingAll(SearchVO searchVo) {
+		return balancingDao.selectBalancingAll(searchVo);
 	}
 	
 	@Override
-	public List<BalancingVO> selectBalancingAll() {
-		return balancingDao.selectBalancingAll();
-	}
-	
-	@Override
-	public List<BalancingVO> selectBalancingComp(String bFlag) {
-		return balancingDao.selectBalancingComp(bFlag);
+	public int selectTotalRecord(SearchVO searachVo) {
+		return balancingDao.selectTotalRecord(searachVo);
 	}
 
 	/*

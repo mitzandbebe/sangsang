@@ -3,11 +3,6 @@
 <%@ include file="../../../inc/top.jsp"%>
 <%@ include file="../leftNavi.jsp"%>
 
-<script type="text/javascript">
-$(function(){
-	$('#wr_submit').click(function(){
-		if($('#name').val().
-</script>
 
 <div class="col-12 col-lg-8">
 	<div class="row mb-5">
@@ -45,7 +40,7 @@ $(function(){
 									<h3 class="h5">전체정산내역</h3>
 									<p class="small pr-lg-10">전체 정산내역 입니다.</p>
 								</div>
-								<c:import url="/dashboard/host/balancing/list?bFlag="></c:import>
+								<c:import url="/dashboard/host/balancing/list?currentPage=1&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"></c:import>
 							</div>
 							<div class="tab-pane fade" id="tabs-text-2" role="tabpanel"
 								aria-labelledby="tabs-text-2-tab">
@@ -54,7 +49,7 @@ $(function(){
 									<p class="small pr-lg-10">완료된 정산내역 입니다.</p>
 									
 								</div>
-								<c:import url="/dashboard/host/balancing/list?bFlag=N"></c:import>
+								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=N"></c:import>
 							</div>
 							<div class="tab-pane fade" id="tabs-text-3" role="tabpanel"
 								aria-labelledby="tabs-text-3-tab">
@@ -63,33 +58,16 @@ $(function(){
 									<p class="small pr-lg-10">정산 대기중인 내역이 보여집니다.</p>
 										
 								</div>
-								<c:import url="/dashboard/host/balancing/list?bFlag=Y"></c:import>
+								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=Y"></c:import>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- End of Tab Content -->
-				<nav aria-label="Page navigation example" style="margin-left: 50px">
-					<ul class="pagination circle-pagination">
-						<li class="page-item"><a class="page-link" href="#"><i
-								class="fas fa-angle-double-left"></i></a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item "><a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">5</a></li>
-						<li class="page-item"><a class="page-link" href="#"><i
-								class="fas fa-angle-double-right"></i></a></li>
-					</ul>
-				</nav>
+				
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-</div>
-</div>
 
-</main>
 <%@ include file="../../../inc/bottom.jsp"%>

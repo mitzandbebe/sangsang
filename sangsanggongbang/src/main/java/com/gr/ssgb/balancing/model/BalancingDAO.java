@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gr.ssgb.common.SearchVO;
+
 @Mapper
 public interface BalancingDAO {
-	public List<BalancingVO> selectBalancingAll();
-	public List<BalancingVO> selectBalancingComp(String bFlag);
+	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
+	int selectTotalRecord(SearchVO searchVo);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);
