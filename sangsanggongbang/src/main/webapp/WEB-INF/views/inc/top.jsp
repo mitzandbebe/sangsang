@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ 
 <!--
 
 =========================================================
@@ -81,15 +81,15 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
         <div class="container">
             <a class="navbar-brand @@logo_classes" href="${pageContext.request.contextPath }/index">
-                <img class="navbar-brand-dark common" src="${pageContext.request.contextPath }/resources/assets/img/brand/light.svg" height="35" alt="Logo light">
-                <img class="navbar-brand-light common" src="${pageContext.request.contextPath }/resources/assets/img/brand/dark.svg" height="35" alt="Logo dark">
+                <img class="navbar-brand-dark common" src="${pageContext.request.contextPath }/resources/assets/img/brand/1.svg" height="35" alt="Logo light">
+                <img class="navbar-brand-light common" src="${pageContext.request.contextPath }/resources/assets/img/brand/2.svg" height="35" alt="Logo dark">
             </a>
             <div class="navbar-collapse collapse" id="navbar_global">
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="${pageContext.request.contextPath }/resources/index.html">
-                                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/dark.svg" height="35" alt="Logo Impact">
+                                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/2.svg" height="35" alt="Logo Impact">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
