@@ -48,14 +48,21 @@ public class MemberController {
 	public String main() {
 		return "/main";
 	}
-	@RequestMapping(value = "/test")
-	public String test() {
-		return "member/NewFile";
-	}
+	
 	@RequestMapping(value = "/index")
 	public String index() {
 		return "/index";
 	}
+	
+	@RequestMapping(value = "/member/terms")
+	public String terms() {
+		return "member/terms";
+	}
+	@RequestMapping(value = "/member/terms2")
+	public String terms2() {
+		return "member/terms2";
+	}
+
 	
 	@RequestMapping("/member/register")
 	public String register(HttpServletResponse response) {
@@ -174,7 +181,11 @@ public class MemberController {
 					ck.setMaxAge(0);
 					response.addCookie(ck);
 				}
-				msg="로그인 성공!";
+				msg="늘찬님 반가워요!";
+				MemberVO memberVo2 = memberService.selectMemberById(memberVo.getmId());
+				if(memberVo2.getmNickname()!=null && !memberVo2.getmNickname().isEmpty()) {
+					msg=memberVo2.getmNickname()+"님 반가워요!";
+				}
 				url="/index";
 			}
 		}else {
@@ -184,6 +195,7 @@ public class MemberController {
 				HttpSession session = request.getSession();
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -193,7 +205,15 @@ public class MemberController {
 					ck.setMaxAge(0);
 					response.addCookie(ck);
 				}
-				msg=memberVo.getmId() + "으로 로그인되었습니다";
+				msg="늘찬님 반가워요!";
+				MemberVO memberVo2 = memberService.selectMemberById(memberVo.getmId());
+				if(memberVo2.getmFilename() != null && !memberVo2.getmFilename().isEmpty()) {
+					session.setAttribute("mFilename", memberVo2.getmFilename());
+				}
+				
+				if(memberVo2.getmNickname()!=null && !memberVo2.getmNickname().isEmpty()) {
+					msg=memberVo2.getmNickname()+"님 반가워요!";
+				}
 				url="/index";
 			}else if(result==MemberService.PWD_DISAGREE){
 				msg="비밀번호가 일치하지 않습니다";
@@ -222,6 +242,10 @@ public class MemberController {
 	@RequestMapping("member/askAdditional")
 	public void ask_additional() {
 		logger.info("부가정보 입력여부 확인화면");
+	}
+	@GetMapping("member/memberEditChkPwd")
+	public void memberEditChkPwd() {
+		logger.info("회원정보 수정 전 비밀번호 확인화면");
 	}
 	@GetMapping("member/additional")
 	public void additional_get() {
@@ -283,7 +307,7 @@ public class MemberController {
 	
 	@GetMapping("member/memberEdit")
 	public String memberEdit_get(HttpSession session, Model model) {
-		logger.info("회원정보 처리화면");
+		logger.info("회원정보 수정화면");
 		
 		String mId = (String)session.getAttribute("mId");
 		
@@ -303,11 +327,28 @@ public class MemberController {
 		int result=memberService.selectMemberCnt(mId);
 		logger.info("ajax 아이디 중복확인 결과 result={}", result);
 		
-		boolean bool=false;  //사용가능
+		boolean bool=false;
 		if(result!=0) {
-			bool=true;  //이미 존재한다
+			bool=true;
 		}
 		logger.info("bool={}", bool);
 		return bool;
 	}
+	
+	@PostMapping("member/memberEditChkPwd")
+	public String memberEditChkPwd_post(@ModelAttribute MemberVO vo) {
+		logger.info("회원정보 수정 전 비밀번호 확인처리");
+		
+		int result=memberService.checkIdPwd(vo.getmId(), vo.getPwd());
+		logger.info("아이디 비밀번호 체크 결과, result={}",result);
+		if(result==MemberService.LOGIN_OK){
+			return "member/memberEdit";
+		}
+		
+		
+		return "member/memberEditChkPwd";
+	}
+	
+	
+	 
 }

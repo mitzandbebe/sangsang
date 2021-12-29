@@ -427,6 +427,9 @@ $(function(){
                                         </div>
                                        	<input name ="cPwd" class="form-control" id="cPwd" maxlength="6"  placeholder="결제비밀번호를 설정하세요.(숫자 6자리)" type="password">
                                     </div>
+                                     <div class="mt-3">
+                                            <button type="submit" class="btn btn-primary">Save All</button>
+                                        </div>
                                     <!-- End of Form -->
                                     </form>
                                 </div>

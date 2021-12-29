@@ -39,6 +39,33 @@
 			}
 		});
 		
+		$('#wr_submit').click(function(){
+			if(!validate_userid($('#mId').val())){
+				alert('아이디는 이메일 형식으로만 가능합니다.');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#chkId').val()!='Y'){
+				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#password').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#password').focus();
+				event.preventDefault();
+			}else if($('#password').val().length>1&&$('#password').val().length<10){
+				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함해야 합니다.');
+				$('#password').focus();
+				event.preventDefault();
+			}else if($('#password').val()!=$('#password_confirm').val()){
+				alert('비밀번호 확인이 일치하지 않습니다!');
+				$('#password_confirm').focus();
+				event.preventDefault();
+			}else if(!$('#termChk').is(':checked')){
+				alert('이용약관에 동의해야합니다.');
+				$('#termChk').focus();
+				event.preventDefault();
+			}		
+		});
 		$('#password').keyup(function(){
 			var pwd = $(this).val();
 			if(passwordRule.test(pwd) && pwd.length>=10){
@@ -66,36 +93,16 @@
 			}
 		});
 		
-		$('#wr_submit').click(function(){
-			if(!validate_userid($('#mId').val())){
-				alert('아이디는 이메일 형식으로만 가능합니다.');
-				$('#mId').focus();
-				event.preventDefault();
-			}else if($('#password').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('#password').focus();
-				event.preventDefault();
-			}else if($('#password').val().length>1&&$('#password').val().length<10){
-				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함해야 합니다.');
-				$('#password').focus();
-				event.preventDefault();
-			}else if($('#password').val()!=$('#password_confirm').val()){
-				alert('비밀번호 확인이 일치하지 않습니다!');
-				$('#password_confirm').focus();
-				event.preventDefault();
-			}else if($('#chkId').val()!='Y'){
-				alert('중복된 아이디입니다.');
-				event.preventDefault();
-			}			
-		});
-		
 		function validate_userid(id){
 			var pattern = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
 			return pattern.test(id);
 		}
 		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
-				
+		$('#terms').click(function(){
+			open("<c:url value='/member/terms'/>", "term", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
+		});
+			
 	});
 	
 </script>
@@ -139,7 +146,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name ="pwd" class="form-control" id="password" placeholder="숫자, 영문자, 특수문자(!@#$%^&*) 포함 10~20자리입니다." type="password" aria-label="Password" required>
+                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
                                         </div>
                                         <div>
                                     		<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
@@ -162,9 +169,9 @@
                                     </div>
                                     <!-- End of Form -->
                                     <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="terms">
+                                        <input class="form-check-input" type="checkbox" id="termChk">
                                         <label class="form-check-label" for="terms">
-                                            <span class="small"><a class="text-secondary" href="./terms.html">약관</a>에 동의합니다.</span>
+                                            <span class="small"><a class="text-secondary" href="#" id="terms">약관</a>에 동의합니다.</span>
                                         </label>
                                     </div>
                                 </div>
