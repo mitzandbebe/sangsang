@@ -29,7 +29,7 @@ public class memberInquiryController {
 	
 	@RequestMapping("/memberList")
 	public String memberList(@ModelAttribute SearchVO searchVo ,Model model) {
-		logger.info("회원정보 화면 등장");
+		logger.info("일반회원정보 전체 조회");
 		
 		PaginationInfo mPagingInfo= new PaginationInfo(); //멤버 페이징
 		mPagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -40,23 +40,40 @@ public class memberInquiryController {
 		searchVo.setFirstRecordIndex(mPagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}",searchVo);
 		
-		PaginationInfo hPagingInfo = mPagingInfo; // 호스트 페이징 멤버에서 설정한것 받아오는 것
-		
 		List<MemberVO> mList = memberInquiryService.selectMemberAll(searchVo);
-		List<HostVO> hList =memberInquiryService.selectHostAll(searchVo);
-		logger.info("멤버 회원 총 수 mList.size={}, hList.size={}",mList.size(),hList.size());
+		logger.info("멤버 회원 총 수 mList.size={}",mList.size());
 		
 		int mTotalRecord = memberInquiryService.selectMemberTotalRecord(searchVo);
-		int hTotalRecord = memberInquiryService.selectHostTotalRecord(searchVo);
 		mPagingInfo.setTotalRecord(mTotalRecord);
-		hPagingInfo.setTotalRecord(hTotalRecord);
 		
 		model.addAttribute("mList",mList);
 		model.addAttribute("mPagingInfo",mPagingInfo);
 		
+		return "memberInquiry/memberList";
+	}
+	
+	@RequestMapping("/hostList")
+	public String hostList(@ModelAttribute SearchVO searchVo, Model model) {
+		logger.info("호스트 회원 전체조회");
+		
+		PaginationInfo hPagingInfo= new PaginationInfo(); //멤버 페이징
+		hPagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		hPagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		hPagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setFirstRecordIndex(hPagingInfo.getFirstRecordIndex());
+		logger.info("searchVo={}",searchVo);
+				
+		List<HostVO> hList =memberInquiryService.selectHostAll(searchVo);
+		logger.info("멤버 회원 총 수  hList.size={}",hList.size());
+		
+		int hTotalRecord = memberInquiryService.selectHostTotalRecord(searchVo);
+		hPagingInfo.setTotalRecord(hTotalRecord);
+		
 		model.addAttribute("hList",hList);
 		model.addAttribute("hPagingInfo",hPagingInfo);
 		
-		return "memberInquiry/memberList";
+		return "memberInquiry/hostList";
 	}
 }
