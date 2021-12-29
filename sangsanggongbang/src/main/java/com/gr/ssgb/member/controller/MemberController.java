@@ -1,5 +1,11 @@
 package com.gr.ssgb.member.controller;
 
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,11 +20,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
+import com.gr.ssgb.member.model.PaymentVO;
 
 
 @Controller
@@ -27,15 +36,21 @@ public class MemberController {
 	= LoggerFactory.getLogger(MemberController.class);
 	
 	private final MemberService memberService;
+	private final FileUploadUtil fileUploadUtil;
 	
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil) {
 		super();
 		this.memberService = memberService;
+		this.fileUploadUtil =fileUploadUtil;
 	}
 	@RequestMapping(value = "/main")
 	public String main() {
 		return "/main";
+	}
+	@RequestMapping(value = "/test")
+	public String test() {
+		return "member/NewFile";
 	}
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -43,13 +58,24 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/register")
-	public void register() {
+	public String register(HttpServletResponse response) {
+		Cookie ck5 = new Cookie("mFilename", "");
+		ck5.setPath("/");
+		ck5.setMaxAge(0); 
+		response.addCookie(ck5);
+		Cookie ck2 = new Cookie("snsCheck", "");
+		ck2.setPath("/");
+		ck2.setMaxAge(0); 
+		response.addCookie(ck2);
 		logger.info("회원가입 화면");
+		
+		return "/member/register";
 	}
 	
 	@RequestMapping("/member/join")
 	public String insertMember(@ModelAttribute MemberVO memberVo,@RequestParam String snsCheck,HttpServletRequest request, HttpServletResponse response, Model model) {
 		logger.info("회원가입 처리화면, vo={}", memberVo);
+		
 		
 		String msg ="회원가입 실패!", url="/member/register";
 		int cnt =0;
@@ -69,23 +95,23 @@ public class MemberController {
 			}
 			logger.info("회원가입 결과, cnt={}", cnt);
 			if(cnt > 0) {
-				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
-				Cookie ck2=null;
 				if(snsCheck.equals("y")) {
-					
 					Cookie ck5 = new Cookie("mFilename", memberVo.getmFilename());
-					ck2 = new Cookie("snsCheck", snsCheck);
-					ck2.setPath("/");
-					ck2.setMaxAge(60*60); 
-					response.addCookie(ck2);
-					
 					ck5.setPath("/");
 					ck5.setMaxAge(60*60); 
 					response.addCookie(ck5);
 				}
+				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
+				Cookie ck2= new Cookie("snsCheck", snsCheck);
+				ck2.setPath("/");
+				ck2.setMaxAge(60*60);
+				response.addCookie(ck2);
 				ck.setPath("/");
 				ck.setMaxAge(60*60); 
 				response.addCookie(ck);
+				HttpSession session = request.getSession();
+				session.setAttribute("mId", memberVo.getmId());
+				session.setAttribute("snsCheck", snsCheck);
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
 			}	
@@ -109,7 +135,7 @@ public class MemberController {
 		
 		String msg ="", url="";
 		if(snsCheck.equals("y")) {
-			int accountCnt = memberService.selectMemberById(memberVo.getmId());
+			int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
 			if(accountCnt<1) {
 				memberVo.setmId(memberVo.getmId());
 				memberVo.setPwd(memberVo.getPwd());
@@ -202,18 +228,86 @@ public class MemberController {
 		logger.info("부가정보 입력화면");
 	}
 	@PostMapping("member/additional")
-	public void additional_post(@ModelAttribute MemberVO vo,@RequestParam String snsCheck, Model model) {
+	public String additional_post(@ModelAttribute MemberVO vo, PaymentVO paymentVo, @RequestParam String snsCheck, HttpServletRequest request, Model model) {
 		logger.info("부가정보 입력 처리화면");
 		
 		int cnt = 0;
-		String msg = "", url ="";
+		String msg = "부가정보 입력 실패!", url ="/member/additional";
 		if(snsCheck.equals("n")) {
+			String fileName="", originName="";
+			long fileSize=0;
+			int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
+			try {
+				List<Map<String, Object>> fileList 
+					= fileUploadUtil.fileUpload(request, pathFlag);
+				for(int i=0;i<fileList.size();i++) {
+					 Map<String, Object> map=fileList.get(i);
+					 
+					 fileName=(String) map.get("fileName");
+					 originName=(String) map.get("originalFileName");
+					 fileSize=(long) map.get("fileSize");				 
+				}
+				
+				logger.info("파일 업로드 성공, fileName={}", fileName);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			vo.setmFilename(fileName);
+			vo.setmFilesize(fileSize);
+			vo.setmOriginalname(originName);
+			
 			cnt = memberService.updateAdditionalInfo(vo);
 		}else{
-			cnt = memberService.updateAdditionalSns(vo);
+			vo.setmOriginalname(vo.getmFilename());
+			vo.setmFilesize(0);
+			cnt = memberService.updateAdditionalInfo(vo);
 		}
-		if(cnt>0) {
-			
+		int mNo = memberService.selectMno(vo.getmId());
+		paymentVo.setmNo(mNo);
+		
+		int cnt2 = memberService.insertPayment(paymentVo);
+		logger.info("부가정보 입력여부, cnt={}, cnt2={}", cnt, cnt2);
+		if(cnt>0 && cnt2>0) {
+			msg="부가정보 입력이 완료되었습니다.";
+			url="/index";
+		}else if(cnt2 <=0){
+			msg="결제정보 입력 실패!";
 		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@GetMapping("member/memberEdit")
+	public String memberEdit_get(HttpSession session, Model model) {
+		logger.info("회원정보 처리화면");
+		
+		String mId = (String)session.getAttribute("mId");
+		
+		MemberVO vo = memberService.selectMemberById(mId);
+		PaymentVO paymentVo = memberService.selectBasicPayment(vo.getmNo());
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("payVo", paymentVo);
+		
+		return "member/memberEdit";
+	}
+	@ResponseBody
+	@RequestMapping("member/ajaxDuplicate")
+	public boolean ajax_dup(@RequestParam String mId) {
+		logger.info("ajax 아이디 중복확인, 파라미터 mId={}", mId);
+		
+		int result=memberService.selectMemberCnt(mId);
+		logger.info("ajax 아이디 중복확인 결과 result={}", result);
+		
+		boolean bool=false;  //사용가능
+		if(result!=0) {
+			bool=true;  //이미 존재한다
+		}
+		logger.info("bool={}", bool);
+		return bool;
 	}
 }
