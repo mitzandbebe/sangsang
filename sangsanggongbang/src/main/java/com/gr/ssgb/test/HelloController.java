@@ -12,9 +12,7 @@ public class HelloController {
 	@GetMapping("/hello")
 	public String hello(Model model) {
 
-
-		model.addAttribute("name", "당나라");
-
+		model.addAttribute("name", "강유빈 ");
 		return "thymeleaf/hello";
 
 		// => http://localhost:9091/demo/hello
@@ -30,10 +28,19 @@ public class HelloController {
 
 	}
 
-
-	@RequestMapping(value = "/")
-	public String index() {
-		return "index";
+	@RequestMapping(value = "dashboard/user/my-items")
+	public String myitems() {
+		return "dashboard/user/my-items";
 	}
-
+	
+	@RequestMapping(value = "/detail")
+	public String singleSpace() {
+		return "class/detail";
+	}
+	/*
+	@RequestMapping(value = "/balancing")
+	public String balancing() {
+		return "dashboard/balancing/balancing";
+	}
+	*/
 }

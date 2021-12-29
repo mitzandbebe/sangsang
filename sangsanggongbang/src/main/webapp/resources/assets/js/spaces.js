@@ -39,7 +39,9 @@ $(document).ready(function () {
     // preloader
     var $preloader = $('.preloader');
     if($preloader.length) {
-        $preloader.delay(1500).slideUp();
+
+        $preloader.delay(0).slideUp();
+
     }
 
     var baseLatLng = [37.57, -122.26];
