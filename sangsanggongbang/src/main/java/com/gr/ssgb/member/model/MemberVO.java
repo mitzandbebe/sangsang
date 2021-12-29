@@ -16,7 +16,7 @@ public class MemberVO {
 	private Timestamp regdate;
 	private String mGrade;
 	private String mOriginalname;
-	private String mFilesize;
+	private long mFilesize;
 	private String mFilename;
 	private String delfalg;
 	public MemberVO() {
@@ -24,7 +24,7 @@ public class MemberVO {
 	}
 	public MemberVO(int mNo, String mId, String mName, String pwd, String mNickname, String phone, String bday,
 			String mZipcode, String mAddress, String mAddressDetail, Timestamp regdate, String mGrade,
-			String mOriginalname, String mFilesize, String mFilename, String delfalg) {
+			String mOriginalname, long mFilesize, String mFilename, String delfalg) {
 		super();
 		this.mNo = mNo;
 		this.mId = mId;
@@ -121,10 +121,11 @@ public class MemberVO {
 	public void setmOriginalname(String mOriginalname) {
 		this.mOriginalname = mOriginalname;
 	}
-	public String getmFilesize() {
+	
+	public long getmFilesize() {
 		return mFilesize;
 	}
-	public void setmFilesize(String mFilesize) {
+	public void setmFilesize(long mFilesize) {
 		this.mFilesize = mFilesize;
 	}
 	public String getmFilename() {
