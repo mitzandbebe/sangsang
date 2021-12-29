@@ -10,7 +10,12 @@ public class BalancingVO {
 	private Timestamp bReqDate; //정산신청일
 	private String bFlag; //정산신청여부
 	
+	public BalancingVO() {
+		super();
+	}
+	
 	public BalancingVO(int bNo, int cNo, int hNo, int bPpnum, Timestamp bReqDate, String bFlag) {
+		super();
 		this.bNo = bNo;
 		this.cNo = cNo;
 		this.hNo = hNo;

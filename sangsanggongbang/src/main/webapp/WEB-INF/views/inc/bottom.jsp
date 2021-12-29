@@ -102,6 +102,7 @@
 
 <!-- Spaces custom Javascript -->
 <script src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/balancing.js"></script>
 
 <!-- 결제모듈 아임포트 라이브러리 -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

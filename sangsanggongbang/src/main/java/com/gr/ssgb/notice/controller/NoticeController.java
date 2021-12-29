@@ -86,16 +86,17 @@ public class NoticeController {
 			
 			return "/common/message";
 		}
+		int cnt = noticeService.updateReadCount(noticeNo);
 		NoticeVO vo= noticeService.selectNoticeByNo(noticeNo);
 		NoticeVO PNVo = noticeService.selectPreNnexTitle(noticeNo);
 		logger.info("공지사항 결과값 vo={},PNVo={}",vo,PNVo);
-		
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("PNVo",PNVo);
 		
 		return "notice/noticeDetail";
 	}
+	
 	
 	@GetMapping("/noticeEdit")
 	public void noticeEdit_get(@RequestParam(defaultValue = "0")int noticeNo, Model model) {
