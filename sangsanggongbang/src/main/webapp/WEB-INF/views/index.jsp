@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp"  %>
         <!-- Hero -->
-        <section class="section-header">
+        <section class="section-header" style="height:800px">
             <div class="container">
                 <div class="row justify-content-center">
                      <div class="form-group">

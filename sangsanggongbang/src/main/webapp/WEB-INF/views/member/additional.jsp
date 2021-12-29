@@ -19,6 +19,14 @@
 			}
 		});
 		
+		$('#terms2').click(function(){
+			open("<c:url value='/member/terms2'/>", "term2", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
+		});
+		
+		$('#termChk2').click(function(){
+			open("<c:url value='/member/terms2'/>", "term2", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
+		});
+		
 		$('#additional').submit(function(){
 			var cardnum = $('#cardnum1').val()+$('#cardnum2').val()+$('#cardnum3').val()+$('#cardnum4').val();
 			$('#cardnum').val('cardnum');
@@ -111,10 +119,16 @@
 				alert('이용약관에 동의해야합니다.');
 				$('#terms').focus();
 				event.preventDefault();
+			}else if(!$('#termChk2').is(':checked')){
+				alert('이용약관에 동의해야합니다.');
+				$('#termChk2').focus();
+				event.preventDefault();
 			}
 		});
 		
 	});
+	
+	
 	
 	function validate_phone(tel){
 		var pattern = new RegExp(/^[0-9]*$/g);
@@ -188,7 +202,7 @@ var InputImage =
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
                                         <input name="mId" readonly="readonly" class="form-control" id="exampleInputIcon4" type="text" aria-label="email adress" value="${cookie.ck_userid.value }">
-                                        <input name="snsCheck" readonly="readonly" class="form-control" id="exampleInputIcon4" type="text" aria-label="email adress" value="${cookie.snsCheck.value}">
+                                        <input name="snsCheck" readonly="readonly" class="form-control" id="exampleInputIcon4" type="hidden" aria-label="email adress" value="${cookie.snsCheck.value}">
                                     </div>
                                 </div>
                                 <c:if test="${cookie.snsCheck.value=='y' }">
@@ -475,10 +489,11 @@ var InputImage =
                                     </div>
                                     <!-- End of Form -->
                                     <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="terms">
+                                        <input class="form-check-input" type="checkbox" id="termChk2">
                                         <label class="form-check-label" for="terms">
-                                            <span class="small"><a class="text-secondary" href="./terms.html">약관</a>에 동의합니다.</span>
+                                            <span class="small"><a class="text-secondary" href="#" id="terms2">약관</a>에 동의합니다. </span> 
                                         </label>
+                                        <span class="small" style="float: right;"><a class="text-secondary" href="<c:url value='/main'/> " >메인 홈페이지로 이동하기</a></span>
                                     </div>
                                 <button type="submit" class="btn btn-block btn-primary">부가정보입력 완료하기</button>
                             </form>
