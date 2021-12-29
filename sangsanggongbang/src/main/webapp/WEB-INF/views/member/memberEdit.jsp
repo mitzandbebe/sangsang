@@ -22,43 +22,43 @@ $(function(){
 		$('#cardnum').val('cardnum');
 	});
 	
-	var InputImage = 
-		 (function loadImageFile() {
-		    if (window.FileReader) {
-		        var ImagePre; 
-		        var ImgReader = new window.FileReader();
-		        var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i; 
-		 
-		        ImgReader.onload = function (Event) {
-		            if (!ImagePre) {
-		            	  var newPreview = document.getElementById("imagePreview");
-			              var older = document.getElementById("older");
-			              ImagePre = new Image();
-			              ImagePre.style.width = "127.99px";
-			              ImagePre.style.height = "127.99px"; 
-			              newPreview.removeChild(older);
-			              newPreview.appendChild(ImagePre);
-			              ImagePre.className = "card-img-top rounded-circle border-white";
-		            }
-		            ImagePre.src = Event.target.result;
-		        };
-		 
-		        return function () {
-		            var img = document.getElementById("upfile").files;
-		           
-		            if (!fileType.test(img[0].type)) { 
-		             alert("이미지 파일을 업로드 하세요"); 
-		             return; 
-		            }
-		            
-		            ImgReader.readAsDataURL(img[0]);
-		        }
-		    }
-			document.getElementById("imagePreview").src = document.getElementById("upfile").value;
-		})();
+	
 });
 
-
+var InputImage = 
+	 (function loadImageFile() {
+	    if (window.FileReader) {
+	        var ImagePre; 
+	        var ImgReader = new window.FileReader();
+	        var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i; 
+	 
+	        ImgReader.onload = function (Event) {
+	            if (!ImagePre) {
+	            	  var newPreview = document.getElementById("imagePreview");
+		              var older = document.getElementById("older");
+		              ImagePre = new Image();
+		              ImagePre.style.width = "127.99px";
+		              ImagePre.style.height = "127.99px"; 
+		              newPreview.removeChild(older);
+		              newPreview.appendChild(ImagePre);
+		              ImagePre.className = "card-img-top rounded-circle border-white";
+	            }
+	            ImagePre.src = Event.target.result;
+	        };
+	 
+	        return function () {
+	            var img = document.getElementById("upfile").files;
+	           
+	            if (!fileType.test(img[0].type)) { 
+	             alert("이미지 파일을 업로드 하세요"); 
+	             return; 
+	            }
+	            
+	            ImgReader.readAsDataURL(img[0]);
+	        }
+	    }
+		document.getElementById("imagePreview").src = document.getElementById("upfile").value;
+	})();
 
 </script>
 
@@ -71,11 +71,16 @@ $(function(){
     <div class="card border-light p-2">
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
-            	<c:if test="${sessionScope.snsCheck.value=='Y' }">
+            	<c:if test="${sessionScope.snsCheck=='y' }">
                 	<img src="${vo.mFilename }" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
-                <c:if test="${sessionScope.snsCheck.value=='N' }">
-                	<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+                <c:if test="${sessionScope.snsCheck=='n' }">
+                	<c:if test="${!empty sessionScope.mFilename }">
+                		<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white">
+                	</c:if>
+                	<c:if test="${empty sessionScope.mFilename }">
+                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
+                	</c:if>
                 </c:if>
             </div>
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
@@ -212,7 +217,7 @@ $(function(){
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-compass"></i></span>
 			                                            </div>
-			                                           	<input name ="mZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text"  aria-describedby="button-addon2" value="value="${vo.mZipcode}"">
+			                                           	<input name ="mZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text"  aria-describedby="button-addon2" value="${vo.mZipcode}">
 			                                           	<button type="button" id="button-addon2" class="btn btn-outline-primary btn-sm" onclick="kakaopost()" >우편번호 검색</button>
                                             		</div>
                                                 </div>
@@ -427,8 +432,8 @@ $(function(){
                                         </div>
                                        	<input name ="cPwd" class="form-control" id="cPwd" maxlength="6"  placeholder="결제비밀번호를 설정하세요.(숫자 6자리)" type="password">
                                     </div>
-                                     <div class="mt-3">
-                                            <button type="submit" class="btn btn-primary">Save All</button>
+                                     <div class="mt-3" style="text-align: center;">
+                                            <button type="submit" class="btn btn-primary" >수정하기</button>
                                         </div>
                                     <!-- End of Form -->
                                     </form>
