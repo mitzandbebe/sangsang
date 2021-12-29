@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.recommendation.model.RecommendationDAO">
+
+	<insert id="insertRecommendation"
+		parameterType="recommendationVO">
+		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
+			select RECOMMENDATION_SEQ.nextval from dual
+		</selectKey>
+		insert into recommendation(reco_no, reco_title, reco_content)
+		values(#{recoNo},#{recoTitle}, #{recoContent})
+	</insert>
+ 
+	<select id="selectAllRecommendation" parameterType="searchVo"
+		resultType="recommendationVO">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from recommendation order by
+		reco_no desc
+		)A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from recommendation
+	</select>
+
+	<select id="selectByNoRecommendation" parameterType="int"
+		resultType="recommendationVO">
+		select * from recommendation
+		where reco_no=#{recoNo}
+	</select>
+
+	<update id="updateRecommendation"
+		parameterType="RecommendationVO">
+		update recommendation
+		set reco_title= #{recoTitle},
+		reco_content=#{recoContent}
+		where reco_no=#{recoNo}
+	</update>
+
+	<delete id="deleteRecommendation" parameterType="int">
+		delete
+		recommendation where reco_no=#{recoNo}
+	</delete>
+
+</mapper>
