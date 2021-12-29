@@ -39,8 +39,7 @@
 									<h3 class="h5">전체정산내역</h3>
 									<p class="small pr-lg-10">전체 정산내역 입니다.</p>
 								</div>
-
-								<c:import url="/dashboard/host/balancing/list?currentPage=1&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}"></c:import>
+								<div id="list1"></div>
 
 							</div>
 							<div class="tab-pane fade" id="tabs-text-2" role="tabpanel"
@@ -48,31 +47,28 @@
 								<div class="card-header border-bottom p-3">
 									<h3 class="h5">정산완료내역</h3>
 									<p class="small pr-lg-10">완료된 정산내역 입니다.</p>
-									
 								</div>
-
-								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=N"></c:import>
-
+								<div id="list2"></div>
 							</div>
 							<div class="tab-pane fade" id="tabs-text-3" role="tabpanel"
 								aria-labelledby="tabs-text-3-tab">
 								<div class="card-header border-bottom p-3">
 									<h3 class="h5">미정산내역</h3>
 									<p class="small pr-lg-10">정산 대기중인 내역이 보여집니다.</p>
-										
 								</div>
-
-								<c:import url="/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=Y"></c:import>
-
+								<div id="list3"></div>
+								
+							
+									</ul>
+								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- End of Tab Content -->
-
 			</div>
 		</div>
 	</div>
 </div>
-
+</main>
 <%@ include file="../../../inc/bottom.jsp"%>
