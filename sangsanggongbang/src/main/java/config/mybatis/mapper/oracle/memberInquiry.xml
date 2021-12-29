@@ -2,12 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
+<mapper
+	namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
 	<select id="selectMemberAll" resultType="memberVo">
-		select * from member order by m_no
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from member
+		order
+		by
+		m_no
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
 	</select>
-	
+
+	<select id="selectMemberTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from member
+	</select>
+
 	<select id="selectHostAll" resultType="hostVo">
-		select * from host order by h_no
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from host
+		order
+		by
+		h_no
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectHostTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from host
 	</select>
 </mapper>
