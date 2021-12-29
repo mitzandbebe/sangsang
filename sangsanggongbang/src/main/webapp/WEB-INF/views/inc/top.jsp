@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ 
 <!--
 
 =========================================================
@@ -81,15 +81,15 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
         <div class="container">
             <a class="navbar-brand @@logo_classes" href="${pageContext.request.contextPath }/index">
-                <img class="navbar-brand-dark common" src="${pageContext.request.contextPath }/resources/assets/img/brand/light.svg" height="35" alt="Logo light">
-                <img class="navbar-brand-light common" src="${pageContext.request.contextPath }/resources/assets/img/brand/dark.svg" height="35" alt="Logo dark">
+                <img class="navbar-brand-dark common" src="${pageContext.request.contextPath }/resources/assets/img/brand/1.svg" height="35" alt="Logo light">
+                <img class="navbar-brand-light common" src="${pageContext.request.contextPath }/resources/assets/img/brand/2.svg" height="35" alt="Logo dark">
             </a>
             <div class="navbar-collapse collapse" id="navbar_global">
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="${pageContext.request.contextPath }/resources/index.html">
-                                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/dark.svg" height="35" alt="Logo Impact">
+                                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/2.svg" height="35" alt="Logo Impact">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
@@ -303,12 +303,12 @@
                 </ul>
             </div>
             <div class="d-none d-lg-block @@cta_button_classes">
-                <a href="https://themesberg.com/docs/spaces/components/buttons/" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">Components</span></a>
+                <a href="${pageContext.request.contextPath }/member/memberEditChkPwd" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-user-edit"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">MY PAGE</span></a>
                 <c:if test="${empty sessionScope.mId }">
- 	               <a href="${pageContext.request.contextPath }/login/login" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG IN</a>
+ 	               <a href="${pageContext.request.contextPath }/login/login" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-user-lock"></i> LOG IN</a>
                 </c:if>
                 <c:if test="${!empty sessionScope.mId }">
- 	               <a href="${pageContext.request.contextPath }/login/logout" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG OUT</a>
+ 	               <a href="${pageContext.request.contextPath }/login/logout" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-user-lock"></i> LOG OUT</a>
                 </c:if>
             </div>
             <div class="d-flex d-lg-none align-items-center">

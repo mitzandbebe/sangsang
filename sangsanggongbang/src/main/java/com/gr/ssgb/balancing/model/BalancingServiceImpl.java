@@ -26,8 +26,6 @@ public class BalancingServiceImpl implements BalancingService{
 		return balancingDao.balancing();
 	}
 	
-	
-	
 	/*
 	@Transactional
 	public int insertBoard(BalancingVO vo) {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="inc/top.jsp"  %>
         <!-- Hero -->
-        <section class="section-header">
+        <section class="section-header" style="height:800px">
             <div class="container">
                 <div class="row justify-content-center">
                      <div class="form-group">
@@ -27,9 +27,6 @@
                      </div>
                 </div>
             </div>
-        	<c:import url="/mainevent/eventmain"/>
         </section>
-        
-       
     </main>
-<%@ include file="inc/bottom.jsp" %>
+<%@ include file="inc/bottom.jsp" %> 
