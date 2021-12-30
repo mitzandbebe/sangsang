@@ -32,8 +32,8 @@ public class FileUploadUtil {
 			= (MultipartHttpServletRequest) request;
 		
 		Map<String, MultipartFile> fileMap=multiRequest.getFileMap();
-		//List<MultipartFile> fileList=multiRequest.getFiles("upfile");
-	
+		List<MultipartFile> fileList=multiRequest.getFiles("upfile");
+	 
 		List<Map<String, Object>> list = new ArrayList<>();
 		
 		Iterator<String> iter=fileMap.keySet().iterator();
@@ -133,8 +133,7 @@ public class FileUploadUtil {
 			float fSize = fileSize/1000f;
 			fSize=Math.round(fSize*10)/10f;
 
-			result="<img src='"+request.getContextPath()
-				+"/resources/images/file.gif/'> "
+			result="📁 "
 				+originName+" ("+ fSize +"KB)";			
 		}
 		

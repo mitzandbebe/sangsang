@@ -28,18 +28,19 @@ public class HelloController {
 
 	}
 
-	@RequestMapping(value = "/my-items")
+	@RequestMapping(value = "dashboard/user/my-items")
 	public String myitems() {
-		return "dashboard/my-items";
+		return "dashboard/user/my-items";
 	}
 	
 	@RequestMapping(value = "/detail")
 	public String singleSpace() {
 		return "class/detail";
 	}
-	
+	/*
 	@RequestMapping(value = "/balancing")
 	public String balancing() {
-		return "dashboard/balancing";
+		return "dashboard/balancing/balancing";
 	}
+	*/
 }

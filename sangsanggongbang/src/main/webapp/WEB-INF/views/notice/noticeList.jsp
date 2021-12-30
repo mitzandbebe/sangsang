@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../inc/top.jsp"%>
 
 <!-- 
@@ -44,17 +45,20 @@
 									<h3 class="h6 small ml-2 mb-0">
 										<fmt:formatDate value="${list.noticeRegdate }"
 											pattern="yyyy-MM-dd" />
-									</h3>
+									</h3> &emsp;<span>조회수 : ${list.noticeReadcount }</span>
 								</div>
+								<c:if test="${fn:length(list.noticeContent)>30 }">
+									${fn:substring(list.noticeContent,0,40) }...
+								</c:if>
+								<c:if test="${fn:length(list.noticeContent)<=30 }">
 								<p class="mb-0">${list.noticeContent }</p>
+								</c:if>
 							</div>
-						</div>
+						</div> 
 						<br>
 					</c:forEach>
 				</c:if>
 			</div>
-
-
 			<div class="d-flex justify-content-center w-100 mt-5">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
@@ -68,7 +72,7 @@
 							<c:if test="${i==pagingInfo.currentPage }">
 								<li class="page-item active"><a class="page-link" href="#">${i }</a>
 							</c:if>
-							<c:if test="${i!=pagingInfo.currentPage }">
+						<c:if test="${i!=pagingInfo.currentPage }">
 								<li class="page-item"><a class="page-link"
 									href="<c:url value='/notice/noticeList?currentPage=${i}'/>">
 										${i }</a></li>

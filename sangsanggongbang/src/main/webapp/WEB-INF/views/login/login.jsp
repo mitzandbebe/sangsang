@@ -2,6 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../member/memberTop.jsp" %>
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#login').submit(function(){
+			if($('#mId').val().length < 1){
+				alert('아이디를 입력하세요');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#password').val().length < 1){
+				alert('비밀번호를 입력하세요.');
+				$('#password').focus();
+				event.preventDefault();
+			}
+		});
+	});
+		
+</script>
 
 
         <!-- Section -->
@@ -23,7 +41,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" type="text" aria-label="email address" class="form-control" id="email" 
+                                        <input name="mId" type="text" aria-label="email address" class="form-control" id="mId" 
                                         <c:if test="${!empty cookie.ck_userid }">
                                         	value="${cookie.ck_userid.value }"
                                         </c:if>
@@ -43,7 +61,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
+                                            <input name="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password">
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -94,7 +112,7 @@
 													success: res=>{
 														const kakao_account = res.kakao_account;
 														userId = kakao_account.email;
-														document.getElementById('email').value=userId;
+														document.getElementById('mId').value=userId;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('snsCheck').value="y";
 														console.log(kakao_account);

@@ -3,7 +3,7 @@ package com.gr.ssgb.common;
 public interface ConstUtil {
 	//페이징 처리에 필요한 상수
 	int RECORD_COUNT=5;  //한페이지에 보여줄 레코드 개수
-	int BLOCK_SIZE=10;
+	int BLOCK_SIZE=5;
 	
 	//파일 업로드 처리 관련 상수
 	String FILE_UPLOAD_TYPE="test";

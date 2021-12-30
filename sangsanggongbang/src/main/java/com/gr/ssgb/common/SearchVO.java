@@ -1,6 +1,5 @@
 package com.gr.ssgb.common;
 
-
 /**
  * 검색 정보를 담고있는 Bean
  * 페이징 처리 관련 변수 포함

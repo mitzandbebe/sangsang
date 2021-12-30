@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.hostclass.model.HostClassDAO">
+	<select id="selectCategoryAll" resultType="categoryVo">
+	 	select * from category order by category_code
+	 </select>
+	
+	<insert id="insertClass" parameterType="hostClassVo">
+		<selectKey keyProperty="cNo" resultType="int" order="BEFORE">
+         select HOSTCLASS_SEQ.nextval from dual
+      </selectKey>
+		
+		insert into
+		HOSTCLASS(
+         C_NO
+         , C_NAME
+         , CATEGORY_CODE
+         , H_NO
+         , L_NO
+         , C_PRICE
+         , PPNUM
+         , C_START_TIME
+         , C_END_TIME
+         , END_FLAG
+         )
+		values( #{cNo}
+            , #{cName}
+            , #{CateCode}  
+            , #{hNo}
+            , #{lNo}
+             , #{cPrice}
+             , #{ppnum}
+             , #{cStart}
+             , #{cEnd}
+             , #{endFlag}
+		)
+		
+	</insert>
+	
+	<insert id="insertContents" parameterType="contentsVo">
+		<selectKey keyProperty="contentsNo" resultType="int" order="BEFORE">
+         select C_CONTENTS_SEQ.nextval from dual
+      </selectKey>
+		
+		insert 
+		into C_Contents(
+           CONTENTS_NO
+           , C_NO
+           , THUMBNAIL
+           )
+        values(
+              #{contentsNo}
+              , #{cNo}
+              , #{thumbnail}
+           )
+		
+	</insert>
+
+	<insert id="insertLocation" parameterType="locationVo">
+		<selectKey keyProperty="lNo" resultType="int" order="BEFORE">
+         select LOCATION_SEQ.nextval from dual
+      </selectKey>
+		insert
+		 into Location(
+           L_NO
+           , ZIPCODE
+           , L_ADDRESS
+           , L_ADDRESS_DETAIL
+           )
+         values(
+            #{lNo}
+            , #{zipcode}
+            , #{lAddress}
+            , #{lAddressDetail}
+            )
+		
+	</insert>
+
+	<select id="selectByLNo" parameterType="locationVo" resultType="int">
+		select L_NO from location 
+		where l_address_detail=#{lAddressDetail} and l_address=#{lAddress}
+	</select>
+	
+	<select id="selectByCNo" parameterType="int" resultType="int">
+		select C_NO from hostclass where L_NO=#{lNo}
+	</select>
+	
+</mapper>

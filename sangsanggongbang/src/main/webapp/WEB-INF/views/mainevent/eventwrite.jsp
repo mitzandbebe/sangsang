@@ -31,7 +31,7 @@
 						</div>
 
 						<div>
-				            <label for="upfile">대표이미지</label>
+				            <label for="upfile">대표이미지 📁  </label>
 					        <input type="file" name="upfile" id="upfile">
 				        </div>
 						
@@ -99,7 +99,7 @@
 					}
 	
 				});
-				$('.ckediter').each(function(idx, item) {
+				/* $('.ckediter').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
 						$(this).focus();
@@ -107,7 +107,7 @@
 						return false; //each 탈출
 					}
 	
-				});
+				}); */
 				
 			});
 			
