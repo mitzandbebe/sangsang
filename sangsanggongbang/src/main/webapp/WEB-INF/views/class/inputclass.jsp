@@ -1,8 +1,8 @@
+<%@page import="com.gr.ssgb.hostclass.model.ContentsVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@include file="../inc/top.jsp"%>
 
 <section style="margin-top: 150px">
@@ -118,18 +118,43 @@
 											<div>
 												<label for="upfile">사진 </label> 
 												<span style="color:red;size:12px;">첨부파일은 최대 5개까지 등록이 가능합니다.</span>
-												<button type="button" id="btn-upload"
+												<!-- <button type="button" id="btn-upload"
 													class="btn btn-outline-primary">사진추가</button>
 												<input type="file" multiple="multiple"
 													name="upfile" id="input_file" style="display:none;"
-													class="form-control flatpickr-input">
+													class="form-control flatpickr-input"> -->
+											<div class="form-group">
+											<input type="file"
+												name="upfile1" id="file"
+												class="form-control flatpickr-input">
 											</div>
-											<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
+											<div class="form-group">
+											 <input type="file"
+												name="upfile2" id="file"
+												class="form-control flatpickr-input">
+											</div>
+											<div class="form-group">
+											<input type="file"
+												name="upfile3" id="file"
+												class="form-control flatpickr-input">
+											</div>
+											<div class="form-group">
+											<input type="file"
+												name="upfile4" id="file"
+												class="form-control flatpickr-input">
+											</div>
+											<div class="form-group">
+											<input type="file"
+												name="upfile5" id="file"
+												class="form-control flatpickr-input">
+											</div>
+											</div>
+											<!-- <div class="data_file_txt" id="data_file_txt" style="margin:40px;">
 												<span>첨부 이미지</span>
 												<br />
-												<div id="articlefileChange">
+												<div id="articlefileChange" >
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
@@ -206,6 +231,7 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function()
@@ -294,7 +320,7 @@ function fileDelete(fileNum){
 	$.ajax({
    	      type: "POST",
    	   	  enctype: "multipart/form-data",
-   	      url: "/class/file-upload",
+   	      url: "class/file-upload",
        	  data : formData,
        	  processData: false,
    	      contentType: false,

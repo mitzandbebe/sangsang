@@ -49,11 +49,21 @@
            CONTENTS_NO
            , C_NO
            , THUMBNAIL
+           ,CONTENTS_FILENAME1 
+           ,CONTENTS_FILENAME2
+           ,CONTENTS_FILENAME3 
+           ,CONTENTS_FILENAME4 
+           ,CONTENTS_FILENAME5
            )
         values(
               #{contentsNo}
               , #{cNo}
               , #{thumbnail}
+              ,#{cFilename1}
+              ,#{cFilename2}
+              ,#{cFilename3}
+              ,#{cFilename4}
+              ,#{cFilename5}
            )
 		
 	</insert>
