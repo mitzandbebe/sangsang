@@ -14,14 +14,14 @@
     </div>
 </div>
 	<form name="frmEdetail" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}">
+	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}"> 
         <!-- Hero -->
         <section class="section-header pb-7 bg-primary text-white">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 text-center">
                         <div class="mb-4">
-                            <a href="#" class="badge badge-secondary text-uppercase px-3">Event ${vo.newsNo }</a>
+                            <a href="#" class="badge badge-secondary text-uppercase px-3">🎁 Event &nbsp;&nbsp;#${vo.newsNo }</a>
                         </div>
                         <h1 class="display-3 mb-4 px-lg-5">${vo.newsTitle }</h1>
                         <div class="post-meta"> 
