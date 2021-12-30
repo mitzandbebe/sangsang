@@ -9,6 +9,10 @@ public interface MemberDAO {
 	String checkIdPwd(String mId);
 	int updateAdditionalInfo(MemberVO vo);
 	int updateAdditionalSns(MemberVO vo);
-	int selectMemberById(String mId);
+	int selectMemberCnt(String mId);
+	int selectMno(String getmId);
+	int insertPayment(PaymentVO paymentVo);
+	MemberVO selectMemberById(String mId);
+	PaymentVO selectBasicPayment(int getmNo);
 
 }

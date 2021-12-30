@@ -11,7 +11,7 @@ public interface BalancingDAO {
 
 	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
-
+	public String balancing();
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

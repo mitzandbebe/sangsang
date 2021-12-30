@@ -20,12 +20,12 @@ public class BalancingServiceImpl implements BalancingService{
 	public int selectTotalRecord(SearchVO searachVo) {
 		return balancingDao.selectTotalRecord(searachVo);
 	}
-	
-	@Override
-	public List<BalancingVO> selectBalancingComp(String bFlag) {
-		return balancingDao.selectBalancingComp(bFlag);
-	}
 
+	@Override
+	public String balancing() {
+		return balancingDao.balancing();
+	}
+	
 	/*
 	@Transactional
 	public int insertBoard(BalancingVO vo) {

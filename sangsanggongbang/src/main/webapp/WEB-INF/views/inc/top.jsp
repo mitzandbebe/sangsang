@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!--
 
@@ -107,6 +107,7 @@
 </head>
 
 <body class="bg-soft" >
+
 	<header class="header-global">
 		<nav id="navbar-main"
 			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
@@ -196,23 +197,15 @@
 				</div>
 			</div>
 
-			<div class="d-none d-lg-block @@cta_button_classes">
-				<a href="https://themesberg.com/docs/spaces/components/buttons/"
-					target="_blank"
-					class="btn btn-md btn-outline-white animate-up-2 mr-3"><i
-					class="fas fa-book mr-1"></i> <span class="d-xl-none">My
-						Page</span> <span class="d-none d-xl-inline">My page</span></a>
-				<c:if test="${empty sessionScope.mId }">
-					<a href="${pageContext.request.contextPath }/login/login"
-						target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
-						class="fas fa-shopping-bag mr-2"></i> LOG IN</a>
-				</c:if>
-				<c:if test="${!empty sessionScope.mId }">
-					<a href="${pageContext.request.contextPath }/login/logout"
-						target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
-						class="fas fa-shopping-bag mr-2"></i> LOG OUT</a>
-				</c:if>
-			</div>
+            <div class="d-none d-lg-block @@cta_button_classes">
+                <a href="${pageContext.request.contextPath }/member/memberEditChkPwd" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-user-edit"></i> <span class="d-xl-none">MY PAGE</span> <span class="d-none d-xl-inline">MY PAGE</span></a>
+                <c:if test="${empty sessionScope.mId }">
+ 	               <a href="${pageContext.request.contextPath }/login/login" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-user-lock"></i> LOG IN</a>
+                </c:if>
+                <c:if test="${!empty sessionScope.mId }">
+ 	               <a href="${pageContext.request.contextPath }/login/logout" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-user-lock"></i> LOG OUT</a>
+                </c:if>
+            </div>
 			<div class="d-flex d-lg-none align-items-center">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbar_global" aria-controls="navbar_global"
