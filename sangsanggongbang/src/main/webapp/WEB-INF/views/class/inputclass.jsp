@@ -23,29 +23,36 @@
 							<h2 class="h5 mb-4">클래스정보</h2>
 							<form name="frmClass" method="post" enctype="multipart/form-data"
 								action="<c:url value='/class/inputclass'/> ">
+								<!-- 나중에 hidden 으로 바꾸기 -->
+								<%-- <input type="text" name="hNo" value="${param.hNo }"> --%>
+								<!-- 임의로 1번호스트로 테스트 -->
+								<input type="hidden" name="hNo" value="1">
+								<input type="hidden" name="endFlag" value="N">
+								
+								
 								<div class="row">
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="class_name">클래스 이름</label> <input
 												class="form-control" id="cName" type="text"
-												placeholder="클래스이름을 입력해주세요.">
+												placeholder="클래스이름을 입력해주세요." name="cName">
 										</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
-											<label for="upfile">대표이미지 </label> <input type="file"
-												name="thumbnail" id="upfile"
+											<label for="thumbnail">대표이미지 </label> <input type="file"
+												name="upfile" id="file"
 												class="form-control flatpickr-input">
 										</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="category">클래스 유형</label> <select
-												class="custom-select" id="category">
+												class="custom-select" id="category" name="CateCode">
 												<option disabled="disabled" selected="selected">
 													클래스 유형을 선택해주세요.</option>
 												<c:forEach var="vo" items="${ clist}">
-													<option value="${vo.categoryCode }" name="CateCode">${vo.categoryName }</option>
+													<option value="${vo.categoryCode }">${vo.categoryName }</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -109,9 +116,19 @@
 									<div class="col-sm-9 mb-3">
 										<div class="form-group">
 											<div>
-												<label for="upfile">사진1 </label> <input type="file"
-													name="cFilename" id="upfile"
+												<label for="upfile">사진 </label> 
+												<span style="color:red;size:12px;">첨부파일은 최대 5개까지 등록이 가능합니다.</span>
+												<button type="button" id="btn-upload"
+													class="btn btn-outline-primary">사진추가</button>
+												<input type="file" multiple="multiple"
+													name="upfile" id="input_file" style="display:none;"
 													class="form-control flatpickr-input">
+											</div>
+											<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
+												<span>첨부 이미지</span>
+												<br />
+												<div id="articlefileChange">
+												</div>
 											</div>
 										</div>
 									</div>
@@ -122,7 +139,7 @@
 									<!--  -->
 									<div class="col-sm-9 mb-3">
 										<div class="form-group">
-											<label for="mZipcode">우편번호</label>
+											<label for="zipcode">우편번호</label>
 											<div class="input-group mb-4">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i
@@ -145,14 +162,14 @@
 													<span class="input-group-text"><i
 														class="far fa-compass"></i></span>
 												</div>
-												<input name="mAddress" class="form-control" id="address"
+												<input name="lAddress" class="form-control" id="address"
 													readonly="readonly" placeholder="우편번호 검색시 자동으로 입력됩니다."
 													type="text" required>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-7 mb-3">
-										<label for="mAddressDetail">상세주소</label>
+										<label for="lAddressDetail">상세주소</label>
 										<div class="input-group mb-4">
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i
@@ -190,24 +207,111 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 <script type="text/javascript">
-	$(function() {
-		$('#btmain').click(function() {
-			location.href = "<c:url value='/index'/>";
+
+$(document).ready(function()
+		// input file 파일 첨부시 fileCheck 함수 실행
+		{
+			$("#input_file").on("change", fileCheck);
 		});
-		$('#btlist').click(function() {
-			location.href = "<c:url value='/mainevent/eventlist'/>";
-		});
-		$('#btupdate')
-				.click(
-						function() {
-							location.href = "<c:url value='/mainevent/eventupdate?newsNo=${vo.newsNo}'/>";
-						});
-		$('#btdelete')
-				.click(
-						function() {
-							location.href = "<c:url value='/mainevent/eventdelete?newsNo=${vo.newsNo}'/>";
-						});
-	});
+/**
+ * 첨부파일로직
+ */
+$(function () {
+    $('#btn-upload').click(function (e) {
+        e.preventDefault();
+        $('#input_file').click();
+    });
+});
+
+// 파일 현재 필드 숫자 totalCount랑 비교값
+var fileCount = 0;
+// 해당 숫자를 수정하여 전체 업로드 갯수를 정한다.
+var totalCount = 5;
+// 파일 고유넘버
+var fileNum = 0;
+// 첨부파일 배열
+var content_files = new Array();
+
+function fileCheck(e) {
+    var files = e.target.files;
+    
+    // 파일 배열 담기
+    var filesArr = Array.prototype.slice.call(files);
+    
+    // 파일 개수 확인 및 제한
+    if (fileCount + filesArr.length > totalCount) {
+      $.alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
+      return;
+    } else {
+    	 fileCount = fileCount + filesArr.length;
+    }
+    
+    // 각각의 파일 배열담기 및 기타
+    filesArr.forEach(function (f) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        content_files.push(f);
+        $('#articlefileChange').append(
+       		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
+       		+ '<font style="font-size:12px">' + f.name + '</font>'  
+       		+ '<a href="javascript:void(0);">❌</a>' 
+       		+ '<div/>'
+		);
+        fileNum ++;
+      };
+      reader.readAsDataURL(f);
+    });
+    console.log(content_files);
+    //초기화 한다.
+    $("#input_file").val("");
+  }
+
+// 파일 부분 삭제 함수
+function fileDelete(fileNum){
+    var no = fileNum.replace(/[^0-9]/g, "");
+    content_files[no].is_delete = true;
+	$('#' + fileNum).remove();
+	fileCount --;
+    console.log(content_files);
+}
+
+/*
+ * 폼 submit 로직
+ */
+	function registerAction(){
+		
+	var form = $("form")[0];        
+ 	var formData = new FormData(form);
+		for (var x = 0; x < content_files.length; x++) {
+			// 삭제 안한것만 담아 준다. 
+			if(!content_files[x].is_delete){
+				 formData.append("article_file", content_files[x]);
+			}
+		}
+   /*
+   * 파일업로드 multiple ajax처리
+   */    
+	$.ajax({
+   	      type: "POST",
+   	   	  enctype: "multipart/form-data",
+   	      url: "/file-upload",
+       	  data : formData,
+       	  processData: false,
+   	      contentType: false,
+   	      success: function (data) {
+   	    	if(JSON.parse(data)['result'] == "OK"){
+   	    		alert("파일업로드 성공");
+			} else
+				alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+   	      },
+   	      error: function (xhr, status, error) {
+   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+   	     return false;
+   	      }
+   	    });
+   	    return false;
+	}
+
 
 	$('.datepicker')[0] && $('.datepicker').each(function() {
 		$('.datepicker').datepicker({

@@ -6,8 +6,8 @@ public interface ConstUtil {
 	int BLOCK_SIZE=5;
 	
 	//파일 업로드 처리 관련 상수
-	//String FILE_UPLOAD_TYPE="test";
-	String FILE_UPLOAD_TYPE="deploy";
+	String FILE_UPLOAD_TYPE="test";
+	//String FILE_UPLOAD_TYPE="deploy";
 	
 	//자료실 - 파일 저장 경로
 	String FILE_UPLOAD_PATH="file_upload";

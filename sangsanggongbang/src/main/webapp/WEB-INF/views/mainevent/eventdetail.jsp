@@ -14,7 +14,7 @@
     </div>
 </div>
 	<form name="frmEdetail" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}">
+	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}"> 
         <!-- Hero -->
         <section class="section-header pb-7 bg-primary text-white">
             <div class="container">

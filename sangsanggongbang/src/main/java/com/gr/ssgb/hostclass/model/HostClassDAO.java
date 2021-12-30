@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HostClassDAO {
 	List<CategoryVO> selectCategoryAll();
-	int insertClass(HostClassVO classVo);
-	int uploadFile(Map<String, Object> map);
+	int insertLocation(LocationVO locationVo);
+	int insertClass(HostClassVO hostClassVo);
+	int insertContents(ContentsVO contentsVo);
+	int selectByLNo(LocationVO locationVo);
+	int selectByCNo(int lNo);
 }

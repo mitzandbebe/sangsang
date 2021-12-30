@@ -1,6 +1,7 @@
 package com.gr.ssgb.hostclass.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class HostClassVO {
 	//hostclass -------------------
@@ -24,8 +25,8 @@ public class HostClassVO {
 	private int cPrice;
 	private int ppnum;
 	private Timestamp cRegdate;
-	private Timestamp cStart;
-	private Timestamp cEnd;
+	private Date cStart;
+	private Date cEnd;
 	private String endFlag;
 	public int getcNo() {
 		return cNo;
@@ -75,16 +76,16 @@ public class HostClassVO {
 	public void setcRegdate(Timestamp cRegdate) {
 		this.cRegdate = cRegdate;
 	}
-	public Timestamp getcStart() {
+	public Date getcStart() {
 		return cStart;
 	}
-	public void setcStart(Timestamp cStart) {
+	public void setcStart(Date cStart) {
 		this.cStart = cStart;
 	}
-	public Timestamp getcEnd() {
+	public Date getcEnd() {
 		return cEnd;
 	}
-	public void setcEnd(Timestamp cEnd) {
+	public void setcEnd(Date cEnd) {
 		this.cEnd = cEnd;
 	}
 	public String getEndFlag() {
@@ -93,107 +94,12 @@ public class HostClassVO {
 	public void setEndFlag(String endFlag) {
 		this.endFlag = endFlag;
 	}
-	
-	//classContents------------
-//	CONTENTS_NO NUMBER NOT NULL, /* 컨텐츠번호 */
-//	C_NO NUMBER, /* 클래스코드 */
-//	THUMBNAIL VARCHAR2(255), /* 썸네일 */
-//	CONTENTS_FILENAME VARCHAR2(255), /* 사진업로드명 */
-//	CONTENTS_FILESIZE NUMBER, /* 사진크기 */
-//	CONTENTS_ORIGINALNAME VARCHAR2(255), /* 사진원본명 */
-
-	
-	private int contentsNo;
-	private String thumbnail;
-	private String cFilename;
-	private long cFilesize;
-	private String cFileOriginalname;
-
-
-
-	public int getContentsNo() {
-		return contentsNo;
-	}
-	public void setContentsNo(int contentsNo) {
-		this.contentsNo = contentsNo;
-	}
-	public String getThumbnail() {
-		return thumbnail;
-	}
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-	public String getcFilename() {
-		return cFilename;
-	}
-	public void setcFilename(String cFilename) {
-		this.cFilename = cFilename;
-	}
-	public long getcFilesize() {
-		return cFilesize;
-	}
-	public void setcFilesize(long cFilesize) {
-		this.cFilesize = cFilesize;
-	}
-	public String getcFileOriginalname() {
-		return cFileOriginalname;
-	}
-	public void setcFileOriginalname(String cFileOriginalname) {
-		this.cFileOriginalname = cFileOriginalname;
-	}
-
-	//classLocation--------------------
-//	L_NO NUMBER NOT NULL, /* 장소번호 */
-//	L_LATITUDE VARCHAR2(255), /* 위도 */
-//	L_LONGITUDE VARCHAR2(255), /* 경도 */
-//	ZIPCODE VARCHAR(10) NOT NULL, /* 우편번호 */
-//	L_ADDRESS VARCHAR(300) NOT NULL, /* 주소 */
-//	L_ADDRESS_DETAIL VARCHAR2(300) NOT NULL /* 상세주소 */
-	private String lLatitude;
-	private String lLongitude;
-	private String zipcode;
-	private String lAddress;
-	private String lAddressDetail;
-	public String getlLatitude() {
-		return lLatitude;
-	}
-	public void setlLatitude(String lLatitude) {
-		this.lLatitude = lLatitude;
-	}
-	public String getlLongitude() {
-		return lLongitude;
-	}
-	public void setlLongitude(String lLongitude) {
-		this.lLongitude = lLongitude;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	public String getlAddress() {
-		return lAddress;
-	}
-	public void setlAddress(String lAddress) {
-		this.lAddress = lAddress;
-	}
-	public String getlAddressDetail() {
-		return lAddressDetail;
-	}
-	public void setlAddressDetail(String lAddressDetail) {
-		this.lAddressDetail = lAddressDetail;
-	}
 	@Override
 	public String toString() {
 		return "HostClassVO [cNo=" + cNo + ", cName=" + cName + ", CateCode=" + CateCode + ", hNo=" + hNo + ", lNo="
 				+ lNo + ", cPrice=" + cPrice + ", ppnum=" + ppnum + ", cRegdate=" + cRegdate + ", cStart=" + cStart
-				+ ", cEnd=" + cEnd + ", endFlag=" + endFlag + ", contentsNo=" + contentsNo + ", thumbnail=" + thumbnail
-				+ ", cFilename=" + cFilename + ", cFilesize=" + cFilesize + ", cFileOriginalname=" + cFileOriginalname
-				+ ", lLatitude=" + lLatitude + ", lLongitude=" + lLongitude + ", zipcode=" + zipcode + ", lAddress="
-				+ lAddress + ", lAddressDetail=" + lAddressDetail + "]";
+				+ ", cEnd=" + cEnd + ", endFlag=" + endFlag + "]";
 	}
-	
-	
+
 	
 }

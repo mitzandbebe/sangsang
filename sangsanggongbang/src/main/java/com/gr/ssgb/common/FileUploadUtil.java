@@ -33,7 +33,7 @@ public class FileUploadUtil {
 		
 		Map<String, MultipartFile> fileMap=multiRequest.getFileMap();
 		List<MultipartFile> fileList=multiRequest.getFiles("upfile");
-	
+	 
 		List<Map<String, Object>> list = new ArrayList<>();
 		
 		Iterator<String> iter=fileMap.keySet().iterator();

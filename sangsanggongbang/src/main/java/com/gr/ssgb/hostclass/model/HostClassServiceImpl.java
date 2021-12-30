@@ -22,18 +22,31 @@ public class HostClassServiceImpl implements HostClassService{
 	}
 
 	@Override
-	public int insertClass(HostClassVO classVo) {
-		return hostClassDao.insertClass(classVo);
+	public int insertLocation(LocationVO locationVo) {
+		return hostClassDao.insertLocation(locationVo);
 	}
+
+	@Override
+	public int insertClass(HostClassVO hostClassVo) {
+		return hostClassDao.insertClass(hostClassVo);
+	}
+
+	@Override
+	public int insertContents(ContentsVO contentsVo) {
+		return hostClassDao.insertContents(contentsVo);
+	}
+
+	@Override
+	public int selectByLNo(LocationVO locationVo) {
+		return hostClassDao.selectByLNo(locationVo);
+	}
+
+	@Override
+	public int selectByCNo(int lNo) {
+		return hostClassDao.selectByCNo(lNo);
+	}
+
 	
-	public void fileUpload(String originalfileName, String saveFileName, long fileSize) {
-	    Map<String, Object> hm = new HashMap();
-	    hm.put("originalfileName", originalfileName);
-	    hm.put("saveFileName", saveFileName);
-	    hm.put("fileSize", fileSize);
-	     
-	    hostClassDao.uploadFile(hm);
-	}
 
 
 	
