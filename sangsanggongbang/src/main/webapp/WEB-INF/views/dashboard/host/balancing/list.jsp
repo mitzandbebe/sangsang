@@ -77,6 +77,7 @@ $(function() {
 });
 
 </script>
+<c:set var="total"></c:set>
 <c:if test="${empty list }">
 	<tr>
 		<td colspan="6">데이터가 없습니다.</td>
@@ -84,6 +85,49 @@ $(function() {
 </c:if>
 
 <c:if test="${!empty list }">
+
+						<!-- 누적금액 -->
+                        <div class="row">
+                            <div class="col-12 col-sm-6 mb-4">
+                               <div class="card border-light">
+                                  <div class="card-body d-block d-md-flex align-items-center">
+                                    <div class="icon icon-shape icon-md icon-shape-primary rounded-circle mr-3 mb-4 mb-md-0"><span class="fas fa-wallet"></span></div>
+                                    <div>
+                                        <span class="d-block h6 font-weight-normal">
+                                            당월 정산누적금액 
+                                        </span>
+                                        <h5 class="h3 font-weight-bold mb-1">
+                                        ${total}*${pagingInfo.totalRecord}원</h5>
+                                        <div class="small mt-2">                               
+                                            <span class="fas fa-angle-up text-success"></span>                               
+                                            <span class="fas fa-angle-down text-success"></span>                               
+                                            <span class="text-success font-weight-bold">18.2%</span> 전월대비
+                                        </div>
+                                    </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-4">
+                                <div class="card border-light">
+                                    <div class="card-body d-block d-md-flex align-items-center">
+                                        <div class="icon icon-shape icon-md icon-shape-primary rounded-circle mr-3 mb-4 mb-md-0"><span class="fas fa-file-invoice-dollar"></span></div>
+                                        <div>
+                                            <span class="d-block h6 font-weight-normal">
+                                                정산예정금액 
+                                            </span>
+                                            <h5 class="h3 font-weight-bold mb-1">5,220원</h5>
+                                            <div class="small mt-2">                               
+                                                <span class="fas fa-angle-up text-success"></span>                                   
+                                                <span class="fas fa-angle-down text-success"></span>                                   
+                                                <span class="text-success font-weight-bold">4.2%</span> 전월대비
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- 누적금액 종료 -->
+
 	<!--게시판 내용 반복문 시작  -->
 	<c:forEach var="vo" items="${list }">
 		<div class="card-body px-0 pt-0">
@@ -96,7 +140,8 @@ $(function() {
 							</h3>
 							<!-- Text -->
 							<small class="text-gray-700"> 호스트번호 : ${vo.hNo}</small><br>
-							<small class="text-gray-700"> 진행인원 : ${vo.bPpnum}</small><br>
+							<small class="text-gray-700"> 진행인원 : ${vo.ppnum}</small><br>
+							<small class="text-gray-700"> 클래스가격 : ${vo.cPrice}</small><br>
 							<small class="text-gray-700"> 진행일자 : <fmt:formatDate
 									value="${vo.bReqDate}" pattern="yyyy-MM-dd" />
 							</small>
