@@ -3,51 +3,85 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../../../inc/top.jsp"%>
-<%@ include file="../leftNavi.jsp"%>
-
-
-
-
+<script type="text/javascript">
+$(function() {
+	if($('#tabs-text-1').hasClass('active')==true){
+		$('#list1 #pagelinknum').click(function(){
+		var i=$(this).text();
+		console.log(i);
+		$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
+		});
+		
+		/* 다음페이지 버튼(>) 클릭시 */
+		$('#list1 #nextpage').click(function(){
+			var a=$('#list1 #pagelinknum:nth-child(5n+1)').text();
+			++a;
+			console.log(a);
+			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+a+"&searchCondition=&searchKeyword=");
+			});
+		
+		/* 이전페이지 버튼(<) 클릭시 */
+		$('#list1 #backpage').click(function(){
+			var b=$('#list1 #pagelinknum:first').text();
+			--b;
+			console.log(b);
+			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+b+"&searchCondition=&searchKeyword=");
+			});
+		
+	}
+});
+$(function() {
+		$('#tabs-text-2 #pagelinknum').click(function(){
+		var i=$(this).text();
+		console.log(i);
+		$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
+		});
+		
+		/* 다음페이지 버튼(>) 클릭시 */
+		$('#list2 #nextpage').click(function(){
+			var c=$('#list2 #pagelinknum:nth-child(5n+1)').text();
+			++c;
+			console.log(c);
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=N");
+			});
+		
+		/* 이전페이지 버튼(<) 클릭시 */
+		$('#list2 #backpage').click(function(){
+			var d=$('#list2 #pagelinknum:first').text();
+			--d;
+			console.log(d);
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+d+"&searchCondition=b_flag&searchKeyword=N");
+			});
+});
+$(function() {
+		$('#list3 #pagelinknum').click(function(){
+		var i=$(this).text();
+		console.log(i);
+		$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=Y");
+		});
+		
+		/* 다음페이지 버튼(>) 클릭시 */
+		$('#list3 #nextpage').click(function(){
+			var e=$('#list3 #pagelinknum:nth-child(5n+1)').text();
+			++e;
+			console.log(e);
+			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+e+"&searchCondition=b_flag&searchKeyword=Y");
+			});
+		
+		/* 이전페이지 버튼(<) 클릭시 */
+		$('#list3 #backpage').click(function(){
+			var f=$('#list3 #pagelinknum:first').text();
+			--f;
+			console.log(f);
+			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+f+"&searchCondition=b_flag&searchKeyword=Y");
+			});
+});
+</script>
 <c:if test="${empty list }">
 	<tr>
 		<td colspan="6">데이터가 없습니다.</td>
 	</tr>
 </c:if>
-
-<div class="col-12 col-lg-8">
-	<div class="row mb-5">
-		<div class="col-12 mb-4">
-			<div class="card card-body bg-white border-light p-0 p-md-4">
-				<!-- Tab Nav -->
-				<div class="nav-wrapper position-relative mb-2">
-					<ul class="nav nav-pills nav-fill flex-column flex-md-row"
-						id="tabs-text" role="tablist">
-						<li class="nav-item"><a
-							class="nav-link mb-sm-3 mb-md-0" id="tabs-text-1-tab"
-							data-toggle=""
-							href="#"
-							role="" aria-controls="tabs-text-1" aria-selected="true">전체정산내역</a></li>
-						<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0"
-							id="tabs-text-2-tab" data-toggle=""
-							href="${pageContext.request.contextPath }/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=N"
-							role="" aria-controls="tabs-text-2" aria-selected="false">정산완료내역</a>
-						</li>
-						<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0"
-							id="tabs-text-3-tab" data-toggle=""
-							href="${pageContext.request.contextPath }/dashboard/host/balancing/list?searchCondition=b_flag&searchKeyword=Y"
-							role="" aria-controls="tabs-text-3" aria-selected="false">미정산내역</a>
-						</li>
-					</ul>
-				</div>
-
-				<!-- End of Tab Nav -->
-				<!-- Tab Content -->
-				<div class="card">
-					<div class="card-body p-0">
-						<div class="tab-content" id="tabcontent1">
-							<div class="tab-pane fade show active" id="tabs-text-1"
-								role="tabpanel" aria-labelledby="tabs-text-1-tab">
 
 								<c:if test="${!empty list }">
 									<!--게시판 내용 반복문 시작  -->
@@ -94,46 +128,36 @@
 									style="margin-left: 50px">
 									<ul class="pagination circle-pagination">
 										<!-- 이전 블럭으로 이동 -->
-										<c:if test="${pagingInfo.firstPage>1 }">
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/dashboard/host/balancing/list?currentPage=${pagingInfo.firstPage-1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">
+										<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
+										<li class="page-item" id="backpage"><a class="page-link">
 												<i class="fas fa-angle-double-left"></i>
 										</a></li>
-										</c:if>	
+										<%-- </c:if> --%>
 
 										<!-- [1][2][3][4][5][6][7][8][9][10] -->
 										<c:forEach var="i" begin="${pagingInfo.firstPage}"
 											end="${pagingInfo.lastPage }">
 											<c:if test="${i==pagingInfo.currentPage }">
-												<span style="color: blue; font-weight: bold; font-size: 1em">
+												<span style="color: blue; font-weight: bold; font-size: 1em" id="pagelinknum">
 													${i}</span>
 											</c:if>
 											<c:if test="${i!=pagingInfo.currentPage }">
-												<li class="page-item"><a class="page-link"
-													href="<c:url value='/dashboard/host/balancing/list?currentPage=${i}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">
-														${i }</a></li>
+												<li class="page-item" id="pagelinknum">
+													<a class="page-link" id="pagelinknum2">
+													${i }
+													</a>
+													</li>
 											</c:if>
 										</c:forEach>
-
 										<!-- 다음 블럭으로 이동 -->
-										<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-											<a
-												href="<c:url value='/dashboard/host/balancing/list?currentPage=${pagingInfo.lastPage+1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">
-												<i class="fas fa-angle-double-right"></i>
-											</a>
+ 										<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+											<li class="page-item" id="nextpage">
+												<a class="page-link" id="pagelinknum2">
+												<i class="fas fa-angle-double-right">
+												</i>
+												</a>
+											</li>
 										</c:if>
 										<!--  페이지 번호 끝 -->
 									</ul>
 								</nav>
-							</div>
-						</div>
-					</div>
-					<!-- End of Tab Content -->
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</main>
-<%@ include file="../../../inc/bottom.jsp"%>
