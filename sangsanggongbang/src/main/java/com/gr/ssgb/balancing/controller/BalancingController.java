@@ -58,7 +58,6 @@ public class BalancingController {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 
-
 		//4. 뷰페이지 리턴
 		return "dashboard/host/balancing/list";
 	}
