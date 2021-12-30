@@ -23,7 +23,11 @@
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
+ */  
+ 
+ /* 폰트삽입 */
+*{font-family: 'Noto Sans KR', sans-serif;}
+
 :root {
     --blue: #0056B3;
     --indigo: #6610f2;
@@ -93,7 +97,7 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(13, 27, 72, 0);
@@ -11083,7 +11087,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-    background-color: #0d1b48 !important;
+    background-color: #9FB9AE !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -34778,8 +34782,8 @@ a.no-hover:hover {
 
 .carousel-control-prev-icon::before {
     content: '\f060';
-    font-family: "Font Awesome 5 Free";
-    font-size: 2rem;
+    font-family: " Awesome 5 Free";
+    -size: 2rem;
 }
 
 .carousel-control-next-icon {
@@ -34787,9 +34791,9 @@ a.no-hover:hover {
 }
 
 .carousel-control-next-icon:before {
-    font-family: "Font Awesome 5 Free";
+    -family: " Awesome 5 Free";
     content: "\f061";
-    font-size: 2rem;
+    -size: 2rem;
 }
 
 .sr-only {
@@ -34814,7 +34818,7 @@ a.no-hover:hover {
     color: rgba(0, 0, 0, 0.6);
     line-height: 22px;
     border-radius: 50%;
-    font-size: 1.25rem;
+    -size: 1.25rem;
     transition: all 0.2s ease;
 }
 
@@ -34833,11 +34837,11 @@ a.no-hover:hover {
  */
 .counter-alternate::after {
     content: '\f067';
-    font-family: "Font Awesome 5 Free";
+    -family: " Awesome 5 Free";
     position: absolute;
-    font-size: 2.25rem;
+    -size: 2.25rem;
     color: #0d1b48;
-    font-weight: 900;
+    -weight: 900;
 }
 
 /**
@@ -34871,7 +34875,7 @@ a.no-hover:hover {
 }
 
 .custom-select {
-    font-size: 1rem;
+    -size: 1rem;
     box-shadow: none;
 }
 
@@ -34897,10 +34901,10 @@ a.no-hover:hover {
 
 .rating-star label:before {
     content: "\f005";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    -family: " Awesome 5 Free";
+    -weight: 900;
     transition: all .2s ease;
-    font-size: 1.0625rem;
+    -size: 1.0625rem;
 }
 
 .rating-star input {
@@ -34931,18 +34935,18 @@ a.no-hover:hover {
 .dropdown-menu .dropdown-header,
   .dropdown-menu .dropdown-item {
     padding: .5rem 1rem;
-    font-size: 1rem;
+    -size: 1rem;
 }
 
 .dropdown-menu .dropdown-header {
     color: #424767;
-    font-weight: 500;
+    -weight: 500;
 }
 
 .dropdown-menu .dropdown-item {
     color: #4E5079;
     transition: all 0.2s ease;
-    font-weight: 400;
+    -weight: 400;
 }
 
 .dropdown-menu .dropdown-itema:hover {
@@ -34985,7 +34989,7 @@ a.no-hover:hover {
  * = Forms
  */
 label {
-    font-size: 0.875rem;
+    -size: 0.875rem;
 }
 
 .form-control {
@@ -40755,7 +40759,7 @@ blockquote {
 
 /*# sourceMappingURL=spaces.css.map */
 
-/* 정훈 직접추가 시작 */
+/* �젙�썕 吏곸젒異붽� �떆�옉 */
 .class-confirm03 .c03-count input {
     width: 34px;
     text-align: center;
@@ -40779,4 +40783,4 @@ blockquote {
     text-align: center;
     vertical-align: middle;
 }
-/* 정훈 직접추가 끝*/
+/* �젙�썕 吏곸젒異붽� �걹*/
