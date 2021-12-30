@@ -7,6 +7,7 @@
 	<div class="row mb-5">
 		<div class="col-12 mb-4">
 			<div class="card card-body bg-white border-light p-0 p-md-4">
+			<!-- 카드영역시작 -->
 				<!-- Tab Nav -->
 				<div class="nav-wrapper position-relative mb-2">
 					<ul class="nav nav-pills nav-fill flex-column flex-md-row"
@@ -36,16 +37,15 @@
 							<div class="tab-pane fade show active" id="tabs-text-1"
 								role="tabpanel" aria-labelledby="tabs-text-1-tab">
 								<div class="card-header border-bottom p-3">
-									<h3 class="h5">전체정산내역</h3>
 									<p class="small pr-lg-10">전체 정산내역 입니다.</p>
 								</div>
+								
 								<div id="list1"></div>
 
 							</div>
 							<div class="tab-pane fade" id="tabs-text-2" role="tabpanel"
 								aria-labelledby="tabs-text-2-tab">
 								<div class="card-header border-bottom p-3">
-									<h3 class="h5">정산완료내역</h3>
 									<p class="small pr-lg-10">완료된 정산내역 입니다.</p>
 								</div>
 								<div id="list2"></div>
@@ -53,7 +53,6 @@
 							<div class="tab-pane fade" id="tabs-text-3" role="tabpanel"
 								aria-labelledby="tabs-text-3-tab">
 								<div class="card-header border-bottom p-3">
-									<h3 class="h5">미정산내역</h3>
 									<p class="small pr-lg-10">정산 대기중인 내역이 보여집니다.</p>
 								</div>
 								<div id="list3"></div>
