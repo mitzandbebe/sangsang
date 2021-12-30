@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -78,10 +79,18 @@ public class HostClassController {
 		logger.info("클래스 등록처리, 파라미터 locationVo={}", locationVo);
 		logger.info("클래스 등록처리, 파라미터 hostClassVo={}", hostClassVo);
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
-		
-		int cnt1=hostClassService.insertLocation(locationVo);
-		
+		// 근데 로케이션이 완전 똑같으면 어떡하지?
+		// 먼저 지역번호를 조회해보고 있으면 등록 안하게?
 		int lno=hostClassService.selectByLNo(locationVo);
+		int cnt1=0;
+		if(lno<1) {
+			//1보다 작다는건 아직 등록 안됬다는거니까 등록
+			cnt1=hostClassService.insertLocation(locationVo); 
+		}else {
+			//이미있으니 등록 하지말고 cnt1 이 0이면 안되니까 1로 바꿔주기
+			cnt1=1;
+		}
+		
 		hostClassVo.setlNo(lno);
 		logger.info("lno={}",lno);
 		
@@ -123,52 +132,92 @@ public class HostClassController {
 		return "common/message";
 	}
 	
+//	@ResponseBody
+//	@RequestMapping(value = "/file-upload", method = RequestMethod.POST)
+//	public String fileUpload(
+//			@RequestParam("article_file") List<MultipartFile> multipartFile
+//			, HttpServletRequest request,
+//			@ModelAttribute ContentsVO contentVo) {
+//		
+//		String strResult = "{ \"result\":\"FAIL\" }";
+//		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/sangsanggongbang");
+//		String fileRoot;
+//		try {
+//			// 파일이 있을때 탄다.
+//			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+//				
+//				for(MultipartFile file:multipartFile) {
+//					fileRoot = contextRoot + "/resources/upload_images/";
+//					System.out.println(fileRoot);
+//					
+//					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+//					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+//					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+//					
+//					contentVo.setcFilename(savedFileName);
+//					contentVo.setcFileOriginalname(originalFileName);
+//					
+//					File targetFile = new File(fileRoot + savedFileName);	
+//					try {
+//						InputStream fileStream = file.getInputStream();
+//						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+//						
+//					} catch (Exception e) {
+//						//파일삭제
+//						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+//						e.printStackTrace();
+//						break;
+//					}
+//				}
+//				strResult = "{ \"result\":\"OK\" }";
+//			}
+//			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
+//			else
+//				strResult = "{ \"result\":\"OK\" }";
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return strResult;
+//	}
 	@ResponseBody
 	@RequestMapping(value = "/file-upload", method = RequestMethod.POST)
-	public String fileUpload(
-			@RequestParam("article_file") List<MultipartFile> multipartFile
-			, HttpServletRequest request,
+	public void fileUpload(@RequestParam("article_file") List<Map<String, Object>> fileList,
+			 HttpServletRequest request,
 			@ModelAttribute ContentsVO contentVo) {
 		
-		String strResult = "{ \"result\":\"FAIL\" }";
-		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot;
+		// 파일 업로드 처리
+		String fileName = "", originName = "";
+		long fileSize = 0;
+		int pathFlag = ConstUtil.UPLOAD_FILE_FLAG;
 		try {
-			// 파일이 있을때 탄다.
-			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
-				
-				for(MultipartFile file:multipartFile) {
-					fileRoot = contextRoot + "/resources/upload_images/";
-					System.out.println(fileRoot);
-					
-					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
-					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-					
-					contentVo.setcFilename(savedFileName);
-					contentVo.setcFileOriginalname(originalFileName);
-					
-					File targetFile = new File(fileRoot + savedFileName);	
-					try {
-						InputStream fileStream = file.getInputStream();
-						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-						
-					} catch (Exception e) {
-						//파일삭제
-						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
-						e.printStackTrace();
-						break;
-					}
-				}
-				strResult = "{ \"result\":\"OK\" }";
+			fileList = fileUploadUtil.fileUpload(request, pathFlag);
+			for (int i = 0; i < fileList.size(); i++) {
+				Map<String, Object> map = fileList.get(i);
+				fileName = (String) map.get("fileName");
+				originName = (String) map.get("originalFileName");
+				fileSize = (long) map.get("fileSize");
 			}
-			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
-			else
-				strResult = "{ \"result\":\"OK\" }";
-		}catch(Exception e){
+
+			logger.info("파일 업로드 성공, fileName={}", fileName);
+
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return strResult;
+
+		// 2
+		contentVo.setcFilename(fileName);
+		contentVo.setcFileOriginalname(originName);
+		contentVo.setcFilesize(fileSize);
+
+		 List<MultipartFile> multipartFile =new ArrayList<>();
+//		 for(int i=0;i<multipartFile.size();i++) {
+//			 multipartFile.add(fileList);
+//		 }
+		
 	}
 
 }
