@@ -79,6 +79,7 @@
 
         });
 
+		
 		$(function() {
 			$('form[name=frmEwrite]').submit(function() {
 				$('.infobox').each(function(idx, item) {
@@ -90,6 +91,7 @@
 					}
 	
 				});
+		
 				$('#upfile').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
@@ -99,15 +101,6 @@
 					}
 	
 				});
-				/* $('.ckediter').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).prev().html() + "을 입력하세요");
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					}
-	
-				}); */
 				
 			});
 			

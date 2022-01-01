@@ -37,6 +37,7 @@
 												class="form-control" id="cName" type="text"
 												placeholder="클래스이름을 입력해주세요." name="cName">
 										</div>
+										<div class="invalid-feedback" data-sb-feedback="message:required">클래스이름을 입력하세요</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
@@ -49,7 +50,7 @@
 										<div class="form-group">
 											<label for="category">클래스 유형</label> <select
 												class="custom-select" id="category" name="CateCode">
-												<option disabled="disabled" selected="selected">
+												<option disabled="disabled" selected="selected" value="">
 													클래스 유형을 선택해주세요.</option>
 												<c:forEach var="vo" items="${ clist}">
 													<option value="${vo.categoryCode }">${vo.categoryName }</option>
@@ -74,16 +75,10 @@
 										</div>
 									</div>
 								</div>
-
-								<div class="row align-items-center">
-									<div class="form-group">
-										<h6 class="h6 mb-4" style="margin-left: 12px;">클래스 시작날짜와
-											끝날짜를 선택해주세요. (월/일/년도)</h6>
-									</div>
-								</div>
 								<div class="input-daterange datepicker row align-items-center">
-									<div class="col">
+									<div class="col-md-6 mb-3">
 										<div class="form-group">
+										<label for="category">클래스 날짜(월/일/년도)</label>
 											<div class="input-group input-group-border">
 												<div class="input-group-prepend">
 													<span class="input-group-text"> <i
@@ -94,7 +89,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col">
+									<%-- <div class="col">
 										<div class="form-group">
 											<div class="input-group input-group-border">
 												<div class="input-group-prepend">
@@ -105,24 +100,54 @@
 													type="text" value="${now }" name="cEnd">
 											</div>
 										</div>
+									</div> --%>
+									<div class="col-md-6 mb-3">
+										<div class="form-group">
+											<label for="category">클래스 시간</label> <select
+												class="custom-select" id="cTime" name="cTime">
+												<option disabled="disabled" selected="selected" value="">
+													시간을 선택해주세요</option>
+													<option value="1">1:00</option>
+													<option value="2">2:00</option>
+													<option value="3">3:00</option>
+													<option value="4">4:00</option>
+													<option value="5">5:00</option>
+													<option value="6">6:00</option>
+													<option value="7">7:00</option>
+													<option value="8">8:00</option>
+													<option value="9">9:00</option>
+													<option value="10">10:00</option>
+													<option value="11">11:00</option>
+													<option value="12">12:00</option>
+													<option value="13">13:00</option>
+													<option value="14">14:00</option>
+													<option value="15">15:00</option>
+													<option value="16">16:00</option>
+													<option value="17">17:00</option>
+													<option value="18">18:00</option>
+													<option value="19">19:00</option>
+													<option value="20">20:00</option>
+													<option value="21">21:00</option>
+													<option value="22">22:00</option>
+													<option value="23">23:00</option>
+													<option value="24">24:00</option>
+											</select>
+										</div>
 									</div>
 								</div>
 
 								<h2 class="h5 my-4">클래스 컨텐츠</h2>
+									<div class="form-group">
+		                                <label for="description">클래스 설명</label>
+		                                <textarea rows="10" class="form-control text-gray" name="content" id="description" required></textarea>
+                            		</div>
 								<div class="row">
-									<div class="col-sm-9 mb-3">
-										<h6 class="h6 mb-4" style="margin-left: 12px;">클래스 사진등록</h6>
-									</div>
+									
 									<div class="col-sm-9 mb-3">
 										<div class="form-group">
 											<div>
 												<label for="upfile">사진 </label> 
 												<span style="color:red;size:12px;">첨부파일은 최대 5개까지 등록이 가능합니다.</span>
-												<!-- <button type="button" id="btn-upload"
-													class="btn btn-outline-primary">사진추가</button>
-												<input type="file" multiple="multiple"
-													name="upfile" id="input_file" style="display:none;"
-													class="form-control flatpickr-input"> -->
 											<div class="form-group">
 											<input type="file"
 												name="upfile1" id="file"
@@ -149,12 +174,6 @@
 												class="form-control flatpickr-input">
 											</div>
 											</div>
-											<!-- <div class="data_file_txt" id="data_file_txt" style="margin:40px;">
-												<span>첨부 이미지</span>
-												<br />
-												<div id="articlefileChange" >
-												</div>
-											</div> -->
 										</div>
 									</div>
 								</div>
@@ -231,6 +250,7 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+
 
 <script type="text/javascript">
 

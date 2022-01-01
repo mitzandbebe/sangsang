@@ -13,8 +13,8 @@ public class HostClassVO {
 //	C_PRICE NUMBER NOT NULL, /* 가격 */
 //	PPNUM NUMBER, /* 진행인원 */
 //	C_REGDATE DATE DEFAULT SYSDATE, /* 등록일 */
-//	C_START_TIME DATE NOT NULL, /* 시작시간 */
-//	C_END_TIME DATE, /* 종료시간 */
+//	C_START_TIME DATE, /* 시작시간 */
+//	C_TIME NUMBER, /* 시간 */
 //	END_FLAG VARCHAR2(20) /* 종료여부 */
 	
 	private int cNo;
@@ -26,8 +26,9 @@ public class HostClassVO {
 	private int ppnum;
 	private Timestamp cRegdate;
 	private Date cStart;
-	private Date cEnd;
+	private int cTime;
 	private String endFlag;
+	
 	public int getcNo() {
 		return cNo;
 	}
@@ -82,11 +83,11 @@ public class HostClassVO {
 	public void setcStart(Date cStart) {
 		this.cStart = cStart;
 	}
-	public Date getcEnd() {
-		return cEnd;
+	public int getcTime() {
+		return cTime;
 	}
-	public void setcEnd(Date cEnd) {
-		this.cEnd = cEnd;
+	public void setcTime(int cTime) {
+		this.cTime = cTime;
 	}
 	public String getEndFlag() {
 		return endFlag;
@@ -98,8 +99,9 @@ public class HostClassVO {
 	public String toString() {
 		return "HostClassVO [cNo=" + cNo + ", cName=" + cName + ", CateCode=" + CateCode + ", hNo=" + hNo + ", lNo="
 				+ lNo + ", cPrice=" + cPrice + ", ppnum=" + ppnum + ", cRegdate=" + cRegdate + ", cStart=" + cStart
-				+ ", cEnd=" + cEnd + ", endFlag=" + endFlag + "]";
+				+ ", cTime=" + cTime + ", endFlag=" + endFlag + "]";
 	}
+
 
 	
 }

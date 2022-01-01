@@ -37,14 +37,37 @@ public class HostClassServiceImpl implements HostClassService{
 	}
 
 	@Override
+	public List<LocationVO> selectBylocation(LocationVO locationVo) {
+		return hostClassDao.selectBylocation(locationVo);
+	}
+
+	@Override
+	public int selectByCNo(HostClassVO hostClassVo) {
+		return hostClassDao.selectByCNo(hostClassVo);
+	}
+
+	@Override
+	public List<HostClassVO> selectClassAll() {
+		return hostClassDao.selectClassAll();
+	}
+
+	@Override
+	public String selectThumbnail(int cNo) {
+		return hostClassDao.selectThumbnail(cNo);
+	}
+
+	@Override
+	public List<Map<String,Object>> selectClassAllContents() {
+		return hostClassDao.selectClassAllContents();
+	}
+
+	@Override
 	public int selectByLNo(LocationVO locationVo) {
 		return hostClassDao.selectByLNo(locationVo);
 	}
 
-	@Override
-	public int selectByCNo(int lNo) {
-		return hostClassDao.selectByCNo(lNo);
-	}
+
+
 
 	
 

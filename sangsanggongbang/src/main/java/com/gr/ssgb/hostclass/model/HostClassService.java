@@ -8,6 +8,11 @@ public interface HostClassService {
 	int insertLocation(LocationVO locationVo);
 	int insertClass(HostClassVO hostClassVo);
 	int insertContents(ContentsVO contentsVo);
+	List<LocationVO> selectBylocation(LocationVO locationVo);
 	int selectByLNo(LocationVO locationVo);
-	int selectByCNo(int lNo);
+	int selectByCNo(HostClassVO hostClassVo);
+	List<HostClassVO> selectClassAll();
+	String selectThumbnail(int cNo);
+	List<Map<String,Object>> selectClassAllContents();
+	
 }
