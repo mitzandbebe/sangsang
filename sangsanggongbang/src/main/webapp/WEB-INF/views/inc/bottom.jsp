@@ -108,9 +108,10 @@
 <!-- Spaces custom Javascript -->
 <script src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
 
-<!-- ê²°ì ëª¨ë ììí¬í¸ ë¼ì´ë¸ë¬ë¦¬ -->
+<script src="${pageContext.request.contextPath }/resources/assets/js/balancing.js"></script>
+<!-- 아임포트 결제모듈-->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<!-- ê²°ì ëª¨ë js-->
+<!-- 결제모듈 js-->
 <script type="text/javascript"
     src="<c:url value='/resources/assets/js/payments.js'/> "></script>
 
