@@ -19,4 +19,5 @@ public interface MemberInquiryService {
 	int selectBanTotalRecord(SearchVO searchVo);
 	
 	int insertBan(BanVO vo);
+	int banDelete(int mNo);
 }

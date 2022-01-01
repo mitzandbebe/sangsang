@@ -90,4 +90,8 @@
 			insert into ban(bno, m_no, bcs, bc)
 			values(#{bno}, #{mNo},#{bcs},#{bc})
 	</insert>
+	
+	<delete id="banDelete" parameterType="int">
+		delete ban where m_no=#{mNo}
+	</delete>
 </mapper>

@@ -58,4 +58,9 @@ public class MemberInquiryServiceImpl implements MemberInquiryService{
 	public List<Map<String, Object>> selectBanAll(SearchVO searchVo) {
 		return memberInquirydao.selectBanAll(searchVo);
 	}
+
+	@Override
+	public int banDelete(int mNo) {
+		return memberInquirydao.banDelete(mNo);
+	}
 }
