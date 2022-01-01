@@ -41,16 +41,16 @@
 								<div class="d-flex align-items-center my-4">
 									<img class="avatar avatar-sm rounded-circle"
 										src="<c:url value='/resources/assets/img/team/profile-picture-2.jpg'/>"
-										alt="Neil avatar">
+										alt="">
 									<h3 class="h6 small ml-2 mb-0">
 										<fmt:formatDate value="${list.noticeRegdate }"
 											pattern="yyyy-MM-dd" />
 									</h3> &emsp;<span>조회수 : ${list.noticeReadcount }</span>
 								</div>
-								<c:if test="${fn:length(list.noticeContent)>30 }">
+								<c:if test="${fn:length(list.noticeContent)>40 }">
 									${fn:substring(list.noticeContent,0,40) }...
 								</c:if>
-								<c:if test="${fn:length(list.noticeContent)<=30 }">
+								<c:if test="${fn:length(list.noticeContent)<=40 }">
 								<p class="mb-0">${list.noticeContent }</p>
 								</c:if>
 							</div>

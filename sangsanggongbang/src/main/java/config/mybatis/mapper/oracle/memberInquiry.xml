@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
+<mapper	namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
 	
 	<sql id="searchWhere">
 		<if test="searchKeyword!=null and searchKeyword!=''">
@@ -33,7 +32,11 @@
 		resultType="int">
 		select count(*) from member
 	</select>
-
+	
+	<select id="selectMemberByNo" parameterType="int" resultType="memberVo">
+		select * from member where m_no=#{mNo}
+	</select>
+	
 	<select id="selectHostAll" parameterType="searchVo"
 		resultType="hostVo">
 		select *
@@ -56,4 +59,39 @@
 		resultType="int">
 		select count(*) from host
 	</select>
+	
+	<select id="selectBanAll" parameterType="searchVo"
+		resultType="map">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from banView
+		 <include refid="searchWhere"></include>
+		order by bno
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectBanTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from ban
+	</select>
+	
+	<insert id="insertBan" parameterType="banVo">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			select BAN_SEQ.NEXTVAL from dual
+		</selectKey>
+			insert into ban(bno, m_no, bcs, bc)
+			values(#{bno}, #{mNo},#{bcs},#{bc})
+	</insert>
+	
+	<delete id="banDelete" parameterType="int">
+		delete ban where m_no=#{mNo}
+	</delete>
 </mapper>

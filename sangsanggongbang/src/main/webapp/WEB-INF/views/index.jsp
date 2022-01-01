@@ -27,6 +27,12 @@
                      </div>
                 </div>
             </div>
+            <div style="text-align:center;">
+            <c:import url="/mainevent/eventmain"></c:import>
+            </div>
         </section>
-    </main>
+   <br><br> 
+   <br><br> 
+   <br><br> 
+    
 <%@ include file="inc/bottom.jsp" %> 

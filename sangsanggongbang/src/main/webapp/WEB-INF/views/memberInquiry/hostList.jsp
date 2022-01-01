@@ -14,6 +14,7 @@
 					class="btn mb-2 mr-2 btn-dark" type="button">일반회원</button></a> <a
 				href="<c:url value='/memberInquiry/hostList'/>"><button
 					class="btn mb-2 mr-2 btn-dark" type="button">호스트 회원</button></a>
+						<a href="<c:url value='/memberInquiry/banList'/>"> <button class="btn mb-2 mr-2 btn-outline-success" type="button">참여제한회원</button></a>
 			<table class="table table-hover">
 				<tbody>
 					<tr>

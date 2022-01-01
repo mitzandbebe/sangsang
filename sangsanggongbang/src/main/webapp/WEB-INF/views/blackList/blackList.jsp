@@ -9,8 +9,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
 				<h1 class="display-2 mb-4">블랙리스트</h1>
-				<p class="lead d-none d-lg-inline">호스트(가제)님이 블랙리스트 처리한 사람들이랍니다
-					하하하하 관리자 호스트 구분하는 칼럼에 들어갈 것 도 넣어줘야 함</p>
+				<p class="lead d-none d-lg-inline">호스트(가제)님이 처리한 블랙리스트입니다 (관리자 호스트 구분하는 칼럼에 들어갈 것 도 넣어줘야 함)</p>
 			</div>
 		</div>
 	</div>
@@ -29,7 +28,7 @@
 							<span class="h5">아이디 : ${list.mId }</span>
 							<div class="d-flex align-items-center my-4">
 								<h3 class="h6 small ml-2 mb-0">
-									지정일 :
+									지정일 : 
 									<fmt:formatDate value="${list.regdate }" pattern="yyyy-MM-dd" />
 								</h3>
 							</div>
@@ -40,8 +39,8 @@
 						<button class="btn mb-2 mr-2 btn-dark" type="button"
 							id="blackListException" style="width: 190px">블랙리스트에서 제외</button>
 							</a>
-					</div>
-					<br>
+					</div> 
+					<br>  
 				</c:forEach>
 			</div>
 		</div>
