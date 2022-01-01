@@ -142,5 +142,21 @@ public class memberInquiryController {
 		return "/common/message";
 	}
 	
-
+	@RequestMapping("/banDelete")
+	public String banDelete(@RequestParam(defaultValue = "0")int mNo, Model model) {
+		logger.info("참여제한해제 회원번호 mNo={}",mNo);
+		if(mNo==0) {
+			model.addAttribute("msg","잘못된 url입니다.");
+			model.addAttribute("url","/memberInquiry/banList");
+			return "/common/message";
+		}
+		int cnt = memberInquiryService.banDelete(mNo);
+		String msg="참여제한해제 실패", url="/memberInquiry/banList";
+		if(cnt>0) {
+			msg="참여제한해제 성공";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "/common/message";
+	}
 }

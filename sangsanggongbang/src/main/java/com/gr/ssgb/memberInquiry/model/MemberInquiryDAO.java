@@ -22,4 +22,5 @@ public interface MemberInquiryDAO {
 	int selectBanTotalRecord(SearchVO searchVo);
 	
 	int insertBan(BanVO vo);
+	int banDelete(int mNo);
 }
