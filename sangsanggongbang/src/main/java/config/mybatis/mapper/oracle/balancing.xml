@@ -34,7 +34,7 @@
 		<include refid="searchWhere"></include>	
 	</select>
 	
-	<select id="totalPrice" resultType="int">
+	<select id="totalPrice" resultType="balancingVo">
 		select a.b_req_date, a.b_flag, b.ppnum, b.c_price
 		from balancing a join class b
 		 on a.c_no=b.c_no

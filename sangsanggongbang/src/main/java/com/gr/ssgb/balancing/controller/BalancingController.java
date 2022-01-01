@@ -62,14 +62,11 @@ public class BalancingController {
 		return "dashboard/host/balancing/list";
 	}
 	
-	/*
-	 * @RequestMapping("/balancing") public String balancing() { return
-	 * "dashboard/host/balancing/balancing"; }
-	 */
 	@RequestMapping("/balancing")
-	public String totalprice(@ModelAttribute SearchVO searchVo, Model model) {
-		
-		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
+	public String totalprice(@ModelAttribute BalancingVO balancingVo, Model model) {
+		//1. 파라미터 읽어오기 - 출력
+		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
+		logger.info("정산총액 조회,결과 list.size={}", list.size());
 		
 		model.addAttribute("list", list);
 		
