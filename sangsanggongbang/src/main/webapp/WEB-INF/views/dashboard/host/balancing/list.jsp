@@ -5,13 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
 $(function() {
-	/* if($('#tabs-text-1').hasClass('active')==true){ */
+	/* 전체 정산내역 */
 		$('#list1 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
 			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
 		});
-/* 	} */
 		
 		/* 다음페이지 버튼(>) 클릭시 */
 		$('#list1 #nextpage').click(function(){
@@ -30,10 +29,11 @@ $(function() {
 		});
 });
 $(function() {
+	/* 정산 완료내역 */
 		$('#tabs-text-2 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=Y");
 		});
 		
 		/* 다음페이지 버튼(>) 클릭시 */
@@ -41,7 +41,7 @@ $(function() {
 			var c=$('#list2 #pagelinknum:nth-child(5n+1)').text();
 			++c;
 			console.log(c);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=N");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=Y");
 		});
 		
 		/* 이전페이지 버튼(<) 클릭시 */
@@ -53,6 +53,7 @@ $(function() {
 		});
 });
 $(function() {
+	/* 미정산 내역 */
 		$('#list3 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
@@ -86,48 +87,6 @@ $(function() {
 
 <c:if test="${!empty list }">
 
-						<!-- 누적금액 -->
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-4">
-                               <div class="card border-light">
-                                  <div class="card-body d-block d-md-flex align-items-center">
-                                    <div class="icon icon-shape icon-md icon-shape-primary rounded-circle mr-3 mb-4 mb-md-0"><span class="fas fa-wallet"></span></div>
-                                    <div>
-                                        <span class="d-block h6 font-weight-normal">
-                                            당월 정산누적금액 
-                                        </span>
-                                        <h5 class="h3 font-weight-bold mb-1">
-                                        ${total}*${pagingInfo.totalRecord}원</h5>
-                                        <div class="small mt-2">                               
-                                            <span class="fas fa-angle-up text-success"></span>                               
-                                            <span class="fas fa-angle-down text-success"></span>                               
-                                            <span class="text-success font-weight-bold">18.2%</span> 전월대비
-                                        </div>
-                                    </div>
-                                  </div>
-                               </div>
-                            </div>
-                            <div class="col-12 col-sm-6 mb-4">
-                                <div class="card border-light">
-                                    <div class="card-body d-block d-md-flex align-items-center">
-                                        <div class="icon icon-shape icon-md icon-shape-primary rounded-circle mr-3 mb-4 mb-md-0"><span class="fas fa-file-invoice-dollar"></span></div>
-                                        <div>
-                                            <span class="d-block h6 font-weight-normal">
-                                                정산예정금액 
-                                            </span>
-                                            <h5 class="h3 font-weight-bold mb-1">5,220원</h5>
-                                            <div class="small mt-2">                               
-                                                <span class="fas fa-angle-up text-success"></span>                                   
-                                                <span class="fas fa-angle-down text-success"></span>                                   
-                                                <span class="text-success font-weight-bold">4.2%</span> 전월대비
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <!-- 누적금액 종료 -->
-
 	<!--게시판 내용 반복문 시작  -->
 	<c:forEach var="vo" items="${list }">
 		<div class="card-body px-0 pt-0">
@@ -146,13 +105,13 @@ $(function() {
 									value="${vo.bReqDate}" pattern="yyyy-MM-dd" />
 							</small>
 						</div>
-						<c:if test="${vo.bFlag == 'Y' }">
+						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
 								<button class="btn btn-sm btn-outline-dark"
 									style="font-weight: bold;">정산신청</button>
 							</div>
 						</c:if>
-						<c:if test="${vo.bFlag == 'N' }">
+						<c:if test="${vo.bFlag == 'Y' }">
 							<div class="col-auto">
 								<span class="badge badge-pill badge-success"> <span
 									class="text-uppercase font-weight-bold"

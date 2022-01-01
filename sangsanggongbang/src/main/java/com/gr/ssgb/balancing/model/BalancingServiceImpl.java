@@ -25,38 +25,11 @@ public class BalancingServiceImpl implements BalancingService{
 	public String balancing() {
 		return balancingDao.balancing();
 	}
-	
-	/*
-	@Transactional
-	public int insertBoard(BalancingVO vo) {
-		return balancingDao.insertBoard(vo);
-	}
-	
-	public List<BalancingVO> selectAll(SearchVO searchVo){
-		return balancingDao.selectAll(searchVo);
-	}
+
 	@Override
-	public int selectTotalRecord(SearchVO searachVo) {
-		return balancingDao.selectTotalRecord(searachVo);
+	public List<BalancingVO> totalPrice(BalancingVO balancingVo) {
+		return balancingDao.totalPrice(balancingVo);
 	}
 	
-	public BalancingVO selectByNo(int no){
-		return balancingDao.selectByNo(no);
-	}
 	
-	@Override
-	public boolean checkPwd(BalancingVO vo) {
-		String dbPwd=balancingDao.selectPwd(vo.getNo());
-		
-		if(dbPwd.equals(vo.getPwd())) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	public int deleteBoard(int no){
-		return balancingDao.deleteBoard(no);
-	}
-	
-	 */
 }

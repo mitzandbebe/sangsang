@@ -9,6 +9,8 @@ public interface BalancingService {
 	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
 	public String balancing();
+	public List<BalancingVO> totalPrice(BalancingVO balancingVo);
+	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
