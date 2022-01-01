@@ -29,5 +29,11 @@ public interface MemberService {
 
 	PaymentVO selectBasicPayment(int getmNo);
 
+	int updatePaymentInfo(PaymentVO payVo);
+
+	int updatePwd(MemberVO vo);
+
+	int findPaymentCnt(int getmNo);
+
 
 }

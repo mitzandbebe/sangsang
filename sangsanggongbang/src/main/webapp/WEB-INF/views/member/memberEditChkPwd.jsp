@@ -25,10 +25,10 @@ $(function(){
                 	<img src="${vo.mFilename }" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
                 <c:if test="${sessionScope.snsCheck=='n' }">
-                	<c:if test="${!empty sessionScope.mFilename }">
+                	<c:if test="${vo.mFilename!=null }">
                 		<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white">
                 	</c:if>
-                	<c:if test="${empty sessionScope.mFilename }">
+                	<c:if test="${vo.mFilename==null }">
                 		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
                 	</c:if>
                 </c:if>

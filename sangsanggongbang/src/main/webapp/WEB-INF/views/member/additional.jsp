@@ -4,6 +4,8 @@
 <%@ include file="memberTop.jsp" %>
 <script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -30,24 +32,26 @@
 		$('#additional').submit(function(){
 			var cardnum = $('#cardnum1').val()+$('#cardnum2').val()+$('#cardnum3').val()+$('#cardnum4').val();
 			$('#cardnum').val('cardnum');
-			
-			if($('#pwd').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('#pwd').focus();
-				event.preventDefault();
-			}else if ($('#pwd2').val().length<1){ 
-				alert('2차 비밀번호를 확인하세요.');
-				$('#pwd2').focus();
-				event.preventDefault();
-			}else if ($('#pwd').val().length>0&&$('#pwd2').val().length<8){
-				alert('비밀번호는 영문, 숫자 포함 8자리 이상입니다. ');
-				$('#pwd').focus();
-				event.preventDefault();
-			}else if($('#pwd').val()!==$('#pwd2').val()){
-				alert('2차 비밀번호가 일치하지 않습니다.');
-				$('#pwd2').focus();
-				event.preventDefault();
-			}else if ($('#mName').val().length<1){
+			if($('snsCheck').val()=='y'){
+				if($('#pwd').val().length<1){
+					alert('비밀번호를 입력하세요');
+					$('#pwd').focus();
+					event.preventDefault();
+				}else if ($('#pwd2').val().length<1){ 
+					alert('2차 비밀번호를 확인하세요.');
+					$('#pwd2').focus();
+					event.preventDefault();
+				}else if ($('#pwd').val().length>0&&$('#pwd2').val().length<8){
+					alert('비밀번호는 영문, 숫자 포함 8자리 이상입니다. ');
+					$('#pwd').focus();
+					event.preventDefault();
+				}else if($('#pwd').val()!==$('#pwd2').val()){
+					alert('2차 비밀번호가 일치하지 않습니다.');
+					$('#pwd2').focus();
+					event.preventDefault();
+				}
+			}
+			if ($('#mName').val().length<1){
 				alert('성명을 입력해주세요.');
 				$('#mName').focus();
 				event.preventDefault();
@@ -91,38 +95,58 @@
 				alert('결제수단 별칭을 입력하세요.');
 				$('#nCard').focus();
 				event.preventDefault();
-			}else if ($('#bankName').val()<1){
+			}else if ($('#pType option:selected').val()=='자동이체'&& $('#bankName').val()<1){
 				alert('은행명을 선택하세요.');
 				$('#bankName').focus();
 				event.preventDefault();
-			}else if ($('#accNum').val()<1){
+			}else if ($('#pType option:selected').val()=='자동이체'&& $('#accNum').val()<1){
 				alert('계좌번호를 입력하세요.');
 				$('#accNum').focus();
 				event.preventDefault();
-			}else if ($('#cardCom option:selected').val()<1){
+			}else if ($('#pType option:selected').val()=='카드' && $('#cardCom option:selected').val()<1){
 				alert('카드사를 선택하세요.');
 				$('#cardCom').focus();
 				event.preventDefault();
-			}else if ($('#cardNum').val()!=16){
-				alert('카드번호를 완료하세요.');
-				$('#accNum').focus();
-				event.preventDefault();
-			}else if (!validate_phone($('#cardNum').val())){
+			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum').val())){
 				alert('카드번호는 숫자만 입력가능합니다.');
 				$('#cardNum').focus();
 				event.preventDefault();
-			}else if ($('#cardNum').val()!=16){
-				alert('카드번호를 입력하세요.');
+			}else if ($('#pType option:selected').val()=='카드' && $('#cardNum').val()!=16){
+				alert('카드번호 입력을 완료하세요.');
 				$('#cardNum').focus();
-				event.preventDefault();
-			}else if(!$('#terms').is(':checked')){
-				alert('이용약관에 동의해야합니다.');
-				$('#terms').focus();
 				event.preventDefault();
 			}else if(!$('#termChk2').is(':checked')){
 				alert('이용약관에 동의해야합니다.');
 				$('#termChk2').focus();
 				event.preventDefault();
+			}
+		});
+		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
+		
+		$('#pwd').keyup(function(){
+			var pwd = $(this).val();
+			if(passwordRule.test(pwd) && pwd.length>=10){
+				$('#message2').css('color', 'green');
+				$('#message2').html('사용가능한 비밀번호입니다.');
+			}else if(!passwordRule.test(pwd)&&pwd.length>=10){
+				$('#message2').css('color', 'orange');
+				$('#message2').html('숫자, 영문자, 특수문자(!@#$%^&*)를 포함해야 합니다');
+			}else{
+				$('#message2').css('visibility', 'visible');
+				$('#message2').css('color', 'red');
+				$('#message2').html('비밀번호 보안수준 : 위험');
+			}
+			
+		});
+		$('#pwd2').keyup(function(){
+			var pwd2 = $(this).val();
+			if($('#pwd').val()!=$('#pwd2').val()){
+				$('#message3').css('visibility', 'visible');
+				$('#message3').css('color', 'red');
+				$('#message3').html('2차 비밀번호가 일치하지 않습니다.');
+			}else{
+				$('#message3').css('color', 'green');
+				$('#message3').html('2차 비밀번호가 일치합니다.');
 			}
 		});
 		
@@ -205,29 +229,35 @@ var InputImage =
                                         <input name="snsCheck" readonly="readonly" class="form-control" id="exampleInputIcon4" type="hidden" aria-label="email adress" value="${sessionScope.snsCheck}">
                                     </div>
                                 </div>
-                                <c:if test="${cookie.snsCheck.value=='y' }">
+                                <c:if test="${sessionScope.snsCheck=='y' }">
 	                                <!-- Form -->
 	                              	<div class="row">
 		                                <div class="col-md-6 mb-3">
 			                                <div class="form-group">
 				                                <label for="password">비밀번호</label>
-				                           		<div class="input-group mb-4">
+				                           		<div class="input-group">
 					                                <div class="input-group-prepend">
 					                                	<span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
 					                                </div>
 					                            	<input name ="pwd" class="form-control" id="pwd" placeholder="상상공방에서 사용할 비밀번호를 설정하세요." type="password" aria-label="Password" >
 			                            		</div>
+			                            		<div>
+                                    				<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
+                                    			</div>
 			                        		</div>
 		                                </div>
 		                                <div class="col-md-6 mb-3">
 		                                	<div class="form-group">
 		                                    	<label for="password">비밀번호 확인</label>
-		                                     	<div class="input-group mb-4">
+		                                     	<div class="input-group">
 		                                        	<div class="input-group-prepend">
 		                                            	<span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
 		                                        	</div>
 		                                      		<input name ="pwd2" class="form-control" id="pwd2" placeholder="2차 비밀번호를 입력하세요." type="password" aria-label="Password">
 		                                      	</div>
+		                                      	<div>
+                                    				<span id="message3" style="visibility:hidden">비밀번호를 입력하세요.</span>
+                                    			</div>
 		                                  	</div>
 		                                 </div>
 		                             </div>
@@ -237,10 +267,10 @@ var InputImage =
                                     <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
 								        <div style="float: left; margin-left: 50px; margin-top:15px; " >
-								            	<c:if test="${!empty cookie.mFilename}">
+								            	<c:if test="${!empty sessionScope.mFilename}">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${cookie.mFilename.value }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${sessionScope.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group mb-3"  style = "text-align: center;">
@@ -248,7 +278,7 @@ var InputImage =
 														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
 													  </div>
 								                </c:if>
-								                <c:if test="${empty cookie.mFilename }">
+								                <c:if test="${empty sessionScope.mFilename }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
 								                			<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
@@ -356,7 +386,7 @@ var InputImage =
 		                                          		<span class="input-group-text"><i class="fas fa-money-bill"></i></span>
 		                                        	</div>
 			                                       	<select class="custom-select" id="pType" name = "pType">
-														<option selected>결제수단유형을 선택하세요.</option>
+														<option selected value="">결제수단유형을 선택하세요.</option>
 														<option value="카드">카드</option>
 														<option value="자동이체">자동이체</option>
 													</select>
