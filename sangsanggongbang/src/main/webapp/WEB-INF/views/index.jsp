@@ -29,10 +29,11 @@
             </div>
             <div style="text-align:center;">
             <c:import url="/mainevent/eventmain"></c:import>
+            <c:import url="/class/classlist"></c:import>
             </div>
         </section>
-   <br><br> 
-   <br><br> 
+   <br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> 
    <br><br> 
     
 <%@ include file="inc/bottom.jsp" %> 
