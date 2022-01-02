@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,14 @@
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
                                     <a href="#" class="position-relative">
-                                        <img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="themesberg office">
+                                    <c:choose >
+                                    	<c:when test="${not empty map['THUMBNAIL']}">
+                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
+                                    	</c:when>
+                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
+                                    	</c:when>
+                                    </c:choose>
                                     </a>
                                     <div class="card-body" style="width:300px; height:150px">
                                         <a href="./single-space.html">
@@ -99,15 +107,20 @@
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
-                                                <span class="h5 text-dark font-weight-bold">${map["C_PRICE"] }</span>
+                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
+                                                <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
+                                                </span>
                                             </div>
                                             <div class="col">
                                                 <span class="text-muted font-small d-block mb-2">인원</span>
-                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }</span>
+                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }명</span>
                                             </div>
                                             <div class="col pr-0">
                                                 <span class="text-muted font-small d-block mb-2">지역</span>
-                                                <span class="h5 text-dark font-weight-bold">${map['L_ADDRESS']}</span>
+                                                <span class="h5 text-dark font-weight-bold">
+                                                	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
+                                                	${fn:substring(addr,0,2)}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
