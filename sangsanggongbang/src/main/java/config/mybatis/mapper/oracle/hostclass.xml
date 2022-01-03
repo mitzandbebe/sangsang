@@ -117,6 +117,10 @@
 		select * from selectClass
 	</select>
 	
+	<select id="selectClassbyCNo" resultType="map" parameterType="int">
+		 select * from selectClass where c_no=#{cNo}
+	</select>
+	
 <!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
 		<result  property="contentsNo" column="contents_no" />
 		<result  property="thumbnail" column="thumbnail" />
