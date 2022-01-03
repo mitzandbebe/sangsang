@@ -14,9 +14,14 @@ public class LocationVO {
 	private String zipcode;
 	private String lAddress;
 	private String lAddressDetail;
+	private int hNo;
 	
-	
-	
+	public int gethNo() {
+		return hNo;
+	}
+	public void sethNo(int hNo) {
+		this.hNo = hNo;
+	}
 	public int getlNo() {
 		return lNo;
 	}
@@ -56,7 +61,7 @@ public class LocationVO {
 	@Override
 	public String toString() {
 		return "LocationVO [lNo=" + lNo + ", lLatitude=" + lLatitude + ", lLongitude=" + lLongitude + ", zipcode="
-				+ zipcode + ", lAddress=" + lAddress + ", lAddressDetail=" + lAddressDetail + "]";
+				+ zipcode + ", lAddress=" + lAddress + ", lAddressDetail=" + lAddressDetail + ", hNo=" + hNo + "]";
 	}
 	
 	

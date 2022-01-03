@@ -1,20 +1,15 @@
 package com.gr.ssgb.hostclass.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,11 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
@@ -63,40 +54,49 @@ public class HostClassController {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		String now = format.format(nowdate);
 
-		logger.info("now", now);
-
 		model.addAttribute("clist", clist);
 		model.addAttribute("now", now);
 
 		return "class/inputclass";
 	}
 
-
+	//@Transactional
 	@PostMapping("/inputclass")
 	public String inputClass_post(@ModelAttribute HostClassVO hostClassVo, ContentsVO contentsVo, LocationVO locationVo,
-			HttpServletRequest request,
+			HttpServletRequest request, HttpSession session,
 			Model model) {
 		logger.info("클래스 등록처리, 파라미터 locationVo={}", locationVo);
 		logger.info("클래스 등록처리, 파라미터 hostClassVo={}", hostClassVo);
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
-		// 근데 로케이션이 완전 똑같으면 어떡하지?
+		
+		
+		
 
-		int cnt1=hostClassService.insertLocation(locationVo); 
-
-		int lno=hostClassService.selectByLNo(locationVo);
+		//String hostid = session.getAttribute(""); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=1; //임의로 1로설정 test용
+		
+		int cnt1=0;
+		//로케이션 전체 조회.
+		List<LocationVO> lvo = hostClassService.selectBylocation(locationVo);
+		if(lvo.size()==0) {
+			cnt1=hostClassService.insertLocation(locationVo);
+		}
+		
+		int lno=hostClassService.selectByLNo(locationVo); //등록후 가져오기
+		
 
 		hostClassVo.setlNo(lno);
 		logger.info("lno={}",lno);
 
 		int cnt2=hostClassService.insertClass(hostClassVo);
-		int cno=hostClassService.selectByCNo(lno);
+		int cno=hostClassService.selectByCNo(hostClassVo);
 		contentsVo.setcNo(cno);
 		logger.info("cno={}",cno);
 
 		// 이미지 업로드 처리
 		String thumbnail="";
 		String cFilename1="";
-		//String cFileOriginalname1="";
 		String cFilename2="";
 		String cFilename3="";
 		String cFilename4="";
@@ -105,9 +105,6 @@ public class HostClassController {
 			List<Map<String, Object>> list 
 			=fileUploadUtil.fileUpload(request, ConstUtil.UPLOAD_IMAGE_FLAG);
 
-			//			for(Map<String, Object> map : list) {
-			//				thumbnail=(String) map.get("fileName");
-			//			}
 			////list로 포문돌려서 첫번째는 썸네일 그다음은 이미지파일 이런식으로 구분해서 저장시키면될듯
 			for(int i=0;i<list.size();i++) {
 				Map<String, Object> map=list.get(i);
@@ -156,6 +153,21 @@ public class HostClassController {
 
 		return "common/message";
 	}
+	
+	
+	@GetMapping("/classlist")
+	public String classAll_get(Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
+		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
+
+		model.addAttribute("classlist",classlist);
+		
+		return "class/classlist";
+	}
+	
+	
 
 	//	@ResponseBody
 	//	@RequestMapping(value = "/file-upload", method = RequestMethod.POST)

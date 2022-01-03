@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,46 +63,117 @@
 </head>
 <body>
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
-<div id="Carousel3" class="carousel slide" data-ride="carousel" style="width: 60%; height:auto; text-align:center; position: relative; top: 0; right: 0; bottom: 0; left: 0;margin-left:20%;margin-right:20%">
-    <ol class="carousel-indicators">
-        <li data-target="#Carousel3" data-slide-to="0" class="active"></li>
-        <li data-target="#Carousel3" data-slide-to="1"></li>
-        <li data-target="#Carousel3" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-               <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[0].newsNo}">
-            <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[0].newsUploadname }'/>"alt="이미지가 없습니다">
-               </a> 
-            <div class="carousel-caption d-none d-md-block">
-               <h5>${toplist[0].newsTitle }</h5>
+        <section class="section section-header bg-soft pb-12">
+            <div class="container">
             </div>
-        </div>       
-        <div class="carousel-item">
-                     <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[1].newsNo}">
-            <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[1].newsUploadname }'/>"alt="이미지가 없습니다">
-            </a>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>${toplist[1].newsTitle }</h5>
+        </section>
+
+        <div class="section section-lg pt-0">
+            <div class="container mt-n10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="basic-carousel owl-carousel owl-theme">
+                            <!-- Item 1 -->
+                            <c:forEach var="map" items="${classlist}">
+                            
+                            <div class="item" >
+                                <!-- Card -->
+                                <div class="card border-light mb-4 animate-up-5" >
+                                    <a href="#" class="position-relative">
+                                    <c:choose >
+                                    	<c:when test="${not empty map['THUMBNAIL']}">
+                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
+                                    	</c:when>
+                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
+                                    	</c:when>
+                                    </c:choose>
+                                    </a>
+                                    <div class="card-body" style="width:300px; height:150px">
+                                        <a href="./single-space.html">
+                                            <h4 class="h5" >${map["C_NAME"] }</h4>
+                                        </a>
+                                        <div class="d-flex my-4">
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span>
+                                            <span class="badge badge-pill badge-primary ml-2">5.0</span>
+                                        </div> 
+                                        
+                                    </div>
+                                    <div class="card-footer bg-soft border-top">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="col pl-0">
+                                                <span class="text-muted font-small d-block mb-2">가격</span>
+                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
+                                                <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
+                                                </span>
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-muted font-small d-block mb-2">인원</span>
+                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }명</span>
+                                            </div>
+                                            <div class="col pr-0">
+                                                <span class="text-muted font-small d-block mb-2">지역</span>
+                                                <span class="h5 text-dark font-weight-bold">
+                                                	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
+                                                	${fn:substring(addr,0,2)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Card -->
+                            </div>
+                            </c:forEach>
+                            
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="carousel-item">
-                     <a href="${pageContext.request.contextPath }/mainevent/eventdetail?newsNo=${toplist[2].newsNo}">
-           <img class="d-block w-100" src="<c:url value='/resources/file_upload/${toplist[2].newsUploadname }'/>"alt="이미지가 없습니다">
-           </a>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>${toplist[2].newsTitle }</h5>
-            </div>
         </div>
-    </div>
-    <a class="carousel-control-prev" href="#Carousel3" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#Carousel3" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+
+    <!-- Core -->
+<script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/> "></script>
+
+<!-- NoUISlider -->
+<script src="<c:url value='/resources/vendor/nouislider/distribute/nouislider.min.js'/> "></script>
+
+<!-- Bootstrap Datepicker -->
+<script src="<c:url value='/resources/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'/> "></script>
+
+<!-- jQuery Waypoints -->
+<script src="<c:url value='/resources/vendor/waypoints/lib/jquery.waypoints.min.js'/> "></script>
+
+<!-- Owl acrousel -->
+<script src="<c:url value='/resources/vendor/owl.carousel/dist/owl.carousel.min.js'/> "></script>
+
+<!-- Smooth scroll -->
+<script src="<c:url value='/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js'/> "></script>
+
+<!-- Fancybox -->
+<script src="<c:url value='/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js'/> "></script>
+
+<!-- Sticky sidebar -->
+<script src="<c:url value='/resources/vendor/sticky-sidebar/dist/sticky-sidebar.min.js'/> "></script>
+
+<!-- Mapbox & Leaflet.js -->
+<script src="<c:url value='/resources/vendor/leaflet/dist/leaflet.js'/> "></script>
+
+<!-- Chartist -->
+<script src="<c:url value='/resources/vendor/chartist/dist/chartist.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js'/> "></script>
+
+<!-- Sliderform -->
+<script src="<c:url value='/resources/assets/js/jquery.slideform.js'/> "></script>
+
+<!-- Spaces custom Javascript -->
+<script src="<c:url value='/resources/assets/js/spaces.js'/> "></script>
 </body>
 </html>
