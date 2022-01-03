@@ -27,16 +27,13 @@
 	</div>
 	<div class="pattern bottom"></div>
 </section>
-<form>
-	<input type="text" id="userId" name="userId" value="${param.mId }">
+<form method="post" action="<c:url value='/note/noteWrite'/>">
+	<input type="hidden" id="userId" name="mId" value="${param.mId }">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
-					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
-						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-							type="submit">보내기</button>
-					</a>
+
 					<div class="accordion border-light">
 						<div class="col-lg-12 mb-5">
 							<div
@@ -44,8 +41,18 @@
 								<div>
 									<span>받는사람</span> &nbsp; <input type="checkbox"
 										name="selfWrite" id="selfWrite">내게쓰기 <input
-										type="text" id="sendPeople" value="">
+										type="text" id="sendPeople" name="rNickname"
+										placeholder="닉네임을 입력해주세요" value="" style="width:350px"> <br>
+									<br>
+									<textarea rows="10" cols="57" name="noteContent"
+										id="noteContent" style="resize: none"></textarea>
+									<div id="cnt">(0 / 1000)자</div>
+
+									<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
+										type="submit">보내기</button>
+
 								</div>
+
 								<div
 									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
 									<div class="d-flex align-items-center mt-3"></div>
@@ -53,7 +60,6 @@
 							</div>
 						</div>
 					</div>
-					<!--End of Accordion-->
 				</div>
 			</div>
 		</div>
@@ -70,6 +76,14 @@
 				$('#sendPeople').val(userId);
 			} else {
 				$('#sendPeople').val('');
+			}
+		})
+		$('#noteContent').on('keyup', function() {
+			$('#cnt').html("(" + $(this).val().length + " / 1000)자");
+			if ($(this).val().length > 1000) {
+				$(this).val($(this).val().substring(0, 1000));
+				$('#cnt').html("(1000 / 1000)자")
+				alert("1000자가 넘었습니다.");
 			}
 		})
 	})
