@@ -40,7 +40,10 @@
 		 on a.c_no=b.c_no
 	</select>
 
-
+	<select id="submitUpdate" parameterType="int">
+		update balancing set b_flag='Y'				
+		where b_No=#{b_No}
+	</select>
 </mapper>
 
 <!-- 

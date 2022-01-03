@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
@@ -32,7 +35,8 @@ public class BalancingController {
 	}
 
 	@RequestMapping("/balancing/list")
-	public String bcList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String bcList(@ModelAttribute SearchVO searchVo, Model model,
+			@RequestParam(defaultValue = "0") int bNo) {
 		//1. 파라미터 읽어오기 - 출력
 		logger.info("정산목록 목록 페이지, 파라미터 searchVo={}", searchVo);
 
@@ -49,6 +53,7 @@ public class BalancingController {
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
+		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
 		int totalRecord=balancingService.selectTotalRecord(searchVo);
@@ -57,7 +62,7 @@ public class BalancingController {
 		//3. model에 결과 저장
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
-
+		
 		//4. 뷰페이지 리턴
 		return "dashboard/host/balancing/list";
 	}
@@ -73,6 +78,15 @@ public class BalancingController {
 		return "dashboard/host/balancing/balancing";
 	}
 
+	@RequestMapping("/balancing/submit")
+	public String submitUpdateBflag(@RequestParam(defaultValue = "0") int bNo, Model model) {
+		logger.info("정산신청 파라미터 bNo={}", bNo);
+		
+		Integer cnt=balancingService.submitUpdate(bNo);
+		logger.info("정산신청 결과 cnt={}", cnt);
+		
+		return "redirect:/dashboard/host/balancing";
+	}
 
 
 

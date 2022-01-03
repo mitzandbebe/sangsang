@@ -13,7 +13,7 @@ public interface BalancingDAO {
 	int selectTotalRecord(SearchVO searchVo);
 	public String balancing();
 	public List<BalancingVO> totalPrice(BalancingVO balancingVo);
-	
+	public Integer submitUpdate(int bNo);
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);
 	public int insertBoard(BalancingVO vo);
