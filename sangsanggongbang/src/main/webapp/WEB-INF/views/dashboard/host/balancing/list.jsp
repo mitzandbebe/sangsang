@@ -30,10 +30,10 @@ $(function() {
 });
 $(function() {
 	/* 정산 완료내역 */
-		$('#tabs-text-2 #pagelinknum').click(function(){
+		$('#list2 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=Y");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
 		});
 		
 		/* 다음페이지 버튼(>) 클릭시 */
@@ -41,7 +41,7 @@ $(function() {
 			var c=$('#list2 #pagelinknum:nth-child(5n+1)').text();
 			++c;
 			console.log(c);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=Y");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=N");
 		});
 		
 		/* 이전페이지 버튼(<) 클릭시 */
@@ -80,6 +80,16 @@ $(function() {
 		
 });
 
+$(function() {
+	$('#list1 #balsubmit').click(function(){
+		var i=$(this).text();
+		console.log(i);
+		$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
+	});
+	$('#list2 #balsubmit').click(function(){
+		document.getElementById('#tabs-text-2-tab').click();
+	});
+});
 </script>
 <c:set var="total"></c:set>
 <c:if test="${empty list }">
@@ -111,9 +121,10 @@ $(function() {
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
 								<button class="btn btn-sm btn-outline-dark"
-									style="font-weight: bold;" name="bNo"
+
+									style="font-weight: bold;" name="bNo" id="balsubmit"
 									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산신청</button>
-									
+
 							</div>
 						</c:if>
 						<c:if test="${vo.bFlag == 'Y' }">
@@ -137,22 +148,21 @@ $(function() {
 	<ul class="pagination circle-pagination">
 		<!-- 이전 블럭으로 이동 -->
 		<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
-		<li class="page-item" id="backpage">
-		<a class="page-link">
-		<i class="fas fa-angle-double-left"></i>
-		</a>
-		</li>
+		<li class="page-item" id="backpage"><a class="page-link"> <i
+				class="fas fa-angle-double-left"></i>
+		</a></li>
 		<%-- </c:if> --%>
 
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
-		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
+		<c:forEach var="i" begin="${pagingInfo.firstPage}"
+			end="${pagingInfo.lastPage }">
 			<c:if test="${i==pagingInfo.currentPage }">
 				<span style="color: blue; font-weight: bold; font-size: 1em"
 					id="pagelinknum"> ${i}</span>
 			</c:if>
 			<c:if test="${i!=pagingInfo.currentPage }">
-				<li class="page-item" id="pagelinknum">
-				<a class="page-link" id="pagelinknum2">${i }</a></li>
+				<li class="page-item" id="pagelinknum"><a class="page-link"
+					id="pagelinknum2">${i }</a></li>
 			</c:if>
 		</c:forEach>
 		<!-- 다음 블럭으로 이동 -->
@@ -161,6 +171,11 @@ $(function() {
 				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
 			</a></li>
 		</c:if>
+
+			<a class="btn btn-sm btn-outline-dark"
+				style="font-weight: bold; float: right;" href="<c:url value="/dashboard/host/excel/download"/>">
+				엑셀다운로드</a>
+
 		<!--  페이지 번호 끝 -->
 	</ul>
 </nav>
