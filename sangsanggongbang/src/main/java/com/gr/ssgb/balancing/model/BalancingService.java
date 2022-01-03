@@ -10,6 +10,7 @@ public interface BalancingService {
 	int selectTotalRecord(SearchVO searchVo);
 	public String balancing();
 	public List<BalancingVO> totalPrice(BalancingVO balancingVo);
+	public Integer submitUpdate(int bNo);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

@@ -30,6 +30,11 @@ public class BalancingServiceImpl implements BalancingService{
 	public List<BalancingVO> totalPrice(BalancingVO balancingVo) {
 		return balancingDao.totalPrice(balancingVo);
 	}
+
+	@Override
+	public Integer submitUpdate(int bNo) {
+		return balancingDao.submitUpdate(bNo);
+	}
 	
 	
 }
