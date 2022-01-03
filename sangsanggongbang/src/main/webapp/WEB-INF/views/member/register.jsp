@@ -3,7 +3,109 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="memberTop.jsp" %>
-
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#mId').keyup(function(){
+			var id =$('#mId').val();
+			if(validate_userid(id) && id.length>=10){
+				$.ajax({
+					url:"<c:url value='/member/ajaxDuplicate'/>",
+					type:"post",
+					data:"mId="+id,
+					success:function(res){
+						var str="";
+						if(res){
+							$('#message').css('color', 'orange');
+							str="중복된 아이디입니다.";
+							$('#chkId').val('N');
+						}else{
+							str="사용가능한 아이디입니다.";
+							$('#message').css('color', 'green');
+							$('#chkId').val('Y');
+						}
+						
+						$('#message').html(str);
+					},
+					error:function(xhr, status, error){
+						alert("error : "+ error);
+					}
+				});
+			}else{
+				$('#message').css('color', 'red');
+				$('#message').css('visibility', 'visible');
+				$('#message').html('올바른 이메일 형식이 아닙니다.');
+				$('#chkId').val('N');
+			}
+		});
+		
+		$('#wr_submit').click(function(){
+			if(!validate_userid($('#mId').val())){
+				alert('아이디는 이메일 형식으로만 가능합니다.');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#chkId').val()!='Y'){
+				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#password').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#password').focus();
+				event.preventDefault();
+			}else if($('#password').val().length>1&&$('#password').val().length<10){
+				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함해야 합니다.');
+				$('#password').focus();
+				event.preventDefault();
+			}else if($('#password').val()!=$('#password_confirm').val()){
+				alert('비밀번호 확인이 일치하지 않습니다!');
+				$('#password_confirm').focus();
+				event.preventDefault();
+			}else if(!$('#termChk').is(':checked')){
+				alert('이용약관에 동의해야합니다.');
+				$('#termChk').focus();
+				event.preventDefault();
+			}		
+		});
+		$('#password').keyup(function(){
+			var pwd = $(this).val();
+			if(passwordRule.test(pwd) && pwd.length>=10){
+				$('#message2').css('color', 'green');
+				$('#message2').html('사용가능한 비밀번호입니다.');
+			}else if(!passwordRule.test(pwd)&&pwd.length>=10){
+				$('#message2').css('color', 'orange');
+				$('#message2').html('숫자, 영문자, 특수문자(!@#$%^&*)를 포함해야 합니다');
+			}else{
+				$('#message2').css('visibility', 'visible');
+				$('#message2').css('color', 'red');
+				$('#message2').html('비밀번호 보안수준 : 위험');
+			}
+			
+		});
+		$('#password_confirm').keyup(function(){
+			var pwd2 = $(this).val();
+			if($('#password').val()!=$('#password_confirm').val()){
+				$('#message3').css('visibility', 'visible');
+				$('#message3').css('color', 'red');
+				$('#message3').html('2차 비밀번호가 일치하지 않습니다.');
+			}else{
+				$('#message3').css('color', 'green');
+				$('#message3').html('2차 비밀번호가 일치합니다.');
+			}
+		});
+		
+		function validate_userid(id){
+			var pattern = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
+			return pattern.test(id);
+		}
+		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
+		
+		$('#terms').click(function(){
+			open("<c:url value='/member/terms'/>", "term", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
+		});
+			
+	});
+	
+</script>
 
         <!-- Section -->
         <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
@@ -20,15 +122,19 @@
                                 <!-- Form -->
                                 <div class="form-group">
                                     <label for="exampleInputIcon4">아이디(이메일)</label>
-                                    <div class="input-group mb-4">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" class="form-control" id="email" placeholder="example@company.com" type="text" aria-label="email adress">
-                                        <input type="hidden" name="bday" id="bday"  >
-                                        <input type="hidden" name="mNickname" id="mNickname"  >
+                                        <input name="mId" class="form-control" id="mId" placeholder="example@company.com" type="text" aria-label="email adress">
+                                        
+                                        <input type ="hidden" name="chkId" id="chkId">
                                         <input type="hidden" name="mFilename" id="mFilename"  >
                                         <input type="hidden" name="snsCheck" id="snsCheck" value="n" >
+                                        
+                                    </div>
+                                    <div>
+                                    	<span id="message" style="visibility:hidden">아이디를 입력하세요.</span>
                                     </div>
                                 </div>
                                 <!-- End of Form --> 
@@ -36,12 +142,16 @@
                                     <!-- Form -->
                                     <div class="form-group">
                                         <label for="password">비밀번호</label>
-                                        <div class="input-group mb-4">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
                                             <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
                                         </div>
+                                        <div>
+                                    		<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
+                                    		
+                                    	</div>
                                     </div>
                                     <!-- End of Form -->
                                     <!-- Form -->
@@ -53,12 +163,15 @@
                                             </div>
                                             <input class="form-control" id="password_confirm" placeholder="Confirm password" type="password" aria-label="Password" required>
                                         </div>
+                                        <div>
+                                    		<span id="message3" style="visibility:hidden">비밀번호를 입력하세요.</span>
+                                    	</div>
                                     </div>
                                     <!-- End of Form -->
                                     <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="terms">
+                                        <input class="form-check-input" type="checkbox" id="termChk">
                                         <label class="form-check-label" for="terms">
-                                            <span class="small"><a class="text-secondary" href="./terms.html">약관</a>에 동의합니다.</span>
+                                            <span class="small"><a class="text-secondary" href="#" id="terms">약관</a>에 동의합니다.</span>
                                         </label>
                                     </div>
                                 </div>
@@ -68,15 +181,6 @@
                                 <span class="font-weight-normal">SNS로 회원가입하기</span>
                             </div>
                             <div class="btn-wrapper my-4 text-center">
-                                <!-- <button class="btn btn-icon-only btn-pill btn-outline-light text-facebook mr-2" type="button" aria-label="facebook button" title="facebook button">
-                                    <span aria-hidden="true" class="fab fa-facebook-f"></span>
-                                </button>
-                                <button class="btn btn-icon-only btn-pill btn-outline-light text-twitter mr-2" type="button" aria-label="twitter button" title="twitter button">
-                                    <span aria-hidden="true" class="fab fa-twitter"></span>
-                                </button>
-                                <button class="btn btn-icon-only btn-pill btn-outline-light text-facebook" type="button" aria-label="github button" title="github button">
-                                    <span aria-hidden="true" class="fab fa-github"></span>
-                                </button> -->
                                 <a href="javascript:kakaoLogin()"><img src="https://www.gb.go.kr/supportRequest/images/certi_kakao_login.png" style="height:60px;width:auto;"></a>
 								<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 								<script type="text/javascript">

@@ -302,10 +302,10 @@ pull test- wonjung
             </div>
             <div class="d-none d-lg-block @@cta_button_classes">
                 <a href="https://themesberg.com/docs/spaces/components/buttons/" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">Components</span></a>
-            	<c:if test="${empty session.mId }">
+            	<c:if test="${empty sessionScope.mId }">
  	               <a href="${pageContext.request.contextPath }/login/login" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG IN</a>
                 </c:if>
-                <c:if test="${!empty session.mId }">
+                <c:if test="${!empty sessionScope.mId }">
  	               <a href="${pageContext.request.contextPath }/login/logout" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> LOG OUT</a>
                 </c:if>
             </div>

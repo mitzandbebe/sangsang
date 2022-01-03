@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아무거나 안녕</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>이게맞나 test</h1>
+
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.gr.ssgb.member.model;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +46,36 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateAdditionalSns(vo);
 	}
 	@Override
-	public int selectMemberById(String mId) {
+	public int selectMemberCnt(String mId) {
+		return memberDao.selectMemberCnt(mId);
+	}
+	@Override
+	public int selectMno(String getmId) {
+		return memberDao.selectMno(getmId);
+	}
+	@Override
+	public int insertPayment(PaymentVO paymentVo) {
+		return memberDao.insertPayment(paymentVo);
+	}
+	@Override
+	public MemberVO selectMemberById(String mId) {
 		return memberDao.selectMemberById(mId);
+	}
+	@Override
+	public PaymentVO selectBasicPayment(int getmNo) {
+		return memberDao.selectBasicPayment(getmNo);
+	}
+	public int duplicateId(String mId)	{
+		int count=memberDao.selectMemberCnt(mId);
+		
+		int result=0;
+		if(count>0) {  
+			result=EXIST_ID;
+		}else {
+			result=NON_EXIST_ID;			
+		}
+		
+		return result;
 	}
 	
 }

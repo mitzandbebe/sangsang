@@ -1,26 +1,31 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ 
  <footer class="footer py-6 bg-primary text-white">
     <div class="container">
         <div class="row">
             <div class="col-xl-3 mb-3 mb-xl-0">
-                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/light.svg" height="30" class="mb-3" alt="Spaces logo">
-                <p>Premium Bootstrap Directory Listing Template</p>
+                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom.png" height="30" class="mb-3" alt="Spaces logo">
+                <p>常想工房<br>One Day Class Matching Site</p>
             </div>
             <div class="col-6 col-xl-2 mb-5 mb-xl-0">
-                <span class="h5">Themesberg</span>
+                <span class="h5">SSGB</span>
                 <ul class="footer-links mt-2">
-                    <li><a target="_blank" href="https://themesberg.com/blog">Blog</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/products">Products</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/about">About Us</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/contact">Contact Us</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/blog">회사소개</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/products">위치안내</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/about">인재채용</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/contact">관리자로그인</a></li>
                 </ul>
             </div>
             <div class="col-6 col-xl-3 mb-5 mb-xl-0">
                 <span class="h5">Other</span>
                 <ul class="footer-links mt-2">
-                    <li><a href="https://themesberg.com/docs/spaces/getting-started/overview/">Documentation <span class="badge badge-sm badge-secondary ml-2">v3.0</span></a></li>
-                    <li><a href="https://themesberg.com/docs/spaces/getting-started/changelog/">Changelog</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/contact">Support</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/licensing">License</a>
+                    <li><a href="https://themesberg.com/docs/spaces/getting-started/overview/">공지사항 <span class="badge badge-sm badge-secondary ml-2">v3.0</span></a></li>
+                    <li><a href="https://themesberg.com/docs/spaces/getting-started/changelog/">FAQ</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/contact">고객센터</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/licensing">이용약관</a>
+                    </li>
+                    <li><a target="_blank" href="https://themesberg.com/licensing">개인정보처리방침</a>
                     </li>
                 </ul>
             </div>
@@ -46,12 +51,12 @@
         <hr class="my-3 my-lg-5">
         <div class="row">
             <div class="col mb-md-0">
-                <a href="https://themesberg.com" target="_blank" class="d-flex justify-content-center">
-                    <img src="${pageContext.request.contextPath }/resources/assets/img/themesberg.svg" height="25" class="mb-3" alt="Themesberg Logo">
+                <a target="_blank" class="d-flex justify-content-center">
+                    <img src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom_cpr.png" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                <p class="font-weight-normal font-small mb-0">Copyright � Themesberg
-                    <span class="current-year">2020</span>. All rights reserved.</p>
+                <p class="font-weight-normal font-small mb-0">Copyright Â © SSGB
+                    <span class="current-year">2021</span>. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -102,6 +107,15 @@
 
 <!-- Spaces custom Javascript -->
 <script src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
+
+<script src="${pageContext.request.contextPath }/resources/assets/js/balancing.js"></script>
+<!-- 아임포트 결제모듈-->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 결제모듈 js-->
+<script type="text/javascript"
+    src="<c:url value='/resources/assets/js/payments.js'/> "></script>
+
+
 </body>
 
 </html>
