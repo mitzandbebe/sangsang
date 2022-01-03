@@ -1,7 +1,17 @@
 package com.gr.ssgb.balancing.controller;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
@@ -53,7 +62,6 @@ public class BalancingController {
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
-		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
 		int totalRecord=balancingService.selectTotalRecord(searchVo);
@@ -87,6 +95,72 @@ public class BalancingController {
 		
 		return "redirect:/dashboard/host/balancing";
 	}
+	
+	@GetMapping("/excel/download")
+    public void excelDownload(@ModelAttribute BalancingVO balancingVo, 
+    		HttpServletResponse response) throws IOException {
+		
+		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
+		logger.info("엑셀다운 리스트 결과={}", list.size());
+		
+	    // 파일명 설정
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd:MM:ss");
+        String time = simpleDateFormat.format(date);
+        String fileName = "balancing" + "_" + time + ".xlsx";
+		
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("첫번째 시트");
+        Row row = null;
+        Cell cell = null;
+        int rowNum = 0;
+
+        // Header
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue("정산번호");
+        cell = row.createCell(1);
+        cell.setCellValue("클래스번호");
+        cell = row.createCell(2);
+        cell.setCellValue("호스트번호");
+        cell = row.createCell(3);
+        cell.setCellValue("참여인원");
+        cell = row.createCell(4);
+        cell.setCellValue("진행일자");
+        cell = row.createCell(5);
+        cell.setCellValue("정산유무");
+
+        // Body
+        for (int i=0; i<list.size(); i++) {
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0);
+            cell.setCellValue(list.get(i).getbNo());
+            cell = row.createCell(1);
+            cell.setCellValue(list.get(i).getcNo());
+            cell = row.createCell(2);
+            cell.setCellValue(list.get(i).gethNo());
+            cell = row.createCell(3);
+            cell.setCellValue(list.get(i).getPpnum());
+            cell = row.createCell(4);
+            cell.setCellValue(simpleDateFormat.format(list.get(i).getbReqDate()));
+            cell = row.createCell(5);
+            cell.setCellValue(list.get(i).getbFlag());
+        }
+
+        // 컨텐츠 타입과 파일명 지정
+        response.setContentType("application/x-msdownload; text/html; charset=UTF-8;"); // msie, tRIDE
+        response.setContentType("application/octet-stream; text/html; charset=UTF-8;");
+        
+        response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
+
+        // Excel File Output
+        wb.write(response.getOutputStream());
+        wb.close();
+
+
+    }
 
 
 
