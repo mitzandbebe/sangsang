@@ -62,6 +62,7 @@ public class BalancingController {
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
+		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
 		int totalRecord=balancingService.selectTotalRecord(searchVo);
@@ -95,6 +96,7 @@ public class BalancingController {
 		
 		return "redirect:/dashboard/host/balancing";
 	}
+
 	
 	@GetMapping("/excel/download")
     public void excelDownload(@ModelAttribute BalancingVO balancingVo, 
@@ -161,7 +163,6 @@ public class BalancingController {
 
 
     }
-
 
 
 }
