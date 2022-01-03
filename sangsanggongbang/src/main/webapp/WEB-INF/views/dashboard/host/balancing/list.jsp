@@ -75,6 +75,9 @@ $(function() {
 			console.log(f);
 			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+f+"&searchCondition=b_flag&searchKeyword=Y");
 		});
+		
+		
+		
 });
 
 $(function() {
@@ -128,6 +131,7 @@ $(function() {
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
 								<button class="btn btn-sm btn-outline-dark"
+
 									style="font-weight: bold;" name="bNo" id="balsubmit"
 									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산신청</button>
 
@@ -135,8 +139,8 @@ $(function() {
 						</c:if>
 						<c:if test="${vo.bFlag == 'Y' }">
 							<div class="col-auto">
-								<span class="badge badge-pill badge-success"> <span
-									class="text-uppercase font-weight-bold"
+								<span class="badge badge-pill badge-success">
+								<span class="text-uppercase font-weight-bold"
 									style="font-size: 1.3em">정산완료</span>
 								</span>
 							</div>
