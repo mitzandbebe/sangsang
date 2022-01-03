@@ -6,7 +6,7 @@
 <br>
 <br>
 <br>
-<h3>회원 아이디 클릭시 회원 마이페이지로 이동</h3>
+<br>
 <div class="row">
 	<div class="col-12">
 		<div class="col-12">
