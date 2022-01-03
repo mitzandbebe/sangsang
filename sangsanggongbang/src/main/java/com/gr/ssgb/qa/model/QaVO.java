@@ -1,33 +1,27 @@
 package com.gr.ssgb.qa.model;
 
+import com.gr.ssgb.member.model.MemberVO;
+
 import java.sql.Timestamp;
 
 public class QaVO {
 	private int qaNo;
 	private int cNo; 
-	private int uNo; 
+	private int mNo;
 	private String qaTitle;
 	private String qaContent;
 	private int qaStep;
-	private int qaGroupid;
+	private int qaGroupId;
 	private Timestamp qaRegdate;
-	
-	public QaVO() {
-		super();
-	}	
-			
-	public QaVO(int qaNo, int cNo, int uNo, String qaTitle, String qaContent, 
-			int qaStep, int qaGroupid, Timestamp qaRegdate) {
-		super();
-		this.qaNo = qaNo;
-		this.cNo = cNo;
-		this.uNo = uNo;
-		this.qaTitle = qaTitle;
-		this.qaContent = qaContent;
-		this.qaStep = qaStep;
-		this.qaGroupid = qaGroupid;
-		this.qaRegdate = qaRegdate;
-		
+
+	private MemberVO memberVO;
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 
 	public int getQaNo() {
@@ -35,7 +29,7 @@ public class QaVO {
 	}
 
 	public void setQaNo(int qaNo) {
-		qaNo = qaNo;
+		this.qaNo = qaNo;
 	}
 
 	public int getcNo() {
@@ -43,15 +37,15 @@ public class QaVO {
 	}
 
 	public void setcNo(int cNo) {
-		cNo = cNo;
+		this.cNo = cNo;
 	}
 
-	public int getuNo() {
-		return uNo;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setuNo(int uNo) {
-		uNo = uNo;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
 	public String getQaTitle() {
@@ -59,7 +53,7 @@ public class QaVO {
 	}
 
 	public void setQaTitle(String qaTitle) {
-		qaTitle = qaTitle;
+		this.qaTitle = qaTitle;
 	}
 
 	public String getQaContent() {
@@ -67,7 +61,7 @@ public class QaVO {
 	}
 
 	public void setQaContent(String qaContent) {
-		qaContent = qaContent;
+		this.qaContent = qaContent;
 	}
 
 	public int getQaStep() {
@@ -75,15 +69,15 @@ public class QaVO {
 	}
 
 	public void setQaStep(int qaStep) {
-		qaStep = qaStep;
+		this.qaStep = qaStep;
 	}
 
-	public int getQaGroupid() {
-		return qaGroupid;
+	public int getQaGroupId() {
+		return qaGroupId;
 	}
 
-	public void setQaGroupid(int qaGroupid) {
-		qaGroupid = qaGroupid;
+	public void setQaGroupId(int qaGroupId) {
+		this.qaGroupId = qaGroupId;
 	}
 
 	public Timestamp getQaRegdate() {
@@ -91,13 +85,21 @@ public class QaVO {
 	}
 
 	public void setQaRegdate(Timestamp qaRegdate) {
-		qaRegdate = qaRegdate;
+		this.qaRegdate = qaRegdate;
 	}
 
 	@Override
 	public String toString() {
-		return "QaVO [QaNo=" + qaNo + ", cNo=" + cNo + ", uNo=" + uNo + ", qaTitle=" + qaTitle + ", qaContent="
-				+ qaContent + ", QaStep=" + qaStep + ", QaGroupid=" + qaGroupid + ", qaRegdate=" + qaRegdate + "]";
-	}	
+		return "QaVO{" +
+				"qaNo=" + qaNo +
+				", cNo=" + cNo +
+				", mNo=" + mNo +
+				", qaTitle='" + qaTitle + '\'' +
+				", qaContent='" + qaContent + '\'' +
+				", qaStep=" + qaStep +
+				", qaGroupid=" + qaGroupId +
+				", qaRegdate=" + qaRegdate +
+				'}';
+	}
 }
 	

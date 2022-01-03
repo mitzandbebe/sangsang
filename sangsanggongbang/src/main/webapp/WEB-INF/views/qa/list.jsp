@@ -1,147 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ include file="../inc/top.jsp" %>    
-    
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<%@ include file="../inc/top.jsp" %>
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <title>Q&A 게시판</title>
-  </head>
-  <body>
-  
-
-  <div class="content">
-    
-    <div class="container">
-      <h2 class="mb-5">Q&A 게시판</h2>
-      
-
-      <div class="table-responsive custom-table-responsive">
-
-        <table class="table custom-table">
-          <thead>
-            <tr>  
-
-              <th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox"  class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <th scope="col">Number</th>
-              <th scope="col">Name</th>
-              <th scope="col">Title</th>
-              <th scope="col">Contact</th>
-              <th scope="col">Education</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr scope="row">
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              <td>
-                1392
-              </td>
-              <td><a href="#">James Yates</a></td>
-              <td>
-                Web Designer
-                <small class="d-block">Far far away, behind the word mountains</small>
-              </td>
-              <td>+63 983 0962 971</td>
-              <td>NY University</td>
-            </tr>
-            <tr class="spacer"><td colspan="100"></td></tr>
-            <tr class="active">
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox" checked="" />
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>4616</td>
-              <td><a href="#">Matthew Wasil</a></td>
-              <td>
-                Graphic Designer
-                <small class="d-block">Far far away, behind the word mountains</small>
-              </td>
-              <td>+02 020 3994 929</td>
-              <td>London College</td>
-            </tr>
-            <tr class="spacer"><td colspan="100"></td></tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>9841</td>
-              <td><a href="#">Sampson Murphy</a></td>
-              <td>
-                Mobile Dev
-                <small class="d-block">Far far away, behind the word mountains</small>
-              </td>
-              <td>+01 352 1125 0192</td>
-              <td>Senior High</td>
-            </tr>
-            <tr class="spacer"><td colspan="100"></td></tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>9548</td>
-              <td><a href="#">Gaspar Semenov</a></td>
-              <td>
-                Illustrator
-                <small class="d-block">Far far away, behind the word mountains</small>
-              </td>
-              <td>+92 020 3994 929</td>
-              <td>College</td>
-            </tr>
-            
-          </tbody>
-        </table>
+<div class="section section-md bg-white text-black pt-0 line-bottom-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8  mt-6">
+        <div>
+          <br>
+          <form method="post" name="qaForm" onsubmit="return onSubmit(this);">
+            <input type="hidden" name="cNo">
+            <input type="hidden" name="mNo">
+            <label class="h5 mb-4" for="exampleFormControlTextarea1"><span class="badge badge-md badge-primary text-uppercase mr-2">Q&A</span> </label>
+            <input type="text"
+                   name="qaTitle"
+                   class="form-control border border-light-gray"
+                   placeholder="제목을 입력해주세요"/>
+            <textarea
+                    name="qaContent"
+                    class="form-control border border-light-gray"
+                    id="exampleFormControlTextarea1"
+                    placeholder="내용을 입력해주세요"
+                    rows="6"
+                    data-bind-characters-target="#charactersRemaining"
+                    maxlength="1000"></textarea>
+            <div class="d-flex justify-content-between mt-3">
+              <small class="font-weight-light text-dark"><span id="charactersRemaining">
+                                          <!-- this will be filled with 200 from the textarea's maxlength --></span>
+                / 1000자 이하</small>
+              <button type="submit" class="btn btn-primary animate-up-2" >등록</button>
+            </div>
+          </form>
+          <div class="mt-5">
+            <c:forEach var="item" items="${list}" varStatus="vs">
+            <div class="card bg-soft border-light rounded p-4 mb-4">
+              <div class="d-flex justify-content-between mb-4">
+                  <span class="font-small">
+                    <a href="#">
+                      <img class="avatar-sm img-fluid rounded-circle mr-2"
+                           src="<c:url value="/resources"/>/assets/img/team/profile-picture-1.jpg" alt="avatar">
+                      <span class="font-weight-bold">${item.memberVO.mName}</span>
+                    </a>
+                  <span class="ml-2"><fmt:formatDate value="${item.qaRegdate}" pattern="YYYY-MM-DD" /></span>
+                  </span>
+              </div>
+              <p class="m-0">
+                ${item.qaTitle}
+                <br><br>
+                ${item.qaContent}
+              </p>
+              <div class="mt-4 mb-3 d-flex justify-content-between">
+                <div class="btn-block text-right">
+                  <button type="submit" class="btn btn-xs btn-primary animate-up-2" >수정</button>
+                  <button type="submit" class="btn btn-xs btn-danger animate-up-2" >삭제</button>
+                </div>
+              </div>
+            </div>
+            </c:forEach>
+          </div>
+        </div>
       </div>
-
-
     </div>
-
   </div>
-    
-    
+</div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
-</html>
+<script>
+  function onSubmit(_form) {
+    //
 
-<%@ include file="../inc/bottom.jsp" %>       
+    if(!_form.qaTitle.value) {
+      alert('제목을 입력하여 주시기 바랍니다');
+      return false;
+    }
+    if(!_form.qaContent.value) {
+      alert('내용을 입력하여 주시기 바랍니다');
+      return false;
+    }
+
+
+
+
+    _form.cNo.value = '17'; // 클래스 번호
+    _form.mNo.value = '75'; // 회원번호
+
+    _form.method = 'post';
+    _form.action = '<c:url value="/qa/write"/>';
+    _form.sumbit();
+  }
+</script>
+
+<%@ include file="../inc/bottom.jsp" %>
