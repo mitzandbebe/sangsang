@@ -47,11 +47,11 @@
 				<fmt:formatDate value="${now}" pattern="MM" /></c:set>
 				
 				<c:forEach var="vo" items="${list }">
-				<!-- 전체 -->
+				
 					<c:set var="sumA" value="${vo.cPrice * vo.ppnum}" />
 					<c:set var="sumAllPrice" value="${sumAllPrice+sumA }" />
 
-				<!-- 미정산 -->
+				
 					<c:if test="${vo.bFlag == 'N' }">
 						<c:set var="sumN" value="${vo.cPrice * vo.ppnum}" />
 						<c:set var="sumFlagNPrice" value="${sumFlagNPrice+sumN }" />

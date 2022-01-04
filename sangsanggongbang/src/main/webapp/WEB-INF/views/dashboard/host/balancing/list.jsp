@@ -180,11 +180,10 @@ $(function() {
 				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
 			</a></li>
 		</c:if>
-		<div>
-			<a class="btn btn-sm btn-outline-dark"
+		<!--  페이지 번호 끝 -->
+		<a class="btn btn-sm btn-outline-dark" id="excelDown"
 				style="font-weight: bold; margin-left: 10%" href="<c:url value="/dashboard/host/excel/download"/>">
 				엑셀다운로드</a>
-		</div>
-		<!--  페이지 번호 끝 -->
 	</ul>
+			
 </nav>
