@@ -7,6 +7,7 @@
 		resultType="string">
 		select * from member where m_nickname=#{rNickname}
 	</select>
+	
 	<insert id="sendNote" parameterType="noteVo">
 		<selectKey keyProperty="noteNo" resultType="int"
 			order="BEFORE">
