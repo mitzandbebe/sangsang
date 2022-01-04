@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-
+ 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -45,7 +45,7 @@
 	content="Premium Directory Listing Bootstrap 4 Template featuring 37 hand-crafted pages, a dashboard an Mapbox integration. Spaces also comes with a complete UI Kit featuring over 700 components by Themesberg.">
 <meta property="twitter:image"
 	content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg">
-
+  
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="120x120"
 	href="${pageContext.request.contextPath }/resources/assets/img/favicon/apple-touch-icon.png">
