@@ -33,22 +33,29 @@ public class NoteController {
 	}
 
 	@GetMapping("/noteWrite")
-	public void noteWrite_get(@RequestParam String mId) {
+	public String noteWrite_get(@RequestParam String mId, Model model) {
 		logger.info("쪽지 작성 페이지 등장 mId={}", mId);
+		MemberVO vo = memberService.selectMemberById(mId);
+		logger.info("회원 정보 vo={}",vo);
 
+		model.addAttribute("vo",vo);
+		
+		return "note/noteWrite";
 	}
 
 	@PostMapping("/noteWrite")
-	public String noteWrite_post(@ModelAttribute NoteVO vo, Model model) {
-		logger.info("쪽지 vo={}", vo);
+	public String noteWrite_post(@ModelAttribute NoteVO vo,@RequestParam String mId ,Model model) {
+		logger.info("쪽지 vo={},mId={}", vo,mId);
 		String receiveNickname = noteService.selectSendUser(vo.getrNickname());
-
+		vo.setmId(mId);
+		
 		String msg = "해당하는 닉네임이 없습니다", url = "/note/noteWrite?mId=" + vo.getmId();
 		if (receiveNickname == null || receiveNickname.isEmpty()) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return "/common/message";
 		} else {
+			logger.info("여긴");
 			int cnt = noteService.sendNote(vo);
 			if (cnt > 0) {
 				msg = "쪽지를 성공적으로 보냈습니다";
@@ -78,5 +85,12 @@ public class NoteController {
 		
 		model.addAttribute("list",list);
 		return "note/noteList";
+	}
+	
+	@RequestMapping("/noteDelete")
+	public String noteDelete(@ModelAttribute List<NoteVO> list, Model model) {
+		logger.info("받은 거 맞냐? list.size={}",list.size());
+		
+		return "note/notelist";
 	}
 }
