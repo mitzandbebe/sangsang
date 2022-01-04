@@ -63,7 +63,7 @@
 </head>
 <body>
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
-        <section class="section section-header bg-soft pb-12">
+        <section class="section section-header bg-soft pb-12" style="padding:0;">
             <div class="container">
             </div>
         </section>
@@ -79,7 +79,7 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="#" class="position-relative">
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>" class="position-relative">
                                     <c:choose >
                                     	<c:when test="${not empty map['THUMBNAIL']}">
                                         	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
@@ -90,8 +90,8 @@
                                     </c:choose>
                                     </a>
                                     <div class="card-body" style="width:300px; height:150px">
-                                        <a href="./single-space.html">
-                                            <h4 class="h5" >${map["C_NAME"] }</h4>
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                            <h4 class="h6" >${map["C_NAME"] }</h4>
                                         </a>
                                         <div class="d-flex my-4">
                                             <span class="star fas fa-star text-warning"></span> 

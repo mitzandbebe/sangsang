@@ -1,34 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../inc/top.jsp"  %>
 
 <!-- 결제모듈 -->
 
+	<c:forEach var="map" items="${classlist}">
+
 		<!-- Hero -->
 		<div
-			class="section section-header section-image bg-primary overlay-primary text-white overflow-hidden pb-6"
-			data-background="${pageContext.request.contextPath}/resources/assets/img/team-hero.jpg">
-			<div class="container z-2">
+			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#46746e;" >
+			<div class="container z-2" >
 				<div class="row justify-content-center pt-3">
 					<div class="col-12 text-center">
 						<nav aria-label="breadcrumb">
 							<ol
 								class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
 								<li class="breadcrumb-item text-secondary"><a
-									href="${pageContext.request.contextPath}/resources/index.html">Home</a></li>
-								<li class="breadcrumb-item text-secondary"><a
-									href="./all-spaces.html">United States</a></li>
-								<li class="breadcrumb-item text-white active"
-									aria-current="page">한글 Vancouver Coworking</li>
+									href="<c:url value='/index'/> " style="color:#46746e;">➯목록으로 돌아가기</a></li>
 							</ol>
 						</nav>
-						<h1 class="mb-4">L'atelier Vancouver Coworking</h1>
+						<h1 class="mb-4">${map["C_NAME"] }</h1>
 						<div class="d-block d-md-flex justify-content-center">
 							<span class="h6 font-weight-light"><span
-								class="fas fa-check-circle mr-1 pr-1"></span>Verified</span> <span
-								class="lh-120 ml-md-4"><i
-								class="fas fa-map-marker-alt mr-1 pr-1"></i>26, Vancouver, BC,
-								Canada - 324578 <a data-fancybox
+								class="fas fa-check-circle mr-1 pr-1"></span>
+								${map["CATEGORY_NAME"] }
+								</span> 
+								<span class="lh-120 ml-md-4">
+								<i class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
+								${ map['L_ADDRESS_DETAIL']}<a data-fancybox
 								href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.6971494,-74.2598683,10z/data=!3m1!4b1!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728"
 								class="ml-md-3">See Location</a> </span>
 						</div>
@@ -48,10 +49,10 @@
 								<a class="nav-item nav-link active" id="nav-about-tab"
 									data-toggle="tab" href="#nav-about" role="tab"
 									aria-controls="nav-about" aria-selected="true"><span
-									class="far fa-address-card mr-2"></span>About</a> <a
+									class="far fa-address-card mr-2"></span>클래스 미리보기</a> <a
 									class="nav-item nav-link" id="nav-video-tab" data-toggle="tab"
 									href="#nav-video" role="tab" aria-controls="nav-video"
-									aria-selected="false"><span class="far fa-play-circle mr-2"></span>Video</a>
+									aria-selected="false"><span class="far fa-play-circle mr-2"></span>클래스 설명</a>
 								<a class="nav-item nav-link" id="nav-amenities-tab"
 									data-toggle="tab" href="#nav-amenities" role="tab"
 									aria-controls="nav-amenities" aria-selected="false"><span
@@ -59,11 +60,11 @@
 									class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
-									class="far fa-star mr-2"></span>Reviews</a> <a
+									class="far fa-star mr-2"></span>리뷰</a> <a
 									class="nav-item nav-link" id="nav-location-tab"
 									data-toggle="tab" href="#nav-location" role="tab"
 									aria-controls="nav-location" aria-selected="false"><span
-									class="fas fa-map-marker-alt mr-2"></span>Location</a>
+									class="fas fa-map-marker-alt mr-2"></span>위치</a>
 							</div>
 						</nav>
 						<!-- About Tab -->
@@ -74,68 +75,58 @@
 									<div class="col-12">
 										<div class="fancy-gallery mb-5">
 											<div class="row">
-												<a
-													href="${pageContext.request.contextPath}/resources/assets/img/conference-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Conference Space">
-													<img class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/conference-office.jpg"
-													alt="" />
-												</a> <a
-													href="${pageContext.request.contextPath}/resources/assets/img/cowork-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Cowork Office"> <img
-													class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/cowork-office.jpg"
-													alt="" />
-												</a> <a
-													href="${pageContext.request.contextPath}/resources/assets/img/lifestyle-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Lifestyle Space">
-													<img class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/lifestyle-office.jpg"
-													alt="" />
-												</a> <a
-													href="${pageContext.request.contextPath}/resources/assets/img/image-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Conference Space">
-													<img class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/image-office.jpg"
-													alt="" />
-												</a> <a
-													href="${pageContext.request.contextPath}/resources/assets/img/meeting-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Meeting Office"> <img
-													class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/meeting-office.jpg"
-													alt="" />
-												</a> <a
-													href="${pageContext.request.contextPath}/resources/assets/img/private-office.jpg"
-													class="mb-4 col-6 col-sm-4 img-fluid"
-													data-fancybox="images" data-caption="Private Space"> <img
-													class="rounded"
-													src="${pageContext.request.contextPath}/resources/assets/img/private-office.jpg"
-													alt="" />
-												</a>
+												<div id="Carousel2" class="carousel slide" data-ride="carousel">
+												    <div class="carousel-inner">
+												        <div class="carousel-item active">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>" alt="First slide">
+												        </div>
+												        <c:choose >
+												        <c:when test="${not empty map['CONTENTS_FILENAME1']}">
+												        <div class="carousel-item">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME1"] }'/> " alt="Second slide">
+												        </div>
+												        </c:when>
+												        </c:choose>
+												        <c:choose >
+												        <c:when test="${not empty map['CONTENTS_FILENAME2']}">
+												        <div class="carousel-item">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME2"] }'/> " alt="Third slide">
+												        </div>
+												        </c:when>
+												        </c:choose>
+												        <c:choose >
+												        <c:when test="${not empty map['CONTENTS_FILENAME3']}">
+												        <div class="carousel-item">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME3"] }'/> " alt="Third slide">
+												        </div>
+												        </c:when>
+												        </c:choose>
+												        <c:choose >
+												        <c:when test="${not empty map['CONTENTS_FILENAME4']}">
+												        <div class="carousel-item">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME4"] }'/> " alt="Third slide">
+												        </div>
+												        </c:when>
+												        </c:choose>
+												        <c:choose >
+												        <c:when test="${not empty map['CONTENTS_FILENAME5']}">
+												        <div class="carousel-item">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME5"] }'/> " alt="Third slide">
+												        </div>
+												        </c:when>
+												        </c:choose>
+												    </div>
+												    <a class="carousel-control-prev" href="#Carousel2" role="button" data-slide="prev">
+												        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												        <span class="sr-only">Previous</span>
+												    </a>
+												    <a class="carousel-control-next" href="#Carousel2" role="button" data-slide="next">
+												        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+												        <span class="sr-only">Next</span>
+												    </a>
+												</div>
 											</div>
 										</div>
-										<p>
-											<span class="font-weight-bold">L'atelier</span> is the
-											brainchild of 3 innovative guys that want to create a working
-											hub for the local community. The plan is to offer a cool
-											place to hang out with other creative souls and let the
-											brainwaves go berserk.
-										</p>
-										<p>The guys were the group behind the Startup Weekend
-											Vancouver, Startup Pirates Vancouver and Startup Coffee
-											Vancouver, so they are no fools and have plenty of experience
-											in startups and community growth. This project is another
-											notch into creating Vancouver as a regional startup hub.</p>
-										<p>Cowork Vancouver is aiming to attract the techies, the
-											freelance developers or anyone wishing to get involved in the
-											startup scene - really there are no exclusions of bodies who
-											may want a desk - the founders just want a community of
-											entrepreneurs and geeks to mingle with.</p>
 									</div>
 								</div>
 								<div class="row">
@@ -199,13 +190,18 @@
 							<!-- Video Tab -->
 							<div class="tab-pane fade" id="nav-video" role="tabpanel"
 								aria-labelledby="nav-video-tab">
-								<div class="video-poster overlay-dark position-relative rounded">
-									<a data-fancybox href="https://vimeo.com/40842620"> <span
-										class="icon icon-white icon-xl"><span
-											class="fas fa-play-circle"></span></span>
-									</a> <img
-										src="${pageContext.request.contextPath}/resources/assets/img/lifestyle-office.jpg"
-										alt="Image">
+								<div class=" position-relative rounded">
+											<div class="row mb-5">
+									<div class="col-12">
+										<div class="fancy-gallery mb-5">
+											<div class="row">
+											</div>
+										</div>
+										<textarea class="form-control"id="exampleFormControlTextarea2" rows="10">
+											${map["CONTENTS_CONTENT"] }
+										</textarea>
+									</div>
+								</div>
 								</div>
 							</div>
 							<!-- End of Video Tab -->
@@ -597,7 +593,7 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
-
+	</c:forEach>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 선택</label>
 							<div class="form-group">
@@ -630,6 +626,7 @@
 				</div>
 			</div>
 		</div>
+
 		<section class="section bg-soft">
 			<div class="container">
 				<div class="row">

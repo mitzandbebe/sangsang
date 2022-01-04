@@ -50,6 +50,26 @@
 	<select id="selectMemberById" parameterType="string" resultType="memberVo">
 		select * from member where m_id =#{mId}
 	</select>
+	
+	<select id="selectBasicPayment" parameterType="int" resultType="paymentVo">
+		select * from payment where m_no=#{mNo}
+	</select>
+	
+	<update id="updatePaymentInfo" parameterType="paymentVo">
+		update payment
+		set p_type=#{pType}, pay_nick=#{payNick}, card_com=#{cardCom}, card_num=#{cardNum},
+			 cvc=#{cvc}, card_exp=#{cardExp}, bank_name=#{bankName}, acc_num=#{accNum}, c_pwd=#{cPwd}
+		where m_no = #{mNo}
+	</update>
+	
+	<update id="updatePwd" parameterType="memberVo">
+		update member
+		set pwd = #{pwd}
+		where m_id = #{mId}
+	</update>
+	<select id="findPaymentCnt" parameterType="int" resultType="int">
+		select count(*) from payment where m_no = #{mNo}
+	</select>
 </mapper>
 
 

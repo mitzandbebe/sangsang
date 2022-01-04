@@ -77,5 +77,17 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+	@Override
+	public int updatePaymentInfo(PaymentVO payVo) {
+		return memberDao.updatePaymentInfo(payVo);
+	}
+	@Override
+	public int updatePwd(MemberVO vo) {
+		return memberDao.updatePwd(vo);
+	}
+	@Override
+	public int findPaymentCnt(int getmNo) {
+		return memberDao.findPaymentCnt(getmNo);
+	}
 	
 }
