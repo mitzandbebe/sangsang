@@ -2,6 +2,7 @@ package com.gr.ssgb.qa.model;
 
 import java.util.List;
 
+import com.gr.ssgb.hostclass.model.HostClassVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,10 @@ public class QaServiceImpl implements QaService{
 	@Override
 	public List<QaVO> selectQaAll() { 
 		return qaDao.selectQaAll();
+	}
+	@Override
+	public List<HostClassVO> hostClassSelect() {
+		return qaDao.hostClassSelect();
 	}
 
 	@Transactional

@@ -2,6 +2,7 @@ package com.gr.ssgb.qa.controller;
 
 import java.util.List;
 
+import com.gr.ssgb.hostclass.model.HostClassVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,16 @@ public class QaController {
             url = "/qa/list";
         }
 
+        return "common/message";
+    }
+
+    /*클래스셀렉트박스*/
+    @ResponseBody
+    @GetMapping("/qa/hostclass")
+    public String hostclass(Model model) {
+
+        List<HostClassVO> hostclass = qaservice.hostClassSelect();
+        model.addAttribute("hostclass", hostclass);
         return "common/message";
     }
 }

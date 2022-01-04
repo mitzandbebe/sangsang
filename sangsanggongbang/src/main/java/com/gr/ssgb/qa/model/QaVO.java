@@ -8,6 +8,7 @@ public class QaVO {
 	private int qaNo;
 	private int cNo; 
 	private int mNo;
+	private int upperQaNo;
 	private String qaTitle;
 	private String qaContent;
 	private int qaStep;
@@ -15,14 +16,6 @@ public class QaVO {
 	private Timestamp qaRegdate;
 
 	private MemberVO memberVO;
-
-	public MemberVO getMemberVO() {
-		return memberVO;
-	}
-
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
-	}
 
 	public int getQaNo() {
 		return qaNo;
@@ -46,6 +39,14 @@ public class QaVO {
 
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
+	}
+
+	public int getUpperQaNo() {
+		return upperQaNo;
+	}
+
+	public void setUpperQaNo(int upperQaNo) {
+		this.upperQaNo = upperQaNo;
 	}
 
 	public String getQaTitle() {
@@ -88,17 +89,27 @@ public class QaVO {
 		this.qaRegdate = qaRegdate;
 	}
 
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
 	@Override
 	public String toString() {
 		return "QaVO{" +
 				"qaNo=" + qaNo +
 				", cNo=" + cNo +
 				", mNo=" + mNo +
+				", upperQaNo=" + upperQaNo +
 				", qaTitle='" + qaTitle + '\'' +
 				", qaContent='" + qaContent + '\'' +
 				", qaStep=" + qaStep +
-				", qaGroupid=" + qaGroupId +
+				", qaGroupId=" + qaGroupId +
 				", qaRegdate=" + qaRegdate +
+				", memberVO=" + memberVO +
 				'}';
 	}
 }

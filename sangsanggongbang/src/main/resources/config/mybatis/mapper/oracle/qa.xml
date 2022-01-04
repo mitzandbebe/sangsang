@@ -14,6 +14,7 @@
 			, Q.QA_STEP
 			, Q.QA_GROUP_ID
 			, Q.QA_REGDATE
+			, Q.UPPER_QA_NO
 
 			, M.M_NO AS "memberVO.mNo"
 			, M.M_ID AS "memberVO.mId"
@@ -46,7 +47,7 @@
 			SELECT QA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO QA(
-		QA_NO
+		  QA_NO
 		, C_NO
 		, M_NO
 		, QA_TITLE
@@ -55,7 +56,7 @@
 		, QA_GROUP_ID
 		, QA_REGDATE
 		) VALUES (
-		#{qaNo}
+		  #{qaNo}
 		, #{cNo}
 		, #{mNo}
 		, #{qaTitle}
@@ -80,6 +81,13 @@
 		WHERE QA_NO=#{qaNo}
 	</delete>
 
+	<select id="hostClassSelect" resultType="hostClassVO">
+		SELECT
+			  C_NO
+			 ,C_NAME
+		FROM HOSTCLASS
+		WHERE 1=1
+	</select>
 </mapper>
 	
 

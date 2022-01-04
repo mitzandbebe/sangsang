@@ -15,7 +15,16 @@
           <form method="post" name="qaForm" onsubmit="return onSubmit(this);">
             <input type="hidden" name="cNo">
             <input type="hidden" name="mNo">
-            <label class="h5 mb-4" for="exampleFormControlTextarea1"><span class="badge badge-md badge-primary text-uppercase mr-2">Q&A</span> </label>
+            <label class="h5 mb-4" for="exampleFormControlTextarea1">
+              <span class="badge badge-md badge-primary text-uppercase mr-2">Q&A</span>
+            </label>
+            <br>
+            <select class="custom-select">
+              <option value="">--클래스를 선택하세요--</option>
+              <option value="">1</option>
+              <option value="">12</option>
+              <option value="">125</option>
+            </select>
             <input type="text"
                    name="qaTitle"
                    class="form-control border border-light-gray"
@@ -57,7 +66,7 @@
                   <div class="btn-block text-right">
                     <c:if test="${item.memberVO.mId eq sessionScope.mId}">
                       <button type="submit" class="btn btn-xs btn-primary animate-up-2" >수정</button>
-                      <button type="submit" onclick="test('${item.qaNo}')"  class="btn btn-xs btn-danger animate-up-2" >삭제</button>
+                      <button type="submit" onclick="qaDelete('${item.qaNo}')"  class="btn btn-xs btn-danger animate-up-2" >삭제</button>
                     </c:if>
                   </div>
                 </div>
@@ -80,15 +89,15 @@
       alert('내용을 입력하여 주시기 바랍니다');
       return false;
     }
-    _form.cNo.value = '17'; // 클래스 번호
-    _form.mNo.value = '${sessionScope}'; // 회원번호
+    _form.cNo.value = '25'; // 클래스 번호
+    _form.mNo.value = '80'; // 회원번호
 
     _form.method = 'post';
     _form.action = '<c:url value="/qa/write"/>';
     _form.sumbit();
   }
 
-  function test(s){
+  function qaDelete(s){
     if (!confirm("삭제하시겠습니까?")){
       return false;
     }
@@ -103,7 +112,6 @@
         alert('삭제가 완료되었습니다.');
       }
     })
-
   }
 </script>
 
