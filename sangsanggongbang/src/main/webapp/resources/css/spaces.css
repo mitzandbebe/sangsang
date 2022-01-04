@@ -95,7 +95,12 @@
 *::after {
     box-sizing: border-box;
 }
-
+/* 수빈 탑 버튼 css */
+#top_button_row{
+   position:fixed;
+   right:35px;
+}
+/* 수빈 탑 버튼 css 끝 */
 html {
     font-family: sans-serif;
     line-height: 1.15;
