@@ -160,7 +160,6 @@
                                         </div>
                                         <div>
                                     		<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
-                                    		
                                     	</div>
                                     </div>
                                     <!-- End of Form -->

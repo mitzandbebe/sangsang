@@ -65,6 +65,8 @@ public class MemberController {
 		this.mailService = mailService;
 	}
 	
+	
+	
 	@RequestMapping(value = "/main")
 	public String main() {
 		return "/main";
@@ -74,6 +76,7 @@ public class MemberController {
 	public String index() {
 		return "/index";
 	}
+	
 	
 	@RequestMapping(value = "/member/terms")
 	public String terms() {
@@ -165,7 +168,6 @@ public class MemberController {
 		if(snsCheck.equals("y")) {
 			int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
 			if(accountCnt<1) {
-				memberVo.setmId(memberVo.getmId());
 				memberVo.setPwd(memberVo.getPwd());
 				int cnt = memberService.insertSnsMember(memberVo);
 				logger.info("SNS 회원가입 결과, cnt={}", cnt);

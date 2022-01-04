@@ -8,10 +8,17 @@ public class HostVO {
 	private String hName;
 	private String hId;
 	private String hPwd;
-	private String hEmail;
+	private String hNickname;
+	private String hBday;
 	private String hPhone;
-	private String hBusinessNum;
+	private String hZipcode;
 	private String hAddress;
+	private String hAddressDetail;
+	private String hAccount;
+	private String hBankName;
+	private String hFilename;
+	private long hFilesize;
+	private String hOriginalname;
 	private Timestamp regdate;
 	public int gethNo() {
 		return hNo;
@@ -43,23 +50,17 @@ public class HostVO {
 	public void sethPwd(String hPwd) {
 		this.hPwd = hPwd;
 	}
-	public String gethEmail() {
-		return hEmail;
-	}
-	public void sethEmail(String hEmail) {
-		this.hEmail = hEmail;
-	}
 	public String gethPhone() {
 		return hPhone;
 	}
 	public void sethPhone(String hPhone) {
 		this.hPhone = hPhone;
 	}
-	public String gethBusinessNum() {
-		return hBusinessNum;
+	public String gethZipcode() {
+		return hZipcode;
 	}
-	public void sethBusinessNum(String hBusinessNum) {
-		this.hBusinessNum = hBusinessNum;
+	public void sethZipcode(String hZipcode) {
+		this.hZipcode = hZipcode;
 	}
 	public String gethAddress() {
 		return hAddress;
@@ -67,17 +68,71 @@ public class HostVO {
 	public void sethAddress(String hAddress) {
 		this.hAddress = hAddress;
 	}
+	public String gethAddressDetail() {
+		return hAddressDetail;
+	}
+	public void sethAddressDetail(String hAddressDetail) {
+		this.hAddressDetail = hAddressDetail;
+	}
+	public String gethAccount() {
+		return hAccount;
+	}
+	public void sethAccount(String hAccount) {
+		this.hAccount = hAccount;
+	}
+	public String gethBankName() {
+		return hBankName;
+	}
+	public void sethBankName(String hBankName) {
+		this.hBankName = hBankName;
+	}
+	public String gethFilename() {
+		return hFilename;
+	}
+	public void sethFilename(String hFilename) {
+		this.hFilename = hFilename;
+	}
+	public long gethFilesize() {
+		return hFilesize;
+	}
+	public void sethFilesize(long hFilesize) {
+		this.hFilesize = hFilesize;
+	}
+	public String gethOriginalname() {
+		return hOriginalname;
+	}
+	public void sethOriginalname(String hOriginalname) {
+		this.hOriginalname = hOriginalname;
+	}
 	public Timestamp getRegdate() {
 		return regdate;
 	}
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+	
+	public String gethNickname() {
+		return hNickname;
+	}
+	public void sethNickname(String hNickname) {
+		this.hNickname = hNickname;
+	}
+	
+	public String gethBday() {
+		return hBday;
+	}
+	public void sethBday(String hBday) {
+		this.hBday = hBday;
+	}
 	@Override
 	public String toString() {
 		return "HostVO [hNo=" + hNo + ", hGrade=" + hGrade + ", hName=" + hName + ", hId=" + hId + ", hPwd=" + hPwd
-				+ ", hEmail=" + hEmail + ", hPhone=" + hPhone + ", hBusinessNum=" + hBusinessNum + ", hAddress="
-				+ hAddress + ", regdate=" + regdate + "]";
+				+ ", hNickname=" + hNickname + ", hBday=" + hBday + ", hPhone=" + hPhone + ", hZipcode=" + hZipcode
+				+ ", hAddress=" + hAddress + ", hAddressDetail=" + hAddressDetail + ", hAccount=" + hAccount
+				+ ", hBankName=" + hBankName + ", hFilename=" + hFilename + ", hFilesize=" + hFilesize
+				+ ", hOriginalname=" + hOriginalname + ", regdate=" + regdate + "]";
 	}
+	
+	
 	
 }

@@ -86,7 +86,7 @@ $(function(){
                                     <label for="pwd">비밀번호 입력</label>
                                    	<div class="input-group mb-4">
                                 		<div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-compass"></i></span>
+                                            <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                         </div>
                                        	<input name ="mId" class="form-control" id="mId" type="hidden" value="${sessionScope.mId }" aria-describedby="button-addon2">
                                        	<input name ="pwd" class="form-control" id="pwd"  placeholder="비밀번호를 입력하세요." type="password">
@@ -94,6 +94,7 @@ $(function(){
                                     </div>
                                     <!-- End of Form -->
                                     </form>
+                                    <div><a href="<c:url value='/member/findPwd'/>" class="small text-right">비밀번호를 잊으셨어요?</a></div>
                                 </div>
                             </div>
                         </div>

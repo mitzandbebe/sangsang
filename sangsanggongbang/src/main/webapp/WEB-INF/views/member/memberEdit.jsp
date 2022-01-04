@@ -30,7 +30,7 @@ $(function(){
 	});
 	
 	$('#additional').submit(function(){
-		var cardnum = $('#cardnum1').val()+$('#cardnum2').val()+$('#cardnum3').val()+$('#cardnum4').val();
+		var cardnum = $('#cardNum1').val()+$('#cardNum2').val()+$('#cardNum3').val()+$('#cardNum4').val();
 		$('#cardnum').val('cardnum');
 	});
 	
