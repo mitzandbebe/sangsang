@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.review.model.ReviewDAO">
+	<insert id="insertReview" parameterType="reviewVO">
+		<selectKey keyProperty="rNo" resultType="int"
+			order="BEFORE">
+			select REVIEW_SEQ.nextval from dual
+		</selectKey>
+		insert into news(R_NO, C_NO, H_NO, R_RATE,
+		R_CONTENT, R_UPLOADNAME,R_FILESIZE,R_ORIGINALNAME)
+		values(#{rNo}, #{cNo},
+		#{hNo}, #{rRate},
+		#{rContent},#{rFilesize},
+		#{rOriginalname},#{rFilesize})
+	</insert>
+
+	
+</mapper>
