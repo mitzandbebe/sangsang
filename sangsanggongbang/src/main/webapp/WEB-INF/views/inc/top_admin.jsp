@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
- 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -81,7 +81,7 @@
 
 <!-- Main CSS -->
 <link type="text/css"
-	href="${pageContext.request.contextPath }/resources/css/spaces.css"
+	href="${pageContext.request.contextPath }/resources/css/admin.css"
 	rel="stylesheet">
 
 <!-- �룿�듃 �궫�엯 -->
@@ -126,7 +126,7 @@
 									aria-controls="navbar_global" aria-expanded="false"
 									aria-label="Toggle navigation"></a>
 							</div>
-						</div>
+						</div> 
 					</div>
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<li class="nav-item dropdown"><a href="#"

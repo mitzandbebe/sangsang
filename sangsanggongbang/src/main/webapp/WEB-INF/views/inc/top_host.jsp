@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
- 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -83,7 +83,7 @@
 <link type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/spaces.css"
 	rel="stylesheet">
-
+ 
 <!-- �룿�듃 �궫�엯 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
