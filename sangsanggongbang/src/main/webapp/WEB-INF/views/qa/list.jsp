@@ -3,6 +3,9 @@
 
 <%@ include file="../inc/top.jsp" %>
 
+<script src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js' />"></script>
+
+
 <div class="section section-md bg-white text-black pt-0 line-bottom-light">
   <div class="container">
     <div class="row justify-content-center">
@@ -34,8 +37,8 @@
           </form>
           <div class="mt-5">
             <c:forEach var="item" items="${list}" varStatus="vs">
-            <div class="card bg-soft border-light rounded p-4 mb-4">
-              <div class="d-flex justify-content-between mb-4">
+              <div class="card bg-soft border-light rounded p-4 mb-4">
+                <div class="d-flex justify-content-between mb-4">
                   <span class="font-small">
                     <a href="#">
                       <img class="avatar-sm img-fluid rounded-circle mr-2"
@@ -44,19 +47,21 @@
                     </a>
                   <span class="ml-2"><fmt:formatDate value="${item.qaRegdate}" pattern="YYYY-MM-DD" /></span>
                   </span>
-              </div>
-              <p class="m-0">
-                ${item.qaTitle}
-                <br><br>
-                ${item.qaContent}
-              </p>
-              <div class="mt-4 mb-3 d-flex justify-content-between">
-                <div class="btn-block text-right">
-                  <button type="submit" class="btn btn-xs btn-primary animate-up-2" >수정</button>
-                  <button type="submit" class="btn btn-xs btn-danger animate-up-2" >삭제</button>
+                </div>
+                <p class="m-0">
+                    ${item.qaTitle}
+                  <br><br>
+                    ${item.qaContent}
+                </p>
+                <div class="mt-4 mb-3 d-flex justify-content-between">
+                  <div class="btn-block text-right">
+                    <c:if test="${item.memberVO.mId eq sessionScope.mId}">
+                      <button type="submit" class="btn btn-xs btn-primary animate-up-2" >수정</button>
+                      <button type="submit" onclick="test('${item.qaNo}')"  class="btn btn-xs btn-danger animate-up-2" >삭제</button>
+                    </c:if>
+                  </div>
                 </div>
               </div>
-            </div>
             </c:forEach>
           </div>
         </div>
@@ -67,8 +72,6 @@
 
 <script>
   function onSubmit(_form) {
-    //
-
     if(!_form.qaTitle.value) {
       alert('제목을 입력하여 주시기 바랍니다');
       return false;
@@ -77,16 +80,30 @@
       alert('내용을 입력하여 주시기 바랍니다');
       return false;
     }
-
-
-
-
     _form.cNo.value = '17'; // 클래스 번호
-    _form.mNo.value = '75'; // 회원번호
+    _form.mNo.value = '${sessionScope}'; // 회원번호
 
     _form.method = 'post';
     _form.action = '<c:url value="/qa/write"/>';
     _form.sumbit();
+  }
+
+  function test(s){
+    if (!confirm("삭제하시겠습니까?")){
+      return false;
+    }
+    $.ajax({
+      url : "<c:url value="/qa/delete"/>",
+      type : "GET",
+      data : {
+        qaNo : s
+      },
+      success : function(res){
+        location.href='<c:url value="/qa/list"/>';
+        alert('삭제가 완료되었습니다.');
+      }
+    })
+
   }
 </script>
 

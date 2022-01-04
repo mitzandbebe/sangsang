@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.gr.ssgb.qa.model.QaService;
 import com.gr.ssgb.qa.model.QaVO;
@@ -28,6 +25,7 @@ public class QaController {
         this.qaservice = qaservice;
     }
 
+    /*Q&A화면*/
     @RequestMapping("/qa/list")
     public String qaList(Model model) {
         //1. 파라미터 읽어오기 - 출력
@@ -44,30 +42,57 @@ public class QaController {
         return "qa/list";
     }
 
-    @GetMapping("/qa/write")
-    public void write_get() {
-        logger.info("qa 작성 화면");
-
-    }
-
+    /*등록기능*/
     @PostMapping("/qa/write")
-    public String write_post(@ModelAttribute QaVO qaVo, Model model) {
+    public String write_post(@ModelAttribute QaVO vo, Model model) {
         logger.info("qa 작성 처리 화면");
-        int cnt = qaservice.insertQa(qaVo);
+        int cnt = qaservice.insertQa(vo);
         logger.info("작성 처리, cnt={}", cnt);
 
-        String msg = "글 작성 실패!", url = "/qa/write";
+        String msg = "글 작성 실패!", url = "/qa/list";
         if (cnt > 0) {
             msg = "등록이 완료 되었습니다.";
             url = "/qa/list";
-
         }
 
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
 
         return "common/message";
+    }
+    /*수정기능*/
+    @PostMapping("/qa/update")
+    public String update_post(@ModelAttribute QaVO vo, Model model) {
+         logger.info("qa 수정 처리 화면");
 
+        int cnt = qaservice.updateQa(vo);
+        logger.info("작성 수정, cnt={}", cnt);
 
+        String msg = "글 수정 실패!", url = "/qa/list";
+        if (cnt > 0) {
+            msg = "수정이 완료 되었습니다.";
+            url = "/qa/list";
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "common/message";
+    }
+
+    /*삭제기능*/
+    @ResponseBody
+    @GetMapping("/qa/delete")
+    public String delete(@RequestParam int qaNo) {
+        logger.info("qa 삭제 처리 화면");
+
+        int cnt =qaservice.deleteQa(qaNo);
+        String msg = "글 삭제 실패!", url = "/qa/list";
+        if (cnt > 0) {
+            msg = "삭제가 완료 되었습니다.";
+            url = "/qa/list";
+        }
+
+        return "common/message";
     }
 }

@@ -6,6 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface QaDAO {
-	public int insertQa(QaVO vo);
+
 	List<QaVO> selectQaAll();
+
+	public int insertQa(QaVO vo);
+
+	public int updateQa(QaVO vo);
+
+	public int deleteQa(int qaNo);
 }

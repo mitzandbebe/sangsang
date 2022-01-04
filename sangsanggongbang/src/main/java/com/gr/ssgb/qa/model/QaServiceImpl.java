@@ -12,13 +12,23 @@ public class QaServiceImpl implements QaService{
 	@Autowired
 	private QaDAO qaDao;
 
+	@Override
+	public List<QaVO> selectQaAll() { 
+		return qaDao.selectQaAll();
+	}
+
 	@Transactional
 	public int insertQa(QaVO vo) {
 		return qaDao.insertQa(vo);
 	}
-	
+
 	@Override
-	public List<QaVO> selectQaAll() { 
-		return qaDao.selectQaAll();
+	public int updateQa(QaVO vo) {
+		return qaDao.updateQa(vo);
+	}
+
+	@Override
+	public int deleteQa(int qaNo) {
+		return qaDao.deleteQa(qaNo);
 	}
 }

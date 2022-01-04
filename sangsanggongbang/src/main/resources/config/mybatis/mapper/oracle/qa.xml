@@ -3,32 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.qa.model.QaDAO">
-	 
-	<insert id="insertQa" parameterType="qaVo">
-		<selectKey keyProperty="qaNo" resultType="int" order="BEFORE">
-			SELECT QA_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
-		INSERT INTO QA(
-			  QA_NO
-			, C_NO
-			, M_NO
-			, QA_TITLE
-			, QA_CONTENT
-			, QA_STEP
-			, QA_GROUP_ID
-			, QA_REGDATE
-		) VALUES (
-			  #{qaNo}
-			, #{cNo}
-			, #{mNo}
-			, #{qaTitle}
-			, #{qaContent}
-			, #{qaStep}
-			, #{qaGroupId}
-			, SYSDATE
-		)
-	</insert>
-	
+
 	<select id="selectQaAll" resultType="qaVo">
 		SELECT
 			  Q.QA_NO
@@ -65,6 +40,46 @@
 		</if>
 		ORDER BY Q.QA_REGDATE DESC
 	</select>
+
+	<insert id="insertQa" parameterType="qaVo">
+		<selectKey keyProperty="qaNo" resultType="int" order="BEFORE">
+			SELECT QA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QA(
+		QA_NO
+		, C_NO
+		, M_NO
+		, QA_TITLE
+		, QA_CONTENT
+		, QA_STEP
+		, QA_GROUP_ID
+		, QA_REGDATE
+		) VALUES (
+		#{qaNo}
+		, #{cNo}
+		, #{mNo}
+		, #{qaTitle}
+		, #{qaContent}
+		, #{qaStep}
+		, #{qaGroupId}
+		, SYSDATE
+		)
+	</insert>
+
+	<update id="updateQa" parameterType="qaVo">
+		UPDATE QA
+			SET
+			   QA_TITLE=#{newsTitle}
+			  ,QA_CONTENT=#{newsTitle}
+			  ,QA_STEP=#{newsTitle}
+			WHERE QA_NO=#{qaNo}
+	</update>
+
+	<delete id="deleteQa" parameterType="int">
+		DELETE QA
+		WHERE QA_NO=#{qaNo}
+	</delete>
+
 </mapper>
 	
 
