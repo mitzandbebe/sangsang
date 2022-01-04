@@ -3,6 +3,7 @@ package com.gr.ssgb.qa.controller;
 import java.util.List;
 
 import com.gr.ssgb.hostclass.model.HostClassVO;
+import com.gr.ssgb.member.model.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.gr.ssgb.qa.model.QaService;
 import com.gr.ssgb.qa.model.QaVO;
+import org.springframework.web.server.session.WebSessionManager;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class QaController {
@@ -19,6 +23,11 @@ public class QaController {
             = LoggerFactory.getLogger(QaController.class);
 
     private final QaService qaservice;
+
+
+    @Autowired
+    private MemberService memberService;
+
 
     //DI - 생성자에 의한 종속객체 주입
     @Autowired
@@ -45,15 +54,26 @@ public class QaController {
 
     /*등록기능*/
     @PostMapping("/qa/write")
-    public String write_post(@ModelAttribute QaVO vo, Model model) {
+    public String write_post(HttpServletRequest request, @ModelAttribute QaVO vo, Model model) {
         logger.info("qa 작성 처리 화면");
-        int cnt = qaservice.insertQa(vo);
-        logger.info("작성 처리, cnt={}", cnt);
 
         String msg = "글 작성 실패!", url = "/qa/list";
-        if (cnt > 0) {
+
+        try{
+            Integer mNo = memberService.selectMno(request.getSession().getAttribute("mId").toString());
+            vo.setmNo(mNo);
+
+            if (mNo == null)
+                throw new Exception("로그인정보가 없습니다.");
+
+            int cnt = qaservice.insertQa(vo);
+            if (cnt == 0)
+                throw new Exception("글 작성실패");
+
             msg = "등록이 완료 되었습니다.";
-            url = "/qa/list";
+        }catch (Exception e) {
+            msg = e.getMessage();
+            e.printStackTrace();
         }
 
         model.addAttribute("msg", msg);
@@ -97,13 +117,4 @@ public class QaController {
         return "common/message";
     }
 
-    /*클래스셀렉트박스*/
-    @ResponseBody
-    @GetMapping("/qa/hostclass")
-    public String hostclass(Model model) {
-
-        List<HostClassVO> hostclass = qaservice.hostClassSelect();
-        model.addAttribute("hostclass", hostclass);
-        return "common/message";
-    }
 }

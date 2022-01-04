@@ -19,12 +19,6 @@
               <span class="badge badge-md badge-primary text-uppercase mr-2">Q&A</span>
             </label>
             <br>
-            <select class="custom-select">
-              <option value="">--클래스를 선택하세요--</option>
-              <option value="">1</option>
-              <option value="">12</option>
-              <option value="">125</option>
-            </select>
             <input type="text"
                    name="qaTitle"
                    class="form-control border border-light-gray"
@@ -36,10 +30,10 @@
                     placeholder="내용을 입력해주세요"
                     rows="6"
                     data-bind-characters-target="#charactersRemaining"
-                    maxlength="1000"></textarea>
+                    maxlength="1000">
+            </textarea>
             <div class="d-flex justify-content-between mt-3">
-              <small class="font-weight-light text-dark"><span id="charactersRemaining">
-                                          <!-- this will be filled with 200 from the textarea's maxlength --></span>
+              <small class="font-weight-light text-dark"><span id="charactersRemaining"><!-- this will be filled with 200 from the textarea's maxlength --></span>
                 / 1000자 이하</small>
               <button type="submit" class="btn btn-primary animate-up-2" >등록</button>
             </div>
@@ -57,21 +51,28 @@
                   <span class="ml-2"><fmt:formatDate value="${item.qaRegdate}" pattern="YYYY-MM-DD" /></span>
                   </span>
                 </div>
-                <p class="m-0">
-                    ${item.qaTitle}
+                <p class="m-0" id="test">
+                  질문 : ${item.qaTitle}
                   <br><br>
                     ${item.qaContent}
                 </p>
+
                 <div class="mt-4 mb-3 d-flex justify-content-between">
                   <div class="btn-block text-right">
                     <c:if test="${item.memberVO.mId eq sessionScope.mId}">
-                      <button type="submit" class="btn btn-xs btn-primary animate-up-2" >수정</button>
+                      <button type="button" onclick="javascript:qaUpdate();" class="btn btn-xs btn-primary animate-up-2" >수정</button>
                       <button type="submit" onclick="qaDelete('${item.qaNo}')"  class="btn btn-xs btn-danger animate-up-2" >삭제</button>
                     </c:if>
+                    <button type="button" onclick="javascript:qaUpper();" class="btn btn-xs btn-primary animate-up-2" >답글달기</button>
                   </div>
                 </div>
+
               </div>
+
             </c:forEach>
+
+
+
           </div>
         </div>
       </div>
@@ -95,6 +96,26 @@
     _form.method = 'post';
     _form.action = '<c:url value="/qa/write"/>';
     _form.sumbit();
+  }
+
+  function qaUpdate(){
+    var str = "";
+
+    $("#test").hide();
+
+    str +=  "<textarea>";
+    str +=  "</textarea>";
+
+
+    document.getElementById("inHere").innerHTML = str;
+  }
+
+  function qaUpper(){
+    var str = "";
+    str +=  "<textarea>";
+    str +=  "</textarea>";
+
+    document.getElementById("innerUpper").innerHTML = str;
   }
 
   function qaDelete(s){
