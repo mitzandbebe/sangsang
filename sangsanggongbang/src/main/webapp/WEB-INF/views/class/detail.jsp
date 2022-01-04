@@ -53,11 +53,7 @@
 									class="nav-item nav-link" id="nav-video-tab" data-toggle="tab"
 									href="#nav-video" role="tab" aria-controls="nav-video"
 									aria-selected="false"><span class="far fa-play-circle mr-2"></span>클래스 설명</a>
-								<a class="nav-item nav-link" id="nav-amenities-tab"
-									data-toggle="tab" href="#nav-amenities" role="tab"
-									aria-controls="nav-amenities" aria-selected="false"><span
-									class="fas fa-cubes mr-2"></span>Amenities</a> <a
-									class="nav-item nav-link" id="nav-reviews-tab"
+								<a class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
 									class="far fa-star mr-2"></span>리뷰</a> <a
@@ -139,10 +135,12 @@
 															<span class="far fa-calendar-alt"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">1 Year</div>
+														<div class="h5 mt-3 mb-0">
+														<fmt:formatDate value="${map['C_REGDATE'] }"  pattern="yyyy-MM-dd" />
+														</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
-															Minimum term </span>
+															Date </span>
 													</div>
 												</div>
 												<div class="card mb-0 border-left">
@@ -151,10 +149,10 @@
 															<span class="fas fa-ruler-combined"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">180SqFt</div>
+														<div class="h5 mt-3 mb-0">${map["C_TIME"] } 시</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
-															Space size </span>
+															Start time </span>
 													</div>
 												</div>
 												<div class="card mb-0 border-left">
@@ -163,10 +161,10 @@
 															<span class="fas fa-users"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">10-30</div>
+														<div class="h5 mt-3 mb-0">${map["PPNUM"] } 명</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
-															Peoples </span>
+															Person </span>
 													</div>
 												</div>
 												<div class="card mb-0 border-left">
@@ -175,10 +173,12 @@
 															<span class="fas fa-couch"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">Meeting</div>
+														<div class="h5 mt-3 mb-0">
+															<fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
+														</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
-															Space type </span>
+															Price </span>
 													</div>
 												</div>
 											</div>
@@ -197,7 +197,7 @@
 											<div class="row">
 											</div>
 										</div>
-										<textarea class="form-control"id="exampleFormControlTextarea2" rows="10">
+										<textarea class="form-control"id="exampleFormControlTextarea2" rows="20">
 											${map["CONTENTS_CONTENT"] }
 										</textarea>
 									</div>
@@ -205,205 +205,6 @@
 								</div>
 							</div>
 							<!-- End of Video Tab -->
-							<!-- Amenities Tab -->
-							<div class="tab-pane fade" id="nav-amenities" role="tabpanel"
-								aria-labelledby="nav-amenities-tab">
-								<div class="row">
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Basic</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>High-Speed WiFi</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Air Conditioning</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Heating</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Seating</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Standing Desks</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Ergonomic Chairs</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Beanbags</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Community</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Events</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Community Lunches</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Workshops</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Community Drinks</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Facebook Group for Members</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Mentorship Programs</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Pitching events</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Accelerator programs</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Toastmasters</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Facilities</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Kitchen</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Skype Room</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Nearby Restaurants</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Makerspace</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Personal Lockers</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Phone Booth</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Event Space For Rent</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Nearby Airbnb</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Onsite Airbnb</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Equipment</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Printer</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>3D Printer</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Projector</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Transportation</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>5 Minute Walk From Public Transit</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>10 Minute Walk From Metro Station</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Bike Parking</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Relax Zones</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Outdoor Terrace</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Lounge / Chill-out Area</span></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-12 col-md-6">
-										<div class="card border-bottom rounded-0 p-4">
-											<h2 class="h5">Caffeine Fix</h2>
-											<ul class="list-unstyled mb-0">
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Free Tea</span></li>
-												<li class="d-flex py-1"><span
-													class="icon icon-xs icon-primary"> <span
-														class="fas fa-check-circle mr-2"></span>
-												</span> <span>Free Coffee</span></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- End of Amenities Tab -->
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
@@ -634,155 +435,9 @@
 						<h4 class="mb-5 font-weight-bold">Similar spaces you might
 							like</h4>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4">
-						<!-- Card -->
-						<div class="card border-light mb-4 animate-up-5">
-							<a href="./single-space.html" class="position-relative"> <img
-								src="${pageContext.request.contextPath}/resources/assets/img/meeting-office.jpg"
-								class="card-img-top rounded-xl p-2" alt="wood office">
-							</a>
-							<div class="card-body">
-								<a href="./single-space.html">
-									<h4 class="h5">Meeting Office Space</h4>
-								</a>
-								<div class="d-flex my-4">
-									<i class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-light"></i> <span
-										class="badge badge-pill badge-primary ml-2">4.0</span>
-								</div>
-								<ul class="list-group mb-3">
-									<li class="list-group-item small p-0"><span
-										class="fas fa-map-marker-alt mr-2"></span>London, Canary
-										Wharf, UK</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>Stamford Bridge Stadium (5
-										mins walk)</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>Bluebird Chelsea
-										Restaurant (15 mins walk)</li>
-								</ul>
-							</div>
-							<div class="card-footer border-top">
-								<div class="d-flex justify-content-between">
-									<div class="col pl-0">
-										<span class="text-muted font-small d-block mb-2">Monthly</span>
-										<span class="h5 text-dark font-weight-bold">50$</span>
-									</div>
-									<div class="col">
-										<span class="text-muted font-small d-block mb-2">People</span>
-										<span class="h5 text-dark font-weight-bold">2-4</span>
-									</div>
-									<div class="col pr-0">
-										<span class="text-muted font-small d-block mb-2">Sq.Ft</span>
-										<span class="h5 text-dark font-weight-bold">400</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End of Card -->
-					</div>
-					<div class="col-12 col-md-6 col-lg-4">
-						<!-- Card -->
-						<div class="card border-light mb-4 animate-up-5">
-							<a href="./single-space.html" class="position-relative"> <img
-								src="${pageContext.request.contextPath}/resources/assets/img/conference-office.jpg"
-								class="card-img-top rounded-xl p-2" alt="pixel room">
-							</a>
-							<div class="card-body">
-								<a href="./single-space.html">
-									<h4 class="h5">Conference Room</h4>
-								</a>
-								<div class="d-flex my-4">
-									<i class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="fas fa-star-half text-warning"></i> <span
-										class="badge badge-pill badge-primary ml-2">4.7</span>
-								</div>
-								<ul class="list-group mb-3">
-									<li class="list-group-item small p-0"><span
-										class="fas fa-map-marker-alt mr-2"></span>Paris,
-										Ãle-de-France, France</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>LE BHV MARAIS (5 mins
-										walk)</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>Shakespeare & Company (15
-										mins walk)</li>
-								</ul>
-							</div>
-							<div class="card-footer border-top">
-								<div class="d-flex justify-content-between">
-									<div class="col pl-0">
-										<span class="text-muted font-small d-block mb-2">Monthly</span>
-										<span class="h5 text-dark font-weight-bold">150$</span>
-									</div>
-									<div class="col">
-										<span class="text-muted font-small d-block mb-2">People</span>
-										<span class="h5 text-dark font-weight-bold">2-10</span>
-									</div>
-									<div class="col pr-0">
-										<span class="text-muted font-small d-block mb-2">Sq.Ft</span>
-										<span class="h5 text-dark font-weight-bold">200</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End of Card -->
-					</div>
-					<div class="col-12 col-md-6 col-lg-4">
-						<!-- Card -->
-						<div class="card border-light mb-4 animate-up-5">
-							<a href="./single-space.html" class="position-relative"> <img
-								src="${pageContext.request.contextPath}/resources/assets/img/lifestyle-office.jpg"
-								class="card-img-top rounded-xl p-2" alt="modern desk">
-							</a>
-							<div class="card-body">
-								<a href="./single-space.html">
-									<h4 class="h5">Lifestyle Space</h4>
-								</a>
-								<div class="d-flex my-4">
-									<i class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <i
-										class="star fas fa-star text-warning"></i> <span
-										class="badge badge-pill badge-primary ml-2">4.7</span>
-								</div>
-								<ul class="list-group mb-3">
-									<li class="list-group-item small p-0"><span
-										class="fas fa-map-marker-alt mr-2"></span>Madrid, Hortaleza,
-										Spain</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>Plaza Mayor (2 mins walk)</li>
-									<li class="list-group-item small p-0"><span
-										class="fas fa-bullseye mr-2"></span>eal Casa de Correos (15
-										mins walk)</li>
-								</ul>
-							</div>
-							<div class="card-footer border-top">
-								<div class="d-flex justify-content-between">
-									<div class="col pl-0">
-										<span class="text-muted font-small d-block mb-2">Monthly</span>
-										<span class="h5 text-dark font-weight-bold">200$</span>
-									</div>
-									<div class="col">
-										<span class="text-muted font-small d-block mb-2">People</span>
-										<span class="h5 text-dark font-weight-bold">10-30</span>
-									</div>
-									<div class="col pr-0">
-										<span class="text-muted font-small d-block mb-2">Sq.Ft</span>
-										<span class="h5 text-dark font-weight-bold">500</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End of Card -->
-					</div>
+					<c:if test="">
+					<c:import url="/class/classlist"></c:import>
+					</c:if>
 				</div>
 			</div>
 		</section>
