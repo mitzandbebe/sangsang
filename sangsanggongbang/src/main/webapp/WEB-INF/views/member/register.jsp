@@ -38,9 +38,15 @@
 				$('#chkId').val('N');
 			}
 		});
+		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
-		$('#wr_submit').click(function(){
-			if(!validate_userid($('#mId').val())){
+		$('#signup').submit(function(){
+			var pwd = $('#password').val();
+			if($('#mId').val().length<1){
+				alert('아이디를 입력하세요.');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if(!validate_userid($('#mId').val())){
 				alert('아이디는 이메일 형식으로만 가능합니다.');
 				$('#mId').focus();
 				event.preventDefault();
@@ -52,9 +58,13 @@
 				alert('비밀번호를 입력하세요');
 				$('#password').focus();
 				event.preventDefault();
-			}else if($('#password').val().length>1&&$('#password').val().length<10){
-				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함해야 합니다.');
+			}else if($('#password').val().length>=10&&!passwordRule.test(pwd)){
+				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
 				$('#password').focus();
+				event.preventDefault();
+			}else if($('#password_confirm').val().length<1){
+				alert('2차 비밀번호를 입력하세요');
+				$('#password_confirm').focus();
 				event.preventDefault();
 			}else if($('#password').val()!=$('#password_confirm').val()){
 				alert('비밀번호 확인이 일치하지 않습니다!');
@@ -97,7 +107,7 @@
 			var pattern = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
 			return pattern.test(id);
 		}
-		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
+		
 		
 		$('#terms').click(function(){
 			open("<c:url value='/member/terms'/>", "term", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
@@ -108,7 +118,7 @@
 </script>
 
         <!-- Section -->
-        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
+        <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang2.jpg">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -146,11 +156,10 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
+                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" >
                                         </div>
                                         <div>
                                     		<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
-                                    		
                                     	</div>
                                     </div>
                                     <!-- End of Form -->
@@ -161,7 +170,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input class="form-control" id="password_confirm" placeholder="Confirm password" type="password" aria-label="Password" required>
+                                            <input class="form-control" id="password_confirm" placeholder="Confirm password" type="password" aria-label="Password" >
                                         </div>
                                         <div>
                                     		<span id="message3" style="visibility:hidden">비밀번호를 입력하세요.</span>

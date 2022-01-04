@@ -126,26 +126,44 @@ public class BalancingController {
         cell = row.createCell(2);
         cell.setCellValue("호스트번호");
         cell = row.createCell(3);
-        cell.setCellValue("참여인원");
-        cell = row.createCell(4);
         cell.setCellValue("진행일자");
+        cell = row.createCell(4);
+        cell.setCellValue("(A)참여인원 ");
         cell = row.createCell(5);
+        cell.setCellValue("(B)클래스단가 ");
+        cell = row.createCell(6);
+        cell.setCellValue("(C)매출액 [A*B]");
+        cell = row.createCell(7);
+        cell.setCellValue("(D)수수료 10% [C*0.1]");
+        cell = row.createCell(8);
+        cell.setCellValue("(E)정산금액(예정금액) [C-D]");
+        cell = row.createCell(9);
         cell.setCellValue("정산유무");
 
         // Body
         for (int i=0; i<list.size(); i++) {
             row = sheet.createRow(rowNum++);
-            cell = row.createCell(0);
+            cell = row.createCell(0); 	//정산번호
             cell.setCellValue(list.get(i).getbNo());
-            cell = row.createCell(1);
+            cell = row.createCell(1); 	//클래스번호
             cell.setCellValue(list.get(i).getcNo());
-            cell = row.createCell(2);
+            cell = row.createCell(2);	//호스트번호
             cell.setCellValue(list.get(i).gethNo());
-            cell = row.createCell(3);
-            cell.setCellValue(list.get(i).getPpnum());
-            cell = row.createCell(4);
+            cell = row.createCell(3);	//진행일자
             cell.setCellValue(simpleDateFormat.format(list.get(i).getbReqDate()));
-            cell = row.createCell(5);
+            cell = row.createCell(4);	//참여인원
+            cell.setCellValue(list.get(i).getPpnum());
+            cell = row.createCell(5);	//클래스단가
+            cell.setCellValue(list.get(i).getcPrice());
+            cell = row.createCell(6);	//매출액
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum());
+            cell = row.createCell(7);	//수수료
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1);
+            cell = row.createCell(8);	//정산금액
+            cell.setCellValue(
+            		(list.get(i).getcPrice()*list.get(i).getPpnum())
+            		-(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1));
+            cell = row.createCell(9);	//정산유무
             cell.setCellValue(list.get(i).getbFlag());
         }
 

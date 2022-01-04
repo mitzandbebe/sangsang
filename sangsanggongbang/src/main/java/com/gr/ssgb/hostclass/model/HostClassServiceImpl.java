@@ -66,6 +66,12 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectByLNo(locationVo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectClassbyCNo(int cNo) {
+		return hostClassDao.selectClassbyCNo(cNo);
+	}
+
+
 
 
 

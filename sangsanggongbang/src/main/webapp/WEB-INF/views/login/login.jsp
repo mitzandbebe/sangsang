@@ -2,6 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../member/memberTop.jsp" %>
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#login').submit(function(){
+			if($('#mId').val().length < 1){
+				alert('아이디를 입력하세요');
+				$('#mId').focus();
+				event.preventDefault();
+			}else if($('#password').val().length < 1){
+				alert('비밀번호를 입력하세요.');
+				$('#password').focus();
+				event.preventDefault();
+			}
+		});
+	});
+		
+</script>
 
 
         <!-- Section -->
@@ -23,7 +41,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" type="text" aria-label="email address" class="form-control" id="email" 
+                                        <input name="mId" type="text" aria-label="email address" class="form-control" id="mId" 
                                         <c:if test="${!empty cookie.ck_userid }">
                                         	value="${cookie.ck_userid.value }"
                                         </c:if>
@@ -32,6 +50,7 @@
                                         </c:if>
                                         >
                                         <input type="hidden" name="snsCheck" id="snsCheck" value="n" >
+                                        <input type="hidden" name="mFilename" id="mFilename" >
                                     </div>
                                 </div>
                                 <!-- End of Form -->
@@ -43,7 +62,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" required>
+                                            <input name="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password">
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -58,7 +77,7 @@
                                               아이디 저장하기
                                             </label>
                                         </div>
-                                        <div><a href="./forgot-password-email.html" class="small text-right">비밀번호를 잊으셨어요?</a></div>
+                                        <div><a href="<c:url value='/member/findPwd'/>" class="small text-right">비밀번호를 잊으셨어요?</a></div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary">로그인</button>
@@ -94,9 +113,10 @@
 													success: res=>{
 														const kakao_account = res.kakao_account;
 														userId = kakao_account.email;
-														document.getElementById('email').value=userId;
+														document.getElementById('mId').value=userId;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('snsCheck').value="y";
+														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
 														console.log(kakao_account);
 														document.getElementById('login').submit();
 													}
@@ -110,7 +130,7 @@
                             <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">
                                 <span class="font-weight-normal">
                                     아직 계정이 없으세요?
-                                    <a href="<c:url value='/member/register' /> " class="font-weight-bold">계정 만들러가기</a>
+                                    <a href="<c:url value='/member/register' />" class="font-weight-bold">계정 만들러가기</a>
                                 </span>
                             </div>
                         </div>

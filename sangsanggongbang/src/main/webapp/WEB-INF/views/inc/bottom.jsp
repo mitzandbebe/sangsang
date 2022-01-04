@@ -1,7 +1,9 @@
   <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
  
  <footer class="footer py-6 bg-primary text-white">
+
     <div class="container">
         <div class="row">
             <div class="col-xl-3 mb-3 mb-xl-0">

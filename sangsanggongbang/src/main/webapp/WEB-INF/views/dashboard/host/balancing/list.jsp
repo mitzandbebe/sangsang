@@ -91,7 +91,7 @@ $(function() {
 	});
 });
 </script>
-<c:set var="total"></c:set>
+
 <c:if test="${empty list }">
 	<tr>
 		<td colspan="6">데이터가 없습니다.</td>
@@ -111,20 +111,29 @@ $(function() {
 								<a href="#">클래스번호 # ${vo.cNo}</a>
 							</h3>
 							<!-- Text -->
-							<small class="text-gray-700"> 호스트번호 : ${vo.hNo}</small><br>
-							<small class="text-gray-700"> 진행인원 : ${vo.ppnum}</small><br>
-							<small class="text-gray-700"> 클래스가격 : ${vo.cPrice}</small><br>
-							<small class="text-gray-700"> 진행일자 : <fmt:formatDate
-									value="${vo.bReqDate}" pattern="yyyy-MM-dd" />
-							</small>
+							<small class="text-gray-700"> 
+							진행일자 : <fmt:formatDate value="${vo.bReqDate}" pattern="yyyy-MM-dd" /></small><br>
+							<small class="text-gray-700"> 
+							진행인원 : ${vo.ppnum}</small><br>
+							<small class="text-gray-700"> 
+							클래스단가 : ${vo.cPrice}</small><br>
 						</div>
+						
+						<div class="row btn btn-outline-dark" style="margin-right: 20%; cursor: default;">
+						<c:set var="sales" value="${vo.ppnum * vo.cPrice }"/> <!-- 매출액 -->
+						<c:set var="fee" value="${sales * 0.1 }"/> <!-- 매출액 -->
+						<c:set var="amount" value="${sales - fee }"/> <!-- 매출액 -->
+						매출액 : <fmt:formatNumber value="${sales}" pattern="#,###,###"/>원<br>
+						<span style="color: red">수수료 : <fmt:formatNumber value="${fee}" pattern="#,###,###"/>원</span><br>
+						<span style="color: darkblue">정산금액 : <fmt:formatNumber value="${amount}" pattern="#,###,###"/>원</span>
+						</div>
+						
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
 								<button class="btn btn-sm btn-outline-dark"
 
 									style="font-weight: bold;" name="bNo" id="balsubmit"
 									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산신청</button>
-
 							</div>
 						</c:if>
 						<c:if test="${vo.bFlag == 'Y' }">
@@ -171,11 +180,10 @@ $(function() {
 				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
 			</a></li>
 		</c:if>
-
-			<a class="btn btn-sm btn-outline-dark"
-				style="font-weight: bold; float: right;" href="<c:url value="/dashboard/host/excel/download"/>">
-				엑셀다운로드</a>
-
 		<!--  페이지 번호 끝 -->
+		<a class="btn btn-sm btn-outline-dark" id="excelDown"
+				style="font-weight: bold; margin-left: 10%" href="<c:url value="/dashboard/host/excel/download"/>">
+				엑셀다운로드</a>
 	</ul>
+			
 </nav>
