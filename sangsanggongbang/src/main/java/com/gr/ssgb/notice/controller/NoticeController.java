@@ -57,10 +57,10 @@ public class NoticeController {
 		logger.info("공지화면 등장");
 		PaginationInfo pagingInfo= new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		pagingInfo.setRecordCountPerPage(4);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setRecordCountPerPage(4);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}",searchVo);
 		
