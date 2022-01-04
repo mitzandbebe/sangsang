@@ -15,6 +15,7 @@ public interface ConstUtil {
 	
 	//자료실 - 파일 저장 경로
 	String FILE_UPLOAD_PATH="file_upload";
+
 	String FILE_UPLOAD_PATH_TEST= file.getAbsolutePath() +"\\src\\main\\webapp\\resources\\file_upload";
 	
 	//관리자 페이지 - 상품 등록시 상품 이미지 저장 경로
@@ -22,6 +23,7 @@ public interface ConstUtil {
 	String IMAGE_FILE_UPLOAD_PATH_TEST=file.getAbsolutePath() +"\\src\\main\\webapp\\resources\\upload_images";
 	
 	//"C:\\Users\\jung9\\git\\sangsang\\sangsanggongbang
+
 	
 	//자료실 업로드인지, 상품 등록시 업로드인지 구분값
 	int UPLOAD_FILE_FLAG=1; //자료실 업로드

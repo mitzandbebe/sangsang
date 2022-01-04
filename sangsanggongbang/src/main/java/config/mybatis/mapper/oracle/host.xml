@@ -3,5 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.host.model.HostDAO">
-
+	<select id="checkIdPwd" parameterType="string" resultType="string">
+		select pwd from host where h_id=#{hId}
+	</select>
+	
+	<select id="selectHostCnt" parameterType="string" resultType="int">
+		select count(*) from host where h_id=#{hId}
+	</select>
+	
+	<select id="selectHostById" parameterType="string" resultType="hostVo">
+		select * from host where h_id =#{hId}
+	</select>
+	
+	<insert id="insertHost" parameterType="hostVo">
+		<selectKey keyProperty="hNo" resultType="int" order="BEFORE">
+			select host_seq.nextval from dual
+		</selectKey>
+		insert into host(h_no, h_id, h_pwd, h_name, h_nickname, h_bday, h_phone, h_zipcode, h_address, h_address_detail, h_account,
+		h_bank_name, h_filename, h_filesize, h_originalname)
+		values(#{hNo}, #{hId}, #{hPwd}, #{hName}, #{hNickname}, #{hBday}, #{hPhone}, #{hZipcode}, #{hAddress}, 
+		#{hAddressDetail}, #{hAccount}, #{hBankName}, #{hFilename}, #{hFilesize}, #{hOriginalname})
+	</insert>
 </mapper>
