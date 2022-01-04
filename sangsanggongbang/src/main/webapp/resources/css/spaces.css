@@ -22631,7 +22631,7 @@ button.bg-gray-dark:focus {
 .overlay-primary:before {
     position: absolute;
     content: "";
-    background: #679093;
+    background: #d6dcd2;
     width: 100%;
     height: 100%;
     top: 0;

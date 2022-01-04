@@ -6,22 +6,24 @@ public class BalancingVO {
 	private int bNo; //정산번호 
 	private int cNo; //클래스코드
 	private int hNo; //호스트번호
-	private int bPpnum; //진행인원
+	private int ppnum; //진행인원
 	private Timestamp bReqDate; //정산신청일
 	private String bFlag; //정산신청여부
+	private int cPrice; //클래스 단가
 	
 	public BalancingVO() {
 		super();
 	}
 	
-	public BalancingVO(int bNo, int cNo, int hNo, int bPpnum, Timestamp bReqDate, String bFlag) {
+	public BalancingVO(int bNo, int cNo, int hNo, int ppnum, Timestamp bReqDate, String bFlag, int cPrice) {
 		super();
 		this.bNo = bNo;
 		this.cNo = cNo;
 		this.hNo = hNo;
-		this.bPpnum = bPpnum;
+		this.ppnum = ppnum;
 		this.bReqDate = bReqDate;
 		this.bFlag = bFlag;
+		this.cPrice = cPrice;
 	}
 	public int getbNo() {
 		return bNo;
@@ -41,11 +43,11 @@ public class BalancingVO {
 	public void sethNo(int hNo) {
 		this.hNo = hNo;
 	}
-	public int getbPpnum() {
-		return bPpnum;
+	public int getPpnum() {
+		return ppnum;
 	}
-	public void setbPpnum(int bPpnum) {
-		this.bPpnum = bPpnum;
+	public void setPpnum(int ppnum) {
+		this.ppnum = ppnum;
 	}
 	public Timestamp getbReqDate() {
 		return bReqDate;
@@ -59,11 +61,20 @@ public class BalancingVO {
 	public void setbFlag(String bFlag) {
 		this.bFlag = bFlag;
 	}
+	public int getcPrice() {
+		return cPrice;
+	}
+	public void setcPrice(int cPrice) {
+		this.cPrice = cPrice;
+	}
 	@Override
 	public String toString() {
-		return "BalancingVO [bNo=" + bNo + ", cNo=" + cNo + ", hNo=" + hNo + ", bPpnum=" + bPpnum + ", bReqDate="
-				+ bReqDate + ", bFlag=" + bFlag + "]";
+		return "BalancingVO [bNo=" + bNo + ", cNo=" + cNo + ", hNo=" + hNo + ", ppnum=" + ppnum + ", bReqDate="
+				+ bReqDate + ", bFlag=" + bFlag + ", cPrice=" + cPrice + "]";
 	}
+	
+	
+
 	
 	
 	

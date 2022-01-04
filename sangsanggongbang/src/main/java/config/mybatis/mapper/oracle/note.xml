@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.note.model.NoteDAO">
+	<select id="selectSendUser" parameterType="string"
+		resultType="string">
+		select * from member where m_nickname=#{rNickname}
+	</select>
+	<insert id="sendNote" parameterType="noteVo">
+		<selectKey keyProperty="noteNo" resultType="int"
+			order="BEFORE">
+			select note_seq.nextval from dual
+		</selectKey>
+		insert all
+		into note(NOTE_NO,NOTE_CONTENT,M_ID,R_NICKNAME)
+		VALUES(#{noteNo},#{noteContent},#{mId},#{rNickname})
+		into
+		note_rec(REC_NO,NOTE_NO,R_NICKNAME)
+		VALUES(#{noteNo},#{noteNo},#{rNickname})
+		select * from dual
+	</insert>
+	
+	<resultMap type="map" id="noteView">
+		<result property="noteContent" column="NOTE_CONTENT" javaType="java.lang.String"/>
+		<result property="noteNo" column="NOTE_NO"/>
+		<result property="noteTitle" column="NOTE_TITLE"/>
+		<result property="noteRegdate" column="NOTE_REGDATE"/>
+		<result property="noteDelFag" column="NOTE_DELFLAG"/>
+		<result property="mId" column="M_ID"/>
+		<result property="rNickname" column="R_NICKNAME"/>
+		<result property="recNo" column="REC_NO"/>
+		<result property="recDelFlag" column="REC_DELFLAG"/>
+		<result property="recReadFlag" column="REC_READFLAG"/>
+	</resultMap>
+	
+	<select id="selectNoteView" parameterType="map" resultType="map" resultMap="noteView">
+		SELECT * FROM NOTEVIEW WHERE R_NICKNAME=#{rNickname}
+	</select>
+</mapper>

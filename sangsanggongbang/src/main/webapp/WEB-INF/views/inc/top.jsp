@@ -2,23 +2,9 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!--
 
-=========================================================
-* Spaces - Bootstrap Directory Listing Template
-=========================================================
-
-* Product Page: https://themes.getbootstrap.com/product/spaces/
-* Copyright 2020 Themesberg EULA (https://themes.getbootstrap.com/licenses/)
-
-* Coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
--->
 
 <!DOCTYPE html>
 <html lang="ko">

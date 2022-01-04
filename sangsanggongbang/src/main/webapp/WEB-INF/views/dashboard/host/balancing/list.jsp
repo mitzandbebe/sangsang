@@ -5,13 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
 $(function() {
-	/* if($('#tabs-text-1').hasClass('active')==true){ */
+	/* 전체 정산내역 */
 		$('#list1 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
 			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
 		});
-/* 	} */
 		
 		/* 다음페이지 버튼(>) 클릭시 */
 		$('#list1 #nextpage').click(function(){
@@ -30,7 +29,8 @@ $(function() {
 		});
 });
 $(function() {
-		$('#tabs-text-2 #pagelinknum').click(function(){
+	/* 정산 완료내역 */
+		$('#list2 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
 			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
@@ -53,6 +53,7 @@ $(function() {
 		});
 });
 $(function() {
+	/* 미정산 내역 */
 		$('#list3 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
@@ -74,9 +75,23 @@ $(function() {
 			console.log(f);
 			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+f+"&searchCondition=b_flag&searchKeyword=Y");
 		});
+		
+		
+		
 });
 
+$(function() {
+	$('#list1 #balsubmit').click(function(){
+		var i=$(this).text();
+		console.log(i);
+		$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
+	});
+	$('#list2 #balsubmit').click(function(){
+		document.getElementById('#tabs-text-2-tab').click();
+	});
+});
 </script>
+
 <c:if test="${empty list }">
 	<tr>
 		<td colspan="6">데이터가 없습니다.</td>
@@ -84,6 +99,7 @@ $(function() {
 </c:if>
 
 <c:if test="${!empty list }">
+
 	<!--게시판 내용 반복문 시작  -->
 	<c:forEach var="vo" items="${list }">
 		<div class="card-body px-0 pt-0">
@@ -92,25 +108,39 @@ $(function() {
 					<div class="row align-items-center">
 						<div class="col">
 							<h3 class="h5 mb-1">
-								<a href="#">클래스번호 # ${vo.bNo}</a>
+								<a href="#">클래스번호 # ${vo.cNo}</a>
 							</h3>
 							<!-- Text -->
-							<small class="text-gray-700"> 호스트번호 : ${vo.hNo}</small><br>
-							<small class="text-gray-700"> 진행인원 : ${vo.bPpnum}</small><br>
 							<small class="text-gray-700"> 진행일자 : <fmt:formatDate
-									value="${vo.bReqDate}" pattern="yyyy-MM-dd" />
-							</small>
+									value="${vo.bReqDate}" pattern="yyyy-MM-dd" /></small><br>
+							<small class="text-gray-700"> 진행인원 : ${vo.ppnum}</small><br>
+							<small class="text-gray-700"> 클래스단가 : ${vo.cPrice}</small><br>
+							
 						</div>
-						<c:if test="${vo.bFlag == 'Y' }">
-							<div class="col-auto">
-								<button class="btn btn-sm btn-outline-dark"
-									style="font-weight: bold;">정산신청</button>
-							</div>
-						</c:if>
+						<div class="row btn btn-outline-dark" style="margin-right: 20%; cursor: default;">
+						<c:set var="sales" value="${vo.ppnum * vo.cPrice }"/> <!-- 매출액 -->
+						<c:set var="fee" value="${sales * 0.1 }"/> <!-- 매출액 -->
+						<c:set var="amount" value="${sales - fee }"/> <!-- 매출액 -->
+						<!-- <span class="btn btn-sm btn-outline-dark" > -->
+						매출액 : <fmt:formatNumber value="${sales}" pattern="#,###,###"/>원<br>
+						<span style="color: red">수수료 : <fmt:formatNumber value="${fee}" pattern="#,###,###"/>원</span><br>
+						<span style="color: darkblue">정산금액 : <fmt:formatNumber value="${amount}" pattern="#,###,###"/>원</span>
+						</span>
+						</div>
+						
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
-								<span class="badge badge-pill badge-success"> <span
-									class="text-uppercase font-weight-bold"
+								<button class="btn btn-sm btn-outline-dark"
+
+									style="font-weight: bold;" name="bNo" id="balsubmit"
+									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산신청</button>
+
+							</div>
+						</c:if>
+						<c:if test="${vo.bFlag == 'Y' }">
+							<div class="col-auto">
+								<span class="badge badge-pill badge-success">
+								<span class="text-uppercase font-weight-bold"
 									style="font-size: 1.3em">정산완료</span>
 								</span>
 							</div>
@@ -128,22 +158,21 @@ $(function() {
 	<ul class="pagination circle-pagination">
 		<!-- 이전 블럭으로 이동 -->
 		<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
-		<li class="page-item" id="backpage">
-		<a class="page-link">
-		<i class="fas fa-angle-double-left"></i>
-		</a>
-		</li>
+		<li class="page-item" id="backpage"><a class="page-link"> <i
+				class="fas fa-angle-double-left"></i>
+		</a></li>
 		<%-- </c:if> --%>
 
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
-		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
+		<c:forEach var="i" begin="${pagingInfo.firstPage}"
+			end="${pagingInfo.lastPage }">
 			<c:if test="${i==pagingInfo.currentPage }">
 				<span style="color: blue; font-weight: bold; font-size: 1em"
 					id="pagelinknum"> ${i}</span>
 			</c:if>
 			<c:if test="${i!=pagingInfo.currentPage }">
-				<li class="page-item" id="pagelinknum">
-				<a class="page-link" id="pagelinknum2">${i }</a></li>
+				<li class="page-item" id="pagelinknum"><a class="page-link"
+					id="pagelinknum2">${i }</a></li>
 			</c:if>
 		</c:forEach>
 		<!-- 다음 블럭으로 이동 -->
@@ -152,6 +181,9 @@ $(function() {
 				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
 			</a></li>
 		</c:if>
+			<a class="btn btn-sm btn-outline-dark"
+				style="font-weight: bold;" href="<c:url value="/dashboard/host/excel/download"/>">
+				엑셀다운로드</a>
 		<!--  페이지 번호 끝 -->
 	</ul>
 </nav>

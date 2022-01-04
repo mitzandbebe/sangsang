@@ -22,7 +22,7 @@
          , C_PRICE
          , PPNUM
          , C_START_TIME
-         , C_END_TIME
+         , C_TIME
          , END_FLAG
          )
 		values( #{cNo}
@@ -33,7 +33,7 @@
              , #{cPrice}
              , #{ppnum}
              , #{cStart}
-             , #{cEnd}
+             , #{cTime}
              , #{endFlag}
 		)
 		
@@ -49,11 +49,23 @@
            CONTENTS_NO
            , C_NO
            , THUMBNAIL
+           ,CONTENTS_FILENAME1 
+           ,CONTENTS_FILENAME2
+           ,CONTENTS_FILENAME3 
+           ,CONTENTS_FILENAME4 
+           ,CONTENTS_FILENAME5
+           ,CONTENTS_CONTENT
            )
         values(
               #{contentsNo}
               , #{cNo}
               , #{thumbnail}
+              ,#{cFilename1}
+              ,#{cFilename2}
+              ,#{cFilename3}
+              ,#{cFilename4}
+              ,#{cFilename5}
+              ,#{content}
            )
 		
 	</insert>
@@ -68,23 +80,79 @@
            , ZIPCODE
            , L_ADDRESS
            , L_ADDRESS_DETAIL
+           , H_NO
            )
          values(
             #{lNo}
             , #{zipcode}
             , #{lAddress}
             , #{lAddressDetail}
+            ,#{hNo}
             )
 		
 	</insert>
 
+	<select id="selectBylocation" parameterType="locationVo" resultType="locationVo">
+		select * from location 
+		where h_no=#{hNo} and l_address=#{lAddress} and l_address_detail=#{lAddressDetail}
+	</select>
 	<select id="selectByLNo" parameterType="locationVo" resultType="int">
 		select L_NO from location 
-		where l_address_detail=#{lAddressDetail} and l_address=#{lAddress}
+		where l_address_detail=#{lAddressDetail} and l_address=#{lAddress} and h_no=#{hNo}
 	</select>
 	
-	<select id="selectByCNo" parameterType="int" resultType="int">
-		select C_NO from hostclass where L_NO=#{lNo}
+	<select id="selectByCNo" parameterType="hostclassVo" resultType="int">
+		select C_NO from hostclass where C_START_TIME=#{cStart} and C_TIME=#{cTime}
 	</select>
+	
+	<select id="selectClassAll" resultType="hostClassVo">
+		select * from hostclass order by c_end_time desc
+	</select>
+	
+	<select id="selectThumbnail" parameterType="int" resultType="string">
+		select thumbnail from c_contents where c_no=#{cNo}
+	</select>
+	
+	<select id="selectClassAllContents" resultType="map">
+		select * from selectClass
+	</select>
+	
+	<select id="selectClassbyCNo" resultType="map" parameterType="int">
+		 select * from selectClass where c_no=#{cNo}
+	</select>
+	
+<!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
+		<result  property="contentsNo" column="contents_no" />
+		<result  property="thumbnail" column="thumbnail" />
+		<result  property="cFilename1" column="contents_filename1" />
+		<result  property="cFilename2" column="contents_filename2" />
+		<result  property="cFilename3" column="contents_filename3" />
+		<result  property="cFilename4" column="contents_filename4" />
+		<result  property="cFilename5" column="contents_filename5"/>
+	</resultMap>
+	
+	<resultMap  type="com.gr.ssgb.hostclass.model.HostClassVO" id="hostClass">
+		<result  property="cNo" column="c_no" />
+		<result  property="cName" column="C_NAME" />
+		<result  property="CateCode" column="CATEGORY_CODE" />
+		<result  property="hNo" column="H_NO" />
+		<result  property="lNo" column="L_NO" />
+		<result  property="cPrice" column="C_PRICE"/>
+		<result  property="ppnum" column="PPNUM" />
+		<result  property="cRegdate" column="C_REGDATE"/>
+		<result  property="cStart" column="C_START_TIME"/>
+		<result  property="cEnd" column="C_END_TIME" />
+		<result  property="endFlag" column="END_FLAG" />
+		<collection property="contentsVO" resultMap="contents"/>
+		
+	</resultMap> -->
+	
+	
+<!-- 	<resultMap type="com.gr.ssgb.hostclass.model.ClassAllVO" id="classAll">
+		<collection property="hostClassVO" resultMap="hostClass"/>
+		<collection property="contentsVO" resultMap="contents"/>
+	</resultMap> -->
+	
+
 	
 </mapper>

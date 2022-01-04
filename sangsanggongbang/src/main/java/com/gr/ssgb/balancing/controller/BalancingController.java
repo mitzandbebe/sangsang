@@ -1,14 +1,26 @@
 package com.gr.ssgb.balancing.controller;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
@@ -32,7 +44,8 @@ public class BalancingController {
 	}
 
 	@RequestMapping("/balancing/list")
-	public String bcList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String bcList(@ModelAttribute SearchVO searchVo, Model model,
+			@RequestParam(defaultValue = "0") int bNo) {
 		//1. 파라미터 읽어오기 - 출력
 		logger.info("정산목록 목록 페이지, 파라미터 searchVo={}", searchVo);
 
@@ -49,6 +62,7 @@ public class BalancingController {
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
+		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
 		int totalRecord=balancingService.selectTotalRecord(searchVo);
@@ -57,95 +71,116 @@ public class BalancingController {
 		//3. model에 결과 저장
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
-
+		
 		//4. 뷰페이지 리턴
 		return "dashboard/host/balancing/list";
 	}
 	
 	@RequestMapping("/balancing")
-	public String balancing() {
+	public String totalprice(@ModelAttribute BalancingVO balancingVo, Model model) {
+		//1. 파라미터 읽어오기 - 출력
+		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
+		logger.info("정산총액 조회,결과 list.size={}", list.size());
+		
+		model.addAttribute("list", list);
+		
 		return "dashboard/host/balancing/balancing";
 	}
 
-	/*
-
-	@RequestMapping(value="/write.do", method = RequestMethod.GET)
-	public String write_get() {
-		logger.info("글쓰기 화면");
-
-		return "balancing/write";
+	@RequestMapping("/balancing/submit")
+	public String submitUpdateBflag(@RequestParam(defaultValue = "0") int bNo, Model model) {
+		logger.info("정산신청 파라미터 bNo={}", bNo);
+		
+		Integer cnt=balancingService.submitUpdate(bNo);
+		logger.info("정산신청 결과 cnt={}", cnt);
+		
+		return "redirect:/dashboard/host/balancing";
 	}
 
-	@RequestMapping(value="/write.do", method = RequestMethod.POST)
-	public String write_post(@ModelAttribute BalancingVO balancingVo) {
-		//1
-		logger.info("글쓰기 처리, 파라미터 vo={}", balancingVo);
+	
+	@GetMapping("/excel/download")
+    public void excelDownload(@ModelAttribute BalancingVO balancingVo, 
+    		HttpServletResponse response) throws IOException {
+		
+		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
+		logger.info("엑셀다운 리스트 결과={}", list.size());
+		
+	    // 파일명 설정
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd:MM:ss");
+        String time = simpleDateFormat.format(date);
+        String fileName = "balancing" + "_" + time + ".xlsx";
+		
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("첫번째 시트");
+        Row row = null;
+        Cell cell = null;
+        int rowNum = 0;
 
-		//2
-		int cnt=balancingService.insertBoard(balancingVo);
-		logger.info("글쓰기 결과, cnt={}", cnt);
+        // Header
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue("정산번호");
+        cell = row.createCell(1);
+        cell.setCellValue("클래스번호");
+        cell = row.createCell(2);
+        cell.setCellValue("호스트번호");
+        cell = row.createCell(3);
+        cell.setCellValue("진행일자");
+        cell = row.createCell(4);
+        cell.setCellValue("(A)참여인원 ");
+        cell = row.createCell(5);
+        cell.setCellValue("(B)클래스단가 ");
+        cell = row.createCell(6);
+        cell.setCellValue("(C)매출액 [A*B]");
+        cell = row.createCell(7);
+        cell.setCellValue("(D)수수료 10% [C*0.1]");
+        cell = row.createCell(8);
+        cell.setCellValue("(E)정산금액(예정금액) [C-D]");
+        cell = row.createCell(9);
+        cell.setCellValue("정산유무");
 
-		//3		
+        // Body
+        for (int i=0; i<list.size(); i++) {
+            row = sheet.createRow(rowNum++);
+            cell = row.createCell(0); 	//정산번호
+            cell.setCellValue(list.get(i).getbNo());
+            cell = row.createCell(1); 	//클래스번호
+            cell.setCellValue(list.get(i).getcNo());
+            cell = row.createCell(2);	//호스트번호
+            cell.setCellValue(list.get(i).gethNo());
+            cell = row.createCell(3);	//진행일자
+            cell.setCellValue(simpleDateFormat.format(list.get(i).getbReqDate()));
+            cell = row.createCell(4);	//참여인원
+            cell.setCellValue(list.get(i).getPpnum());
+            cell = row.createCell(5);	//클래스단가
+            cell.setCellValue(list.get(i).getcPrice());
+            cell = row.createCell(6);	//매출액
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum());
+            cell = row.createCell(7);	//수수료
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1);
+            cell = row.createCell(8);	//정산금액
+            cell.setCellValue(
+            		(list.get(i).getcPrice()*list.get(i).getPpnum())
+            		-(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1));
+            cell = row.createCell(9);	//정산유무
+            cell.setCellValue(list.get(i).getbFlag());
+        }
 
-		//4
-		return "redirect:/balancing/list.do";
-	} 
-	@RequestMapping("/balancing/list")
-	public String list(@ModelAttribute SearchVO searchVo, Model model) {
-		//1
-		logger.info("글목록, 파라미터 searchVo={}", searchVo);
+        // 컨텐츠 타입과 파일명 지정
+        response.setContentType("application/x-msdownload; text/html; charset=UTF-8;"); // msie, tRIDE
+        response.setContentType("application/octet-stream; text/html; charset=UTF-8;");
+        
+        response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
 
-		//2
-		//searchVo에 firstRecordIndex, recordCountPerPage 값을 넣어줘야 함
-		//=> PaginationInfo를 이용하여 firstRecordIndex값을 미리 구한다
-
-		//[1] PaginationInfo 객체 생성 - 계산해줌
-		PaginationInfo pagingInfo = new PaginationInfo();
-		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-
-		//[2] searchVo에 값 셋팅
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("값 셋팅 후 searchVo={}", searchVo);
-
-		List<BalancingVO> list=balancingService.selectAll(searchVo);
-		logger.info("전체조회 결과 list.size={}", list.size());
-
-		//[3] totalRecord 구하기
-		int totalRecord=balancingService.selectTotalRecord(searchVo);
-		pagingInfo.setTotalRecord(totalRecord);
-
-		//3. model에 결과 저장
-		model.addAttribute("list", list);
-		model.addAttribute("pagingInfo", pagingInfo);
-
-		//4. 뷰페이지 리턴
-		return "dashboard/balancing/balancing";
-	}
-
-	@RequestMapping("/detail.do")
-	public String detail(@RequestParam(defaultValue = "0") int no, Model model) {
-		logger.info("글 상세보기 파라미터 no={}", no);
-
-		if(no==0) {
-			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/balancing/list.do");
-
-			return "common/message";
-		}
-
-		BalancingVO vo=balancingService.selectByNo(no);
-		logger.info("상세보기 결과 vo={}", vo);
-
-		model.addAttribute("vo", vo);
-
-		return "balancing/detail";
-	}
-	 */
+        // Excel File Output
+        wb.write(response.getOutputStream());
+        wb.close();
 
 
+    }
 
 
 }

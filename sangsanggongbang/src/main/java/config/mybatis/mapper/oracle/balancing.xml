@@ -14,13 +14,15 @@
 	select *
 		from
 		(
-		    select rownum as RNUM, A.*
+		    select rownum as RNUM, C.*
 		    from
 		    (
-				select * from balancing
+				select a.b_no, a.c_no, a.h_no, a.b_req_date, a.b_flag, b.ppnum, b.c_price
+				from balancing a join class b
+				on a.c_no=b.c_no
 				<include refid="searchWhere"></include>
-				order by b_no desc
-			)A
+				order by a.b_no desc
+			)C
 		)
 		<![CDATA[
 		where RNUM>#{firstRecordIndex} 
@@ -31,15 +33,35 @@
 		select count(*) from balancing
 		<include refid="searchWhere"></include>	
 	</select>
-<!-- 	<select id="selectBalancingComp" parameterType="String"
-		resultType="balancingVo">
-		select * from balancing
-		where b_flag=#{bFlag}
-		order by b_no
-		desc
-	</select> -->
+	
+	<select id="totalPrice" resultType="balancingVo">
+		select a.*, b.ppnum, b.c_price
+		from balancing a join class b
+		 on a.c_no=b.c_no
+		 order by a.b_no desc
+	</select>
 
+	<select id="submitUpdate" parameterType="int">
+		update balancing set b_flag='Y'				
+		where b_No=#{b_No}
+	</select>
 </mapper>
+
+<!-- 
+select *   from   
+(  
+select rownum as RNUM, C.* 
+from 
+(
+select a.b_no, a.c_no, a.h_no, a.b_req_date, a.b_flag, b.ppnum, b.c_price
+from balancing a join class b
+ on a.c_no=b.c_no 
+and b_flag like '%' || ? || '%'
+order by b_no desc
+)C
+) 
+ where a.RNUM>? 
+and a.RNUM<=?+ ? -->
 
 
 

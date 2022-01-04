@@ -32,7 +32,7 @@ public class FileUploadUtil {
 			= (MultipartHttpServletRequest) request;
 		
 		Map<String, MultipartFile> fileMap=multiRequest.getFileMap();
-		List<MultipartFile> fileList=multiRequest.getFiles("upfile");
+//		List<MultipartFile> fileList=multiRequest.getFiles("upfile");
 	 
 		List<Map<String, Object>> list = new ArrayList<>();
 		
@@ -60,6 +60,7 @@ public class FileUploadUtil {
 				map.put("fileName", fileName);
 				map.put("fileSize", fileSize);
 				
+				logger.info("map={}",map.toString());
 				list.add(map);
 			}
 		}//while
