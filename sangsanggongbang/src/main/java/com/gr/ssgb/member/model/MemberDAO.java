@@ -14,5 +14,8 @@ public interface MemberDAO {
 	int insertPayment(PaymentVO paymentVo);
 	MemberVO selectMemberById(String mId);
 	PaymentVO selectBasicPayment(int getmNo);
+	int updatePaymentInfo(PaymentVO payVo);
+	int updatePwd(MemberVO vo);
+	int findPaymentCnt(int getmNo);
 
 }

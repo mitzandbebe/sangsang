@@ -36,8 +36,25 @@
 				</a>
 				<div class="accordion border-light">
 					<div class="col-lg-12 mb-5">
-						<div
-							class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
+						<div class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
+								<table>
+									<tr>
+										<th> <input type="checkbox" id="allCheck"> </th>
+										<th>보낸사람</th>
+										<th>내용</th>
+										<th>날짜</th>
+									</tr>
+									<c:forEach var="map" items="${list }">
+									<tr> 
+									<td><input type="checkbox"></td> 
+									<td>${map['mId'] }</td> 
+									<td>${map['noteContent'] }</td> 
+									<td><fmt:formatDate value="${map['noteRegdate']}" pattern="yyyy-MM-dd [hh:mm]"/> </td> 
+									
+									</tr>
+									
+									</c:forEach>
+								</table>
 							<div
 								class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
 								<div class="d-flex align-items-center mt-3"></div>
@@ -55,8 +72,8 @@
 </main>
 <script type="text/javascript">
 	$(function() {
-		$('#noteWite').click(function(){
-			
+		$('#noteWite').click(function() {
+
 		})
 	})
 </script>

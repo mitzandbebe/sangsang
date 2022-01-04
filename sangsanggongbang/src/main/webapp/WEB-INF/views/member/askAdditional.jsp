@@ -16,7 +16,7 @@
                     </div> 
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                      		<a href="${pageContext.request.contextPath }/member/additional?snsCheck=${cookie.snsCheck.value}">
+                      		<a href="${pageContext.request.contextPath }/member/additional">
                       		<button class="btn mb-2 mr-2 btn-outline-secondary animate-up-2" type="button"><i class="far fa-thumbs-up mr-2"></i>네! 입력할래요</button></a>
                       		<a href="${pageContext.request.contextPath }/main">
                       		<button class="btn mb-2 mr-2 btn-gray animate-up-2" type="button" style="float: right;">로그인하러 갈래요.</button></a>

@@ -16,13 +16,13 @@
 					success:function(res){
 						var str="";
 						if(res){
-							$('#message').css('color', 'orange');
-							str="중복된 아이디입니다.";
-							$('#chkId').val('N');
-						}else{
-							str="사용가능한 아이디입니다.";
 							$('#message').css('color', 'green');
+							str="늘찬님 안녕하세요!";
 							$('#chkId').val('Y');
+						}else{
+							str="가입하신 이메일이 맞나요?";
+							$('#message').css('color', 'red');
+							$('#chkId').val('N');
 						}
 						
 						$('#message').html(str);
@@ -34,53 +34,49 @@
 			}else{
 				$('#message').css('color', 'red');
 				$('#message').css('visibility', 'visible');
-				$('#message').html('올바른 이메일 형식이 아닙니다.');
+				$('#message').html('가입하신 이메일이 맞나요?');
 				$('#chkId').val('N');
 			}
 		});
 		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
 		$('#signup').submit(function(){
-			var pwd = $('#password').val();
+			var pwd = $('#newPassword').val();
 			if($('#mId').val().length<1){
 				alert('아이디를 입력하세요.');
 				$('#mId').focus();
 				event.preventDefault();
-			}else if(!validate_userid($('#mId').val())){
-				alert('아이디는 이메일 형식으로만 가능합니다.');
-				$('#mId').focus();
-				event.preventDefault();
 			}else if($('#chkId').val()!='Y'){
-				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
+				alert('존재하지 않는 이메일입니다.');
 				$('#mId').focus();
 				event.preventDefault();
 			}else if($('#password').val().length<1){
 				alert('비밀번호를 입력하세요');
 				$('#password').focus();
 				event.preventDefault();
-			}else if($('#password').val().length>=10&&!passwordRule.test(pwd)){
+			}else if($('#newPassword').val().length<1){
+				alert('변경할 비밀번호를 입력하세요');
+				$('#newPassword').focus();
+				event.preventDefault();
+			}else if($('#newPassword').val().length>=10&&!passwordRule.test(pwd)){
 				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
-				$('#password').focus();
+				$('#newPassword').focus();
 				event.preventDefault();
 			}else if($('#password_confirm').val().length<1){
 				alert('2차 비밀번호를 입력하세요');
 				$('#password_confirm').focus();
 				event.preventDefault();
-			}else if($('#password').val()!=$('#password_confirm').val()){
+			}else if($('#newPassword').val()!=$('#password_confirm').val()){
 				alert('비밀번호 확인이 일치하지 않습니다!');
 				$('#password_confirm').focus();
 				event.preventDefault();
-			}else if(!$('#termChk').is(':checked')){
-				alert('이용약관에 동의해야합니다.');
-				$('#termChk').focus();
-				event.preventDefault();
 			}		
 		});
-		$('#password').keyup(function(){
+		$('#newPassword').keyup(function(){
 			var pwd = $(this).val();
 			if(passwordRule.test(pwd) && pwd.length>=10){
 				$('#message2').css('color', 'green');
-				$('#message2').html('사용가능한 비밀번호입니다.');
+				$('#message2').html('변경가능한 비밀번호입니다.');
 			}else if(!passwordRule.test(pwd)&&pwd.length>=10){
 				$('#message2').css('color', 'orange');
 				$('#message2').html('숫자, 영문자, 특수문자(!@#$%^&*)를 포함해야 합니다');
@@ -93,7 +89,7 @@
 		});
 		$('#password_confirm').keyup(function(){
 			var pwd2 = $(this).val();
-			if($('#password').val()!=$('#password_confirm').val()){
+			if($('#newPassword').val()!=$('#password_confirm').val()){
 				$('#message3').css('visibility', 'visible');
 				$('#message3').css('color', 'red');
 				$('#message3').html('2차 비밀번호가 일치하지 않습니다.');
@@ -101,34 +97,29 @@
 				$('#message3').css('color', 'green');
 				$('#message3').html('2차 비밀번호가 일치합니다.');
 			}
-		});
+		});	
 		
 		function validate_userid(id){
 			var pattern = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
 			return pattern.test(id);
 		}
-		
-		
-		$('#terms').click(function(){
-			open("<c:url value='/member/terms'/>", "term", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
-		});
-			
 	});
 	
 </script>
 
         <!-- Section -->
-        <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang2.jpg">
+        <section class="min-vh-100 d-flex align-items-center overlay-soft-dark section-image py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang3.png">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="text-center text-md-center mb-5 mt-md-0 text-white">
-                            <h1 class="mb-0 h3">상상공방에 새로운 늘찬이 되어주세요!</h1>
+                            <h1 class="mb-0 h3">임시비밀번호를 새로 발급받으셨군요.&nbsp;
+                            지금 바로 비밀번호를 변경하세요!</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                            <form id ="signup" method="post" action="<c:url value='/member/join'/> ">
+                            <form id ="signup" method="post" action="<c:url value='/member/editPwd'/> ">
                                 <!-- Form -->
                                 <div class="form-group">
                                     <label for="exampleInputIcon4">아이디(이메일)</label>
@@ -136,101 +127,60 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" class="form-control" id="mId" placeholder="example@company.com" type="text" aria-label="email adress">
-                                        
+                                        <input name="mId" class="form-control" id="mId" placeholder="임시비밀번호를 발급받은 계정을 입력하세요." type="text" aria-label="email adress">
                                         <input type ="hidden" name="chkId" id="chkId">
-                                        <input type="hidden" name="mFilename" id="mFilename"  >
                                         <input type="hidden" name="snsCheck" id="snsCheck" value="n" >
-                                        
                                     </div>
                                     <div>
                                     	<span id="message" style="visibility:hidden">아이디를 입력하세요.</span>
                                     </div>
-                                </div>
+                                
                                 <!-- End of Form --> 
+                                <!-- Form -->
                                 <div class="form-group">
-                                    <!-- Form -->
-                                    <div class="form-group">
-                                        <label for="password">비밀번호</label>
+                                        <label for="password">임시비밀번호</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name ="pwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password" >
+                                            <input name ="pwd" class="form-control" id="password" placeholder="임시 비밀번호를 입력하세요." type="password" aria-label="Password" >
+                                        </div>
+                                    
+                                 </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group">
+                                        <label for="newPassword">새 비밀번호</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-star"></i></span>
+                                            </div>
+                                            <input class="form-control" name="newPassword" id="newPassword" placeholder="새로운 비밀번호를 입력하세요." type="password" aria-label="Password" >
                                         </div>
                                         <div>
                                     		<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
                                     	</div>
-                                    </div>
                                     <!-- End of Form -->
                                     <!-- Form -->
-                                    <div class="form-group">
-                                        <label for="password_confirm">비밀번호 확인</label>
+                                    	
+                                        <label for="password_confirm">새 비밀번호 확인</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
+                                                <span class="input-group-text"><i class="fas fa-star"></i></span>
                                             </div>
-                                            <input class="form-control" id="password_confirm" placeholder="Confirm password" type="password" aria-label="Password" >
+                                            <input class="form-control" id="password_confirm" placeholder="비밀번호 확인을 입력하세요." type="password" aria-label="Password" >
                                         </div>
                                         <div>
                                     		<span id="message3" style="visibility:hidden">비밀번호를 입력하세요.</span>
                                     	</div>
                                     </div>
                                     <!-- End of Form -->
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="termChk">
-                                        <label class="form-check-label" for="terms">
-                                            <span class="small"><a class="text-secondary" href="#" id="terms">약관</a>에 동의합니다.</span>
-                                        </label>
-                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-block btn-primary">계정 생성하기!</button>
+                                <button type="submit" class="btn btn-block btn-primary">비밀번호 변경하기!</button>
                             </form>
-                             <div class="mt-3 mb-4 text-center">
-                                <span class="font-weight-normal">SNS로 회원가입하기</span>
-                            </div>
-                            <div class="btn-wrapper my-4 text-center">
-                                <a href="javascript:kakaoLogin()"><img src="https://www.gb.go.kr/supportRequest/images/certi_kakao_login.png" style="height:60px;width:auto;"></a>
-								<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-								<script type="text/javascript">
-								var userId ="";
-									//a7349f7993a288fe861d6ebb7abec497
-									window.Kakao.init("a7349f7993a288fe861d6ebb7abec497");
-									
-									function kakaoLogin(){
-										window.Kakao.Auth.login({
-											scope:'profile_nickname, account_email, gender, birthday, profile_image',
-											success:function(authObj){
-												console.log(authObj);
-												window.Kakao.API.request({
-													url:'/v2/user/me',
-													success: res=>{
-														const kakao_account = res.kakao_account;
-														console.log(kakao_account);
-														userId = kakao_account.email;
-														console.log(userId);
-														console.log(kakao_account.profile.profile_image_url);
-														
-														document.getElementById('email').value=kakao_account.email;
-														document.getElementById('bday').value=kakao_account.birthday;
-														document.getElementById('mNickname').value=kakao_account.nickname;
-														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
-														document.getElementById('password').value="temppassword";
-														document.getElementById('password_confirm').value="temppassword";
-														document.getElementById('snsCheck').value="y";
-														document.getElementById('signup').submit();
-													}
-												});
-											}
-											
-										});
-									}
-								</script>
-                            </div>
                             <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">
                                 <span class="font-weight-normal">
-                                    이미 계정이 있으세요?
-                                    <a href="<c:url value='/login/login/' /> " class="font-weight-bold">로그인하러가기</a>
+                                    <a href="<c:url value='/login/login' /> " class="font-weight-bold">나중에 변경하고 우선 로그인하겠습니다.</a>
                                 </span>
                             </div>
                         </div>
