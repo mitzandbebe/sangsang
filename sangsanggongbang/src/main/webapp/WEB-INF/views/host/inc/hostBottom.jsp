@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
  
- <footer class="footer py-6 bg-primary text-white">
+ <footer class="footer py-6 text-white" style="background-color: #679093;">
 
     <div class="container">
         <div class="row">
@@ -110,10 +110,9 @@
 <!-- Spaces custom Javascript -->
 <script src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
 
-<script src="${pageContext.request.contextPath }/resources/assets/js/balancing.js"></script>
-<!-- 아임포트 결제모듈-->
+<!-- ê²°ì ëª¨ë ììí¬í¸ ë¼ì´ë¸ë¬ë¦¬ -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<!-- 결제모듈 js-->
+<!-- ê²°ì ëª¨ë js-->
 <script type="text/javascript"
     src="<c:url value='/resources/assets/js/payments.js'/> "></script>
 
