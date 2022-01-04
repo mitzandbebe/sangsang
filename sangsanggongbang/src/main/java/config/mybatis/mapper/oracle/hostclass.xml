@@ -116,6 +116,9 @@
 	<select id="selectClassAllContents" resultType="map">
 		select * from selectClass
 	</select>
+	<select id="selectClassCategory" resultType="map" parameterType="String">
+		select * from selectClass where category_name= #{'categoryName'}
+	</select>
 	
 	<select id="selectClassbyCNo" resultType="map" parameterType="int">
 		 select * from selectClass where c_no=#{cNo}
