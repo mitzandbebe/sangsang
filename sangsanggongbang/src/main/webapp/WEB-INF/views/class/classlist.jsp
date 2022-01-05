@@ -79,7 +79,7 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>" class="position-relative">
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
                                     <c:choose >
                                     	<c:when test="${not empty map['THUMBNAIL']}">
                                         	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
@@ -107,7 +107,7 @@
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
-                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
+                                                <span class="h5 text-dark font-weight-bold" style="font-size:0.8em">
                                                 <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
                                                 </span>
                                             </div>

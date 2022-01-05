@@ -166,27 +166,20 @@ public class HostClassController {
 		
 		return "class/classlist";
 	}
-	@GetMapping("/classlistForCate")
-	public String classCate_get(Model model) {
-		logger.info("클래스 전체목록보기");
-		
-		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
-		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
-		
-		model.addAttribute("classlist",classlist);
-		
-		return "class/classlist";
-	}
 	
 	@GetMapping("/detail")
-	public String classDetail_get(@RequestParam(defaultValue = "0") int cNo,Model model) {
+	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo ,
+			@RequestParam String categoryName, Model model) {
 		logger.info("클래스 상세보기");
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
 		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
 		
+		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
+		logger.info("전체 클래스목록 결과, catelist.size={}",catelist.size());
 		
 		model.addAttribute("classlist",classlist);
+		model.addAttribute("catelist",catelist);
 		
 		return "class/detail";
 	}
