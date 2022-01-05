@@ -107,7 +107,7 @@ public class NoteController {
 		if(cnt1>0) {
 			msg="쪽지 삭제 성공";
 		}else if(cnt2==0) {
-			msg="쪽지 삭제 실패"; 
+		
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
