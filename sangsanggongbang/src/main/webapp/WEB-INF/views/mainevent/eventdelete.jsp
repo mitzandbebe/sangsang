@@ -23,7 +23,7 @@
         <br>
         <br>
         <br>
-         <div class="section section-sm bg-white pt-6">
+         <div class="section section-sm bg-white pt-6" style='margin-top:100px;'>
             <article class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
@@ -37,7 +37,7 @@
         </div>
 
        
-   	<div class="" style="margin-left: 50px;">
+   	<div class="" style="margin-left: 50px; margin-top:25px;">
 			<input value="이벤트목록"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist" type="button">	
 			<input value="해당 글로 돌아가기"

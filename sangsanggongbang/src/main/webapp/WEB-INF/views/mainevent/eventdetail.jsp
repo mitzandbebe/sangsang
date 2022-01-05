@@ -4,19 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 탑삽입해야함 -->
+
 <%@include file="../inc/top.jsp" %>
     <main>
 
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
+        <div class="preloader bg-dark flex-column justify-content-center align-items-center" >
     <div class="position-relative">
         <img src="${pageContext.request.contextPath }/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
         <img src="${pageContext.request.contextPath }/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
     </div>
 </div>
-	<form name="frmEdetail" method="post" enctype="multipart/form-data">
+	<form name="frmEdetail" method="post" enctype="multipart/form-data" >
 	<input type="hidden" name="oldFileName" value="${vo.newsUploadname}"> 
         <!-- Hero -->
-        <section class="section-header pb-7 bg-primary text-white">
+        <section class="section-header pb-7 bg-primary text-white" >
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 text-center">
@@ -43,7 +44,7 @@
 
             </article>
         </div>
-   	<div class="" style="margin-left: 50px;">
+   	<div class="" style="margin-left: 50px;  margin-top:25px;">
 			<input value="메인으로 돌아가기"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain" type="button">	
 			<input value="이벤트목록"

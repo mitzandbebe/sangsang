@@ -1,5 +1,11 @@
 package com.gr.ssgb.review.model;
 
-public interface ReviewService {
+import java.util.List;
 
+import com.gr.ssgb.common.SearchVO;
+
+public interface ReviewService {
+	int insertReview(ReviewVO reviewVo);
+	public List<ReviewVO> selectAll(SearchVO searchVo);
+	int selectTotalRecord(SearchVO searchVo);
 }
