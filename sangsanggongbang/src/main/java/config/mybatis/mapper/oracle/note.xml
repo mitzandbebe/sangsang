@@ -44,16 +44,22 @@
 	</select>
 
 	<delete id="deleteNote" parameterType="int[]">
-		delete NOTE WHERE 
-		<foreach collection="array" item="arr" separator=","  index="index">
-			NOTE_NO= #{arr}
-		</foreach>
+		delete from NOTE
+		<where>
+			note_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
 	</delete>
-
-	<!-- <delete id="deleteNoteRec" parameterType="map">
-		delete NOTE_REC WHERE REC_NO=
-		<foreach collection="array" item="arr" open="[" close="]" separator="," >
-			#{arr}
-		</foreach>
-	</delete> -->
+		<delete id="deleteNoteRec" parameterType="int[]">
+			delete from NOTE_rec
+		<where>
+			rec_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</delete>
+	
 </mapper>
