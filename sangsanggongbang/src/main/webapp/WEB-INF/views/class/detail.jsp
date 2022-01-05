@@ -223,7 +223,7 @@
 							<div class="tab-pane fade" id="nav-qna" role="tabpanel" aria-labelledby="nav-qna-tab">
 								<div class="row">
 									<div class="col-12">
-										<c:import url="/qa/list"/>
+										<c:import url="/qa/list?cNo=${map['C_NO']}"/>
 									</div>
 								</div>
 							</div>
@@ -459,5 +459,13 @@
 		</section>
 		<!-- End of section -->
 	</main>
-	
+
+
+<script>
+	$(document).ready(function() {
+		var hash = location.hash.substring(1);
+		$('.nav-tabs #' + hash).trigger('click');
+	});
+</script>
+
 <%@ include file="../inc/bottom.jsp" %>

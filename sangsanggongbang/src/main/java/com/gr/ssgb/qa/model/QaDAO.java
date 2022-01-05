@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface QaDAO {
 
-	List<QaVO> selectQaAll();
+	List<QaVO> selectQaAll(QaVO vo);
 
 	public int insertQa(QaVO vo);
 

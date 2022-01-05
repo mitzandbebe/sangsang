@@ -37,7 +37,7 @@
 		m_originalname=#{mOriginalname}, m_filesize=#{mFilesize}, m_filename=#{mFilename}
 		where m_id = #{mId} 
 	</update>
-	<select id="selectMno" parameterType="string" resultType="int">
+	<select id="selectMno" parameterType="string" resultType="integer">
 		select m_no from member where m_id = #{mId}
 	</select>
 	
