@@ -17,7 +17,7 @@
 <section class="section section-lg line-bottom-light">
 	<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2">
 		<div class="row">
-			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5">
+			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5"> 
 				<c:forEach var="list" items="${list }">
 					<div class="card bg-white border-light p-3 rounded">
 						<a href="./blog-post.html"> <img
