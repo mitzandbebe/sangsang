@@ -12,7 +12,7 @@
 				<p class="lead d-none d-lg-inline">호스트(가제)님이 처리한 블랙리스트입니다 (관리자 호스트 구분하는 칼럼에 들어갈 것 도 넣어줘야 함)</p>
 			</div>
 		</div>
-	</div>
+	</div> 
 </section> 
 <section class="section section-lg line-bottom-light">
 	<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2">
