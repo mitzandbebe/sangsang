@@ -1,25 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form name="frmreview" method="post"  enctype="multipart/form-data"
+
+	<form name="frmReviewAdd" method="post"  enctype="multipart/form-data"
 		 action="<c:url value='/class/addreview'/> ">
 		 <input type="hidden" name="cNo" value="${param.cNo }">
 		<div
 			class="d-flex justify-content-between align-items-center mb-3 mt-5">
 			<h2 class="h5 m-0">리뷰 등록</h2>
 			<span class="d-flex justify-content-center stars-rating" name="rRate">
+<!-- 				<i class="star far fa-star text-gray mr-2" data-rating-value="1"></i> -->
 				<i class="star far fa-star text-gray mr-2" data-rating-value="1"></i>
 				<i class="star far fa-star text-gray mr-2" data-rating-value="2"></i>
 				<i class="star far fa-star text-gray mr-2" data-rating-value="3"></i>
 				<i class="star far fa-star text-gray mr-2" data-rating-value="4"></i>
-				<i class="star far fa-star text-gray" data-rating-value="5"></i>
+				<i class="star far fa-star text-gray mr-2" data-rating-value="5"></i>
 			</span>
 		</div>
 		<div>
@@ -37,5 +32,44 @@
 			<button type="submit" class="btn btn-primary animate-up-2">리뷰등록</button>
 		</div>
 	</form>
-</body>
-</html>
+
+<script type="text/javascript">
+// Review stars rating
+$('.stars-rating .star').on('mouseover', function() {
+    var rating = $(this).attr('data-rating-value');
+    $('.stars-rating .star').each(function(value) {
+        if (value + 1 <= rating) {
+            $(this).removeClass('text-gray');
+            $(this).addClass('text-warning');
+        }
+        if (value >= rating) {
+            $(this).addClass('text-gray');
+            $(this).removeClass('text-warning');
+            $(this).removeClass('fas');
+            $(this).addClass('far');
+        }
+    });
+    $(this).on('click', function() {
+        $(this).parent().addClass('rated');
+        $('.stars-rating .star').each(function(value) {
+            if (value + 1 <= rating) {
+                $(this).removeClass('text-gray');
+                $(this).addClass('text-warning');
+                $(this).removeClass('far');
+                $(this).addClass('fas');
+            }
+        });
+        $('#rating').val(rating);
+    });
+});
+$('.stars-rating').on('mouseleave', function() {
+    if (!$(this).hasClass('rated')) {
+        $('.stars-rating .star').each(function() {
+            $(this).addClass('text-gray');
+            $(this).removeClass('text-warning');
+            $(this).addClass('far');
+            $(this).removeClass('fas');
+        });
+    }
+});
+</script>
