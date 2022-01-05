@@ -27,17 +27,19 @@
 	</div>
 	<div class="pattern bottom"></div>
 </section>
-<form method="post"
-	action="" name="frm">
+<form method="post" action="" name="frm">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
-				<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
-					<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-						type="button">쪽지쓰기</button></a>
-						<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
-							type="button">삭제</button>
+					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
+						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
+							type="button">쪽지쓰기</button>
+					</a>
+					<button class="btn mb-2 mr-2 btn-success" id="noteSave"
+						type="button">보관하기</button>
+					<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
+						type="button">삭제</button>
 					<div class="accordion border-light">
 						<div class="col-lg-12 mb-5">
 							<div
@@ -52,14 +54,13 @@
 									</tr>
 									<c:forEach var="map" items="${list }">
 										<tr>
-											<td><input type="checkbox" id="check"></td>
+											<td><input type="checkbox" id="check" name="noteNo"
+												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
 											<td>${map['noteContent'] }</td>
 											<td><fmt:formatDate value="${map['noteRegdate']}"
-													pattern="yyyy-MM-dd [hh:mm]" /></td>
-
+													pattern="yyyy-MM-dd [HH:mm]" /></td>
 										</tr>
-
 									</c:forEach>
 								</table>
 								<div
@@ -67,15 +68,14 @@
 									<div class="d-flex align-items-center mt-3"></div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div>		
+					</div>			
 				</div>
 			</div>
 		</div>
 	</div>
 	<input type="text" value="${param.mId }" id="id">
 </form>
-
 </main>
 <script type="text/javascript">
 	$(function() {
@@ -97,16 +97,15 @@
 				$('#allCheck').prop("checked", false)
 			}
 		})
-		
-			var mId= $('#id').val();
-		$("#noteDelete").click(function() {
-			$('form[name=frm]').prop('action',"<c:url value='/note/noteDelete'/>");
-			$('form[name=frm]').submit();
-		})
+
+		$("#noteDelete").click(
+				function() {
+					$('form[name=frm]').prop('action',
+							"<c:url value='/note/noteDelete'/>");
+					$('form[name=frm]').submit();
+				})
+
 	})
-/* 	$('form[name=frmPd]').prop('action',
-			"<c:url value='/shop/cart/cartAdd?mode=" + type + "' />");
-	$('form[name=frmPd]').submit(); */
 </script>
 
 <%@include file="../inc/bottom.jsp"%>
