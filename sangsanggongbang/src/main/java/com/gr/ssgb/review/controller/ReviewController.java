@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,10 @@ public class ReviewController {
 		return "class/addreview";
 	}
 	
-	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo,HttpServletRequest request) {
+	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo,
+			HttpSession session,HttpServletRequest request,Model model) {
+		String mId = (String) session.getAttribute("mId");
+		
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
 
 		// 파일 업로드 처리
@@ -109,6 +113,8 @@ public class ReviewController {
 		int cnt = reviewService.insertReview(reviewVo);
 		logger.info("등록 결과, cnt={}", cnt);
 
+		model.addAttribute("mId",mId);
+		
 		return "redirect:/class/review";
 	}
 }

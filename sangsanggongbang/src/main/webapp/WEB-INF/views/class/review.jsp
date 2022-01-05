@@ -1,25 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
+<from name="frmreviewList">
 	<!-- 리뷰 내용반복 -->
-	<c:forEach var="vo" items="${list }">
 		<c:if test="${empty list }">
-			<p class="h5">리뷰를 등록해주세요</p>
+			<p class="h5">소중한 첫 리뷰를 등록해주세요</p>
 		</c:if>
 		<c:if test="${!empty list }">
+	<c:forEach var="vo" items="${list }">
 			<div class="card bg-white border border-light p-4 mb-4">
 				<div class="d-flex justify-content-between align-items-center mb-3">
 					<div>
 						<ul class="list-unstyled d-flex mt-1 mb-0">
-							<li class="list-item small mr-3">유저이름넣기</li>
+							<li class="list-item small mr-3">${mId }</li>
 							<li class="list-item small">${vo.rRegdate }</li>
 						</ul>
 					</div>
@@ -38,8 +32,8 @@
 				</div>
 				<textarea readonly>${vo.rContent }</textarea>
 			</div>
-		</c:if>
 	</c:forEach>
+	
 		<div class="row">
 		<div class="col-lg-12 mb-5" >
 			<div
@@ -74,5 +68,5 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+		</c:if>
+</from>

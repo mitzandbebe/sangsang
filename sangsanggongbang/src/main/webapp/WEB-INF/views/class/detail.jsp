@@ -300,7 +300,6 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
-					</c:forEach>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 선택</label>
 							<div class="form-group">
@@ -323,7 +322,7 @@
 							</div>
 							<input type="hidden" id="classRealPrice" value='40000'>
 							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
-							<div class="c03-charge" id="price">40000</div>
+							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-block btn-primary mt-4"
 									id="apibtn">결제하기</button>
@@ -333,7 +332,7 @@
 				</div>
 			</div>
 		</div>
-
+</c:forEach>
 		<section class="section bg-soft">
        <c:forEach var="map" items="${catelist}">
 			<div class="container">
