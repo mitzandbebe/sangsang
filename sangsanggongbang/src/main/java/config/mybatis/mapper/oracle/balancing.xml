@@ -10,7 +10,7 @@
 		</if>
 	</sql>
 
-	<select id="selectBalancingAll" parameterType="searchVo" resultType="balancingVo">
+	<select id="selectBalancingAll" parameterType="extendSearchVo" resultType="balancingVo">
 	select *
 		from
 		(
@@ -26,10 +26,10 @@
 		)
 		<![CDATA[
 		where RNUM>#{firstRecordIndex} 
-			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage} and h_no=#{hNo}]]>
 	</select>
 
-	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
+	<select id="selectTotalRecord" parameterType="extendSearchVo" resultType="int">
 		select count(*) from balancing
 		<include refid="searchWhere"></include>	
 	</select>

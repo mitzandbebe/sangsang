@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gr.ssgb.balancing.model.BalancingService;
 import com.gr.ssgb.balancing.model.BalancingVO;
 import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.ExtendSearchVO;
 import com.gr.ssgb.common.PaginationInfo;
-import com.gr.ssgb.common.SearchVO;
 
 @Controller
 @RequestMapping("/dashboard/host")
@@ -44,28 +45,34 @@ public class BalancingController {
 	}
 
 	@RequestMapping("/balancing/list")
-	public String bcList(@ModelAttribute SearchVO searchVo, Model model,
-			@RequestParam(defaultValue = "0") int bNo) {
+	public String bcList(@ModelAttribute ExtendSearchVO extendSearchVo, Model model,
+			@RequestParam(defaultValue = "0") int bNo, HttpSession session) {
 		//1. 파라미터 읽어오기 - 출력
-		logger.info("정산목록 목록 페이지, 파라미터 searchVo={}", searchVo);
+		logger.info("정산목록 목록 페이지, 파라미터 extendSearchVo={}", extendSearchVo);
+		
+		//세션 hId, hNo로 변경해서 받아야함.
+		//String hNo =(String) session.getAttribute("hNo");
+		int hNo=222;
+		logger.info("호스트번호 session hNo={}", hNo);
 
 		//[1] PaginationInfo 객체 생성 - 계산해줌
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		pagingInfo.setCurrentPage(extendSearchVo.getCurrentPage());
 
-		//[2] searchVo에 값 셋팅
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("값 셋팅 후 searchVo={}", searchVo);
+		//[2] searchVo에 값 세팅
+		extendSearchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		extendSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		extendSearchVo.sethNo(hNo);
+		logger.info("값 셋팅 후 extendSearchVo={}", extendSearchVo);
 
-		List<BalancingVO> list=balancingService.selectBalancingAll(searchVo);
+		List<BalancingVO> list=balancingService.selectBalancingAll(extendSearchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
 		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
-		int totalRecord=balancingService.selectTotalRecord(searchVo);
+		int totalRecord=balancingService.selectTotalRecord(extendSearchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		//3. model에 결과 저장

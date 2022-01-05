@@ -265,8 +265,6 @@
 								<div id="list3"></div>
 
 
-								</ul>
-								</nav>
 							</div>
 						</div>
 					</div>
@@ -275,6 +273,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-</main>
+</div>s
 <%@ include file="../../../inc/bottom.jsp"%>
