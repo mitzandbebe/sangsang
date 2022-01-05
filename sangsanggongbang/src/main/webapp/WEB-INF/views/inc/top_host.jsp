@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style >
-.card.border-light.p-md-2 {
-    margin-top: 100px;
-}
-</style>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 
- 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -52,7 +45,7 @@
 	content="Premium Directory Listing Bootstrap 4 Template featuring 37 hand-crafted pages, a dashboard an Mapbox integration. Spaces also comes with a complete UI Kit featuring over 700 components by Themesberg.">
 <meta property="twitter:image"
 	content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg">
-  
+
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="120x120"
 	href="${pageContext.request.contextPath }/resources/assets/img/favicon/apple-touch-icon.png">
@@ -90,7 +83,7 @@
 <link type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/spaces.css"
 	rel="stylesheet">
-
+ 
 <!-- �룿�듃 �궫�엯 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

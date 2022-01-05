@@ -1,9 +1,7 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
  
  <footer class="footer py-6 bg-primary text-white">
-
     <div class="container">
         <div class="row">
             <div class="col-xl-3 mb-3 mb-xl-0">
@@ -40,7 +38,7 @@
                         <span class="d-inline-block text-left">
                             <small class="font-weight-normal d-block">Available on</small> App Store 
                         </span> 
-                    </span>
+                    </span> 
                 </a>
                 <a href="#" class="btn btn-sm btn-white">
                     <span class="icon icon-brand mr-2"><span class="fab fa-google-play"></span></span>
