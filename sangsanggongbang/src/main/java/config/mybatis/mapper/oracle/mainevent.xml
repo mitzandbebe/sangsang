@@ -16,7 +16,7 @@
 		#{newsFilesize},
 		#{newsOriginalname})
 	</insert>
- 
+
 	<select id="selectAll" parameterType="searchVo"
 		resultType="mainEventVO">
 		select*

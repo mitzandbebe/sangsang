@@ -9,7 +9,7 @@
 			where ${searchCondition} like '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
-	 
+	
 	<select id="selectMemberAll" parameterType="searchVo"
 		resultType="memberVo">
 		select *

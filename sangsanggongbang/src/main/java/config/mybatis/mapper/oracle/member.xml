@@ -10,7 +10,7 @@
 		insert into member(M_NO, M_ID, PWD)
 		values(#{mNo}, #{mId}, #{pwd}) 
 	</insert>
-	 
+	
 	<select id="selectMemberCnt" parameterType="string" resultType="int">
 		select count(*) from member where m_id=#{snsaccount}
 	</select>

@@ -13,7 +13,7 @@
 	<select id="selectBalancingAll" parameterType="searchVo" resultType="balancingVo">
 	select *
 		from
-		( 
+		(
 		    select rownum as RNUM, C.*
 		    from
 		    (

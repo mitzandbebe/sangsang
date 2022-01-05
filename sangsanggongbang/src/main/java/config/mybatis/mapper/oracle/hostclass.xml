@@ -11,7 +11,7 @@
 		<selectKey keyProperty="cNo" resultType="int" order="BEFORE">
          select HOSTCLASS_SEQ.nextval from dual
       </selectKey>
-		 
+		
 		insert into
 		HOSTCLASS(
          C_NO
