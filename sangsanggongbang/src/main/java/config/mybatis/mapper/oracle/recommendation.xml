@@ -18,7 +18,7 @@
 		select *
 		from
 		(
-		select rownum as RNUM, A.*
+		select rownum as RNUM, A.* 
 		from
 		(
 		select * from recommendation order by

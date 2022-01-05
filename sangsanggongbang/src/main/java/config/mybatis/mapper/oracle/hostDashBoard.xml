@@ -4,4 +4,4 @@
 
 <mapper namespace="com.gr.ssgb.host.dashboard.model.DashBoardDAO">
 
-</mapper>
+</mapper> 

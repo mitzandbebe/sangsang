@@ -10,7 +10,7 @@
 		) <![CDATA[where RNUM>#{firstRecordIndex} and RNUM<=#{firstRecordIndex}+ 
 		#{recordCountPerPage} ]]> </select> <select id="selectTotalRecord" parameterType="searchVo" 
 		resultType="int"> select count(*) from blackList </select> -->
-
+ 
 	<select id="selectBlackListAll" resultType="blackListVo" parameterType="blackListVo">
 		select *
 		from(
