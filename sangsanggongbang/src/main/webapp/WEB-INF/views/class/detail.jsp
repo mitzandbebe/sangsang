@@ -57,7 +57,12 @@
 								<a class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
-									class="far fa-star mr-2"></span>리뷰</a> <a
+									class="far fa-star mr-2"></span>리뷰</a> 
+								<a class="nav-item nav-link" id="nav-qna-tab"
+									data-toggle="tab" href="#nav-qna" role="tab"
+									aria-controls="nav-qna" aria-selected="false"><span
+									class="far fa-star mr-2"></span>Q&A</a> 
+									<a
 									class="nav-item nav-link" id="nav-location-tab"
 									data-toggle="tab" href="#nav-location" role="tab"
 									aria-controls="nav-location" aria-selected="false"><span
@@ -214,6 +219,14 @@
 								
 							</div>
 							<!-- End of Reviews Tab -->
+							<!-- Q&A Tab -->
+							<div class="tab-pane fade" id="nav-qna" role="tabpanel"
+								aria-labelledby="nav-qna-tab">
+								<c:import url="/qa/list"/>
+								
+								
+							</div>
+							<!-- End of Q&A Tab -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
 								<div class="row">

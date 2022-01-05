@@ -2,8 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@include file="../inc/top.jsp" %>
-<br><br><br>
+<%@include file="../inc/top_admin.jsp" %>
+<style type="text/css">
+.card.border-light.p-md-2 {
+    margin-top: 100px;
+}
+</style>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -144,4 +148,4 @@
 		
 		
 	</script>
-<%@include file="../inc/bottom.jsp" %>
+<%@include file="../inc/bottom_admin.jsp" %>

@@ -33,6 +33,12 @@
 		</div>
 	</form>
 
+
+	
+<!-- Main CSS -->
+<link type="text/css"
+	href="${pageContext.request.contextPath }/resources/css/spaces.css"
+	rel="stylesheet">
 <script type="text/javascript">
 // Review stars rating
 $('.stars-rating .star').on('mouseover', function() {

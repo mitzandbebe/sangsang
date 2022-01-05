@@ -4,7 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 탑삽입해야함 -->
-<%@include file="../inc/top.jsp" %>
+<%@include file="../inc/top_admin.jsp" %>
+<style type="text/css">
+.card.border-light.p-md-2 {
+    margin-top: 100px;
+}
+</style>
     <main>
 
         <div class="preloader bg-dark flex-column justify-content-center align-items-center">
@@ -70,4 +75,4 @@
 
 </script>
 <!-- 푸터삽입해야함 -->
-<%@include file="../inc/bottom.jsp" %>
+<%@include file="../inc/bottom_admin.jsp" %>
