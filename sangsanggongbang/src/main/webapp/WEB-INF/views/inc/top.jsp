@@ -4,11 +4,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style >
-.card.border-light.p-md-2 {
-    margin-top: 100px;
-}
-</style>
+
 
 
 

@@ -6,6 +6,7 @@
 <!-- 탑삽입해야함 -->
 
 <%@include file="../inc/top.jsp" %>
+
     <main>
 
         <div class="preloader bg-dark flex-column justify-content-center align-items-center" >
