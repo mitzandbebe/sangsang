@@ -38,4 +38,23 @@
 	<select id="selectNoteView" parameterType="map" resultType="map" resultMap="noteView">
 		SELECT * FROM NOTEVIEW WHERE R_NICKNAME=#{rNickname}
 	</select>
+
+	<delete id="deleteNote" parameterType="int[]">
+		delete from NOTE
+		<where>
+			note_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</delete>
+		<delete id="deleteNoteRec" parameterType="int[]">
+			delete from NOTE_rec
+		<where>
+			rec_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</delete>
 </mapper>
