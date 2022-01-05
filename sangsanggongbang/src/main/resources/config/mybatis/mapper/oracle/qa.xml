@@ -6,40 +6,41 @@
 
 	<select id="selectQaAll" resultType="qaVo">
 		SELECT
-			  Q.QA_NO
-			, Q.C_NO
-			, Q.M_NO
-			, Q.QA_TITLE
-			, Q.QA_CONTENT
-			, Q.QA_STEP
-			, Q.QA_GROUP_ID
-			, Q.QA_REGDATE
-			, Q.UPPER_QA_NO
+		  Q.QA_NO
+		, Q.C_NO
+		, Q.M_NO
+		, Q.QA_TITLE
+		, Q.QA_CONTENT
+		, Q.QA_STEP
+		, Q.QA_GROUP_ID
+		, Q.QA_REGDATE
+		, Q.UPPER_QA_NO
 
-			, M.M_NO AS "memberVO.mNo"
-			, M.M_ID AS "memberVO.mId"
-			, M.M_NAME AS "memberVO.mName"
-			, M.PWD AS "memberVO.pwd"
-			, M.M_NICKNAME AS "memberVO.mNickname"
-			, M.PHONE AS "memberVO.phone"
-			, M.BDAY AS "memberVO.bday"
-			, M.M_ZIPCODE AS "memberVO.mZipcode"
-			, M.M_ADDRESS AS "memberVO.mAddress"
-			, M.M_ADDRESS_DETAIL AS "memberVO.mAddressDetail"
-			, M.REGDATE AS "memberVO.regdate"
-			, M.M_GRADE AS "memberVO.mGrade"
-			, M.M_ORIGINALNAME AS "memberVO.mOriginalname"
-			, M.M_FILESIZE AS "memberVO.mFilesize"
-			, M.M_FILENAME AS "memberVO.mFilename"
-			, M.DELFLAG AS "memberVO.delflag"
+		, M.M_NO AS "memberVO.mNo"
+		, M.M_ID AS "memberVO.mId"
+		, M.M_NAME AS "memberVO.mName"
+		, M.PWD AS "memberVO.pwd"
+		, M.M_NICKNAME AS "memberVO.mNickname"
+		, M.PHONE AS "memberVO.phone"
+		, M.BDAY AS "memberVO.bday"
+		, M.M_ZIPCODE AS "memberVO.mZipcode"
+		, M.M_ADDRESS AS "memberVO.mAddress"
+		, M.M_ADDRESS_DETAIL AS "memberVO.mAddressDetail"
+		, M.REGDATE AS "memberVO.regdate"
+		, M.M_GRADE AS "memberVO.mGrade"
+		, M.M_ORIGINALNAME AS "memberVO.mOriginalname"
+		, M.M_FILESIZE AS "memberVO.mFilesize"
+		, M.M_FILENAME AS "memberVO.mFilename"
+		, M.DELFLAG AS "memberVO.delflag"
 		FROM QA Q
 		INNER JOIN MEMBER M ON M.M_NO = Q.M_NO
 		WHERE 1=1
-
 		<if test="cNo != null">
 			AND C_NO = #{cNo}
 		</if>
-		ORDER BY Q.QA_REGDATE DESC
+		START WITH UPPER_QA_NO IS NULL
+		CONNECT BY PRIOR QA_NO = UPPER_QA_NO
+		/*ORDER BY Q.QA_REGDATE DESC*/
 	</select>
 
 	<insert id="insertQa" parameterType="qaVo">

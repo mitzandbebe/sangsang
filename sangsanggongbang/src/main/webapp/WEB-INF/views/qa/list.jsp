@@ -33,14 +33,13 @@
                     maxlength="1000">
             </textarea>
             <div class="d-flex justify-content-between mt-3">
-              <small class="font-weight-light text-dark"><span id="charactersRemaining"><!-- this will be filled with 200 from the textarea's maxlength --></span>
-                / 1000자 이하</small>
+              <small class="font-weight-light text-dark"><span id="charactersRemaining"></span>/ 1000자 이하</small>
               <button type="submit" class="btn btn-primary animate-up-2" >등록</button>
             </div>
           </form>
           <div class="mt-5">
             <c:forEach var="item" items="${list}" varStatus="vs">
-              <div class="card bg-soft border-light rounded p-4 mb-4">
+              <div class="card bg-soft border-light rounded p-4 mb-4 <c:if test="${item.upperQaNo > 0}">ml-5</c:if>">
                 <div class="d-flex justify-content-between mb-4">
                   <span class="font-small">
                     <a href="#">
@@ -51,10 +50,10 @@
                   <span class="ml-2"><fmt:formatDate value="${item.qaRegdate}" pattern="YYYY-MM-DD" /></span>
                   </span>
                 </div>
-                <p class="m-0" id="test">
-                  질문 : ${item.qaTitle}
+                <p class="m-0">
+                  제목 : ${item.qaTitle}
                   <br><br>
-                    ${item.qaContent}
+                   내용 : ${item.qaContent}
                 </p>
 
                 <div class="mt-4 mb-3 d-flex justify-content-between">
@@ -63,7 +62,9 @@
                       <button type="button" onclick="javascript:qaUpdate();" class="btn btn-xs btn-primary animate-up-2" >수정</button>
                       <button type="submit" onclick="qaDelete('${item.qaNo}')"  class="btn btn-xs btn-danger animate-up-2" >삭제</button>
                     </c:if>
-                    <button type="button" onclick="javascript:qaUpper();" class="btn btn-xs btn-primary animate-up-2" >답글달기</button>
+                    <c:if test="${0 eq item.upperQaNo}">
+                      <button type="button" onclick="javascript:qaReply();" class="btn btn-xs btn-primary animate-up-2" >답글달기</button>
+                    </c:if>
                   </div>
                 </div>
 
@@ -71,10 +72,10 @@
 
             </c:forEach>
 
-
-
           </div>
-        </div>
+
+          <div id="innerUpper" class="card bg-soft border-light rounded p-4 mb-4 ml-5"></div>
+
       </div>
     </div>
   </div>
@@ -99,23 +100,36 @@
   }
 
   function qaUpdate(){
-    var str = "";
-
-    $("#test").hide();
-
-    str +=  "<textarea>";
-    str +=  "</textarea>";
-
-
-    document.getElementById("inHere").innerHTML = str;
+    alert("수정개발중")
   }
 
-  function qaUpper(){
+  function qaReply(){
     var str = "";
-    str +=  "<textarea>";
-    str +=  "</textarea>";
+    str +=   "<input type='text' name='qaTitle' class='form-control border border-light-gray' placeholder= 제목을입력해주세요. + />";
+
+    str +=  "<textarea name='qaContent' class='form-control border border-light-gray' " +
+            "id='exampleFormControlTextarea1' placeholder= 내용을입력해주세요. + rows='6' maxlength='1000' data-bind-characters-target='#charactersRemaining'>";
+    str += "</textarea>"
+
+    str += " <div class='mt-4 mb-3 d-flex justify-content-between'>"
+    str += " <div class='btn-block text-right'>"
+
+    str += "<button type='submit' class='btn btn-primary animate-up-2'>"
+    str += "등록"
+    str += "</button>"
+
+    str += "<button class='btn btn-danger animate-up-2' onclick='test()'>"
+    str += "취소"
+    str += "</button>"
+
+    str += " </div>"
+    str += " </div>"
 
     document.getElementById("innerUpper").innerHTML = str;
+  }
+
+  function qaDelete(s){
+    alert("Dd")
   }
 
   function qaDelete(s){
