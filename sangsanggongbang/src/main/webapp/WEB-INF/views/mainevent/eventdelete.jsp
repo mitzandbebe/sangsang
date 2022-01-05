@@ -4,7 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 탑삽입해야함 -->
-<%@include file="../inc/top.jsp" %>
+<%@include file="../inc/top_admin.jsp" %>
+<style type="text/css">
+.card.border-light.p-md-2 {
+    margin-top: 100px;
+}
+</style>
     <main>
 
         <div class="preloader bg-dark flex-column justify-content-center align-items-center">
@@ -23,7 +28,7 @@
         <br>
         <br>
         <br>
-         <div class="section section-sm bg-white pt-6">
+         <div class="section section-sm bg-white pt-6" style='margin-top:100px;'>
             <article class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
@@ -37,7 +42,7 @@
         </div>
 
        
-   	<div class="" style="margin-left: 50px;">
+   	<div class="" style="margin-left: 50px; margin-top:25px;">
 			<input value="이벤트목록"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist" type="button">	
 			<input value="해당 글로 돌아가기"
@@ -70,4 +75,4 @@
 
 </script>
 <!-- 푸터삽입해야함 -->
-<%@include file="../inc/bottom.jsp" %>
+<%@include file="../inc/bottom_admin.jsp" %>

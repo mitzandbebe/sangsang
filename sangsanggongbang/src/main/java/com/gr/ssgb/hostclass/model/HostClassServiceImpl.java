@@ -71,6 +71,12 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassbyCNo(cNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectClassCategory(String categoryName) {
+		return hostClassDao.selectClassCategory(categoryName);
+	}
+
+
 
 
 
