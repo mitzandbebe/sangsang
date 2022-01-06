@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
-				<h1 class="display-2 mb-3">쪽지함</h1>
+				<h1 class="display-2 mb-3">쪽지보관함</h1>
 				<p class="lead">One place for our legal documentation and
 					policies</p>
 			</div>
@@ -32,12 +32,14 @@
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
+					<a href="<c:url value='/note/noteList?mId=${param.mId }'/>">
+						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
+							type="button">쪽지함</button>
+					</a>
 					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 							type="button">쪽지쓰기</button>
 					</a>
-					<button class="btn mb-2 mr-2 btn-success" id="noteSave"
-						type="button">보관하기</button>
 					<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
 						type="button">삭제</button>
 					<div class="accordion border-light">
@@ -57,7 +59,7 @@
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
-											<td>${map['noteContent'] }</td>
+											<td> <a href="<c:url value='note/noteDetail?noteNo=${map["noteNo"] }'/>">  ${map['noteContent'] }</a></td>
 											<td><fmt:formatDate value="${map['noteRegdate']}"
 													pattern="yyyy-MM-dd [HH:mm]" /></td>
 										</tr>
@@ -74,7 +76,7 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" value="${param.mId }" id="id">
+	<input type="text" value="${param.mId }" id="id" name="mId">
 </form>
 </main>
 <script type="text/javascript">
