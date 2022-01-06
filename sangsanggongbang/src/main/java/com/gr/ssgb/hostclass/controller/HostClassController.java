@@ -168,8 +168,8 @@ public class HostClassController {
 	}
 	
 	@GetMapping("/detail")
-	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo ,
-			@RequestParam String categoryName, Model model) {
+	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
+			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);

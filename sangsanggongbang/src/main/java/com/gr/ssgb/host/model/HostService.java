@@ -1,5 +1,7 @@
 package com.gr.ssgb.host.model;
 
+import java.util.List;
+
 public interface HostService {
 	public static final int LOGIN_OK=1;
 	public static final int ID_NONE=2;
@@ -16,5 +18,7 @@ public interface HostService {
 	HostVO selectHostById(String gethId);
 
 	int insertHost(HostVO vo);
+
+	List<HostVO> selectAllHost();
 
 }

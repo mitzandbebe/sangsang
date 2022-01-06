@@ -80,7 +80,15 @@
 												<div id="Carousel2" class="carousel slide" data-ride="carousel">
 												    <div class="carousel-inner">
 												        <div class="carousel-item active">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>" alt="First slide">
+												        <c:choose >
+					                                    	<c:when test="${not empty map['THUMBNAIL']}">
+					                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " alt="썸네일">
+					                                    	</c:when>
+					                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+					                                    		<h3>미리보기 이미지가 없습니다.</h3>
+					                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " height="400px" width="700px"  alt="기본이미지">
+					                                    	</c:when>
+					                                    </c:choose>
 												        </div>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME1']}">
@@ -214,7 +222,7 @@
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<c:import url="/class/review"/>
+								<c:import url="/class/review?cNo=${map['C_NO'] }"/>
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
 								
 							</div>
@@ -317,15 +325,21 @@
 							<!-- End of Modal Content -->
 						</div>
 						<div class="card border-light mt-4 p-3">
-							<label for="exampleFormControlSelect1">클래스 신청일 선택</label>
+							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
 								<div class="input-group input-group-border">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i
-											class="far fa-calendar-alt"></i></span>
+										<span class="input-group-text">
+											<i class="far fa-calendar-alt"></i>
+										</span>
+									<div class="text-center">
+									<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
 									</div>
-									<input class="form-control datepicker"
-										placeholder="Select date" type="text" value="06/20/2018">
+								</div>
+								<div class="input-group input-group-border">
+										<span class="input-group-text">
+											<i class="far fa-clock"></i>
+										</span>
+									<div class="text-center">${map["C_TIME"] } 시</div>
 								</div>
 							</div>
 							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
@@ -350,7 +364,6 @@
 		</div>
 </c:forEach>
 		<section class="section bg-soft">
-       <c:forEach var="map" items="${catelist}">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -360,6 +373,7 @@
                     <div class="col-md-12">
                         <div class="basic-carousel owl-carousel owl-theme">
                             <!-- Item 1 -->
+       <c:forEach var="map" items="${catelist}">
                             
                             <div class="item" >
                                 <!-- Card -->
@@ -413,11 +427,11 @@
                                 <!-- End of Card -->
                             </div>
                             
+                         </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
-                         </c:forEach>
    <!-- Core -->
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>

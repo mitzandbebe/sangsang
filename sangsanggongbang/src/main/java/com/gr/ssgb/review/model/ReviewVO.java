@@ -2,7 +2,9 @@ package com.gr.ssgb.review.model;
 
 import java.sql.Timestamp;
 
-public class ReviewVO {
+import com.gr.ssgb.common.SearchVO;
+
+public class ReviewVO extends SearchVO{
 //	R_NO NUMBER NOT NULL, /* 후기번호 */
 //	C_NO NUMBER, /* 클래스코드 */
 //	H_NO NUMBER, /* 호스트번호 */
@@ -83,7 +85,7 @@ public class ReviewVO {
 	public String toString() {
 		return "ReviewVO [rNo=" + rNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate + ", rContent=" + rContent
 				+ ", rUploadname=" + rUploadname + ", rFilesize=" + rFilesize + ", rOriginalname=" + rOriginalname
-				+ ", rRegdate=" + rRegdate + "]";
+				+ ", rRegdate=" + rRegdate + ", toString()=" + super.toString() + "]";
 	}
 	
 	
