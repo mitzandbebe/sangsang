@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 mb-3 mb-xl-0">
-                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom.png" height="30" class="mb-3" alt="Spaces logo">
+                <img src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_bottom.png" height="30" class="mb-3" alt="Spaces logo">
                 <p>常想工房<br>One Day Class Matching Site</p>
             </div>
             <div class="col-6 col-xl-2 mb-5 mb-xl-0">
@@ -14,6 +14,7 @@
                     <li><a target="_blank" href="https://themesberg.com/blog">회사소개</a></li>
                     <li><a target="_blank" href="https://themesberg.com/products">위치안내</a></li>
                     <li><a target="_blank" href="https://themesberg.com/about">인재채용</a></li>
+                    <li><a target="_blank" href="https://themesberg.com/contact">호스트로그인</a></li>
                     <li><a target="_blank" href="https://themesberg.com/contact">관리자로그인</a></li>
                 </ul>
             </div>
@@ -52,8 +53,14 @@
         <div class="row">
             <div class="col mb-md-0">
                 <a target="_blank" class="d-flex justify-content-center">
-                    <img src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom_cpr.png" height="25" class="mb-3" alt="Themesberg Logo">
+                    <img src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_bottom_cpr.png" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
+                <div id="sa-up-za" >
+                	<p style="text-align:center;">
+                	(주)상상공방 | 사업자등록번호 : 202-11-21300 | 대표 : 강지니<br>
+                	통신판매업 : 신고번호 제 2021-서울강남-2022호<br>서울특별시 서초구 서초대로 309 장안빌딩 4층
+                	</p>
+                </div>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
                 <p class="font-weight-normal font-small mb-0">Copyright Â © SSGB
                     <span class="current-year">2021</span>. All rights reserved.</p>

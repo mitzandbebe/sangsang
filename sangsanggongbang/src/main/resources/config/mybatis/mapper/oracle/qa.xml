@@ -48,33 +48,35 @@
 			SELECT QA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO QA(
-		  QA_NO
-		, C_NO
-		, M_NO
-		, QA_TITLE
-		, QA_CONTENT
-		, QA_STEP
-		, QA_GROUP_ID
-		, QA_REGDATE
+			  QA_NO
+			<if test="upperQaNo != null">, UPPER_QA_NO </if>
+			, C_NO
+			, M_NO
+			, QA_TITLE
+			, QA_CONTENT
+			, QA_STEP
+			, QA_GROUP_ID
+			, QA_REGDATE
 		) VALUES (
-		  #{qaNo}
-		, #{cNo}
-		, #{mNo}
-		, #{qaTitle}
-		, #{qaContent}
-		, #{qaStep}
-		, #{qaGroupId}
-		, SYSDATE
+			  #{qaNo}
+			<if test="upperQaNo != null">, #{upperQaNo} </if>
+			, #{cNo}
+			, #{mNo}
+			, #{qaTitle}
+			, #{qaContent}
+			, #{qaStep}
+			, #{qaGroupId}
+			, SYSDATE
 		)
 	</insert>
 
 	<update id="updateQa" parameterType="qaVo">
 		UPDATE QA
 			SET
-			   QA_TITLE=#{newsTitle}
-			  ,QA_CONTENT=#{newsTitle}
-			  ,QA_STEP=#{newsTitle}
-			WHERE QA_NO=#{qaNo}
+			   QA_TITLE = #{qaTitle}
+			  ,QA_CONTENT = #{qaContent}
+			WHERE 1=1
+			  AND QA_NO = #{qaNo}
 	</update>
 
 	<delete id="deleteQa" parameterType="int">

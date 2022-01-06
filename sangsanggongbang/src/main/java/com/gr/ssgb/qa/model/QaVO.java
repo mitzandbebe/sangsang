@@ -8,7 +8,7 @@ public class QaVO {
 	private int qaNo;
 	private int cNo; 
 	private int mNo;
-	private int upperQaNo;
+	private Integer upperQaNo;
 	private String qaTitle;
 	private String qaContent;
 	private int qaStep;
@@ -41,11 +41,11 @@ public class QaVO {
 		this.mNo = mNo;
 	}
 
-	public int getUpperQaNo() {
+	public Integer getUpperQaNo() {
 		return upperQaNo;
 	}
 
-	public void setUpperQaNo(int upperQaNo) {
+	public void setUpperQaNo(Integer upperQaNo) {
 		this.upperQaNo = upperQaNo;
 	}
 
