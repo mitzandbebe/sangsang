@@ -52,8 +52,10 @@ public class RoomController {
 
     //채팅방 조회
     @GetMapping("/room")
-    public void getRoom(String roomId, Model model){
-
+    public void getRoom(String roomId, RedirectAttributes rttr, Model model){
+    	log.info("# Create Chat Room , name: " + roomId);
+        rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(roomId));
+    	
         log.info("# get Chat Room, roomID : " + roomId);
 
         model.addAttribute("room", repository.findRoomById(roomId));

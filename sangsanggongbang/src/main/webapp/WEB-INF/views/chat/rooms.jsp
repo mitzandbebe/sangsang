@@ -20,7 +20,7 @@
         </div>
         <form method="post" action="<c:url value='/chat/room'/> ">
             <input type="text" name="name" class="form-control">
-            <button class="btn btn-secondary btn-create">개설하기</button>
+            <button class="btn btn-secondary btn-create">상대와 채팅방 개설하기</button>
         </form>
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
