@@ -20,6 +20,7 @@ import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -29,12 +30,14 @@ public class ReviewController {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	private final ReviewService reviewService;
 	private final FileUploadUtil fileUploadUtil;
-	
+	private final MemberService memberService;
 
 	@Autowired
-	public ReviewController(ReviewService reviewService, FileUploadUtil fileUploadUtil) {
+	public ReviewController(ReviewService reviewService, FileUploadUtil fileUploadUtil, MemberService memberService) {
+		super();
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
+		this.memberService = memberService;
 	}
 
 	@GetMapping("/review")
@@ -79,9 +82,11 @@ public class ReviewController {
 	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo,
 			HttpSession session,HttpServletRequest request,Model model) {
 		String mId = (String) session.getAttribute("mId");
-		
+//		int mNo= memberService.selectMno(mId);
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
-
+		
+		
+		
 		// 파일 업로드 처리
 		String fileName = "", originName = "";
 		long fileSize = 0;

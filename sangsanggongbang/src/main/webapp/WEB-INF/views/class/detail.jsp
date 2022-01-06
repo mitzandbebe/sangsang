@@ -50,10 +50,10 @@
 								<a class="nav-item nav-link active" id="nav-about-tab"
 									data-toggle="tab" href="#nav-about" role="tab"
 									aria-controls="nav-about" aria-selected="true"><span
-									class="far fa-address-card mr-2"></span>클래스 미리보기</a> <a
+									class="far fa-handshake mr-2"></span>클래스 미리보기</a> <a
 									class="nav-item nav-link" id="nav-video-tab" data-toggle="tab"
 									href="#nav-video" role="tab" aria-controls="nav-video"
-									aria-selected="false"><span class="far fa-play-circle mr-2"></span>클래스 설명</a>
+									aria-selected="false"><span class="fas fa-pen mr-2"></span>클래스 설명</a>
 								<a class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
@@ -61,7 +61,7 @@
 								<a class="nav-item nav-link" id="nav-qna-tab"
 									data-toggle="tab" href="#nav-qna" role="tab"
 									aria-controls="nav-qna" aria-selected="false"><span
-									class="far fa-star mr-2"></span>Q&A</a> 
+									class="far fa-question-circle mr-2"></span>Q&A</a> 
 									<a
 									class="nav-item nav-link" id="nav-location-tab"
 									data-toggle="tab" href="#nav-location" role="tab"
@@ -152,7 +152,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-ruler-combined"></span>
+															<span class="far fa-clock"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">${map["C_TIME"] } 시</div>
@@ -176,7 +176,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-couch"></span>
+															<span class="fas fa-won-sign"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">
@@ -193,7 +193,7 @@
 								</div>
 							</div>
 							<!-- End of About Tab -->
-							<!-- Video Tab -->
+							<!-- content Tab -->
 							<div class="tab-pane fade" id="nav-video" role="tabpanel"
 								aria-labelledby="nav-video-tab">
 								<div class=" position-relative rounded">
@@ -210,7 +210,7 @@
 								</div>
 								</div>
 							</div>
-							<!-- End of Video Tab -->
+							<!-- End of content Tab -->
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
@@ -220,12 +220,12 @@
 							</div>
 							<!-- End of Reviews Tab -->
 							<!-- Q&A Tab -->
-							<div class="tab-pane fade" id="nav-qna" role="tabpanel"
+<%-- 						<div class="tab-pane fade" id="nav-qna" role="tabpanel"
 								aria-labelledby="nav-qna-tab">
 								<c:import url="/qa/list"/>
 								
 								
-							</div>
+							</div>  --%>
 							<!-- End of Q&A Tab -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
