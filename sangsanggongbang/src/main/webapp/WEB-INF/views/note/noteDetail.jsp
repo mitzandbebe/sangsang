@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
-				<h1 class="display-2 mb-3">쪽지함</h1>
+				<h1 class="display-2 mb-3">쪽지 상세페이지</h1>
 				<p class="lead">One place for our legal documentation and
 					policies</p>
 			</div>
@@ -32,41 +32,37 @@
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
-					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
+					<a href="<c:url value='/note/noteWrite?mId=${vo.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 							type="button">쪽지쓰기</button>
-					</a>
-					<a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
+					</a> <a href="<c:url value='/note/noteBox?mId=${vo.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteBox"
 							type="button">보관함</button>
-					</a>
+					</a>			
 					<button class="btn mb-2 mr-2 btn-success" id="noteSave"
 						type="button">보관하기</button>
 					<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
 						type="button">삭제</button>
 					<div class="accordion border-light">
 						<div class="col-lg-12 mb-5">
-							<div
+							<div	
 								class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
-								<table>
-									<tr>
-										<th><input type="checkbox" id="allCheck"
-											value="${map['noteNo'] }"></th>
-										<th>보낸사람</th>
-										<th>내용</th>
-										<th>날짜</th>
-									</tr>
-									<c:forEach var="map" items="${list }">
-										<tr>
-											<td><input type="checkbox" id="check" name="noteNo"
-												value="${map['noteNo'] }"></td>
-											<td>${map['mId'] }</td>
-											<td><a href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">  ${map['noteContent'] }</a></td>
-											<td><fmt:formatDate value="${map['noteRegdate']}"
-													pattern="yyyy-MM-dd [HH:mm]" /></td>
-										</tr>
-									</c:forEach>
-								</table>
+								<section style="width: 100%">
+									<div>
+										<p>보낸사람 : ${vo.rNickname }</p>
+									</div>
+									<div>
+										<span> 받은시간 : <fmt:formatDate
+												value="${vo.noteRegdate }" pattern="yyyy-MM-dd [HH:mm]" />
+										</span>
+									</div>
+									<hr style="background: black">
+									<div>
+										<p>
+										<textarea rows="10" cols="80%" readonly="readonly" style="resize: none; border:0px solid black">${vo.noteContent}</textarea>
+										</p>
+									</div>
+								</section>
 								<div
 									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
 									<div class="d-flex align-items-center mt-3"></div>
@@ -78,45 +74,8 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" value="${param.mId }" id="id" name="mId">
+	<input type="text" value="${vo.mId }" id="id">
 </form>
-</main>
-<script type="text/javascript">
-	$(function() {
-		$('#allCheck').change(function() {
-			if ($(this).is(':checked')) {
-				$("input[type=checkbox]").each(function() {
-					$(this).prop("checked", true);
-				})
-			} else {
-				$("input[type=checkbox]").each(function() {
-					$(this).prop("checked", false);
-				})
-			}
-		})
-		$('#check').click(function() {
-			if ($('input[name=check]:checked').length == 3) {
-				$('#allCheck').prop("checked", true)
-			} else {
-				$('#allCheck').prop("checked", false)
-			}
-		})
 
-		$("#noteDelete").click(
-				function() {
-					$('form[name=frm]').prop('action',
-							"<c:url value='/note/noteDelete'/>");
-					$('form[name=frm]').submit();
-				})
-
-		$("#noteSave").click(
-				function() {
-					$('form[name=frm]').prop('action',
-							"<c:url value='/note/noteSave'/>");
-					$('form[name=frm]').submit();
-				})
-
-	})
-</script>
 
 <%@include file="../inc/bottom.jsp"%>
