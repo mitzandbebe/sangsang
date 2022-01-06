@@ -105,20 +105,22 @@ public class MemberController {
 	
 	@RequestMapping("/member/join")
 	public String insertMember(@ModelAttribute MemberVO memberVo,@RequestParam String snsCheck,HttpServletRequest request, HttpServletResponse response, Model model) {
-		logger.info("회원가입 처리화면, vo={}", memberVo);
+		 logger.info("회원가입 처리화면, vo={}", memberVo);
+			
+			
+		 String msg ="회원가입 실패!", url="/member/register";
+		 int cnt =0;
 		
-		
-		String msg ="회원가입 실패!", url="/member/register";
-		int cnt =0;
-		/*
-		 * int accountCnt = memberService.selectMemberById(memberVo.getmId());
-		 * if(accountCnt!=0) { HttpSession session = request.getSession();
-		 * session.setAttribute("mId", memberVo.getmId());
-		 * session.setAttribute("snsCheck", snsCheck); Cookie ck = new
-		 * Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
-		 * ck.setMaxAge(1000*24*60*60); response.addCookie(ck); msg="기존 아이디로 로그인합니다!";
-		 * url="/index"; }else {
-		 */
+		 int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
+		 if(accountCnt==1) { 
+			 HttpSession session = request.getSession();
+			 session.setAttribute("mId", memberVo.getmId());
+			 session.setAttribute("snsCheck", snsCheck);
+			 Cookie ck = new Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
+			 ck.setMaxAge(1000*24*60*60); 
+			 response.addCookie(ck); msg="기존 아이디로 로그인합니다!";
+			 url="/index"; 
+		 }else {
 			if(snsCheck.equals("n")) {
 				cnt = memberService.insertMember(memberVo);
 			}else {
@@ -143,10 +145,11 @@ public class MemberController {
 				HttpSession session = request.getSession();
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				session.setAttribute("uOrh", "u");
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
 			}	
-			/* } */
+		} 
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -178,6 +181,7 @@ public class MemberController {
 					session.setAttribute("mFilename", memberVo.getmFilename());
 					session.setAttribute("mId", memberVo.getmId());
 					session.setAttribute("snsCheck", snsCheck);
+					session.setAttribute("uOrh", "u");
 					
 					Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 					Cookie ck2 = new Cookie("mFilename", memberVo.getmFilename());
@@ -204,6 +208,13 @@ public class MemberController {
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				session.setAttribute("uOrh", "u");
+				String mNickname = vo2.getmNickname();
+				if(mNickname != null && !mNickname.isEmpty()) {
+					session.setAttribute("mNickname", vo2.getmNickname());
+				}else {
+					session.setAttribute("mNickname", "늘찬"+vo2.getmNo());
+				}
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -229,6 +240,13 @@ public class MemberController {
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				session.setAttribute("uOrh", "u");
+				String mNickname = vo2.getmNickname();
+				if(mNickname != null && !mNickname.isEmpty()) {
+					session.setAttribute("mNickname", vo2.getmNickname());
+				}else {
+					session.setAttribute("mNickname", "늘찬"+vo2.getmNo());
+				}
 				
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
@@ -297,37 +315,37 @@ public class MemberController {
 		
 		int cnt = 0;
 		String msg = "부가정보 입력 실패!", url ="/member/additional";
-		if(snsCheck.equals("n")) {
-			String fileName="", originName="";
-			long fileSize=0;
-			int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
-			try {
-				List<Map<String, Object>> fileList 
-					= fileUploadUtil.fileUpload(request, pathFlag);
-				for(int i=0;i<fileList.size();i++) {
-					 Map<String, Object> map=fileList.get(i);
-					 
-					 fileName=(String) map.get("fileName");
-					 originName=(String) map.get("originalFileName");
-					 fileSize=(long) map.get("fileSize");				 
-				}
-				
-				logger.info("파일 업로드 성공, fileName={}", fileName);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+		String mFilename = (String)request.getSession().getAttribute("mFilename");
+		String fileName="", originName="";
+		long fileSize=0;
+		int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
+		try {
+			List<Map<String, Object>> fileList 
+				= fileUploadUtil.fileUpload(request, pathFlag);
+			for(int i=0;i<fileList.size();i++) {
+				 Map<String, Object> map=fileList.get(i);
+				 
+				 fileName=(String) map.get("fileName");
+				 originName=(String) map.get("originalFileName");
+				 fileSize=(long) map.get("fileSize");				 
 			}
+			
+			logger.info("파일 업로드 성공, fileName={}", fileName);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if((mFilename==null || !mFilename.isEmpty())&& fileName!=null && !fileName.isEmpty()) {
 			vo.setmFilename(fileName);
 			vo.setmFilesize(fileSize);
 			vo.setmOriginalname(originName);
-			
-			cnt = memberService.updateAdditionalInfo(vo);
-		}else{
+		}else {
 			vo.setmOriginalname(vo.getmFilename());
 			vo.setmFilesize(0);
 			cnt = memberService.updateAdditionalInfo(vo);
 		}
+		cnt = memberService.updateAdditionalInfo(vo);
 		int mNo = memberService.selectMno(vo.getmId());
 		paymentVo.setmNo(mNo);
 		
@@ -526,10 +544,6 @@ public class MemberController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
-			
-		
 	}
-	
-	
 	
 }

@@ -275,10 +275,11 @@
 					
 					<!-- 채팅창 -->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a
-						href="<c:url value='/chat/room?roomId=${hostVo.hNickname }'/>" target="_blank">
+					
+						
+						<!--<a  href="<c:url value='/chat/room?roomId=${sessionScope.hNickname }'/>" target="_blank">-->
 						<img width="52px"
-						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>">
+						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>" onClick="openChat();">
 						<span id="chatBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge badge-danger"></span>
 						</a>
 					<!-- 채팅창 끝 --> 
@@ -323,12 +324,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+var flag= "${sessionScope.uOrh}"
+console.log(flag);
 var roomName = "${room.name}";
-var roomId = "${sessionScope.hNickname}";
-var username = "${sessionScope.hId}";
-var count = null;
+var roomId = "${room.roomId}";
+var username = null;
+   if(flag == 'u'){
+    username = "${sessionScope.mNickname}";
+   }else{
+   	username = "${sessionScope.hNickname}";
+   }
 $(document).ready(function(){
-	
+	console.log(roomId)
     console.log(roomName + ", " + roomId + ", ");
 
     var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
@@ -348,15 +355,8 @@ $(document).ready(function(){
            var str = '';
            
            if(writer === username){
-        	  /* str = "<div class='card bg-primary text-white border-light p-4 ml-md-5 ml-lg-6 mb-4'>";
-               str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
-               str += "<span class='font-small'>";
-               str += "<span class='font-weight-bold'>"+writer+"</span>";
-               str += "<span class='ml-2'>March 26, 19:25</span>";
-               str += "</span></div><p class='m-0'>"+content.message+"</p></div>";
-               str += "</div></div>";
-               $("#msgArea").append(str);*/
-               $('#chatBadge').hide();
+        	  
+               /*$('#chatBadge').hide();*/
                console.log("메시지를 보냈습니다.");
            }else{
         	  count += 1;
@@ -382,24 +382,14 @@ $(document).ready(function(){
 
        //3. send(path, header, message)로 메세지를 보낼 수 있음
        stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
-       stomp.send('/pub/chat/alert', {}, JSON.stringify({roomId: roomId, writer: username}))
     });
-    $("#button-send").on("click", function(e){
-        var msg = document.getElementById("msg");
-        $('#chatBadge').hide();
-   	    $('#chatBadge').html("");
-        console.log(username + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
-        msg.value = '';
-    });
-   
 });
 function openChat(){
 	var contextPath="/sangsanggongbang";
 	count=0;
 	$('#chatBadge').hide();
-	 $('#chatBadge').html("");
-	open(contextPath+'/chat/room?roomId='+roomId,'chat',
+	$('#chatBadge').html("");
+	open(contextPath+'/chat/room?roomId=${sessionScope.hNickname}','chat',
 	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
 }
 </script>
