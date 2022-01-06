@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../inc/top.jsp"  %>
 
@@ -49,14 +50,19 @@
 								<a class="nav-item nav-link active" id="nav-about-tab"
 									data-toggle="tab" href="#nav-about" role="tab"
 									aria-controls="nav-about" aria-selected="true"><span
-									class="far fa-address-card mr-2"></span>클래스 미리보기</a> <a
+									class="far fa-handshake mr-2"></span>클래스 미리보기</a> <a
 									class="nav-item nav-link" id="nav-video-tab" data-toggle="tab"
 									href="#nav-video" role="tab" aria-controls="nav-video"
-									aria-selected="false"><span class="far fa-play-circle mr-2"></span>클래스 설명</a>
+									aria-selected="false"><span class="fas fa-pen mr-2"></span>클래스 설명</a>
 								<a class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
-									class="far fa-star mr-2"></span>리뷰</a> <a
+									class="far fa-star mr-2"></span>리뷰</a> 
+								<a class="nav-item nav-link" id="nav-qna-tab"
+									data-toggle="tab" href="#nav-qna" role="tab"
+									aria-controls="nav-qna" aria-selected="false"><span
+									class="far fa-question-circle mr-2"></span>Q&A</a> 
+									<a
 									class="nav-item nav-link" id="nav-location-tab"
 									data-toggle="tab" href="#nav-location" role="tab"
 									aria-controls="nav-location" aria-selected="false"><span
@@ -146,7 +152,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-ruler-combined"></span>
+															<span class="far fa-clock"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">${map["C_TIME"] } 시</div>
@@ -170,7 +176,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-couch"></span>
+															<span class="fas fa-won-sign"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">
@@ -187,7 +193,7 @@
 								</div>
 							</div>
 							<!-- End of About Tab -->
-							<!-- Video Tab -->
+							<!-- content Tab -->
 							<div class="tab-pane fade" id="nav-video" role="tabpanel"
 								aria-labelledby="nav-video-tab">
 								<div class=" position-relative rounded">
@@ -204,110 +210,26 @@
 								</div>
 								</div>
 							</div>
-							<!-- End of Video Tab -->
+							<!-- End of content Tab -->
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<div class="card bg-white border border-light p-4 mb-4">
-									<div
-										class="d-flex justify-content-between align-items-center mb-3">
-										<div>
-											<a href="./profile.html" class="h5">Awesome place</a>
-											<ul class="list-unstyled d-flex mt-1 mb-0">
-												<li class="list-item small mr-3">by Margaret Mead</li>
-												<li class="list-item small">2 weeks ago</li>
-											</ul>
-										</div>
-										<div class="d-flex justify-content-end">
-											<span class="d-flex justify-content-center"> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star  fas text-warning  mr-2"></i> <i
-												class="star far fa-star text-gray"></i>
-											</span>
-										</div>
-									</div>
-									<p class="m-0">Always remember that you are absolutely
-										unique. Just like everyone else.</p>
-								</div>
-								<div class="card bg-white border border-light p-4 mb-4">
-									<div
-										class="d-flex justify-content-between align-items-center mb-3">
-										<div>
-											<a href="./profile.html" class="h5">Great working
-												environment</a>
-											<ul class="list-unstyled d-flex mt-1 mb-0">
-												<li class="list-item small mr-3">by Neil Sims</li>
-												<li class="list-item small">2 weeks ago</li>
-											</ul>
-										</div>
-										<div class="d-flex justify-content-end">
-											<span class="d-flex justify-content-center"> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star  fas text-warning  mr-2"></i> <i
-												class="star far fa-star text-gray"></i>
-											</span>
-										</div>
-									</div>
-									<p class="m-0">Your time is limited, so don't waste it
-										living someone else's life. Don't be trapped by dogma -- which
-										is living with the results of other people's thinking.</p>
-								</div>
-								<div class="card bg-white border border-light p-4 mb-4">
-									<div
-										class="d-flex justify-content-between align-items-center mb-3">
-										<div>
-											<a href="./profile.html" class="h5">Not only a place to
-												work, but also to connect!</a>
-											<ul class="list-unstyled d-flex mt-1 mb-0">
-												<li class="list-item small mr-3">by Jose Leos</li>
-												<li class="list-item small">2 weeks ago</li>
-											</ul>
-										</div>
-										<div class="d-flex justify-content-end">
-											<span class="d-flex justify-content-center"> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star fas text-warning mr-2"></i> <i
-												class="star fa-star  fas text-warning  mr-2"></i> <i
-												class="star far fa-star text-gray"></i>
-											</span>
-										</div>
-									</div>
-									<p class="m-0">The future belongs to those who believe in
-										the beauty of their dreams.</p>
-								</div>
-								<form method="post">
-									<div
-										class="d-flex justify-content-between align-items-center mb-3 mt-5">
-										<h2 class="h5 m-0">Add a review</h2>
-										<span class="d-flex justify-content-center stars-rating">
-											<i class="star far fa-star text-gray mr-2"
-											data-rating-value="1"></i> <i
-											class="star far fa-star text-gray mr-2" data-rating-value="2"></i>
-											<i class="star far fa-star text-gray mr-2"
-											data-rating-value="3"></i> <i
-											class="star far fa-star text-gray mr-2" data-rating-value="4"></i>
-											<i class="star far fa-star text-gray" data-rating-value="5"></i>
-										</span>
-									</div>
-									<textarea name="description" class="form-control border"
-										placeholder="Add a review" rows="6"
-										data-bind-characters-target="#charactersRemaining"
-										maxlength="1000" required></textarea>
-									<div class="d-flex justify-content-between mt-3">
-										<small class="font-weight-light"> <span
-											id="charactersRemaining">1000</span> characters remaining
-										</small>
-										<button type="submit" class="btn btn-primary animate-up-2">Add
-											review</button>
-									</div>
-								</form>
+								<c:import url="/class/review"/>
+								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
+								
 							</div>
 							<!-- End of Reviews Tab -->
+							<!-- Q&A Tab -->
+
+							<div class="tab-pane fade" id="nav-qna" role="tabpanel" aria-labelledby="nav-qna-tab">
+								<div class="row">
+									<div class="col-12">
+										<c:import url="/qa/list?cNo=${map['C_NO']}"/>
+									</div>
+								</div>
+							</div>
+
+							<!-- End of Q&A Tab -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
 								<div class="row">
@@ -394,7 +316,6 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
-	</c:forEach>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 선택</label>
 							<div class="form-group">
@@ -417,7 +338,7 @@
 							</div>
 							<input type="hidden" id="classRealPrice" value='40000'>
 							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
-							<div class="c03-charge" id="price">40000</div>
+							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-block btn-primary mt-4"
 									id="apibtn">결제하기</button>
@@ -427,20 +348,126 @@
 				</div>
 			</div>
 		</div>
-
+</c:forEach>
 		<section class="section bg-soft">
+       <c:forEach var="map" items="${catelist}">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h4 class="mb-5 font-weight-bold">Similar spaces you might
-							like</h4>
+						<h4 class="mb-5 font-weight-bold"><span>${map["CATEGORY_NAME"] }</span> 클래스 전체보기</h4>
+						
 					</div>
-					<c:if test="">
-					<c:import url="/class/classlist"></c:import>
-					</c:if>
-				</div>
-			</div>
+                    <div class="col-md-12">
+                        <div class="basic-carousel owl-carousel owl-theme">
+                            <!-- Item 1 -->
+                            
+                            <div class="item" >
+                                <!-- Card -->
+                                <div class="card border-light mb-4 animate-up-5" >
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
+                                    <c:choose >
+                                    	<c:when test="${not empty map['THUMBNAIL']}">
+                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
+                                    	</c:when>
+                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
+                                    	</c:when>
+                                    </c:choose>
+                                    </a>
+                                    <div class="card-body" style="width:300px; height:150px">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                            <h4 class="h6" >${map["C_NAME"] }</h4>
+                                        </a>
+                                        <div class="d-flex my-4">
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span> 
+                                            <span class="star fas fa-star text-warning"></span>
+                                            <span class="badge badge-pill badge-primary ml-2">5.0</span>
+                                        </div> 
+                                        
+                                    </div>
+                                    <div class="card-footer bg-soft border-top">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="col pl-0">
+                                                <span class="text-muted font-small d-block mb-2">가격</span>
+                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
+                                                <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
+                                                </span>
+                                            </div>
+                                            <div class="col">
+                                                <span class="text-muted font-small d-block mb-2">인원</span>
+                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }명</span>
+                                            </div>
+                                            <div class="col pr-0">
+                                                <span class="text-muted font-small d-block mb-2">지역</span>
+                                                <span class="h5 text-dark font-weight-bold">
+                                                	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
+                                                	${fn:substring(addr,0,2)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Card -->
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+                         </c:forEach>
+   <!-- Core -->
+<script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/> "></script>
+
+<!-- NoUISlider -->
+<script src="<c:url value='/resources/vendor/nouislider/distribute/nouislider.min.js'/> "></script>
+
+<!-- Bootstrap Datepicker -->
+<script src="<c:url value='/resources/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'/> "></script>
+
+<!-- jQuery Waypoints -->
+<script src="<c:url value='/resources/vendor/waypoints/lib/jquery.waypoints.min.js'/> "></script>
+
+<!-- Owl acrousel -->
+<script src="<c:url value='/resources/vendor/owl.carousel/dist/owl.carousel.min.js'/> "></script>
+
+<!-- Smooth scroll -->
+<script src="<c:url value='/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js'/> "></script>
+
+<!-- Fancybox -->
+<script src="<c:url value='/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js'/> "></script>
+
+<!-- Sticky sidebar -->
+<script src="<c:url value='/resources/vendor/sticky-sidebar/dist/sticky-sidebar.min.js'/> "></script>
+
+<!-- Mapbox & Leaflet.js -->
+<script src="<c:url value='/resources/vendor/leaflet/dist/leaflet.js'/> "></script>
+
+<!-- Chartist -->
+<script src="<c:url value='/resources/vendor/chartist/dist/chartist.min.js'/> "></script>
+<script src="<c:url value='/resources/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js'/> "></script>
+
+<!-- Sliderform -->
+<script src="<c:url value='/resources/assets/js/jquery.slideform.js'/> "></script>
+
+<!-- Spaces custom Javascript -->
+<script src="<c:url value='/resources/assets/js/spaces.js'/> "></script>
 		</section>
 		<!-- End of section -->
 	</main>
+
+
+<script>
+	$(document).ready(function() {
+		var hash = location.hash.substring(1);
+		$('.nav-tabs #' + hash).trigger('click');
+	});
+</script>
+
 <%@ include file="../inc/bottom.jsp" %>

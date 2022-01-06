@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 
  
@@ -100,6 +103,7 @@
 		<nav id="navbar-main"
 			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
 			<div class="container">
+			<!--  -->
 				<a class="navbar-brand @@logo_classes"
 					href="${pageContext.request.contextPath }/index"> <img
 					class="navbar-brand-dark common"
@@ -182,7 +186,7 @@
 								</div>
 							</div>
 					</ul>
-					<ul class="navbar-nav navbar-nav-hover justify-content-center">
+					<%-- <ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
@@ -231,7 +235,7 @@
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
 												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
 											</li>
-										</ul>
+										</ul> --%>
 									</div>
 								</div>
 							</div>
@@ -239,9 +243,19 @@
 				</div>
 			</div>
 
-		<!-- 로그인,로그아웃,쪽지 -->
+		<!-- 프로필, 로그인,로그아웃,쪽지,채팅 -->
+	
 			<div id="top_button_row">
 				<div class="d-none d-lg-block @@cta_button_classes">
+				
+					<!-- 프로필 사진 -->
+					<div class="profile_photo">
+						<a href="">
+						
+						</a>					
+					</div>
+					<!-- 프로필 사진 끝 -->
+					
 
 					<a
 						href="${pageContext.request.contextPath }/member/memberEditChkPwd"
@@ -263,16 +277,25 @@
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 
-					<!--쪽지함-->
+					<!-- 채팅창 -->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<a
+						href="<c:url value='#'/>">
+						<img width="50px"
+						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>"></a>
+					<!-- 채팅창 끝 --> 
+					
+					<!--쪽지함-->
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a 
 						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
-						<img width="30px"
+						<img width="36px"
 						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>"></a>
 					<!--쪽지함 끝-->
+					
 				</div>
 			</div>
-		<!-- 로그인, 로그아웃, 쪽지 끝 -->
+		<!-- 로그인, 로그아웃, 쪽지, 채팅 끝 -->
 
 
 			<div class="d-flex d-lg-none align-items-center">

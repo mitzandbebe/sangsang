@@ -21,7 +21,7 @@ public interface MemberService {
 
 	int insertSnsMember(MemberVO memberVo);
 
-	int selectMno(String getmId);
+	Integer selectMno(String getmId);
 
 	int insertPayment(PaymentVO paymentVo);
 

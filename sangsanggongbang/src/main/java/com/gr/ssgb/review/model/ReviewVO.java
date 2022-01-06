@@ -18,9 +18,18 @@ public class ReviewVO {
 	private int hNo;
 	private int rRate;
 	private String rContent;
-	private String rFilesize;
+	private String rUploadname;
+	private long rFilesize;
 	private String rOriginalname;
 	private Timestamp rRegdate;
+	
+	
+	public String getrUploadname() {
+		return rUploadname;
+	}
+	public void setrUploadname(String rUploadname) {
+		this.rUploadname = rUploadname;
+	}
 	public int getrNo() {
 		return rNo;
 	}
@@ -51,10 +60,11 @@ public class ReviewVO {
 	public void setrContent(String rContent) {
 		this.rContent = rContent;
 	}
-	public String getrFilesize() {
+
+	public long getrFilesize() {
 		return rFilesize;
 	}
-	public void setrFilesize(String rFilesize) {
+	public void setrFilesize(long rFilesize) {
 		this.rFilesize = rFilesize;
 	}
 	public String getrOriginalname() {
@@ -72,7 +82,8 @@ public class ReviewVO {
 	@Override
 	public String toString() {
 		return "ReviewVO [rNo=" + rNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate + ", rContent=" + rContent
-				+ ", rFilesize=" + rFilesize + ", rOriginalname=" + rOriginalname + ", rRegdate=" + rRegdate + "]";
+				+ ", rUploadname=" + rUploadname + ", rFilesize=" + rFilesize + ", rOriginalname=" + rOriginalname
+				+ ", rRegdate=" + rRegdate + "]";
 	}
 	
 	

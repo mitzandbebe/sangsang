@@ -16,5 +16,26 @@
 		#{rOriginalname},#{rFilesize})
 	</insert>
 
+	<select id="selectAll" parameterType="searchVo"
+		resultType="reviewVO">
+		select*
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from review order by
+		R_no desc
+		)A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
+	</select>
+
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from review
+	</select>
 	
 </mapper>

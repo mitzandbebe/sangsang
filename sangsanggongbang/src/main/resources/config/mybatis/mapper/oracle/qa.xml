@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.qa.model.QaDAO">
+
+	<select id="selectQaAll" resultType="qaVo">
+		SELECT
+		  Q.QA_NO
+		, Q.C_NO
+		, Q.M_NO
+		, Q.QA_TITLE
+		, Q.QA_CONTENT
+		, Q.QA_STEP
+		, Q.QA_GROUP_ID
+		, Q.QA_REGDATE
+		, Q.UPPER_QA_NO
+
+		, M.M_NO AS "memberVO.mNo"
+		, M.M_ID AS "memberVO.mId"
+		, M.M_NAME AS "memberVO.mName"
+		, M.PWD AS "memberVO.pwd"
+		, M.M_NICKNAME AS "memberVO.mNickname"
+		, M.PHONE AS "memberVO.phone"
+		, M.BDAY AS "memberVO.bday"
+		, M.M_ZIPCODE AS "memberVO.mZipcode"
+		, M.M_ADDRESS AS "memberVO.mAddress"
+		, M.M_ADDRESS_DETAIL AS "memberVO.mAddressDetail"
+		, M.REGDATE AS "memberVO.regdate"
+		, M.M_GRADE AS "memberVO.mGrade"
+		, M.M_ORIGINALNAME AS "memberVO.mOriginalname"
+		, M.M_FILESIZE AS "memberVO.mFilesize"
+		, M.M_FILENAME AS "memberVO.mFilename"
+		, M.DELFLAG AS "memberVO.delflag"
+		FROM QA Q
+		INNER JOIN MEMBER M ON M.M_NO = Q.M_NO
+		WHERE 1=1
+		<if test="cNo != null">
+			AND C_NO = #{cNo}
+		</if>
+		START WITH UPPER_QA_NO IS NULL
+		CONNECT BY PRIOR QA_NO = UPPER_QA_NO
+		/*ORDER BY Q.QA_REGDATE DESC*/
+	</select>
+
+	<insert id="insertQa" parameterType="qaVo">
+		<selectKey keyProperty="qaNo" resultType="int" order="BEFORE">
+			SELECT QA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QA(
+			  QA_NO
+			<if test="upperQaNo != null">, UPPER_QA_NO </if>
+			, C_NO
+			, M_NO
+			, QA_TITLE
+			, QA_CONTENT
+			, QA_STEP
+			, QA_GROUP_ID
+			, QA_REGDATE
+		) VALUES (
+			  #{qaNo}
+			<if test="upperQaNo != null">, #{upperQaNo} </if>
+			, #{cNo}
+			, #{mNo}
+			, #{qaTitle}
+			, #{qaContent}
+			, #{qaStep}
+			, #{qaGroupId}
+			, SYSDATE
+		)
+	</insert>
+
+	<update id="updateQa" parameterType="qaVo">
+		UPDATE QA
+			SET
+			   QA_TITLE = #{qaTitle}
+			  ,QA_CONTENT = #{qaContent}
+			WHERE 1=1
+			  AND QA_NO = #{qaNo}
+	</update>
+
+	<delete id="deleteQa" parameterType="int">
+		DELETE QA
+		WHERE QA_NO=#{qaNo}
+	</delete>
+
+	<select id="hostClassSelect" resultType="hostClassVO">
+		SELECT
+			  C_NO
+			 ,C_NAME
+		FROM HOSTCLASS
+		WHERE 1=1
+	</select>
+</mapper>
+	
+

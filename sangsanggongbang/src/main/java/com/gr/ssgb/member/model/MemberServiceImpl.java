@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMemberCnt(mId);
 	}
 	@Override
-	public int selectMno(String getmId) {
+	public Integer selectMno(String getmId) {
 		return memberDao.selectMno(getmId);
 	}
 	@Override
