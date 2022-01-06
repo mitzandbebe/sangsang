@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="inc/top.jsp"  %>
+<%@ include file="../inc/top_host.jsp"  %>
         <!-- Hero -->
         <section class="section-header">
             <div class="container">
@@ -32,8 +32,5 @@
             <c:import url="/class/classlist"></c:import>
             </div>
         </section>
-   <!-- <br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-   <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> 
-   <br><br>  -->
     
-<%@ include file="inc/bottom.jsp" %> 
+<%@ include file="../inc/bottom_host.jsp" %> 
