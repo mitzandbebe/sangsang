@@ -9,6 +9,6 @@ import com.gr.ssgb.common.SearchVO;
 @Mapper
 public interface ReviewDAO {
 	int insertReview(ReviewVO reviewVo);
-	public List<ReviewVO> selectAll(SearchVO searchVo);
+	public List<ReviewVO> selectAll(int cNo);
 	int selectTotalRecord(SearchVO searchVo);
 }

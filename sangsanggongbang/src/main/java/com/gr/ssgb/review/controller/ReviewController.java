@@ -48,30 +48,32 @@ public class ReviewController {
 		return "class/review";
 	}
 
-	@RequestMapping("/review")
-	public String list(@ModelAttribute SearchVO searchVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
+	@RequestMapping("/review" )
+	public String list(@ModelAttribute ReviewVO reviewVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
 		logger.info("리뷰 목록");
-
+		
+		reviewVo.setcNo(cNo);
+		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		pagingInfo.setCurrentPage(reviewVo.getCurrentPage());
 
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("값 셋팅 후 searchVo={}", searchVo);
+		reviewVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		reviewVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}", reviewVo);
 
-		List<ReviewVO> list = reviewService.selectAll(searchVo);
+		List<ReviewVO> list = reviewService.selectAll(reviewVo.getcNo());
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
-		int totalRecord = reviewService.selectTotalRecord(searchVo);
+		int totalRecord = reviewService.selectTotalRecord(reviewVo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
-		return "class/review";
+		return "redirect:/class/review?cNo="+cNo;
 	}
 
 	
