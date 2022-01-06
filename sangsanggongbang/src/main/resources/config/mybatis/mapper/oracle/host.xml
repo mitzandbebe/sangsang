@@ -4,7 +4,7 @@
 
 <mapper namespace="com.gr.ssgb.host.model.HostDAO">
 	<select id="checkIdPwd" parameterType="string" resultType="string">
-		select pwd from host where h_id=#{hId}
+		select h_pwd from host where h_id=#{hId}
 	</select>
 	
 	<select id="selectHostCnt" parameterType="string" resultType="int">
@@ -24,4 +24,8 @@
 		values(#{hNo}, #{hId}, #{hPwd}, #{hName}, #{hNickname}, #{hBday}, #{hPhone}, #{hZipcode}, #{hAddress}, 
 		#{hAddressDetail}, #{hAccount}, #{hBankName}, #{hFilename}, #{hFilesize}, #{hOriginalname})
 	</insert>
+	
+	<select id="selectAllHost" resultType="hostVo">
+		select * from host
+	</select>
 </mapper>

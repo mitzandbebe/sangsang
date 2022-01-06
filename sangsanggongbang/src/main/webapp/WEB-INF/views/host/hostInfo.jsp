@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="inc/hostTop.jsp" %>
+<%@ include file="../inc/top_host.jsp" %>
 
  <section class="section section-header bg-primary overlay-primary text-white pb-8 pb-lg-10" data-background="${pageContext.request.contextPath }/resources/assets/img/hostInfoDefault.jpg" style="background-color: #679093; background-repeat:no-repeat; background-size: cover;">
             <div class="container">
@@ -12,9 +12,9 @@
                         
                         <p class="text-center" style="margin-top: 300px">
                         	<span>이미 상상공방 계정이 있습니다.</span>
-                            <a href="${pageContext.request.contextPath }/host/hostLogin" class="btn btn-primary animate-up-2" >로그인 후 늘솜 지원하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
+                            <a href="<c:url value='/host/hostLogin'/>" class="btn btn-primary animate-up-2" >로그인 후 늘솜 지원하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
                             <span style="margin-left: 100px">상상공방이 처음이시라면</span>
-                            <a href="${pageContext.request.contextPath }/host/hostRegister" class="btn btn-primary animate-up-2" >늘솜 계정생성하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
+                            <a href="<c:url value='/host/hostRegister'/>" class="btn btn-primary animate-up-2" >늘솜 계정생성하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
                         </p>
                         <p class="text-center">
                         	
@@ -178,12 +178,12 @@
                         <!--End of Accordion-->
                         <p class="text-center">
                             <span>이미 상상공방 계정이 있습니다.</span>
-                            <a href="${pageContext.request.ContextPath }/host/hostLogin" class="btn btn-primary animate-up-2" >로그인 후 늘솜 지원하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
+                            <a href="<c:url value='/host/hostLogin'/>" class="btn btn-primary animate-up-2" >로그인 후 늘솜 지원하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
                             <span style="margin-left: 100px">상상공방이 처음이시라면</span>
-                            <a href="${pageContext.request.ContextPath }/host/hostRegister" class="btn btn-primary animate-up-2" >늘솜 계정생성하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
+                            <a href="<c:url value='/host/hostRegister'/>" class="btn btn-primary animate-up-2" >늘솜 계정생성하기<span class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
                         </p>
                     </div>
                 </div>
             
         </section>
-<%@ include file="inc/hostBottom.jsp" %>
+<%@ include file="../inc/bottom_host.jsp" %>

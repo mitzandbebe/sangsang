@@ -4,37 +4,81 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../member/memberTop.jsp" %>
  <!-- Section -->
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script>
+	
 	$(function(){
+		$('#hId').keyup(function(){
+			var id =$('#hId').val();
+			if(validate_userid(id) && id.length>=10){
+				$.ajax({
+					url:"<c:url value='/host/ajaxDuplicate'/>",
+					type:"post",
+					data:"hId="+id,
+					success:function(res){
+						var str="";
+						if(res){
+							$('#message').css('color', 'orange');
+							str="중복된 아이디입니다.";
+							$('#chkId').val('N');
+						}else{
+							str="사용가능한 아이디입니다.";
+							$('#message').css('color', 'green');
+							$('#chkId').val('Y');
+						}
+						
+						$('#message').html(str);
+					},
+					error:function(xhr, status, error){
+						alert("error : "+ error);
+					}
+				});
+			}else{
+				$('#message').css('color', 'red');
+				$('#message').css('visibility', 'visible');
+				$('#message').html('올바른 이메일 형식이 아닙니다.');
+				$('#chkId').val('N');
+			}
+		});
+		
 		$('#termChk3').click(function(){
 			open("<c:url value='/host/terms3'/>", "term3", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
 		});
 		
 		$('#additional').submit(function(){
-			var cardnum = $('#cardnum1').val()+$('#cardnum2').val()+$('#cardnum3').val()+$('#cardnum4').val();
-			$('#cardnum').val('cardnum');
-			if($('h_snsCheck').val()=='y'){
-				if($('#hPwd').val().length<1){
-					alert('비밀번호를 입력하세요');
-					$('#hPwd').focus();
-					event.preventDefault();
-				}else if ($('#hPwd2').val().length<1){ 
-					alert('2차 비밀번호를 확인하세요.');
-					$('#hPwd2').focus();
-					event.preventDefault();
-				}else if ($('#hPwd').val().length>0&&$('#hPwd2').val().length<10){
-					alert('비밀번호는 영문, 숫자 포함 10자리 이상입니다. ');
-					$('#hPwd').focus();
-					event.preventDefault();
-				}else if($('#hPwd').val()!==$('#hPwd2').val()){
-					alert('2차 비밀번호가 일치하지 않습니다.');
-					$('#hPwd2').focus();
-					event.preventDefault();
-				}
-			}
-			if ($('#hName').val().length<1){
+			var pwd = $('#hPwd').val();
+			var id = $('#hId').val();
+			
+			if($('#hId').val().length<1){
+				alert('아이디를 입력하세요.');
+				$('#hId').focus();
+				event.preventDefault();
+			}else if(!validate_userid(id)){
+				alert('아이디는 이메일 형식으로만 가능합니다.');
+				$('#hId').focus();
+				event.preventDefault();
+			}else if($('#chkId').val()!='Y'){
+				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
+				$('#hId').focus();
+				event.preventDefault();
+			}else if($('#hPwd').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#hPwd').focus();
+				event.preventDefault();
+			}else if($('#hPwd').val().length>=10&&!passwordRule.test(pwd)){
+				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
+				$('#hPwd').focus();
+				event.preventDefault();
+			}else if($('#hPwd2').val().length<1){
+				alert('2차 비밀번호를 입력하세요');
+				$('#hPwd2').focus();
+				event.preventDefault();
+			}else if($('#hPwd').val()!=$('#hPwd2').val()){
+				alert('비밀번호 확인이 일치하지 않습니다!');
+				$('#hPwd2').focus();
+				event.preventDefault();
+			}else if ($('#hName').val().length<1){
 				alert('성명을 입력해주세요.');
 				$('#hName').focus();
 				event.preventDefault();
@@ -115,7 +159,10 @@
 		
 	});
 	
-	
+	function validate_userid(id){
+		var pattern = new RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
+		return pattern.test(id);
+	}
 	
 	function validate_phone(tel){
 		var pattern = new RegExp(/^[0-9]*$/g);
@@ -184,7 +231,7 @@ var InputImage =
         </section>
       
        <!-- Section -->
-     <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" style="width: 50%; background-color: #679093">
+     <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" style="width: 50%; background-color: #82AFC5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -203,8 +250,8 @@ var InputImage =
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        
-                                        <input name="hId" class="form-control" type="text" id="exampleInputIcon4" aria-label="email adress"
+                                        <input type ="hidden" name="chkId" id="chkId" value="N">
+                                        <input name="hId" class="form-control" type="text" id="hId" aria-label="email adress"
                                         <c:if test="${!empty sessionScope.hId }">
                                         	readonly = "readonly"
                                         	value="${sessionScope.hId}"
@@ -222,8 +269,11 @@ var InputImage =
                                         </c:if>
                                         >
                                     </div>
+                                    <div>
+                                    	<span id="message" style="visibility:hidden">아이디를 입력하세요.</span>
+                                    </div>
                                 </div>
-                               <c:if test="${cookie.new_sns.value=='y'}">
+                               <c:if test="${(cookie.new_sns.value=='y'||empty cookie.new_sns) && empty sessionScope.hId}">
 	                                <!-- Form -->
 	                              	<div class="row mb-0">
 		                                <div class="col-6">
@@ -321,10 +371,10 @@ var InputImage =
                                             		</div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 mb-3" style = "float: left; margin-left: 10px;">
+                                            <div class="col-md-8" style = "float: left; margin-left: 10px;">
                                                 <div class="form-group">
                                                    <label for="hNickname">닉네임</label>
-                                                    <div class="input-group mb-4">
+                                                    <div class="input-group">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="far fa-smile"></i></span>
 			                                            </div>

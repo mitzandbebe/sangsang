@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
 <title>이벤트 보기(메인)</title>
@@ -60,8 +58,7 @@
 <script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
-</head>
-<body>
+
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
         <section class="section section-header bg-soft pb-12" style="padding:0;">
             <div class="container">
@@ -71,6 +68,7 @@
         <div class="section section-lg pt-0">
             <div class="container mt-n10">
                 <div class="row">
+                <h1 class="h3"><i class="fas fa-angle-double-right"></i>전체 클래스 보기</h1>
                     <div class="col-md-12">
                         <div class="basic-carousel owl-carousel owl-theme">
                             <!-- Item 1 -->
@@ -79,7 +77,7 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>" class="position-relative">
                                     <c:choose >
                                     	<c:when test="${not empty map['THUMBNAIL']}">
                                         	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
@@ -175,5 +173,4 @@
 
 <!-- Spaces custom Javascript -->
 <script src="<c:url value='/resources/assets/js/spaces.js'/> "></script>
-</body>
-</html>
+

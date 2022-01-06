@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
@@ -46,46 +48,47 @@ public class ReviewController {
 		return "class/review";
 	}
 
-	@RequestMapping("/review")
-	public String list(@ModelAttribute SearchVO searchVo, Model model) {
+	@RequestMapping("/review" )
+	public String list(@ModelAttribute ReviewVO reviewVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
 		logger.info("리뷰 목록");
-
+		
+		reviewVo.setcNo(cNo);
+		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		pagingInfo.setCurrentPage(reviewVo.getCurrentPage());
 
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("값 셋팅 후 searchVo={}", searchVo);
+		reviewVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		reviewVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}", reviewVo);
 
-		List<ReviewVO> list = reviewService.selectAll(searchVo);
+		List<ReviewVO> list = reviewService.selectAll(reviewVo.getcNo());
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
-		int totalRecord = reviewService.selectTotalRecord(searchVo);
+		int totalRecord = reviewService.selectTotalRecord(reviewVo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
-		return "class/review";
+		return "redirect:/class/review?cNo="+cNo;
 	}
 
 	
 	@GetMapping("/addreview")
-	public String review_add(Model model) {
+	public void review_add(Model model) {
 		logger.info("리뷰 등록페이지");
-		return "class/addreview";
 	}
 	
-	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo,
+	@PostMapping("/addreview")
+	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo, @RequestParam(defaultValue = "0") int cNo, 
+			 @RequestParam(defaultValue = "0") int hNo, @RequestParam String categoryName,
 			HttpSession session,HttpServletRequest request,Model model) {
 		String mId = (String) session.getAttribute("mId");
-//		int mNo= memberService.selectMno(mId);
+	//	int mNo= memberService.selectMno(mId);
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
-		
-		
 		
 		// 파일 업로드 처리
 		String fileName = "", originName = "";
@@ -120,6 +123,6 @@ public class ReviewController {
 
 		model.addAttribute("mId",mId);
 		
-		return "redirect:/class/review";
+		return "redirect:/class/detail?cNo="+cNo+"&categoryName="+categoryName+"&hNo="+hNo;
 	}
 }
