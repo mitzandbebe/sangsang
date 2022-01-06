@@ -2,12 +2,12 @@ package com.gr.ssgb.balancing.model;
 
 import java.util.List;
 
-import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.common.ExtendSearchVO;
 
 public interface BalancingService {
 
-	public List<BalancingVO> selectBalancingAll(SearchVO searchVo);
-	int selectTotalRecord(SearchVO searchVo);
+	public List<BalancingVO> selectBalancingAll(ExtendSearchVO extendSearchVo);
+	int selectTotalRecord(ExtendSearchVO extendSearchVo);
 	public String balancing();
 	public List<BalancingVO> totalPrice(BalancingVO balancingVo);
 	public Integer submitUpdate(int bNo);

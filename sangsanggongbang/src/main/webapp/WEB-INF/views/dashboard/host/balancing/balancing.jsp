@@ -84,7 +84,7 @@
 					</c:if>
 				</c:forEach>
 
-<%-- 			전체 ${sumAllPrice }원<br>
+ 				전체 ${sumAllPrice }원<br>
 				전체 클래수개수 ${list.size()}<br>
 				미정산 총금액 ${sumFlagNPrice }원<br>
 				정산완료 총액 ${sumFlagYPrice }원<br>
@@ -93,7 +93,7 @@
 				당월 ${sysMonth}월<br>
 				당월 미정산금액 ${sumFlagNmonthPrice}원<br>
 				당월 정산금액 ${sumFlagYmonthPrice}원<br>
-				당월 정산총액 ${sumFlagNmonthPrice+sumFlagYmonthPrice}원 --%>
+				당월 정산총액 ${sumFlagNmonthPrice+sumFlagYmonthPrice}원
 
 				<!-- Tab Content -->
 				<div class="card">
@@ -265,8 +265,6 @@
 								<div id="list3"></div>
 
 
-								</ul>
-								</nav>
 							</div>
 						</div>
 					</div>
@@ -275,6 +273,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-</main>
+</div>s
 <%@ include file="../../../inc/bottom.jsp"%>
