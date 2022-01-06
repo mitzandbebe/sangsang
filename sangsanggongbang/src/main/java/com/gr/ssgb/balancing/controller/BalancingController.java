@@ -84,7 +84,13 @@ public class BalancingController {
 	}
 	
 	@RequestMapping("/balancing")
-	public String totalprice(@ModelAttribute BalancingVO balancingVo, Model model) {
+	public String totalprice(@ModelAttribute BalancingVO balancingVo, Model model, HttpSession session) {
+		//로그인세션
+		int hNo=222;
+		
+		//값할당
+		balancingVo.sethNo(hNo);
+		
 		//1. 파라미터 읽어오기 - 출력
 		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
 		logger.info("정산총액 조회,결과 list.size={}", list.size());
@@ -107,7 +113,12 @@ public class BalancingController {
 	
 	@GetMapping("/excel/download")
     public void excelDownload(@ModelAttribute BalancingVO balancingVo, 
-    		HttpServletResponse response) throws IOException {
+    		HttpServletResponse response, HttpSession session) throws IOException {
+		//로그인세션
+		int hNo=222;
+				
+		//값할당
+		balancingVo.sethNo(hNo);
 		
 		List<BalancingVO> list=balancingService.totalPrice(balancingVo);
 		logger.info("엑셀다운 리스트 결과={}", list.size());

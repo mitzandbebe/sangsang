@@ -26,19 +26,24 @@
 		)
 		<![CDATA[
 		where RNUM>#{firstRecordIndex} 
-			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage} and h_no=#{hNo}]]>
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage} and h_no=#{hNo} ]]>
 	</select>
 
 	<select id="selectTotalRecord" parameterType="extendSearchVo" resultType="int">
-		select count(*) from balancing
+		select count(*) from(
+		select * from balancing
 		<include refid="searchWhere"></include>	
+		)
+		where h_no=#{hNo}
 	</select>
 	
-	<select id="totalPrice" resultType="balancingVo">
-		select a.*, b.ppnum, b.c_price
+	<select id="totalPrice" parameterType="int" resultType="balancingVo">
+		select a.*, b.*
 		from balancing a join class b
 		 on a.c_no=b.c_no
+		 where a.h_no=#{hNo}
 		 order by a.b_no desc
+		
 	</select>
 
 	<select id="submitUpdate" parameterType="int">
