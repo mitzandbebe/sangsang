@@ -13,8 +13,8 @@ public class QaServiceImpl implements QaService{
 	private QaDAO qaDao;
 
 	@Override
-	public List<QaVO> selectQaAll() { 
-		return qaDao.selectQaAll();
+	public List<QaVO> selectQaAll(QaVO vo) {
+		return qaDao.selectQaAll(vo);
 	}
 
 	@Transactional

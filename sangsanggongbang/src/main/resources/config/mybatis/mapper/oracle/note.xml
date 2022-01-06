@@ -7,7 +7,7 @@
 		resultType="string">
 		select * from member where m_nickname=#{rNickname}
 	</select>
-	
+
 	<insert id="sendNote" parameterType="noteVo">
 		<selectKey keyProperty="noteNo" resultType="int"
 			order="BEFORE">
@@ -21,21 +21,55 @@
 		VALUES(#{noteNo},#{noteNo},#{rNickname})
 		select * from dual
 	</insert>
-	
+
 	<resultMap type="map" id="noteView">
-		<result property="noteContent" column="NOTE_CONTENT" javaType="java.lang.String"/>
-		<result property="noteNo" column="NOTE_NO"/>
-		<result property="noteTitle" column="NOTE_TITLE"/>
-		<result property="noteRegdate" column="NOTE_REGDATE"/>
-		<result property="noteDelFag" column="NOTE_DELFLAG"/>
-		<result property="mId" column="M_ID"/>
-		<result property="rNickname" column="R_NICKNAME"/>
-		<result property="recNo" column="REC_NO"/>
-		<result property="recDelFlag" column="REC_DELFLAG"/>
-		<result property="recReadFlag" column="REC_READFLAG"/>
+		<result property="noteContent" column="NOTE_CONTENT"
+			javaType="java.lang.String" />
+		<result property="noteNo" column="NOTE_NO" />
+		<result property="noteTitle" column="NOTE_TITLE" />
+		<result property="noteRegdate" column="NOTE_REGDATE" />
+		<result property="noteDelFag" column="NOTE_DELFLAG" />
+		<result property="mId" column="M_ID" />
+		<result property="rNickname" column="R_NICKNAME" />
+		<result property="recNo" column="REC_NO" />
+		<result property="recDelFlag" column="REC_DELFLAG" />
+		<result property="recReadFlag" column="REC_READFLAG" />
 	</resultMap>
-	
-	<select id="selectNoteView" parameterType="map" resultType="map" resultMap="noteView">
+
+	<select id="selectNoteView" parameterType="map" resultType="map"
+		resultMap="noteView">
 		SELECT * FROM NOTEVIEW WHERE R_NICKNAME=#{rNickname}
+		order BY
+		NOTE_NO DESC
 	</select>
+
+	<delete id="deleteNote" parameterType="int[]">
+		delete from NOTE
+		<where>
+			note_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</delete>
+		<delete id="deleteNoteRec" parameterType="int[]">
+			delete from NOTE_REC
+		<where>
+			rec_no in
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</delete>
+	
+	<update id="saveNote" parameterType="int[]">
+		update  NOTE_REC
+		set REC_IMPFLAG = 'Y'
+		<where>
+			REC_NO IN
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			 #{arr}
+			</foreach>
+		</where>
+	</update>
 </mapper>

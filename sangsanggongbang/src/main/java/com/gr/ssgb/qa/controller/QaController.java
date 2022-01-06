@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import com.gr.ssgb.qa.model.QaService;
@@ -37,43 +38,64 @@ public class QaController {
 
     /*Q&A화면*/
     @RequestMapping("/qa/list")
-    public String qaList(Model model) {
+    public String qaList(@RequestParam(required = true, value = "cNo") Integer cNo, Model model) {
         //1. 파라미터 읽어오기 - 출력
         logger.info("게시판 화면");
 
         //2. db작업 => 매퍼 xml에서 작업, dao, service, serviceImpl
-        List<QaVO> list = qaservice.selectQaAll();
+
+        QaVO vo = new QaVO();
+        vo.setcNo(cNo);
+        List<QaVO> list = qaservice.selectQaAll(vo);
         logger.info("게시판 조회,결과 list.size={}", list.size());
 
         //3. model에 결과 저장
+        model.addAttribute("cNo", cNo);
         model.addAttribute("list", list);
 
         //4. 뷰페이지 리턴
         return "qa/list";
     }
 
-    /*등록기능*/
-    @PostMapping("/qa/write")
-    public String write_post(HttpServletRequest request, @ModelAttribute QaVO vo, Model model) {
+    /*등록/수정 기능*/
+    @PostMapping("/qa/save")
+    public String write_post(HttpServletRequest request,
+                             @ModelAttribute QaVO vo,
+                             @RequestParam("redirectUrl") String redirectUrl,
+                             Model model) {
         logger.info("qa 작성 처리 화면");
 
-        String msg = "글 작성 실패!", url = "/qa/list";
+        String msg = "글 작성 실패!";
+        String url = !StringUtils.isEmpty(redirectUrl) ? redirectUrl : "/qa/list";
 
         try{
-            Integer mNo = memberService.selectMno(request.getSession().getAttribute("mId").toString());
-            vo.setmNo(mNo);
+            String mId = (String) request.getSession().getAttribute("mId");
+            if (mId == null)
+                throw new Exception("로그인 정보가 없습니다.");
 
+            Integer mNo = memberService.selectMno(mId);
             if (mNo == null)
-                throw new Exception("로그인정보가 없습니다.");
+                throw new Exception("로그인 정보가 없습니다.");
 
-            int cnt = qaservice.insertQa(vo);
-            if (cnt == 0)
-                throw new Exception("글 작성실패");
+            if(vo.getQaNo() > 0) {
 
-            msg = "등록이 완료 되었습니다.";
+                int cnt = qaservice.updateQa(vo);
+                if (cnt == 0)
+                    throw new Exception("글 수정실패");
+
+                msg = "수정이 완료 되었습니다.";
+            }else {
+                vo.setmNo(mNo);
+
+                int cnt = qaservice.insertQa(vo);
+                if (cnt == 0)
+                    throw new Exception("글 작성실패");
+
+                msg = "등록이 완료 되었습니다.";
+            }
+
         }catch (Exception e) {
             msg = e.getMessage();
-            e.printStackTrace();
         }
 
         model.addAttribute("msg", msg);

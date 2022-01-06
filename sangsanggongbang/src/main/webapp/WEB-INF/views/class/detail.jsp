@@ -220,12 +220,15 @@
 							</div>
 							<!-- End of Reviews Tab -->
 							<!-- Q&A Tab -->
-<%-- 						<div class="tab-pane fade" id="nav-qna" role="tabpanel"
-								aria-labelledby="nav-qna-tab">
-								<c:import url="/qa/list"/>
-								
-								
-							</div>  --%>
+
+							<div class="tab-pane fade" id="nav-qna" role="tabpanel" aria-labelledby="nav-qna-tab">
+								<div class="row">
+									<div class="col-12">
+										<c:import url="/qa/list?cNo=${map['C_NO']}"/>
+									</div>
+								</div>
+							</div>
+
 							<!-- End of Q&A Tab -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
@@ -458,5 +461,13 @@
 		</section>
 		<!-- End of section -->
 	</main>
-	
+
+
+<script>
+	$(document).ready(function() {
+		var hash = location.hash.substring(1);
+		$('.nav-tabs #' + hash).trigger('click');
+	});
+</script>
+
 <%@ include file="../inc/bottom.jsp" %>
