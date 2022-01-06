@@ -1,5 +1,7 @@
 package com.gr.ssgb.host.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,11 @@ public class HostServiceImpl implements HostService{
 	@Override
 	public int insertHost(HostVO vo) {
 		return hostDao.insertHost(vo);
+	}
+
+	@Override
+	public List<HostVO> selectAllHost() {
+		return hostDao.selectAllHost();
 	}
 	
 }
