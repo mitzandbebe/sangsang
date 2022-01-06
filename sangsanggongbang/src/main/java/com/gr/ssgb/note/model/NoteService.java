@@ -14,4 +14,5 @@ public interface NoteService {
 	List<Map<String, Object>> selectNoteView(String rNickname);
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 
+	int saveNote(int[] noteNo);
 }

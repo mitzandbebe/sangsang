@@ -99,23 +99,38 @@ public class NoteController {
 	}
 
 	@RequestMapping("/noteDelete")
-	public String noteDelete(@RequestParam int[] noteNo,Model model) {
+	public String noteDelete(@RequestParam int[] noteNo, Model model) {
 		logger.info("noteNo={}", noteNo);
-		int cnt1 = noteService.deleteNote(noteNo); 
+		int cnt1 = noteService.deleteNote(noteNo);
 		int cnt2 = noteService.deleteNoteRec(noteNo);
-		String msg="쪽지 삭제 실패", url="/note/noteList";
-		if(cnt1>0) {
-			msg="쪽지 삭제 성공";
-		}else if(cnt2==0) {
-			msg="쪽지 삭제 실패"; 
+		String msg = "쪽지 삭제 실패", url = "/note/noteList";
+		if (cnt1 > 0) {
+			msg = "쪽지 삭제 성공";
+		} else if (cnt2 == 0) {
+			msg = "쪽지 삭제 실패";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "note/noteList";
+	}
+
+	@GetMapping("/noteBox")
+	public void noteBox() {
+		logger.info("쪽지보관함 등장");
+	}
+	
+	@PostMapping("/noteSave")
+	public String noteSave(@RequestParam int[] noteNo, Model model) {
+		logger.info("noteNo={}", noteNo);
+		int cnt = noteService.saveNote(noteNo);
+		String msg="쪽지 보관 실패",url="/note/noteBox";
+		if(cnt>0) {
+			msg="쪽지 보관 성공";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
-		
-		return "note/noteList";
+		return "/common/message";
 	}
-	/*
-	 * @RequestMapping("/noteSave") public String noteSave(@RequestParam int[]
-	 * noteNo, Model model) { logger.info("noteNo={}",noteNo); }
-	 */
+
 }

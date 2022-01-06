@@ -53,7 +53,7 @@
 		</where>
 	</delete>
 		<delete id="deleteNoteRec" parameterType="int[]">
-			delete from NOTE_rec
+			delete from NOTE_REC
 		<where>
 			rec_no in
 			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
@@ -62,4 +62,14 @@
 		</where>
 	</delete>
 	
+	<update id="saveNote" parameterType="int[]">
+		update  NOTE_REC
+		set REC_IMPFLAG = 'Y'
+		<where>
+			REC_NO IN
+			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			 #{arr}
+			</foreach>
+		</where>
+	</update>
 </mapper>
