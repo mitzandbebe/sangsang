@@ -16,7 +16,7 @@
 		#{rOriginalname})
 	</insert>
 
-	<select id="selectAll" parameterType="searchVo"
+	<select id="selectAll" parameterType="reviewVo"
 		resultType="reviewVO">
 		select*
 		from
