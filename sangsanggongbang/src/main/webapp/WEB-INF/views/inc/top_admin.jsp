@@ -103,10 +103,10 @@
 				<a class="navbar-brand @@logo_classes"
 					href="${pageContext.request.contextPath }/index"> <img
 					class="navbar-brand-dark common"
-					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom.png"
+					src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_bottom.png"
 					height="35" alt="Logo light"> <img
 					class="navbar-brand-light common"
-					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
+					src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_top_light.png"
 					height="35" alt="Logo dark">
 				</a>
 				<div class="navbar-collapse collapse" id="navbar_global">
@@ -116,7 +116,7 @@
 								<a
 									href="${pageContext.request.contextPath }/resources/index.html">
 									<img
-									src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
+									src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_top_light.png"
 									height="35" alt="Logo Impact">
 								</a>
 							</div>
@@ -128,11 +128,12 @@
 							</div>
 						</div> 
 					</div>
+					<!-- 메뉴2 -->
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">상상 클래스</span> <i
+								class="nav-link-inner-text mr-1">메뉴1</span> <i
 								class="fas fa-angle-down nav-link-arrow"></i>
 						</a>
 							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
@@ -182,11 +183,68 @@
 								</div>
 							</div>
 					</ul>
+					<!-- 메뉴2 -->
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">늘솜 지원하기</span> <i
+								class="nav-link-inner-text mr-1">메뉴2</span> <i
+								class="fas fa-angle-down nav-link-arrow"></i>
+						</a>
+							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
+								aria-labelledby="mainPagesDropdown">
+								<div class="row">
+									<div class="col-6 col-lg-4" style="color: #49746E";>
+										<h6 class="d-block mb-3 text-primary">카테고리</h6>
+										<ul class="list-style-none mb-4">
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/index.html">공예
+													DIY</a></li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href=".${pageContext.request.contextPath }/resources/html/index-2.html">베이킹</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/index-3.html">쿠킹</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/about.html">문화예술</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/pricing.html">자기계발</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/team.html">뷰티</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">여행</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">피트니스</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">스포츠</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">모임</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">스토어</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
+											</li>
+										</ul>
+										
+									</div>
+								</div>
+							</div>
+					</ul>
+					<!-- 메뉴3 -->
+					<ul class="navbar-nav navbar-nav-hover justify-content-center">
+						<li class="nav-item dropdown"><a href="#"
+							id="mainPagesDropdown" class="nav-link dropdown-toggle"
+							aria-expanded="false" data-toggle="dropdown"> <span
+								class="nav-link-inner-text mr-1">메뉴3</span> <i
 								class="fas fa-angle-down nav-link-arrow"></i>
 						</a>
 							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
@@ -239,7 +297,7 @@
 				</div>
 			</div>
 
-		<!-- 로그인,로그아웃,쪽지 -->
+		<!-- 로그인,로그아웃-->
 			<div id="top_button_row">
 				<div class="d-none d-lg-block @@cta_button_classes">
 
@@ -263,16 +321,9 @@
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 
-					<!--쪽지함-->
-					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a
-						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
-						<img width="30px"
-						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>"></a>
-					<!--쪽지함 끝-->
 				</div>
 			</div>
-		<!-- 로그인, 로그아웃, 쪽지 끝 -->
+		<!-- 로그인, 로그아웃 끝 -->
 
 
 			<div class="d-flex d-lg-none align-items-center">
