@@ -33,13 +33,17 @@ public class StompChatController {
 	//Client가 SEND할 수 있는 경로
 	 //stompConfig에서 설정한 applicationDestinationPrefixes와 @MessageMapping 경로가 병합됨
 	 //"/pub/chat/enter"
-	 /* @MessageMapping(value = "/chat/enter")
+	  @MessageMapping(value = "/chat/enter")
 	 public void enter(ChatMessageDTO message){
-		 String userId = message.getWriter();
-		 userSessions.put(userId, session);
-	     message.setMessage(message.getWriter() + "님의 실시간 채팅요청입니다.");
-	     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
-	 }*/
+		 if(!message.getRoomId().equals(message.getWriter())) {
+			 message.setMessage(message.getRoomId() + "님께 실시간 채팅요청중입니다.");
+		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+		 }else {
+			 message.setMessage(message.getRoomId() + "님께서 입장하셨습니다.");
+		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+		 }
+	     
+	 }
 	 
 	 /*@MessageMapping(value = "/chat/alert")
 	 public void alert(WebSocketSession session, ChatMessageDTO message) throws Exception{
