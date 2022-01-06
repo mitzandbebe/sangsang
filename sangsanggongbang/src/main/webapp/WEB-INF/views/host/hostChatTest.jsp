@@ -2,25 +2,49 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp"  %>
+
+<div class="container toast-container" style="margin-top: 500px">
+<div id="msgArea"></div>
+
+
+            <div>
+                <ul>
+                <c:forEach var = "ChatRoomDTO" items="${list }">
+                	<li><a href="<c:url value='/chat/room?roomId=${ChatRoomDTO.roomId }'/>" target="_blank">${ChatRoomDTO.name }</a></li>
+                </c:forEach>
+                </ul>
+            </div>
+        <table>
+        	<tr>
+        		<th>호스트 닉네임</th>
+        		<th>버튼</th>
+        	</tr>
+        <c:forEach var="hostVo" items="${hlist }">
+        	<tr>
+        		<td>${hostVo.hNickname }</td>
+        		<td>
+		        	<!--  <form method="post" action="<c:url value='/chat/room'/> ">
+			            <input type="text" name="name" class="form-control" value="${hostVo.hNickname }">
+			            <button class="btn btn-secondary btn-create">채팅방 개설하기</button>
+		        	</form>-->
+		        	<a href="<c:url value='/chat/room?roomId=${hostVo.hNickname }'/>" target="_blank">${hostVo.hNickname }</a>
+	        	<td>
+	        	
+	        </tr>
+        </c:forEach>
+        </table>
+       </div>
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+var roomName = "${room.name}";
+var roomId = "${sessionScope.hNickname}";
+var username = "${sessionScope.hId}";
+var count =0; 
 $(document).ready(function(){
-	var roomName = "${room.name}";
-	var roomId = "${sessionScope.hNickname}";
-	var username = "${sessionScope.hId}";
 	
-	$('#goChat').click(function(){
-    	var contextPath="/sangsanggongbang";
-		open(contextPath+'/chat/room?roomId='+roomId,'chat',
-		 'width=400,height=300,left=0,top=0,location=yes,resizable=no');
-	});
-	
-	
-	
-
-
     console.log(roomName + ", " + roomId + ", ");
 
     var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
@@ -48,12 +72,15 @@ $(document).ready(function(){
                str += "</div></div>";
                $("#msgArea").append(str);
            }else{
-        	  
-        	   str = "<div id ='goChat' class = 'alert alert-primary'>";
+        	  count += 1;
+        	  if(count==0){
+        		  
+        	  }
+        	  /* str = "<a href='#' onClick='openChat();'> <div class = 'alert alert-primary'>";
         	   str += "<button type='button' class = 'close' data-dismiss='alert'>×</button>";
                str +="<div ><strong>"+writer+"</strong>님의 실시간 대화 요청입니다.<br>";
-               str +=content.message+"</div></div>";
-               $("#msgArea").append(str);
+               str +=content.message+"</div></div></a>";
+               $("#msgArea").append(str);*/
                
            }
        });
@@ -69,56 +96,13 @@ $(document).ready(function(){
         stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
         msg.value = '';
     });
-    
+   
 });
-</script>
-<div class="container toast-container" style="margin-top: 500px">
-<div id="msgArea"></div>
-
-
-            <div>
-                <ul>
-                <c:forEach var = "ChatRoomDTO" items="${list }">
-                	<li><a href="<c:url value='/chat/room?roomId=${ChatRoomDTO.roomId }'/>" target="_blank">${ChatRoomDTO.name }</a></li>
-                </c:forEach>
-                </ul>
-            </div>
-        <table>
-        	<tr>
-        		<th>호스트 닉네임</th>
-        		<th>버튼</th>
-        	</tr>
-        <c:forEach var="hostVo" items="${hlist }">
-        	<tr>
-        		<td>${hostVo.hNickname }</td>
-        		<td>
-		        	<!--  <form method="post" action="<c:url value='/chat/room'/> ">
-			            <input type="text" name="name" class="form-control" value="${hostVo.hNickname }">
-			            <button class="btn btn-secondary btn-create">채팅방 개설하기</button>
-		        	</form>-->
-		        	<a href="<c:url value='/chat/room?roomId=${hostVo.hNickname }'/>" target="_blank">${hostVo.hNickname }</a>
-	        	<td>
-	        </tr>
-        </c:forEach>
-        </table>
-       </div>
-<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".btn-create").on("click", function (e){
-        e.preventDefault();
-
-        if(roomName != null)
-            alert("방이 개설되었습니다.");
-        var name = $("input[name='name']").val();
-
-        if(name == "")
-            alert("Please write the name.")
-        else
-            $("form").submit();
-    });
-
-});
+function openChat(){
+	var contextPath="/sangsanggongbang";
+	open(contextPath+'/chat/room?roomId='+roomId,'chat',
+	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+}
 </script>
 
 <%@ include file="../inc/bottom.jsp"  %>
