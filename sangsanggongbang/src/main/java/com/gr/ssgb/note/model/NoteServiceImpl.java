@@ -52,4 +52,9 @@ public class NoteServiceImpl implements NoteService {
 		return noteDAO.deleteNoteRec(noteNo);
 	}
 
+	@Override
+	public int saveNote(int[] noteNo) {
+		return noteDAO.saveNote(noteNo);
+	}
+
 }
