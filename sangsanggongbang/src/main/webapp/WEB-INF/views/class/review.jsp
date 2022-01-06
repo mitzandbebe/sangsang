@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<from name="frmreviewList">
+<form name="frmreviewList" method="post"  enctype="multipart/form-data"
+		 action="<c:url value='/class/review'/> ">
 	<!-- 리뷰 내용반복 -->
 		<c:if test="${empty list }">
 			<p class="h5">소중한 첫 리뷰를 등록해주세요</p>
@@ -69,4 +70,4 @@
 		</div>
 	</div>
 		</c:if>
-</from>
+</form>

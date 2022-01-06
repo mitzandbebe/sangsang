@@ -4,7 +4,10 @@
 
 	<form name="frmReviewAdd" method="post"  enctype="multipart/form-data"
 		 action="<c:url value='/class/addreview'/> ">
+<%-- 		 action="<c:url value='/class/detail?cNo=${param.cNo}&categoryName=${param.categoryName}&hNo=${param.hNo}'/> "> --%>
 		 <input type="hidden" name="cNo" value="${param.cNo }">
+		 <input type="hidden" name="hNo" value="${param.hNo }">
+		 <input type="hidden" name="categoryName" value="${param.categoryName }">
 		 <input type="hidden" name="rRate" id="rRate">
 		<div
 			class="d-flex justify-content-between align-items-center mb-3 mt-5">
@@ -22,10 +25,10 @@
 			<label for="upfile">대표이미지 📁 </label> <input type="file"
 				name="upfile" id="upfile">
 		</div>
-		<textarea name="description" class="form-control border"
-			placeholder="리뷰등록하기" rows="6"
+		<textarea class="form-control border"
+			placeholder="리뷰등록하기" rows="6" name="rContent"
 			data-bind-characters-target="#charactersRemaining" maxlength="1000"
-			required name="rContent"></textarea>
+			required ></textarea>
 		<div class="d-flex justify-content-between mt-3">
 			<small class="font-weight-light"> <span
 				id="charactersRemaining">1000</span> 글자 제한
