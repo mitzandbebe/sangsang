@@ -51,28 +51,36 @@
 <link type="text/css" href="${pageContext.request.contextPath }/resources/css/spaces.css" rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-
+<style>
+	#msgArea::-webkit-scrollbar {
+    display: none;
+}
+</style>
 </head>
 <body>
-<div class="section section-lg bg-soft">
-            <div class="container">
-                <div class="col-12">
-	<div class="col-8 col-lg-8" style="margin:0 auto;">
-		<div id="msgArea"></div>
-		<textarea class="form-control border border-light-gray" id="msg" placeholder="Your Message" rows="6" maxlength="1000" required></textarea>
-		<div>
-	    	<button id="button-send" class="btn btn-dark mt-0" style="width: 100%">전송</button>
+	<div class="section section-lg bg-soft" style="height: 100%; width: 100%;">
+		<div class="container">
+			<div class="col-12">
+				<div class="col-12 col-lg-12" style="margin:0 auto;">
+					<div id="msgArea" style="width: 90%; height: 700px; overflow-y: auto;"></div>
+					<textarea class="form-control border border-light-gray" id="msg" style="width: 90%" placeholder="Your Message" rows="6" maxlength="1000" required></textarea>
+					<div>
+				    	<button id="button-send" class="btn btn-dark mt-0" style="width: 90%">전송</button>
+					</div>
+				</div>
+				
+			</div>
+			
 		</div>
+		
 	</div>
-</div>
-</div>
-</div>
+	
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-
+	
 	var roomName = "${room.name}";
     var roomId = "${room.roomId}";
     var username = "${sessionScope.mId}";
@@ -104,6 +112,8 @@ $(document).ready(function(){
                str += "</span></div><p class='m-0'>"+content.message+"</p></div>";
                str += "</div></div>";
                $("#msgArea").append(str);
+               $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
+               console.log($('#msgArea')[0].scrollHeight);
            }else{
         	   str = "<div class='card bg-white border-light p-4 mb-4'>";
                str +="<div class='d-flex justify-content-between align-items-center mb-2'>";
@@ -114,6 +124,7 @@ $(document).ready(function(){
                str +="</a><span class='ml-2'>March 26, 19:25</span></span>";
                str +="</div><p class='m-0'>"+content.message+"</p></div>";
                $("#msgArea").append(str);
+               $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
                
            }
        });
@@ -129,7 +140,9 @@ $(document).ready(function(){
         stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
         msg.value = '';
     });
+    
 });
+
 </script>
     <!-- Core -->
 <script src="${pageContext.request.contextPath }/resources/vendor/jquery/dist/jquery.min.js"></script>
