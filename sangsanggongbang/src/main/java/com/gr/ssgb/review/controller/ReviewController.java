@@ -49,7 +49,7 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/review")
-	public String list(@ModelAttribute SearchVO searchVo, Model model ) {
+	public String list(@ModelAttribute SearchVO searchVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
 		logger.info("리뷰 목록");
 
 		PaginationInfo pagingInfo = new PaginationInfo();
