@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
@@ -47,7 +49,7 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/review")
-	public String list(@ModelAttribute SearchVO searchVo, Model model) {
+	public String list(@ModelAttribute SearchVO searchVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
 		logger.info("리뷰 목록");
 
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -74,18 +76,17 @@ public class ReviewController {
 
 	
 	@GetMapping("/addreview")
-	public String review_add(Model model) {
+	public void review_add(Model model) {
 		logger.info("리뷰 등록페이지");
-		return "class/addreview";
 	}
 	
-	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo,
+	@PostMapping("/addreview")
+	public String reviewAdd_post(@ModelAttribute ReviewVO reviewVo, @RequestParam(defaultValue = "0") int cNo, 
+			 @RequestParam(defaultValue = "0") int hNo, @RequestParam String categoryName,
 			HttpSession session,HttpServletRequest request,Model model) {
 		String mId = (String) session.getAttribute("mId");
-//		int mNo= memberService.selectMno(mId);
+	//	int mNo= memberService.selectMno(mId);
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
-		
-		
 		
 		// 파일 업로드 처리
 		String fileName = "", originName = "";
@@ -120,6 +121,6 @@ public class ReviewController {
 
 		model.addAttribute("mId",mId);
 		
-		return "redirect:/class/review";
+		return "redirect:/class/detail?cNo="+cNo+"&categoryName="+categoryName+"&hNo="+hNo;
 	}
 }

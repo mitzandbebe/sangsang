@@ -8,12 +8,12 @@
 			order="BEFORE">
 			select REVIEW_SEQ.nextval from dual
 		</selectKey>
-		insert into news(R_NO, C_NO, H_NO, R_RATE,
+		insert into review(R_NO, C_NO, H_NO, R_RATE,
 		R_CONTENT, R_UPLOADNAME,R_FILESIZE,R_ORIGINALNAME)
 		values(#{rNo}, #{cNo},
 		#{hNo}, #{rRate},
-		#{rContent},#{rFilesize},
-		#{rOriginalname},#{rFilesize})
+		#{rContent},#{rUploadname},#{rFilesize},
+		#{rOriginalname})
 	</insert>
 
 	<select id="selectAll" parameterType="searchVo"
@@ -24,7 +24,7 @@
 		select rownum as RNUM, A.*
 		from
 		(
-		select * from review order by
+		select * from review where c_no=#{cNo} order by
 		R_no desc
 		)A
 		)
