@@ -24,7 +24,7 @@
 		select rownum as RNUM, A.*
 		from
 		(
-		select * from review order by
+		select * from review where c_no=#{cNo} order by
 		R_no desc
 		)A
 		)
