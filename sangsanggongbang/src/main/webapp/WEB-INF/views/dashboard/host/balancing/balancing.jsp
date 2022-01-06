@@ -83,7 +83,7 @@
 						</c:if>
 					</c:if>
 				</c:forEach>
-
+				
  				전체 ${sumAllPrice }원<br>
 				전체 클래수개수 ${list.size()}<br>
 				미정산 총금액 ${sumFlagNPrice }원<br>
