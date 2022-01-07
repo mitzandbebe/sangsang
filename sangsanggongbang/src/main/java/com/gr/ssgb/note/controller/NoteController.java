@@ -164,7 +164,6 @@ public class NoteController {
 	}
 
 	
-
 	@RequestMapping("/noteDetail") // 쪽지 상세사항
 	public String noteDetail(@RequestParam(defaultValue = "0") int noteNo, Model model) {
 		logger.info("쪽지디테일 noteNo={}", noteNo);
@@ -175,7 +174,8 @@ public class NoteController {
 			model.addAttribute("url", url);
 			return "/common/message";
 		}
-		NoteVO vo = noteService.selectNoteDetail(noteNo);
+		NoteVO vo = noteService.selectNoteDetail(noteNo); //
+		/* int cnt = noteService.noteRead(noteNo); */
 		logger.info("쪽지상세화면 vo={}", vo);
 
 		model.addAttribute("vo", vo);

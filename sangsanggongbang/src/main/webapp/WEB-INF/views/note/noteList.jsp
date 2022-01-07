@@ -60,7 +60,10 @@
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
-											<td><a
+											<td><a <c:choose>
+											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
+											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
+											</c:choose>
 												href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
 													${map['noteContent'] }</a></td>
 											<td><fmt:formatDate value="${map['noteRegdate']}"

@@ -35,8 +35,7 @@
 					<a href="<c:url value='/note/noteList?mId=${param.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 							type="button">쪽지함</button>
-					</a>
-					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
+					</a> <a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 							type="button">쪽지쓰기</button>
 					</a>
@@ -59,7 +58,13 @@
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
-											<td> <a href="<c:url value='note/noteDetail?noteNo=${map["noteNo"] }'/>">  ${map['noteContent'] }</a></td>
+											<td>
+											<a <c:choose>
+											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
+											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
+											</c:choose>
+												href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
+													${map['noteContent'] }</a></td>
 											<td><fmt:formatDate value="${map['noteRegdate']}"
 													pattern="yyyy-MM-dd [HH:mm]" /></td>
 										</tr>
@@ -69,38 +74,39 @@
 									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
 									<div class="d-flex align-items-center mt-3"></div>
 								</div>
-								
+
 							</div>
-							
+
 						</div>
 					</div>
 					<div class="d-flex justify-content-center w-100 mt-5">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<c:if test="${pagingInfo.firstPage>1 }">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
-							</li>
-						</c:if>
-						<c:forEach var="i" begin="${pagingInfo.firstPage}"
-							end="${pagingInfo.lastPage }">
-							<c:if test="${i==pagingInfo.currentPage }">
-								<li class="page-item active"><a class="page-link" href="#">${i }</a>
-							</c:if>
-						<c:if test="${i!=pagingInfo.currentPage }">
-								<li class="page-item"><a class="page-link"
-									href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${i}'/>">
-										${i }</a></li>
-							</c:if>
-						</c:forEach>
-						<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
-							</li>
-						</c:if>
-					</ul>
-				</nav>
-			</div>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<c:if test="${pagingInfo.firstPage>1 }">
+									<li class="page-item"><a class="page-link"
+										href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+									</li>
+								</c:if>
+								<c:forEach var="i" begin="${pagingInfo.firstPage}"
+									end="${pagingInfo.lastPage }">
+									<c:if test="${i==pagingInfo.currentPage }">
+										<li class="page-item active"><a class="page-link"
+											href="#">${i }</a>
+									</c:if>
+									<c:if test="${i!=pagingInfo.currentPage }">
+										<li class="page-item"><a class="page-link"
+											href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${i}'/>">
+												${i }</a></li>
+									</c:if>
+								</c:forEach>
+								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+									<li class="page-item"><a class="page-link"
+										href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+									</li>
+								</c:if>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</div>
