@@ -37,35 +37,36 @@ public class NoteServiceImpl implements NoteService {
 
 	@Override
 	public List<Map<String, Object>> selectNoteView(NoteVO vo) {
-		MemberVO mVo= memberDAO.selectMemberById(vo.getmId());
-		String nickname= mVo.getmNickname();
+		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
+		String nickname = mVo.getmNickname();
 		vo.setrNickname(nickname);
 		List<Map<String, Object>> list = noteDAO.selectNoteView(vo);
 		return list;
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> selectNoteBoxView(NoteVO vo) {
-		MemberVO mVo= memberDAO.selectMemberById(vo.getmId());
-		String nickname= mVo.getmNickname();
+		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
+		String nickname = mVo.getmNickname();
 		vo.setrNickname(nickname);
 		List<Map<String, Object>> list = noteDAO.selectNoteBoxView(vo);
 		return list;
 	}
-	
+
 	@Override
 	public int selectTotalNoteRecord(NoteVO vo) {
 		return noteDAO.selectTotalNoteRecord(vo);
 	}
+
 	@Override
 	public int selectTotalNoteBoxRecord(NoteVO vo) {
 		return noteDAO.selectTotalNoteBoxRecord(vo);
 	}
 
 	public int deleteNote(int[] noteNo) {
-		return noteDAO.deleteNote(noteNo);	
+		return noteDAO.deleteNote(noteNo);
 	}
-													
+
 	public int deleteNoteRec(int[] noteNo) {
 		return noteDAO.deleteNoteRec(noteNo);
 	}
@@ -75,12 +76,10 @@ public class NoteServiceImpl implements NoteService {
 		return noteDAO.saveNote(noteNo);
 	}
 
-
-
 	@Override
 	public NoteVO selectNoteDetail(int noteNo) {
+		noteDAO.noteRead(noteNo);
 		return noteDAO.selectNoteDetail(noteNo);
 	}
-
 
 }

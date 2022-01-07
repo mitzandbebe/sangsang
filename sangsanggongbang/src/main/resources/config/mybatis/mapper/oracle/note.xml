@@ -88,8 +88,6 @@
 		where r_nickname=#{rNickname} and rec_impflag='Y'
 	</select>
 
-
-
 	<delete id="deleteNote" parameterType="int[]">
 		delete from NOTE
 		<where>
@@ -128,4 +126,10 @@
 		SELECT * FROM NOTEVIEW WHERE
 		note_no=#{noteNo}
 	</select>
+	
+	<update id="noteRead" parameterType="int">
+		update NOTE_REC
+		set REC_READFLAG = 'Y'
+		where NOTE_NO = #{noteNo}
+	</update>
 </mapper>

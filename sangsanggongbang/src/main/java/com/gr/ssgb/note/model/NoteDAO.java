@@ -18,5 +18,6 @@ public interface NoteDAO {
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 
 	int saveNote(int[] noteNo);
+	int noteRead(int noteNo);
 	NoteVO selectNoteDetail(int noteNo);
 }
