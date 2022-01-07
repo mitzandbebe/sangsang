@@ -88,7 +88,7 @@
                                     </c:choose>
                                     </a>
                                     <div class="card-body" style="width:300px; height:150px">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             <h4 class="h6" >${map["C_NAME"] }</h4>
                                         </a>
                                         <div class="d-flex my-4">

@@ -8,10 +8,10 @@
 			order="BEFORE">
 			select REVIEW_SEQ.nextval from dual
 		</selectKey>
-		insert into review(R_NO, C_NO, H_NO, R_RATE,
+		insert into review(R_NO, C_NO, H_NO, M_NO,R_RATE, NICKNAME,
 		R_CONTENT, R_UPLOADNAME,R_FILESIZE,R_ORIGINALNAME)
 		values(#{rNo}, #{cNo},
-		#{hNo}, #{rRate},
+		#{hNo},#{mNo} , #{rRate}, #{nickname},
 		#{rContent},#{rUploadname},#{rFilesize},
 		#{rOriginalname})
 	</insert>
@@ -37,5 +37,12 @@
 		resultType="int">
 		select count(*) from review
 	</select>
+	
+	<!-- <select id="selectTotalRecord" parameterType=""
+		resultType="int">
+		select m_no from review
+	</select> -->
+	
+	
 	
 </mapper>
