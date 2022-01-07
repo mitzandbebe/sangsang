@@ -38,7 +38,16 @@
 
 	<select id="selectNoteView" parameterType="map" resultType="map"
 		resultMap="noteView">
-		SELECT * FROM NOTEVIEW WHERE R_NICKNAME=#{rNickname}
+		SELECT * FROM NOTEVIEW WHERE
+		R_NICKNAME=#{rNickname} and REC_IMPFLAG='N'
+		order BY
+		NOTE_NO DESC
+	</select>
+
+	<select id="selectNoteBoxView" parameterType="map"
+		resultType="map" resultMap="noteView">
+		SELECT * FROM NOTEVIEW WHERE
+		R_NICKNAME=#{rNickname} and REC_IMPFLAG='Y'
 		order BY
 		NOTE_NO DESC
 	</select>
@@ -47,29 +56,37 @@
 		delete from NOTE
 		<where>
 			note_no in
-			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
 				#{arr}
 			</foreach>
 		</where>
 	</delete>
-		<delete id="deleteNoteRec" parameterType="int[]">
-			delete from NOTE_REC
+	<delete id="deleteNoteRec" parameterType="int[]">
+		delete from NOTE_REC
 		<where>
 			rec_no in
-			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
 				#{arr}
 			</foreach>
 		</where>
 	</delete>
-	
+
 	<update id="saveNote" parameterType="int[]">
-		update  NOTE_REC
+		update NOTE_REC
 		set REC_IMPFLAG = 'Y'
 		<where>
 			REC_NO IN
-			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
-			 #{arr}
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
+				#{arr}
 			</foreach>
 		</where>
 	</update>
+	
+	<select id="selectNoteDetail" parameterType="int" resultType="noteVo">
+		SELECT * FROM NOTEVIEW WHERE 
+		note_no=#{noteNo}
+	</select>
 </mapper>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="../inc/top.jsp"  %>
+
+<%@ include file="../inc/top_host.jsp"  %>
 
 <div class="container toast-container" style="margin-top: 500px">
 <div id="msgArea"></div>
@@ -34,6 +35,7 @@
         </c:forEach>
         </table>
        </div>
+
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -105,4 +107,4 @@ function openChat(){
 }
 </script>
 
-<%@ include file="../inc/bottom.jsp"  %>
+<%@ include file="../inc/bottom_host.jsp"  %>

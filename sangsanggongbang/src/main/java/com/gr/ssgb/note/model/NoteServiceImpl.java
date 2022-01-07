@@ -57,4 +57,16 @@ public class NoteServiceImpl implements NoteService {
 		return noteDAO.saveNote(noteNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectNoteBoxView(String mId) {
+		MemberVO vo = memberDAO.selectMemberById(mId);
+		List<Map<String, Object>> list = noteDAO.selectNoteBoxView(vo.getmNickname());
+		return list;
+	}
+
+	@Override
+	public NoteVO selectNoteDetail(int noteNo) {
+		return noteDAO.selectNoteDetail(noteNo);
+	}
+
 }

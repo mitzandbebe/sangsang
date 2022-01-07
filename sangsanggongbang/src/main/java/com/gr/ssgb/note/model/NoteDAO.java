@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Mapper
 public interface NoteDAO {
@@ -15,4 +13,6 @@ public interface NoteDAO {
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 
 	int saveNote(int[] noteNo);
+	List<Map<String, Object>> selectNoteBoxView(String rNickname);
+	NoteVO selectNoteDetail(int noteNo);
 }

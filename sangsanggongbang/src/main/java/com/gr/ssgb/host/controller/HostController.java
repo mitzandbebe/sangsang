@@ -80,6 +80,7 @@ public class HostController {
 				session.setAttribute("hId", vo.gethId());
 				session.setAttribute("hFilename", vo.gethFilename());
 				session.setAttribute("h_snsCheck", h_snsCheck);
+				session.setAttribute("uOrh", "h");
 
 				new_sns="y";
 				Cookie ck2 = new Cookie("new_sns", new_sns);
@@ -119,6 +120,7 @@ public class HostController {
 					session.setAttribute("hId", vo.gethId());
 					session.setAttribute("hFilename", memVo.getmFilename());
 					session.setAttribute("h_snsCheck", h_snsCheck);
+					session.setAttribute("uOrh", "h");
 					
 					
 					Cookie ck = new Cookie("host_userid", vo.gethId());
@@ -141,6 +143,7 @@ public class HostController {
 					model.addAttribute("h_snsCheck", h_snsCheck);
 					
 					
+					
 					return "host/hostRegister";
 					
 				}else if(result==MemberService.NON_EXIST_ID) {
@@ -156,12 +159,15 @@ public class HostController {
 			
 			if(result==HostService.LOGIN_OK) {
 				msg="늘솜님 안녕하세요!";
-				url="/host/index";
+				url="/host/hostChatTest";
 				vo = hostService.selectHostById(vo.gethId());
 				session.setAttribute("hFilename", vo.gethFilename());
 				session.setAttribute("mId", vo.gethId());
 				session.setAttribute("h_snsCheck", h_snsCheck);
 				session.setAttribute("hNickname", vo.gethNickname());
+				session.setAttribute("uOrh", "h");
+				
+				logger.info("hNickname={}", vo.gethNickname());
 				
 				if(vo.gethNickname()!=null && !vo.gethNickname().isEmpty()) {
 					msg=vo.gethNickname()+"님 반가워요!";
