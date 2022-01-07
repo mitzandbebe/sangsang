@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -20,7 +22,7 @@ import com.gr.ssgb.domain.ChatMessageDTO;
 public class StompChatController {
 	 List<WebSocketSession> sessions = new ArrayList<>();
 	 Map<String, WebSocketSession> userSessions = new HashMap<>();
-	 
+	 private static final Logger log = LoggerFactory.getLogger(StompChatController.class);
 	 private final SimpMessagingTemplate template; //특정 Broker로 메세지를 전달
 	 
 	 
@@ -35,11 +37,15 @@ public class StompChatController {
 	 //"/pub/chat/enter"
 	  @MessageMapping(value = "/chat/enter")
 	 public void enter(ChatMessageDTO message){
-		 if(!message.getRoomId().equals(message.getWriter())) {
-			 message.setMessage(message.getRoomId() + "님께 실시간 채팅요청중입니다.");
+		  String roomId = message.getRoomId();
+		  String writer = message.getWriter();
+		 if(message.getRoomId().equals(message.getWriter())) {
+		     log.info("roomId={}, writer={}", roomId, writer );
+			 message.setMessage(message.getRoomId() + "님께서 입장하셨습니다.");
 		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 		 }else {
-			 message.setMessage(message.getRoomId() + "님께서 입장하셨습니다.");
+			 log.info("roomId={}, writer={}", roomId, writer );
+			 message.setMessage(message.getRoomId() + "님께 실시간 채팅요청중입니다.");
 		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 		 }
 	     
@@ -56,14 +62,14 @@ public class StompChatController {
 	     }
 	 }*/
 	
-	 private String getId(WebSocketSession session) {
+	/* private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
 		String userid = (String)httpSession.get("mId");
 		if(null==userid) {
 			return session.getId();
 		}
 		return userid;
-	}
+	}*/
 
 	@MessageMapping(value = "/chat/message")
 	 public void message(ChatMessageDTO message){

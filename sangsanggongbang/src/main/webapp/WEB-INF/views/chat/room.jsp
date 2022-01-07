@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
 <title>Spaces - Sign up</title>
@@ -79,11 +79,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	
+var flag= "${sessionScope.uOrh}"
+	console.log(flag);
 	var roomName = "${room.name}";
     var roomId = "${room.roomId}";
-    var username = "${sessionScope.mId}";
+    var username = null;
+    if(flag == 'u'){
+	    username = "${sessionScope.mNickname}";
+	    console.log(username);
+    }else{
+    	username = "${sessionScope.hNickname}";
+    	console.log(username);
+    }
+$(document).ready(function(){
+	
 
 
     console.log(roomName + ", " + roomId + ", ");
@@ -115,14 +124,13 @@ $(document).ready(function(){
                $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
                console.log($('#msgArea')[0].scrollHeight);
            }else{
-        	   str = "<div class='card bg-white border-light p-4 mb-4'>";
-               str +="<div class='d-flex justify-content-between align-items-center mb-2'>";
-               str +="<span class='font-small'>";
-               str +="<a href='#'>";
-               str +="<img class='avatar-sm img-fluid rounded-circle mr-2' src='../../assets/img/team/profile-picture-1.jpg' alt='avatar'>";
+        	   var d = new Date();
+        	   str =  "<div class='card bg-white border-light p-4 mb-4'>";
+               str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
+               str += "<span class='font-small'>";
                str += "<span class='font-weight-bold'>"+writer+"</span>";
-               str +="</a><span class='ml-2'>March 26, 19:25</span></span>";
-               str +="</div><p class='m-0'>"+content.message+"</p></div>";
+               str += "<span class='ml-2'>March 26, 19:25</span></span>";
+               str += "</div><p class='m-0'>"+content.message+"</p></div>";
                $("#msgArea").append(str);
                $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
                
