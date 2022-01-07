@@ -9,10 +9,15 @@ import org.apache.ibatis.annotations.Mapper;
 public interface NoteDAO {
 	String selectSendUser(String rNickname);
 	int sendNote(NoteVO noteVo);
-	List<Map<String, Object>> selectNoteView(String rNickname);
+	
+	List<Map<String, Object>> selectNoteView(NoteVO vo);
+	List<Map<String, Object>> selectNoteBoxView(NoteVO vo);
+	int selectTotalNoteRecord(NoteVO vo);
+	int selectTotalNoteBoxRecord(NoteVO vo);
+	
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 
 	int saveNote(int[] noteNo);
-	List<Map<String, Object>> selectNoteBoxView(String rNickname);
+	int noteRead(int noteNo);
 	NoteVO selectNoteDetail(int noteNo);
 }

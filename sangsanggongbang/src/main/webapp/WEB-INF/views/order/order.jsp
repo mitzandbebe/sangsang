@@ -104,7 +104,6 @@
 										<div class="row justify-content-center"></div>
 									</div>
 								</div>
-
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
@@ -129,6 +128,7 @@
 										<label for="cartInputCity1">선택인원수</label> <input type="text"
 											placeholder="M_NAME" class="form-control" id="M_NAME"
 											aria-describedby="M_NAME">
+
 										<div class="class-confirm03">
 											<div class="c03-count">
 												<a href="#" id="num-sub">-</a> <input type="text"
@@ -136,13 +136,14 @@
 													id="num-add">+</a>
 											</div>
 										</div>
+
 									</div>
 									<!-- End of Form -->
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<form action="#" method="post" class="card border-light p-3 mb-4">
 						<div class="card-header border-light p-3 mb-4 mb-md-0">
 							<h3 class="h5 mb-0">클래스 수강신청</h3>
@@ -153,7 +154,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCity1">회원사진</label> <input type="text"
+
 											placeholder="${mVo.mOriginalname}" class="form-control" id="M_NAME"
+
 											aria-describedby="M_NAME">
 									</div>
 									<!-- End of Form -->
@@ -162,7 +165,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCity1">닉네임</label> <input type="text"
+
 											placeholder="${mVo.mNickname}" class="form-control" id="M_NAME"
+
 											aria-describedby="M_NAME">
 									</div>
 									<!-- End of Form -->
@@ -171,7 +176,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputEmail1">아이디</label> <input type="email"
+
 											class="form-control" placeholder="${mVo.mId}"
+
 											id="cartInputEmail1" aria-describedby="cartInputEmail1"
 											required>
 									</div>
@@ -196,7 +203,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputPhone1">핸드폰 번호</label> <input
+
 											type="number" placeholder="${mVo.phone}"
+
 											class="form-control" id="cartInputPhone1"
 											aria-describedby="cartInputPhone1">
 									</div>
@@ -206,7 +215,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCity1">생년월일</label> <input type="text"
+
 											placeholder="${mVo.bday}" class="form-control" id="BDAY"
+
 											aria-describedby="cartInputCity1">
 									</div>
 									<!-- End of Form -->
@@ -215,7 +226,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputZip1">우편번호</label> <input type="number"
+
 											placeholder="${mVo.mZipcode}" class="form-control" id="cartInputZip1"
+
 											aria-describedby="cartInputZip1">
 									</div>
 									<!-- End of Form -->
@@ -225,7 +238,9 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCompany1">주소</label> <input type="text"
+
 											placeholder="${mVo.mAddress}" class="form-control" id="M_ADDRESS"
+
 											aria-describedby="cartInputAdress1" required>
 									</div>
 									<!-- End of Form -->
@@ -234,16 +249,20 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCompany1">상세주소</label> <input type="text"
+
 											placeholder="${mVo.mAddressDetail}" class="form-control"
+
 											id="M_ADDRESS_DETAIL" aria-describedby="cartInputCompany1"
 											required>
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="text-center">
+
 									<button type="submit" class="btn btn-block btn-primary mt-4"
 										id="apibtn">결제하기</button>
 								</div>
+
 
 							</div>
 						</div>

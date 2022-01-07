@@ -238,13 +238,17 @@
 							</div>
 
 							<!-- End of Q&A Tab -->
+							
+							<!-- 지도 -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
 								<div class="row">
 									<div class="col-12">
-										<iframe class="map rounded" id="gmap_canvas"
-											src="https://maps.google.com/maps?q=san%20francisco&t=&z=8&ie=UTF8&iwloc=&output=embed"></iframe>
+										<iframe id="map" style="width:700px;height:400px;" src="<c:url value='/class/classMap?cNo=${map["C_NO"]}'/>"></iframe>
 									</div>
+<%-- 									<div class="col-12">
+										<c:import url="/class/classMap?cNo=${map['C_NO']}"/>										
+									</div> --%>
 								</div>
 							</div>
 
@@ -367,13 +371,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h4 class="mb-5 font-weight-bold"><span>${map["CATEGORY_NAME"] }</span> 클래스 전체보기</h4>
+						<h4 class="mb-5 font-weight-bold"><span>${param.categoryName }</span> 클래스 전체보기</h4>
 						
 					</div>
                     <div class="col-md-12">
                         <div class="basic-carousel owl-carousel owl-theme">
-                            <!-- Item 1 -->
        <c:forEach var="map" items="${catelist}">
+                            <!-- Item 1 -->
                             
                             <div class="item" >
                                 <!-- Card -->
@@ -390,7 +394,7 @@
                                     </a>
                                     <div class="card-body" style="width:300px; height:150px">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
+                                            <h6 class="h6" >${map["C_NAME"] }</h6>
                                         </a>
                                         <div class="d-flex my-4">
                                             <span class="star fas fa-star text-warning"></span> 
@@ -433,6 +437,7 @@
             </div>
         </div>
    <!-- Core -->
+   
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/> "></script>
@@ -476,10 +481,19 @@
 		<!-- End of section -->
 	</main>
 
-
+<!-- 카카오 맵 -->
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
 <script>
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 	$(document).ready(function() {
-		var hash = location.hash.substring(1);
+		let hash = location.hash.substring(1);
 		$('.nav-tabs #' + hash).trigger('click');
 	});
 </script>
