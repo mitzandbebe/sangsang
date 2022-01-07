@@ -69,16 +69,44 @@
 									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
 									<div class="d-flex align-items-center mt-3"></div>
 								</div>
+								
 							</div>
+							
 						</div>
 					</div>
+					<div class="d-flex justify-content-center w-100 mt-5">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<c:if test="${pagingInfo.firstPage>1 }">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+							</li>
+						</c:if>
+						<c:forEach var="i" begin="${pagingInfo.firstPage}"
+							end="${pagingInfo.lastPage }">
+							<c:if test="${i==pagingInfo.currentPage }">
+								<li class="page-item active"><a class="page-link" href="#">${i }</a>
+							</c:if>
+						<c:if test="${i!=pagingInfo.currentPage }">
+								<li class="page-item"><a class="page-link"
+									href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${i}'/>">
+										${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+							</li>
+						</c:if>
+					</ul>
+				</nav>
+			</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<input type="text" value="${param.mId }" id="id" name="mId">
 </form>
-</main>
 <script type="text/javascript">
 	$(function() {
 		$('#allCheck').change(function() {

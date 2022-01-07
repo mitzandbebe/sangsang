@@ -1,30 +1,21 @@
 package com.gr.ssgb.note.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.math3.geometry.spherical.oned.ArcsSet.Split;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.note.model.NoteService;
@@ -82,25 +73,68 @@ public class NoteController {
 	}
 
 	@RequestMapping("/noteList") // 쪽지리스트
-	public String noteList(@RequestParam String mId, Model model) {
-		logger.info("쪽지리스트 등장 아이디 mId={}", mId);
+	public String noteList(@ModelAttribute NoteVO vo, Model model) { //searchVO 상속 받은 noteVO
+		logger.info("쪽지리스트 등장 아이디 mId={}", vo.getmId());
+
+		if (vo.getmId() == null || vo.getmId().isEmpty()) {
+			model.addAttribute("msg", "해당하는 아이디가 없습니다");
+			model.addAttribute("url", "/index");
+			return "/common/message";
+		}
+		
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(10);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+
+		vo.setRecordCountPerPage(10);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("vo={}", vo);
+
+		List<Map<String, Object>> list = noteService.selectNoteView(vo);
+		logger.info("쪽지 총 개수 list.size={}", list.size());
+
+		
+		int totalRecord = noteService.selectTotalNoteRecord(vo);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo",pagingInfo);
+		model.addAttribute("list", list);
+		return "note/noteList";
+	}
+
+	@RequestMapping("/noteBox") // 쪽지보관함 리스트
+	public String noteBox(@ModelAttribute NoteVO vo,@RequestParam String mId, Model model) {
+		logger.info("쪽지보관함 등장 아이디 mId={}", mId);
 
 		if (mId == null || mId.isEmpty()) {
 			model.addAttribute("msg", "해당하는 아이디가 없습니다");
 			model.addAttribute("url", "/index");
 			return "/common/message";
 		}
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(5);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
 
-		List<Map<String, Object>> list = noteService.selectNoteView(mId);
-		logger.info("쪽지 총 개수 list.size={}", list.size());
+		vo.setRecordCountPerPage(5);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("vo={}", vo);
+		
+		List<Map<String, Object>> list = noteService.selectNoteBoxView(vo);
+		logger.info("쪽지보관함 총 개수 list.size={}", list.size());
 
+		int totalRecord = noteService.selectTotalNoteBoxRecord(vo);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo",pagingInfo);
 		model.addAttribute("list", list);
-		return "note/noteList";
+		return "note/noteBox";
 	}
-
+	
 	@RequestMapping("/noteDelete") // 쪽지삭제
-	public String noteDelete(@RequestParam int[] noteNo,@RequestParam String mId, Model model) {
-		logger.info("noteNo={},mid={}", noteNo,mId);
+	public String noteDelete(@RequestParam int[] noteNo, @RequestParam String mId, Model model) {
+		logger.info("noteNo={},mid={}", noteNo, mId);
 
 		int cnt1 = noteService.deleteNote(noteNo);
 		int cnt2 = noteService.deleteNoteRec(noteNo);
@@ -113,14 +147,14 @@ public class NoteController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
-		return "redirect:/note/noteList?mId="+mId;
+		return "redirect:/note/noteList?mId=" + mId;
 	}
 
 	@PostMapping("/noteSave") // 쪽지 보관함 시키는것
-	public String noteSave(@RequestParam int[] noteNo,@RequestParam String mId, Model model) {
+	public String noteSave(@RequestParam int[] noteNo, @RequestParam String mId, Model model) {
 		logger.info("noteNo={}", noteNo);
 		int cnt = noteService.saveNote(noteNo);
-		String msg = "쪽지 보관 실패", url = "/note/noteBox?mId="+mId;
+		String msg = "쪽지 보관 실패", url = "/note/noteBox?mId=" + mId;
 		if (cnt > 0) {
 			msg = "쪽지 보관 성공";
 		}
@@ -129,37 +163,23 @@ public class NoteController {
 		return "/common/message";
 	}
 
-	@GetMapping("/noteBox") // 쪽지보관함 리스트
-	public String noteBox(@RequestParam String mId, Model model) {
-		logger.info("쪽지보관함 등장 아이디 mId={}", mId);
-		
-		if (mId == null || mId.isEmpty()) {
-			model.addAttribute("msg", "해당하는 아이디가 없습니다");
-			model.addAttribute("url", "/index");
-			return "/common/message";
-		}
-		List<Map<String, Object>> list = noteService.selectNoteBoxView(mId);
-		logger.info("쪽지 보관함 총 쪽지 개수 list.size={}", list.size());
-		
-		model.addAttribute("list", list);
-		return "note/noteBox";
-	}	
-		
+	
+
 	@RequestMapping("/noteDetail") // 쪽지 상세사항
 	public String noteDetail(@RequestParam(defaultValue = "0") int noteNo, Model model) {
 		logger.info("쪽지디테일 noteNo={}", noteNo);
-		
-		String msg="잘못된 url입니다",url="/note/noteList";
+
+		String msg = "잘못된 url입니다", url = "/note/noteList";
 		if (noteNo == 0) {
-			model.addAttribute("msg",msg);
-			model.addAttribute("url",url);
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
 			return "/common/message";
 		}
 		NoteVO vo = noteService.selectNoteDetail(noteNo);
-		logger.info("쪽지상세화면 vo={}",vo);
-		
-		model.addAttribute("vo",vo);
-		
+		logger.info("쪽지상세화면 vo={}", vo);
+
+		model.addAttribute("vo", vo);
+
 		return "note/noteDetail";
-	}	
+	}
 }
