@@ -89,5 +89,9 @@ public class MemberServiceImpl implements MemberService{
 	public int findPaymentCnt(int getmNo) {
 		return memberDao.findPaymentCnt(getmNo);
 	}
+	@Override
+	public String selectNicname(int mNo) {
+		return memberDao.selectNicname(mNo);
+	}
 	
 }

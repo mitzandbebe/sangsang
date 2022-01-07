@@ -70,6 +70,10 @@
 	<select id="findPaymentCnt" parameterType="int" resultType="int">
 		select count(*) from payment where m_no = #{mNo}
 	</select>
+	
+	<select id="selectNicname" parameterType="int" resultType="string">
+		select m_nickname from member where m_no = #{mNo}
+	</select>
 </mapper>
 
 

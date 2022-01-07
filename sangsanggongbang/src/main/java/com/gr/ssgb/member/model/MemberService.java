@@ -35,5 +35,5 @@ public interface MemberService {
 
 	int findPaymentCnt(int getmNo);
 
-
+	String selectNicname(int mNo);
 }
