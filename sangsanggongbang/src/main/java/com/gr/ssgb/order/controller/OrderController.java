@@ -1,10 +1,5 @@
 package com.gr.ssgb.order.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,13 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gr.ssgb.common.ConstUtil;
-import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
-import com.gr.ssgb.order.model.OrderAllVO;
 import com.gr.ssgb.order.model.OrderService;
 import com.gr.ssgb.order.model.OrderVO;
 
@@ -40,48 +31,21 @@ public class OrderController {
 		this.memberService = memberService;
 		this.orderService = orderService;
 	}
-
-	@GetMapping("/orderdetail")
-	public String order() {
 	
-		return "order/order";	
+	@RequestMapping("/order")
+	public String orderSheet(HttpSession session, Model model) {
+		String mId=(String) session.getAttribute("mId");
+		//vo.setmId(mId);
+		logger.info("로그인 세션 mId={}", mId);
+		
+		MemberVO mVo= memberService.selectMemberById(mId);
+		model.addAttribute("mVo", mVo);
+		logger.info("결제페이지 회원정보 mVo={}", mVo);
+		
+		return "order/order";
 	}
 	
 	/*
-	@GetMapping("/orderSheet")
-	public String orderSheet(HttpSession session, Model model) {
-		String userid=(String) session.getAttribute("userid");		
-		logger.info("주문하기 화면, 파라미터 userid={}", userid);
-		
-		List<Map<String , Object>> list=cartService.selectCartList(userid);
-		logger.info("주문하기 화면-장바구니 조회 결과, list.size={}", list.size());
-		
-		MemberVO vo = memberService.selectByUserid(userid);
-		logger.info("주문하기 화면-회원조회 결과 vo={}", vo);
-		
-		model.addAttribute("cartList", list);
-		model.addAttribute("TOTAL_PRICE", ConstUtil.TOTAL_PRICE);
-		model.addAttribute("DELIVERY", ConstUtil.DELIVERY);
-		
-		model.addAttribute("memberVo", vo);
-		
-		return "shop/order/orderSheet";		
-	}
-	
-	@PostMapping("/orderSheet")
-	public String orderSheet_post(@ModelAttribute OrderVO vo, 
-			HttpSession session) {
-		String userid=(String) session.getAttribute("userid");
-		vo.setCustomerId(userid);
-		logger.info("주문 처리, 파라미터 vo={}", vo);
-				
-		//orders insert, orderDetails insert, cart delete
-		int cnt=orderService.insertOrder(vo);
-		logger.info("주문 처리 결과, cnt={}", cnt);
-		
-		return "redirect:/shop/order/orderComplete?orderNo="+vo.getOrderNo();
-	}
-	
 	@RequestMapping("/orderComplete")
 	public String orderComplete(@RequestParam(defaultValue = "0") int orderNo,
 			Model model) {
