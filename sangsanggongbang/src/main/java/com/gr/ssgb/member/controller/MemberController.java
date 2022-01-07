@@ -244,7 +244,7 @@ public class MemberController {
 				String mNickname = vo2.getmNickname();
 				if(mNickname != null && !mNickname.isEmpty()) {
 					session.setAttribute("mNickname", vo2.getmNickname());
-				}else {
+				}else { 
 					session.setAttribute("mNickname", "늘찬"+vo2.getmNo());
 				}
 				
