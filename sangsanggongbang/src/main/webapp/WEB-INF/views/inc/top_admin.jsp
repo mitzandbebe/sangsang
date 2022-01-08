@@ -98,7 +98,8 @@
 
 	<header class="header-global">
 		<nav id="navbar-main"
-			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-5 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+			<div id="top_row_icon">
 			<div class="container">
 				<a class="navbar-brand @@logo_classes"
 					href="${pageContext.request.contextPath }/index"> <img
@@ -296,7 +297,7 @@
 					</ul>
 				</div>
 			</div>
-
+</div>
 		<!-- 로그인,로그아웃-->
 			<div id="top_button_row">
 				<div class="d-none d-lg-block @@cta_button_classes">

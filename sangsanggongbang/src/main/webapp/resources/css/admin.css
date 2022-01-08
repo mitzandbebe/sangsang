@@ -101,6 +101,10 @@
 	position:fixed;
 	right:35px;
 } 
+#top_row_icon{
+	position:fixed;
+	left:35px;
+}
 /* �닔鍮� �깙 踰꾪듉 css �걹*/
 
 /* �닔鍮� admin notice list css */
