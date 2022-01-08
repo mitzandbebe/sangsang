@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
-<%@include file="../inc/new_top_user.jsp" %>
 
-<br><br><br>
+<%@include file="../inc/top.jsp" %>
+<style type="text/css">
+.card.border-light.p-md-2 {
+    margin-top: 100px;
+}
+</style>
 
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
@@ -18,32 +21,36 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+	
+	
+	
 	<div class="card border-light p-md-2">
 		<div class="card-body p-4">
 			<form name="frmRCwrite" method="post" enctype="multipart/form-data"
-				action="<c:url value='/recommendation/recommendWrite'/> ">
-
+				action="<c:url value='/recommendation/recommendUpdate'/> ">
+	<input type="hidden" name="recoNo" value="${param.recoNo}">
+	<%-- <input type="hidden" name="oldFileName" value="${vo.newsUploadname}"> --%>
 				<div class="row">
 					<div class="col-lg-12 mb-5">
+					<!-- 불편사항 제목 -->
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 </label> <input type="text" id="title"
-								name="recoTitle" class="infobox"
-								style="border: none; outline: none;" />
+							<label for="title">제목 </label> 
+							<input type="text" id="title"
+								name="recoTitle" class="infobox" value="${vo.recoTitle }"
+								style="border: none; outline: none; width:80%" />
 						</div>
-
-						<br>
 
 						<!-- 불편사항 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
 							<label for="exampleFormControlTextarea2">불편사항 내용</label>
 							<textarea class="ckediter" id="content" name="recoContent"
-								rows="20"></textarea>
+								rows="20" >${vo.recoContent }</textarea>
 						</div>
 					</div>
 				</div>
 
-				<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
+				<input value="수정등록" class="btn mb-2 mr-2 btn-outline-gray"
 					type="submit"> 
 					<input value="목록"
 					class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
@@ -53,7 +60,7 @@
 	</div>
 	<script type="text/javascript">
 		CKEDITOR.replace('content');
-		CKEDITOR.on('dialogDefinition', function (ev) {
+	/* 	CKEDITOR.on('dialogDefinition', function (ev) {
 
             var dialogName = ev.data.name;
 
@@ -75,10 +82,10 @@
 
             }
 
-        });
+        }); */
 
 		$(function() {
-			$('form[name=frmEwrite]').submit(function() {
+			$('form[name=frmRCwrite]').submit(function() {
 				$('.infobox').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
@@ -88,8 +95,8 @@
 					}
 	
 				});
-				
-				$('#upfile').each(function(idx, item) {
+		
+				/* $('.ckediter').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
 						$(this).focus();
@@ -97,24 +104,24 @@
 						return false; //each 탈출
 					}
 	
-				});
+				}); */
 				
 			});
 			
-
+/* 
 			$('#btlist').click(function() {
 				location.href = "<c:url value='/recommendation/recommendList'/>";
-			});
+			}); */
 
 		});
 	
-		$(function(){ 
+		/* $(function(){ 
 			var privacy_editor = CKEDITOR.replace("termsContent", {filebrowserUploadUrl: '${contextPath}/privacies/imgUpload'}); 
 			$("#privacyRegit").click(function(){ 
 				privacyRegit(privacy_editor); 
 			}); 
-	    }); 
-		function privacyRegit(privacy_editor){ 
+	    });  */
+	/* 	function privacyRegit(privacy_editor){ 
 			var category = $('input[name=category]').val(); 
 			var version = $("#version").val(); 
 			var postAt = $("#postAt").val(); 
@@ -131,7 +138,7 @@
 				return false; 
 			} 
 			$("#privacyDto").submit(); 
-		}
+		} */
 		
 		
 	</script>
