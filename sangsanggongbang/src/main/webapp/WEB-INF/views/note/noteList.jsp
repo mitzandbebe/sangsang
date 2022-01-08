@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../inc/top.jsp"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../inc/top.jsp"%> 
+<%-- <c:import url="<c:url value='inc/top'/>"></c:import> --%>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -13,7 +15,8 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
-
+	
+	
 <section
 	class="section-header bg-primary text-white pb-9 pb-lg-12 mb-4 mb-lg-6">
 	<div class="container">
@@ -26,8 +29,9 @@
 		</div>
 	</div>
 	<div class="pattern bottom"></div>
+
 </section>
-<form method="post" action="" name="frm">
+<form method="post" acnoteNumtion="" name="frm">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">

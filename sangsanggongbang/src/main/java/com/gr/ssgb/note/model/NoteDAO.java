@@ -20,4 +20,6 @@ public interface NoteDAO {
 	int saveNote(int[] noteNo);
 	int noteRead(int noteNo);
 	NoteVO selectNoteDetail(int noteNo);
+	
+	int readNum(String userid);//안읽은 쪽지 개수
 }

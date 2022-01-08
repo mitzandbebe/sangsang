@@ -132,4 +132,9 @@
 		set REC_READFLAG = 'Y'
 		where NOTE_NO = #{noteNo}
 	</update>
+	
+	<select id="readNum" parameterType="String" resultType="int">
+		select count(*) from noteview
+		where m_id =#{mId} and rec_readflag ='N'
+	</select>
 </mapper>
