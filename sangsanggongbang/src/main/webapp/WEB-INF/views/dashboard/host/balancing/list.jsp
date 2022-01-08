@@ -110,23 +110,22 @@ $(function() {
 							<h3 class="h5 mb-1">
 								<a href="#">클래스번호 # ${vo.cNo}</a>
 							</h3>
+							<c:set var="sales" value="${vo.ppnum * vo.cPrice }"/> <!-- 매출액 -->
+							<c:set var="fee" value="${sales * 0.1 }"/> <!-- 수수료 -->
+							<c:set var="amount" value="${sales - fee }"/> <!-- 정산금액 -->
 							<!-- Text -->
 							<small class="text-gray-700"> 
 							진행일자 : <fmt:formatDate value="${vo.bReqDate}" pattern="yyyy-MM-dd" /></small><br>
 							<small class="text-gray-700"> 
-							진행인원 : ${vo.ppnum}</small><br>
+							진행인원 : ${vo.ppnum}명</small><br>
 							<small class="text-gray-700"> 
-							클래스단가 : ${vo.cPrice}</small><br>
-						</div>
-						
-						<div class="row btn btn-outline-dark" style="margin-right: 20%; cursor: default;">
-						<c:set var="sales" value="${vo.ppnum * vo.cPrice }"/> <!-- 매출액 -->
-						<c:set var="fee" value="${sales * 0.1 }"/> <!-- 매출액 -->
-						<c:set var="amount" value="${sales - fee }"/> <!-- 매출액 -->
-						매출액 : <fmt:formatNumber value="${sales}" pattern="#,###,###"/>원<br>
-						<span style="color: red">수수료 : <fmt:formatNumber value="${fee}" pattern="#,###,###"/>원</span><br>
+							매출액 : <fmt:formatNumber value="${sales}" pattern="#,###,###"/>원</small><br>
+							<small class="text-gray-700"> 
+							수수료 : <fmt:formatNumber value="${fee}" pattern="#,###,###"/>원</small><br>
 						<span style="color: darkblue">정산금액 : <fmt:formatNumber value="${amount}" pattern="#,###,###"/>원</span>
 						</div>
+						
+						
 						
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
@@ -163,8 +162,7 @@ $(function() {
 		<%-- </c:if> --%>
 
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
-		<c:forEach var="i" begin="${pagingInfo.firstPage}"
-			end="${pagingInfo.lastPage }">
+		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
 			<c:if test="${i==pagingInfo.currentPage }">
 				<span style="color: blue; font-weight: bold; font-size: 1em"
 					id="pagelinknum"> ${i}</span>

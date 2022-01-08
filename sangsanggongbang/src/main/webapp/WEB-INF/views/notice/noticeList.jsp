@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="../inc/top.jsp"%>
+<%@ include file="../inc/top_admin.jsp"%>
 
 <!-- 
 2. 호스트, 관리자 나누기
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 	</div>
-	<div>
+	<div style="text-align:center;">
 		<p>관리자 or 호스트로 로그인 했을때만 나타나게</p>
 		<a href="<c:url value='/notice/noticeWrite'/>">
 			<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
@@ -29,10 +29,10 @@
 <section class="section section-lg line-bottom-light">
 	<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2">
 		<div class="row">
-			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5" id="noticeMain" style="margin-top: 225px">
+			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5" id="noticeMain" style="margin-top: 225px; " >
 				<c:if test="${!empty list }">
 					<c:forEach var="list" items="${list }">
-						<div class="card bg-white border-light p-3 rounded">
+						<div class="card bg-white border-light p-3 rounded" style="width:1100px;">
 							<a
 								href="<c:url value='/notice/noticeDetail?noticeNo=${list.noticeNo }'/>">
 								${list.noticeTitle } </a>
@@ -91,7 +91,7 @@
 </section>
 </main>
 
-<%@ include file="../inc/bottom.jsp"%>
+<%@ include file="../inc/bottom_admin.jsp"%>
 <script>
 	// here you should load content from an Ajax request and when it
 	// loads you can disable the button from loading

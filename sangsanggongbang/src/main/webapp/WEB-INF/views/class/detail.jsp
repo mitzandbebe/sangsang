@@ -50,10 +50,10 @@
 								<a class="nav-item nav-link active" id="nav-about-tab"
 									data-toggle="tab" href="#nav-about" role="tab"
 									aria-controls="nav-about" aria-selected="true"><span
-									class="far fa-address-card mr-2"></span>클래스 미리보기</a> <a
+									class="far fa-handshake mr-2"></span>클래스 미리보기</a> <a
 									class="nav-item nav-link" id="nav-video-tab" data-toggle="tab"
 									href="#nav-video" role="tab" aria-controls="nav-video"
-									aria-selected="false"><span class="far fa-play-circle mr-2"></span>클래스 설명</a>
+									aria-selected="false"><span class="fas fa-pen mr-2"></span>클래스 설명</a>
 								<a class="nav-item nav-link" id="nav-reviews-tab"
 									data-toggle="tab" href="#nav-reviews" role="tab"
 									aria-controls="nav-reviews" aria-selected="false"><span
@@ -61,7 +61,7 @@
 								<a class="nav-item nav-link" id="nav-qna-tab"
 									data-toggle="tab" href="#nav-qna" role="tab"
 									aria-controls="nav-qna" aria-selected="false"><span
-									class="far fa-star mr-2"></span>Q&A</a> 
+									class="far fa-question-circle mr-2"></span>Q&A</a> 
 									<a
 									class="nav-item nav-link" id="nav-location-tab"
 									data-toggle="tab" href="#nav-location" role="tab"
@@ -80,7 +80,15 @@
 												<div id="Carousel2" class="carousel slide" data-ride="carousel">
 												    <div class="carousel-inner">
 												        <div class="carousel-item active">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>" alt="First slide">
+												        <c:choose >
+					                                    	<c:when test="${not empty map['THUMBNAIL']}">
+					                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " alt="썸네일">
+					                                    	</c:when>
+					                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+					                                    		<h3>미리보기 이미지가 없습니다.</h3>
+					                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " height="400px" width="700px"  alt="기본이미지">
+					                                    	</c:when>
+					                                    </c:choose>
 												        </div>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME1']}">
@@ -152,7 +160,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-ruler-combined"></span>
+															<span class="far fa-clock"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">${map["C_TIME"] } 시</div>
@@ -176,7 +184,7 @@
 												<div class="card mb-0 border-left">
 													<div class="card-body text-center px-0 px-md-3">
 														<div class="icon icon-secondary">
-															<span class="fas fa-couch"></span>
+															<span class="fas fa-won-sign"></span>
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">
@@ -193,7 +201,7 @@
 								</div>
 							</div>
 							<!-- End of About Tab -->
-							<!-- Video Tab -->
+							<!-- content Tab -->
 							<div class="tab-pane fade" id="nav-video" role="tabpanel"
 								aria-labelledby="nav-video-tab">
 								<div class=" position-relative rounded">
@@ -210,16 +218,17 @@
 								</div>
 								</div>
 							</div>
-							<!-- End of Video Tab -->
+							<!-- End of content Tab -->
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<c:import url="/class/review"/>
+								<c:import url="/class/review?cNo=${map['C_NO'] }"/>
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
 								
 							</div>
 							<!-- End of Reviews Tab -->
 							<!-- Q&A Tab -->
+
 							<div class="tab-pane fade" id="nav-qna" role="tabpanel" aria-labelledby="nav-qna-tab">
 								<div class="row">
 									<div class="col-12">
@@ -227,14 +236,19 @@
 									</div>
 								</div>
 							</div>
+
 							<!-- End of Q&A Tab -->
+							
+							<!-- 지도 -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
 								<div class="row">
 									<div class="col-12">
-										<iframe class="map rounded" id="gmap_canvas"
-											src="https://maps.google.com/maps?q=san%20francisco&t=&z=8&ie=UTF8&iwloc=&output=embed"></iframe>
+										<iframe id="map" style="width:700px;height:400px;" src="<c:url value='/class/classMap?cNo=${map["C_NO"]}'/>"></iframe>
 									</div>
+<%-- 									<div class="col-12">
+										<c:import url="/class/classMap?cNo=${map['C_NO']}"/>										
+									</div> --%>
 								</div>
 							</div>
 
@@ -314,17 +328,25 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
+						<form action="order" method="post" class="card border-light p-3 mb-4">
+						<input type="hidden" id="cNo" vlaue="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
-							<label for="exampleFormControlSelect1">클래스 신청일 선택</label>
+							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
 								<div class="input-group input-group-border">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><i
-											class="far fa-calendar-alt"></i></span>
+										<span class="input-group-text">
+											<i class="far fa-calendar-alt"></i>
+										</span>
+									<div class="text-center">
+									<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
 									</div>
-									<input class="form-control datepicker"
-										placeholder="Select date" type="text" value="06/20/2018">
 								</div>
+								<div class="input-group input-group-border">
+										<span class="input-group-text">
+											<i class="far fa-clock"></i>
+										</span>
+									<div class="text-center">${map["C_TIME"] } 시</div>
+								</div> 
 							</div>
 							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
 
@@ -338,25 +360,29 @@
 							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
 							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-block btn-primary mt-4"
-									id="apibtn">결제하기</button>
+								
+								<button type="submit" class="btn btn-block btn-primary mt-4">
+								<a href="<c:url value='/class/order'/>" class="small text-right">
+								결제하기</a></button>
+								
 							</div>
 						</div>
+						</form>
 					</aside>
 				</div>
 			</div>
 		</div>
 </c:forEach>
 		<section class="section bg-soft">
-       <c:forEach var="map" items="${catelist}">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h4 class="mb-5 font-weight-bold"><span>${map["CATEGORY_NAME"] }</span> 클래스 전체보기</h4>
+						<h4 class="mb-5 font-weight-bold"><span>${param.categoryName }</span> 클래스 전체보기</h4>
 						
 					</div>
                     <div class="col-md-12">
                         <div class="basic-carousel owl-carousel owl-theme">
+       <c:forEach var="map" items="${catelist}">
                             <!-- Item 1 -->
                             
                             <div class="item" >
@@ -374,7 +400,7 @@
                                     </a>
                                     <div class="card-body" style="width:300px; height:150px">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
+                                            <h6 class="h6" >${map["C_NAME"] }</h6>
                                         </a>
                                         <div class="d-flex my-4">
                                             <span class="star fas fa-star text-warning"></span> 
@@ -411,12 +437,13 @@
                                 <!-- End of Card -->
                             </div>
                             
+                         </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
-                         </c:forEach>
    <!-- Core -->
+   
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/> "></script>
@@ -460,10 +487,19 @@
 		<!-- End of section -->
 	</main>
 
-
+<!-- 카카오 맵 -->
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
 <script>
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 	$(document).ready(function() {
-		var hash = location.hash.substring(1);
+		let hash = location.hash.substring(1);
 		$('.nav-tabs #' + hash).trigger('click');
 	});
 </script>

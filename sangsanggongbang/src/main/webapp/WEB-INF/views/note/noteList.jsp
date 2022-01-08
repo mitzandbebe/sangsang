@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../inc/top.jsp"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../inc/top.jsp"%> 
+<%-- <c:import url="<c:url value='inc/top'/>"></c:import> --%>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -13,7 +15,8 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
-
+	
+	
 <section
 	class="section-header bg-primary text-white pb-9 pb-lg-12 mb-4 mb-lg-6">
 	<div class="container">
@@ -26,8 +29,9 @@
 		</div>
 	</div>
 	<div class="pattern bottom"></div>
+
 </section>
-<form method="post" action="" name="frm">
+<form method="post" acnoteNumtion="" name="frm">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
@@ -35,6 +39,9 @@
 					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 							type="button">쪽지쓰기</button>
+					</a> <a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
+						<button class="btn mb-2 mr-2 btn-success" id="noteBox"
+							type="button">보관함</button>
 					</a>
 					<button class="btn mb-2 mr-2 btn-success" id="noteSave"
 						type="button">보관하기</button>
@@ -48,7 +55,7 @@
 									<tr>
 										<th><input type="checkbox" id="allCheck"
 											value="${map['noteNo'] }"></th>
-										<th>보낸사람</th>
+										<th>보낸사람 ${map['rNickname'] }</th>
 										<th>내용</th>
 										<th>날짜</th>
 									</tr>
@@ -57,7 +64,12 @@
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
-											<td>${map['noteContent'] }</td>
+											<td><a <c:choose>
+											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
+											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
+											</c:choose>
+												href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
+													${map['noteContent'] }</a></td>
 											<td><fmt:formatDate value="${map['noteRegdate']}"
 													pattern="yyyy-MM-dd [HH:mm]" /></td>
 										</tr>
@@ -68,13 +80,41 @@
 									<div class="d-flex align-items-center mt-3"></div>
 								</div>
 							</div>
-						</div>		
-					</div>			
+							<div class="d-flex justify-content-center w-100 mt-5">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<c:if test="${pagingInfo.firstPage>1 }">
+											<li class="page-item"><a class="page-link"
+												href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+											</li>
+										</c:if>
+										<c:forEach var="i" begin="${pagingInfo.firstPage}"
+											end="${pagingInfo.lastPage }">
+											<c:if test="${i==pagingInfo.currentPage }">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i }</a>
+											</c:if>
+											<c:if test="${i!=pagingInfo.currentPage }">
+												<li class="page-item"><a class="page-link"
+													href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${i}'/>">
+														${i }</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+											<li class="page-item"><a class="page-link"
+												href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+											</li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<input type="text" value="${param.mId }" id="id">
+	<input type="text" value="${param.mId }" id="id" name="mId">
 </form>
 </main>
 <script type="text/javascript">
@@ -102,6 +142,13 @@
 				function() {
 					$('form[name=frm]').prop('action',
 							"<c:url value='/note/noteDelete'/>");
+					$('form[name=frm]').submit();
+				})
+
+		$("#noteSave").click(
+				function() {
+					$('form[name=frm]').prop('action',
+							"<c:url value='/note/noteSave'/>");
 					$('form[name=frm]').submit();
 				})
 

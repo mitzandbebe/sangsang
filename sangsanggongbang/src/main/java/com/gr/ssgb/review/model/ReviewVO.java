@@ -2,7 +2,9 @@ package com.gr.ssgb.review.model;
 
 import java.sql.Timestamp;
 
-public class ReviewVO {
+import com.gr.ssgb.common.SearchVO;
+
+public class ReviewVO extends SearchVO{
 //	R_NO NUMBER NOT NULL, /* 후기번호 */
 //	C_NO NUMBER, /* 클래스코드 */
 //	H_NO NUMBER, /* 호스트번호 */
@@ -14,9 +16,11 @@ public class ReviewVO {
 //	R_REGDATE DATE DEFAULT SYSDATE /* 등록일 */
 	
 	private int rNo;
+	private int mNo;
 	private int cNo;
 	private int hNo;
 	private int rRate;
+	private String nickname;
 	private String rContent;
 	private String rUploadname;
 	private long rFilesize;
@@ -24,6 +28,18 @@ public class ReviewVO {
 	private Timestamp rRegdate;
 	
 	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
 	public String getrUploadname() {
 		return rUploadname;
 	}
@@ -81,9 +97,10 @@ public class ReviewVO {
 	}
 	@Override
 	public String toString() {
-		return "ReviewVO [rNo=" + rNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate + ", rContent=" + rContent
-				+ ", rUploadname=" + rUploadname + ", rFilesize=" + rFilesize + ", rOriginalname=" + rOriginalname
-				+ ", rRegdate=" + rRegdate + "]";
+		return "ReviewVO [rNo=" + rNo + ", mNo=" + mNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate
+				+ ", nickname=" + nickname + ", rContent=" + rContent + ", rUploadname=" + rUploadname + ", rFilesize="
+				+ rFilesize + ", rOriginalname=" + rOriginalname + ", rRegdate=" + rRegdate + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 	

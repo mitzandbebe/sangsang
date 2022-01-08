@@ -2,6 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../member/memberTop.jsp" %>
+
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$('#login').submit(function(){
+			if($('#hId').val().length < 1){
+				alert('아이디를 입력하세요');
+				$('#hId').focus();
+				event.preventDefault();
+			}else if($('#hPwd').val().length < 1){
+				alert('비밀번호를 입력하세요.');
+				$('#hPwd').focus();
+				event.preventDefault();
+			}
+		});
+	});
+		
+</script>
  <!-- Section -->
         <section class="min-vh-100 d-flex section-image py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang3.png" style="width: 50%; float: left" >
 			<div class="col-12" style="width: 100%; height: 70px; background-color: #82AFC5; opacity: 0.9;">
@@ -19,7 +38,7 @@
 	            </div>
 	       </div>
         </section>
-        <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" style="width: 50%; background-color: #679093">
+        <section class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0" style="width: 50%; background-color: #82AFC5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -33,7 +52,7 @@
                             <form name ="login" id="login" method="post" action="<c:url value='/host/hostLogin'/> ">
                                 <!-- Form -->
                                 <div class="form-group">
-                                    <label for="email">아이디(이메일)</label>
+                                    <label for="hId">아이디(이메일)</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
@@ -48,7 +67,7 @@
                                         >
                                        
                                         <input type="hidden" name="h_snsCheck" id="h_snsCheck" value="n" >
-                                        <input type="hidden" name="mFilename" id="mFilename" >
+                                        <input type="hidden" name="hFilename" id="hFilename" >
                                     </div>
                                      <div><span class="small text-right">(기존 회원 계정으로 로그인 가능합니다.)</span></div>
                                 </div>
@@ -61,7 +80,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                             </div>
-                                            <input name="hPwd" class="form-control" id="password" placeholder="Password" type="password" aria-label="Password">
+                                            <input name="hPwd" class="form-control" id="hPwd" placeholder="Password" type="password" aria-label="Password">
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -79,7 +98,7 @@
                                         <div><a href="<c:url value='/member/findPwd'/>" class="small text-right">비밀번호를 잊으셨어요?</a></div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-block btn-primary">로그인</button>
+                                <button type="submit" class="btn btn-block btn-secondary">로그인</button>
                                
                             </form>
                             
@@ -101,12 +120,13 @@
 													url:'/v2/user/me',
 													success: res=>{
 														const kakao_account = res.kakao_account;
+														console.log(kakao_account);
 														userId = kakao_account.email;
+														console.log(kakao_account.profile.profile_image_url);
 														document.getElementById('hId').value=userId;
 														document.getElementById('hPwd').value="temppassword";
 														document.getElementById('h_snsCheck').value="y";
-														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
-														console.log(kakao_account);
+														document.getElementById('hFilename').value=kakao_account.profile.profile_image_url;
 														document.getElementById('login').submit();
 													}
 												});
@@ -119,7 +139,7 @@
                         	<div class="d-block d-sm-flex justify-content-center align-items-center mt-2">
                         		<span class="font-weight-normal">
                            		상상공방 계정이 없으신가요?
-                            	<a href="<c:url value='/host/register' />" class="font-weight-bold">늘솜계정 만들러가기</a>
+                            	<a href="<c:url value='/host/hostRegister' />" class="font-weight-bold">늘솜계정 만들러가기</a>
                         		</span>
                     		</div>
                         </div>

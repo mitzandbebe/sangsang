@@ -168,21 +168,39 @@ public class HostClassController {
 	}
 	
 	@GetMapping("/detail")
-	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo ,
-			@RequestParam String categoryName, Model model) {
+	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
+			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
-		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
+		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
 		
 		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
-		logger.info("전체 클래스목록 결과, catelist.size={}",catelist.size());
+		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
 		
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("catelist",catelist);
 		
 		return "class/detail";
 	}
+	
+	@RequestMapping("/classMap")
+	public String map(@ModelAttribute HostClassVO hostClassVO, @RequestParam(defaultValue = "0") int cNo,
+			HttpServletRequest request, Model model) {
+		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
+		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
+		
+		model.addAttribute("classlist",classlist);
+		
+		return "class/classMap";
+	}
+	
+	
+	@RequestMapping("/map")
+	public String map_test() {
+		return "class/map";
+	}
+	
 	
 
 	//	@ResponseBody

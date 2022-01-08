@@ -22,7 +22,7 @@
 		select * from dual
 	</insert>
 
-	<resultMap type="map" id="noteView">
+<!-- 	<resultMap type="map" id="noteView">
 		<result property="noteContent" column="NOTE_CONTENT"
 			javaType="java.lang.String" />
 		<result property="noteNo" column="NOTE_NO" />
@@ -34,32 +34,107 @@
 		<result property="recNo" column="REC_NO" />
 		<result property="recDelFlag" column="REC_DELFLAG" />
 		<result property="recReadFlag" column="REC_READFLAG" />
-	</resultMap>
+	</resultMap> -->
 
-	<select id="selectNoteView" parameterType="map" resultType="map"
-		resultMap="noteView">
-		SELECT * FROM NOTEVIEW WHERE R_NICKNAME=#{rNickname}
+	<select id="selectNoteView" parameterType="noteVo" resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE
+		R_NICKNAME=#{rNickname} and
+		REC_IMPFLAG='N'
 		order BY
 		NOTE_NO DESC
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+		
+	</select>
+	<select id="selectNoteBoxView" parameterType="noteVo" resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE
+		R_NICKNAME=#{rNickname} and
+		REC_IMPFLAG='Y'
+		order BY
+		NOTE_NO DESC
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalNoteRecord" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where r_nickname=#{rNickname} and rec_impflag='N'
+	</select>
+	
+	<select id="selectTotalNoteBoxRecord" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where r_nickname=#{rNickname} and rec_impflag='Y'
 	</select>
 
 	<delete id="deleteNote" parameterType="int[]">
 		delete from NOTE
 		<where>
 			note_no in
-			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
 				#{arr}
 			</foreach>
 		</where>
 	</delete>
-		<delete id="deleteNoteRec" parameterType="int[]">
-			delete from NOTE_rec
+	<delete id="deleteNoteRec" parameterType="int[]">
+		delete from NOTE_REC
 		<where>
 			rec_no in
-			<foreach collection="array" item="arr" index="index" separator="," open="(" close=")">
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
 				#{arr}
 			</foreach>
 		</where>
 	</delete>
+
+	<update id="saveNote" parameterType="int[]">
+		update NOTE_REC
+		set REC_IMPFLAG = 'Y'
+		<where>
+			REC_NO IN
+			<foreach collection="array" item="arr" index="index"
+				separator="," open="(" close=")">
+				#{arr}
+			</foreach>
+		</where>
+	</update>
+
+	<select id="selectNoteDetail" parameterType="int"
+		resultType="noteVo">
+		SELECT * FROM NOTEVIEW WHERE
+		note_no=#{noteNo}
+	</select>
 	
+	<update id="noteRead" parameterType="int">
+		update NOTE_REC
+		set REC_READFLAG = 'Y'
+		where NOTE_NO = #{noteNo}
+	</update>
+	
+	<select id="readNum" parameterType="String" resultType="int">
+		select count(*) from noteview
+		where m_id =#{mId} and rec_readflag ='N'
+	</select>
 </mapper>
