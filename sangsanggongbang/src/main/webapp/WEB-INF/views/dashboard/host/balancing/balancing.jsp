@@ -273,5 +273,8 @@
 			</div>
 		</div>
 	</div>
-</div>s
+</div>
+</div>
+</div>
+
 <%@ include file="../../../inc/bottom.jsp"%>

@@ -11,7 +11,7 @@
 
 		<!-- Hero -->
 		<div
-			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#46746e;" >
+			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#49746E;" >
 			<div class="container z-2" >
 				<div class="row justify-content-center pt-3">
 					<div class="col-12 text-center">
@@ -329,7 +329,7 @@
 							<!-- End of Modal Content -->
 						</div>
 						<form action="order" method="post" class="card border-light p-3 mb-4">
-						<input type="hidden" id="cNo" vlaue="${map['C_NO'] }">
+						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
@@ -362,7 +362,6 @@
 							<div class="text-center">
 								
 								<button type="submit" class="btn btn-block btn-primary mt-4">
-								<a href="<c:url value='/class/order'/>" class="small text-right">
 								결제하기</a></button>
 								
 							</div>
