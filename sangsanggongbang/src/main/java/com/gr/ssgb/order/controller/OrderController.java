@@ -23,7 +23,7 @@ public class OrderController {
 	private static final Logger logger
 		=LoggerFactory.getLogger(OrderController.class);
 	
-	//깃테스트
+	//깃테스트 업데이트
 	private final MemberService memberService;
 	private final OrderService orderService;
 	
