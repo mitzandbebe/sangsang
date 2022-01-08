@@ -15,4 +15,6 @@ public interface NoteService {
 	int deleteNoteRec(int[] noteNo); 
 	int saveNote(int[] noteNo);
 	NoteVO selectNoteDetail(int noteNo);
+	
+	int readNum(String userid);
 }
