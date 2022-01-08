@@ -60,29 +60,6 @@
 	</div>
 	<script type="text/javascript">
 		CKEDITOR.replace('content');
-	/* 	CKEDITOR.on('dialogDefinition', function (ev) {
-
-            var dialogName = ev.data.name;
-
-            var dialog = ev.data.definition.dialog;
-
-            var dialogDefinition = ev.data.definition;
-
-            if (dialogName == 'image') {
-
-                dialog.on('show', function (obj) {
-
-                    this.selectPage('Upload'); //업로드텝으로 시작
-
-                });
-
-                dialogDefinition.removeContents('advanced'); // 자세히탭 제거
-
-                dialogDefinition.removeContents('Link'); // 링크탭 제거
-
-            }
-
-        }); */
 
 		$(function() {
 			$('form[name=frmRCwrite]').submit(function() {
@@ -95,51 +72,10 @@
 					}
 	
 				});
-		
-				/* $('.ckediter').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).prev().html() + "을 입력하세요");
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					}
-	
-				}); */
 				
 			});
-			
-/* 
-			$('#btlist').click(function() {
-				location.href = "<c:url value='/recommendation/recommendList'/>";
-			}); */
 
 		});
-	
-		/* $(function(){ 
-			var privacy_editor = CKEDITOR.replace("termsContent", {filebrowserUploadUrl: '${contextPath}/privacies/imgUpload'}); 
-			$("#privacyRegit").click(function(){ 
-				privacyRegit(privacy_editor); 
-			}); 
-	    });  */
-	/* 	function privacyRegit(privacy_editor){ 
-			var category = $('input[name=category]').val(); 
-			var version = $("#version").val(); 
-			var postAt = $("#postAt").val(); 
-			if(version.trim() == ''){ 
-				alert("버전을 입력해주세요."); 
-				return false; 
-			} 
-			if(postAt.trim() == ''){ 
-				alert("게시일을 선택해주세요."); 
-				return false; 
-			} 
-			if(privacy_editor.getData().trim() == ''){ 
-				alert("내용을 입력해주세요."); 
-				return false; 
-			} 
-			$("#privacyDto").submit(); 
-		} */
-		
 		
 	</script>
 <%@include file="../inc/bottom.jsp" %>
