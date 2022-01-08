@@ -110,6 +110,7 @@
 										<label for="cartInputCity1">선택날짜</label> <input type="text"
 											placeholder="M_NAME" class="form-control" id="M_NAME"
 											aria-describedby="M_NAME">
+											<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
 									</div>
 									<!-- End of Form -->
 								</div>

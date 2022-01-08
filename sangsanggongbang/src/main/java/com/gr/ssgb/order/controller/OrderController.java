@@ -1,5 +1,8 @@
 package com.gr.ssgb.order.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -7,15 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.order.model.OrderService;
-import com.gr.ssgb.order.model.OrderVO;
 
 @Controller
 @RequestMapping("/class")
@@ -26,11 +29,13 @@ public class OrderController {
 	//깃테스트 업데이트
 	private final MemberService memberService;
 	private final OrderService orderService;
+	private final HostClassService hostClassService;
 	
 	@Autowired
-	public OrderController(MemberService memberService, OrderService orderService) {
+	public OrderController(MemberService memberService, OrderService orderService, HostClassService hostClassService) {
 		this.memberService = memberService;
 		this.orderService = orderService;
+		this.hostClassService = hostClassService;
 	}
 	
 	@RequestMapping("/order")
@@ -46,71 +51,23 @@ public class OrderController {
 		return "order/order";
 	}
 	
-	/*
-	@RequestMapping("/orderComplete")
-	public String orderComplete(@RequestParam(defaultValue = "0") int orderNo,
-			Model model) {
-		logger.info("주문완료페이지, 파라미터 orderNo={}", orderNo);
+	@PostMapping("/order")
+	public String orderSheet_POST(HttpSession session, Model model, @RequestParam(defaultValue = "0") int cNo) {
+		String mId=(String) session.getAttribute("mId");
+		//vo.setmId(mId);
+		logger.info("로그인 세션 mId={}", mId);
 		
-		List<Map<String, Object>> list 
-			=orderService.selectOrderDetailsView(orderNo);
-		logger.info("주문완료, 상세주문 조회 결과 list.size={}", list.size());
+		MemberVO mVo= memberService.selectMemberById(mId);
+		model.addAttribute("mVo", mVo);
+		logger.info("결제페이지 회원정보 post mVo={}", mVo);
 		
-		Map<String, Object> map=orderService.selectOrdersView(orderNo);
-		logger.info("주문완료, 주문 조회 결과 map={}", map);
+		//List<Map<String, Object>> cVo=hostClassService.selectClassbyCNo(cNo);
+		//model.addAttribute(cVo);
+		//logger.info("결제페이지 클래스정보 post 방식 cVo={}", cVo);
 		
-		model.addAttribute("list", list);
-		model.addAttribute("orderMap", map);
-		
-		return "shop/order/orderComplete";
+		return "order/order";
 	}
 	
-	@RequestMapping("/orderList")
-	public String orderList(@ModelAttribute DateSearchVO dateSearchVo,
-			HttpSession session, Model model) {
-		String userid=(String) session.getAttribute("userid");
-		dateSearchVo.setCustomerId(userid);
-		logger.info("주문내역 파라미터, dateSearchVo={}", dateSearchVo);
-		
-		//주문내역 메뉴를 클릭한 경우 파라미터가 안 넘어오므로, 오늘날짜로 셋팅
-		String startDay=dateSearchVo.getStartDay();
-		
-		if(startDay==null || startDay.isEmpty()) {
-			Date d = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String today=sdf.format(d);
-			dateSearchVo.setStartDay(today);
-			dateSearchVo.setEndDay(today);			
-		}
-		
-		logger.info("셋팅 후 주문내역 파라미터, dateSearchVo={}", dateSearchVo);
-		
-		//[1]
-		PaginationInfo pagingInfo  = new PaginationInfo();
-		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		pagingInfo.setCurrentPage(dateSearchVo.getCurrentPage());
-		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		
-		//[2]
-		dateSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		dateSearchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		
-		List<OrderAllVO> list=orderService.selectOrderAll(dateSearchVo);
-		logger.info("주문내역 결과 list.size={}", list.size());
-		logger.info("주문내역 결과 list={}", list);
-				
-		int totalRecord=orderService.selectTotalRecord(dateSearchVo);
-		logger.info("주문내역 - totalRecord={}", totalRecord);
-		
-		pagingInfo.setTotalRecord(totalRecord);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("pagingInfo", pagingInfo);
-		
-		return "shop/order/orderList";
-	}
-
-	*/
 }
 
 
