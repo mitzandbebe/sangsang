@@ -96,12 +96,12 @@
 
 <!-- 寃곗젣紐⑤뱢 -->
 </head>
-
 <body class="bg-soft">
 
 	<header class="header-global">
 		<nav id="navbar-main"
-			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-5 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+<div id="top_row_icon">
 			<div class="container">
 			<!--  -->
 				<a class="navbar-brand @@logo_classes"
@@ -133,16 +133,74 @@
 						</div>
 					</div>
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
+					
+					<!-- 새거 -->
+					  <li class="nav-item dropdown">
+                        <a href="#" id="dashboardPagesDropdown" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
+                            <span class="nav-link-inner-text mr-1">Dashboard</span>
+                            <i class="fas fa-angle-down nav-link-arrow"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-megamenu-sm p-3 p-lg-4" aria-labelledby="dashboardPagesDropdown">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="d-block mb-3 text-primary">User dashboard</h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/account.html">My account</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/settings.html">Settings</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/security.html">Security</a>
+                                        </li>
+                                    </ul>
+                                    <h6 class="d-block mb-3 text-primary">Items</h6>
+                                    <ul class="list-style-none">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/my-items.html">My items</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/edit-item.html">Edit item</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                              <%--   <div class="col-6">
+                                    <h6 class="d-block mb-3 text-primary">Messaging</h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/messages.html">Messages</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/single-message.html">Chat</a>
+                                        </li>
+                                    </ul>
+                                    <h6 class="d-block mb-3 text-primary">Billing</h6>
+                                    <ul class="list-style-none mb-4">
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/billing.html">Billing details</a>
+                                        </li>
+                                        <li class="mb-2 megamenu-item">
+                                            <a class="megamenu-link" href="${pageContext.request.contextPath}/resources/html/dashboard/invoice.html">Invoice</a>
+                                        </li>
+                                    </ul>
+                                </div> --%>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    
+                    <!-- 기존 -->
 						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
 								class="nav-link-inner-text mr-1">상상 클래스</span> <i
 								class="fas fa-angle-down nav-link-arrow"></i>
 						</a>
-							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
+							<div class="dropdown-menu dropdown-megamenu p-3 p-md-4"
 								aria-labelledby="mainPagesDropdown">
 								<div class="row">
-									<div class="col-6 col-lg-4" style="color: #49746E";>
+									<div class="col-lg-4 col-md-6" style="color: #49746E";>
 										<h6 class="d-block mb-3 text-primary">카테고리</h6>
 										<ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
@@ -238,10 +296,8 @@
 										</ul> --%>
 									</div>
 								</div>
-							</div>
-					</ul>
-				</div>
-			</div>
+								</div>
+							
 
 		<!-- 프로필, 로그인,로그아웃,쪽지,채팅 -->
 	
@@ -281,9 +337,13 @@
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<a
 						href="<c:url value='#'/>">
+						<span class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >9</span>
 						<img width="50px"
 						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">
+
+
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge badge-danger"></span>
+
 						</a>
 					<!-- 채팅창 끝 --> 
 					
@@ -291,24 +351,27 @@
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<a 
 						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
+						<span class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >24</span>
 						<img width="36px"
-						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>"></a>
+						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
+					</a>
 					<!--쪽지함 끝-->
 					
 				</div>
 			</div>
 		<!-- 로그인, 로그아웃, 쪽지, 채팅 끝 -->
-
-
-			<div class="d-flex d-lg-none align-items-center">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbar_global" aria-controls="navbar_global"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<div id="samll_menu">
+				<div class="d-flex d-lg-none align-items-center py-lg-5 px-lg-6" >
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbar_global" aria-controls="navbar_global"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
 			</div>
 		</nav>
 	</header>
+
 
 	<!-- 로딩창 -->
 	<main>

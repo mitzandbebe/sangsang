@@ -48,7 +48,7 @@
             <div class="col-6 col-xl-3 mb-5 mb-xl-0">
                 <span class="h5">Other</span>
                 <ul class="footer-links mt-2">
-                    <li><a href="http://localhost:9091/sangsanggongbang/notice/noticeList">공지사항 <span class="badge badge-sm badge-secondary ml-2">v3.0</span></a></li>
+                    <li><a href="http://localhost:9091/sangsanggongbang/notice/noticeList">공지사항 <span class="badge badge-sm badge-secondary ml-2">new</span></a></li>
                     <li><a href="https://themesberg.com/docs/spaces/getting-started/changelog/">FAQ</a></li>
                     <li><a target="_blank" href="https://themesberg.com/licensing">불편사항</a></li>
                     <li><a target="_blank" href="https://themesberg.com/licensing">이용약관</a>
