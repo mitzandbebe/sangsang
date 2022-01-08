@@ -108,10 +108,11 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<label for="cartInputCity1">선택날짜</label> <input type="text"
-											placeholder="M_NAME" class="form-control" id="M_NAME"
+											class="form-control" id="M_NAME"
 											aria-describedby="M_NAME">
-											<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
-									</div>
+											<fmt:parseDate value="${cVo.cStart}" pattern="yyyy-MM-dd" />
+											<!-- 둘중하나 -->
+									</div><fmt:formatDate value="${cVo.cStart}" pattern="yyyy-MM-dd" />
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
@@ -119,7 +120,7 @@
 									<div class="form-group mb-4">
 										<label for="cartInputCity1">선택시간</label> <input type="text"
 											placeholder="M_NAME" class="form-control" id="M_NAME"
-											aria-describedby="M_NAME">
+											aria-describedby="M_NAME" value="${cVo.cTime}시">
 									</div>
 									<!-- End of Form -->
 								</div>
@@ -154,34 +155,27 @@
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputCity1">회원사진</label> <input type="text"
-
-											placeholder="${mVo.mOriginalname}" class="form-control" id="M_NAME"
-
-											aria-describedby="M_NAME">
+										<label for="cartInputCity1">회원사진</label>
+										<input type="text" placeholder="${mVo.mOriginalname}" class="form-control"
+										id="mOriginalname" name="mOriginalname" aria-describedby="M_NAME">
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputCity1">닉네임</label> <input type="text"
-
-											placeholder="${mVo.mNickname}" class="form-control" id="M_NAME"
-
-											aria-describedby="M_NAME">
+										<label for="mNickname">닉네임</label>
+										<input type="text" class="form-control" id="mNickname" name="mNickname"
+										aria-describedby="M_NAME" value="${mVo.mNickname}">
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputEmail1">아이디</label> <input type="email"
-
-											class="form-control" placeholder="${mVo.mId}"
-
-											id="cartInputEmail1" aria-describedby="cartInputEmail1"
-											required>
+										<label for="mId">아이디</label>
+										<input type="text" class="form-control" value="${mVo.mId}" 
+										id="mId" name="mId" aria-describedby="cartInputEmail1" required>
 									</div>
 									<!-- End of Form -->
 								</div>
@@ -203,34 +197,27 @@
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputPhone1">핸드폰 번호</label> <input
-
-											type="number" placeholder="${mVo.phone}"
-
-											class="form-control" id="cartInputPhone1"
-											aria-describedby="cartInputPhone1">
+										<label for="phone">핸드폰 번호</label>
+										<input type="number" value="${mVo.phone}"
+										class="form-control" id="phone" name="phone" aria-describedby="cartInputPhone1">
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputCity1">생년월일</label> <input type="text"
-
-											placeholder="${mVo.bday}" class="form-control" id="BDAY"
-
-											aria-describedby="cartInputCity1">
+										<label for="bday">생년월일</label>
+										<input type="text" value="${mVo.bday}" class="form-control"
+										id="bday" name="bday" aria-describedby="cartInputCity1">
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputZip1">우편번호</label> <input type="number"
-
-											placeholder="${mVo.mZipcode}" class="form-control" id="cartInputZip1"
-
-											aria-describedby="cartInputZip1">
+										<label for="zipcode">우편번호</label>
+										<input type="number" value="${mVo.mZipcode}"
+										class="form-control" id="mZipcode" name="mZipcode" aria-describedby="cartInputZip1">
 									</div>
 									<!-- End of Form -->
 								</div>
@@ -238,23 +225,18 @@
 
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputCompany1">주소</label> <input type="text"
-
-											placeholder="${mVo.mAddress}" class="form-control" id="M_ADDRESS"
-
-											aria-describedby="cartInputAdress1" required>
+										<label for="mAddress">주소</label>
+										<input type="text" value="${mVo.mAddress}" class="form-control"
+										id="mAddress" name="mAddress" aria-describedby="cartInputAdress1" required>
 									</div>
 									<!-- End of Form -->
 								</div>
 								<div class="col-12 col-lg-6">
 									<!-- Form -->
 									<div class="form-group mb-4">
-										<label for="cartInputCompany1">상세주소</label> <input type="text"
-
-											placeholder="${mVo.mAddressDetail}" class="form-control"
-
-											id="M_ADDRESS_DETAIL" aria-describedby="cartInputCompany1"
-											required>
+										<label for="mAddressDetail">상세주소</label>
+										<input type="text" value="${mVo.mAddressDetail}" class="form-control"
+										id="mAddressDetail" name="mAddressDetail" aria-describedby="cartInputCompany2" required>
 									</div>
 									<!-- End of Form -->
 								</div>
