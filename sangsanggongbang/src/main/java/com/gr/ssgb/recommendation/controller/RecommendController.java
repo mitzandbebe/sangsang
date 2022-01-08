@@ -50,7 +50,7 @@ public class RecommendController {
 
 		int cnt = recommendationService.insertRecommendation(vo);
 		logger.info("불편사항 작성 성공여부 cnt={}", cnt);
-		String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendWrite";
+		String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendList";
 		if (cnt > 0) {
 			msg = "불편사항 작성에 성공했습니다";
 		}
@@ -137,7 +137,8 @@ public class RecommendController {
 		}
 		RecommendationVO vo = recommendationService.selectByNoRecommendation(recoNo);
 		logger.info("수정화면, 조회결과 vo={}", vo);
-
+		
+		model.addAttribute("vo",vo);
 		return "recommendation/recommendUpdate";
 	}
 
@@ -159,24 +160,23 @@ public class RecommendController {
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-
+		
 		return "/common/message";
 	}
 
 	// 5. 불편사항 삭제하기
-	@GetMapping("/recommendDelete")
-	public String delete_get(@RequestParam(defaultValue = "0") int recoNo, Model model) {
-		logger.info("삭제화면");
-		if (recoNo == 0) {
-			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/recommendation/recommendList");
-			return "common/message";
-		}
+	/*
+	 * @GetMapping("/recommendDelete") public String
+	 * delete_get(@RequestParam(defaultValue = "0") int recoNo, Model model) {
+	 * logger.info("삭제화면"); if (recoNo == 0) { model.addAttribute("msg",
+	 * "잘못된 url입니다."); model.addAttribute("url", "/recommendation/recommendList");
+	 * 
+	 * return "common/message"; }
+	 * 
+	 * return "/recommendation/recommendDelete"; }
+	 */
 
-		return "/recommendation/recommendDelete";
-	}
-
-	@PostMapping("eventdelete")
+	@RequestMapping("/recommendDelete")
 	public String delete_post(@ModelAttribute RecommendationVO vo, @RequestParam(defaultValue = "0") int recoNo,
 			HttpServletRequest request, Model model) {
 		logger.info("삭제 처리, 파라미터 vo={}, recoNo={}", vo, recoNo);
@@ -191,6 +191,6 @@ public class RecommendController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
-		return "commom/message";
+		return "/common/message";
 	}
 }

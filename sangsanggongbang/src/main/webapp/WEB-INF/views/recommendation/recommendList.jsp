@@ -18,12 +18,12 @@
 
 <br><br><br><br>
 
-	<!-- 이벤트 목록 테이블로 보여주기 -->
+	<!-- 불편사항 목록 테이블로 보여주기 -->
 <form name="frmList" >
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th scope="col">🔨</th>?
+				<th scope="col">🔨</th>
 				<th scope="col">불편사항 제목</th>
 				<!-- <th scope="col">불편사항 내용</th> -->
 				<th scope="col">작성일</th>
@@ -76,13 +76,13 @@
 					<!-- 페이징처리시작 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
 							<li class="page-item">
-					<a class="page-link" href="<c:url value='/recommendation/recommendlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+					<a class="page-link" href="<c:url value='/recommendation/recommendList?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 					</li>
 					</c:forEach>
 					<!-- 다음블럭으로 이동 -->
 					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 							<li class="page-item">
-					<a class="page-link" href="<c:url value='/recommendation/recommendlist?currentPage=${pagingInfo.lastPage +1 }'/> ">
+					<a class="page-link" href="<c:url value='/recommendation/recommendList?currentPage=${pagingInfo.lastPage +1 }'/> ">
 					<i
 									class="fas fa-angle-double-right"></i></a></li>
 					</c:if>

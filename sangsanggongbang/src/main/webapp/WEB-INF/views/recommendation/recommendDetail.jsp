@@ -22,7 +22,7 @@
 
       
 
-	<form name="frmEdetail" method="post" enctype="multipart/form-data" >
+	<form name="frmRCdetail" method="post" enctype="multipart/form-data" >
         <!-- Hero -->
         <section class="section-header pb-7 bg-primary text-white" >
             <div class="container">
@@ -85,7 +85,7 @@
 			location.href = "<c:url value='/recommendation/recommendUpdate?recoNo=${vo.recoNo}'/>";
 		});
 		$('#btdelete').click(function() {
-			location.href = "<c:url value='/recommendation/eventdelete?recoNo=${vo.recoNo}'/>";
+			location.href = "<c:url value='/recommendation/recommendDelete?recoNo=${vo.recoNo}'/>";
 		});
 	});
 
