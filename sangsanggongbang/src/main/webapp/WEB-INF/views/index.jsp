@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="inc/top.jsp"  %>
+<%@ include file="inc/new_top_user.jsp"  %>
         <!-- Hero -->
 
         <section class="section-header">
             <div class="container">
-                <div class="row justify-content-center">
+               <%--  <div class="row justify-content-center">
                      <div class="form-group">
                          <label for="exampleInputIcon4">로그인 정보(계정)</label>
                          <div class="input-group mb-4">
@@ -26,11 +26,11 @@
                              value="${sessionScope.snsCheck }">
                          </div>
                      </div>
-                </div>
-            </div>
+                </div> --%>
             <div style="text-align:center;">
             <c:import url="/mainevent/eventmain"></c:import>
             <c:import url="/class/classlist"></c:import>
+            </div>
             </div>
         </section>
 
