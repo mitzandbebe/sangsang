@@ -82,4 +82,9 @@ public class NoteServiceImpl implements NoteService {
 		return noteDAO.selectNoteDetail(noteNo);
 	}
 
+	@Override
+	public int readNum(String userid) {
+		return noteDAO.readNum(userid);
+	}
+
 }
