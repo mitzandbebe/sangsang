@@ -26,7 +26,8 @@
 								<!-- 나중에 hidden 으로 바꾸기 -->
 								<%-- <input type="text" name="hNo" value="${param.hNo }"> --%>
 								<!-- 임의로 1번호스트로 테스트 -->
-								<input type="hidden" name="hNo" value="1">
+								<c:set var="hNo" value="${hNo }"/>
+								<input type="hidden" name="hNo" value="hNo">
 								<input type="hidden" name="endFlag" value="N">
 								
 								

@@ -14,7 +14,7 @@
                     <li><a target="_blank" href="https://themesberg.com/blog">회사소개</a></li>
                     <li><a target="_blank" href="https://themesberg.com/products">위치안내</a></li>
                     <li><a target="_blank" href="https://themesberg.com/about">인재채용</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/contact">호스트로그인</a></li>
+                    <li><a target="_blank" href="<c:url value='/host/hostLogin'/>">호스트로그인</a></li>
                     <li><a target="_blank" href="https://themesberg.com/contact">관리자로그인</a></li>
                 </ul>
             </div>

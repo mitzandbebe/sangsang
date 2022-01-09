@@ -17,4 +17,5 @@ public interface HostDAO {
 
 	List<HostVO> selectAllHost();
 
+	int selectHostNo(String hId);
 }

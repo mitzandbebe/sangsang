@@ -21,4 +21,5 @@ public interface HostService {
 
 	List<HostVO> selectAllHost();
 
+	int selectHostNo(String hId);
 }
