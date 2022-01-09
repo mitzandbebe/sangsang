@@ -1,6 +1,5 @@
 package com.gr.ssgb.hostclass.model;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +77,21 @@ public class HostClassServiceImpl implements HostClassService{
 	@Override
 	public List<Map<String, Object>> selectClassCategory(String categoryName) {
 		return hostClassDao.selectClassCategory(categoryName);
+	}
+
+	@Override
+	public int updateBylocation(LocationVO locationVo) {
+		return hostClassDao.updateBylocation(locationVo);
+	}
+
+	@Override
+	public int updateByClass(HostClassVO hostClassVo) {
+		return hostClassDao.updateByClass(hostClassVo);
+	}
+
+	@Override
+	public int updateByContents(ContentsVO contentsVo) {
+		return hostClassDao.updateByContents(contentsVo);
 	}
 
 

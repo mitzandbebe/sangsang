@@ -8,4 +8,5 @@ public interface ReviewService {
 	int insertReview(ReviewVO reviewVo);
 	public List<ReviewVO> selectAll(ReviewVO reviewVo);
 	int selectTotalRecord(SearchVO searchVo);
+	int selectRate(int cNo);
 }

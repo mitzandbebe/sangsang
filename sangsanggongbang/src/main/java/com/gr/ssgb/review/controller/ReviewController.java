@@ -41,10 +41,6 @@ public class ReviewController {
 		this.memberService = memberService;
 	}
 
-	/*
-	 * @GetMapping("/review") public String review_get(Model model) {
-	 * logger.info("리뷰 목록페이지"); return "class/review"; }
-	 */
 
 	@RequestMapping("/review" )
 	public String list(@ModelAttribute ReviewVO reviewVo, Model model ,
@@ -52,6 +48,8 @@ public class ReviewController {
 		logger.info("리뷰 목록 cNo={}",cNo);
 		
 		reviewVo.setcNo(cNo);
+		
+		//int avgRate =reviewService.selectRate(cNo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -71,6 +69,7 @@ public class ReviewController {
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
+		//model.addAttribute("avgRate", avgRate);
 
 		return "class/review";
 	}

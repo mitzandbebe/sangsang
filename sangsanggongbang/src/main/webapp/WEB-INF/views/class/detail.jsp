@@ -30,9 +30,7 @@
 								</span> 
 								<span class="lh-120 ml-md-4">
 								<i class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
-								${ map['L_ADDRESS_DETAIL']}<a data-fancybox
-								href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.6971494,-74.2598683,10z/data=!3m1!4b1!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728"
-								class="ml-md-3">See Location</a> </span>
+								${ map['L_ADDRESS_DETAIL']}</span>
 						</div>
 					</div>
 				</div>
@@ -246,9 +244,6 @@
 									<div class="col-12">
 										<iframe id="map" style="width:700px;height:400px;" src="<c:url value='/class/classMap?cNo=${map["C_NO"]}'/>"></iframe>
 									</div>
-<%-- 									<div class="col-12">
-										<c:import url="/class/classMap?cNo=${map['C_NO']}"/>										
-									</div> --%>
 								</div>
 							</div>
 
@@ -401,14 +396,51 @@
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
                                             <h6 class="h6" >${map["C_NAME"] }</h6>
                                         </a>
-                                        <div class="d-flex my-4">
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span>
-                                            <span class="badge badge-pill badge-primary ml-2">5.0</span>
-                                        </div> 
+                        <%--                 <div class="d-flex my-4">
+ 						<c:if test="${avgRate eq 5}">
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i>
+							<span class="badge badge-pill badge-primary ml-2">${avgRate }</span> 
+						</c:if>
+						<c:if test="${avgRate eq 4}">
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star far text-gray mr-2"></i>
+							<span class="badge badge-pill badge-primary ml-2">${avgRate }</span> 
+						</c:if>
+						<c:if test="${avgRate eq 3}">
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star far text-gray mr-2 "></i> 
+							<i class="star fa-star far text-gray mr-2"></i>
+							<span class="badge badge-pill badge-primary ml-2">${avgRate }</span> 
+						</c:if>
+						<c:if test="${avgRate eq 2}">
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star far text-gray mr-2 "></i> 
+							<i class="star fa-star far text-gray mr-2"></i> 
+							<i class="star fa-star far text-gray mr-2"></i>
+							<span class="badge badge-pill badge-primary ml-2">${avgRate }</span> 
+						</c:if>
+						<c:if test="${avgRate eq 1}">
+							<i class="star fa-star fas text-warning mr-2"></i> 
+							<i class="star fa-star far text-gray mr-2 "></i> 
+							<i class="star fa-star far text-gray mr-2 "></i> 
+							<i class="star fa-star far text-gray mr-2 "></i> 
+							<i class="star fa-star far text-gray mr-2"></i>
+							<span class="badge badge-pill badge-primary ml-2">${avgRate }</span> 
+						</c:if>
+						<c:if test="${avgRate eq null}">
+							<p>별점이 없습니다.</p>
+						</c:if>
+                                        </div>  --%>
                                         
                                     </div>
                                     <div class="card-footer bg-soft border-top">
