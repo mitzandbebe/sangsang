@@ -87,13 +87,18 @@
                                     	</c:when>
                                     </c:choose>
                                     </a>
-                                    <div class="card-body" style="width:250px; height:120px">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
-                                        </a>
-                                        <div id="category" style="float:right;">
-                                        	${map["CATEGORY_NAME"] }
+                                    
+                                        <div id="category" style="text-align:left; margin-left:25px;">
+                                        	<br>${map["CATEGORY_NAME"] }
                                         </div>
+                                    <div class="card-body" style="width:250px; height:120px">
+                                            <div style="text-align:left;">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
+                                            ${map["C_NAME"] }
+                                        </a>
+                                        <!-- <br> -->
+                                        </div>
+                                        
                                         <%-- 
 										<div class="d-flex my-4">
 											<span class="d-flex justify-content-center"> <c:if
@@ -132,7 +137,7 @@
 										</div>
 									 --%>
 									 </div>
-                                    <div class="card-footer bg-soft border-top">
+                                    <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
