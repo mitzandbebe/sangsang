@@ -77,21 +77,30 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>" class="position-relative">
-                                    <c:choose >
-                                    	<c:when test="${not empty map['THUMBNAIL']}">
-                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
-                                    	</c:when>
-                                    	<c:when test="${map['THUMBNAIL'] eq null}">
-                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
-                                    	</c:when>
-                                    </c:choose>
-                                    </a>
-                                    
-                                        <div id="category" style="text-align:left; margin-left:25px;">
+											
+										<a
+											href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>"
+											class="position-relative"> 
+											<c:choose>
+												<c:when test="${not empty map['THUMBNAIL']}">
+													<img 
+														src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> "
+														width="auto" height="200px" align="top"
+														class="card-img-top p-2 rounded-xl" alt="썸네일">
+												</c:when>
+												<c:when test="${map['THUMBNAIL'] eq null}">
+													<img 
+														src="<c:url value='/resources/upload_images/basic.png'/> "
+														width="auto" height="200px" align="top"
+														class="card-img-top p-2 rounded-xl" alt="기본이미지">
+												</c:when>
+											</c:choose>
+										</a>
+									
+									<div id="category" style="text-align:left; margin-left:25px;">
                                         	<br>${map["CATEGORY_NAME"] }
                                         </div>
-                                    <div class="card-body" style="width:250px; height:120px">
+                                    <div class="card-body" style="width:330px; height:120px">
                                             <div style="text-align:left;">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }

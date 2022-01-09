@@ -392,9 +392,9 @@
                                     	</c:when>
                                     </c:choose>
                                     </a>
-                                    <div class="card-body" style="width:300px; height:150px">
+                                    <div class="card-body" style="width:330px; height:120px;">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
-                                            <h6 class="h6" >${map["C_NAME"] }</h6>
+                                            ${map["C_NAME"] }
                                         </a>
                         <%--                 <div class="d-flex my-4">
  						<c:if test="${avgRate eq 5}">
@@ -443,7 +443,7 @@
                                         </div>  --%>
                                         
                                     </div>
-                                    <div class="card-footer bg-soft border-top">
+                                    <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
