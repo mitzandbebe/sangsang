@@ -2,6 +2,8 @@ package com.gr.ssgb.notice.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ public class NoticeController {
 	@GetMapping("/noticeWrite")
 	public void noticeWrite() {
 		logger.info("공지작성 화면 등장");
+
 	}
 
 	@PostMapping("/noticeWrite")
@@ -53,98 +56,105 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/noticeList")
-	public String noticeList(@ModelAttribute SearchVO searchVo , Model model) {
+	public String noticeList(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
 		logger.info("공지화면 등장");
-		PaginationInfo pagingInfo= new PaginationInfo();
+		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(4);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-		
+
 		searchVo.setRecordCountPerPage(4);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("searchVo={}",searchVo);
-		
+		logger.info("searchVo={}", searchVo);
+
 		List<NoticeVO> list = noticeService.selectNoticeAll(searchVo);
 		logger.info("공지화면 총 list.size={}", list.size());
 
 		int totalRecord = noticeService.selectTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
-		
-		model.addAttribute("pagingInfo",pagingInfo);
+
+		String mId = "", hId = "", adId = "";
+		if ((String) session.getAttribute("hId") != null) {
+			hId = (String) session.getAttribute("hId");
+		} else if ((String) session.getAttribute("mId") != null) {
+			mId = (String) session.getAttribute("mId");
+		} 
+		logger.info("mId={},hId={}", mId,hId); 
+
+		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
 		return "notice/noticeList";
 	}
 
 	@GetMapping("/noticeDetail")
-	public String noticeDetail(@RequestParam(defaultValue = "0" )int noticeNo, Model model) {
+	public String noticeDetail(@RequestParam(defaultValue = "0") int noticeNo, Model model) {
 		logger.info("공지사항 디테일 화면 등장");
-		
-		if(noticeNo==0) {
+
+		if (noticeNo == 0) {
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/notice/noticeList");
-			
+
 			return "/common/message";
 		}
 		int cnt = noticeService.updateReadCount(noticeNo);
-		NoticeVO vo= noticeService.selectNoticeByNo(noticeNo);
+		NoticeVO vo = noticeService.selectNoticeByNo(noticeNo);
 		NoticeVO PNVo = noticeService.selectPreNnexTitle(noticeNo);
-		logger.info("공지사항 결과값 vo={},PNVo={}",vo,PNVo);
-		
-		model.addAttribute("vo",vo);
-		model.addAttribute("PNVo",PNVo);
-		
+		logger.info("공지사항 결과값 vo={},PNVo={}", vo, PNVo);
+
+		model.addAttribute("vo", vo);
+		model.addAttribute("PNVo", PNVo);
+
 		return "notice/noticeDetail";
 	}
-	
-	
+
 	@GetMapping("/noticeEdit")
-	public void noticeEdit_get(@RequestParam(defaultValue = "0")int noticeNo, Model model) {
-		logger.info("공지사항 수정화면 noticeNo={}",noticeNo);
-		
+	public void noticeEdit_get(@RequestParam(defaultValue = "0") int noticeNo, Model model) {
+		logger.info("공지사항 수정화면 noticeNo={}", noticeNo);
+
 	}
-	
+
 	@PostMapping("/noticeEdit")
-	public String noticeEdit_post(@ModelAttribute NoticeVO vo ,Model model) {
-		logger.info("글 수정 vo={}",vo);
-		
-		if(vo.getNoticeNo()==0) {
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo, Model model) {
+		logger.info("글 수정 vo={}", vo);
+
+		if (vo.getNoticeNo() == 0) {
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/notice/noticeList");
-			
+
 			return "/common/message";
 		}
 		int cnt = noticeService.updateNotice(vo);
-		logger.info("수정 성공 여부 cnt={}",cnt);
-		String msg="수정에 실패했습니다", url ="/notice/noticeList";
-		if(cnt>0) {
-			msg="수정에 성공했습니다.";
+		logger.info("수정 성공 여부 cnt={}", cnt);
+		String msg = "수정에 실패했습니다", url = "/notice/noticeList";
+		if (cnt > 0) {
+			msg = "수정에 성공했습니다.";
 		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
 		return "/common/message";
 	}
-	
+
 	@GetMapping("/noticeDelete")
 	public String noticeDelete_post(@RequestParam int noticeNo, Model model) {
-		logger.info("공지사항 삭제화면 vo={}",noticeNo);
-		
-		if(noticeNo==0) {
+		logger.info("공지사항 삭제화면 vo={}", noticeNo);
+
+		if (noticeNo == 0) {
 			model.addAttribute("msg", "잘못된 url입니다");
 			model.addAttribute("url", "/notice/noticeList");
-			
+
 			return "/common/message";
 		}
-		
-		int cnt =noticeService.deleteNotice(noticeNo);
-		logger.info("공지사항 삭제여부 cnt={}",cnt);
-		String msg="공지사항 삭제에 실패했습니다.", url="/notice/noticeDetail?noticeNo"+noticeNo;
-		if(cnt>0) {
-			model.addAttribute("msg","공지사항 삭제에 성공했습니다.");
-			model.addAttribute("url","/notice/noticeList");
+
+		int cnt = noticeService.deleteNotice(noticeNo);
+		logger.info("공지사항 삭제여부 cnt={}", cnt);
+		String msg = "공지사항 삭제에 실패했습니다.", url = "/notice/noticeDetail?noticeNo" + noticeNo;
+		if (cnt > 0) {
+			model.addAttribute("msg", "공지사항 삭제에 성공했습니다.");
+			model.addAttribute("url", "/notice/noticeList");
 		}
-		
+
 		return "common/message";
 	}
 }
