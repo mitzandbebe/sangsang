@@ -27,7 +27,15 @@ public class ReviewVO extends SearchVO{
 	private String rOriginalname;
 	private Timestamp rRegdate;
 	
+	private int totalrate;
 	
+	
+	public int getTotalrate() {
+		return totalrate;
+	}
+	public void setTotalrate(int totalrate) {
+		this.totalrate = totalrate;
+	}
 	public String getNickname() {
 		return nickname;
 	}
