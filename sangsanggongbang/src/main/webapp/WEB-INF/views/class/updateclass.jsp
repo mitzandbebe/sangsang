@@ -11,7 +11,7 @@
 			<div class="col-12">
 				<div class="text-center text-md-center mb-5 mt-md-0 text-white">
 					<span class="badge badge-primary ml-2"
-						style="background-color: #82afc5;">클래스등록</span>
+						style="background-color: #82afc5;">클래스수정</span>
 					<h1 class="mb-0 h3" style="color: #679093; margin-top: 10px;">
 						늘솜님 환영합니다!</h1>
 				</div>
@@ -21,13 +21,14 @@
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<h2 class="h5 mb-4">클래스정보</h2>
-							<form name="frmClass" method="post" enctype="multipart/form-data"
-								action="<c:url value='/class/inputclass'/> ">
-								<!-- 나중에 hidden 으로 바꾸기 -->
+							<form name="frmClass" method="post" enctype="multipart/form-data" action="">
+								<!-- 나중에 hidden 으로 바꾸기  액션도 호스트별 목록으로 돌아가게..-->
 								<%-- <input type="text" name="hNo" value="${param.hNo }"> --%>
 								<!-- 임의로 1번호스트로 테스트 -->
 								<input type="hidden" name="hNo" value="1">
 								<input type="hidden" name="endFlag" value="N">
+								<c:forEach var="map" items="${clist}">
+								<c:if test="${map['C_NO'] eq param.cNo }">
 								
 								
 								<div class="row">
@@ -35,14 +36,15 @@
 										<div class="form-group">
 											<label for="class_name">클래스 이름</label> <input
 												class="form-control" id="cName" type="text"
-												placeholder="클래스이름을 입력해주세요." name="cName">
+												value="${map['C_NAME'] }" name="cName">
 										</div>
 										<div class="invalid-feedback" data-sb-feedback="message:required">클래스이름을 입력하세요</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
-											<label for="thumbnail">대표이미지 </label> <input type="file"
-												name="upfile" id="file"
+											<label for="thumbnail">대표이미지 </label>
+											 <input type="file"
+												name="upfile" id="file" 
 												class="form-control flatpickr-input">
 										</div>
 									</div>
@@ -52,7 +54,7 @@
 												class="custom-select" id="category" name="CateCode">
 												<option disabled="disabled" selected="selected" value="">
 													클래스 유형을 선택해주세요.</option>
-												<c:forEach var="vo" items="${ clist}">
+												<c:forEach var="vo" items="${ cate}">
 													<option value="${vo.categoryCode }">${vo.categoryName }</option>
 												</c:forEach>
 											</select>
@@ -62,7 +64,7 @@
 										<div class="form-group">
 											<label for="ppnum">클래스 진행인원</label> <input
 												class="form-control" id="number" type="number" min="1"
-												placeholder="인원선택" name="ppnum">
+												placeholder="인원선택" name="ppnum" value="${map['PPNUM'] }">
 										</div>
 									</div>
 								</div>
@@ -71,7 +73,7 @@
 										<div class="form-group">
 											<label for="class_name">클래스 가격</label> <input
 												class="form-control" id="cprice" type="number" min="0"
-												placeholder="클래스가격을 입력해주세요." name="cPrice">
+												placeholder="클래스가격을 입력해주세요." name="cPrice" value="${map['C_PRICE'] }">
 										</div>
 									</div>
 								</div>
@@ -84,23 +86,11 @@
 													<span class="input-group-text"> <i
 														class="far fa-calendar-alt">&nbsp;시작날짜</i></span>
 												</div>
-												<input class="form-control" placeholder="Start date"
-													type="text" value="${now }" name="cStart">
+												<input class="form-control" placeholder="Start date" 
+													type="text" value="<fmt:formatDate value='${map["C_REGDATE"] }'  pattern="yyyy-MM-dd" />" name="cStart">
 											</div>
 										</div>
 									</div>
-									<%-- <div class="col">
-										<div class="form-group">
-											<div class="input-group input-group-border">
-												<div class="input-group-prepend">
-													<span class="input-group-text"> <i
-														class="far fa-calendar-alt">&nbsp;끝날짜</i></span>
-												</div>
-												<input class="form-control" placeholder="End date"
-													type="text" value="${now }" name="cEnd">
-											</div>
-										</div>
-									</div> --%>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="category">클래스 시간</label> <select
@@ -139,7 +129,7 @@
 								<h2 class="h5 my-4">클래스 컨텐츠</h2>
 									<div class="form-group">
 		                                <label for="description">클래스 설명</label>
-		                                <textarea rows="10" class="form-control text-gray" name="content" id="description" required></textarea>
+		                                <textarea rows="10" class="form-control text-gray" name="content" id="description" required>${map['CONTENTS_CONTENT'] }</textarea>
                             		</div>
 								<div class="row">
 									
@@ -227,9 +217,10 @@
 
 								</div>
 								<div class="mt-3">
-									<button type="submit" class="btn btn-primary">등록하기</button>
+									<button type="submit" class="btn btn-primary">수정하기</button>
 								</div>
-
+								</c:if>
+							</c:forEach>
 							</form>
 						</div>
 

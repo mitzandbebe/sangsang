@@ -19,5 +19,7 @@ public interface HostClassDAO {
 	List<Map<String,Object>> selectClassAllContents();
 	List<Map<String,Object>> selectClassbyCNo(int cNo);
 	List<Map<String,Object>> selectClassCategory(String categoryName);
-	
+	int updateBylocation(LocationVO locationVo);
+	int updateByClass(HostClassVO hostClassVo);
+	int updateByContents(ContentsVO contentsVo);
 }

@@ -38,10 +38,12 @@
 		select count(*) from review
 	</select>
 	
-	<!-- <select id="selectTotalRecord" parameterType=""
+	<select id="selectRate" parameterType="int"
 		resultType="int">
-		select m_no from review
-	</select> -->
+		select round(avg(nvl(r_rate,0))) from review where c_no=#{cNo}
+	</select>
+	
+	
 	
 	
 	
