@@ -186,7 +186,7 @@ public class HostClassController {
 			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
-		//int avgRate =reviewService.selectRate(cNo);
+		int avgRate =reviewService.selectRate(cNo);
 		
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
@@ -197,7 +197,7 @@ public class HostClassController {
 		
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("catelist",catelist);
-		//model.addAttribute("avgRate", avgRate);
+		model.addAttribute("avgRate", avgRate);
 		
 		return "class/detail";
 	}

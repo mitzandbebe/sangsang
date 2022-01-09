@@ -149,6 +149,13 @@
 		 select * from selectClass where c_no=#{cNo}
 	</select>
 	
+	<delete id="deleteClass" parameterType="int">
+		delete * from hostclass where c_no=#{cNo}
+	</delete>
+
+	<delete id="deleteContents" parameterType="int">
+		delete * from Contents where c_no=#{cNo}
+	</delete>
 
 	
 	

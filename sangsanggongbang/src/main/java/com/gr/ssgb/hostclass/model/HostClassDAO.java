@@ -23,4 +23,6 @@ public interface HostClassDAO {
 	int updateBylocation(LocationVO locationVo);
 	int updateByClass(HostClassVO hostClassVo);
 	int updateByContents(ContentsVO contentsVo);
+	int deleteContents(int cNo);
+	int deleteClass(int cNo);
 }

@@ -13,28 +13,63 @@
 		<div
 			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#49746E;" >
 			<div class="container z-2" >
-				<div class="row justify-content-center pt-3">
-					<div class="col-12 text-center">
-						<nav aria-label="breadcrumb">
-							<ol
-								class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
-								<li class="breadcrumb-item text-secondary"><a
-									href="<c:url value='/index'/> " style="color:#46746e;">➯목록으로 돌아가기</a></li>
-							</ol>
-						</nav>
-						<h1 class="mb-4">${map["C_NAME"] }</h1>
-						<div class="d-block d-md-flex justify-content-center">
-							<span class="h6 font-weight-light"><span
-								class="fas fa-check-circle mr-1 pr-1"></span>
-								${map["CATEGORY_NAME"] }
-								</span> 
-								<span class="lh-120 ml-md-4">
-								<i class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
-								${ map['L_ADDRESS_DETAIL']}</span>
-						</div>
+			<div class="row justify-content-center pt-3">
+				<div class="col-12 text-center">
+					<nav aria-label="breadcrumb">
+						<ol
+							class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
+							<li class="breadcrumb-item text-secondary"><a
+								href="<c:url value='/index'/> " style="color: #46746e;">➯목록으로
+									돌아가기</a></li>
+						</ol>
+					</nav>
+					<h1 class="mb-4">${map["C_NAME"] }</h1>
+					<div class="d-block d-md-flex justify-content-center">
+						<span class="h6 font-weight-light"><span
+							class="fas fa-check-circle mr-1 pr-1"></span>
+							${map["CATEGORY_NAME"] } </span> <span class="lh-120 ml-md-4"> <i
+							class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
+							${ map['L_ADDRESS_DETAIL']}
+						</span>
+					</div>
+					<div class="d-block d-md-flex justify-content-center">
+						<span class="d-flex justify-content-center"><c:if
+								test="${avgRate eq 5}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 4}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 3}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 2}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 1}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if>
+						</span>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<div class="section section-lg pt-5">
 			<div class="container">
