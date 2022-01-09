@@ -9,4 +9,6 @@ public interface ReviewService {
 	public List<ReviewVO> selectAll(ReviewVO reviewVo);
 	int selectTotalRecord(SearchVO searchVo);
 	Integer selectRate(int cNo);
+	List<ReviewVO> selectAllRate();
+	List<ReviewVO> AllRate();
 }

@@ -107,35 +107,37 @@
                                         </a>
                                         <!-- <br> -->
                                         </div>
-                                        
-                                        <%-- 
+
+                                        <c:forEach var="vo" items="${rlist}">
+                                        <c:if test="${vo.cNo eq map['C_NO'] }">
+
 										<div class="d-flex my-4">
 											<span class="d-flex justify-content-center"> <c:if
-													test="${avgRate eq 5}">
+													test="${vo.totalrate eq 5}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
-												</c:if> <c:if test="${avgRate eq 4}">
+												</c:if> <c:if test="${vo.totalrate eq 4}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2"></i>
-												</c:if> <c:if test="${avgRate eq 3}">
+												</c:if> <c:if test="${vo.totalrate eq 3}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2"></i>
-												</c:if> <c:if test="${avgRate eq 2}">
+												</c:if> <c:if test="${vo.totalrate eq 2}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2"></i>
 													<i class="star fa-star far text-gray mr-2"></i>
-												</c:if> <c:if test="${avgRate eq 1}">
+												</c:if> <c:if test="${vo.totalrate eq 1}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
@@ -144,7 +146,8 @@
 												</c:if>
 											</span>
 										</div>
-									 --%>
+										</c:if>
+									 </c:forEach>
 									 </div>
                                     <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">

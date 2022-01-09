@@ -31,6 +31,7 @@ import com.gr.ssgb.hostclass.model.HostClassVO;
 import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
 import com.gr.ssgb.review.model.ReviewService;
+import com.gr.ssgb.review.model.ReviewVO;
 
 @Controller
 @RequestMapping("/class")
@@ -167,16 +168,13 @@ public class HostClassController {
 	public String classAll_get(Model model) {
 		logger.info("클래스 전체목록보기");
 		
-		//int cNo=hostClassService.selectByCNo(hostClassVO);
-		
-		//int avgRate =reviewService.selectRate(cNo);
-		
+		List<ReviewVO> rlist= reviewService.selectAllRate();
 		
 		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
 		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
 		
 		model.addAttribute("classlist",classlist);
-		//model.addAttribute("avgRate", avgRate);
+		model.addAttribute("rlist", rlist);
 		
 		return "class/classlist";
 	}
