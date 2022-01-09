@@ -17,13 +17,20 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 
-<br>
-<br>
-<br>
-<br>
+<section class="section-header pb-7 bg-primary text-white">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-10 text-center"></div>
+		</div>
+	</div>
+</section>
 
 <!-- 이벤트 목록 테이블로 보여주기 -->
 <div class="container">
+	<br>
+	<br>
+	<br>
+	<br>
 	<form name="frmList">
 		<table class="table table-hover">
 			<thead>
@@ -67,19 +74,19 @@
 				</c:if>
 			</tbody>
 		</table>
-		
+
 		<!-- 이벤트 글 작성 버튼 -->
 		<br>
-		<div class="d-flex justify-content-between mt-3"
-			style="margin: auto">
+		<div class="d-flex justify-content-between mt-3" style="margin: auto">
 			<input value="이벤트글 작성" class="btn mb-2 mr-2 btn-primary animate-up-2"
 				id="btwrite" type="button">
 		</div>
 		<div class="row">
 			<div class="col-lg-12 mb-5">
-					<div class="col mt-3 d-flex justify-content-center">
+				<div class="col mt-3 d-flex justify-content-center">
 					<div style="text-align: center;">
 						<nav aria-label="Page navigation example">
+								<br>
 							<ul class="pagination">
 								<!-- 이전블럭 -->
 								<c:if test="${pagingInfo.firstPage>1 }">
@@ -89,18 +96,18 @@
 									</a></li>
 								</c:if>
 								<!-- 페이징처리시작 -->
-									<c:forEach var="i" begin="${pagingInfo.firstPage }"
+								<c:forEach var="i" begin="${pagingInfo.firstPage }"
 									end="${pagingInfo.lastPage }">
 									<c:if test="${i==pagingInfo.currentPage }">
 										<li class="page-item"><a class="page-link"
-											style="background-color: #9FB9AE; color:#ffffff; "
+											style="background-color: #9FB9AE; color: #ffffff;"
 											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 										</li>
 									</c:if>
 									<c:if test="${i!=pagingInfo.currentPage }">
 										<li class="page-item"><a class="page-link"
 											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-											</li>
+										</li>
 									</c:if>
 								</c:forEach>
 								<!-- 다음블럭으로 이동 -->
@@ -113,11 +120,9 @@
 							</ul>
 						</nav>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 	</form>
 </div>
 <script type="text/javascript">
