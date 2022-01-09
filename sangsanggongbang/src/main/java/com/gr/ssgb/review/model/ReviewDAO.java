@@ -11,5 +11,5 @@ public interface ReviewDAO {
 	int insertReview(ReviewVO reviewVo);
 	public List<ReviewVO> selectAll(ReviewVO reviewVo);
 	int selectTotalRecord(SearchVO searchVo);
-	int selectRate(int cNo);
+	Integer selectRate(int cNo);
 }

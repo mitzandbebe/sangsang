@@ -34,7 +34,7 @@
 	</select>
 
 	<select id="selectTotalRecord" parameterType="searchVo"
-		resultType="int">
+		resultType="Integer">
 		select count(*) from review
 	</select>
 	

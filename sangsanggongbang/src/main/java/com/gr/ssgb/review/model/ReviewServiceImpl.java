@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int selectRate(int cNo) {
+	public Integer selectRate(int cNo) {
 		return reviewDao.selectRate(cNo);
 	}
 	
