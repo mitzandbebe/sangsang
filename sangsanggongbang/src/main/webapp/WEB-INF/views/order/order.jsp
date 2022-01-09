@@ -33,7 +33,15 @@
 			});
 		});
 	});
-	
+
+	$(function() {
+		$("#sPpunm").on("propertychange change keyup paste input", function() {
+			var ppnum = $('#sPpunm').val();
+			var price = $('#price').val();
+			var totalPrice = ppnum * price;
+			$('#totalPrice').val(totalPrice + "원");
+		});
+	});
 </script>
 
 <div
@@ -45,7 +53,7 @@
 				<div class="row">
 					<c:forEach var="map" items="${cVo}">
 						<c:if test="${map['C_NO'] eq param.cNo }">
-							<div class="col-12 col-lg-8">
+							<div class="col-12 col-lg-14">
 								<div class="row no-gutters align-items-center">
 									<div class="col-12 col-lg-4 col-xl-4">
 										<c:choose>
@@ -75,13 +83,16 @@
 											<div class="d-flex justify-content-between">
 												<div class="col pl-0">
 													<span class="small d-block">가격</span> <span
-														class="h6 text-dark font-weight-bold"> <fmt:formatNumber
-															value="${map['C_PRICE'] }" pattern="#,###" />원
+														class="h6 text-dark font-weight-bold"> <input
+														type="hidden" id="price" value="${map['C_PRICE'] }">
+														<fmt:formatNumber value="${map['C_PRICE'] }"
+															pattern="#,###" />원
 													</span>
 												</div>
 												<div class="col">
 													<span class="small d-block">모집 인원수</span> <span
-														class="h6 text-dark font-weight-bold">${map["PPNUM"] }명</span>
+														class="h6 text-dark font-weight-bold" id="ppnum">
+														${map["PPNUM"] }명</span>
 												</div>
 												<div class="col pr-0">
 													<span class="small d-block">지역</span> <span
@@ -94,7 +105,7 @@
 												<div class="row justify-content-center"></div>
 											</div>
 										</div>
-										<div class="col-12 col-lg-4"  style="float: left;">
+										<div class="col-12 col-lg-4" style="float: left;">
 											<!-- Form -->
 											<div class="form-group mb-4">
 												<label for="cartInputCity1">선택날짜</label> <input type="text"
@@ -105,7 +116,7 @@
 											</div>
 											<!-- End of Form -->
 										</div>
-										<div class="col-12 col-lg-4"  style="float: left;">
+										<div class="col-12 col-lg-4" style="float: left;">
 											<!-- Form -->
 											<div class="form-group mb-4">
 												<label for="cartInputCity1">선택시간</label> <input type="text"
@@ -118,21 +129,30 @@
 										<div class="col-12 col-lg-3" style="float: left;">
 											<!-- Form -->
 											<div class="form-group mb-4">
-												<label for="cartInputCity1">선택인원수</label> 
-												<input
+												<label for="cartInputCity1">선택인원수</label> <input
 													type="number" max="${map['PPNUM'] }" min=0 placeholder="0"
-													class="form-control" id="M_NAME" aria-describedby="M_NAME">
-
+													class="form-control" id="sPpunm">
 											</div>
 										</div>
 										<!-- End of Form -->
 									</div>
 								</div>
+								<div class="col-12 col-lg-3" style="float: right;">
+									<!-- Form -->
+									<div class="form-group mb-4">
+										<h3 class="h6 mb-0">결제금액</h3>
+										<input class="form-control" type="text" id="totalPrice"
+											value="" readonly="readonly">
+										<%-- <fmt:formatNumber value="${totalPrice }" 
+												pattern="#,###" />원</span> --%>
+									</div>
+								</div>
+								<!-- End of Form -->
 							</div>
+						</c:if>
+					</c:forEach>
 				</div>
-				</c:if>
-				</c:forEach>
-				<form action="#" method="post" class="card border-light p-3 mb-4">
+				<form method="post" class="card border-light p-3 mb-4">
 					<div class="card-header border-light p-3 mb-4 mb-md-0">
 						<h3 class="h5 mb-0">클래스 수강신청</h3>
 					</div>
@@ -228,18 +248,12 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="text-center">
-
-								<button type="submit" class="btn btn-block btn-primary mt-4"
-									id="apibtn">결제하기</button>
-								<button class="btn btn-block btn-primary mt-4"
-									id="apibtn">결제하기</button>
-							</div>
-
 						</div>
+						<input type="button" class="btn btn-block btn-primary mt-4"
+							id="apibtn" value="결제하기">
 					</div>
 				</form>
-				<form action="#" method="post" class="card border-light p-3 mb-4">
+				<!-- <form action="#" method="post" class="card border-light p-3 mb-4">
 					<div class="card-header border-light p-3 mb-4 mb-md-0">
 						<h3 class="h5 mb-0">Card details</h3>
 					</div>
@@ -297,13 +311,11 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-
 
 
 <%@ include file="../inc/bottom.jsp"%>
