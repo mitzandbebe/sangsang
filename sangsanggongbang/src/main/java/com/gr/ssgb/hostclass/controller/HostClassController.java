@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
+import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.ContentsVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
@@ -38,20 +39,28 @@ public class HostClassController {
 	private final HostClassService hostClassService;
 	private final ReviewService reviewService;
 	private final FileUploadUtil fileUploadUtil;
+	private final HostService hostService;
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
-			FileUploadUtil fileUploadUtil) {
+			FileUploadUtil fileUploadUtil, HostService hostService) {
 		this.hostClassService = hostClassService;
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
+		this.hostService = hostService;
 		logger.info("클래스 생성자 주입");
 	}
 
 	@GetMapping("/inputclass")
-	public String inputClass(Model model) {
+	public String inputClass(HttpSession session,Model model) {
 		logger.info("클래스 등록 페이지");
 
+		String hId = (String) session.getAttribute("mId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
+		logger.info("hNo=",hNo);
+		
 		List<CategoryVO> clist = hostClassService.selectCategoryAll();
 
 		// 현재날짜
@@ -60,6 +69,7 @@ public class HostClassController {
 		String now = format.format(nowdate);
 
 		model.addAttribute("clist", clist);
+		model.addAttribute("hNo", hNo);
 		model.addAttribute("now", now);
 
 		return "class/inputclass";
@@ -68,19 +78,12 @@ public class HostClassController {
 	//@Transactional
 	@PostMapping("/inputclass")
 	public String inputClass_post(@ModelAttribute HostClassVO hostClassVo, ContentsVO contentsVo, LocationVO locationVo,
-			HttpServletRequest request, HttpSession session,
+			HttpServletRequest request, 
 			Model model) {
 		logger.info("클래스 등록처리, 파라미터 locationVo={}", locationVo);
 		logger.info("클래스 등록처리, 파라미터 hostClassVo={}", hostClassVo);
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
-		
-		
-		
 
-		//String hostid = session.getAttribute(""); //추후 호스트 회원가입되면 아이디저장
-		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
-		int hNo=1; //임의로 1로설정 test용
-		
 		int cnt1=0;
 		//로케이션 전체 조회.
 		List<LocationVO> lvo = hostClassService.selectBylocation(locationVo);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,8 +51,10 @@ public class MainEventController {
 	}
 
 	@PostMapping("/eventwrite")
-	public String write_post(@ModelAttribute MainEventVO vo, HttpServletRequest request) {
+	public String write_post(@ModelAttribute MainEventVO vo, HttpServletRequest request,HttpSession session) {
 		logger.info("이벤트 등록 처리,파라미터 vo ={}", vo);
+		
+		
 
 		// 파일 업로드 처리
 		String fileName = "", originName = "";

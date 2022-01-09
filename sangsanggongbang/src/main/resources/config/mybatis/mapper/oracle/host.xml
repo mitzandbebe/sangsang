@@ -28,4 +28,8 @@
 	<select id="selectAllHost" resultType="hostVo">
 		select * from host
 	</select>
+	
+	<select id="selectHostNo" parameterType="string" resultType="int">
+		select h_no from host where h_id=#{hId}
+	</select> 
 </mapper>
