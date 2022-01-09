@@ -94,6 +94,16 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.updateByContents(contentsVo);
 	}
 
+	@Override
+	public int deleteContents(int cNo) {
+		return hostClassDao.deleteContents(cNo);
+	}
+
+	@Override
+	public int deleteClass(int cNo) {
+		return hostClassDao.deleteClass(cNo);
+	}
+
 
 
 
