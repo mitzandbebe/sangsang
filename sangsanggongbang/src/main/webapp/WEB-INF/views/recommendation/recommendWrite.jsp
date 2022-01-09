@@ -8,8 +8,8 @@
 <br>
 <br>
 <br>
-<br> 
-<br> 
+<br>
+<br>
 <br>
 
 <script type="text/javascript"
@@ -34,7 +34,7 @@
 					<div class="col-lg-12 mb-5">
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 </label> <input type="text" id="title"
+							<label for="title">제목 :  </label> <input type="text" id="title"
 								name="recoTitle" class="infobox"
 								style="border: none; outline: none;" />
 						</div>
@@ -63,7 +63,7 @@
 <br>
 <br>
 <br>
-<br>
+
 <script type="text/javascript">
 	CKEDITOR.replace('content');
 	CKEDITOR.on('dialogDefinition', function(ev) {
