@@ -80,12 +80,10 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassCategory(categoryName);
 	}
 
-
-
-
-
-
-	
+	@Override
+	public LocationVO selectByLNo2(int lNo) {
+		return hostClassDao.selectByLNo2(lNo);
+	}
 
 
 	

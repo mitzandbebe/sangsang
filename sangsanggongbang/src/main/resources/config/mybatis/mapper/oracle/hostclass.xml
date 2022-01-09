@@ -128,6 +128,11 @@
 		 select * from selectClass where c_no=#{cNo}
 	</select>
 	
+	<select id="selectByLNo2" parameterType="int" resultType="locationVo">
+		select l_address from location 
+		where l_no=#{lNo}
+	</select>
+	
 	
 	
 <!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
