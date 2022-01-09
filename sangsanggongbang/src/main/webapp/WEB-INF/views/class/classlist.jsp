@@ -77,25 +77,40 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>" class="position-relative">
-                                    <c:choose >
-                                    	<c:when test="${not empty map['THUMBNAIL']}">
-                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
-                                    	</c:when>
-                                    	<c:when test="${map['THUMBNAIL'] eq null}">
-                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
-                                    	</c:when>
-                                    </c:choose>
-                                    </a>
-                                    <div class="card-body" style="width:250px; height:120px">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
-                                        </a>
-                                        <div id="category" style="float:right;">
-                                        	${map["CATEGORY_NAME"] }
+											
+										<a
+											href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>"
+											class="position-relative"> 
+											<c:choose>
+												<c:when test="${not empty map['THUMBNAIL']}">
+													<img 
+														src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> "
+														width="auto" height="200px" align="top"
+														class="card-img-top p-2 rounded-xl" alt="썸네일">
+												</c:when>
+												<c:when test="${map['THUMBNAIL'] eq null}">
+													<img 
+														src="<c:url value='/resources/upload_images/basic.png'/> "
+														width="auto" height="200px" align="top"
+														class="card-img-top p-2 rounded-xl" alt="기본이미지">
+												</c:when>
+											</c:choose>
+										</a>
+									
+									<div id="category" style="text-align:left; margin-left:25px;">
+                                        	<br>${map["CATEGORY_NAME"] }
                                         </div>
+                                    <div class="card-body" style="width:330px; height:120px">
+                                            <div style="text-align:left;">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
+                                            ${map["C_NAME"] }
+                                        </a>
+                                        <!-- <br> -->
+                                        </div>
+
                                         <c:forEach var="vo" items="${rlist}">
                                         <c:if test="${vo.cNo eq map['C_NO'] }">
+
 										<div class="d-flex my-4">
 											<span class="d-flex justify-content-center"> <c:if
 													test="${vo.totalrate eq 5}">
@@ -134,7 +149,7 @@
 										</c:if>
 									 </c:forEach>
 									 </div>
-                                    <div class="card-footer bg-soft border-top">
+                                    <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>

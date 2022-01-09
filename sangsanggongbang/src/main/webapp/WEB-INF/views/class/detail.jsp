@@ -380,16 +380,7 @@
 									<div class="text-center">${map["C_TIME"] } 시</div>
 								</div> 
 							</div>
-							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
-
-							<div class="class-confirm03">
-								<div class="c03-count">
-									<a href="#" id="num-sub">-</a> <input type="text" id="quantity"
-										value="1" class="only-number" /> <a href="#" id="num-add">+</a>
-								</div>
-							</div>
-							<input type="hidden" id="classRealPrice" value='40000'>
-							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
+							<br> <label for="exampleFormControlSelect2">가격</label>
 							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
 								
@@ -429,9 +420,9 @@
                                     	</c:when>
                                     </c:choose>
                                     </a>
-                                    <div class="card-body" style="width:300px; height:150px">
+                                    <div class="card-body" style="width:330px; height:120px;">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
-                                            <h6 class="h6" >${map["C_NAME"] }</h6>
+                                            ${map["C_NAME"] }
                                         </a>
                         <%--                 <div class="d-flex my-4">
  						<c:if test="${avgRate eq 5}">
@@ -480,7 +471,7 @@
                                         </div>  --%>
                                         
                                     </div>
-                                    <div class="card-footer bg-soft border-top">
+                                    <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>

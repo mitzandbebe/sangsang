@@ -79,7 +79,7 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassCategory(categoryName);
 	}
 
-	@Override
+
 	public int updateBylocation(LocationVO locationVo) {
 		return hostClassDao.updateBylocation(locationVo);
 	}
@@ -105,11 +105,6 @@ public class HostClassServiceImpl implements HostClassService{
 	}
 
 
-
-
-
-
-	
 
 
 	

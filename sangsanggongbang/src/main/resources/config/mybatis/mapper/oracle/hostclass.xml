@@ -157,6 +157,7 @@
 		delete * from Contents where c_no=#{cNo}
 	</delete>
 
+
 	
 	
 <!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
