@@ -179,12 +179,28 @@ public class HostClassController {
 		return "class/classlist";
 	}
 	
+	@RequestMapping("/listbyCategory")
+	public String classCategory_get(@RequestParam String categoryName,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		
+		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
+		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/listbyCategory";
+	}
+	
 	@GetMapping("/detail")
 	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
 			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
 		Integer avgRate =reviewService.selectRate(cNo);
+		List<ReviewVO> rlist= reviewService.selectAllRate();
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
 		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
@@ -195,6 +211,7 @@ public class HostClassController {
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("catelist",catelist);
 		model.addAttribute("avgRate", avgRate);
+		model.addAttribute("rlist", rlist);
 		
 		return "class/detail";
 	}

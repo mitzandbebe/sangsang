@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
-<title>클래스리스트 전체</title>
+<title>카테고리별 보기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="title" content="Spaces - Blog post">
 <meta name="author" content="Themesberg">
@@ -66,48 +66,34 @@
             </div>
         </section>
 <form name="frmclassList">
-        <div class="section section-lg pt-0">
-            <div class="container mt-n10">
-                <div class="row">
-                <h1 class="h3"><i class="fas fa-angle-double-right"></i>전체 클래스 보기</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h4 class="mb-5 font-weight-bold"><span>${param.categoryName }</span> 클래스 전체보기</h4>
+						
+					</div>
                     <div class="col-md-12">
                         <div class="basic-carousel owl-carousel owl-theme">
+       <c:forEach var="map" items="${catelist}">
                             <!-- Item 1 -->
-                            <c:forEach var="map" items="${classlist}">
+                            
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-											
-										<a
-											href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"] } '/>"
-											class="position-relative"> 
-											<c:choose>
-												<c:when test="${not empty map['THUMBNAIL']}">
-													<img 
-														src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> "
-														width="auto" height="200px" align="top"
-														class="card-img-top p-2 rounded-xl" alt="썸네일">
-												</c:when>
-												<c:when test="${map['THUMBNAIL'] eq null}">
-													<img 
-														src="<c:url value='/resources/upload_images/basic.png'/> "
-														width="auto" height="200px" align="top"
-														class="card-img-top p-2 rounded-xl" alt="기본이미지">
-												</c:when>
-											</c:choose>
-										</a>
-									
-									<div id="category" style="text-align:left; margin-left:25px;">
-                                        	<br>${map["CATEGORY_NAME"] }
-                                        </div>
-                                    <div class="card-body" style="width:330px; height:120px">
-                                            <div style="text-align:left;">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
+                                    <c:choose >
+                                    	<c:when test="${not empty map['THUMBNAIL']}">
+                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
+                                    	</c:when>
+                                    	<c:when test="${map['THUMBNAIL'] eq null}">
+                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
+                                    	</c:when>
+                                    </c:choose>
+                                    </a>
+                                    <div class="card-body" style="width:330px; height:120px;">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
                                             ${map["C_NAME"] }
                                         </a>
-                                        <!-- <br> -->
-                                        </div>
-
                                         <c:forEach var="vo" items="${rlist}">
                                         <c:if test="${vo.cNo eq map['C_NO'] }">
 
@@ -148,12 +134,12 @@
 										</div>
 										</c:if>
 									 </c:forEach>
-									 </div>
+                                    </div>
                                     <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
-                                                <span class="h5 text-dark font-weight-bold" style="font-size:0.8em">
+                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
                                                 <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
                                                 </span>
                                             </div>
@@ -173,12 +159,11 @@
                                 </div>
                                 <!-- End of Card -->
                             </div>
-                            </c:forEach>
                             
+                         </c:forEach>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 </form>
     <!-- Core -->
