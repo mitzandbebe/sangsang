@@ -380,16 +380,7 @@
 									<div class="text-center">${map["C_TIME"] } 시</div>
 								</div> 
 							</div>
-							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
-
-							<div class="class-confirm03">
-								<div class="c03-count">
-									<a href="#" id="num-sub">-</a> <input type="text" id="quantity"
-										value="1" class="only-number" /> <a href="#" id="num-add">+</a>
-								</div>
-							</div>
-							<input type="hidden" id="classRealPrice" value='40000'>
-							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
+							<br> <label for="exampleFormControlSelect2">가격</label>
 							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
 								
