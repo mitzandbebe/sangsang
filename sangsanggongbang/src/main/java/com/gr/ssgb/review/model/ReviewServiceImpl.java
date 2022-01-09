@@ -30,6 +30,11 @@ public class ReviewServiceImpl implements ReviewService{
 	public int selectTotalRecord(SearchVO searchVo) {
 		return reviewDao.selectTotalRecord(searchVo);
 	}
+
+	@Override
+	public Integer selectRate(int cNo) {
+		return reviewDao.selectRate(cNo);
+	}
 	
 	
 }

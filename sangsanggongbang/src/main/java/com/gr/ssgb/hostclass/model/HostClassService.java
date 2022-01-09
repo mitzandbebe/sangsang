@@ -17,5 +17,9 @@ public interface HostClassService {
 	List<Map<String,Object>> selectClassbyCNo(int cNo);
 	HostClassVO selectClassbyCNo2(int cNo);
 	List<Map<String,Object>> selectClassCategory(String categoryName);
-	LocationVO selectByLNo2(int lNo);
+	int updateBylocation(LocationVO locationVo);
+	int updateByClass(HostClassVO hostClassVo);
+	int updateByContents(ContentsVO contentsVo);
+	int deleteContents(int cNo);
+	int deleteClass(int cNo);
 }
