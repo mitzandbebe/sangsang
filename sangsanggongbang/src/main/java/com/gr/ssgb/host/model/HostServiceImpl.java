@@ -50,5 +50,10 @@ public class HostServiceImpl implements HostService{
 	public List<HostVO> selectAllHost() {
 		return hostDao.selectAllHost();
 	}
+
+	@Override
+	public int selectHostNo(String hId) {
+		return hostDao.selectHostNo(hId);
+	}
 	
 }

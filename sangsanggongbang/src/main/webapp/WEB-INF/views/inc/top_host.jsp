@@ -130,8 +130,14 @@
 						</div>
 					</div>
 					<!-- 메뉴1 -->
+					<ul class="justify-content-center navbar-nav">
+						<a href="<c:url value='/class/inputclass'/>"> 
+						<span class="nav-link-inner-text mr-1">클래스 등록</span> 
+						</a>
+					
+						</ul>
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
-						<li class="nav-item dropdown"><a href="#"
+						<li class="nav-item dropdown"><a href="<c:url value='/class/inputclass'/>"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
 								class="nav-link-inner-text mr-1">클래스 등록</span> <i
@@ -140,7 +146,7 @@
 							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
 								aria-labelledby="mainPagesDropdown">
 								<div class="row">
-									<div class="col-6 col-lg-4" style="color: #49746E";>
+									<div class="col-6 col-lg-4" style="color: #49746E;">
 										<h6 class="d-block mb-3 text-primary">카테고리</h6>
 										<ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"

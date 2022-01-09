@@ -59,12 +59,13 @@
 <script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 
+
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
         <section class="section section-header bg-soft pb-12" style="padding:0;">
             <div class="container">
             </div>
         </section>
-
+<form name="frmclassList">
         <div class="section section-lg pt-0">
             <div class="container mt-n10">
                 <div class="row">
@@ -73,7 +74,6 @@
                         <div class="basic-carousel owl-carousel owl-theme">
                             <!-- Item 1 -->
                             <c:forEach var="map" items="${classlist}">
-                            
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
@@ -87,21 +87,57 @@
                                     	</c:when>
                                     </c:choose>
                                     </a>
-                                    <div class="card-body" style="width:300px; height:150px">
+                                    
+                                        <div id="category" style="text-align:left; margin-left:25px;">
+                                        	<br>${map["CATEGORY_NAME"] }
+                                        </div>
+                                    <div class="card-body" style="width:250px; height:120px">
+                                            <div style="text-align:left;">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
+                                            ${map["C_NAME"] }
                                         </a>
-                                        <div class="d-flex my-4">
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span>
-                                            <span class="badge badge-pill badge-primary ml-2">5.0</span>
-                                        </div> 
+                                        <!-- <br> -->
+                                        </div>
                                         
-                                    </div>
-                                    <div class="card-footer bg-soft border-top">
+                                        <%-- 
+										<div class="d-flex my-4">
+											<span class="d-flex justify-content-center"> <c:if
+													test="${avgRate eq 5}">
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+												</c:if> <c:if test="${avgRate eq 4}">
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star far text-gray mr-2"></i>
+												</c:if> <c:if test="${avgRate eq 3}">
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star far text-gray mr-2 "></i>
+													<i class="star fa-star far text-gray mr-2"></i>
+												</c:if> <c:if test="${avgRate eq 2}">
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star far text-gray mr-2 "></i>
+													<i class="star fa-star far text-gray mr-2"></i>
+													<i class="star fa-star far text-gray mr-2"></i>
+												</c:if> <c:if test="${avgRate eq 1}">
+													<i class="star fa-star fas text-warning mr-2"></i>
+													<i class="star fa-star far text-gray mr-2 "></i>
+													<i class="star fa-star far text-gray mr-2 "></i>
+													<i class="star fa-star far text-gray mr-2 "></i>
+													<i class="star fa-star far text-gray mr-2"></i>
+												</c:if>
+											</span>
+										</div>
+									 --%>
+									 </div>
+                                    <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">
                                                 <span class="text-muted font-small d-block mb-2">가격</span>
@@ -132,7 +168,7 @@
             </div>
         </div>
         </div>
-
+</form>
     <!-- Core -->
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
