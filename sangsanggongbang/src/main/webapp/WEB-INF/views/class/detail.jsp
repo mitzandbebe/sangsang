@@ -64,6 +64,8 @@
 								<i class="star fa-star far text-gray mr-2 "></i>
 								<i class="star fa-star far text-gray mr-2 "></i>
 								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq null}">
+								리뷰가 없습니다.
 							</c:if>
 						</span>
 					</div>

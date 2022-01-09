@@ -186,8 +186,7 @@ public class HostClassController {
 			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
-		int avgRate =reviewService.selectRate(cNo);
-		
+		Integer avgRate =reviewService.selectRate(cNo);
 		
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
 		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
