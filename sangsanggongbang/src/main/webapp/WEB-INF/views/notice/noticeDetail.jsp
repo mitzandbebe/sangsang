@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../inc/top.jsp"%>
-
 </head>
 <body>
 	<main>
@@ -54,17 +53,16 @@
 			</div>
 		</div>
 		<br>
-		<table id="NP" align="absmiddle"
-			style="border-top: 1px solid black;border-bottom: 1px solid black; width: 20%; text-align: center; margin-left: 40%; margin-right: 40%; margin-top: 10px; margin-bottom: 10px;">
+		<table id="NP">
 			<c:if test="${empty PNVo.nextTitle }">
 				<tr>
-					<th style="background-color: skyblue"><span>다음글</span></th>
+					<th style="background-color: #9fb9ae"><span>다음글</span></th>
 					<td>다음글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty PNVo.nextTitle }">
-				<tr>
-					<th style="background-color: skyblue"><a
+				<tr id="hover">
+					<th style="background-color: #9fb9ae;"><a
 						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">
 							<span>다음글</span>
 					</a></th>
@@ -75,13 +73,13 @@
 
 			<c:if test="${empty PNVo.preTitle }">
 				<tr>
-					<th style="background-color: skyblue"><hr> <span>이전글</span></th>
+					<th style="background-color: #9fb9ae"><hr> <span>이전글</span></th>
 					<td><hr> 이전글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty PNVo.preTitle }">
-				<tr>
-					<th style="background-color: skyblue"><a
+				<tr id="hover">
+					<th style="background-color: #9fb9ae"><a
 						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.preNo }'/>">
 							<hr> <span>이전글</span>
 					</a></th>
@@ -95,6 +93,31 @@
 	</main>
 
 	<%@ include file="../inc/bottom.jsp"%>
+	<style>
+hr {
+	margin: 0px;
+}
+
+#NP {
+	border-top: 1px solid black;
+	text-align: absmiddle;
+	border-bottom: 1px solid black;
+	width: 20%;
+	text-align: center;
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#NP *{
+	font-weight: 100;
+	color:black;
+}
+
+#hover :hover{
+	color:blue;
+}
+</style>
 	<script src="../assets/js/spaces.js"></script>
 	<script>
 		// here you should load content from an Ajax request and when it
@@ -119,5 +142,6 @@
 			}
 		})
 	</script>
+
 </body>
 </html>
