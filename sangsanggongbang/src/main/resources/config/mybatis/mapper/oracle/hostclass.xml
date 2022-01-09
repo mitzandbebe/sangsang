@@ -124,6 +124,7 @@
 		 select * from selectClass where c_no=#{cNo}
 	</select>
 	
+
 	<update id="updateBylocation" parameterType="locationVo">
 		update location set 
 			zipcode= #{zipcode},l_address=#{lAddress}
@@ -143,6 +144,12 @@
 			CONTENTS_CONTENT=#{content} where c_no=#{cNo}
 			
 	</update>
+
+	<select id="selectClassbyCNo2" resultType="hostclassVo" parameterType="int">
+		 select * from selectClass where c_no=#{cNo}
+	</select>
+	
+
 	
 	
 <!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">

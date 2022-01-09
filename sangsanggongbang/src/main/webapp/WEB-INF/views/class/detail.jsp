@@ -11,7 +11,7 @@
 
 		<!-- Hero -->
 		<div
-			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#46746e;" >
+			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#49746E;" >
 			<div class="container z-2" >
 				<div class="row justify-content-center pt-3">
 					<div class="col-12 text-center">
@@ -323,6 +323,8 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
+						<form action="order" method="post" class="card border-light p-3 mb-4">
+						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
@@ -339,7 +341,7 @@
 											<i class="far fa-clock"></i>
 										</span>
 									<div class="text-center">${map["C_TIME"] } 시</div>
-								</div>
+								</div> 
 							</div>
 							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
 
@@ -353,10 +355,13 @@
 							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
 							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-block btn-primary mt-4"
-									id="apibtn">결제하기</button>
+								
+								<button type="submit" class="btn btn-block btn-primary mt-4">
+								결제하기</a></button>
+								
 							</div>
 						</div>
+						</form>
 					</aside>
 				</div>
 			</div>

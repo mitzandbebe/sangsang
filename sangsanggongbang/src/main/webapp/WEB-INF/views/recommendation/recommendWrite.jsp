@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
-<%@include file="../inc/top.jsp" %>
+<%@include file="../inc/new_top_user.jsp" %>
+
 <br><br><br>
+
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -30,15 +32,11 @@
 								style="border: none; outline: none;" />
 						</div>
 
-				<!-- 		<div>
-				            <label for="upfile">대표이미지 📁  </label>
-					        <input type="file" name="upfile" id="upfile">
-				        </div>
-						 -->
+						<br>
 
-						<!-- 이벤트 글쓰기 -->
+						<!-- 불편사항 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
-							<label for="exampleFormControlTextarea2">이벤트 내용</label>
+							<label for="exampleFormControlTextarea2">불편사항 내용</label>
 							<textarea class="ckediter" id="content" name="recoContent"
 								rows="20"></textarea>
 						</div>
@@ -91,7 +89,7 @@
 	
 				});
 				
-				/* $('.ckediter').each(function(idx, item) {
+				$('#upfile').each(function(idx, item) {
 					if ($(this).val().length < 1) {
 						alert($(this).prev().html() + "을 입력하세요");
 						$(this).focus();
@@ -99,13 +97,13 @@
 						return false; //each 탈출
 					}
 	
-				}); */
+				});
 				
 			});
 			
 
 			$('#btlist').click(function() {
-				location.href = "#";
+				location.href = "<c:url value='/recommendation/recommendList'/>";
 			});
 
 		});
