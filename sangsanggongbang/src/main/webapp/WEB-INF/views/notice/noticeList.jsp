@@ -21,7 +21,8 @@
 3. 디자인 정리하기
  -->
 <!-- Hero -->
-<section class="section-header bg-primary text-white pb-7 pb-lg-11" style="height: 0px;">
+<section class="section-header bg-primary text-white pb-7 pb-lg-11"
+	style="height: 0px; text-align: center;">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
@@ -29,18 +30,13 @@
 			</div>
 		</div>
 	</div>
-
-
-
-	<div style="text-align: center;">
+	<div>
 		<p>관리자 or 호스트로 로그인 했을때만 나타나게</p>
-		<a href="<c:url value='/notice/noticeWrite'/>">
-			<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
-				등록하기</button>
-		</a>
 	</div>
+	<br>
 </section>
-<section class="section section-lg line-bottom-light" style="margin-bottom: -161px;">
+<section class="section section-lg line-bottom-light"
+	style="margin-bottom: -161px;">
 	<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2">
 		<div class="row">
 			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5" id="noticeMain"
@@ -76,9 +72,15 @@
 					</c:forEach>
 				</c:if>
 			</div>
+
 			<div class="d-flex justify-content-center w-100 mt-5">
-				<nav aria-label="Page navigation example" style="margin-top: -100px;">
-					<ul class="pagination">
+				<nav aria-label="Page navigation example"
+					style="margin-top: -100px;">
+					<ul class="pagination" style="margin-left:-150px">
+						<a href="<c:url value='/notice/noticeWrite'/>">
+							<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
+								등록하기</button>
+						</a>
 						<c:if test="${pagingInfo.firstPage>1 }">
 							<li class="page-item"><a class="page-link"
 								href="<c:url value='/notice/noticeList?currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
@@ -100,6 +102,7 @@
 								href="<c:url value='/notice/noticeList?currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
 							</li>
 						</c:if>
+
 					</ul>
 				</nav>
 			</div>
