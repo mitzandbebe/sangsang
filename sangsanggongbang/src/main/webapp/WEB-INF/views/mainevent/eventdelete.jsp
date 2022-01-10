@@ -36,7 +36,7 @@
 		</section>
 
 		<div class="container">
-			<div class="row justify-content-center">
+			<div class="row justify-content-left">
 				<div class="col-12 col-lg-8">
 					<br> <br> <br> <br>
 					<br> <br> <br> <br> ${vo.newsContent }
