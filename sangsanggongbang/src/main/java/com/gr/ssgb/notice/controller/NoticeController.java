@@ -2,6 +2,7 @@ package com.gr.ssgb.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -98,19 +99,24 @@ public class NoticeController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}", searchVo);
 
-		List<NoticeVO> list = noticeService.selectNoticeAll(searchVo);
+		String adId=(String) session.getAttribute("adId");
+		String hId=(String) session.getAttribute("hId");
+		
+		List<NoticeVO> list = new ArrayList<NoticeVO>();
+		int totalRecord = 0;
+		if (hId!=null && !hId.isEmpty()) {
+			list = noticeService.selectNoticeHostAll(searchVo);
+			totalRecord = noticeService.selectTotalHostRecord(searchVo);
+		} else if (adId!=null && !adId.isEmpty()) {
+			list = noticeService.selectNoticeAll(searchVo);
+			totalRecord = noticeService.selectTotalRecord(searchVo);
+		} else { //비회원은 멤버처럼 나오게
+			list = noticeService.selectNoticeMemberAll(searchVo);
+			totalRecord = noticeService.selectTotalMemberRecord(searchVo);
+		}
 		logger.info("공지화면 총 list.size={}", list.size());
 
-		int totalRecord = noticeService.selectTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
-
-		String mId = "", hId = "", adId = "";
-		if ((String) session.getAttribute("hId") != null) {
-			hId = (String) session.getAttribute("hId");
-		} else if ((String) session.getAttribute("mId") != null) {
-			mId = (String) session.getAttribute("mId");
-		}
-		logger.info("mId={},hId={}", mId, hId);
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
@@ -171,7 +177,7 @@ public class NoticeController {
 					newsUploadname = (String) fileMap.get("fileName");
 					vo.setNoticeImgUrl(newsUploadname);
 				} // for
-			}else {
+			} else {
 				vo.setNoticeImgUrl("");
 			}
 		} catch (IllegalStateException e) {
