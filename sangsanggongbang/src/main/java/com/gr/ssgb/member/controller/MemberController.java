@@ -113,8 +113,14 @@ public class MemberController {
 		
 		 int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
 		 if(accountCnt==1 && snsCheck.equals("y")) { 
+			 
 			 memberVo = memberService.selectMemberById(memberVo.getmId());
 			 HttpSession session = request.getSession();
+			 session.removeAttribute("hFilename");
+			 session.removeAttribute("hId");
+			 session.removeAttribute("h_snsCheck");
+			 session.removeAttribute("hNickname");
+			 session.removeAttribute("uOrh");
 			 session.setAttribute("mId", memberVo.getmId());
 			 session.setAttribute("snsCheck", snsCheck);
 			 session.setAttribute("mFilename", memberVo.getmFilename());
@@ -178,6 +184,7 @@ public class MemberController {
 				
 				if(cnt > 0) {
 					HttpSession session = request.getSession();
+					session.invalidate();
 					memberVo = memberService.selectMemberById(memberVo.getmId());
 					memberVo.setmNickname("늘찬"+memberVo.getmNo());
 					int result = memberService.updateNickname(memberVo);
@@ -205,6 +212,7 @@ public class MemberController {
 				}
 			}else {
 				HttpSession session = request.getSession();
+				session.invalidate();
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
@@ -231,6 +239,7 @@ public class MemberController {
 			logger.info("아이디 비밀번호 체크 결과, result={}",result);
 			if(result==MemberService.LOGIN_OK){
 				HttpSession session = request.getSession();
+				session.invalidate();
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
@@ -279,7 +288,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/main"; 
+		return "redirect:/index"; 
 	}
 	@RequestMapping("member/askAdditional")
 	public void ask_additional() {

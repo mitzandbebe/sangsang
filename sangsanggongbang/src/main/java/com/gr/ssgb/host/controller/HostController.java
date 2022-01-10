@@ -57,8 +57,14 @@ public class HostController {
 		logger.info("호스트 로그인 화면");
 	}
 	@GetMapping("/hostIndex")
-	public void hostIndex() {
+	public String hostIndex(Model model) {
 		logger.info("호스트 메인화면");
+		
+		List<HostVO> hlist = hostService.selectAllHost();
+		
+		model.addAttribute("hlist", hlist); 
+		
+		return "host/hostIndex";
 	}
 	
 	@GetMapping("/hostRegister")
@@ -76,7 +82,11 @@ public class HostController {
 		if(hAccountCnt < 1) {
 			int accountCnt = memberService.selectMemberCnt(vo.gethId());
 			if(h_snsCheck.equals("y")) {
-				
+				session.removeAttribute("mId");
+				session.removeAttribute("snsCheck");
+				session.removeAttribute("mFilename");
+				session.removeAttribute("mNickname");
+				session.removeAttribute("uOrh");
 				session.setAttribute("hId", vo.gethId());
 				session.setAttribute("hFilename", vo.gethFilename());
 				session.setAttribute("h_snsCheck", h_snsCheck);
@@ -116,6 +126,11 @@ public class HostController {
 			}else {
 				int result = memberService.checkIdPwd(vo.gethId(), vo.gethPwd());
 				if(result==MemberService.LOGIN_OK) { 
+					session.removeAttribute("mId");
+					session.removeAttribute("snsCheck");
+					session.removeAttribute("mFilename");
+					session.removeAttribute("mNickname");
+					session.removeAttribute("uOrh");
 					MemberVO memVo=memberService.selectMemberById(vo.gethId());
 					session.setAttribute("hId", vo.gethId());
 					session.setAttribute("hFilename", memVo.getmFilename());
@@ -158,6 +173,11 @@ public class HostController {
 			int result=hostService.checkIdPwd(vo.gethId(), vo.gethPwd());
 			
 			if(result==HostService.LOGIN_OK) {
+				session.removeAttribute("mId");
+				session.removeAttribute("snsCheck");
+				session.removeAttribute("mFilename");
+				session.removeAttribute("mNickname");
+				session.removeAttribute("uOrh");
 				msg="늘솜님 안녕하세요!";
 				url="/host/hostChatTest";
 				vo = hostService.selectHostById(vo.gethId());
@@ -250,7 +270,7 @@ public class HostController {
 		
 		session.invalidate();
 		
-		return "redirect:/host/index"; 
+		return "redirect:/host/hostIndex"; 
 	}
 	
 	@ResponseBody

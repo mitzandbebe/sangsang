@@ -359,16 +359,50 @@
                         </div>
                     </li> -->
                 </ul>
-            </div>
+                
+           </div>
             <!-- 탑 우측 버튼들 -->
             <div class="d-none d-lg-block @@cta_button_classes">
 					<!-- 프로필 사진 -->
-					<div class="profile_photo">
-						<a href=""> 
+					<!-- <div class="profile_photo" style="margin-left: 235px; "> -->
+					
 						
-						</a>
-					</div>
+                            
+					<!-- </div> -->
 					<!-- 프로필 사진 끝 -->
+					
+					<!-- 마이 페이지 -->
+					<!--  <a
+						href="${pageContext.request.contextPath }/member/memberEditChkPwd"
+						class="btn btn-md btn-outline-white animate-up-2 mr-3"><i
+						class="fas fa-user-edit"></i> 
+						<span class="d-xl-none">MY PAGE</span> 
+						<span class="d-none d-xl-inline">MY PAGE</span></a>-->
+					<!-- 마이 페이지 끝 -->
+					<!-- 로그인 -->
+					<c:if test="${empty sessionScope.mId }">
+						<a href="${pageContext.request.contextPath }/login/login"
+							class="btn btn-md btn-secondary animate-up-2"><i
+							class="fas fa-user-lock"></i> LOG IN</a>
+					</c:if>
+					<!-- 로그인 끝 -->
+					<!-- 로그아웃 -->
+					<c:if test="${!empty sessionScope.mId }">
+					<a href = "${pageContext.request.contextPath }/member/memberEditChkPwd" alt="마이페이지">
+						<img class="avatar-sm img-fluid rounded-circle mr-2" alt="avatar"
+                            <c:if test="${!empty sessionScope.mFilename}">
+                                src="<c:url value='/resources/file_upload/${sessionScope.mFilename}'/>" 
+                            </c:if>
+                            <c:if test="${!empty sessionScope.mFilename}">
+                                src="<c:url value='/resources/file_upload/default.png'/>" 
+                            </c:if>     
+                        > </a>
+                        <span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.mNickname}님</span>
+						<a href="${pageContext.request.contextPath }/login/logout"
+							class="btn btn-md btn-secondary animate-up-2"><i
+							class="fas fa-user-lock"></i> LOG OUT</a>
+					</c:if>            
+					<!-- 로그아웃 끝 -->
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<a style="position:relative;" width="100px;"
@@ -390,29 +424,7 @@
 						</a>
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<!-- 채팅창 끝 --> 
-					<!-- 마이 페이지 -->
-					<a
-						href="${pageContext.request.contextPath }/member/memberEditChkPwd"
-						target="_blank"
-						class="btn btn-md btn-outline-white animate-up-2 mr-3"><i
-						class="fas fa-user-edit"></i> 
-						<span class="d-xl-none">MY PAGE</span> 
-						<span class="d-none d-xl-inline">MY PAGE</span></a>
-					<!-- 마이 페이지 끝 -->
-					<!-- 로그인 -->
-					<c:if test="${empty sessionScope.mId }">
-						<a href="${pageContext.request.contextPath }/login/login"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
-							class="fas fa-user-lock"></i> LOG IN</a>
-					</c:if>
-					<!-- 로그인 끝 -->
-					<!-- 로그아웃 -->
-					<c:if test="${!empty sessionScope.mId }">
-						<a href="${pageContext.request.contextPath }/login/logout"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
-							class="fas fa-user-lock"></i> LOG OUT</a>
-					</c:if>            
-					<!-- 로그아웃 끝 -->
+					
 			</div>
 			<!-- 화면 크기 줄일 때 반응형 네비게이션 바 -->
             <div class="d-flex d-lg-none align-items-center">

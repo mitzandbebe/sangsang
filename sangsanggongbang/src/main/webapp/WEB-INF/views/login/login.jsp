@@ -21,7 +21,6 @@
 		
 </script>
 
-
         <!-- Section -->
         <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${pageContext.request.contextPath }/resources/assets/img/gongbang.jpg">
             <div class="container">
@@ -119,7 +118,7 @@
 														document.getElementById('snsCheck').value="y";
 														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
 														console.log(kakao_account.profile.profile_image_url);
-														/*document.getElementById('login').submit();*/
+														document.getElementById('login').submit();
 													}
 												});
 											}
