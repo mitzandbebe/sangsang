@@ -142,6 +142,11 @@ public class MemberController {
 			logger.info("회원가입 결과, cnt={}", cnt);
 			if(cnt > 0) {
 				HttpSession session = request.getSession();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				memberVo = memberService.selectMemberById(memberVo.getmId());
 				memberVo.setmNickname("늘찬"+memberVo.getmNo());
 				int result = memberService.updateNickname(memberVo);
@@ -184,7 +189,11 @@ public class MemberController {
 				
 				if(cnt > 0) {
 					HttpSession session = request.getSession();
-					session.invalidate();
+					session.removeAttribute("hFilename");
+					session.removeAttribute("hId");
+					session.removeAttribute("h_snsCheck");
+					session.removeAttribute("hNickname");
+					session.removeAttribute("uOrh");
 					memberVo = memberService.selectMemberById(memberVo.getmId());
 					memberVo.setmNickname("늘찬"+memberVo.getmNo());
 					int result = memberService.updateNickname(memberVo);
@@ -212,7 +221,11 @@ public class MemberController {
 				}
 			}else {
 				HttpSession session = request.getSession();
-				session.invalidate();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
@@ -239,7 +252,11 @@ public class MemberController {
 			logger.info("아이디 비밀번호 체크 결과, result={}",result);
 			if(result==MemberService.LOGIN_OK){
 				HttpSession session = request.getSession();
-				session.invalidate();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
