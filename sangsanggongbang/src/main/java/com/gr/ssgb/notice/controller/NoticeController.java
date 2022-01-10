@@ -1,7 +1,10 @@
 package com.gr.ssgb.notice.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.notice.model.NoticeService;
@@ -27,10 +31,12 @@ public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
 	private final NoticeService noticeService;
+	private final FileUploadUtil fileUploadUtil;
 
 	@Autowired
-	public NoticeController(NoticeService noticeService) {
+	public NoticeController(NoticeService noticeService, FileUploadUtil fileUploadUtil) {
 		this.noticeService = noticeService;
+		this.fileUploadUtil = fileUploadUtil;
 	}
 
 	@GetMapping("/noticeWrite")
@@ -40,9 +46,33 @@ public class NoticeController {
 	}
 
 	@PostMapping("/noticeWrite")
-	public String noticeWrite(@ModelAttribute NoticeVO vo, Model model) {
+	public String noticeWrite(@ModelAttribute NoticeVO vo, HttpServletRequest request, Model model) {
 		logger.info("공지작성 파라미터 vo={}", vo);
 
+		String fileName = "", originName = "";
+		long fileSize = 0;
+		int pathFlag = ConstUtil.UPLOAD_IMAGE_FLAG;
+		try {
+			List<Map<String, Object>> fileList = fileUploadUtil.fileUpload(request, pathFlag);
+			for (int i = 0; i < fileList.size(); i++) {
+				Map<String, Object> map = fileList.get(i);
+				fileName = (String) map.get("fileName");
+				originName = (String) map.get("originalFileName");
+				fileSize = (long) map.get("fileSize");
+			}
+
+			logger.info("파일 업로드 성공, fileName={}", fileName);
+
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		vo.setNoticeImgUrl(fileName);
+		
 		int cnt = noticeService.insertNotice(vo);
 		logger.info("공지작성 성공여부 cnt={}", cnt);
 		String msg = "공지작성에 실패했습니다", url = "/notice/noticeList";
@@ -78,8 +108,8 @@ public class NoticeController {
 			hId = (String) session.getAttribute("hId");
 		} else if ((String) session.getAttribute("mId") != null) {
 			mId = (String) session.getAttribute("mId");
-		} 
-		logger.info("mId={},hId={}", mId,hId); 
+		}
+		logger.info("mId={},hId={}", mId, hId);
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);

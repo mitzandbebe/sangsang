@@ -9,8 +9,8 @@
 			select NOTICE_SEQ.nextval from dual
 		</selectKey>
 
-		insert into notice(notice_No, notice_Title, notice_Content)
-		values(#{noticeNo}, #{noticeTitle}, #{noticeContent})
+		insert into notice(notice_No, notice_Title, notice_Content,NOTICE_IMG_URL)
+		values(#{noticeNo}, #{noticeTitle}, #{noticeContent}, #{noticeImgUrl})
 	</insert>
 
 	<select id="selectNoticeAll" resultType="noticeVo"
