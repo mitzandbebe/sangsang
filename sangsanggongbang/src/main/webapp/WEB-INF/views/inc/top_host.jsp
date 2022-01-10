@@ -98,7 +98,8 @@
 
 	<header class="header-global">
 		<nav id="navbar-main"
-			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+			class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-5 px-lg-6 navbar-light navbar-transparent navbar-theme-primary">
+			<div id="top_row_icon">
 			<div class="container">
 				<a class="navbar-brand @@logo_classes"
 					href="${pageContext.request.contextPath }/index"> <img
@@ -129,17 +130,23 @@
 						</div>
 					</div>
 					<!-- 메뉴1 -->
+					<ul class="justify-content-center navbar-nav">
+						<a href="<c:url value='/class/inputclass'/>"> 
+						<span class="nav-link-inner-text mr-1">클래스 등록</span> 
+						</a>
+					
+						</ul>
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
-						<li class="nav-item dropdown"><a href="#"
+						<li class="nav-item dropdown"><a href="<c:url value='/class/inputclass'/>"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">메뉴1</span> <i
+								class="nav-link-inner-text mr-1">클래스 등록</span> <i
 								class="fas fa-angle-down nav-link-arrow"></i>
 						</a>
 							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
 								aria-labelledby="mainPagesDropdown">
 								<div class="row">
-									<div class="col-6 col-lg-4" style="color: #49746E";>
+									<div class="col-6 col-lg-4" style="color: #49746E;">
 										<h6 class="d-block mb-3 text-primary">카테고리</h6>
 										<ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
@@ -240,8 +247,8 @@
 					</ul>
 				</div>
 			</div>
-
-		<!-- 로그인,로그아웃,쪽지,채팅 -->
+</div>
+		<!--프로필, 로그인,로그아웃,쪽지,채팅 -->
 			<div id="top_button_row">
 				<div class="d-none d-lg-block @@cta_button_classes">
 				
@@ -293,7 +300,8 @@
 					<!--쪽지함 끝-->
 				</div>
 			</div>
-		<!-- 로그인, 로그아웃, 쪽지, 채팅 끝 -->
+			
+		<!-- 프로필, 로그인, 로그아웃, 쪽지, 채팅 끝 -->
 
 
 			<div class="d-flex d-lg-none align-items-center">

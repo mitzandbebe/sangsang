@@ -8,10 +8,10 @@
 			order="BEFORE">
 			select REVIEW_SEQ.nextval from dual
 		</selectKey>
-		insert into review(R_NO, C_NO, H_NO, R_RATE,
+		insert into review(R_NO, C_NO, H_NO, M_NO,R_RATE, NICKNAME,
 		R_CONTENT, R_UPLOADNAME,R_FILESIZE,R_ORIGINALNAME)
 		values(#{rNo}, #{cNo},
-		#{hNo}, #{rRate},
+		#{hNo},#{mNo} , #{rRate}, #{nickname},
 		#{rContent},#{rUploadname},#{rFilesize},
 		#{rOriginalname})
 	</insert>
@@ -34,8 +34,27 @@
 	</select>
 
 	<select id="selectTotalRecord" parameterType="searchVo"
-		resultType="int">
+		resultType="Integer">
 		select count(*) from review
 	</select>
+	
+	<select id="selectRate" parameterType="int"
+		resultType="int">
+		select round(avg(nvl(r_rate,0))) from review where c_no=#{cNo}
+	</select>
+	
+	<select id="AllRate" 
+		resultType="reviewVo">
+		select r_rate ,c_no from review
+	</select>
+
+	<select id="selectAllRate" 
+		resultType="reviewVo">
+		select round(avg(nvl(r_rate,0))) as totalrate, c_no from review group by c_no
+	</select>
+	
+	
+	
+	
 	
 </mapper>

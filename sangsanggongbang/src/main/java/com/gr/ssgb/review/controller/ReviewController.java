@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
-import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
@@ -42,17 +41,15 @@ public class ReviewController {
 		this.memberService = memberService;
 	}
 
-	@GetMapping("/review")
-	public String review_get(Model model) {
-		logger.info("리뷰 목록페이지");
-		return "class/review";
-	}
 
 	@RequestMapping("/review" )
-	public String list(@ModelAttribute ReviewVO reviewVo, Model model , @RequestParam(defaultValue = "0") int cNo ) {
-		logger.info("리뷰 목록");
+	public String list(@ModelAttribute ReviewVO reviewVo, Model model ,
+			@RequestParam(defaultValue = "0") int cNo ) {
+		logger.info("리뷰 목록 cNo={}",cNo);
 		
 		reviewVo.setcNo(cNo);
+		
+		//int avgRate =reviewService.selectRate(cNo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -63,7 +60,7 @@ public class ReviewController {
 		reviewVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("값 셋팅 후 searchVo={}", reviewVo);
 
-		List<ReviewVO> list = reviewService.selectAll(reviewVo.getcNo());
+		List<ReviewVO> list = reviewService.selectAll(reviewVo);
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
@@ -72,8 +69,9 @@ public class ReviewController {
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
+		//model.addAttribute("avgRate", avgRate);
 
-		return "redirect:/class/review?cNo="+cNo;
+		return "class/review";
 	}
 
 	
@@ -87,7 +85,12 @@ public class ReviewController {
 			 @RequestParam(defaultValue = "0") int hNo, @RequestParam String categoryName,
 			HttpSession session,HttpServletRequest request,Model model) {
 		String mId = (String) session.getAttribute("mId");
-	//	int mNo= memberService.selectMno(mId);
+		int mNo= memberService.selectMno(mId);
+		
+		reviewVo.setmNo(mNo);
+		String nickname=(String) session.getAttribute("mId"); //임시로 엠아이디
+		reviewVo.setNickname(nickname);
+		
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
 		
 		// 파일 업로드 처리
@@ -121,8 +124,6 @@ public class ReviewController {
 		int cnt = reviewService.insertReview(reviewVo);
 		logger.info("등록 결과, cnt={}", cnt);
 
-		model.addAttribute("mId",mId);
-		
 		return "redirect:/class/detail?cNo="+cNo+"&categoryName="+categoryName+"&hNo="+hNo;
 	}
 }

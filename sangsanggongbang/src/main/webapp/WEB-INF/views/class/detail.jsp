@@ -11,32 +11,69 @@
 
 		<!-- Hero -->
 		<div
-			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#46746e;" >
+			class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6" style="color:#49746E;" >
 			<div class="container z-2" >
-				<div class="row justify-content-center pt-3">
-					<div class="col-12 text-center">
-						<nav aria-label="breadcrumb">
-							<ol
-								class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
-								<li class="breadcrumb-item text-secondary"><a
-									href="<c:url value='/index'/> " style="color:#46746e;">➯목록으로 돌아가기</a></li>
-							</ol>
-						</nav>
-						<h1 class="mb-4">${map["C_NAME"] }</h1>
-						<div class="d-block d-md-flex justify-content-center">
-							<span class="h6 font-weight-light"><span
-								class="fas fa-check-circle mr-1 pr-1"></span>
-								${map["CATEGORY_NAME"] }
-								</span> 
-								<span class="lh-120 ml-md-4">
-								<i class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
-								${ map['L_ADDRESS_DETAIL']}<a data-fancybox
-								href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.6971494,-74.2598683,10z/data=!3m1!4b1!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728"
-								class="ml-md-3">See Location</a> </span>
-						</div>
+			<div class="row justify-content-center pt-3">
+				<div class="col-12 text-center">
+					<nav aria-label="breadcrumb">
+						<ol
+							class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
+							<li class="breadcrumb-item text-secondary"><a
+								href="<c:url value='/index'/> " style="color: #46746e;">➯목록으로
+									돌아가기</a></li>
+						</ol>
+					</nav>
+					<h1 class="mb-4">${map["C_NAME"] }</h1>
+					<div class="d-block d-md-flex justify-content-center">
+						<span class="h6 font-weight-light"><span
+							class="fas fa-check-circle mr-1 pr-1"></span>
+							${map["CATEGORY_NAME"] } </span>
+							<input type="hidden" value="${map['CATEGORY_NAME'] }" id="category">
+							 <span class="lh-120 ml-md-4"> <i
+							class="fas fa-map-marker-alt mr-1 pr-1"></i>${ map['L_ADDRESS']}
+							${ map['L_ADDRESS_DETAIL']}
+						</span>
+					</div>
+					<div class="d-block d-md-flex justify-content-center">
+						<span class="d-flex justify-content-center"><c:if
+								test="${avgRate eq 5}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 4}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 3}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 2}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq 1}">
+								<i class="star fa-star fas text-warning mr-2"></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2 "></i>
+								<i class="star fa-star far text-gray mr-2"></i>
+							</c:if> <c:if test="${avgRate eq null}">
+								아직 리뷰가 없습니다.
+							</c:if>
+						</span>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<div class="section section-lg pt-5">
 			<div class="container">
@@ -238,12 +275,13 @@
 							</div>
 
 							<!-- End of Q&A Tab -->
+							
+							<!-- 지도 -->
 							<div class="tab-pane fade" id="nav-location" role="tabpanel"
 								aria-labelledby="nav-location-tab">
 								<div class="row">
 									<div class="col-12">
-										<iframe class="map rounded" id="gmap_canvas"
-											src="https://maps.google.com/maps?q=san%20francisco&t=&z=8&ie=UTF8&iwloc=&output=embed"></iframe>
+										<iframe id="map" style="width:700px;height:400px;" src="<c:url value='/class/classMap?cNo=${map["C_NO"]}'/>"></iframe>
 									</div>
 								</div>
 							</div>
@@ -324,6 +362,8 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
+						<form action="order" method="post" class="card border-light p-3 mb-4">
+						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
@@ -340,99 +380,31 @@
 											<i class="far fa-clock"></i>
 										</span>
 									<div class="text-center">${map["C_TIME"] } 시</div>
-								</div>
+								</div> 
 							</div>
-							<br> <label for="exampleFormControlSelect2">인원수 선택</label>
-
-							<div class="class-confirm03">
-								<div class="c03-count">
-									<a href="#" id="num-sub">-</a> <input type="text" id="quantity"
-										value="1" class="only-number" /> <a href="#" id="num-add">+</a>
-								</div>
-							</div>
-							<input type="hidden" id="classRealPrice" value='40000'>
-							<!-- js에서 클래스정보 불러오고 id값으로 처리해야함. -->
+							<br> <label for="exampleFormControlSelect2">가격</label>
 							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-block btn-primary mt-4"
-									id="apibtn">결제하기</button>
+								
+								<button type="submit" class="btn btn-block btn-primary mt-4">
+								결제하기</a></button>
+								
 							</div>
 						</div>
+						</form>
 					</aside>
 				</div>
 			</div>
 		</div>
-</c:forEach>
 		<section class="section bg-soft">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h4 class="mb-5 font-weight-bold"><span>${map["CATEGORY_NAME"] }</span> 클래스 전체보기</h4>
-						
-					</div>
-                    <div class="col-md-12">
-                        <div class="basic-carousel owl-carousel owl-theme">
-                            <!-- Item 1 -->
-       <c:forEach var="map" items="${catelist}">
-                            
-                            <div class="item" >
-                                <!-- Card -->
-                                <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
-                                    <c:choose >
-                                    	<c:when test="${not empty map['THUMBNAIL']}">
-                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
-                                    	</c:when>
-                                    	<c:when test="${map['THUMBNAIL'] eq null}">
-                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
-                                    	</c:when>
-                                    </c:choose>
-                                    </a>
-                                    <div class="card-body" style="width:300px; height:150px">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
-                                            <h4 class="h6" >${map["C_NAME"] }</h4>
-                                        </a>
-                                        <div class="d-flex my-4">
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span> 
-                                            <span class="star fas fa-star text-warning"></span>
-                                            <span class="badge badge-pill badge-primary ml-2">5.0</span>
-                                        </div> 
-                                        
-                                    </div>
-                                    <div class="card-footer bg-soft border-top">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="col pl-0">
-                                                <span class="text-muted font-small d-block mb-2">가격</span>
-                                                <span class="h5 text-dark font-weight-bold" style="font-size:1em">
-                                                <fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원
-                                                </span>
-                                            </div>
-                                            <div class="col">
-                                                <span class="text-muted font-small d-block mb-2">인원</span>
-                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }명</span>
-                                            </div>
-                                            <div class="col pr-0">
-                                                <span class="text-muted font-small d-block mb-2">지역</span>
-                                                <span class="h5 text-dark font-weight-bold">
-                                                	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
-                                                	${fn:substring(addr,0,2)}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End of Card -->
-                            </div>
-                            
-                         </c:forEach>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="container" >
+				<div class="row" id="categoryName">
+					<c:import url="/class/listbyCategory?categoryName=${map['CATEGORY_NAME'] }" />
+	            </div>
+	        </div>
+</c:forEach>
    <!-- Core -->
+   
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/> "></script>
@@ -476,10 +448,28 @@
 		<!-- End of section -->
 	</main>
 
-
+<!-- 카카오 맵 -->
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
 <script>
+$(function(){
+	$(document).ready(function(){
+		var i =$(this).text();
+		console.log(i);
+		$("#categoryName").load("http://localhost:9091/sangsanggongbang/class/listbyCategory?categoryName="+i);
+	});
+});
+
+
+function relayout() {    
+    
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 	$(document).ready(function() {
-		var hash = location.hash.substring(1);
+		let hash = location.hash.substring(1);
 		$('.nav-tabs #' + hash).trigger('click');
 	});
 </script>

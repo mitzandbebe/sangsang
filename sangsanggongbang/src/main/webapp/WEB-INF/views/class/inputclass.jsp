@@ -26,7 +26,8 @@
 								<!-- 나중에 hidden 으로 바꾸기 -->
 								<%-- <input type="text" name="hNo" value="${param.hNo }"> --%>
 								<!-- 임의로 1번호스트로 테스트 -->
-								<input type="hidden" name="hNo" value="1">
+								<c:set var="hNo" value="${hNo }"/>
+								<input type="hidden" name="hNo" value="hNo">
 								<input type="hidden" name="endFlag" value="N">
 								
 								
@@ -70,7 +71,7 @@
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="class_name">클래스 가격</label> <input
-												class="form-control" id="cprice" type="text"
+												class="form-control" id="cprice" type="number" min="0"
 												placeholder="클래스가격을 입력해주세요." name="cPrice">
 										</div>
 									</div>

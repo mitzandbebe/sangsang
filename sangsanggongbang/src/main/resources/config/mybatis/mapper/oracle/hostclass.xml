@@ -124,6 +124,39 @@
 		 select * from selectClass where c_no=#{cNo}
 	</select>
 	
+
+	<update id="updateBylocation" parameterType="locationVo">
+		update location set 
+			zipcode= #{zipcode},l_address=#{lAddress}
+			,l_address_detail=#{lAddressDetail} where l_no=#{lNo}
+	</update>
+	<update id="updateByClass" parameterType="hostClassVo">
+		update hostclass set 
+			C_NAME= #{cName},CATEGORY_CODE=#{CateCode},
+			C_PRICE= #{cPrice}, PPNUM=#{ppnum},
+			C_START_TIME=#{cStart},C_TIME=#{cTime} where c_no=#{cNo}
+	</update>
+	<update id="updateByContents" parameterType="contentsVo">
+		update C_Contents set 
+			THUMBNAIL= #{thumbnail},CONTENTS_FILENAME1=#{cFilename1},
+			CONTENTS_FILENAME2= #{cFilename2}, CONTENTS_FILENAME3=#{cFilename3},
+			CONTENTS_FILENAME4=#{cFilename4},CONTENTS_FILENAME5=#{cFilename5},
+			CONTENTS_CONTENT=#{content} where c_no=#{cNo}
+			
+	</update>
+
+	<select id="selectClassbyCNo2" resultType="hostclassVo" parameterType="int">
+		 select * from selectClass where c_no=#{cNo}
+	</select>
+	
+	<delete id="deleteClass" parameterType="int">
+		delete * from hostclass where c_no=#{cNo}
+	</delete>
+
+	<delete id="deleteContents" parameterType="int">
+		delete * from Contents where c_no=#{cNo}
+	</delete>
+
 	
 	
 <!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">

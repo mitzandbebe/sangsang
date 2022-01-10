@@ -2,7 +2,9 @@ package com.gr.ssgb.note.model;
 
 import java.sql.Timestamp;
 
-public class NoteVO {
+import com.gr.ssgb.common.SearchVO;
+
+public class NoteVO extends SearchVO {
 	// 쪽지 송신
 	private int noteNo;
 	private String noteTitle;
@@ -138,14 +140,12 @@ public class NoteVO {
 		this.check = check;
 	}
 
-
 	@Override
 	public String toString() {
 		return "NoteVO [noteNo=" + noteNo + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent
 				+ ", noteRegdate=" + noteRegdate + ", noteDelFlg=" + noteDelFlg + ", mId=" + mId + ", rNickname="
 				+ rNickname + ", recNo=" + recNo + ", recDelFalg=" + recDelFalg + ", recImpFlag=" + recImpFlag
-				+ ", recReadFlag=" + recReadFlag + ", check=" + check + "]";
+				+ ", recReadFlag=" + recReadFlag + ", check=" + check + ", toString()=" + super.toString() + "]";
 	}
-	
 
 }

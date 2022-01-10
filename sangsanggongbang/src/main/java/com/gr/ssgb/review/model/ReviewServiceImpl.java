@@ -22,13 +22,39 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewVO> selectAll(int cNo) {
-		return reviewDao.selectAll(cNo);
+	public List<ReviewVO> selectAll(ReviewVO reviewVo) {
+		return reviewDao.selectAll(reviewVo);
 	}
 
 	@Override
 	public int selectTotalRecord(SearchVO searchVo) {
 		return reviewDao.selectTotalRecord(searchVo);
+	}
+
+	@Override
+	public Integer selectRate(int cNo) {
+		return reviewDao.selectRate(cNo);
+	}
+
+	@Override
+	public List<ReviewVO> selectAllRate() {
+		return reviewDao.selectAllRate();
+	}
+
+	@Override
+	public List<ReviewVO> AllRate() {
+		List<ReviewVO> list = reviewDao.AllRate();
+		int sum=0;
+		int avg=0;
+		for(int i=0;i<list.size();i++) {
+			for(int j=1;j<list.size();j++) {
+				if(list.get(i).getcNo()==list.get(j).getcNo()) {
+					sum+=list.get(j).getrRate();
+				}
+				
+			}
+		}
+		return null;
 	}
 	
 	

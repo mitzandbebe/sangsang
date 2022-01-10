@@ -2,7 +2,20 @@ package com.gr.ssgb.order.model;
 
 import java.sql.Timestamp;
 
-public class OrderVO {
+import com.gr.ssgb.member.model.MemberVO;
+
+public class OrderVO extends MemberVO {
+	private String orderId;
+	private String payType;
+	private int cNo;
+	private String payId;
+	private String mId;
+	private Timestamp payDate;
+	private int price;
+	private int cardNo;
+	private String refund;
+	private int ea;
+	/*
 	private int orderNo;
 	private String customerId;
 	private int totalPrice;
@@ -16,94 +29,91 @@ public class OrderVO {
 	private String  zipcode;
 	private String  address;
 	private String addressDetail;
-	
-	public int getOrderNo() {
-		return orderNo;
-	}
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
-	}
-	public String getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-	public String getDeliveryStatus() {
-		return deliveryStatus;
-	}
-	public void setDeliveryStatus(String deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
-	}
-	public Timestamp getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Timestamp orderDate) {
-		this.orderDate = orderDate;
-	}
-	public Timestamp getDeliveryDate() {
-		return deliveryDate;
-	}
-	public void setDeliveryDate(Timestamp deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
-	public Timestamp getPaymentEndDate() {
-		return paymentEndDate;
-	}
-	public void setPaymentEndDate(Timestamp paymentEndDate) {
-		this.paymentEndDate = paymentEndDate;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public String getCustomerName() {
-		return customerName;
-	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-	public String getHp() {
-		return hp;
-	}
-	public void setHp(String hp) {
-		this.hp = hp;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAddressDetail() {
-		return addressDetail;
-	}
-	public void setAddressDetail(String addressDetail) {
-		this.addressDetail = addressDetail;
+*/
+	public OrderVO(String orderId, String payType, int cNo, String payId, String mId, Timestamp payDate, int price,
+			int cardNo, String refund, int ea) {
+		super();
+		this.orderId = orderId;
+		this.payType = payType;
+		this.cNo = cNo;
+		this.payId = payId;
+		this.mId = mId;
+		this.payDate = payDate;
+		this.price = price;
+		this.cardNo = cardNo;
+		this.refund = refund;
+		this.ea = ea;
 	}
 	
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getPayType() {
+		return payType;
+	}
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
+	public int getcNo() {
+		return cNo;
+	}
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+	public String getPayId() {
+		return payId;
+	}
+	public void setPayId(String payId) {
+		this.payId = payId;
+	}
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+	public Timestamp getPayDate() {
+		return payDate;
+	}
+	public void setPayDate(Timestamp payDate) {
+		this.payDate = payDate;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getCardNo() {
+		return cardNo;
+	}
+	public void setCardNo(int cardNo) {
+		this.cardNo = cardNo;
+	}
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
+	public int getEa() {
+		return ea;
+	}
+	public void setEa(int ea) {
+		this.ea = ea;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderVO [orderNo=" + orderNo + ", customerId=" + customerId + ", totalPrice=" + totalPrice
-				+ ", deliveryStatus=" + deliveryStatus + ", orderDate=" + orderDate + ", deliveryDate=" + deliveryDate
-				+ ", paymentEndDate=" + paymentEndDate + ", message=" + message + ", customerName=" + customerName
-				+ ", hp=" + hp + ", zipcode=" + zipcode + ", address=" + address + ", addressDetail=" + addressDetail
-				+ "]";
+		return "OrderVO [orderId=" + orderId + ", payType=" + payType + ", cNo=" + cNo + ", payId=" + payId + ", mId="
+				+ mId + ", payDate=" + payDate + ", price=" + price + ", cardNo=" + cardNo + ", refund=" + refund
+				+ ", ea=" + ea + ", toString()=" + super.toString() + "]";
 	}
+	
+	
 	
 	
 }

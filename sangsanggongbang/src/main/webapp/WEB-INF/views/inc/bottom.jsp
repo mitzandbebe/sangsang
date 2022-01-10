@@ -40,15 +40,15 @@
                 <ul class="footer-links mt-2">
                     <li><a target="_blank" href="https://themesberg.com/blog">회사소개</a></li>
                     <li><a target="_blank" href="https://themesberg.com/about">인재채용</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/products">늘솜 지원하기</a></li>
-                    <li><a target="_blank" href="https://themesberg.com/contact">호스트로그인</a></li>
+                    <li><a target="_blank" href="<c:url value='/host/hostInfo'/>">늘솜 지원하기</a></li>
+                    <li><a target="_blank" href="<c:url value='/host/hostLogin'/> ">호스트로그인</a></li>
                     <li><a target="_blank" href="https://themesberg.com/contact">관리자로그인</a></li>
                 </ul>
             </div>
             <div class="col-6 col-xl-3 mb-5 mb-xl-0">
                 <span class="h5">Other</span>
                 <ul class="footer-links mt-2">
-                    <li><a href="http://localhost:9091/sangsanggongbang/notice/noticeList">공지사항 <span class="badge badge-sm badge-secondary ml-2">v3.0</span></a></li>
+                    <li><a href="http://localhost:9091/sangsanggongbang/notice/noticeList">공지사항 <span class="badge badge-sm badge-secondary ml-2">new</span></a></li>
                     <li><a href="https://themesberg.com/docs/spaces/getting-started/changelog/">FAQ</a></li>
                     <li><a target="_blank" href="https://themesberg.com/licensing">불편사항</a></li>
                     <li><a target="_blank" href="https://themesberg.com/licensing">이용약관</a>

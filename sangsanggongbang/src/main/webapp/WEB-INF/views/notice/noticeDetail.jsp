@@ -3,12 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../inc/top.jsp"%>
-
 </head>
 <body>
-
 	<main>
-		<!-- Hero -->
 		<section class="section-header pb-7 bg-primary text-white">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -28,9 +25,12 @@
 				</div>
 			</div>
 		</section>
-		<div class="section section-sm bg-white pt-6">
+		<br>
+		<div class="section section-sm bg-white pt-6"
+			style="width: 40%; margin-left: 30%;">
 			<article class="container">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center"
+					style="margin-right: -22%; margin-left: -22%; margin-top: -110px; padding-left: 10px;">
 					<div class="col-12 col-lg-8">
 						<div>
 							<img alt="" src="">
@@ -39,54 +39,85 @@
 					</div>
 				</div>
 			</article>
+			<div style="margin-bottom: -50px; text-align: center;">
+				<a href="<c:url value='/notice/noticeList'/>">
+					<button class="btn mb-2 mr-2 btn-dark" type="button">목록</button>
+				</a> <a
+					href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
+					<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
+				</a> <a
+					href="<c:url value='/notice/noticeDelete?noticeNo=${vo.noticeNo }'/>">
+					<button class="btn mb-2 mr-2 btn-dark" type="button"
+						id="noticeDelete">삭제</button>
+				</a>
+			</div>
 		</div>
-		<a href="<c:url value='/notice/noticeList'/>">
-			<button class="btn mb-2 mr-2 btn-dark" type="button">목록</button>
-		</a>
-		<a href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
-			<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
-		</a>
-		<a href="<c:url value='/notice/noticeDelete?noticeNo=${vo.noticeNo }'/>">
-			<button class="btn mb-2 mr-2 btn-dark" type="button" id="noticeDelete">삭제</button>
-		</a>
-		<table>
+		<br>
+		<table id="NP">
 			<c:if test="${empty PNVo.nextTitle }">
 				<tr>
-					<th><span>다음글</span></th>
+					<th style="background-color: #9fb9ae"><span>다음글</span></th>
 					<td>다음글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty PNVo.nextTitle }">
-			<tr>
-				<th><a href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">
-						<span>다음글</span>
-				</a></th>
-				<td><a 
-					href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">${PNVo.nextTitle }</a></td>
-			</tr>
+				<tr id="hover">
+					<th style="background-color: #9fb9ae;"><a
+						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">
+							<span>다음글</span>
+					</a></th>
+					<td><a
+						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.nextNo }'/>">${PNVo.nextTitle }</a></td>
+				</tr>
 			</c:if>
+
 			<c:if test="${empty PNVo.preTitle }">
 				<tr>
-					<th><span>이전글</span></th>
-					<td>이전글이 없습니다.</td>
+					<th style="background-color: #9fb9ae"><hr> <span>이전글</span></th>
+					<td><hr> 이전글이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty PNVo.preTitle }">
-			<tr>
-				<th>
-					<a href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.preNo }'/>">
-						<span>이전글</span>
-					</a>
-				</th>
-				<td>
-					<a href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.preNo }'/>">${PNVo.preTitle }</a>
-				</td>
-			</tr>
+				<tr id="hover">
+					<th style="background-color: #9fb9ae"><a
+						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.preNo }'/>">
+							<hr> <span>이전글</span>
+					</a></th>
+					<td><hr> <a
+						href="<c:url value='/notice/noticeDetail?noticeNo=${PNVo.preNo }'/>">${PNVo.preTitle }</a>
+					</td>
+				</tr>
 			</c:if>
 		</table>
+		<br>
 	</main>
 
 	<%@ include file="../inc/bottom.jsp"%>
+	<style>
+hr {
+	margin: 0px;
+}
+
+#NP {
+	border-top: 1px solid black;
+	text-align: absmiddle;
+	border-bottom: 1px solid black;
+	width: 20%;
+	text-align: center;
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#NP *{
+	font-weight: 100;
+	color:black;
+}
+
+#hover :hover{
+	color:blue;
+}
+</style>
 	<script src="../assets/js/spaces.js"></script>
 	<script>
 		// here you should load content from an Ajax request and when it
@@ -104,12 +135,13 @@
 				$allLoaded.show();
 			}, 1500);
 		});
-		$('#noticeDelete').click(function(){
-			var result =confirm('공지사항을 삭제하시겠습니까');
-			if(!result){
+		$('#noticeDelete').click(function() {
+			var result = confirm('공지사항을 삭제하시겠습니까');
+			if (!result) {
 				event.preventDefault();
 			}
 		})
 	</script>
+
 </body>
 </html>

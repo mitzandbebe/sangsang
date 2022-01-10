@@ -16,16 +16,38 @@ public class ReviewVO extends SearchVO{
 //	R_REGDATE DATE DEFAULT SYSDATE /* 등록일 */
 	
 	private int rNo;
+	private int mNo;
 	private int cNo;
 	private int hNo;
 	private int rRate;
+	private String nickname;
 	private String rContent;
 	private String rUploadname;
 	private long rFilesize;
 	private String rOriginalname;
 	private Timestamp rRegdate;
 	
+	private int totalrate;
 	
+	
+	public int getTotalrate() {
+		return totalrate;
+	}
+	public void setTotalrate(int totalrate) {
+		this.totalrate = totalrate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
 	public String getrUploadname() {
 		return rUploadname;
 	}
@@ -83,9 +105,10 @@ public class ReviewVO extends SearchVO{
 	}
 	@Override
 	public String toString() {
-		return "ReviewVO [rNo=" + rNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate + ", rContent=" + rContent
-				+ ", rUploadname=" + rUploadname + ", rFilesize=" + rFilesize + ", rOriginalname=" + rOriginalname
-				+ ", rRegdate=" + rRegdate + ", toString()=" + super.toString() + "]";
+		return "ReviewVO [rNo=" + rNo + ", mNo=" + mNo + ", cNo=" + cNo + ", hNo=" + hNo + ", rRate=" + rRate
+				+ ", nickname=" + nickname + ", rContent=" + rContent + ", rUploadname=" + rUploadname + ", rFilesize="
+				+ rFilesize + ", rOriginalname=" + rOriginalname + ", rRegdate=" + rRegdate + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 	

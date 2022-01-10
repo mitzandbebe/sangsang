@@ -6,6 +6,9 @@ import com.gr.ssgb.common.SearchVO;
 
 public interface ReviewService {
 	int insertReview(ReviewVO reviewVo);
-	public List<ReviewVO> selectAll(int cNo);
+	public List<ReviewVO> selectAll(ReviewVO reviewVo);
 	int selectTotalRecord(SearchVO searchVo);
+	Integer selectRate(int cNo);
+	List<ReviewVO> selectAllRate();
+	List<ReviewVO> AllRate();
 }

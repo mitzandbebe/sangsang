@@ -36,19 +36,38 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectNoteView(String mId) {
-		MemberVO vo = memberDAO.selectMemberById(mId);
-		List<Map<String, Object>> list = noteDAO.selectNoteView(vo.getmNickname());
+	public List<Map<String, Object>> selectNoteView(NoteVO vo) {
+		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
+		String nickname = mVo.getmNickname();
+		vo.setrNickname(nickname);
+		List<Map<String, Object>> list = noteDAO.selectNoteView(vo);
 		return list;
 	}
 
-	public int deleteNote(int[] noteNo) {
-		logger.info("들어온다 noteNo={}", noteNo);
-		return noteDAO.deleteNote(noteNo);	
+	@Override
+	public List<Map<String, Object>> selectNoteBoxView(NoteVO vo) {
+		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
+		String nickname = mVo.getmNickname();
+		vo.setrNickname(nickname);
+		List<Map<String, Object>> list = noteDAO.selectNoteBoxView(vo);
+		return list;
 	}
-													
+
+	@Override
+	public int selectTotalNoteRecord(NoteVO vo) {
+		return noteDAO.selectTotalNoteRecord(vo);
+	}
+
+	@Override
+	public int selectTotalNoteBoxRecord(NoteVO vo) {
+		return noteDAO.selectTotalNoteBoxRecord(vo);
+	}
+
+	public int deleteNote(int[] noteNo) {
+		return noteDAO.deleteNote(noteNo);
+	}
+
 	public int deleteNoteRec(int[] noteNo) {
-		logger.info("다시들어온다 noteNo={}", noteNo);
 		return noteDAO.deleteNoteRec(noteNo);
 	}
 
@@ -58,15 +77,14 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectNoteBoxView(String mId) {
-		MemberVO vo = memberDAO.selectMemberById(mId);
-		List<Map<String, Object>> list = noteDAO.selectNoteBoxView(vo.getmNickname());
-		return list;
+	public NoteVO selectNoteDetail(int noteNo) {
+		noteDAO.noteRead(noteNo);
+		return noteDAO.selectNoteDetail(noteNo);
 	}
 
 	@Override
-	public NoteVO selectNoteDetail(int noteNo) {
-		return noteDAO.selectNoteDetail(noteNo);
+	public int readNum(String userid) {
+		return noteDAO.readNum(userid);
 	}
 
 }
