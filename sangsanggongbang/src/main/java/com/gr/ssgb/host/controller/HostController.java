@@ -162,7 +162,7 @@ public class HostController {
 				url="/host/hostChatTest";
 				vo = hostService.selectHostById(vo.gethId());
 				session.setAttribute("hFilename", vo.gethFilename());
-				session.setAttribute("mId", vo.gethId());
+				session.setAttribute("hId", vo.gethId());
 				session.setAttribute("h_snsCheck", h_snsCheck);
 				session.setAttribute("hNickname", vo.gethNickname());
 				session.setAttribute("uOrh", "h");

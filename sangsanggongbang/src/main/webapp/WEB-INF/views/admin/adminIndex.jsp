@@ -231,15 +231,6 @@ $(function(){
 	        verticalAlign: 'middle'
 	    },
 
-	     /* plotOptions: {
-	        series: {
-	            label: {
-	                connectorAllowed: true
-	            },
-	            pointStart: 08
-	        }
-	    },  */
-
 	    series: [{
 	        name: '누적 매출 추이',
 	        data: [totalProfit1, totalProfit1+totalProfit2, totalProfit1+totalProfit2+totalProfit3,
