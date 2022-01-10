@@ -166,19 +166,20 @@ public class NoticeController {
 		String newsUploadname = "";
 		try {
 			List<Map<String, Object>> fileList = fileUploadUtil.fileUpload(request, ConstUtil.UPLOAD_IMAGE_FLAG);
-
-			for (Map<String, Object> fileMap : fileList) {
-				newsUploadname = (String) fileMap.get("fileName");
-				vo.setNoticeImgUrl(newsUploadname);
-			} // for
-
+			if (fileList != null && !fileList.isEmpty()) {
+				for (Map<String, Object> fileMap : fileList) {
+					newsUploadname = (String) fileMap.get("fileName");
+					vo.setNoticeImgUrl(newsUploadname);
+				} // for
+			}else {
+				vo.setNoticeImgUrl("");
+			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		logger.info("파일 이름은 바뀜? vo={}", vo);
 		int cnt = noticeService.updateNotice(vo);
 		logger.info("수정 성공 여부 cnt={}", cnt);
 		String msg = "수정에 실패했습니다", url = "/notice/noticeList";

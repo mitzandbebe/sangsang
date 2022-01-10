@@ -33,8 +33,8 @@
 		<div class="card-body p-4">
 			<form name="frmEwrite" method="post" enctype="multipart/form-data"
 				action="<c:url value='/notice/noticeEdit'/> ">
-				<input type="text" name="noticeNo" value="${param.noticeNo}">
-				<input type="text" name="oldFileName" value="${vo.noticeImgUrl}">
+				<input type="hidden" name="noticeNo" value="${param.noticeNo}">
+				<input type="hidden" name="oldFileName" value="${vo.noticeImgUrl}">
 				<div class="row">
 					<div class="col-lg-12 mb-6">
 						<div
@@ -117,7 +117,7 @@
 
 			});
 
-			/* $('.ckediter').each(function(idx, item) {
+			 $('.ckediter').each(function(idx, item) {
 				if ($(this).val().length < 1) {
 					alert($(this).prev().html() + "을 입력하세요");
 					$(this).focus();
@@ -125,7 +125,7 @@
 					return false; //each 탈출
 				}
 			
-			}); */
+			}); 
 
 		});
 
