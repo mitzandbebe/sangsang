@@ -1,6 +1,5 @@
 package com.gr.ssgb.hostclass.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -236,11 +235,8 @@ public class HostClassController {
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
 		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
 		
-		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
-		logger.info("디테일에서 해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
 		
 		model.addAttribute("classlist",classlist);
-		model.addAttribute("catelist",catelist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
 		
@@ -276,12 +272,17 @@ public class HostClassController {
 			return "common/message";
 		}
 		
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
 		List<Map<String,Object>> clist=hostClassService.selectClassAllContents();
 		List<CategoryVO> cate = hostClassService.selectCategoryAll();
 		logger.info("clist 클래스화면");
 		
 		model.addAttribute("clist", clist);
 		model.addAttribute("cate", cate);
+		model.addAttribute("hNo", hNo);
 		
 		return "class/updateclass";
 	}
@@ -295,9 +296,9 @@ public class HostClassController {
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
 		
 
-		//String hostid = session.getAttribute(""); //추후 호스트 회원가입되면 아이디저장
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
-		int hNo=1; //임의로 1로설정 test용
+		int hNo=hostService.selectHostNo(hId);
 		
 		int cnt1=2;
 		//로케이션 전체 조회.
