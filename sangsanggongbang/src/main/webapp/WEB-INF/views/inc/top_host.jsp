@@ -102,7 +102,14 @@
 			<div id="top_row_icon">
 			<div class="container">
 				<a class="navbar-brand @@logo_classes"
-					href="${pageContext.request.contextPath }/index"> <img
+					<c:if test="${!empty sessionScope.mId && empty sessionScope.hId }">
+					href="${pageContext.request.contextPath }/index"
+					</c:if>
+					<c:if test="${empty sessionScope.mId && !empty sessionScope.hId }">
+					href="${pageContext.request.contextPath }/host/hostIndex"
+					</c:if>
+					>
+					 <img
 					class="navbar-brand-dark common"
 					src="${pageContext.request.contextPath }/resources/assets/img/brand/host_bottom.png"
 					height="35" alt="Logo light"> <img
@@ -252,31 +259,41 @@
 			<div id="top_button_row">
 				<div class="d-none d-lg-block @@cta_button_classes">
 				
-					<!-- 프로필 사진 -->
+					<!-- 프로필 사진 
 					<div class="profile_photo">
 						<a href="">
 						
 						</a>					
 					</div>
-					<!-- 프로필 사진 끝 -->
+					 프로필 사진 끝 -->
 					
-					<a
+					<!--  <a
 						href="${pageContext.request.contextPath }/member/memberEditChkPwd"
 						target="_blank"
 						class="btn btn-md btn-outline-white animate-up-2 mr-3"><i
 						class="fas fa-user-edit"></i> 
 						<span class="d-xl-none">MY PAGE</span> 
-						<span class="d-none d-xl-inline">MY PAGE</span></a>
+						<span class="d-none d-xl-inline">MY PAGE</span></a>-->
 
-					<c:if test="${empty sessionScope.mId }">
-						<a href="${pageContext.request.contextPath }/login/login"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
+					<c:if test="${empty sessionScope.hId }">
+						<a href="${pageContext.request.contextPath }/host/hostLogin"
+							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG IN</a>
 					</c:if>
 
-					<c:if test="${!empty sessionScope.mId }">
-						<a href="${pageContext.request.contextPath }/login/logout"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
+					<c:if test="${!empty sessionScope.hId }">
+						<a href= "${pageContext.request.contextPath }/host/memberEditChkPwd" alt="마이페이지">
+						<img class="avatar-sm img-fluid rounded-circle mr-2" alt="avatar"
+                            <c:if test="${!empty sessionScope.hFilename}">
+                                src="<c:url value='/resources/file_upload/${sessionScope.hFilename}'/>" 
+                            </c:if>
+                            <c:if test="${empty sessionScope.hFilename}">
+                                src="<c:url value='/resources/file_upload/default.png'/>" 
+                            </c:if>     
+                        ></a>
+                        <span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.hNickname}님</span>
+						<a href="${pageContext.request.contextPath }/host/logout"
+							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 					
@@ -294,7 +311,7 @@
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					<a
-						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
+						href="<c:url value='note/noteList?mId=${sessionScope.hId }'/>">
 						<img width="36px"
 						src="<c:url value='/resources/assets/img/logo/letter2_host.png'/>"></a>
 					<!--쪽지함 끝-->
@@ -354,7 +371,7 @@ $(document).ready(function(){
     stomp.connect({}, function (){
        console.log("STOMP Connection")
        count =0; 
-
+       $('#chatBadge').css('visibility', 'visible');
        //4. subscribe(path, callback)으로 메세지를 받을 수 있음
        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
            var content = JSON.parse(chat.body);
@@ -368,7 +385,7 @@ $(document).ready(function(){
          	  console.log("t>>>>>>>>>>"+t);
          	  $('#chatBadge').html('N');
        		  console.log("before Message :" + count);
-       		  $('#chatBadge').css('visibility', 'visible');
+       		  
            }else{
          	  $('#chatBadge').html('');
        		  $('#chatBadge').css('visibility', 'hidden');

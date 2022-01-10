@@ -46,6 +46,7 @@ public class AdminController {
 		int result = adminService.checkPwd(vo);
 		String msg = "", url ="/admin/adminLogin";
 		if(result == AdminService.LOGIN_OK) {
+			session.invalidate();
 			session.setAttribute("adId", vo.getAdId());
 			session.setAttribute("adNick", vo.getAdNick());
 			session.setAttribute("flag", "admin");

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ include file="../inc/top.jsp"  %>
+ <%@ include file="../inc/new_top_user.jsp"  %>
         <!-- Hero -->
 
         <section class="section-header">
@@ -40,7 +40,7 @@
                                 src="<c:url value='/resources/file_upload/default.png'/>" 
                             </c:if>     
                              >  
-                            <span class="font-weight-bold">${sessionScope.mNickname}</span>
+                            <span class="font-weight-bold">${sessionScope.mNickname}님 안녕하세요!</span>
                     </a>
                     <span class="ml-2">March 26, 19:25</span>
                     </span>
