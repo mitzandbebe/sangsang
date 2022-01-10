@@ -82,7 +82,6 @@ public class MemberController {
 		return "/index";
 	}
 	
-	
 	@RequestMapping(value = "/member/terms")
 	public String terms() {
 		return "member/terms";

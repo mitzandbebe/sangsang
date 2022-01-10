@@ -117,7 +117,7 @@
 		select * from selectClass
 	</select>
 	<select id="selectClassCategory" resultType="map" parameterType="string">
-		select * from selectClass where category_name=#{'categoryName'}
+		select * from selectClass where category_name=#{'categoryName'} order by c_start_time desc
 	</select>
 	
 	<select id="selectClassbyCNo" resultType="map" parameterType="int">

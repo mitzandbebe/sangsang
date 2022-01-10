@@ -503,5 +503,18 @@ public class HostClassController {
 		return "common/message";
 	}
 	
-	
+	@RequestMapping("/menuCategory")
+	public String menu_category(@RequestParam String categoryName,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		
+		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
+		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/menuCategory";
+	}
 }
