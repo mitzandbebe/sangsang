@@ -76,11 +76,13 @@
 			<div class="d-flex justify-content-center w-100 mt-5">
 				<nav aria-label="Page navigation example"
 					style="margin-top: -100px;">
-					<ul class="pagination" style="margin-left:-150px">
-						<a href="<c:url value='/notice/noticeWrite'/>">
-							<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
-								등록하기</button>
-						</a>
+					<ul class="pagination" style="margin-left: -150px">
+						<c:if test="${!empty sessionScope.adId || !empty sessionScope.hId }">
+							<a href="<c:url value='/notice/noticeWrite'/>">
+								<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
+									등록하기</button>
+							</a>
+						</c:if>
 						<c:if test="${pagingInfo.firstPage>1 }">
 							<li class="page-item"><a class="page-link"
 								href="<c:url value='/notice/noticeList?currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
