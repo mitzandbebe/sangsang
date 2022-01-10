@@ -23,8 +23,20 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<NoticeVO> selectNoticeAll(SearchVO searchVo){
 		return noticedao.selectNoticeAll(searchVo);
 	}
+	public List<NoticeVO> selectNoticeMemberAll(SearchVO searchVo){
+		return noticedao.selectNoticeMemberAll(searchVo);
+	}
+	public List<NoticeVO> selectNoticeHostAll(SearchVO searchVo){
+		return noticedao.selectNoticeHostAll(searchVo);
+	}
 	public int selectTotalRecord(SearchVO searchVo) {
 		return noticedao.selectTotalRecord(searchVo);
+	}
+	public int selectTotalMemberRecord(SearchVO searchVo) {
+		return noticedao.selectTotalMemberRecord(searchVo);
+	}
+	public int selectTotalHostRecord(SearchVO searchVo) {
+		return noticedao.selectTotalHostRecord(searchVo);
 	}
 	
 	public NoticeVO selectNoticeByNo(int NoticeNo) {

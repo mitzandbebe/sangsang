@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>상상공방-탑</title>
+<title>상상공방</title>
 
 <!-- Primary Meta Tags -->
 <title>Spaces - All items list</title>
@@ -67,7 +67,7 @@
 
 <!-- Main CSS -->
 <link type="text/css"
-	href="${pageContext.request.contextPath }/resources/css/spaces.css"
+	href="${pageContext.request.contextPath }/resources/css/host.css"
 	rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
@@ -90,11 +90,11 @@
 				href="${pageContext.request.contextPath }/index"> 
 				<img
 				class="navbar-brand-dark common"
-				src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_bottom.png"
+				src="${pageContext.request.contextPath }/resources/assets/img/brand/host_bottom.png"
 				height="35" alt="Logo light"> 
 				<img
 				class="navbar-brand-light common"
-				src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
+				src="${pageContext.request.contextPath }/resources/assets/img/brand/host_top_light.png"
 				height="35" alt="Logo dark">
 			</a>
 				<div class="navbar-collapse collapse" id="navbar_global">
@@ -104,7 +104,7 @@
 							<a
 								href="${pageContext.request.contextPath }/resources/index.html">
 								<img
-								src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
+								src="${pageContext.request.contextPath }/resources/assets/img/brand/host_top_light.png"
 								height="35" alt="Logo Impact">
 							</a>
 						</div>
@@ -129,45 +129,55 @@
                             <div class="row">
                                 <div class="col-6 col-mb-4" >
                                     <h6 class="d-block mb-3 text-primary">Category</h6>
-                                    
+                                    <c:forEach var="vo" items="${ clist}">
 										<ul class="list-style-none mb-4">
+											<li class="mb-2 megamenu-item">
+												<a class="megamenu-link"
+												href="${pageContext.request.contextPath }/class/listbyCategory?categoryName=${vo.categoryName }">
+												${vo.categoryName }
+												</a>
+											</li> <!-- 정렬 건들지 말 것 -->
+										
+										</ul>
+									</c:forEach>
+										<%-- <ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=공예DIY">공예
+												href="${pageContext.request.contextPath }/resources/html/index.html">공예
 													DIY</a></li> <!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=베이킹">베이킹</a>
+												href=".${pageContext.request.contextPath }/resources/html/index-2.html">베이킹</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=쿠킹">쿠킹</a>
+												href="${pageContext.request.contextPath }/resources/html/index-3.html">쿠킹</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=문화예술">문화예술</a>
+												href="${pageContext.request.contextPath }/resources/html/about.html">문화예술</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=자기계발">자기계발</a>
+												href="${pageContext.request.contextPath }/resources/html/pricing.html">자기계발</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=뷰티">뷰티</a>
+												href="${pageContext.request.contextPath }/resources/html/team.html">뷰티</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=여행">여행</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">여행</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=피트니스">피트니스</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">피트니스</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스포츠">스포츠</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">스포츠</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=모임">모임</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">모임</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스토어">스토어</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">스토어</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=온라인">온라인</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
 											</li>
-										</ul>
+										</ul> --%>
 										<!-- <h6 class="d-block text-primary">Legal</h6>
                                     <ul class="list-style-none mb-4">
                                         <li class="mb-2 megamenu-item">
@@ -182,31 +192,40 @@
                                     <h6 class="d-block mb-3 text-primary">Area</h6>
                                     <ul class="list-style-none mb-4">
                                         <li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=서울">서울</a>
+												href=".${pageContext.request.contextPath }/resources/html/index-2.html">서울</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=경기">경기</a>
+												href="${pageContext.request.contextPath }/resources/html/index-3.html">경기</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=인천">인천</a>
+												href="${pageContext.request.contextPath }/resources/html/about.html">인천</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=강원">강원</a>
+												href="${pageContext.request.contextPath }/resources/html/pricing.html">강원</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=충청">충청</a>
+												href="${pageContext.request.contextPath }/resources/html/team.html">충북</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=세종">세종</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">충남</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=전라">전라</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">세종</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=경상">경상</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">전북</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/menulocation?addr=제주">제주</a>
+												href="${pageContext.request.contextPath }/resources/html/contact.html">전남</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">경북</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">경남</a>
+											</li>
+											<li class="mb-2 megamenu-item"><a class="megamenu-link"
+												href="${pageContext.request.contextPath }/resources/html/contact.html">제주</a>
 											</li>
                                     </ul>
                                     <!-- <h6 class="d-block mb-3 text-primary">Support</h6>
@@ -385,8 +404,8 @@
                             <c:if test="${!empty sessionScope.mFilename}">
                                 src="<c:url value='/resources/file_upload/${sessionScope.mFilename}'/>" 
                             </c:if>
-                            <c:if test="${empty sessionScope.mFilename}">
-                                src="<c:url value='/resources/assets/img/default.png'/>" 
+                            <c:if test="${!empty sessionScope.mFilename}">
+                                src="<c:url value='/resources/file_upload/default.png'/>" 
                             </c:if>     
                         > </a>
                         <span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.mNickname}님</span>
@@ -397,7 +416,7 @@
 					<!-- 로그아웃 끝 -->
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a style="position:relative;" width="100px;"
+					<a style="position:relative; width:100px;"
 						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
 						<img id="letter" width="36px"
 						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
@@ -407,7 +426,7 @@
 					<!--쪽지함 끝-->
 					<!-- 채팅창 -->
 					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a style="position:relative;" width="100px;"
+					<a style="position:relative; width:100px;"
 						href="<c:url value='#'/>">
 						<img id="chat" width="50px"
 						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">

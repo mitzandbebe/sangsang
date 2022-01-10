@@ -31,7 +31,6 @@ import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.hostclass.model.HostClassVO;
 import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
-import com.gr.ssgb.mainevent.model.MainEventVO;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -513,5 +512,35 @@ public class HostClassController {
 		return "common/message";
 	}
 	
+	@RequestMapping("/menuCategory")
+	public String menu_category(@RequestParam String categoryName,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		
+		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
+		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/menuCategory";
+	}
 	
+	@RequestMapping("/menulocation")
+	public String menu_location(@RequestParam String addr,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		//지역 앞두글자로 가져오기
+		List<Map<String,Object>> classlist=hostClassService.selectClassLoc(addr);
+		
+		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
+		
+		model.addAttribute("classlist",classlist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/menulocation";
+	}
 }

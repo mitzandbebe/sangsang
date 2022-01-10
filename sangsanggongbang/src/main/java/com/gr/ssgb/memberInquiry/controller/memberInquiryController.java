@@ -3,6 +3,8 @@ package com.gr.ssgb.memberInquiry.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,14 @@ public class memberInquiryController {
 	}	
 	
 	@RequestMapping("/memberList")
-	public String memberList(@ModelAttribute SearchVO searchVo ,Model model) {
-		logger.info("일반회원정보 전체 조회");
+	public String memberList(@ModelAttribute SearchVO searchVo ,HttpSession session,Model model) {
+		String adId = (String) session.getAttribute("adId");
+		if(adId==null) {
+			model.addAttribute("msg","관리자만 접근 가능한 페이지입니다.");
+			model.addAttribute("url","/index");
+			return "/common/message";
+		}
+		logger.info("일반회원정보 전체 조회 관리자 아이디 adId={}",adId);
 		
 		PaginationInfo mPagingInfo= new PaginationInfo(); //멤버 페이징
 		mPagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);

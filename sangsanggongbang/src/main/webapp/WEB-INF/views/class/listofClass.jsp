@@ -71,7 +71,7 @@
 		</table>
 
 
-		<div class="row">
+<%-- 		<div class="row">
 			<div class="col-lg-12 mb-5">
 				<div class="col mt-3 d-flex justify-content-center">
 					<div style="text-align: center;">
@@ -112,7 +112,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	</form>
 </div>
 <script type="text/javascript">
