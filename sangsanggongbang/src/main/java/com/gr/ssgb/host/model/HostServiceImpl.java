@@ -55,5 +55,20 @@ public class HostServiceImpl implements HostService{
 	public int selectHostNo(String hId) {
 		return hostDao.selectHostNo(hId);
 	}
+
+	@Override
+	public int updateAdditionalInfo(HostVO vo) {
+		return hostDao.updateAdditionalInfo(vo);
+	}
+
+	@Override
+	public int updateAddiWithoutProfile(HostVO vo) {
+		return hostDao.updateAddiWithoutProfile(vo);
+	}
+
+	@Override
+	public HostVO selectHostByHNo(int hNo) {
+		return hostDao.selectHostByHNo(hNo);
+	}
 	
 }

@@ -53,6 +53,10 @@
 		select round(avg(nvl(r_rate,0))) as totalrate, c_no from review group by c_no
 	</select>
 	
+	<select id="selectReviewByHost" parameterType="int" resultType="int">
+		select count(*) from review where h_no = #{hNo}
+	</select>
+	
 	
 	
 	

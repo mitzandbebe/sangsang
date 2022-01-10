@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/new_top_user.jsp" %>
+<%@ include file="../inc/top_host.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
@@ -83,15 +83,15 @@ var InputImage =
     <div class="card border-light p-2">
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
-            	<c:if test="${!empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+            	<c:if test="${!empty sessionScope.hFilename }">
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
-                <c:if test="${empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+                <c:if test="${empty sessionScope.hFilename }">
+                	<img src="<c:url value='/resources/assets/img/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
             </div>
-            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
+            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
                 <a href="./account.html" class="d-flex list-group-item list-group-item-action ">Overview <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action  active ">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
@@ -138,15 +138,15 @@ var InputImage =
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card card-body bg-white border-light mb-4">
-                                    <h2 class="h5 mb-4">회원정보 수정</h2>
-                                    <form id="memberEdit" method="post" enctype="multipart/form-data" action="<c:url value='/member/memberEdit'/> ">
+                                    <h2 class="h5 mb-4">호스트 회원정보 수정</h2>
+                                    <form id="memberEdit" method="post" enctype="multipart/form-data" action="<c:url value='/host/hostEdit'/> ">
                                         <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
 								        <div style="float: left; margin-left: 0px; margin-top:0px; " >
-								            	<c:if test="${sessionScope.mFilename!='default.png' }">
+								            	<c:if test="${sessionScope.hFilename!='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.hFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group mb-3"  style = "text-align: center;">
@@ -154,7 +154,7 @@ var InputImage =
 														  <label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
 													  </div>
 								                </c:if>
-								                <c:if test="${sessionScope.mFilename=='default.png' }">
+								                <c:if test="${sessionScope.hFilename=='default.png' }">
 							                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
 									                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
@@ -168,28 +168,28 @@ var InputImage =
 											</div>
 										  <div class="col-md-8 mb-3" style = "float: left; margin-left: 0px; margin-top:10px;" >
                                                 <div class="form-group">
-                                                    <label for="mName">이름</label>
+                                                    <label for="hName">이름</label>
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
 			                                            </div>
-                                           				<input name ="mName" class="form-control" id="mName" placeholder="성명" type="text" value="${vo.mName}" >
-                                           				<input name ="mNo" class="form-control" id="mNo" placeholder="성명" type="hidden" value="${vo.mNo}" >
-                                           				<input name ="mId" class="form-control" id="mId" placeholder="성명" type="hidden" value="${vo.mId}" >
-                                           				<input name ="mOriginalname" class="form-control" id="mOriginalname"  type="hidden" value="${vo.mOriginalname}" >
-                                           				<input name ="mFilesize" class="form-control" id="mFilesize" type="hidden" value="${vo.mFilesize}" >
-                                           				<input type="hidden" name="oldFileName" value="${vo.mFilename}">
+                                           				<input name ="hName" class="form-control" id="hName" placeholder="성명" type="text" value="${vo.hName}" >
+                                           				<input name ="hNo" class="form-control" id="hNo" placeholder="성명" type="hidden" value="${vo.hNo}" >
+                                           				<input name ="hId" class="form-control" id="hId" placeholder="성명" type="hidden" value="${vo.hId}" >
+                                           				<input name ="hOriginalname" class="form-control" id="hOriginalname"  type="hidden" value="${vo.hOriginalname}" >
+                                           				<input name ="hFilesize" class="form-control" id="hFilesize" type="hidden" value="${vo.hFilesize}" >
+                                           				<input type="hidden" name="oldFileName" value="${vo.hFilename}">
                                             		</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 mb-3" style = "float: left; margin-left: 0px;">
                                                 <div class="form-group">
-                                                    <label for="mNickname">닉네임</label>
+                                                    <label for="hNickname">닉네임</label>
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="far fa-smile"></i></span>
 			                                            </div>
-                                           				<input name ="mNickname" class="form-control" id="mNickname" placeholder="닉네임을 입력해주세요." type="text" value="${vo.mNickname}">
+                                           				<input name ="hNickname" class="form-control" id="hNickname" placeholder="닉네임을 입력해주세요." type="text" value="${vo.hNickname}">
                                             		</div>
                                                 </div>
                                             </div>
@@ -199,23 +199,23 @@ var InputImage =
                                     	<div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="phone">핸드폰번호</label>
+                                                    <label for="hPhone">핸드폰번호</label>
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
 			                                            </div>
-	                                           	 		<input name ="phone" class="form-control" id="phone" placeholder="휴대폰 번호를 입력해주세요. (-제외)" maxlength="11" type="text" value="${vo.phone}">
+	                                           	 		<input name ="hPhone" class="form-control" id="hPhone" placeholder="휴대폰 번호를 입력해주세요. (-제외)" maxlength="11" type="text" value="${vo.hPhone}">
                                             		</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="bday">생년월일</label>
+                                                    <label for="hBday">생년월일</label>
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
 			                                            </div>
-	                                           			 <input name ="bday" class="form-control" id="bday" maxlength="6" placeholder="생년월일 6자리를 입력하세요. ex)950720" type="text" value="${vo.bday}">
+	                                           			 <input name ="hBday" class="form-control" id="hBday" maxlength="6" placeholder="생년월일 6자리를 입력하세요. ex)950720" type="text" value="${vo.hBday}">
                                             		</div>
                                                 </div>
                                             </div>
@@ -225,260 +225,107 @@ var InputImage =
                                     	<div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                     <label for="mZipcode">우편번호</label>
+                                                     <label for="hZipcode">우편번호</label>
                                                      <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-compass"></i></span>
 			                                            </div>
-			                                           	<input name ="mZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text"  aria-describedby="button-addon2" value="${vo.mZipcode}">
+			                                           	<input name ="hZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text"  aria-describedby="button-addon2" value="${vo.hZipcode}">
 			                                           	<button type="button" id="button-addon2" class="btn btn-outline-primary btn-sm" onclick="kakaopost()" >우편번호 검색</button>
                                             		</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                     <label for="mAddress">주소</label>
+                                                     <label for="hAddress">주소</label>
                                                      <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="far fa-compass"></i></span>
 			                                            </div>
-                                           			  <input name ="mAddress" class="form-control" id="address" readonly="readonly" placeholder="우편번호 검색시 자동으로 입력됩니다." type="text" value="${vo.mAddress}">
+                                           			  <input name ="hAddress" class="form-control" id="address" readonly="readonly" placeholder="우편번호 검색시 자동으로 입력됩니다." type="text" value="${vo.hAddress}">
                                             		</div>
                                                 </div>
                                             </div>
                                         </div>
                                     <!-- End of Form -->
                                     <!-- Form -->
-                                    <label for="mAddressDetail">상세주소</label>
+                                    <label for="hAddressDetail">상세주소</label>
                                    	<div class="input-group mb-4">
                                 		<div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-compass"></i></span>
                                         </div>
-                                       	<input name ="mAddressDetail" class="form-control" id="mAddressDetail"  placeholder="상세주소를 입력하세요. ex)대원빌 101호" type="text" value="${vo.mAddressDetail}">
+                                       	<input name ="hAddressDetail" class="form-control" id="hAddressDetail"  placeholder="상세주소를 입력하세요. ex)대원빌 101호" type="text" value="${vo.hAddressDetail}">
                                     </div>
                                     <!-- End of Form -->
                                     <!-- Form -->
-	                              	<!--<div class="row">
-		                                <div class="col-md-6 mb-3">
-			                                <div class="form-group">
-				                                <label for="password">기본결제수단 변경하기</label>
-				                           		<div class="input-group mb-4">
-					                                <div class="input-group-prepend">
-		                                          		<span class="input-group-text"><i class="fas fa-money-bill"></i></span>
-		                                        	</div>
-			                                       	<select class="custom-select" id="pType" name = "pType">
-			                                       		<option value="">결제수단을 선택하세요.</option>
-														<option value="카드"
-														<c:if test="${payVo.pType=='카드'}">
-															selected
-														</c:if>
-														>카드</option>
-														<option value="자동이체"
-														<c:if test="${payVo.pType=='자동이체'}">
-															selected
-														</c:if>
-														>자동이체</option>
-													</select>
-			                        			</div>
-			                        		</div>
-		                                </div>
-		                                <div class="col-md-6 mb-3">
-		                                	<div class="form-group">
-		                                    	<label for="payNick">기본결제수단 별칭</label>
-		                                     	<div class="input-group mb-4">
-		                                        	<div class="input-group-prepend">
-		                                            	<span class="input-group-text"><i class="fas fa-smile"></i></span>
-		                                        	</div>
-		                                      		<input name ="payNick" class="form-control" id="payNick" placeholder="결제수단의 별칭을 입력하세요." type="text" value="${payVo.payNick }">
-		                                      	</div>
-		                                  	</div>
-		                                 </div>
-		                            </div>
-                                    <!-- End of Form -->
-                                   
-                                    <!-- Form 
-                                    
-                                    <div id="accInput" class="row" 
-                                    <c:if test="${payVo.pType=='카드' }">
-                                    	style="display: none"
-                                    </c:if>
-                                    >
-                                            <div class="col-md-5 mb-3">
+                                  	<div id="accInput" class="row">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
-                                                     <label for="mZipcode">자동이체 은행</label>
-                                                     <div class="input-group mb-4">
-														<div class="input-group mb-3">
+                                                     <label for="hBankName">정산계좌</label>
+                                                     <div class="input-group">
+														<div class="input-group">
 														<div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-money-check-alt"></i></span>
 			                                            </div>
-															<select class="custom-select" id="bankName" name="bankName">
-																<option selected value="none">자동이체를 등록할 은행을 선택하세요.</option>
+															<select class="custom-select" id="hBankName" name="hBankName">
+																<option selected>정산계좌의 은행을 선택하세요.</option>
 																<option value="KB국민은행"
-																<c:if test="${payVo.bankName=='KB국민은행'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='KB국민은행' }">
+							                                    	selected
+							                                    </c:if>
 																>KB국민은행</option>
 																<option value="신한은행"
-																<c:if test="${payVo.bankName=='신한은행'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='신한은행' }">
+							                                    	selected
+							                                    </c:if>
 																>신한은행</option>
 																<option value="우리은행"
-																<c:if test="${payVo.bankName=='우리은행'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='우리은행' }">
+							                                    	selected
+							                                    </c:if>
 																>우리은행</option>
 																<option value="하나은행"
-																<c:if test="${payVo.bankName=='하나은행'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='하나은행' }">
+							                                    	selected
+							                                    </c:if>
 																>하나은행</option>
 																<option value="한국씨티은행"
-																<c:if test="${payVo.bankName=='한국씨티은행'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='한국씨티은행' }">
+							                                    	selected
+							                                    </c:if>
 																>한국씨티은행</option>
 																<option value="농협"
-																<c:if test="${payVo.bankName=='농협'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='농협' }">
+							                                    	selected
+							                                    </c:if>
 																>농협</option>
 																<option value="카카오뱅크"
-																<c:if test="${payVo.bankName=='카카오뱅크'}">
-																	selected
-																</c:if>
+																<c:if test="${vo.hBankName=='카카오뱅크' }">
+							                                    	selected
+							                                    </c:if>
 																>카카오뱅크</option>
 															</select>
 														</div>
                                             		</div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7 mb-3">
+                                            <div class="col-md-7">
                                                 <div class="form-group">
-                                                     <label for="accNum">계좌번호 입력</label>
-                                                     <div class="input-group mb-4">
+                                                     <label for="hAccount">계좌번호 입력</label>
+                                                     <div class="input-group">
 	                                                     <div class="input-group-prepend">
 				                                            <span class="input-group-text"><i class="fas fa-money-check-alt"></i></span>
 				                                        </div>
-				                                       	<input name ="accNum" class="form-control" id="accNum"  placeholder="계좌번호를 입력하세요." type="text" value="${payVo.accNum }">
+				                                       	<input name ="hAccount" class="form-control" id="hAccount"  placeholder="정산금액을 받을 계좌를 입력하세요." type="text" value="${vo.hAccount}">
 				                                     </div>
 												</div>
                                             </div>
                                         </div>
                                     <!-- End of Form -->
-                                    
-                                    <!-- Form 
-                                    <div id="cardInput" class="row" 
-									<c:if test="${payVo.pType!='카드' }">
-                                    	style="display: none"
-                                    </c:if>
-									>
-                                            <div class="col-md-4 mb-3">
-                                                <div class="form-group">
-                                                     <label for="cardCom">카드사</label>
-                                                     <div class="input-group mb-4">
-														<div class="input-group mb-3">
-														<div class="input-group-prepend">
-			                                                <span class="input-group-text"><span class="fas fa-credit-card"></span></span>
-			                                            </div>
-															<select class="custom-select" id="cardCom" name = "cardCom">
-																<option value="신한"
-																<c:if test="${payVo.cardCom=='신한' }">
-							                                    	selected
-							                                    </c:if>
-																>신한</option>
-																<option value="삼성"
-																<c:if test="${payVo.cardCom=='삼성' }">
-							                                    	selected
-							                                    </c:if>
-																>삼성</option>
-																<option value="현대"
-																<c:if test="${payVo.cardCom=='현대' }">
-							                                    	selected
-							                                    </c:if>
-																>현대</option>
-																<option value="KB국민"
-																<c:if test="${payVo.cardCom=='KB국민' }">
-							                                    	selected
-							                                    </c:if>
-																>KB국민</option>
-																<option value="우리"
-																<c:if test="${payVo.cardCom=='우리' }">
-							                                    	selected
-							                                    </c:if>
-																>우리</option>
-																<option value="NH농협"
-																<c:if test="${payVo.cardCom=='NH농협' }">
-							                                    	selected
-							                                    </c:if>
-																>NH농협</option>
-																<option value="하나"
-																<c:if test="${payVo.cardCom=='하나' }">
-							                                    	selected
-							                                    </c:if>
-																>하나</option>
-															</select>
-														</div>
-                                            		</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 mb-3">
-                                                <div class="form-group">
-                                                     <label for="cardNum">카드번호</label>
-                                                     <div class="input-group mb-3">
-                                                     	<c:set var="cardNum" value="${payVo.cardNum }"/>
-														<input type="text" id="cardNum1" class="form-control" maxlength="4" aria-label="Username" 
-														value='${fn:substring(cardNum ,0,4) }'>
-														<span class="input-group-text">-</span>
-														<input type="text" id="cardNum2" class="form-control" maxlength="4" aria-label="Server" 
-														value="${fn:substring(cardNum,4,8) }">
-														<span class="input-group-text">-</span>
-														<input type="text" id="cardNum3" class="form-control" maxlength="4" aria-label="Server" 
-														value="${fn:substring(cardNum,8,12) }">
-														<span class="input-group-text">-</span>
-														<input type="password" id="cardNum4" class="form-control" maxlength="4" aria-label="Server" 
-														value="${fn:substring(cardNum ,12,16) }">
-														<input type = "hidden" name = "cardNum" id="cardNum">
-													</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- End of Form --> 
-                                    <!-- Form 
-                                    	<div id="cvc" class="row" style="display: none">
-                                            <div class="col-md-7 mb-3">
-                                                <div class="form-group">
-                                                    <label for="CVC">CVC번호</label>
-                                                    <div class="input-group mb-4">
-	                                           	 		<input name ="CVC" class="form-control" id="CVC" placeholder="카드 뒷면 CVC번호를 입력하세요." maxlength="3" type="password" value="${payVo.cvc }">
-                                            		</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 mb-3">
-                                                <div class="form-group">
-                                                    <label for="cardExp">카드 유효기간</label>
-                                                    <div class="input-group mb-4">
-			                                            <div class="input-group-prepend">
-			                                                <span class="input-group-text"><span class="fas fa-calendar-alt"></span></span>
-			                                            </div>
-	                                           			 <input name ="cardExp" class="form-control" id="cardExp" maxlength="5" placeholder="MM/YY" type="text" value="11/25">
-                                            		</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <!-- End of Form -->
-                                     <!-- Form 
-                                    <label for="cPwd">결제비밀번호 설정</label>
-                                   	<div class="input-group mb-4">
-                                		<div class="input-group-prepend">
-                                            <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                        </div>
-                                       	<input name ="cPwd" class="form-control" id="cPwd" maxlength="6"  placeholder="결제비밀번호를 설정하세요.(숫자 6자리)" type="password" value="${payVo.cPwd }">
-                                    </div>-->
                                      <div class="mt-3" style="text-align: center;">
                                             <button type="submit" class="btn btn-primary" >수정하기</button>
                                         </div>
-                                    
+                                    <!-- End of Form -->
                                     </form>
                                 </div>
                             </div>
@@ -488,4 +335,4 @@ var InputImage =
             </div>
         </div>
     </main>
- <%@ include file="../inc/bottom.jsp" %>
+ <%@ include file="../inc/bottom_host.jsp" %>

@@ -192,7 +192,9 @@
 		<collection property="hostClassVO" resultMap="hostClass"/>
 		<collection property="contentsVO" resultMap="contents"/>
 	</resultMap> -->
-	
+	<select id="selectClassCnt" parameterType="int" resultType="int">
+		select count(*) from hostclass where h_no = #{hNo}
+	</select>
 
 	
 </mapper>
