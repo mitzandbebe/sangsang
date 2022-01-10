@@ -41,6 +41,7 @@
 					<th scope="col">클래스일자</th>
 					<th scope="col">클래스시간</th>
 					<th scope="col">클래스가격</th>
+					<th scope="col">클래스종료여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,6 +62,7 @@
 									pattern="yyyy-MM-dd HH:ss" /></td>
 							<td>${map["C_TIME"] } 시</td>
 							<td><fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원</td>
+							<td>${map["END_FLAG"] }</td>
 						</tr>
 
 					</c:forEach>
