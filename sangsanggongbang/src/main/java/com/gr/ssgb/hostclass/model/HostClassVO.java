@@ -11,12 +11,13 @@ public class HostClassVO {
 //	H_NO NUMBER NOT NULL, /* 호스트번호 */
 //	L_NO NUMBER, /* 장소번호 */
 //	C_PRICE NUMBER NOT NULL, /* 가격 */
-//	PPNUM NUMBER, /* 진행인원 */
+//	PPNUM NUMBER, /* 모집인원 */
 //	C_REGDATE DATE DEFAULT SYSDATE, /* 등록일 */
 //	C_START_TIME DATE, /* 시작시간 */
 //	C_TIME NUMBER, /* 시간 */
 //	END_FLAG VARCHAR2(20) /* 종료여부 */
-	
+//	FPNUM NUMBER /* 확정인원(결제한 인원) */
+
 	private int cNo;
 	private String cName;
 	private int CateCode;
@@ -28,6 +29,7 @@ public class HostClassVO {
 	private Date cStart;
 	private int cTime;
 	private String endFlag;
+	private int fpnum;
 	
 	public int getcNo() {
 		return cNo;
@@ -95,12 +97,22 @@ public class HostClassVO {
 	public void setEndFlag(String endFlag) {
 		this.endFlag = endFlag;
 	}
+	
+	public int getFpnum() {
+		return fpnum;
+	}
+	public void setFpnum(int fpnum) {
+		this.fpnum = fpnum;
+	}
+	
 	@Override
 	public String toString() {
 		return "HostClassVO [cNo=" + cNo + ", cName=" + cName + ", CateCode=" + CateCode + ", hNo=" + hNo + ", lNo="
 				+ lNo + ", cPrice=" + cPrice + ", ppnum=" + ppnum + ", cRegdate=" + cRegdate + ", cStart=" + cStart
-				+ ", cTime=" + cTime + ", endFlag=" + endFlag + "]";
+				+ ", cTime=" + cTime + ", endFlag=" + endFlag + ", fpnum=" + fpnum + "]";
 	}
+	
+	
 
 
 	
