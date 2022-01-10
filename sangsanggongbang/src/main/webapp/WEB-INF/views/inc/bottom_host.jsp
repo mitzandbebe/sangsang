@@ -80,7 +80,7 @@
 					class="d-flex text-center justify-content-center align-items-center"
 					role="contentinfo">
 					<p class="font-weight-normal font-small mb-0">
-						Copyright Â © SSGB <span class="current-year">2021</span>. All
+						Copyright Â © SSGB <span class="current-year">2022</span>. All
 						rights reserved.
 					</p>
 				</div>

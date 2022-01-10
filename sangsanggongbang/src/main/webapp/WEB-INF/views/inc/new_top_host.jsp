@@ -419,7 +419,7 @@
 					<a style="position:relative; width:100px;"
 						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
 						<img id="letter" width="36px"
-						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
+						src="<c:url value='/resources/assets/img/logo/letter2_host.png'/>">
 						<span id="span1" class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
 						style="top:-10px; right:-5px;">24</span>
 					</a>
@@ -429,7 +429,7 @@
 					<a style="position:relative; width:100px;"
 						href="<c:url value='#'/>">
 						<img id="chat" width="50px"
-						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">
+						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>">
 						<span id="span2" class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
 						style="top:-10px; right:-5px;">9</span>
 						</a>
