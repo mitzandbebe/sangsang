@@ -32,9 +32,12 @@
 				<div class="row justify-content-center"
 					style="margin-right: -22%; margin-left: -22%; margin-top: -110px; padding-left: 10px;">
 					<div class="col-12 col-lg-8">
-						<div>
-							<img alt="" src="">
-						</div>
+						<c:if test="${!empty vo.noticeImgUrl }">
+							<div id="img" >
+								<img
+									src="<c:url value='/resources/upload_images/${vo.noticeImgUrl}'/>">
+							</div>
+						</c:if>
 						<p>${vo.noticeContent }</p>
 					</div>
 				</div>
@@ -109,13 +112,14 @@ hr {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-#NP *{
+
+#NP * {
 	font-weight: 100;
-	color:black;
+	color: black;
 }
 
-#hover :hover{
-	color:blue;
+#hover :hover {
+	color: blue;
 }
 </style>
 	<script src="../assets/js/spaces.js"></script>

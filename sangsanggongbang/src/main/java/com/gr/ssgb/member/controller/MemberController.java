@@ -41,6 +41,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.TempPasswordUtil;
+import com.gr.ssgb.hostclass.model.CategoryVO;
+import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MailService;
 import com.gr.ssgb.member.model.MailVO;
 import com.gr.ssgb.member.model.MemberService;
@@ -56,13 +58,14 @@ public class MemberController {
 	private final MemberService memberService;
 	private final FileUploadUtil fileUploadUtil;
 	private MailService mailService;
+	private HostClassService hostClassService;
 	
 	@Autowired
-	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService) {
-		super();
+	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService,HostClassService hostClassService) {
 		this.memberService = memberService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.mailService = mailService;
+		this.hostClassService = hostClassService;
 	}
 	
 	
@@ -73,7 +76,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/index")
-	public String index() {
+	public String index(Model model) {
+		List<CategoryVO> clist = hostClassService.selectCategoryAll();
+		model.addAttribute("clist",clist);
 		return "/index";
 	}
 	
@@ -142,6 +147,11 @@ public class MemberController {
 			logger.info("회원가입 결과, cnt={}", cnt);
 			if(cnt > 0) {
 				HttpSession session = request.getSession();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				memberVo = memberService.selectMemberById(memberVo.getmId());
 				memberVo.setmNickname("늘찬"+memberVo.getmNo());
 				int result = memberService.updateNickname(memberVo);
@@ -184,7 +194,11 @@ public class MemberController {
 				
 				if(cnt > 0) {
 					HttpSession session = request.getSession();
-					session.invalidate();
+					session.removeAttribute("hFilename");
+					session.removeAttribute("hId");
+					session.removeAttribute("h_snsCheck");
+					session.removeAttribute("hNickname");
+					session.removeAttribute("uOrh");
 					memberVo = memberService.selectMemberById(memberVo.getmId());
 					memberVo.setmNickname("늘찬"+memberVo.getmNo());
 					int result = memberService.updateNickname(memberVo);
@@ -212,7 +226,11 @@ public class MemberController {
 				}
 			}else {
 				HttpSession session = request.getSession();
-				session.invalidate();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
@@ -239,7 +257,11 @@ public class MemberController {
 			logger.info("아이디 비밀번호 체크 결과, result={}",result);
 			if(result==MemberService.LOGIN_OK){
 				HttpSession session = request.getSession();
-				session.invalidate();
+				session.removeAttribute("hFilename");
+				session.removeAttribute("hId");
+				session.removeAttribute("h_snsCheck");
+				session.removeAttribute("hNickname");
+				session.removeAttribute("uOrh");
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
