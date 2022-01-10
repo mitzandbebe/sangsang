@@ -137,61 +137,26 @@
 						</div>
 					</div>
 					<!-- 메뉴1 -->
-					<ul class="justify-content-center navbar-nav">
-						<a href="<c:url value='/class/inputclass'/>"> 
-						<span class="nav-link-inner-text mr-1">클래스 등록</span> 
-						</a>
-					
-						</ul>
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<li class="nav-item dropdown"><a href="<c:url value='/class/inputclass'/>"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">클래스 등록</span> <i
+								class="nav-link-inner-text mr-1">클래스</span> <i
 								class="fas fa-angle-down nav-link-arrow"></i>
 						</a>
 							<div class="dropdown-menu dropdown-megamenu p-3 p-lg-4"
 								aria-labelledby="mainPagesDropdown">
 								<div class="row">
 									<div class="col-6 col-lg-4" style="color: #49746E;">
-										<h6 class="d-block mb-3 text-primary">카테고리</h6>
 										<ul class="list-style-none mb-4">
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/index.html">공예
-													DIY</a></li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href=".${pageContext.request.contextPath }/resources/html/index-2.html">베이킹</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/index-3.html">쿠킹</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/about.html">문화예술</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/pricing.html">자기계발</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/team.html">뷰티</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">여행</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">피트니스</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">스포츠</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">모임</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">스토어</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
-											</li>
+											<a href="<c:url value='/class/inputclass'/>"> 
+												<span class="nav-link-inner-text mr-1">클래스 등록</span> 
+											</a>
+										</ul>
+										<ul class="list-style-none mb-4">
+											<a href="<c:url value='/class/listofClass'/>"> 
+												<span class="nav-link-inner-text mr-1">클래스 목록</span> 
+											</a>
 										</ul>
 									</div>
 								</div>

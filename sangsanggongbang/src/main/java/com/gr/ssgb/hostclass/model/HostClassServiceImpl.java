@@ -104,6 +104,11 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.deleteClass(cNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectClassAllOfHost(int hNo) {
+		return hostClassDao.selectClassAllOfHost(hNo);
+	}
+
 
 
 
