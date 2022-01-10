@@ -93,11 +93,11 @@ var InputImage =
             </div>
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
-                <a href="./account.html" class="d-flex list-group-item list-group-item-action ">Overview <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action  active ">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="./my-items.html" class="d-flex list-group-item list-group-item-action ">My Items<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+               <a href="<c:url value='/dashboard/host/account'/>" class="d-flex list-group-item list-group-item-action ">마이페이지 <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/host/hostEditChkPwd'/>" class="d-flex list-group-item list-group-item-action  active ">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/my-items'/>" class="d-flex list-group-item list-group-item-action ">내 클래스 현황<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span></a>
                 <a href="./security.html" class="d-flex list-group-item list-group-item-action ">Security<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="./billing.html" class="d-flex list-group-item list-group-item-action ">Billing<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/dashboard/host/balancing'/>" class="d-flex list-group-item list-group-item-action " >정산내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="./messages.html" class="d-flex list-group-item list-group-item-action  border-0">Messages<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
             </div>
         </div>
