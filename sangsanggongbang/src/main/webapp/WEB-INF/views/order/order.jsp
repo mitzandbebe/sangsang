@@ -3,6 +3,16 @@
 <%@ include file="../inc/top.jsp"%>
 <script type="text/javascript">
 	$(function() {
+		$(function() {
+			$("#sPpunm").on("propertychange change keyup paste input", function() {
+				var ppnum = $('#sPpunm').val();
+				var price = $('#price').val();
+				var totalPrice = ppnum * price;
+				$('#showPrice').val(totalPrice+"원");
+				$('#totalPrice').val(totalPrice);
+			});
+		});
+		
 		$('#apibtn').click(function() {
 			//가맹점 식별코드
 			IMP.init('imp73895922');
@@ -10,13 +20,14 @@
 				pg : 'html5_inicis',
 				pay_method : 'card',
 				merchant_uid : 'merchant_' + new Date().getTime(),
-				name : '상품1', //결제창에서 보여질 이름
-				amount : 1000, //실제 결제되는 가격
-				buyer_email : 'wlddj22@gmail.com',
-				buyer_name : '오정훈',
-				buyer_tel : '010-6385-1321',
-				buyer_addr : '서울 강남구 도곡동',
-				buyer_postcode : '123-456'
+				name : $('#cname').html(), //결제창에서 보여질 이름
+				//amount : $('#totalPrice').val(), //실제 결제되는 가격
+				amount : 1, //실제 결제되는 가격
+				buyer_email : $('#mId').val(),
+				buyer_name : $('#name').val(),
+				buyer_tel : $('#phone').val(),
+				buyer_addr : $('#mAddress').val() + $('#mAddressDetail').val(),
+				buyer_postcode : $('#mZipcode').val()
 			}, function(rsp) {
 				console.log(rsp);
 				if (rsp.success) {
@@ -34,14 +45,6 @@
 		});
 	});
 
-	$(function() {
-		$("#sPpunm").on("propertychange change keyup paste input", function() {
-			var ppnum = $('#sPpunm').val();
-			var price = $('#price').val();
-			var totalPrice = ppnum * price;
-			$('#totalPrice').val(totalPrice + "원");
-		});
-	});
 </script>
 
 <div
@@ -73,7 +76,7 @@
 									<div class="col-12 col-lg-7 col-xl-8">
 
 										<div class="card-body text-dark">
-											<h4 class="h4">${map["C_NAME"] }</h4>
+											<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
 											</a>
 											<ul class="list-group mb-3">
 												<li class="list-group-item small p-0 border-0"><span
@@ -141,10 +144,10 @@
 									<!-- Form -->
 									<div class="form-group mb-4">
 										<h3 class="h6 mb-0">결제금액</h3>
-										<input class="form-control" type="text" id="totalPrice"
+										<input class="form-control" type="text" id="showPrice"
 											value="" readonly="readonly">
-										<%-- <fmt:formatNumber value="${totalPrice }" 
-												pattern="#,###" />원</span> --%>
+										<input class="form-control" type="hidden" id="totalPrice"
+											value="" readonly="readonly">
 									</div>
 								</div>
 								<!-- End of Form -->
@@ -161,9 +164,9 @@
 							<div class="col-12 col-lg-6">
 								<!-- Form -->
 								<div class="form-group mb-4">
-									<label for="cartInputCity1">회원사진</label> <input type="text"
-										placeholder="${mVo.mOriginalname}" class="form-control"
-										id="mOriginalname" name="mOriginalname"
+									<label for="cartInputCity1">이름</label> <input type="text"
+										class="form-control"
+										id="name" name="name"
 										aria-describedby="M_NAME">
 								</div>
 								<!-- End of Form -->
