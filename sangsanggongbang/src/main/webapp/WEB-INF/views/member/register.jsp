@@ -139,7 +139,7 @@
                                         <input name="mId" class="form-control" id="mId" placeholder="example@company.com" type="text" aria-label="email adress">
                                         
                                         <input type ="hidden" name="chkId" id="chkId">
-                                        <input type="hidden" name="mFilename" id="mFilename"  >
+                                        <input type="hidden" name="mFilename" id="mFilename">
                                         <input type="hidden" name="snsCheck" id="snsCheck" value="n" >
                                         
                                     </div>
@@ -211,14 +211,14 @@
 														console.log(userId);
 														console.log(kakao_account.profile.profile_image_url);
 														
-														document.getElementById('email').value=kakao_account.email;
+														document.getElementById('mId').value=kakao_account.email;
 														document.getElementById('bday').value=kakao_account.birthday;
 														document.getElementById('mNickname').value=kakao_account.nickname;
 														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('password_confirm').value="temppassword";
 														document.getElementById('snsCheck').value="y";
-														document.getElementById('signup').submit();
+														/*document.getElementById('signup').submit();*/
 													}
 												});
 											}

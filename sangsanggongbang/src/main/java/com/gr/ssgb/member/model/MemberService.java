@@ -35,5 +35,9 @@ public interface MemberService {
 
 	int findPaymentCnt(int getmNo);
 
+	int updateNickname(MemberVO memberVo);
+
+	int updateAddiWithoutProfile(MemberVO vo);
+
 
 }

@@ -4,6 +4,7 @@ public class ChatMessageDTO {
 	private String roomId;
     private String writer;
     private String message;
+    private String profileUrl;
     
     
 	public String getRoomId() {
@@ -23,6 +24,12 @@ public class ChatMessageDTO {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
 	}
 	
     

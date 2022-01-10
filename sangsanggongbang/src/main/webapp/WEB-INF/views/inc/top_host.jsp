@@ -277,11 +277,11 @@
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 					
 						
-						<!--<a  href="<c:url value='/chat/room?roomId=${sessionScope.hNickname }'/>" target="_blank">-->
+						
 						<img width="52px"
 						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>" onClick="openChat();">
 						<span id="chatBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge badge-danger"></span>
-						</a>
+						
 					<!-- 채팅창 끝 --> 
 					
 					<!--쪽지함-->
@@ -354,42 +354,33 @@ $(document).ready(function(){
            var writer = content.writer;
            var str = '';
            
-           if(writer === username){
-        	  
-               /*$('#chatBadge').hide();*/
-               console.log("메시지를 보냈습니다.");
+           if(writer !== username){
+         	  console.log("after Message :" + count);
+         	  var t = "+"+count;
+         	  console.log("t>>>>>>>>>>"+t);
+         	  $('#chatBadge').html('N');
+       		  console.log("before Message :" + count);
+       		  $('#chatBadge').css('visibility', 'visible');
            }else{
-        	  count += 1;
-        	  console.log("after Message :" + count);
-        	 var t = "+"+count;
-        	 console.log("t>>>>>>>>>>"+t);
-        	  $('#chatBadge').html(t);
-        	  
-        		 console.log("before Message :" + count);
-        		 if(count<1){
-        			  $('#chatBadge').hide();
-        		  }else{
-        			  $('#chatBadge').show();
-        		  }
-        	  /* str = "<a href='#' onClick='openChat();'> <div class = 'alert alert-primary'>";
-        	   str += "<button type='button' class = 'close' data-dismiss='alert'>×</button>";
-               str +="<div ><strong>"+writer+"</strong>님의 실시간 대화 요청입니다.<br>";
-               str +=content.message+"</div></div></a>";
-               $("#msgArea").append(str);*/
-               
+         	  $('#chatBadge').html('');
+       		  $('#chatBadge').css('visibility', 'hidden');
            }
        });
 
        //3. send(path, header, message)로 메세지를 보낼 수 있음
        stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
     });
+    function openChat(){
+    	var contextPath="/sangsanggongbang";
+    	count=0;
+    	var what = document.getElementById("chatBadge");
+    	console.log("what????????????"+what.value);
+    	document.getElementById('chatBadge').val('');
+    	console.log("what????????????"+what.value);
+    	document.getElementById('chatBadge').hide();
+    	open(contextPath+'/chat/room?roomId=${sessionScope.hNickname}','chat',
+    	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+    }
 });
-function openChat(){
-	var contextPath="/sangsanggongbang";
-	count=0;
-	$('#chatBadge').hide();
-	$('#chatBadge').html("");
-	open(contextPath+'/chat/room?roomId=${sessionScope.hNickname}','chat',
-	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-}
+
 </script>

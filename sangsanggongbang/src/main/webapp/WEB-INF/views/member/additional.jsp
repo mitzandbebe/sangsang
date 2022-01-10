@@ -30,8 +30,9 @@
 		});
 		
 		$('#additional').submit(function(){
-			var cardnum = $('#cardnum1').val()+$('#cardnum2').val()+$('#cardnum3').val()+$('#cardnum4').val();
-			$('#cardnum').val('cardnum');
+			var cardnum = $('#cardNum1').val()+$('#cardNum2').val()+$('#cardNum3').val()+$('#cardNum4').val();
+			$('#cardNum').val(cardnum);
+			console.log(cardnum);
 			if($('snsCheck').val()=='y'){
 				if($('#pwd').val().length<1){
 					alert('비밀번호를 입력하세요');
@@ -83,11 +84,11 @@
 				alert('우편번호 검색 시 주소는 자동으로 입력됩니다.');
 				$('#address').focus();
 				event.preventDefault();
-			}else if ($('#mAddressDetail').val()<1){
+			}else if ($('#mAddressDetail').val().length<1){
 				alert('상세주소를 입력하세요.');
 				$('#mAddressDetail').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()<1){
+			}else if ($('#pType option:selected').val().length<1){
 				alert('결제유형을 입력하세요.');
 				$('#pType').focus();
 				event.preventDefault();
@@ -95,25 +96,37 @@
 				alert('결제수단 별칭을 입력하세요.');
 				$('#nCard').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='자동이체'&& $('#bankName').val()<1){
+			}else if ($('#pType option:selected').val()=='자동이체'&& $('#bankName').val().length<1){
 				alert('은행명을 선택하세요.');
 				$('#bankName').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='자동이체'&& $('#accNum').val()<1){
+			}else if ($('#pType option:selected').val()=='자동이체'&& $('#accNum').val().length<1){
 				alert('계좌번호를 입력하세요.');
 				$('#accNum').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && $('#cardCom option:selected').val()<1){
+			}else if ($('#pType option:selected').val()=='카드' && $('#cardCom option:selected').val()==''){
 				alert('카드사를 선택하세요.');
 				$('#cardCom').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum').val())){
+			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum1').val())){
 				alert('카드번호는 숫자만 입력가능합니다.');
-				$('#cardNum').focus();
+				$('#cardNum1').focus();
 				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && $('#cardNum').val()!=16){
+			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum2').val())){
+				alert('카드번호는 숫자만 입력가능합니다.');
+				$('#cardNum2').focus();
+				event.preventDefault();
+			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum3').val())){
+				alert('카드번호는 숫자만 입력가능합니다.');
+				$('#cardNum3').focus();
+				event.preventDefault();
+			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum4').val())){
+				alert('카드번호는 숫자만 입력가능합니다.');
+				$('#cardNum4').focus();
+				event.preventDefault();
+			}else if ($('#pType option:selected').val()=='카드' && $('#cardNum').val().length<16){
 				alert('카드번호 입력을 완료하세요.');
-				$('#cardNum').focus();
+				$('#cardNum1').focus();
 				event.preventDefault();
 			}else if(!$('#termChk2').is(':checked')){
 				alert('이용약관에 동의해야합니다.');
@@ -154,11 +167,11 @@
 	
 	
 	
-	function validate_phone(tel){
-		var pattern = new RegExp(/^[0-9]*$/g);
-		
-		return pattern.test(tel);
-	}
+function validate_phone(tel){
+	var pattern = new RegExp(/^[0-9]*$/g);
+	
+	return pattern.test(tel);
+}
 function kakaopost() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -267,7 +280,7 @@ var InputImage =
                                     <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
 								        <div style="float: left; margin-left: 50px; margin-top:15px; " >
-								            	<c:if test="${!empty sessionScope.mFilename}">
+								            	<c:if test="${sessionScope.mFilename!='default.png'}">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
 								                			<img src="${sessionScope.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
@@ -278,7 +291,7 @@ var InputImage =
 														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
 													  </div>
 								                </c:if>
-								                <c:if test="${empty sessionScope.mFilename }">
+								                <c:if test="${sessionScope.mFilename=='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
 								                			<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">

@@ -21,16 +21,12 @@ $(function(){
     <div class="card border-light p-2">
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
-            	<c:if test="${sessionScope.snsCheck=='y' }">
-                	<img src="${vo.mFilename }" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+            	<c:if test="${!empty sessionScope.mFilename }">
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+                	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
-                <c:if test="${sessionScope.snsCheck=='n' }">
-                	<c:if test="${vo.mFilename!=null }">
-                		<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white">
-                	</c:if>
-                	<c:if test="${vo.mFilename==null }">
-                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
-                	</c:if>
+                <c:if test="${empty sessionScope.mFilename }">
+                	<img src="<c:url value='/resources/assets/img/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
             </div>
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>

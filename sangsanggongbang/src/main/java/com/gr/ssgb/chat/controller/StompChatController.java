@@ -43,11 +43,11 @@ public class StompChatController {
 		     log.info("roomId={}, writer={}", roomId, writer );
 			 message.setMessage(message.getRoomId() + "님께서 입장하셨습니다.");
 		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
-		 }else {
+		 }/*else {
 			 log.info("roomId={}, writer={}", roomId, writer );
 			 message.setMessage(message.getRoomId() + "님께 실시간 채팅요청중입니다.");
 		     template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
-		 }
+		 }*/
 	     
 	 }
 	 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gr.ssgb.admin.model.AdminDAO">
+
+	<select id="checkPwd" parameterType="adminVo" resultType="string">
+		select ad_pwd from admin where ad_id = #{adId} 
+	</select>
+	
+	<select id="selectTotalProfit" parameterType="monthVo" resultType="int">
+		select sum(total) 
+		from
+		(
+		    select (c_price*ppnum) as total 
+		    from hostclass
+		    <![CDATA[
+		    where c_start_time > TO_DATE(#{startDate}) and c_start_time < TO_DATE(#{endDate})
+		    ]]>
+		)
+	</select>
+</mapper>

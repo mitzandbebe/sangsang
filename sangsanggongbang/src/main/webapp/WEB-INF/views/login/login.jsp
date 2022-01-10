@@ -112,13 +112,14 @@
 													url:'/v2/user/me',
 													success: res=>{
 														const kakao_account = res.kakao_account;
+														console.log(kakao_account);
 														userId = kakao_account.email;
 														document.getElementById('mId').value=userId;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('snsCheck').value="y";
 														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
-														console.log(kakao_account);
-														document.getElementById('login').submit();
+														console.log(kakao_account.profile.profile_image_url);
+														/*document.getElementById('login').submit();*/
 													}
 												});
 											}
