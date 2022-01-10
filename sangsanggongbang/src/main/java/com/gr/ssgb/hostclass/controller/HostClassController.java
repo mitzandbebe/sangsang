@@ -97,7 +97,7 @@ public class HostClassController {
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
 		int hNo=hostService.selectHostNo(hId);
 		
-		int cnt1=0;
+		int cnt1=2;
 		//로케이션 전체 조회.
 		List<LocationVO> lvo = hostClassService.selectBylocation(locationVo);
 		if(lvo.size()==0) {
@@ -175,6 +175,25 @@ public class HostClassController {
 		return "common/message";
 	}
 	
+	
+	@RequestMapping("/listofClass")
+	public String classAllList_get(HttpSession session,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
+		List<Map<String,Object>> classlist=hostClassService.selectClassAllOfHost(hNo);
+		logger.info("호스트별전체 클래스목록 결과, classlist.size={}",classlist.size());
+		
+		model.addAttribute("classlist",classlist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/listofClass";
+	}
 	
 	@RequestMapping("/classlist")
 	public String classAll_get(Model model) {
@@ -280,7 +299,7 @@ public class HostClassController {
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
 		int hNo=1; //임의로 1로설정 test용
 		
-		int cnt1=0;
+		int cnt1=2;
 		//로케이션 전체 조회.
 		List<LocationVO> lvo = hostClassService.selectBylocation(locationVo);
 		if(lvo.size()==0) {
@@ -356,4 +375,6 @@ public class HostClassController {
 
 		return "common/message";
 	}
+	
+	
 }

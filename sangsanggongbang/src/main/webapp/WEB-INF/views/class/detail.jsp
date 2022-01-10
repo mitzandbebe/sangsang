@@ -187,7 +187,7 @@
 														</div>
 														<!-- Heading -->
 														<div class="h5 mt-3 mb-0">
-														<fmt:formatDate value="${map['C_REGDATE'] }"  pattern="yyyy-MM-dd" />
+														<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
 														</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
