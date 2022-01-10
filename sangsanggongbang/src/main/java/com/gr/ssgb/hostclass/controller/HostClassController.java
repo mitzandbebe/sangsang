@@ -1,5 +1,6 @@
 package com.gr.ssgb.hostclass.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.hostclass.model.HostClassVO;
 import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
+import com.gr.ssgb.mainevent.model.MainEventVO;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -418,5 +420,98 @@ public class HostClassController {
 		
 		return "class/deleteClass";
 	}
+	
+	@PostMapping("/deleteClass")
+	public String delete_post(@ModelAttribute HostClassVO hostClassvo, ContentsVO contentsvo,
+			@RequestParam(defaultValue = "0") int cNo,
+			HttpServletRequest request,Model model) {
+		logger.info("삭제 처리, 파라미터 hostClassvo={},contentsvo={}, cNo={}",hostClassvo,contentsvo,cNo);
+		
+		String msg="글삭제 실패", url="/class/deleteClass?cNo="
+				+cNo;
+			//삭제 - 저장 프로시저 이용
+			
+		hostClassService.deleteContents(cNo);
+		hostClassService.deleteClass(cNo);	
+			
+			msg="클래스가 삭제되었습니다.";
+			url="/class/listdelete";		
+			
+			//파일 삭제
+			String thumnail=contentsvo.getThumbnail();
+			String filename1=contentsvo.getcFilename1();
+			String filename2=contentsvo.getcFilename2();
+			String filename3=contentsvo.getcFilename3();
+			String filename4=contentsvo.getcFilename4();
+			String filename5=contentsvo.getcFilename5();
+			if(thumnail!=null && !thumnail.isEmpty()) {
+				String upPath
+			=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,thumnail);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename1!=null && !filename1.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename1);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename2!=null && !filename2.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename2);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename3!=null && !filename3.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename3);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename4!=null && !filename4.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename4);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename5!=null && !filename5.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename5);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+		
+		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//4
+		return "common/message";
+	}
+	
 	
 }

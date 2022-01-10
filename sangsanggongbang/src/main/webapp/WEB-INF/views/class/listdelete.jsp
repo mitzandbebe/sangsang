@@ -55,7 +55,7 @@
 					<c:forEach var="map" items="${classlist}">
 						<tr>
 							<td><a
-								href="<c:url value='/class/deleteclass?cNo=${map["C_NO"] }'/>">
+								href="<c:url value='/class/deleteClass?cNo=${map["C_NO"] }'/>">
 									<div class="d-flex align-items-center">${map["C_NAME"] }</div>
 							</a></td>
 							<td><fmt:formatDate value="${map['C_START_TIME'] }"
