@@ -129,55 +129,45 @@
                             <div class="row">
                                 <div class="col-6 col-mb-4" >
                                     <h6 class="d-block mb-3 text-primary">Category</h6>
-                                    <c:forEach var="vo" items="${ clist}">
+                                    
 										<ul class="list-style-none mb-4">
-											<li class="mb-2 megamenu-item">
-												<a class="megamenu-link"
-												href="${pageContext.request.contextPath }/class/listbyCategory?categoryName=${vo.categoryName }">
-												${vo.categoryName }
-												</a>
-											</li> <!-- 정렬 건들지 말 것 -->
-										
-										</ul>
-									</c:forEach>
-										<%-- <ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/index.html">공예
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=공예DIY">공예
 													DIY</a></li> <!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href=".${pageContext.request.contextPath }/resources/html/index-2.html">베이킹</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=베이킹">베이킹</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/index-3.html">쿠킹</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=쿠킹">쿠킹</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/about.html">문화예술</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=문화예술">문화예술</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/pricing.html">자기계발</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=자기계발">자기계발</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/team.html">뷰티</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=뷰티">뷰티</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">여행</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=여행">여행</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">피트니스</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=피트니스">피트니스</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">스포츠</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스포츠">스포츠</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">모임</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=모임">모임</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">스토어</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스토어">스토어</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
+												href="${pageContext.request.contextPath }/class/menuCategory?categoryName=온라인">온라인</a>
 											</li>
-										</ul> --%>
+										</ul>
 										<!-- <h6 class="d-block text-primary">Legal</h6>
                                     <ul class="list-style-none mb-4">
                                         <li class="mb-2 megamenu-item">
