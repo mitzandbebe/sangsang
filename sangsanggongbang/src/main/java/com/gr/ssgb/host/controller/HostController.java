@@ -126,11 +126,15 @@ public class HostController {
 			}else {
 				int result = memberService.checkIdPwd(vo.gethId(), vo.gethPwd());
 				if(result==MemberService.LOGIN_OK) { 
-					session.removeAttribute("mId");
-					session.removeAttribute("snsCheck");
-					session.removeAttribute("mFilename");
-					session.removeAttribute("mNickname");
-					session.removeAttribute("uOrh");
+					
+					if(session.getAttribute("mId")!=null) {
+						session.removeAttribute("mId");
+						session.removeAttribute("snsCheck");
+						session.removeAttribute("mFilename");
+						session.removeAttribute("mNickname");
+						session.removeAttribute("uOrh");
+					}
+					
 					MemberVO memVo=memberService.selectMemberById(vo.gethId());
 					session.setAttribute("hId", vo.gethId());
 					session.setAttribute("hFilename", memVo.getmFilename());
@@ -301,4 +305,8 @@ public class HostController {
 		return "host/hostChatTest";
 	}
 	
+	@GetMapping("/hostEditChkPwd")
+	public void hostEditChkPwd_get() {
+		logger.info("비밀번호 확인화면");
+	}
 }
