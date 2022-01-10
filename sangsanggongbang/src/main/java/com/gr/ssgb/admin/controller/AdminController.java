@@ -46,7 +46,15 @@ public class AdminController {
 		int result = adminService.checkPwd(vo);
 		String msg = "", url ="/admin/adminLogin";
 		if(result == AdminService.LOGIN_OK) {
-			session.invalidate();
+			session.removeAttribute("hFilename");
+			session.removeAttribute("hId");
+			session.removeAttribute("h_snsCheck");
+			session.removeAttribute("hNickname");
+			session.removeAttribute("uOrh");
+			session.removeAttribute("hFilename");
+			session.removeAttribute("hId");
+			session.removeAttribute("h_snsCheck");
+			session.removeAttribute("hNickname");
 			session.setAttribute("adId", vo.getAdId());
 			session.setAttribute("adNick", vo.getAdNick());
 			session.setAttribute("flag", "admin");
