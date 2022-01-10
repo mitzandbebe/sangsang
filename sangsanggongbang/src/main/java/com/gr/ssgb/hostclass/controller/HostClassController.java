@@ -206,7 +206,7 @@ public class HostClassController {
 		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
 		
 		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
-		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
+		logger.info("디테일에서 해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
 		
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("catelist",catelist);

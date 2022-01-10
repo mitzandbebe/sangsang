@@ -37,34 +37,14 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 
-<!-- Fontawesome -->
-<link type="text/css" href="<c:url value='/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css'/> " rel="stylesheet">
-
-<!-- Leaflet JS -->
-<link type="text/css" href="<c:url value='/resources/vendor/leaflet/dist/leaflet.css'/>" rel="stylesheet">
-
-<!-- Fancybox -->
-<link rel="stylesheet" href="<c:url value='/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css'/> ">
-
-<!-- VectorMap -->
-<link rel="stylesheet" href="<c:url value='/resources/vendor/jqvmap/dist/jqvmap.min.css'/> ">
 
 <!-- Main CSS -->
 <link type="text/css" href="<c:url value='/resources/css/spaces.css'/> " rel="stylesheet">
 
-<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-<script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
-<script src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/>"></script>
-<script src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
-<script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 
 
 <!-- 이벤트 메인. 메인에 합쳐져야함. -->
-        <section class="section section-header bg-soft pb-12" style="padding:0;">
-            <div class="container">
-            </div>
-        </section>
+   
 <form name="frmclassList">
 			<div class="container">
 				<div class="row">
@@ -173,36 +153,12 @@
 <script src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/> "></script>
 <script src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/> "></script>
 
-<!-- NoUISlider -->
-<script src="<c:url value='/resources/vendor/nouislider/distribute/nouislider.min.js'/> "></script>
-
-<!-- Bootstrap Datepicker -->
-<script src="<c:url value='/resources/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'/> "></script>
-
-<!-- jQuery Waypoints -->
-<script src="<c:url value='/resources/vendor/waypoints/lib/jquery.waypoints.min.js'/> "></script>
 
 <!-- Owl acrousel -->
 <script src="<c:url value='/resources/vendor/owl.carousel/dist/owl.carousel.min.js'/> "></script>
 
-<!-- Smooth scroll -->
-<script src="<c:url value='/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js'/> "></script>
-
 <!-- Fancybox -->
 <script src="<c:url value='/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js'/> "></script>
-
-<!-- Sticky sidebar -->
-<script src="<c:url value='/resources/vendor/sticky-sidebar/dist/sticky-sidebar.min.js'/> "></script>
-
-<!-- Mapbox & Leaflet.js -->
-<script src="<c:url value='/resources/vendor/leaflet/dist/leaflet.js'/> "></script>
-
-<!-- Chartist -->
-<script src="<c:url value='/resources/vendor/chartist/dist/chartist.min.js'/> "></script>
-<script src="<c:url value='/resources/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js'/> "></script>
-
-<!-- Sliderform -->
-<script src="<c:url value='/resources/assets/js/jquery.slideform.js'/> "></script>
 
 <!-- Spaces custom Javascript -->
 <script src="<c:url value='/resources/assets/js/spaces.js'/> "></script>
