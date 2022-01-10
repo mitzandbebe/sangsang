@@ -104,7 +104,7 @@
 							<a
 								href="${pageContext.request.contextPath }/resources/index.html">
 								<img
-								src="${pageContext.request.contextPath }/resources/assets/img/brand/admin_top_light.png"
+								src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
 								height="35" alt="Logo Impact">
 							</a>
 						</div>
