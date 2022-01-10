@@ -15,7 +15,16 @@ public class LocationVO {
 	private String lAddress;
 	private String lAddressDetail;
 	private int hNo;
+	private String loc; //두글자만 꺼내오는변수
 	
+	
+	
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
 	public int gethNo() {
 		return hNo;
 	}
