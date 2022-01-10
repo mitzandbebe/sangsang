@@ -114,8 +114,13 @@
 	</select>
 	
 	<select id="selectClassAllContents" resultType="map">
-		select * from selectClass
+		select * from selectClass order by c_start_time desc
 	</select>
+	
+	<select id="selectClassLoc" parameterType="string" resultType="map">
+		select * from selectClass where loc=#{loc} order by c_start_time desc
+	</select>
+	
 	<select id="selectClassCategory" resultType="map" parameterType="string">
 		select * from selectClass where category_name=#{'categoryName'} order by c_start_time desc
 	</select>

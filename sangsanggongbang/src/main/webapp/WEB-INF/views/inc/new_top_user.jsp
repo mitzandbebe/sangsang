@@ -182,40 +182,31 @@
                                     <h6 class="d-block mb-3 text-primary">Area</h6>
                                     <ul class="list-style-none mb-4">
                                         <li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href=".${pageContext.request.contextPath }/resources/html/index-2.html">서울</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=서울">서울</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/index-3.html">경기</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=경기">경기</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/about.html">인천</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=인천">인천</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/pricing.html">강원</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=강원">강원</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/team.html">충북</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=충청">충청</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">충남</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=세종">세종</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">세종</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=전라">전라</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">전북</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=경상">경상</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">전남</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">경북</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">경남</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/resources/html/contact.html">제주</a>
+												href="${pageContext.request.contextPath }/class/menulocation?addr=제주">제주</a>
 											</li>
                                     </ul>
                                     <!-- <h6 class="d-block mb-3 text-primary">Support</h6>

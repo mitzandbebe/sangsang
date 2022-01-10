@@ -114,6 +114,11 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassCnt(hNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectClassLoc(String loc) {
+		return hostClassDao.selectClassLoc(loc);
+	}
+
 
 
 
