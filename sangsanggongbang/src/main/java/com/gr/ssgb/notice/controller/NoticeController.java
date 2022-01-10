@@ -1,5 +1,6 @@
 package com.gr.ssgb.notice.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +73,7 @@ public class NoticeController {
 		}
 
 		vo.setNoticeImgUrl(fileName);
-		
+
 		int cnt = noticeService.insertNotice(vo);
 		logger.info("공지작성 성공여부 cnt={}", cnt);
 		String msg = "공지작성에 실패했습니다", url = "/notice/noticeList";
@@ -139,13 +140,20 @@ public class NoticeController {
 	}
 
 	@GetMapping("/noticeEdit")
-	public void noticeEdit_get(@RequestParam(defaultValue = "0") int noticeNo, Model model) {
+	public String noticeEdit_get(@RequestParam(defaultValue = "0") int noticeNo, HttpServletRequest request,
+			Model model) {
 		logger.info("공지사항 수정화면 noticeNo={}", noticeNo);
+		NoticeVO vo = noticeService.selectNoticeByNo(noticeNo);
+		logger.info("공지사항 수정파라미터 vo={}", vo);
 
+		model.addAttribute("vo", vo);
+
+		return "/notice/noticeEdit";
 	}
 
 	@PostMapping("/noticeEdit")
-	public String noticeEdit_post(@ModelAttribute NoticeVO vo, Model model) {
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo, HttpServletRequest request,
+			@RequestParam String oldFileName, Model model) {
 		logger.info("글 수정 vo={}", vo);
 
 		if (vo.getNoticeNo() == 0) {
@@ -154,11 +162,37 @@ public class NoticeController {
 
 			return "/common/message";
 		}
+
+		String newsUploadname = "";
+		try {
+			List<Map<String, Object>> fileList = fileUploadUtil.fileUpload(request, ConstUtil.UPLOAD_IMAGE_FLAG);
+
+			for (Map<String, Object> fileMap : fileList) {
+				newsUploadname = (String) fileMap.get("fileName");
+				vo.setNoticeImgUrl(newsUploadname);
+			} // for
+
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		logger.info("파일 이름은 바뀜? vo={}", vo);
 		int cnt = noticeService.updateNotice(vo);
 		logger.info("수정 성공 여부 cnt={}", cnt);
 		String msg = "수정에 실패했습니다", url = "/notice/noticeList";
 		if (cnt > 0) {
 			msg = "수정에 성공했습니다.";
+
+			if (newsUploadname != null && !newsUploadname.isEmpty() && oldFileName != null && !oldFileName.isEmpty()) {
+				String upPath = fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				File oldFile = new File(upPath, oldFileName);
+				if (oldFile.exists()) {
+					boolean bool = oldFile.delete();
+					logger.info("글수정,파일삭제여부:{}", bool);
+				}
+			}
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
