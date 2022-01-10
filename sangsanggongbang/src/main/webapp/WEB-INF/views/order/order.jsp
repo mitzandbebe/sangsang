@@ -5,79 +5,73 @@
 	$(function() {
 		$(function() {
 			$("#sPpunm").on("propertychange change keyup paste input",
-					function() {
-						var ppnum = $('#sPpunm').val();
-						var price = $('#price').val();
-						var totalPrice = ppnum * price;
-						$('#showPrice').val(totalPrice + "원");
-						$('#totalPrice').val(totalPrice);
-					});
+				function() {
+					var ppnum = $('#sPpunm').val();
+					var price = $('#price').val();
+					var totalPrice = ppnum * price;
+					$('#showPrice').val(totalPrice + "원");
+					$('#totalPrice').val(totalPrice);
+				});
 		});
 
-		$('#apibtn')
-				.click(
-						function() {
-							//가맹점 식별코드
-							IMP.init('imp73895922');
-							IMP
-									.request_pay(
-											{
-												pg : 'html5_inicis',
-												pay_method : 'card',
-												merchant_uid : 'merchant_'
-														+ new Date().getTime(),
-												name : $('#cname').html(), //결제창에서 보여질 이름
-												//amount : $('#totalPrice').val(), //실제 결제되는 가격
-												amount : 100, //실제 결제되는 가격
-												buyer_email : $('#mId').val(),
-												buyer_name : $('#name').val(),
-												buyer_tel : $('#phone').val(),
-												buyer_addr : $('#mAddress')
-														.val()
-														+ $('#mAddressDetail')
-																.val(),
-												buyer_postcode : $('#mZipcode')
-														.val(),
-												digital : true
-											// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
-											},
-											function(rsp) {
-												console.log(rsp);
-												if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-													// jQuery로 HTTP 요청
-													var msg = '결제가 완료되었습니다.';
-													msg += '고유ID : '
-															+ rsp.imp_uid;
-													msg += '상점 거래ID : '
-															+ rsp.merchant_uid;
-													msg += '결제 금액 : '
-															+ rsp.paid_amount;
-													msg += '카드 승인번호 : '
-															+ rsp.apply_num;
+		$('#apibtn').click(function() {
+			//가맹점 식별코드
+			IMP.init('imp73895922');
+			IMP.request_pay(
+							{
+				pg : 'html5_inicis',
+				pay_method : 'card',
+				merchant_uid : 'merchant_'
+						+ new Date().getTime(),
+				name : $('#cname').html(), //결제창에서 보여질 이름
+				//amount : $('#totalPrice').val(), //실제 결제되는 가격
+				amount : 100, //실제 결제되는 가격
+				buyer_email : $('#mId').val(),
+				buyer_name : $('#name').val(),
+				buyer_tel : $('#phone').val(),
+				buyer_addr : $('#mAddress')
+						.val()
+						+ $('#mAddressDetail')
+								.val(),
+				buyer_postcode : $('#mZipcode')
+						.val(),
+				digital : true
+			// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+			},
+			function(rsp) {
+				console.log(rsp);
+				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+					// jQuery로 HTTP 요청
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : '
+							+ rsp.imp_uid;
+					msg += '상점 거래ID : '
+							+ rsp.merchant_uid;
+					msg += '결제 금액 : '
+							+ rsp.paid_amount;
+					msg += '카드 승인번호 : '
+							+ rsp.apply_num;
 
-													jQuery
-															.ajax({
-																url : "/order/orderComplite", // 가맹점 서버
-																method : "POST",
-																headers : {
-																	"Content-Type" : "application/json"
-																},
-																data : {
-																	imp_uid : rsp.imp_uid,
-																	merchant_uid : rsp.merchant_uid
-																//기타 필요한 데이터가 있으면 추가 전달
-																}
-															});
-													location
-															.replace("http://localhost:9091/sangsanggongbang/class/orderComplite");
-												} else {
-													var msg = '결제에 실패하였습니다.';
-													msg += '에러내용 : '
-															+ rsp.error_msg;
-												}
-												alert(msg);
-											});
-						});
+					jQuery.ajax({
+								url : "/class/orderComplete", // 가맹점 서버
+								method : "POST",
+								headers : {"Content-Type" : "application/json"},
+								data : {
+									imp_uid : rsp.imp_uid, //아임포트 유저아이디(상점아이디)
+									merchant_uid : rsp.merchant_uid //영수증번호 개념
+								//기타 필요한 데이터가 있으면 추가 전달
+								}
+					});
+					
+					location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete");
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : '
+							+ rsp.error_msg;
+				}
+				alert(msg);
+			});
+		});
 	});
 </script>
 
@@ -87,7 +81,7 @@
 	<div class="container z-2">
 		<div class="section section-lg pt-5">
 			<div class="container" style="background-color: beige;">
-				<form method="post" class="card border-light p-3 mb-4">
+				<form method="post" class="card border-light p-3 mb-4" action="<c:url value='/class/orderComplete'/>">
 					<div class="row">
 						<c:forEach var="map" items="${cVo}">
 							<c:if test="${map['C_NO'] eq param.cNo }">
@@ -270,8 +264,11 @@
 								<!-- End of Form -->
 							</div>
 						</div>
+						<input type="hidden" value="${mVo.mNo}">
 						<input type="button" class="btn btn-block btn-primary mt-4"
 							id="apibtn" value="결제하기">
+							
+						<input type="submit" id="wr_submit" value="결제하기2">
 					</div>
 				</form>
 				<!-- <form action="#" method="post" class="card border-light p-3 mb-4">

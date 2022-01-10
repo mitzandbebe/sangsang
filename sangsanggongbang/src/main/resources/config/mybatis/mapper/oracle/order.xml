@@ -3,8 +3,19 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.order.model.OrderDAO">
-
+	<insert id="insertOrder" parameterType="orderVo">
+		<selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
+			select orders_seq.nextval from dual 
+		</selectKey>
+		insert into orders(order_id, pay_type, c_no, pay_id, m_id, pay_date, price, card_no, ea, refund, order_no)
+		values(#{orderId}, #{payType}, #{cNo}, #{payId}, 
+			#{mId},#{payDate}, #{price}, #{cardNo}, #{ea}, #{refund},#{orderNo})
+	</insert>
 	
+	<select id="selectOrdersView" parameterType="int" resultType="map">
+		select * from orders
+		where orderno=#{orderNo}
+	</select>
 </mapper>
 
 

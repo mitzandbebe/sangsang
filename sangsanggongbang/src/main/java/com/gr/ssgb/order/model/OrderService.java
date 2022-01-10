@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface OrderService {
-	int insertOrder(OrderVO vo);
+	int insertOrder(OrderVO orderVo);
 	List<Map<String, Object>> selectOrderDetailsView(int orderNo);
 	Map<String, Object> selectOrdersView(int orderNo);
 	
