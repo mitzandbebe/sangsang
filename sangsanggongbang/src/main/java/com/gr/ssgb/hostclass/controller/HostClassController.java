@@ -56,9 +56,17 @@ public class HostClassController {
 	public String inputClass(HttpSession session,Model model) {
 		logger.info("클래스 등록 페이지");
 
-		String hId = (String) session.getAttribute("mId"); //추후 호스트 회원가입되면 아이디저장
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
 		int hNo=hostService.selectHostNo(hId);
+		
+		if(hId.equals("")) {
+			String msg="호스트로 로그인해주세요";
+			String url="/host/hostLogin";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
+		}
 		
 		logger.info("hNo=",hNo);
 		
@@ -79,12 +87,16 @@ public class HostClassController {
 	//@Transactional
 	@PostMapping("/inputclass")
 	public String inputClass_post(@ModelAttribute HostClassVO hostClassVo, ContentsVO contentsVo, LocationVO locationVo,
-			HttpServletRequest request, 
+			HttpServletRequest request, HttpSession session,
 			Model model) {
 		logger.info("클래스 등록처리, 파라미터 locationVo={}", locationVo);
 		logger.info("클래스 등록처리, 파라미터 hostClassVo={}", hostClassVo);
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
 
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
 		int cnt1=0;
 		//로케이션 전체 조회.
 		List<LocationVO> lvo = hostClassService.selectBylocation(locationVo);
