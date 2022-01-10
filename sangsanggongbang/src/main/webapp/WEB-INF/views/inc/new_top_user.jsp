@@ -129,7 +129,18 @@
                             <div class="row">
                                 <div class="col-6 col-mb-4" >
                                     <h6 class="d-block mb-3 text-primary">Category</h6>
+                                    <c:forEach var="vo" items="${ clist}">
 										<ul class="list-style-none mb-4">
+											<li class="mb-2 megamenu-item">
+												<a class="megamenu-link"
+												href="${pageContext.request.contextPath }/class/listbyCategory?categoryName=${vo.categoryName }">
+												${vo.categoryName }
+												</a>
+											</li> <!-- 정렬 건들지 말 것 -->
+										
+										</ul>
+									</c:forEach>
+										<%-- <ul class="list-style-none mb-4">
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
 												href="${pageContext.request.contextPath }/resources/html/index.html">공예
 													DIY</a></li> <!-- 정렬 건들지 말 것 -->
@@ -166,7 +177,7 @@
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
 												href="${pageContext.request.contextPath }/resources/html/contact.html">온라인</a>
 											</li>
-										</ul>
+										</ul> --%>
 										<!-- <h6 class="d-block text-primary">Legal</h6>
                                     <ul class="list-style-none mb-4">
                                         <li class="mb-2 megamenu-item">
