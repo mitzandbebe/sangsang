@@ -18,8 +18,8 @@
 		<selectKey keyProperty="mNo" resultType="int" order="BEFORE">
 			select member_seq.nextval from dual
 		</selectKey>
-		insert into member(m_no, m_id, PWD)
-		values(#{mNo}, #{mId}, #{pwd}) 
+		insert into member(m_no, m_id, PWD, m_filename)
+		values(#{mNo}, #{mId}, #{pwd}, #{mFilename}) 
 	</insert>
 	<select id="checkIdPwd" parameterType="string" resultType="string">
 		select pwd from member where m_id=#{mId}
@@ -27,7 +27,7 @@
 	
 	<update id="updateAdditionalInfo" parameterType="memberVo">
 		update member set m_name = #{mName}, m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
-		m_zipcode= #{mZipcode}, m_address= #{mAddress}, M_ADRESS_DETAIL= #{mAddressDetail},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress}, M_ADDRESS_DETAIL= #{mAddressDetail},
 		m_originalname=#{mOriginalname}, m_filesize=#{mFilesize}, m_filename=#{mFilename}
 		where m_id = #{mId} 
 	</update>
@@ -71,9 +71,16 @@
 		select count(*) from payment where m_no = #{mNo}
 	</select>
 	
-	<select id="selectNicname" parameterType="int" resultType="string">
-		select m_nickname from member where m_no = #{mNo}
-	</select>
+	<update id="updateNickname" parameterType="memberVo">
+		update member set m_nickname=#{mNickname} where m_id = #{mId}
+	</update>
+	
+	<update id="updateAddiWithoutProfile">
+		update member set m_name = #{mName}, m_nickname=#{mNickname}, phone= #{phone}, bday= #{bday},
+		m_zipcode= #{mZipcode}, m_address= #{mAddress}, M_ADDRESS_DETAIL= #{mAddressDetail}
+		where m_id = #{mId}
+	</update>
+	
 </mapper>
 
 

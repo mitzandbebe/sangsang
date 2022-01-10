@@ -112,39 +112,37 @@ public class MemberController {
 		 int cnt =0;
 		
 		 int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
-		 if(accountCnt==1) { 
+		 if(accountCnt==1 && snsCheck.equals("y")) { 
+			 memberVo = memberService.selectMemberById(memberVo.getmId());
 			 HttpSession session = request.getSession();
 			 session.setAttribute("mId", memberVo.getmId());
 			 session.setAttribute("snsCheck", snsCheck);
+			 session.setAttribute("mFilename", memberVo.getmFilename());
+			 session.setAttribute("mNickname", memberVo.getmNickname());
+			 session.setAttribute("uOrh", "u");
+			 
 			 Cookie ck = new Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
 			 ck.setMaxAge(1000*24*60*60); 
-			 response.addCookie(ck); msg="기존 아이디로 로그인합니다!";
+			 response.addCookie(ck); 
+			 msg="기존 아이디로 로그인합니다!";
 			 url="/index"; 
 		 }else {
-			if(snsCheck.equals("n")) {
-				cnt = memberService.insertMember(memberVo);
-			}else {
-				cnt = memberService.insertSnsMember(memberVo);
+			 
+			if(memberVo.getmFilename()==null || memberVo.getmFilename().isEmpty()) {
+				memberVo.setmFilename("default.png");
 			}
+			cnt = memberService.insertSnsMember(memberVo);
+
 			logger.info("회원가입 결과, cnt={}", cnt);
 			if(cnt > 0) {
-				if(snsCheck.equals("y")) {
-					Cookie ck5 = new Cookie("mFilename", memberVo.getmFilename());
-					ck5.setPath("/");
-					ck5.setMaxAge(60*60); 
-					response.addCookie(ck5);
-				}
-				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
-				Cookie ck2= new Cookie("snsCheck", snsCheck);
-				ck2.setPath("/");
-				ck2.setMaxAge(60*60);
-				response.addCookie(ck2);
-				ck.setPath("/");
-				ck.setMaxAge(60*60); 
-				response.addCookie(ck);
 				HttpSession session = request.getSession();
+				memberVo = memberService.selectMemberById(memberVo.getmId());
+				memberVo.setmNickname("늘찬"+memberVo.getmNo());
+				int result = memberService.updateNickname(memberVo);
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				session.setAttribute("mFilename", memberVo.getmFilename());
+				session.setAttribute("mNickname", memberVo.getmNickname());
 				session.setAttribute("uOrh", "u");
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
@@ -171,24 +169,27 @@ public class MemberController {
 		if(snsCheck.equals("y")) {
 			int accountCnt = memberService.selectMemberCnt(memberVo.getmId());
 			if(accountCnt<1) {
+				if(memberVo.getmFilename().equals("undefined")) {
+					memberVo.setmFilename("default.png");
+				}
 				memberVo.setPwd(memberVo.getPwd());
 				int cnt = memberService.insertSnsMember(memberVo);
 				logger.info("SNS 회원가입 결과, cnt={}", cnt);
 				
 				if(cnt > 0) {
 					HttpSession session = request.getSession();
-					MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
+					memberVo = memberService.selectMemberById(memberVo.getmId());
+					memberVo.setmNickname("늘찬"+memberVo.getmNo());
+					int result = memberService.updateNickname(memberVo);
+					
 					session.setAttribute("mFilename", memberVo.getmFilename());
 					session.setAttribute("mId", memberVo.getmId());
 					session.setAttribute("snsCheck", snsCheck);
+					session.setAttribute("mNickname", memberVo.getmNickname());
 					session.setAttribute("uOrh", "u");
 					
 					Cookie ck = new Cookie("ck_userid", memberVo.getmId());
-					Cookie ck2 = new Cookie("mFilename", memberVo.getmFilename());
 					ck.setPath("/");
-					ck2.setPath("/");
-					ck2.setMaxAge(1000*24*60*60); 
-					response.addCookie(ck2);
 					if(remember!=null){ 
 						ck.setMaxAge(1000*24*60*60); 
 						response.addCookie(ck);
@@ -208,13 +209,8 @@ public class MemberController {
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
+				session.setAttribute("mNickname", vo2.getmNickname());
 				session.setAttribute("uOrh", "u");
-				String mNickname = vo2.getmNickname();
-				if(mNickname != null && !mNickname.isEmpty()) {
-					session.setAttribute("mNickname", vo2.getmNickname());
-				}else {
-					session.setAttribute("mNickname", "늘찬"+vo2.getmNo());
-				}
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -229,7 +225,6 @@ public class MemberController {
 					msg=vo2.getmNickname()+"님 반가워요!";
 				}
 				url="/index";
-				
 			}
 		}else {
 			int result=memberService.checkIdPwd(memberVo.getmId(), memberVo.getPwd());
@@ -237,16 +232,11 @@ public class MemberController {
 			if(result==MemberService.LOGIN_OK){
 				HttpSession session = request.getSession();
 				MemberVO vo2 = memberService.selectMemberById(memberVo.getmId());
-				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mId", memberVo.getmId());
 				session.setAttribute("snsCheck", snsCheck);
 				session.setAttribute("uOrh", "u");
-				String mNickname = vo2.getmNickname();
-				if(mNickname != null && !mNickname.isEmpty()) {
-					session.setAttribute("mNickname", vo2.getmNickname());
-				}else { 
-					session.setAttribute("mNickname", "늘찬"+vo2.getmNo());
-				}
+				session.setAttribute("mFilename", vo2.getmFilename());
+				session.setAttribute("mNickname", vo2.getmNickname());
 				
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
@@ -336,16 +326,19 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if((mFilename==null || !mFilename.isEmpty())&& fileName!=null && !fileName.isEmpty()) {
+		logger.info("vo={}",vo);
+		if(fileName!=null && !fileName.isEmpty()) {
 			vo.setmFilename(fileName);
 			vo.setmFilesize(fileSize);
 			vo.setmOriginalname(originName);
+			cnt = memberService.updateAdditionalInfo(vo);
 		}else {
 			vo.setmOriginalname(vo.getmFilename());
+			vo.setmFilename(vo.getmFilename());
 			vo.setmFilesize(0);
 			cnt = memberService.updateAdditionalInfo(vo);
 		}
-		cnt = memberService.updateAdditionalInfo(vo);
+		
 		int mNo = memberService.selectMno(vo.getmId());
 		paymentVo.setmNo(mNo);
 		
@@ -413,35 +406,41 @@ public class MemberController {
 		logger.info("회원정보 수정처리, vo={},payVo={}", vo, payVo );
 		String fileName="", originName="";
 		long fileSize=0;
-		if(vo.getmFilename() != null && !vo.getmFilename().isEmpty()) {
-			
-			int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
-			try {
-				List<Map<String, Object>> fileList 
-					= fileUploadUtil.fileUpload(request, pathFlag);
-				for(int i=0;i<fileList.size();i++) {
-					 Map<String, Object> map=fileList.get(i);
-					 
-					 fileName=(String) map.get("fileName");
-					 originName=(String) map.get("originalFileName");
-					 fileSize=(long) map.get("fileSize");				 
-				}
-				
-				logger.info("파일 업로드 성공, fileName={}", fileName);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+
+		int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
+		try {
+			List<Map<String, Object>> fileList 
+				= fileUploadUtil.fileUpload(request, pathFlag);
+			for(int i=0;i<fileList.size();i++) {
+				 Map<String, Object> map=fileList.get(i);
+				 
+				 fileName=(String) map.get("fileName");
+				 originName=(String) map.get("originalFileName");
+				 fileSize=(long) map.get("fileSize");				 
 			}
 			
+			logger.info("파일 업로드 성공, fileName={}, fileList.size={}", fileName, fileList.size());
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int cnt = 0;
+		if(fileName!=null && !fileName.isEmpty()) {
 			vo.setmFilename(fileName);
 			vo.setmFilesize(fileSize);
 			vo.setmOriginalname(originName);
+			logger.info("새로운 업로드! vo={}", vo);
+			cnt = memberService.updateAdditionalInfo(vo);
+		}else {
+			logger.info("기존 업로드! vo={}", vo);
+			cnt = memberService.updateAddiWithoutProfile(vo);
+			
 		}
 		
 		
 		String msg="회원정보 수정에 실패하였습니다.", url="/member/memberEdit";
-		int cnt = memberService.updateAdditionalInfo(vo);
+		
 		if(cnt>0) {
 			payVo.setmNo(vo.getmNo());
 			int cnt3 = memberService.findPaymentCnt(vo.getmNo());
@@ -454,10 +453,16 @@ public class MemberController {
 			if(cnt2>0) {
 				msg="회원정보가 정상적으로 수정되었습니다.";
 				url="/index";
-				String snsCheck = (String)request.getSession().getAttribute("snsCheck");
 				MemberVO vo2 = memberService.selectMemberById(vo.getmId());
+				HttpSession session = request.getSession();
+				session.setAttribute("mNickname", vo.getmNickname());
+				if(fileName!=null && !fileName.isEmpty()) {
+					session.setAttribute("mFilename", vo.getmFilename());
+				}else {
+					session.setAttribute("mFilename", oldFileName);
+				}
 				if(fileName!=null && !fileName.isEmpty() 
-						&& oldFileName !=null && !oldFileName.isEmpty()&& snsCheck.equals('n')) {
+						&& oldFileName !=null && !oldFileName.isEmpty()) {
 					String upPath 
 			= fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_FILE_FLAG, request);
 					File oldFile = new File(upPath, oldFileName);
@@ -489,7 +494,7 @@ public class MemberController {
 			MailVO mailVO = new MailVO();
 	    	
 			String addr = vo.getmId();
-			String nick = "늘찬0"+vo.getmNo();
+			String nick = "늘찬"+vo.getmNo();
 			if(vo.getmNickname()!=null&&!vo.getmNickname().isEmpty()) {
 				nick = vo.getmNickname();
 			}
@@ -546,4 +551,8 @@ public class MemberController {
 		return "common/message";
 	}
 	
+	@GetMapping("member/temp")
+	public void temp() {
+		logger.info("테스트 화면");
+	}
 }

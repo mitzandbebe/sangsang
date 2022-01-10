@@ -90,7 +90,12 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
 	rel="stylesheet">
-
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <!-- 寃곗젣紐⑤뱢 -->
 </head>
 
@@ -310,15 +315,15 @@
 						<span class="d-xl-none">MY PAGE</span> 
 						<span class="d-none d-xl-inline">MY PAGE</span></a>
 
-					<c:if test="${empty sessionScope.mId }">
-						<a href="${pageContext.request.contextPath }/login/login"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
+					<c:if test="${empty sessionScope.adId }">
+						<a href="${pageContext.request.contextPath }/admin/adminLogin"
+							 class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG IN</a>
 					</c:if>
 
-					<c:if test="${!empty sessionScope.mId }">
+					<c:if test="${!empty sessionScope.adId }">
 						<a href="${pageContext.request.contextPath }/login/logout"
-							target="_blank" class="btn btn-md btn-secondary animate-up-2"><i
+							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 
@@ -349,4 +354,3 @@
 					height="35" class="rotate-letter" alt="Letter loader">
 			</div>
 		</div>
-	</main>

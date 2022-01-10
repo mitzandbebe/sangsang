@@ -54,6 +54,7 @@
 <style>
 	#msgArea::-webkit-scrollbar {
     display: none;
+    border : 1px solid black;
 }
 </style>
 </head>
@@ -62,8 +63,8 @@
 		<div class="container">
 			<div class="col-12">
 				<div class="col-12 col-lg-12" style="margin:0 auto;">
-					<div id="msgArea" style="width: 90%; height: 700px; overflow-y: auto;"></div>
-					<textarea class="form-control border border-light-gray" id="msg" style="width: 90%" placeholder="Your Message" rows="6" maxlength="1000" required></textarea>
+					<div id="msgArea" style="width: 90%; height: 700px; overflow-y: auto;" ></div>
+					<textarea class="form-control border border-light-gray" id="msg" style="width: 90%" placeholder="Your Message" rows="6" maxlength="1000"></textarea>
 					<div>
 				    	<button id="button-send" class="btn btn-dark mt-0" style="width: 90%">전송</button>
 					</div>
@@ -79,22 +80,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-var flag= "${sessionScope.uOrh}"
+	var flag= "${sessionScope.uOrh}"
 	console.log(flag);
 	var roomName = "${room.name}";
     var roomId = "${room.roomId}";
     var username = null;
+    var myprofile = null;
     if(flag == 'u'){
 	    username = "${sessionScope.mNickname}";
+	    myprofile = "'/sangsanggongbang/resources/file_upload/${sessionScope.mFilename}'";
 	    console.log(username);
     }else{
     	username = "${sessionScope.hNickname}";
+    	myprofile = "'/sangsanggongbang/resources/file_upload/${sessionScope.hFilename}'";
     	console.log(username);
     }
 $(document).ready(function(){
-	
-
-
     console.log(roomName + ", " + roomId + ", ");
 
     var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
@@ -108,28 +109,32 @@ $(document).ready(function(){
        //4. subscribe(path, callback)으로 메세지를 받을 수 있음
        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
            var content = JSON.parse(chat.body);
-
            var writer = content.writer;
-           var str = '';
            
+           var str = '';
+           var d = new Date();
+      	   /*var today = (d.getMonth()+1)+"-"+d.getDate+" "+d.getHours+":"+d.getMinutes;*/
+      	   var today = d.toLocaleString();
            if(writer === username){
         	   str = "<div class='card bg-primary text-white border-light p-4 ml-md-5 ml-lg-6 mb-4'>";
                str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
                str += "<span class='font-small'>";
+               str += "<img class='avatar-sm img-fluid rounded-circle mr-3' src="+myprofile+">";
                str += "<span class='font-weight-bold'>"+writer+"</span>";
-               str += "<span class='ml-2'>March 26, 19:25</span>";
+               str += "<span class='ml-2'>"+today+"</span>";
                str += "</span></div><p class='m-0'>"+content.message+"</p></div>";
                str += "</div></div>";
                $("#msgArea").append(str);
                $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
                console.log($('#msgArea')[0].scrollHeight);
            }else{
-        	   var d = new Date();
+        	   
         	   str =  "<div class='card bg-white border-light p-4 mb-4'>";
                str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
                str += "<span class='font-small'>";
+               str += "<img class='avatar-sm img-fluid rounded-circle mr-3' src="+content.profileUrl+">";
                str += "<span class='font-weight-bold'>"+writer+"</span>";
-               str += "<span class='ml-2'>March 26, 19:25</span></span>";
+               str += "<span class='ml-2'>"+today+"</span></span>";
                str += "</div><p class='m-0'>"+content.message+"</p></div>";
                $("#msgArea").append(str);
                $('#msgArea').stop().animate({ scrollTop: $('#msgArea')[0].scrollHeight }, 1000);
@@ -138,19 +143,39 @@ $(document).ready(function(){
        });
 
        //3. send(path, header, message)로 메세지를 보낼 수 있음
-       stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
+       /*stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username, profileUrl: myprofile}))*/
     });
 
     $("#button-send").on("click", function(e){
-        var msg = document.getElementById("msg");
-
-        console.log(username + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
-        msg.value = '';
+    	 var msg = document.getElementById("msg");
+    	 
+         console.log(username + ":" + msg.value);
+         stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username, profileUrl: myprofile}));
+         msg.value = '';
     });
+    $("#msg").keydown(function(key) {
+        if (key.keyCode == 13) {
+        	 var msg = document.getElementById("msg");
+        	 
+             console.log(username + ":" + msg.value);
+             stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username, profileUrl: myprofile}));
+             msg.value = '';
+        }
+    });
+
+출처: https://alpreah.tistory.com/101 [생각에 취하는날]
+    function enterkey() {
+    	if (window.event.keyCode == 13) {
+        	// 엔터키가 눌렸을 때
+    		var msg = document.getElementById("msg");
+       	 
+            console.log(username + ":" + msg.value);
+            stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username, profileUrl: myprofile}));
+            msg.value = '';
+        }
+    }
     
 });
-
 </script>
     <!-- Core -->
 <script src="${pageContext.request.contextPath }/resources/vendor/jquery/dist/jquery.min.js"></script>

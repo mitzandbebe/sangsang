@@ -29,9 +29,9 @@ $(function(){
 		}
 	});
 	
-	$('#additional').submit(function(){
+	$('#memberEdit').submit(function(){
 		var cardnum = $('#cardNum1').val()+$('#cardNum2').val()+$('#cardNum3').val()+$('#cardNum4').val();
-		$('#cardnum').val('cardnum');
+		$('#cardNum').val(cardnum);
 	});
 	
 	
@@ -83,16 +83,12 @@ var InputImage =
     <div class="card border-light p-2">
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
-            	<c:if test="${sessionScope.snsCheck=='y' }">
-                	<img src="${vo.mFilename }" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+            	<c:if test="${!empty sessionScope.mFilename }">
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+                	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
-                <c:if test="${sessionScope.snsCheck=='n' }">
-                	<c:if test="${vo.mFilename!=null }">
-                		<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white">
-                	</c:if>
-                	<c:if test="${vo.mFilename==null }">
-                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
-                	</c:if>
+                <c:if test="${empty sessionScope.mFilename }">
+                	<img src="<c:url value='/resources/file_upload/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
             </div>
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
@@ -147,40 +143,27 @@ var InputImage =
                                         <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
 								        <div style="float: left; margin-left: 0px; margin-top:0px; " >
-								            	<c:if test="${sessionScope.snsCheck=='y' }">
+								            	<c:if test="${sessionScope.mFilename!='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${vo.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group mb-3"  style = "text-align: center;">
-														  <input type="file" id="inputGroupFile02" class="form-control " name = "mFilename"onchange="InputImage();" style="display: none;" value="${cookie.mFilename.value }">
-														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
+														  <input type="file" id="upfile" class="form-control " name = "upfile"onchange="InputImage();" style="display: none;">
+														  <label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
 													  </div>
 								                </c:if>
-								                <c:if test="${sessionScope.snsCheck=='n' }">
-								                	<c:if test="${vo.mFilename!=null }">
-									                	<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
-									            			<div id="older">
-									                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.mFilename }" class="card-img-top rounded-circle border-white">
-									                		</div>
-									            		</div>
-									            		<div class="input-group mb-3"  style = "text-align: center;">
-															<input type="file" name ="upfile" id="upfile" class="form-control "  onchange="InputImage();" style="display: none;">
-															<label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
-														</div>
-							                		</c:if>
-								                	<c:if test="${vo.mFilename==null }">
-								                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
-									            			<div id="older">
-										                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
-									                		</div>
-									            		</div>
-									            		<div class="input-group mb-3"  style = "text-align: center;">
-															<input type="file" name ="upfile" id="upfile" class="form-control "  onchange="InputImage();" style="display: none;">
-															<label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
-														</div>
-							                		</c:if>
+								                <c:if test="${sessionScope.mFilename=='default.png' }">
+							                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
+								            			<div id="older">
+									                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
+								                		</div>
+								            		</div>
+								            		<div class="input-group mb-3"  style = "text-align: center;">
+														<input type="file" name ="upfile" id="upfile" class="form-control "  onchange="InputImage();" style="display: none;">
+														<label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
+													</div>
 								                </c:if>
 											</div>
 										  <div class="col-md-8 mb-3" style = "float: left; margin-left: 0px; margin-top:10px;" >
@@ -193,6 +176,8 @@ var InputImage =
                                            				<input name ="mName" class="form-control" id="mName" placeholder="성명" type="text" value="${vo.mName}" >
                                            				<input name ="mNo" class="form-control" id="mNo" placeholder="성명" type="hidden" value="${vo.mNo}" >
                                            				<input name ="mId" class="form-control" id="mId" placeholder="성명" type="hidden" value="${vo.mId}" >
+                                           				<input name ="mOriginalname" class="form-control" id="mOriginalname"  type="hidden" value="${vo.mOriginalname}" >
+                                           				<input name ="mFilesize" class="form-control" id="mFilesize" type="hidden" value="${vo.mFilesize}" >
                                            				<input type="hidden" name="oldFileName" value="${vo.mFilename}">
                                             		</div>
                                                 </div>
@@ -442,13 +427,17 @@ var InputImage =
                                                      <label for="cardNum">카드번호</label>
                                                      <div class="input-group mb-3">
                                                      	<c:set var="cardNum" value="${payVo.cardNum }"/>
-														<input type="text" id="cardNum1" class="form-control" maxlength="4" aria-label="Username" value="${fn:substring(cardNum,0,4) }">
+														<input type="text" id="cardNum1" class="form-control" maxlength="4" aria-label="Username" 
+														value='${fn:substring(cardNum ,0,4) }'>
 														<span class="input-group-text">-</span>
-														<input type="text" id="cardNum2" class="form-control" maxlength="4" aria-label="Server" value="${fn:substring(cardNum,4,8) }">
+														<input type="text" id="cardNum2" class="form-control" maxlength="4" aria-label="Server" 
+														value="${fn:substring(cardNum,4,8) }">
 														<span class="input-group-text">-</span>
-														<input type="text" id="cardNum3" class="form-control" maxlength="4" aria-label="Server" value="${fn:substring(cardNum,8,12) }">
+														<input type="text" id="cardNum3" class="form-control" maxlength="4" aria-label="Server" 
+														value="${fn:substring(cardNum,8,12) }">
 														<span class="input-group-text">-</span>
-														<input type="password" id="cardNum4" class="form-control" maxlength="4" aria-label="Server" value="${fn:substring(cardNum,12,15) }">
+														<input type="password" id="cardNum4" class="form-control" maxlength="4" aria-label="Server" 
+														value="${fn:substring(cardNum ,12,16) }">
 														<input type = "hidden" name = "cardNum" id="cardNum">
 													</div>
                                                 </div>

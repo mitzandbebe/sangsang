@@ -17,5 +17,7 @@ public interface MemberDAO {
 	int updatePaymentInfo(PaymentVO payVo);
 	int updatePwd(MemberVO vo);
 	int findPaymentCnt(int getmNo);
-	String selectNicname(int mNo);
+	int updateNickname(MemberVO memberVo);
+	int updateAddiWithoutProfile(MemberVO vo);
+
 }

@@ -90,8 +90,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.findPaymentCnt(getmNo);
 	}
 	@Override
-	public String selectNicname(int mNo) {
-		return memberDao.selectNicname(mNo);
+	public int updateNickname(MemberVO memberVo) {
+		return memberDao.updateNickname(memberVo);
+	}
+	@Override
+	public int updateAddiWithoutProfile(MemberVO vo) {
+		return memberDao.updateAddiWithoutProfile(vo);
+
 	}
 	
 }
