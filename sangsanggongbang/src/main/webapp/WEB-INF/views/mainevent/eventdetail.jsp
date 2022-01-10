@@ -55,11 +55,13 @@
 							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist"
 							type="button">
 						<!-- 관리자세션일때로 한정해놓기 -->
+						<c:if test="${!empty adId }">
 						<input value="이벤트수정"
 							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
 							type="button"> <input value="이벤트삭제"
 							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
 							type="button">
+						</c:if>
 					</div>
 					<br>
 					<br>
