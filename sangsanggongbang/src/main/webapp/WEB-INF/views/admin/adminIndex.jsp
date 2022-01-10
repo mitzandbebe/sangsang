@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top_admin.jsp"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+    <c:when test="${!empty sessionScope.hId }">
+        <%@ include file="../inc/new_top_host.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.mId }">
+        <%@ include file="../inc/new_top_user.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.adId }">
+        <%@ include file="../inc/new_top_admin.jsp"%>
+    </c:when>
+    <c:otherwise>
+        <%@ include file="../inc/top.jsp"%>
+    </c:otherwise>
+</c:choose>
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 
 
@@ -8,6 +22,7 @@
         <!-- Section -->
         <section class="section-header">
         <div class="section section-lg bg-soft">
+        <div class="container">
             
                 <div class="row pt-5 pt-md-0">
                 <div class="col-12 col-lg-8" style="margin: 0 auto;">
@@ -155,6 +170,7 @@
                     </div>
                 </div>
         </div>
+        </div>
         <figure class="highcharts-figure">
 		    <div id="container"></div>
 		    <p class="highcharts-description">
@@ -265,4 +281,18 @@ $(function(){
 });
 
 </script>
-<%@ include file="../inc/bottom_admin.jsp" %>
+
+<c:choose>
+    <c:when test="${!empty sessionScope.hId }">
+        <%@ include file="../inc/bottom_host.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.mId }">
+        <%@ include file="../inc/bottom.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.adId }">
+        <%@ include file="../inc/bottom_admin.jsp"%>
+    </c:when>
+    <c:otherwise>
+        <%@ include file="../inc/bottom.jsp"%>
+    </c:otherwise>
+</c:choose>
