@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@include file="../inc/new_top_user.jsp"%>
+<%@include file="../inc/top_host.jsp"%>
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 <script
@@ -24,50 +24,45 @@
 		</div>
 	</div>
 </section>
-
+<div class="container z-2" >
+			<div class="row justify-content-center pt-3">
+				<div class="col-12 text-center">
+					<h3 class="mb-4">클래스 삭제를 원하시면 클래스 이름을 선택해 주세요</h3>
+				</div>
+			</div>
+		</div>
 <!-- 이벤트 목록 테이블로 보여주기 -->
 <div class="container">
-	<br>
-	<br>
-	<br>
-	<br>
 	<form name="frmList">
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col">✔</th>
-					<th scope="col">이벤트제목</th>
-					<!-- <th scope="col">이벤트내용</th> -->
-					<th scope="col">작성일</th>
+					<th scope="col">클래스이름</th>
+					<th scope="col">클래스일자</th>
+					<th scope="col">클래스시간</th>
+					<th scope="col">클래스가격</th>
+					<th scope="col">클래스종료여부</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${empty list }">
+				<c:if test="${empty classlist }">
 					<tr>
 						<td colspan="5">데이터가 없습니다.</td>
 					</tr>
 				</c:if>
-				<c:if test="${!empty list }">
+				<c:if test="${!empty classlist }">
 					<!-- 이벤트 내용반복 -->
-					<c:forEach var="vo" items="${list }">
+					<c:forEach var="map" items="${classlist}">
 						<tr>
-							<th scope="row">${vo.newsNo }</th>
 							<td><a
-								href="<c:url value='/mainevent/eventdetail?newsNo=${vo.newsNo}'/>">
-									<div class="d-flex align-items-center">${vo.newsTitle }</div>
+								href="<c:url value='/class/deleteclass?cNo=${map["C_NO"] }'/>">
+									<div class="d-flex align-items-center">${map["C_NAME"] }</div>
 							</a></td>
-							<%-- 	<td>
-							<a href="<c:url value='/mainevent/eventdetail?newsNo=${vo.newsNo}'/>">
-								<c:if test="${fn:length(vo.newsContent)>30 }">
-									${fn:substring(vo.newsContent ,0,30)}...
-								</c:if> 
-								<c:if test="${fn:length(vo.newsContent)<=30 }">
-									${vo.newsContent}
-								</c:if>
-							</a>
-						</td> --%>
-							<td><fmt:formatDate value="${vo.newsRegdate }"
+							<td><fmt:formatDate value="${map['C_START_TIME'] }"
 									pattern="yyyy-MM-dd HH:ss" /></td>
+							<td>${map["C_TIME"] } 시</td>
+							<td><fmt:formatNumber value="${map['C_PRICE'] }" pattern="#,###" />원</td>
+							<td>${map["END_FLAG"] }</td>
 						</tr>
 
 					</c:forEach>
@@ -75,14 +70,7 @@
 			</tbody>
 		</table>
 
-		<!-- 이벤트 글 작성 버튼 -->
-		<br>
-		<c:if test="${!empty adId }">
-		<div class="d-flex justify-content-between mt-3" style="margin: auto">
-			<input value="이벤트글 작성" class="btn mb-2 mr-2 btn-primary animate-up-2"
-				id="btwrite" type="button">
-		</div>
-		</c:if>
+
 		<div class="row">
 			<div class="col-lg-12 mb-5">
 				<div class="col mt-3 d-flex justify-content-center">
@@ -135,6 +123,6 @@
 	});
 </script>
 
-<%@include file="../inc/bottom.jsp"%>
+<%@include file="../inc/bottom_host.jsp"%>
 </body>
 </html>
