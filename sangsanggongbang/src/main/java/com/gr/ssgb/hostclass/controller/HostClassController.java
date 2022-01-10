@@ -378,7 +378,7 @@ public class HostClassController {
 	}
 	
 	@RequestMapping("/listdelete")
-	public String classdelete_list(HttpSession session,Model model) {
+	public String classdelete_list(@RequestParam(defaultValue = "0") int cNo,HttpSession session,Model model) {
 		logger.info("클래스 전체목록보기");
 		
 		List<ReviewVO> rlist= reviewService.selectAllRate();
@@ -394,6 +394,19 @@ public class HostClassController {
 		model.addAttribute("rlist", rlist);
 		
 		return "class/listdelete";
+	}
+	
+	@GetMapping("/deleteClass")
+	public String delete_get(@RequestParam(defaultValue = "0") int cNo,
+			Model model) {
+		logger.info("삭제화면");
+		if(cNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/class/listdelete");
+			return "common/message";
+		}
+		
+		return "class/deleteClass";
 	}
 	
 }
