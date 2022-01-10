@@ -23,4 +23,5 @@ public interface HostClassService {
 	int updateByContents(ContentsVO contentsVo);
 	int deleteContents(int cNo);
 	int deleteClass(int cNo);
+	int selectClassCnt(int hNo);
 }

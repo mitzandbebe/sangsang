@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.host.model.HostService;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.ContentsVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
@@ -239,10 +240,19 @@ public class HostClassController {
 		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
 		logger.info("디테일에서 해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
 		
+		HostVO vo = hostService.selectHostByHNo(hNo);
+		int classCnt = hostClassService.selectClassCnt(hNo);
+		int reviewCnt = reviewService.selectReviewByHost(hNo);
+		
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("catelist",catelist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
+		model.addAttribute("hostVo", vo);
+		model.addAttribute("classCnt", classCnt);
+		model.addAttribute("reviewCnt", reviewCnt);
+		
+		
 		
 		return "class/detail";
 	}

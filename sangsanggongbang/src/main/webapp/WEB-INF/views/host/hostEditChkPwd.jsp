@@ -13,15 +13,15 @@
     <div class="card border-light p-2">
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
-            	<c:if test="${!empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+            	<c:if test="${!empty sessionScope.hFilename }">
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
-                <c:if test="${empty sessionScope.mFilename }">
+                <c:if test="${empty sessionScope.hFilename }">
                 	<img src="<c:url value='/resources/assets/img/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
             </div>
-            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
+            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
                 <a href="./account.html" class="d-flex list-group-item list-group-item-action ">Overview <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action  active ">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
@@ -69,15 +69,15 @@
                             <div class="col-lg-12">
                                 <div class="card card-body bg-white border-light mb-4">
                                     <h2 class="h5 mb-4">비밀번호 확인</h2>
-                                    <form method="post" action="<c:url value='/member/memberEditChkPwd'/> ">
+                                    <form method="post" action="<c:url value='/host/hostEditChkPwd'/> ">
                                     <!-- Form -->
                                     <label for="pwd">비밀번호 입력</label>
                                    	<div class="input-group mb-4">
                                 		<div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                         </div>
-                                       	<input name ="mId" class="form-control" id="mId" type="hidden" value="${sessionScope.mId }" aria-describedby="button-addon2">
-                                       	<input name ="pwd" class="form-control" id="pwd"  placeholder="비밀번호를 입력하세요." type="password">
+                                       	<input name ="hId" class="form-control" id="hId" type="hidden" value="${sessionScope.hId }" aria-describedby="button-addon2">
+                                       	<input name ="hPwd" class="form-control" id="pwd"  placeholder="비밀번호를 입력하세요." type="password">
                                        	<button type="button" id="button-addon2" class="btn btn-outline-primary" >비밀번호 확인</button>
                                     </div>
                                     <!-- End of Form -->

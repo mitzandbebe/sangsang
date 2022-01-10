@@ -32,4 +32,21 @@
 	<select id="selectHostNo" parameterType="string" resultType="int">
 		select h_no from host where h_id=#{hId}
 	</select> 
+	
+	<update id="updateAdditionalInfo" parameterType="hostVo">
+		update host set h_name = #{hName}, h_nickname=#{hNickname}, h_phone= #{hPhone}, h_bday= #{hBday},
+		h_zipcode= #{hZipcode}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail},
+		h_originalname=#{hOriginalname}, h_filesize=#{hFilesize}, h_filename=#{hFilename}
+		where h_id = #{hId} 
+	</update>
+	
+	<update id="updateAddiWithoutProfile" parameterType="hostVo">
+		update host set h_name = #{hName}, h_nickname=#{hNickname}, h_phone= #{hPhone}, h_bday= #{hBday},
+		h_zipcode= #{hZipcode}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail}
+		where h_id = #{hId}
+	</update>
+	
+	<select id="selectHostByHNo" parameterType="int" resultType="hostVo">
+		select * from host where h_no = #{hNo}
+	</select>
 </mapper>

@@ -329,10 +329,10 @@ var InputImage =
 								    </div>
                                     <!-- Form -->
                                     	<div class="row">
-                                            <div class="col-md-7 mb-3">
+                                            <div class="col-md-7">
                                                 <div class="form-group">
                                                     <label for="phone">핸드폰번호</label>
-                                                    <div class="input-group mb-4">
+                                                    <div class="input-group">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
 			                                            </div>
@@ -340,10 +340,10 @@ var InputImage =
                                             		</div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5 mb-3">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label for="bday">생년월일</label>
-                                                    <div class="input-group mb-4">
+                                                    <div class="input-group">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
 			                                            </div>
@@ -355,10 +355,10 @@ var InputImage =
                                     <!-- End of Form -->
                                      <!-- Form -->
                                     	<div class="row">
-                                            <div class="col-md-5 mb-3">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
                                                      <label for="mZipcode">우편번호</label>
-                                                     <div class="input-group mb-4">
+                                                     <div class="input-group">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="fas fa-compass"></i></span>
 			                                            </div>
@@ -367,10 +367,10 @@ var InputImage =
                                             		</div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7 mb-3">
+                                            <div class="col-md-7">
                                                 <div class="form-group">
                                                      <label for="mAddress">주소</label>
-                                                     <div class="input-group mb-4">
+                                                     <div class="input-group">
 			                                            <div class="input-group-prepend">
 			                                                <span class="input-group-text"><i class="far fa-compass"></i></span>
 			                                            </div>
@@ -382,14 +382,14 @@ var InputImage =
                                     <!-- End of Form -->
                                     <!-- Form -->
                                     <label for="mAddressDetail">상세주소</label>
-                                   	<div class="input-group mb-4">
+                                   	<div class="input-group">
                                 		<div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-compass"></i></span>
                                         </div>
                                        	<input name ="mAddressDetail" class="form-control" id="addressDetail"  placeholder="상세주소를 입력하세요. ex)대원빌 101호" type="text">
                                     </div>
                                     <!-- End of Form -->
-                                    <!-- Form -->
+                                    <!-- Form
 	                              	<div class="row">
 		                                <div class="col-md-6 mb-3">
 			                                <div class="form-group">
@@ -420,7 +420,7 @@ var InputImage =
 		                            </div>
                                     <!-- End of Form -->
                                    
-                                    <!-- Form -->
+                                    <!-- Form 
                                     <div id="accInput" class="row" style="display: none">
                                             <div class="col-md-5 mb-3">
                                                 <div class="form-group">
@@ -457,7 +457,7 @@ var InputImage =
                                             </div>
                                         </div>
                                     <!-- End of Form -->
-                                    <!-- Form -->
+                                    <!-- Form 
                                     <div id="cardInput" class="row" style="display: none">
                                             <div class="col-md-4 mb-3">
                                                 <div class="form-group">
@@ -499,7 +499,7 @@ var InputImage =
                                             </div>
                                         </div>
                                     <!-- End of Form --> 
-                                    <!-- Form -->
+                                    <!-- Form 
                                     	<div id="cvc" class="row" style="display: none">
                                             <div class="col-md-7 mb-3">
                                                 <div class="form-group">
@@ -522,7 +522,7 @@ var InputImage =
                                             </div>
                                         </div>
                                     <!-- End of Form -->
-                                     <!-- Form -->
+                                     <!-- Form 
                                     <label for="cPwd">결제비밀번호 설정</label>
                                    	<div class="input-group mb-4">
                                 		<div class="input-group-prepend">

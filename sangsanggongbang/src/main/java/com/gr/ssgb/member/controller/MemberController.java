@@ -326,7 +326,7 @@ public class MemberController {
 		logger.info("부가정보 입력화면");
 	}
 	@PostMapping("member/additional")
-	public String additional_post(@ModelAttribute MemberVO vo, PaymentVO paymentVo, @RequestParam String snsCheck, HttpServletRequest request, Model model) {
+	public String additional_post(@ModelAttribute MemberVO vo, @RequestParam String snsCheck, HttpServletRequest request, Model model) {
 		logger.info("부가정보 입력 처리화면");
 		
 		int cnt = 0;
@@ -359,23 +359,32 @@ public class MemberController {
 			vo.setmOriginalname(originName);
 			cnt = memberService.updateAdditionalInfo(vo);
 		}else {
-			vo.setmOriginalname(vo.getmFilename());
-			vo.setmFilename(vo.getmFilename());
+			vo.setmOriginalname(mFilename);
+			vo.setmFilename(mFilename);
 			vo.setmFilesize(0);
 			cnt = memberService.updateAdditionalInfo(vo);
 		}
-		
-		int mNo = memberService.selectMno(vo.getmId());
-		paymentVo.setmNo(mNo);
-		
-		int cnt2 = memberService.insertPayment(paymentVo);
-		logger.info("부가정보 입력여부, cnt={}, cnt2={}", cnt, cnt2);
-		if(cnt>0 && cnt2>0) {
+
+		logger.info("부가정보 입력여부, cnt={}, cnt2={}", cnt);
+		if(cnt>0 ) {
 			msg="부가정보 입력이 완료되었습니다.";
 			url="/index";
-		}else if(cnt2 <=0){
+			HttpSession session = request.getSession();
+			session.removeAttribute("hFilename");
+			session.removeAttribute("hId");
+			session.removeAttribute("h_snsCheck");
+			session.removeAttribute("hNickname");
+			session.removeAttribute("uOrh");
+			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
+			session.setAttribute("mId", vo2.getmId());
+			session.setAttribute("snsCheck", snsCheck);
+			session.setAttribute("uOrh", "u");
+			session.setAttribute("mFilename", vo2.getmFilename());
+			session.setAttribute("mNickname", vo2.getmNickname());
+		}else{
 			msg="결제정보 입력 실패!";
 		}
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
@@ -428,8 +437,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("member/memberEdit")
-	public String memberEdit_post(@ModelAttribute MemberVO vo, PaymentVO payVo,@RequestParam String oldFileName, HttpServletRequest request, Model model) {
-		logger.info("회원정보 수정처리, vo={},payVo={}", vo, payVo );
+	public String memberEdit_post(@ModelAttribute MemberVO vo, @RequestParam String oldFileName, HttpServletRequest request, Model model) {
+		logger.info("회원정보 수정처리, vo={}", vo);
 		String fileName="", originName="";
 		long fileSize=0;
 
@@ -468,34 +477,25 @@ public class MemberController {
 		String msg="회원정보 수정에 실패하였습니다.", url="/member/memberEdit";
 		
 		if(cnt>0) {
-			payVo.setmNo(vo.getmNo());
-			int cnt3 = memberService.findPaymentCnt(vo.getmNo());
-			int cnt2=-1;
-			if(cnt3 >=1) {
-				cnt2 = memberService.updatePaymentInfo(payVo);
+			
+			msg="회원정보가 정상적으로 수정되었습니다.";
+			url="/index";
+			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
+			HttpSession session = request.getSession();
+			session.setAttribute("mNickname", vo.getmNickname());
+			if(fileName!=null && !fileName.isEmpty()) {
+				session.setAttribute("mFilename", vo.getmFilename());
 			}else {
-				cnt2 = memberService.insertPayment(payVo);
+				session.setAttribute("mFilename", oldFileName);
 			}
-			if(cnt2>0) {
-				msg="회원정보가 정상적으로 수정되었습니다.";
-				url="/index";
-				MemberVO vo2 = memberService.selectMemberById(vo.getmId());
-				HttpSession session = request.getSession();
-				session.setAttribute("mNickname", vo.getmNickname());
-				if(fileName!=null && !fileName.isEmpty()) {
-					session.setAttribute("mFilename", vo.getmFilename());
-				}else {
-					session.setAttribute("mFilename", oldFileName);
-				}
-				if(fileName!=null && !fileName.isEmpty() 
-						&& oldFileName !=null && !oldFileName.isEmpty()) {
-					String upPath 
-			= fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_FILE_FLAG, request);
-					File oldFile = new File(upPath, oldFileName);
-					if(oldFile.exists()) {
-						boolean bool =oldFile.delete();
-						logger.info("프로필사진 수정,파일삭제여부:{}", bool);
-					}
+			if(fileName!=null && !fileName.isEmpty() 
+					&& oldFileName !=null && !oldFileName.isEmpty() && !oldFileName.equals("default.png")) {
+				String upPath 
+		= fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_FILE_FLAG, request);
+				File oldFile = new File(upPath, oldFileName);
+				if(oldFile.exists()) {
+					boolean bool =oldFile.delete();
+					logger.info("프로필사진 수정,파일삭제여부:{}", bool);
 				}
 			}
 		}

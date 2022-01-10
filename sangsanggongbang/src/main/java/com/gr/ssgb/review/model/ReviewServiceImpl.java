@@ -56,6 +56,11 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		return null;
 	}
+
+	@Override
+	public int selectReviewByHost(int hNo) {
+		return reviewDao.selectReviewByHost(hNo);
+	}
 	
 	
 }

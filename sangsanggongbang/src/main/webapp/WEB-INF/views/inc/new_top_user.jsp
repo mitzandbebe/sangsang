@@ -393,8 +393,8 @@
                             <c:if test="${!empty sessionScope.mFilename}">
                                 src="<c:url value='/resources/file_upload/${sessionScope.mFilename}'/>" 
                             </c:if>
-                            <c:if test="${!empty sessionScope.mFilename}">
-                                src="<c:url value='/resources/file_upload/default.png'/>" 
+                            <c:if test="${empty sessionScope.mFilename}">
+                                src="<c:url value='/resources/assets/img/default.png'/>" 
                             </c:if>     
                         > </a>
                         <span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.mNickname}님</span>

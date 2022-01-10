@@ -247,7 +247,7 @@
 					</c:if>
 
 					<c:if test="${!empty sessionScope.hId }">
-						<a href= "${pageContext.request.contextPath }/host/memberEditChkPwd" alt="마이페이지">
+						<a href= "${pageContext.request.contextPath }/host/hostEditChkPwd" alt="마이페이지">
 						<img class="avatar-sm img-fluid rounded-circle mr-2" alt="avatar"
                             <c:if test="${!empty sessionScope.hFilename}">
                                 src="<c:url value='/resources/file_upload/${sessionScope.hFilename}'/>" 

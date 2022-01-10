@@ -291,24 +291,30 @@
 					</div>
 					<aside class="col-12 col-lg-4 mt-3 mt-lg-0">
 						<div class="card border-light mt-4 p-3">
-							<h5 class="font-weight-normal">Property Owner</h5>
+							<h5 class="font-weight-normal">늘솜 정보</h5>
 							<div class="media d-flex align-items-center my-3">
-								<a href="./profile.html" class="avatar-lg mr-2"
-									data-toggle="tooltip" data-placement="top" title="More details">
-									<img class="img-fluid rounded-circle"
-									src="${pageContext.request.contextPath}/resources/assets/img/team/profile-picture-1.jpg"
-									alt="avatar">
-								</a>
+								<!-- <a href="./profile.html" class="avatar-lg mr-2"
+									data-toggle="tooltip" data-placement="top" title="More details"> -->
+									<img class="img-fluid rounded-circle avatar-lg mr-4"
+									<c:if test="${empty hostVo.hFilename}">
+									src="${pageContext.request.contextPath}/resources/assets/img/default.png"
+									</c:if>
+									<c:if test="${!empty hostVo.hFilename}">
+									src="${pageContext.request.contextPath}/resources/file_upload/${hostVo.hFilename}"
+									</c:if>
+									alt="프로필사진">
+								<!-- </a> -->
 								<div class="avatar-name">
-									<a class="text-gray" href="./profile.html"
-										data-toggle="tooltip" data-placement="top"
-										title="More details">Jose Leos</a>
+									<span style="color:#82AFC5">${hostVo.hNickname}</span><br>
+									
 								</div>
 							</div>
+							<div class="mb-3">
+								개설한 클래스 | ${classCnt}개&nbsp;&nbsp; 리뷰 | ${reviewCnt}개
+							</div>
 							<!-- Button Modal -->
-							<button type="button" class="btn btn-block btn-secondary mb-3"
-								data-toggle="modal" data-target="#modal-form">Contact
-								Host</button>
+							<a href="#" onClick="openChat();">
+							<button type="button" class="btn btn-block btn-secondary mb-3">늘솜에게 실시간 문의하기</button></a>
 							<!-- Modal Content -->
 							<div class="modal fade" id="modal-form" tabindex="-1"
 								role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -471,6 +477,12 @@ function relayout() {
 		let hash = location.hash.substring(1);
 		$('.nav-tabs #' + hash).trigger('click');
 	});
+	function openChat(){
+    	var contextPath="/sangsanggongbang";
+    	var roomId = "${hostVo.hNickname}";
+    	open(contextPath+'/chat/room?roomId='+roomId,'chat',
+    	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+    }
 </script>
 
 <%@ include file="../inc/bottom.jsp" %>

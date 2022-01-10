@@ -1,5 +1,6 @@
 package com.gr.ssgb.host.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -308,5 +309,97 @@ public class HostController {
 	@GetMapping("/hostEditChkPwd")
 	public void hostEditChkPwd_get() {
 		logger.info("비밀번호 확인화면");
+	}
+	
+	@PostMapping("/hostEditChkPwd")
+	public String memberEditChkPwd_post(@ModelAttribute HostVO vo, Model model) {
+		logger.info("회원정보 수정 전 비밀번호 확인처리");
+		String msg = "비밀번호를 확인해주세요.", url="/host/hostEditChkPwd";
+		int result=hostService.checkIdPwd(vo.gethId(), vo.gethPwd());
+		logger.info("아이디 비밀번호 체크 결과, result={}",result);
+		if(result==HostService.LOGIN_OK){
+			msg="비밀번호 확인이 완료되었습니다.";
+			url= "/host/hostEdit";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
+	
+	@GetMapping("/hostEdit")
+	public String hostEdit_get(HttpSession session, Model model) {
+		logger.info("호스트 정보 수정화면");
+		String hId = (String)session.getAttribute("hId");
+		
+		HostVO vo = hostService.selectHostById(hId);
+		
+		model.addAttribute("vo", vo);
+		
+		return "host/hostEdit";
+	}
+	
+	@PostMapping("/hostEdit")
+	public String hostEdit_post(@ModelAttribute HostVO vo, @RequestParam String oldFileName, 
+			HttpServletRequest request, Model model) {
+		logger.info("호스트 정보 수정처리 vo={}");
+		
+		String fileName="", originName="";
+		long fileSize=0;
+
+		int pathFlag=ConstUtil.UPLOAD_FILE_FLAG;
+		try {
+			List<Map<String, Object>> fileList 
+				= fileUploadUtil.fileUpload(request, pathFlag);
+			for(int i=0;i<fileList.size();i++) {
+				 Map<String, Object> map=fileList.get(i);
+				 
+				 fileName=(String) map.get("fileName");
+				 originName=(String) map.get("originalFileName");
+				 fileSize=(long) map.get("fileSize");				 
+			}
+			
+			logger.info("파일 업로드 성공, fileName={}, fileList.size={}", fileName, fileList.size());
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int cnt = 0;
+		if(fileName!=null && !fileName.isEmpty()) {
+			vo.sethFilename(fileName);
+			vo.sethFilesize(fileSize);
+			vo.sethOriginalname(originName);
+			logger.info("새로운 업로드! vo={}", vo);
+			cnt = hostService.updateAdditionalInfo(vo);
+		}else {
+			logger.info("기존 업로드! vo={}", vo);
+			cnt = hostService.updateAddiWithoutProfile(vo);
+			
+		}
+		String msg="호스트정보 수정에 실패하였습니다.", url="/host/hostEdit";
+		
+		if(cnt>0) {
+			msg="호스트정보가 정상적으로 수정되었습니다.";
+			url="/host/hostIndex";
+			HostVO vo2 = hostService.selectHostById(vo.gethId());
+			HttpSession session = request.getSession();
+			session.setAttribute("hNickname", vo2.gethNickname());
+			session.setAttribute("hFilename", vo2.gethFilename());
+			
+			if(fileName!=null && !fileName.isEmpty() 
+					&& oldFileName !=null && !oldFileName.isEmpty() && !oldFileName.equals("default.png")) {
+				String upPath 
+		= fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_FILE_FLAG, request);
+				File oldFile = new File(upPath, oldFileName);
+				if(oldFile.exists()) {
+					boolean bool =oldFile.delete();
+					logger.info("프로필사진 수정,파일삭제여부:{}", bool);
+				}
+			}
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

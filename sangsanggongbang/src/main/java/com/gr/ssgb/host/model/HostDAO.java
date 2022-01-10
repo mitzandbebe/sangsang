@@ -18,4 +18,10 @@ public interface HostDAO {
 	List<HostVO> selectAllHost();
 
 	int selectHostNo(String hId);
+
+	int updateAdditionalInfo(HostVO vo);
+
+	int updateAddiWithoutProfile(HostVO vo);
+
+	HostVO selectHostByHNo(int hNo);
 }

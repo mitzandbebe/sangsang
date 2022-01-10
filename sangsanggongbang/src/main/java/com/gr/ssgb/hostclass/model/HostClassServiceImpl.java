@@ -109,6 +109,11 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassAllOfHost(hNo);
 	}
 
+	@Override
+	public int selectClassCnt(int hNo) {
+		return hostClassDao.selectClassCnt(hNo);
+	}
+
 
 
 
