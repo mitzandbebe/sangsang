@@ -396,13 +396,13 @@
 				</div>
 			</div>
 		</div>
+</c:forEach>
 		<section class="section bg-soft">
 			<div class="container" >
 				<div class="row" id="categoryName">
-					<c:import url="/class/listbyCategory?categoryName=${map['CATEGORY_NAME'] }" />
+					<c:import url="/class/listbyCategory" />
 	            </div>
 	        </div>
-</c:forEach>
    <!-- Core -->
    
 <script src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
@@ -446,19 +446,18 @@
 <script src="<c:url value='/resources/assets/js/spaces.js'/> "></script>
 		</section>
 		<!-- End of section -->
-	</main>
 
 <!-- 카카오 맵 -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
 <script>
-$(function(){
+/* $(function(){
 	$(document).ready(function(){
-		var i =$(this).text();
+		var i =$(this).val();
 		console.log(i);
 		$("#categoryName").load("http://localhost:9091/sangsanggongbang/class/listbyCategory?categoryName="+i);
 	});
-});
+}); */
 
 
 function relayout() {    
