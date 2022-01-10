@@ -2,7 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@include file="../inc/top.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/top.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/top.jsp"%>
+	</c:otherwise>
+</c:choose>
 <br>
 <br>
 <br>
@@ -36,6 +49,11 @@
 
 				<div class="row">
 					<div class="col-lg-12 mb-5">
+						<span> 늘찬(멤버) <input type="radio" id="check"
+							name="noticeFlag" value="M" > <br>
+							늘솜(호스트) <input type="radio" id="check" name="noticeFlag"
+							value="H">
+						</span> <br> <br>
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
 							<label for="title">제목 : </label> <input type="text" id="title"
@@ -51,7 +69,8 @@
 
 						<!-- 이벤트 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
-							<label for="exampleFormControlTextarea2">공지사항 내용</label>
+
+							<label for="exampleFormControlTextarea2">공지사항 내용 | </label>
 							<textarea class="ckediter" id="content" name="noticeContent"
 								rows="20"></textarea>
 						</div>
@@ -99,6 +118,7 @@
 	});
 
 	$(function() {
+		
 		$('form[name=frmEwrite]').submit(function() {
 			$('.infobox').each(function(idx, item) {
 				if ($(this).val().length < 1) {
@@ -110,15 +130,15 @@
 
 			});
 
-	/* 		$('#upfile').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).prev().html() + "을 입력하세요");
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				}
+			/* 		$('#upfile').each(function(idx, item) {
+						if ($(this).val().length < 1) {
+							alert($(this).prev().html() + "을 입력하세요");
+							$(this).focus();
+							event.preventDefault();
+							return false; //each 탈출
+						}
 
-			}); */
+					}); */
 
 		});
 

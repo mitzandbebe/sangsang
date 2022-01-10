@@ -9,8 +9,8 @@
 			select NOTICE_SEQ.nextval from dual
 		</selectKey>
 
-		insert into notice(notice_No, notice_Title, notice_Content,NOTICE_IMG_URL)
-		values(#{noticeNo}, #{noticeTitle}, #{noticeContent}, #{noticeImgUrl})
+		insert into notice(notice_No, notice_Title, notice_Content,NOTICE_IMG_URL, NOTICE_FLAG)
+		values(#{noticeNo}, #{noticeTitle}, #{noticeContent}, #{noticeImgUrl}, #{noticeFlag})
 	</insert>
 
 	<select id="selectNoticeAll" resultType="noticeVo"
@@ -31,10 +31,59 @@
 		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
 		]]>
 	</select>
-
-	<select id="selectTotalRecord" parameterType="searchVo"
+		<select id="selectTotalRecord" parameterType="searchVo"
 		resultType="int">
 		select count(*) from notice
+	</select>
+	
+	<select id="selectNoticeMemberAll" resultType="noticeVo"
+		parameterType="searchVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from notice
+		where notice_flag = 'M' or notice_flag ='A'
+		order
+		by
+		notice_no desc
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalMemberRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from notice where notice_flag = 'M' or notice_flag ='A'
+	</select>
+
+		<select id="selectNoticeHostAll" resultType="noticeVo"
+		parameterType="searchVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from notice
+		where notice_flag = 'H' or notice_flag ='A'
+		order
+		by
+		notice_no desc
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalHostRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from notice where notice_flag = 'H' or notice_flag ='A'
 	</select>
 
 	<select id="selectNoticeByNo" parameterType="int"
