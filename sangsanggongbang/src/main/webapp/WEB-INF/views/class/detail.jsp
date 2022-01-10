@@ -212,7 +212,7 @@
 															<span class="fas fa-users"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">${map["PPNUM"] } 명 /${map["FPNUM"] }</div>
+														<div class="h5 mt-3 mb-0">${map["FPNUM"] }/${map["PPNUM"] } 명</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
 															Person </span>
