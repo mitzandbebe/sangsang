@@ -60,7 +60,7 @@
                             <div class="item" >
                                 <!-- Card -->
                                 <div class="card border-light mb-4 animate-up-5" >
-                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] } '/>" class="position-relative">
+                                    <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>" class="position-relative">
                                     <c:choose >
                                     	<c:when test="${not empty map['THUMBNAIL']}">
                                         	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="썸네일">
@@ -71,7 +71,7 @@
                                     </c:choose>
                                     </a>
                                     <div class="card-body" style="width:330px; height:120px;">
-                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                        <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }
                                         </a>
                                         <c:forEach var="vo" items="${rlist}">

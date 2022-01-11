@@ -9,7 +9,7 @@ public class OrderVO extends MemberVO {
 	ORDER_ID	VARCHAR2	결제id
 	PAY_TYPE	VARCHAR2	결제유형
 	C_NO	NUMBER			클래스넘버
-	PAY_ID	VARCHAR2		사용용도 미정
+	PAY_ID	VARCHAR2		merchant_uid 영수증번호 넣기	
 	M_ID	NUMBER			맴버아이디
 	PAY_DATE	DATE		결제일
 	PRICE	NUMBER			결제금액
@@ -17,8 +17,6 @@ public class OrderVO extends MemberVO {
 	EA	NUMBER				결제수량
 	REFUND	VARCHAR2		취소 플래그
 	ORDER_NO NUMBER			결제번호
-	IMP_UID	VARCHAR2		아임포트 상점번호
-	MERCHANT_UID	VARCHAR2	영수증번호
 	*/
 	
 	private String orderId;
@@ -32,21 +30,7 @@ public class OrderVO extends MemberVO {
 	private int ea;
 	private String refund;
 	private int orderNo;
-	private String impUid;
-	private String merchantUid;
 	
-	public String getImpUid() {
-		return impUid;
-	}
-	public void setImpUid(String impUid) {
-		this.impUid = impUid;
-	}
-	public String getMerchantUid() {
-		return merchantUid;
-	}
-	public void setMerchantUid(String merchantUid) {
-		this.merchantUid = merchantUid;
-	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -118,10 +102,9 @@ public class OrderVO extends MemberVO {
 	public String toString() {
 		return "OrderVO [orderId=" + orderId + ", payType=" + payType + ", cNo=" + cNo + ", payId=" + payId + ", mId="
 				+ mId + ", payDate=" + payDate + ", price=" + price + ", cardNo=" + cardNo + ", ea=" + ea + ", refund="
-				+ refund + ", orderNo=" + orderNo + ", impUid=" + impUid + ", merchantUid=" + merchantUid + "]";
+				+ refund + ", orderNo=" + orderNo + "]";
 	}
-	
-	
+
 	
 	
 	

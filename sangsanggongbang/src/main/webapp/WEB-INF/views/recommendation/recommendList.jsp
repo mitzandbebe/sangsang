@@ -3,20 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:choose>
-	<c:when test="${!empty sessionScope.hId }">
-		<%@ include file="../inc/new_top_host.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.mId }">
-		<%@ include file="../inc/new_top_user.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.adId }">
-		<%@ include file="../inc/new_top_admin.jsp"%>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="../inc/new_top_user.jsp"%>
-	</c:otherwise>
-</c:choose>
+<%@include file="../inc/top.jsp"%>
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 <script
 	src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
@@ -56,11 +43,10 @@
 					<!-- 불편사항 내용반복 -->
 					<c:forEach var="vo" items="${list }">
 						<tr>
-							<th scope="row"><c:if test="${!empty sessionScope.adId }">(${vo.flag })</c:if></th>
+							<th scope="row">${vo.recoNo }</th>
 							<td><a
 								href="<c:url value='/recommendation/recommendDetail?recoNo=${vo.recoNo}'/>">
-									<div class="d-flex align-items-center">${vo.recoTitle }
-									</div> 
+									<div class="d-flex align-items-center">${vo.recoTitle }</div>
 							</a></td>
 							
 							<td><fmt:formatDate value="${vo.regdate }"
@@ -130,19 +116,6 @@
 	});
 </script>
 
-<c:choose>
-	<c:when test="${!empty sessionScope.hId }">
-		<%@ include file="../inc/bottom_host.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.mId }">
-		<%@ include file="../inc/bottom.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.adId }">
-		<%@ include file="../inc/bottom_admin.jsp"%>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="../inc/bottom.jsp"%>
-	</c:otherwise>
-</c:choose>
+<%@include file="../inc/bottom.jsp"%>
 </body>
 </html>

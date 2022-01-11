@@ -94,6 +94,7 @@ var InputImage =
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
                <div class="list-group dashboard-menu list-group-sm mt-4">
+
                 <a href="<c:url value='/dashboard/user/payment/myAccount'/>" class="d-flex list-group-item list-group-item-action">내 정보조회 <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/member/memberEditChkPwd'/>" class="d-flex list-group-item list-group-item-action active">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>

@@ -1,10 +1,8 @@
 package com.gr.ssgb.recommendation.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,15 +28,15 @@ public class RecommendController {
 	private static final Logger logger = LoggerFactory.getLogger(RecommendController.class);
 
 	private final RecommendationService recommendationService;
+	private final FileUploadUtil fileUploadUtil;
 
 	@Autowired
-	public RecommendController(RecommendationService recommendationService) {
+	public RecommendController(RecommendationService recommendationService, FileUploadUtil fileUploadUtil) {
 		this.recommendationService = recommendationService;
+		this.fileUploadUtil = fileUploadUtil;
 		logger.info("불편사항 생성자 주입");
 	}
 
-
-	
 	@GetMapping("/recommendWrite")
 	public String recommendationWrite() {
 		logger.info("불편사항 글 작성");
@@ -60,26 +58,6 @@ public class RecommendController {
 
 		return "common/message";
 	}
-	
-	/*
-	 * @GetMapping("/host/hostRecommendWrite") public String
-	 * hostRecommendationWrite() { logger.info("불편사항 글 작성"); return
-	 * "/recommendation/host/hostRecommendList"; }
-	 * 
-	 * 
-	 * @PostMapping("/host/hostRecommendWrite") public String
-	 * hostRecommendationWrite(@ModelAttribute RecommendationVO vo, Model model) {
-	 * logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
-	 * 
-	 * int cnt = recommendationService.insertRecommendation(vo);
-	 * logger.info("불편사항 작성 성공여부 cnt={}", cnt); String msg = "불편사항 작성에 실패했습니다", url
-	 * = "/recommendation/host/hostRecommendList"; if (cnt > 0) { msg =
-	 * "불편사항 작성에 성공했습니다"; } model.addAttribute("msg", msg);
-	 * model.addAttribute("url", url);
-	 * 
-	 * return "common/message"; }
-	 */
-
 //	@PostMapping("/recommendWrite")
 //	public String recommendationWrite(@ModelAttribute RecommendationVO vo, HttpServletRequest request) {
 //		logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
@@ -105,7 +83,7 @@ public class RecommendController {
 
 	// 2. 불편사항 목록
 	@RequestMapping("/recommendList")
-	public String list(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
+	public String list(@ModelAttribute SearchVO searchVo, Model model) {
 		logger.info("불편사항 목록");
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -116,28 +94,13 @@ public class RecommendController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("값 셋팅 후 searchVo={}", searchVo);
 
-		String adId=(String) session.getAttribute("adId");
-		String hId=(String) session.getAttribute("hId");
-		
-//		List<RecommendationVO> list = recommendationService.selectAllRecommendation(searchVo);
-		List<RecommendationVO> list = new ArrayList<RecommendationVO>();
-		int totalRecord = 0;
-		if (hId!=null && !hId.isEmpty()) {
-			list = recommendationService.selectAllHostRecommendation(searchVo);
-			totalRecord = recommendationService.selectTotalHostRecord(searchVo);
-		} else if (adId!=null && !adId.isEmpty()) {
-			list = recommendationService.selectAllRecommendation(searchVo);
-			totalRecord = recommendationService.selectTotalRecord(searchVo);
-		} else { //비회원은 멤버처럼 나오게
-			list = recommendationService.selectAllMemberRecommendation(searchVo);
-			totalRecord = recommendationService.selectTotalMemberRecord(searchVo);
-		}
-		
+		List<RecommendationVO> list = recommendationService.selectAllRecommendation(searchVo);
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
+		int totalRecord = recommendationService.selectTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
-		
+
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 

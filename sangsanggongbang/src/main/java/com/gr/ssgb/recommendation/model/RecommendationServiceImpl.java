@@ -48,6 +48,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 		return recommendationDAO.deleteRecommendation(recoNo);
 	}
 
+
 	@Override
 	public List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo) {
 		return recommendationDAO.selectAllMemberRecommendation(searchVo);
@@ -75,5 +76,6 @@ public class RecommendationServiceImpl implements RecommendationService {
 		cnt = recommendationDAO.reply(vo);
 		return cnt;
 	}
+
 
 }
