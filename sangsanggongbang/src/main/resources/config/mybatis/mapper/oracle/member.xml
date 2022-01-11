@@ -81,7 +81,21 @@
 		where m_id = #{mId}
 	</update>
 	
+	<insert id="insertConcern" parameterType="concernVo">
+		<selectKey keyProperty="concernNo" resultType="int" order="BEFORE">
+			select CONCERN_SEQ.nextval from dual
+		</selectKey>
+		insert into concern(CONCERN_NO,C_NO,M_NO)
+		values(#{concernNo},#{cNo},#{mNo})
+	</insert>
 	
+	<delete id="deleteConcern" parameterType="int">
+		delete concern where CONCERN_NO=#{concernNo}
+	</delete>	
+	
+	<select id="selectConcern" resultType="concernVo">
+		select * from concern 
+	</select>
 	
 </mapper>
 

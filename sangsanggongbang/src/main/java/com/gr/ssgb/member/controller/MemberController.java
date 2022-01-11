@@ -45,6 +45,7 @@ import com.gr.ssgb.common.TempPasswordUtil;
 import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
+import com.gr.ssgb.member.model.ConcernVO;
 import com.gr.ssgb.member.model.MailService;
 import com.gr.ssgb.member.model.MailVO;
 import com.gr.ssgb.member.model.MemberService;
@@ -584,6 +585,62 @@ public class MemberController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
+	}
+	
+	@GetMapping("member/interestClass")
+	public String interestClass_get(Model model) {
+		logger.info("관심클래스 보기");
+		
+		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
+		List<ConcernVO> interest= memberService.selectConcern();
+		model.addAttribute("classlist",classlist);
+		model.addAttribute("interest",interest);
+		return "member/interestClass";
+	}
+	
+	@RequestMapping("member/interest")
+	@ResponseBody
+	public int interest(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo) {
+		logger.info("ajax 등록 실행");
+		
+		String mId=(String) session.getAttribute("mId");
+		int mNo= memberService.selectMno(mId);
+		
+		conVo.setmNo(mNo);
+		conVo.setcNo(cNo);
+		logger.info("mNo={}",mNo);
+		logger.info("cNo={}",cNo);
+		
+		int cnt= memberService.insertConcern(conVo);
+		
+		logger.info("cnt={}",cnt);
+		
+		if(cnt>0) {
+			logger.info("관심클래스 등록성공");
+		}else {
+			logger.info("관심클래스 등록실패");
+		}
+		return cnt;
+	}
+	@RequestMapping("member/interestdelete")
+	@ResponseBody
+	public int interestdelete(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo) {
+		logger.info("ajax 삭제 실행");
+		
+		
+		conVo.setcNo(cNo);
+		logger.info("cNo={}",cNo);
+		
+		int cnt= memberService.deleteConcern(cNo);
+		
+		logger.info("cnt={}",cnt);
+		
+		if(cnt>0) {
+			logger.info("관심클래스 삭제성공");
+		}else {
+			logger.info("관심클래스 등록실패");
+		}
+		return cnt;
 	}
 	
 	
