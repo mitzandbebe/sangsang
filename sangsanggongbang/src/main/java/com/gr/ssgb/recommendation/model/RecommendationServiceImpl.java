@@ -47,4 +47,24 @@ public class RecommendationServiceImpl implements RecommendationService {
 		return recommendationDAO.deleteRecommendation(recoNo);
 	}
 
+	@Override
+	public List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo) {
+		return recommendationDAO.selectAllMemberRecommendation(searchVo);
+	}
+
+	@Override
+	public List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo) {
+		return recommendationDAO.selectAllHostRecommendation(searchVo);
+	}
+
+	@Override
+	public int selectTotalMemberRecord(SearchVO searchVo) {
+		return recommendationDAO.selectTotalMemberRecord(searchVo);
+	}
+
+	@Override
+	public int selectTotalHostRecord(SearchVO searchVo) {
+		return recommendationDAO.selectTotalHostRecord(searchVo);
+	}
+
 }
