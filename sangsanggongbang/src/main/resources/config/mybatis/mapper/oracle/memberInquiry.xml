@@ -127,11 +127,7 @@
 		where M_NO =#{mNo}
 	</update>
 	
-<!-- 	<select id="selectBnobyMno" parameterType="banVo"
-		resultType="int">
-		select BNO from ban where m_no=#{mNo}
-	</select> -->
-	
+
 	<delete id="deleteBan" parameterType="banVo">
 		delete ban
 		where m_No=#{mNo}
