@@ -504,6 +504,7 @@
 		
 		let num = 0;
 		
+
 	heart.addEventListener('click', function() {
 			if ($('#heart').hasClass('far')) {
 				heart.classList.remove('far');

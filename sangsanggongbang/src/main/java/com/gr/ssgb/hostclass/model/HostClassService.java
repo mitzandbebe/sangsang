@@ -27,5 +27,10 @@ public interface HostClassService {
 	int deleteContents(int cNo);
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
+
 	int selectConcernbyCNo(ConcernVO concernVo);
+
+
+	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
+
 }

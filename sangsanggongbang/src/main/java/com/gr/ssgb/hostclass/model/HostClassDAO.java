@@ -31,4 +31,8 @@ public interface HostClassDAO {
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
 	int selectConcernbyCNo(ConcernVO concernVo);
+
+
+	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
+
 }
