@@ -80,8 +80,8 @@
 										</c:if>
 									 </c:forEach>
                                 </div> 
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item small p-0" ><span class="fas fa-map-marker-alt mr-2"></span>
+                                <ul class="list-group mb-3" style="text-align: left;margin: 5%;">
+                                    <li class="list-group-item small p-0 " ><span class="fas fa-map-marker-alt mr-2 "></span>
                                     	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
                                                 	${fn:substring(addr,0,2)}</li>
                                      <li class="list-group-item small p-0"><span class="far fa-calendar-alt mr-2"></span>
