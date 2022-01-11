@@ -3,10 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.paymentList.model.PaymentListDAO">
-	<select id="selectPaymentListAll" parameterType="int" resultType="map">
-		select * from paymentListView where m_no = #{mNo}
+	<select id="selectPaymentListAll" parameterType="paymentSearchVo" resultType="Map">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from
+		    (
+		        select * from paymentListView
+				where m_no = #{mNo}
+				order by paylist_no desc		        
+		    )A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
 	</select>
 	
+	<select id="selectTotalPayment" parameterType="int" resultType="int">
+		select count(*) from paymentListView where m_no = #{mNo}
+	</select>
 	
 	
 </mapper>

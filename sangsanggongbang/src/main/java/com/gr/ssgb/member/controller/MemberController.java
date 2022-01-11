@@ -491,9 +491,9 @@ public class MemberController {
 			url="/index";
 			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
 			HttpSession session = request.getSession();
-			session.setAttribute("mNickname", vo.getmNickname());
+			session.setAttribute("mNickname", vo2.getmNickname());
 			if(fileName!=null && !fileName.isEmpty()) {
-				session.setAttribute("mFilename", vo.getmFilename());
+				session.setAttribute("mFilename", vo2.getmFilename());
 			}else {
 				session.setAttribute("mFilename", oldFileName);
 			}
