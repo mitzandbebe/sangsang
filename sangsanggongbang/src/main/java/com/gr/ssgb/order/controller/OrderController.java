@@ -1,7 +1,5 @@
 package com.gr.ssgb.order.controller;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +62,7 @@ public class OrderController {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-
+		
 		return "login/login";
 	}
 
@@ -111,7 +109,9 @@ public class OrderController {
 		int cnt = orderService.insertOrder(vo);
 
 		return cnt;
+
 	}
+	
 
 }
 

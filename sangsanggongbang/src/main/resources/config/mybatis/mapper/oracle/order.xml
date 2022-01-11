@@ -4,14 +4,16 @@
 
 <mapper namespace="com.gr.ssgb.order.model.OrderDAO">
 	<insert id="insertOrder" parameterType="orderVo">
+
 		insert into orders(c_no, m_id, price, refund, ea, imp_uid, merchant_uid, f_date, f_time)
 		values(#{cNo}, #{mId}, #{price}, #{refund}, #{ea}, #{impUid}, #{merchantUid},#{fDate},#{fTime})
+
 	</insert>
 	
-	<!-- <select id="selectOrdersView" parameterType="int" resultType="map">
+	<select id="selectOrdersView" parameterType="int" resultType="map">
 		select * from orders
 		where orderno=#{orderNo}
-	</select> -->
+	</select>
 </mapper>
 
 

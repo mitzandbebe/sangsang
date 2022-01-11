@@ -6,6 +6,7 @@ import com.gr.ssgb.member.model.MemberVO;
 
 public class OrderVO {
 	/*
+
 	IMP_UID	VARCHAR2		아임포트 상점번호
 	MERCHANT_UID	VARCHAR2	영수증번호
 	M_ID	NUMBER			맴버아이디
@@ -15,6 +16,7 @@ public class OrderVO {
 	EA	NUMBER				결제수량
 	F_DATE	DATE			확정일자
 	F_TIME	NUMBER			확정시간
+
 	*/
 	
 	private int cNo;
@@ -38,6 +40,7 @@ public class OrderVO {
 	}
 	public void setMerchantUid(String merchantUid) {
 		this.merchantUid = merchantUid;
+
 	}
 	public String getmId() {
 		return mId;

@@ -1,22 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../inc/new_top_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../inc/new_top_user.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../inc/new_top_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../inc/new_top_user.jsp"%>
-    </c:otherwise>
-</c:choose>
+<%@ include file="../inc/top.jsp" %>
 <style type="text/css">
 	.cartListTbl{
 		width:650px;		
@@ -56,6 +40,9 @@
 <h2>주문 완료</h2>
 <p style="font-size:13pt;font-weight:bold">
 	주문과 결제가 정상적으로 완료되었습니다
+
+	[주문번호 : ${param.orderNo }]
+
 </p>
 <c:forEach var="map" items="${map}">
 ${map["buyerName"] } <br>
@@ -118,19 +105,42 @@ summary="주문 상품 목록에 관한 표로써, 상품명,가격, 수량, 금
 	</tbody>
 </table>
 </div>
-<br> --%>
+<br>
+ 
+<div class="divForm">   
+  	<p class="titleP">
+		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
+    	<span class="title">배송 정보</span>
+	</p>
+	<p>
+        <span class="sp1">보내시는 분 </span>
+        <span>${orderMap['SENDER'] }</span>        
+    </p>
+    <p>
+        <span class="sp1">받으시는 분 </span>
+        <span>${orderMap['CUSTOMERNAME'] }</span>
+    </p>
+    
+    <p>
+        <span class="sp1">배송지 주소</span>
+        <span>${orderMap['ADDRESS'] } ${orderMap['ADDRESSDETAIL'] }</span>
+    </p>
+    <p>
+        <span class="sp1">휴대폰 번호</span>
+        <span>${orderMap['HP'] }</span>
+    </p>        
+   
+	<br>
+	<p class="titleP">
+		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
+		<span class="title">결제 정보</span>
+	</p>	
+    <p>
+        <span class="sp1">결제금액</span>
+        <span>
+        	<fmt:formatNumber value="${orderMap['TOTALPRICE'] }" 
+        		pattern="#,###"/>원</span>
+    </p>
+</div>
 
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../inc/bottom_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../inc/bottom.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../inc/bottom_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../inc/bottom.jsp"%>
-    </c:otherwise>
-</c:choose>
+<%@ include file="../inc/bottom.jsp"%>    

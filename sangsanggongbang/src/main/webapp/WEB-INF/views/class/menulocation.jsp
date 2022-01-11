@@ -33,7 +33,7 @@
                                 </c:choose>
                             </a>
                             <div class="card-body">
-                                <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }
                                 </a>
                                  <c:forEach var="vo" items="${rlist}">
@@ -82,7 +82,7 @@
 										</c:if>
 									 </c:forEach>
                                 </div> 
-                                <ul class="list-group mb-3">
+                                <ul class="list-group mb-3" style="text-align: left;margin: 5%;">
                                     <li class="list-group-item small p-0" ><span class="fas fa-map-marker-alt mr-2"></span>
                                     	<c:set var="addr" value="${ map['L_ADDRESS']}"/>
                                                 	${fn:substring(addr,0,2)}</li>

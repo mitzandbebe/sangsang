@@ -2,28 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
- 	<!-- 검색기능 -->
-	<sql id="searchWhereMB">
+<mapper	namespace="com.gr.ssgb.memberInquiry.model.MemberInquiryDAO">
+	
+	<sql id="searchWhere">
 		<if test="searchKeyword!=null and searchKeyword!=''">
-			 ${searchCondition} like '%' || #{searchKeyword} ||
-			'%' and 
+			where ${searchCondition} like '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
-	<sql id="searchWhereH">
-		<if test="searchKeyword!=null and searchKeyword!=''">
-			where ${searchCondition} like '%' || #{searchKeyword} ||
-			'%' 
-		</if>
-	</sql>
-<!-- 	<sql id="searchWhereB">
-		<if test="searchKeyword!=null and searchKeyword!=''">
-			${searchCondition} like '%' || #{searchKeyword} ||
-			'%'and
-		</if>
-	</sql> -->
- 	<!-- 멤버 리스트 -->
+	
 	<select id="selectMemberAll" parameterType="searchVo"
 		resultType="memberVo">
 		select *
@@ -33,9 +19,7 @@
 		from
 		(
 		select * from member
-		where
-		<include refid="searchWhereMB"></include>
-		 M_BAN_FLAG ='N'
+		 <include refid="searchWhere"></include>
 		order by m_no
 		)A
 		)
@@ -48,14 +32,11 @@
 		resultType="int">
 		select count(*) from member
 	</select>
-
-	<select id="selectMemberByNo" parameterType="int"
-		resultType="memberVo">
+	
+	<select id="selectMemberByNo" parameterType="int" resultType="memberVo">
 		select * from member where m_no=#{mNo}
 	</select>
-
- 	<!-- 호스트 리스트 -->
-
+	
 	<select id="selectHostAll" parameterType="searchVo"
 		resultType="hostVo">
 		select *
@@ -65,7 +46,7 @@
 		from
 		(
 		select * from host
-		<include refid="searchWhereH"></include>
+		<include refid="searchWhere"></include>
 		order by h_no
 		)A
 		)
@@ -78,8 +59,7 @@
 		resultType="int">
 		select count(*) from host
 	</select>
-
- 	<!-- 벤 리스트 -->
+	
 	<select id="selectBanAll" parameterType="searchVo"
 		resultType="map">
 		select *
@@ -89,9 +69,7 @@
 		from
 		(
 		select * from banView
-		where
-		<include refid="searchWhereMB"></include>
-		M_BAN_FLAG ='Y'
+		 <include refid="searchWhere"></include>
 		order by bno
 		)A
 		)
@@ -104,32 +82,16 @@
 		resultType="int">
 		select count(*) from ban
 	</select>
-
-	<update id="insertBanF" parameterType="banVo"> <!-- 밴플래그 처리 -->
-		update member
-		set M_BAN_FLAG
-		='Y'
-		where M_NO =#{mNo}
-	</update>
-
-	<insert id="insertBan" parameterType="banVo"> <!-- 밴플래그 처리 -->
+	
+	<insert id="insertBan" parameterType="banVo">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-			select ban_seq.nextval from dual
+			select BAN_SEQ.NEXTVAL from dual
 		</selectKey>
-		insert into ban(BNO,M_NO,BCS,BC)
-		values(#{bno},#{mNo},#{bcs},#{bc})
+			insert into ban(bno, m_no, bcs, bc)
+			values(#{bno}, #{mNo},#{bcs},#{bc})
 	</insert>
 	
-	<update id="deleteBanF" parameterType="banVo">
-		update member
-		set M_BAN_FLAG
-		='N'
-		where M_NO =#{mNo}
-	</update>
-	
-
-	<delete id="deleteBan" parameterType="banVo">
-		delete ban
-		where m_No=#{mNo}
+	<delete id="banDelete" parameterType="int">
+		delete ban where m_no=#{mNo}
 	</delete>
 </mapper>

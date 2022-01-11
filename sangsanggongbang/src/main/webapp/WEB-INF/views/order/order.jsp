@@ -1,28 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../inc/new_top_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../inc/new_top_user.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../inc/new_top_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../inc/new_top_user.jsp"%>
-    </c:otherwise>
-</c:choose>
-<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
+<%@ include file="../inc/top.jsp"%>
 <script type="text/javascript">
-
 	$(function() {
 		$(function() {
-			$("#sPpunm").on("propertychange change keyup paste input", function() {
+			$("#sPpunm").on("propertychange change keyup paste input",
+				function() {
 					var ppnum = $('#sPpunm').val();
 					var price = $('#price').val();
 					var totalPrice = ppnum * price;
@@ -46,14 +29,19 @@
 				buyer_email : $('#mId').val(),
 				buyer_name : $('#name').val(),
 				buyer_tel : $('#phone').val(),
-				buyer_addr : $('#mAddress').val()
-						+ $('#mAddressDetail').val(),
-				buyer_postcode : $('#mZipcode').val(),
-				digital : true // 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+				buyer_addr : $('#mAddress')
+						.val()
+						+ $('#mAddressDetail')
+								.val(),
+				buyer_postcode : $('#mZipcode')
+						.val(),
+				digital : true
+			// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
 			},
 			function(rsp) {
 				console.log(rsp);
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+
 					var msg = '결제가 완료되었습니다';
 					var result = {
 					"impUid" : rsp.imp_uid,	//상점id
@@ -89,12 +77,14 @@
 				        }
 					}); //ajax
 					
-				}else{//결제 실패시
-					var msg = '결제에 실패했습니다';
-					msg += '에러 : ' + rsp.error_msg
+					location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete");
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : '
+							+ rsp.error_msg;
 				}
-				console.log(msg);
-			});//pay
+				alert(msg);
+			});
 		});
 	});
 </script>
@@ -360,17 +350,5 @@
 	</div>
 </div>
 
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../inc/bottom_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../inc/bottom.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../inc/bottom_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../inc/bottom.jsp"%>
-    </c:otherwise>
-</c:choose>
+
+<%@ include file="../inc/bottom.jsp"%>

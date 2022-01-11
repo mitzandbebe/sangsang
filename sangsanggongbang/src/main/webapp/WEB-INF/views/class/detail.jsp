@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<style>
+.fa-heart:hover {
+    cursor: pointer;
+}
+
+.fas.fa-heart {
+    color:red;
+}
+</style>
 <c:choose>
     <c:when test="${!empty sessionScope.hId }">
         <%@ include file="../inc/new_top_host.jsp"%>
@@ -384,25 +393,40 @@
 						<form action="order" method="post" class="card border-light p-3 mb-4">
 						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
+						<input type="hidden" id="con" value="${con }">
+						<c:if test="${con == 0 }">
+						 <i class="far fa-heart" id="heart">&nbsp;
+						 </c:if>
+						<c:if test="${con > 0}">
+						 <i class="fas fa-heart" id="heart">&nbsp;
+						 </c:if>
+						 <label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
+						 
+						 </div>
+						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
 								<div class="input-group input-group-border">
 										<span class="input-group-text">
 											<i class="far fa-calendar-alt"></i>
 										</span>
-									<div class="text-center">
-									<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" />
+									<div class="text-center"><label for="exampleFormControlSelect1">&nbsp;
+									<fmt:formatDate value="${map['C_START_TIME'] }"  pattern="yyyy-MM-dd" /></label>
 									</div>
 								</div>
 								<div class="input-group input-group-border">
 										<span class="input-group-text">
 											<i class="far fa-clock"></i>
 										</span>
-									<div class="text-center">${map["C_TIME"] } 시</div>
+									<div class="text-center"><label for="exampleFormControlSelect1">&nbsp;
+									${map["C_TIME"] } 시</label></div>
 								</div> 
+							<div class="input-group input-group-border" id="price">
+										<span class="input-group-text">
+											<i class="fas fa-coins"></i>
+										</span>
+										<label for="exampleFormControlSelect2">&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
-							<br> <label for="exampleFormControlSelect2">가격</label>
-							<div class="c03-charge" id="price">${map["C_PRICE"] }</div>
 							<div class="text-center">
 								
 								<button type="submit" class="btn btn-block btn-primary mt-4">
@@ -470,32 +494,99 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
 <script>
-/* $(function(){
-	$(document).ready(function(){
-		var i =$(this).val();
-		console.log(i);
-		$("#categoryName").load("http://localhost:9091/sangsanggongbang/class/listbyCategory?categoryName="+i);
+
+//하트 클릭시빨강, 비동기방식으로 저장/삭제
+	$(function() {
+		const heart = document.querySelector('.fa-heart');
+
+		let cNo = ${param.cNo};
+
+		
+		let num = 0;
+		
+
+	heart.addEventListener('click', function() {
+			if ($('#heart').hasClass('far')) {
+				heart.classList.remove('far');
+				heart.classList.add('fas');
+
+
+		var bool = true;
+		heart.addEventListener('click', function() {
+			if (bool) {
+
+				$.ajax({
+					type : "POST",
+					url : '<c:url value="/member/interest"/>',
+					data : "cNo=" + cNo,
+					success : function(res) {
+						alert("관심클래스로 등록하였습니다.");
+						heart.classList.remove('far');
+						heart.classList.add('fas');
+					},
+					error : function() {
+						alert("관심클래스로 등록할 수 없습니다.");
+						heart.classList.remove('fas');
+						heart.classList.add('far');
+					}
+				}); //ajax 
+
+
+				num++;
+			} else if ($('#heart').hasClass('fas')) { //num==1
+				heart.classList.remove('fas');
+				heart.classList.add('far');
+
+			 //하트클릭
+				bool=false;
+			}else{
+
+				$.ajax({
+					type : "POST",
+					url : '<c:url value="/member/interestdelete"/>',
+					data : "cNo=" + cNo,
+					success : function(res) {
+						alert("관심클래스를 삭제하였습니다.");
+						heart.classList.remove('fas');
+						heart.classList.add('far');
+					},
+					error : function() {
+						alert("관심클래스 삭제를할 수 없습니다.");
+						heart.classList.remove('far');
+						heart.classList.add('fas');
+					}
+				}); //ajax 
+
+
+				num--;
+
+			}
+		}); //하트클릭
+
 	});
-}); */
+
+			}
+		});
 
 
-function relayout() {    
-    
-    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-    map.relayout();
-}
+	function relayout() {
+
+		// 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+		// 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+		// window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+		map.relayout();
+	}
 	$(document).ready(function() {
 		let hash = location.hash.substring(1);
 		$('.nav-tabs #' + hash).trigger('click');
 	});
-	function openChat(){
-    	var contextPath="/sangsanggongbang";
-    	var roomId = "${hostVo.hNickname}";
-    	open(contextPath+'/chat/room?roomId='+roomId,'chat',
-    	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-    }
+	function openChat() {
+		var contextPath = "/sangsanggongbang";
+		var roomId = "${hostVo.hNickname}";
+		open(contextPath + '/chat/room?roomId=' + roomId, 'chat',
+				'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+	}
+	});
 </script>
 
 <c:choose>

@@ -1,9 +1,11 @@
 package com.gr.ssgb.hostclass.model;
 
+import com.gr.ssgb.common.SearchVO;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class HostClassVO {
+public class HostClassVO extends SearchVO {
 	//hostclass -------------------
 //	C_NO NUMBER NOT NULL, /* 클래스코드 */
 //	C_NAME VARCHAR(100) NOT NULL, /* 클래스명 */
@@ -21,6 +23,7 @@ public class HostClassVO {
 	private int cNo;
 	private String cName;
 	private int CateCode;
+	private String categoryCode;
 	private int hNo;
 	private int lNo;
 	private int cPrice;
@@ -30,7 +33,17 @@ public class HostClassVO {
 	private int cTime;
 	private String endFlag;
 	private int fpnum;
-	
+
+	private Date cStartTime;
+
+	private ContentsVO contents;
+	private CategoryVO category;
+	private LocationVO location;
+
+	private String lAddress;
+
+	private Double totalRRate;
+
 	public int getcNo() {
 		return cNo;
 	}
@@ -104,7 +117,64 @@ public class HostClassVO {
 	public void setFpnum(int fpnum) {
 		this.fpnum = fpnum;
 	}
-	
+
+	public String getCategoryCode() {
+		return categoryCode;
+	}
+
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
+	}
+
+	public CategoryVO getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryVO category) {
+		this.category = category;
+	}
+
+	public ContentsVO getContents() {
+		return contents;
+	}
+
+	public void setContents(ContentsVO contents) {
+		this.contents = contents;
+	}
+
+	public LocationVO getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationVO location) {
+		this.location = location;
+	}
+
+	public String getlAddress() {
+		return lAddress;
+	}
+
+	public void setlAddress(String lAddress) {
+		this.lAddress = lAddress;
+	}
+
+	public Date getcStartTime() {
+		return cStartTime;
+	}
+
+	public void setcStartTime(Date cStartTime) {
+		this.cStartTime = cStartTime;
+	}
+
+
+	public Double getTotalRRate() {
+		return totalRRate;
+	}
+
+	public void setTotalRRate(Double totalRRate) {
+		this.totalRRate = totalRRate;
+	}
+
 	@Override
 	public String toString() {
 		return "HostClassVO [cNo=" + cNo + ", cName=" + cName + ", CateCode=" + CateCode + ", hNo=" + hNo + ", lNo="

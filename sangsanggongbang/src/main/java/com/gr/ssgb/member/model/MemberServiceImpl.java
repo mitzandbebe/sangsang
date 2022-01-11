@@ -99,5 +99,22 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateAddiWithoutProfile(vo);
 
 	}
+	@Override
+	public int updateMGrade(MemberVO vo) {
+		return memberDao.updateMGrade(vo);
+	}
+	@Override
+	public int insertConcern(ConcernVO concernVo) {
+		return memberDao.insertConcern(concernVo);
+	}
+	@Override
+	public int deleteConcern(int cNo) {
+		return memberDao.deleteConcern(cNo);
+	}
+	@Override
+	public List<ConcernVO> selectConcern() {
+		return memberDao.selectConcern();
+
+	}
 	
 }

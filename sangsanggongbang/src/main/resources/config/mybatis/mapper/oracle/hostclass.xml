@@ -160,42 +160,71 @@
 		delete from C_Contents where c_no=#{cNo}
 	</delete>
 
-	
-	
-<!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
-		<result  property="contentsNo" column="contents_no" />
-		<result  property="thumbnail" column="thumbnail" />
-		<result  property="cFilename1" column="contents_filename1" />
-		<result  property="cFilename2" column="contents_filename2" />
-		<result  property="cFilename3" column="contents_filename3" />
-		<result  property="cFilename4" column="contents_filename4" />
-		<result  property="cFilename5" column="contents_filename5"/>
-	</resultMap>
-	
-	<resultMap  type="com.gr.ssgb.hostclass.model.HostClassVO" id="hostClass">
-		<result  property="cNo" column="c_no" />
-		<result  property="cName" column="C_NAME" />
-		<result  property="CateCode" column="CATEGORY_CODE" />
-		<result  property="hNo" column="H_NO" />
-		<result  property="lNo" column="L_NO" />
-		<result  property="cPrice" column="C_PRICE"/>
-		<result  property="ppnum" column="PPNUM" />
-		<result  property="cRegdate" column="C_REGDATE"/>
-		<result  property="cStart" column="C_START_TIME"/>
-		<result  property="cEnd" column="C_END_TIME" />
-		<result  property="endFlag" column="END_FLAG" />
-		<collection property="contentsVO" resultMap="contents"/>
-		
-	</resultMap> -->
-	
-	
-<!-- 	<resultMap type="com.gr.ssgb.hostclass.model.ClassAllVO" id="classAll">
-		<collection property="hostClassVO" resultMap="hostClass"/>
-		<collection property="contentsVO" resultMap="contents"/>
-	</resultMap> -->
 	<select id="selectClassCnt" parameterType="int" resultType="int">
 		select count(*) from hostclass where h_no = #{hNo}
 	</select>
 
 	
+	<select id="selectConcernbyCNo" parameterType="concernVo" resultType="int">
+		select count(*) from concern where c_no=#{cNo} and m_no=#{mNo}
+	</select>
+
+	<select id="findBySearchClass" parameterType="hostClassVo" resultType="hostClassVo">
+		SELECT
+			  H.C_NO
+			, H.C_NAME
+			, H.CATEGORY_CODE
+			, H.H_NO
+			, H.L_NO
+			, H.C_PRICE
+			, H.PPNUM
+			, H.C_REGDATE
+			, H.C_START_TIME
+			, H.END_FLAG
+			, H.C_TIME
+			, H.FPNUM
+
+			, C.CATEGORY_CODE AS "category.categoryCode"
+			, C.CATEGORY_NAME AS "category.categoryName"
+
+			, L.L_NO AS "location.lNo"
+			, L.L_LATITUDE AS "location.lLatitude"
+			, L.L_LONGITUDE AS "location.lLongitude"
+			, L.ZIPCODE AS "location.zipcode"
+			, L.L_ADDRESS AS "location.lAddress"
+			, L.L_ADDRESS_DETAIL AS "location.lAddressDetail"
+			, L.H_NO AS "location.hNo"
+
+			, CC.CONTENTS_NO AS "contents.contentsNo"
+			, CC.C_NO AS "contents.cNo"
+			, CC.THUMBNAIL AS "contents.thumbnail"
+			, CC.CONTENTS_FILENAME1 AS "contents.contentsFilename1"
+			, CC.CONTENTS_FILENAME2 AS "contents.contentsFilename2"
+			, CC.CONTENTS_FILENAME3 AS "contents.contentsFilename3"
+			, CC.CONTENTS_FILENAME4 AS "contents.contentsFilename4"
+			, CC.CONTENTS_FILENAME5 AS "contents.contentsFilename5"
+			, CC.CONTENTS_CONTENT AS "contents.contentsContent"
+
+			, (SELECT ROUND(AVG(R_RATE), 1) FROM REVIEW WHERE C_NO = H.C_NO) AS TOTAL_R_RATE
+
+		FROM HOSTCLASS H
+		LEFT OUTER JOIN C_CONTENTS CC ON CC.C_NO = H.C_NO
+		LEFT OUTER JOIN CATEGORY C ON C.CATEGORY_CODE = H.CATEGORY_CODE
+		LEFT OUTER JOIN LOCATION L ON L.L_NO = H.L_NO
+		WHERE 1=1
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(cName) == false">
+			AND H.C_NAME LIKE '%' || #{cName} || '%'
+		</if>
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(categoryCode) == false">
+			AND H.CATEGORY_CODE = #{categoryCode}
+		</if>
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(lAddress) == false">
+			AND L.L_ADDRESS LIKE '%' || #{lAddress} || '%'
+		</if>
+
+	</select>
+
 </mapper>

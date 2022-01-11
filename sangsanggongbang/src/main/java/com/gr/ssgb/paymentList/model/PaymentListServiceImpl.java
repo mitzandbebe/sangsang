@@ -6,8 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gr.ssgb.common.PaymentSearchVO;
-
 @Service
 public class PaymentListServiceImpl implements PaymentListService{
 	public final PaymentListDAO paymentListDao;
@@ -18,23 +16,18 @@ public class PaymentListServiceImpl implements PaymentListService{
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectPaymentListAll(PaymentSearchVO paySearchVo) {
-		return paymentListDao.selectPaymentListAll(paySearchVo);
+	public List<Map<String, Object>> selectPaymentListAll(int mNo) {
+		return paymentListDao.selectPaymentListAll(mNo);
 	}
 
 	@Override
-	public int selectTotalPayment(int mNo) {
-		return paymentListDao.selectTotalPayment(mNo);
+	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo) {
+		return paymentListDao.selectRefundByNo(paymentSearchVo);
 	}
 
 	@Override
-	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo) {
-		return paymentListDao.selectByNo(paymentSearchVo);
-	}
-
-	@Override
-	public int deletePayment(String paylistNo) {
-		return paymentListDao.deletePayment(paylistNo);
+	public int selectTotalRefund(int mNo) {
+		return paymentListDao.selectTotalRefund(mNo);
 	}
 
 	/*

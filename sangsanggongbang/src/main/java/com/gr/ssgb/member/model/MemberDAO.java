@@ -21,6 +21,13 @@ public interface MemberDAO {
 	int findPaymentCnt(int getmNo);
 	int updateNickname(MemberVO memberVo);
 	int updateAddiWithoutProfile(MemberVO vo);
+
+	int updateMGrade(MemberVO vo);
 	
+
+
+	int insertConcern(ConcernVO concernVo);
+	int deleteConcern(int cNo);
+	List<ConcernVO> selectConcern();
 
 }

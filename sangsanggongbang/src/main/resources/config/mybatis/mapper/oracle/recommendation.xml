@@ -9,8 +9,10 @@
 		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
 			select RECOMMENDATION_SEQ.nextval from dual
 		</selectKey>
-		insert into recommendation(reco_no, reco_title, reco_content)
-		values(#{recoNo},#{recoTitle}, #{recoContent})
+
+		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}) 
+
 	</insert>
  
 	<select id="selectAllRecommendation" parameterType="searchVo"
@@ -21,8 +23,11 @@
 		select rownum as RNUM, A.*
 		from
 		(
-		select * from recommendation order by
-		reco_no desc
+
+		select * from
+		recommendation 
+		order by group_no desc, sort_No
+
 		)A
 		)
 		<![CDATA[
@@ -54,5 +59,18 @@
 		delete
 		recommendation where reco_no=#{recoNo}
 	</delete>
+	<!-- 답변 -->
+	<insert id="reply" parameterType="recommendationVo">
+ 		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
+			select recommendation_seq.nextval from dual
+		</selectKey>
+		insert into recommendation(reco_no, reco_title, reco_content, group_No, sort_No, step)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{groupNo}, #{sortNo}+1, #{step}+1)
+ 	</insert>
 
+ 	<update id="updateSortNo" parameterType="RecommendationVO">
+ 		update recommendation
+		set sort_no=sort_no+1
+		where group_no=#{groupNo} and sort_no>#{sortNo}
+ 	</update>
 </mapper>
