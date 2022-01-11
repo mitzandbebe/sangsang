@@ -1,9 +1,10 @@
 package com.gr.ssgb.paymentList.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PaymentListService {
-	public List<PaymentListVO> selectPaymentListAll();
+	public List<Map<String, Object>> selectPaymentListAll(int mNo);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

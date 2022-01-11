@@ -1,29 +1,28 @@
 package com.gr.ssgb.paymentList.model;
 
 public class PaymentListVO {
-	private String col; //결제번호 
-	private int uNo; //개인회원번호
-	private int cCode; //클래스번호
+	private String paylistNo; //결제번호 
+	private int mNo; //개인회원번호
+	private int cNo; //클래스번호
 	private int couponNo; //쿠폰발급번호
 	private int qty; //수량
-	private String endFlag; //클래스 종료여부
-	public String getCol() {
-		return col;
+	public String getPaylistNo() {
+		return paylistNo;
 	}
-	public void setCol(String col) {
-		this.col = col;
+	public void setPaylistNo(String paylistNo) {
+		this.paylistNo = paylistNo;
 	}
-	public int getuNo() {
-		return uNo;
+	public int getmNo() {
+		return mNo;
 	}
-	public void setuNo(int uNo) {
-		this.uNo = uNo;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
-	public int getcCode() {
-		return cCode;
+	public int getcNo() {
+		return cNo;
 	}
-	public void setcCode(int cCode) {
-		this.cCode = cCode;
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 	public int getCouponNo() {
 		return couponNo;
@@ -37,18 +36,12 @@ public class PaymentListVO {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
-	public String getEndFlag() {
-		return endFlag;
-	}
-	public void setEndFlag(String endFlag) {
-		this.endFlag = endFlag;
-	}
-	
 	@Override
 	public String toString() {
-		return "PaymentListVO [col=" + col + ", uNo=" + uNo + ", cCode=" + cCode + ", couponNo=" + couponNo + ", qty="
-				+ qty + ", endFlag=" + endFlag + "]";
+		return "PaymentListVO [paylistNo=" + paylistNo + ", mNo=" + mNo + ", cNo=" + cNo + ", couponNo=" + couponNo
+				+ ", qty=" + qty + "]";
 	}
+	
 	
 	
 	
