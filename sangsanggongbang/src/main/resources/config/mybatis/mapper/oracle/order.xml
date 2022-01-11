@@ -4,12 +4,10 @@
 
 <mapper namespace="com.gr.ssgb.order.model.OrderDAO">
 	<insert id="insertOrder" parameterType="orderVo">
-		<selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
-			select orders_seq.nextval from dual 
-		</selectKey>
-		insert into orders(order_id, pay_type, c_no, pay_id, m_id, pay_date, price, card_no, ea, refund, order_no)
-		values(#{orderId}, #{payType}, #{cNo}, #{payId}, 
-			#{mId},#{payDate}, #{price}, #{cardNo}, #{ea}, #{refund},#{orderNo})
+
+		insert into orders(c_no, m_id, price, refund, ea, imp_uid, merchant_uid, f_date, f_time)
+		values(#{cNo}, #{mId}, #{price}, #{refund}, #{ea}, #{impUid}, #{merchantUid},#{fDate},#{fTime})
+
 	</insert>
 	
 	<select id="selectOrdersView" parameterType="int" resultType="map">

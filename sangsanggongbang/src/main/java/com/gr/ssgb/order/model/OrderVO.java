@@ -4,56 +4,43 @@ import java.sql.Timestamp;
 
 import com.gr.ssgb.member.model.MemberVO;
 
-public class OrderVO extends MemberVO {
+public class OrderVO {
 	/*
-	ORDER_ID	VARCHAR2	결제id
-	PAY_TYPE	VARCHAR2	결제유형
-	C_NO	NUMBER			클래스넘버
-	PAY_ID	VARCHAR2		merchant_uid 영수증번호 넣기	
+
+	IMP_UID	VARCHAR2		아임포트 상점번호
+	MERCHANT_UID	VARCHAR2	영수증번호
 	M_ID	NUMBER			맴버아이디
-	PAY_DATE	DATE		결제일
+	C_NO	NUMBER			클래스넘버
 	PRICE	NUMBER			결제금액
-	CARD_NO	NUMBER			카드번호
+	REFUND	VARCHAR2		결제상태
 	EA	NUMBER				결제수량
-	REFUND	VARCHAR2		취소 플래그
-	ORDER_NO NUMBER			결제번호
+	F_DATE	DATE			확정일자
+	F_TIME	NUMBER			확정시간
+
 	*/
 	
-	private String orderId;
-	private String payType;
 	private int cNo;
-	private String payId;
 	private String mId;
-	private Timestamp payDate;
 	private int price;
-	private int cardNo;
-	private int ea;
 	private String refund;
-	private int orderNo;
+	private int ea;
+	private String impUid;
+	private String merchantUid;
+	private Timestamp fDate;
+	private int fTime;
 	
-	public String getOrderId() {
-		return orderId;
+	public String getImpUid() {
+		return impUid;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
 	}
-	public String getPayType() {
-		return payType;
+	public String getMerchantUid() {
+		return merchantUid;
 	}
-	public void setPayType(String payType) {
-		this.payType = payType;
-	}
-	public int getcNo() {
-		return cNo;
-	}
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
-	}
-	public String getPayId() {
-		return payId;
-	}
-	public void setPayId(String payId) {
-		this.payId = payId;
+	public void setMerchantUid(String merchantUid) {
+		this.merchantUid = merchantUid;
+
 	}
 	public String getmId() {
 		return mId;
@@ -61,23 +48,17 @@ public class OrderVO extends MemberVO {
 	public void setmId(String mId) {
 		this.mId = mId;
 	}
-	public Timestamp getPayDate() {
-		return payDate;
+	public int getcNo() {
+		return cNo;
 	}
-	public void setPayDate(Timestamp payDate) {
-		this.payDate = payDate;
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public int getCardNo() {
-		return cardNo;
-	}
-	public void setCardNo(int cardNo) {
-		this.cardNo = cardNo;
 	}
 	public String getRefund() {
 		return refund;
@@ -91,19 +72,27 @@ public class OrderVO extends MemberVO {
 	public void setEa(int ea) {
 		this.ea = ea;
 	}
-	public int getOrderNo() {
-		return orderNo;
+	public Timestamp getfDate() {
+		return fDate;
 	}
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public void setfDate(Timestamp fDate) {
+		this.fDate = fDate;
+	}
+	public int getfTime() {
+		return fTime;
+	}
+	public void setfTime(int fTime) {
+		this.fTime = fTime;
 	}
 	
 	@Override
 	public String toString() {
-		return "OrderVO [orderId=" + orderId + ", payType=" + payType + ", cNo=" + cNo + ", payId=" + payId + ", mId="
-				+ mId + ", payDate=" + payDate + ", price=" + price + ", cardNo=" + cardNo + ", ea=" + ea + ", refund="
-				+ refund + ", orderNo=" + orderNo + "]";
+		return "OrderVO [impUid=" + impUid + ", merchantUid=" + merchantUid + ", mId=" + mId + ", cNo=" + cNo
+				+ ", price=" + price + ", refund=" + refund + ", ea=" + ea + ", fDate=" + fDate + ", fTime=" + fTime
+				+ "]";
 	}
+	
+	
 
 	
 	
