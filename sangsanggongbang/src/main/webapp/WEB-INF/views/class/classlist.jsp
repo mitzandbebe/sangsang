@@ -159,7 +159,7 @@
                                             </div>
                                             <div class="col">
                                                 <span class="text-muted font-small d-block mb-2">인원</span>
-                                                <span class="h5 text-dark font-weight-bold">${map["PPNUM"] }명</span>
+                                                <span class="h5 text-dark font-weight-bold">${map["FPNUM"] }/${map["PPNUM"] }명</span>
                                             </div>
                                             <div class="col pr-0">
                                                 <span class="text-muted font-small d-block mb-2">지역</span>

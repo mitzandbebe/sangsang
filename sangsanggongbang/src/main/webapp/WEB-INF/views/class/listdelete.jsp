@@ -27,7 +27,7 @@
 <div class="container z-2" >
 			<div class="row justify-content-center pt-3">
 				<div class="col-12 text-center">
-					<h3 class="mb-4">클래스 수정을 원하시면 클래스 이름을 선택해 주세요</h3>
+					<h3 class="mb-4">클래스 삭제를 원하시면 클래스 이름을 선택해 주세요</h3>
 				</div>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 					<c:forEach var="map" items="${classlist}">
 						<tr>
 							<td><a
-								href="<c:url value='/class/updateclass?cNo=${map["C_NO"] }'/>">
+								href="<c:url value='/class/deleteClass?cNo=${map["C_NO"] }'/>">
 									<div class="d-flex align-items-center">${map["C_NAME"] }</div>
 							</a></td>
 							<td><fmt:formatDate value="${map['C_START_TIME'] }"

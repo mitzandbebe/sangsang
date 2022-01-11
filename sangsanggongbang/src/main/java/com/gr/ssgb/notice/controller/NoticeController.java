@@ -1,7 +1,12 @@
 package com.gr.ssgb.notice.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.notice.model.NoticeService;
@@ -27,10 +33,12 @@ public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
 	private final NoticeService noticeService;
+	private final FileUploadUtil fileUploadUtil;
 
 	@Autowired
-	public NoticeController(NoticeService noticeService) {
+	public NoticeController(NoticeService noticeService, FileUploadUtil fileUploadUtil) {
 		this.noticeService = noticeService;
+		this.fileUploadUtil = fileUploadUtil;
 	}
 
 	@GetMapping("/noticeWrite")
@@ -40,8 +48,32 @@ public class NoticeController {
 	}
 
 	@PostMapping("/noticeWrite")
-	public String noticeWrite(@ModelAttribute NoticeVO vo, Model model) {
+	public String noticeWrite(@ModelAttribute NoticeVO vo, HttpServletRequest request, Model model) {
 		logger.info("공지작성 파라미터 vo={}", vo);
+
+		String fileName = "", originName = "";
+		long fileSize = 0;
+		int pathFlag = ConstUtil.UPLOAD_IMAGE_FLAG;
+		try {
+			List<Map<String, Object>> fileList = fileUploadUtil.fileUpload(request, pathFlag);
+			for (int i = 0; i < fileList.size(); i++) {
+				Map<String, Object> map = fileList.get(i);
+				fileName = (String) map.get("fileName");
+				originName = (String) map.get("originalFileName");
+				fileSize = (long) map.get("fileSize");
+			}
+
+			logger.info("파일 업로드 성공, fileName={}", fileName);
+
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		vo.setNoticeImgUrl(fileName);
 
 		int cnt = noticeService.insertNotice(vo);
 		logger.info("공지작성 성공여부 cnt={}", cnt);
@@ -67,19 +99,24 @@ public class NoticeController {
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}", searchVo);
 
-		List<NoticeVO> list = noticeService.selectNoticeAll(searchVo);
+		String adId=(String) session.getAttribute("adId");
+		String hId=(String) session.getAttribute("hId");
+		
+		List<NoticeVO> list = new ArrayList<NoticeVO>();
+		int totalRecord = 0;
+		if (hId!=null && !hId.isEmpty()) {
+			list = noticeService.selectNoticeHostAll(searchVo);
+			totalRecord = noticeService.selectTotalHostRecord(searchVo);
+		} else if (adId!=null && !adId.isEmpty()) {
+			list = noticeService.selectNoticeAll(searchVo);
+			totalRecord = noticeService.selectTotalRecord(searchVo);
+		} else { //비회원은 멤버처럼 나오게
+			list = noticeService.selectNoticeMemberAll(searchVo);
+			totalRecord = noticeService.selectTotalMemberRecord(searchVo);
+		}
 		logger.info("공지화면 총 list.size={}", list.size());
 
-		int totalRecord = noticeService.selectTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
-
-		String mId = "", hId = "", adId = "";
-		if ((String) session.getAttribute("hId") != null) {
-			hId = (String) session.getAttribute("hId");
-		} else if ((String) session.getAttribute("mId") != null) {
-			mId = (String) session.getAttribute("mId");
-		} 
-		logger.info("mId={},hId={}", mId,hId); 
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
@@ -109,13 +146,20 @@ public class NoticeController {
 	}
 
 	@GetMapping("/noticeEdit")
-	public void noticeEdit_get(@RequestParam(defaultValue = "0") int noticeNo, Model model) {
+	public String noticeEdit_get(@RequestParam(defaultValue = "0") int noticeNo, HttpServletRequest request,
+			Model model) {
 		logger.info("공지사항 수정화면 noticeNo={}", noticeNo);
+		NoticeVO vo = noticeService.selectNoticeByNo(noticeNo);
+		logger.info("공지사항 수정파라미터 vo={}", vo);
 
+		model.addAttribute("vo", vo);
+
+		return "/notice/noticeEdit";
 	}
 
 	@PostMapping("/noticeEdit")
-	public String noticeEdit_post(@ModelAttribute NoticeVO vo, Model model) {
+	public String noticeEdit_post(@ModelAttribute NoticeVO vo, HttpServletRequest request,
+			@RequestParam String oldFileName, Model model) {
 		logger.info("글 수정 vo={}", vo);
 
 		if (vo.getNoticeNo() == 0) {
@@ -124,11 +168,38 @@ public class NoticeController {
 
 			return "/common/message";
 		}
+
+		String newsUploadname = "";
+		try {
+			List<Map<String, Object>> fileList = fileUploadUtil.fileUpload(request, ConstUtil.UPLOAD_IMAGE_FLAG);
+			if (fileList != null && !fileList.isEmpty()) {
+				for (Map<String, Object> fileMap : fileList) {
+					newsUploadname = (String) fileMap.get("fileName");
+					vo.setNoticeImgUrl(newsUploadname);
+				} // for
+			} else {
+				vo.setNoticeImgUrl("");
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		int cnt = noticeService.updateNotice(vo);
 		logger.info("수정 성공 여부 cnt={}", cnt);
 		String msg = "수정에 실패했습니다", url = "/notice/noticeList";
 		if (cnt > 0) {
 			msg = "수정에 성공했습니다.";
+
+			if (newsUploadname != null && !newsUploadname.isEmpty() && oldFileName != null && !oldFileName.isEmpty()) {
+				String upPath = fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				File oldFile = new File(upPath, oldFileName);
+				if (oldFile.exists()) {
+					boolean bool = oldFile.delete();
+					logger.info("글수정,파일삭제여부:{}", bool);
+				}
+			}
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

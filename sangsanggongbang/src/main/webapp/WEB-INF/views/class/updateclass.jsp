@@ -23,9 +23,8 @@
 							<h2 class="h5 mb-4">클래스정보</h2>
 							<form name="frmClass" method="post" enctype="multipart/form-data" action="">
 								<!-- 나중에 hidden 으로 바꾸기  액션도 호스트별 목록으로 돌아가게..-->
-								<%-- <input type="text" name="hNo" value="${param.hNo }"> --%>
+								<input type="hidden" name="hNo" value="${hNo }">
 								<!-- 임의로 1번호스트로 테스트 -->
-								<input type="hidden" name="hNo" value="1">
 								<input type="hidden" name="endFlag" value="N">
 								<c:forEach var="map" items="${clist}">
 								<c:if test="${map['C_NO'] eq param.cNo }">
@@ -196,7 +195,7 @@
 													<span class="input-group-text"><i
 														class="far fa-compass"></i></span>
 												</div>
-												<input name="lAddress" class="form-control" id="address"
+												<input name="lAddress" class="form-control" id="address" 
 													readonly="readonly" placeholder="우편번호 검색시 자동으로 입력됩니다."
 													type="text" required>
 											</div>
@@ -209,7 +208,7 @@
 												<span class="input-group-text"><i
 													class="far fa-compass"></i></span>
 											</div>
-											<input name="lAddressDetail" class="form-control"
+											<input name="lAddressDetail" class="form-control" value=${map["L_ADDRESS_DETAIL"] }
 												id="addressDetail" placeholder="상세주소를 입력하세요." type="text"
 												required>
 										</div>

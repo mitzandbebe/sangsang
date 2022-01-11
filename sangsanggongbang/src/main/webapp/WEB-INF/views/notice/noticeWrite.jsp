@@ -2,8 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@include file="../inc/top.jsp" %>
-<br><br><br>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/top.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/top.jsp"%>
+	</c:otherwise>
+</c:choose>
+<br>
+<br>
+<br>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -16,6 +31,17 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class=container>
 	<div class="card border-light p-md-2">
 		<div class="card-body p-4">
 			<form name="frmEwrite" method="post" enctype="multipart/form-data"
@@ -23,116 +49,130 @@
 
 				<div class="row">
 					<div class="col-lg-12 mb-5">
+						<span> 늘찬(멤버) <input type="radio" id="check"
+							name="noticeFlag" value="M" > <br>
+							늘솜(호스트) <input type="radio" id="check" name="noticeFlag"
+							value="H">
+						</span> <br> <br>
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 </label> <input type="text" id="title"
+							<label for="title">제목 : </label> <input type="text" id="title"
 								name="noticeTitle" class="infobox"
 								style="border: none; outline: none;" />
 						</div>
-
+						<br>
 						<div>
-				            <label for="upfile">대표이미지 📁  </label>
-					        <input type="file" name="upfile" id="upfile">
-				        </div>
-						
+							<label for="upfile">대표이미지 📁 &nbsp;&nbsp;|&nbsp;&nbsp;</label> <input
+								type="file" name="upfile" id="upfile">
+						</div>
+						<br>
 
-						<!-- 공지사항 글쓰기 -->
+						<!-- 이벤트 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
-							<label for="exampleFormControlTextarea2">공지사항 내용</label>
+
+							<label for="exampleFormControlTextarea2">공지사항 내용 | </label>
 							<textarea class="ckediter" id="content" name="noticeContent"
 								rows="20"></textarea>
 						</div>
 					</div>
 				</div>
-				<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
-					type="submit"> 
-					<input value="목록"
-					class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
+				<!-- 버튼 가운데 정렬 -->
+				<div style="text-align: center;">
+					<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
+						type="submit"> <input value="목록"
+						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
+				</div>
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript">
-		CKEDITOR.replace('content');
-		CKEDITOR.on('dialogDefinition', function (ev) {
+</div>
+<br>
+<br>
+<br>
+<br>
 
-            var dialogName = ev.data.name;
+<script type="text/javascript">
+	CKEDITOR.replace('content');
+	CKEDITOR.on('dialogDefinition', function(ev) {
 
-            var dialog = ev.data.definition.dialog;
+		var dialogName = ev.data.name;
 
-            var dialogDefinition = ev.data.definition;
+		var dialog = ev.data.definition.dialog;
 
-            if (dialogName == 'image') {
+		var dialogDefinition = ev.data.definition;
 
-                dialog.on('show', function (obj) {
+		if (dialogName == 'image') {
 
-                    this.selectPage('Upload'); //업로드텝으로 시작
+			dialog.on('show', function(obj) {
 
-                });
+				this.selectPage('Upload'); //업로드텝으로 시작
 
-                dialogDefinition.removeContents('advanced'); // 자세히탭 제거
-
-                dialogDefinition.removeContents('Link'); // 링크탭 제거
-
-            }
-
-        });
-
-		$(function() {
-			$('form[name=frmEwrite]').submit(function() {
-				$('.infobox').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).prev().html() + "을 입력하세요");
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					}
-	
-				});
-				
-				/* $('.ckediter').each(function(idx, item) {
-					if ($(this).val().length < 1) {
-						alert($(this).prev().html() + "을 입력하세요");
-						$(this).focus();
-						event.preventDefault();
-						return false; //each 탈출
-					}
-	
-				}); */
-				
 			});
-			
 
-			$('#btlist').click(function() {
-				location.href = "<c:url value='/mainevent/eventlist'/>";
+			dialogDefinition.removeContents('advanced'); // 자세히탭 제거
+
+			dialogDefinition.removeContents('Link'); // 링크탭 제거
+
+		}
+
+	});
+
+	$(function() {
+		
+		$('form[name=frmEwrite]').submit(function() {
+			$('.infobox').each(function(idx, item) {
+				if ($(this).val().length < 1) {
+					alert($(this).prev().html() + "을 입력하세요");
+					$(this).focus();
+					event.preventDefault();
+					return false; //each 탈출
+				}
+
 			});
+
+			/* 		$('#upfile').each(function(idx, item) {
+						if ($(this).val().length < 1) {
+							alert($(this).prev().html() + "을 입력하세요");
+							$(this).focus();
+							event.preventDefault();
+							return false; //each 탈출
+						}
+
+					}); */
 
 		});
-	
-		$(function(){ 
-			var privacy_editor = CKEDITOR.replace("termsContent", {filebrowserUploadUrl: '${contextPath}/privacies/imgUpload'}); 
-			$("#privacyRegit").click(function(){ 
-				privacyRegit(privacy_editor); 
-			}); 
-	    }); 
-		function privacyRegit(privacy_editor){ 
-			var category = $('input[name=category]').val(); 
-			var version = $("#version").val(); 
-			var postAt = $("#postAt").val(); 
-			if(version.trim() == ''){ 
-				alert("버전을 입력해주세요."); 
-				return false; 
-			} 
-			if(postAt.trim() == ''){ 
-				alert("게시일을 선택해주세요."); 
-				return false; 
-			} 
-			if(privacy_editor.getData().trim() == ''){ 
-				alert("내용을 입력해주세요."); 
-				return false; 
-			} 
-			$("#privacyDto").submit(); 
+
+		$('#btlist').click(function() {
+			location.href = "<c:url value='/notice/noticeList'/>";
+		});
+
+	});
+
+	$(function() {
+		var privacy_editor = CKEDITOR.replace("termsContent", {
+			filebrowserUploadUrl : '${contextPath}/privacies/imgUpload'
+		});
+		$("#privacyRegit").click(function() {
+			privacyRegit(privacy_editor);
+		});
+	});
+	function privacyRegit(privacy_editor) {
+		var category = $('input[name=category]').val();
+		var version = $("#version").val();
+		var postAt = $("#postAt").val();
+		if (version.trim() == '') {
+			alert("버전을 입력해주세요.");
+			return false;
 		}
-		
-		
-	</script>
-<%@include file="../inc/bottom.jsp" %>
+		if (postAt.trim() == '') {
+			alert("게시일을 선택해주세요.");
+			return false;
+		}
+		if (privacy_editor.getData().trim() == '') {
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+		$("#privacyDto").submit();
+	}
+</script>
+<%@include file="../inc/bottom.jsp"%>

@@ -5,6 +5,20 @@ import java.sql.Timestamp;
 import com.gr.ssgb.member.model.MemberVO;
 
 public class OrderVO extends MemberVO {
+	/*
+	ORDER_ID	VARCHAR2	결제id
+	PAY_TYPE	VARCHAR2	결제유형
+	C_NO	NUMBER			클래스넘버
+	PAY_ID	VARCHAR2		merchant_uid 영수증번호 넣기	
+	M_ID	NUMBER			맴버아이디
+	PAY_DATE	DATE		결제일
+	PRICE	NUMBER			결제금액
+	CARD_NO	NUMBER			카드번호
+	EA	NUMBER				결제수량
+	REFUND	VARCHAR2		취소 플래그
+	ORDER_NO NUMBER			결제번호
+	*/
+	
 	private String orderId;
 	private String payType;
 	private int cNo;
@@ -13,37 +27,9 @@ public class OrderVO extends MemberVO {
 	private Timestamp payDate;
 	private int price;
 	private int cardNo;
-	private String refund;
 	private int ea;
-	/*
+	private String refund;
 	private int orderNo;
-	private String customerId;
-	private int totalPrice;
-	private String deliveryStatus;
-	private Timestamp orderDate;
-	private Timestamp deliveryDate;
-	private Timestamp paymentEndDate;
-	private String  message;
-	private String  customerName;
-	private String  hp;
-	private String  zipcode;
-	private String  address;
-	private String addressDetail;
-*/
-	public OrderVO(String orderId, String payType, int cNo, String payId, String mId, Timestamp payDate, int price,
-			int cardNo, String refund, int ea) {
-		super();
-		this.orderId = orderId;
-		this.payType = payType;
-		this.cNo = cNo;
-		this.payId = payId;
-		this.mId = mId;
-		this.payDate = payDate;
-		this.price = price;
-		this.cardNo = cardNo;
-		this.refund = refund;
-		this.ea = ea;
-	}
 	
 	public String getOrderId() {
 		return orderId;
@@ -105,13 +91,21 @@ public class OrderVO extends MemberVO {
 	public void setEa(int ea) {
 		this.ea = ea;
 	}
-
+	public int getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderVO [orderId=" + orderId + ", payType=" + payType + ", cNo=" + cNo + ", payId=" + payId + ", mId="
-				+ mId + ", payDate=" + payDate + ", price=" + price + ", cardNo=" + cardNo + ", refund=" + refund
-				+ ", ea=" + ea + ", toString()=" + super.toString() + "]";
+				+ mId + ", payDate=" + payDate + ", price=" + price + ", cardNo=" + cardNo + ", ea=" + ea + ", refund="
+				+ refund + ", orderNo=" + orderNo + "]";
 	}
+
+	
 	
 	
 	

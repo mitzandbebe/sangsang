@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.TempPasswordUtil;
+
 import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MailService;
@@ -59,13 +60,14 @@ public class MemberController {
 	private final MemberService memberService;
 	private final FileUploadUtil fileUploadUtil;
 	private MailService mailService;
+	private HostClassService hostClassService;
 	
 	@Autowired
-	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService) {
-		super();
+	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService,HostClassService hostClassService) {
 		this.memberService = memberService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.mailService = mailService;
+		this.hostClassService = hostClassService;
 	}
 	
 	
@@ -78,10 +80,11 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "/index")
-	public String index() {
+	public String index(Model model) {
+		List<CategoryVO> clist = hostClassService.selectCategoryAll();
+		model.addAttribute("clist",clist);
 		return "/index";
 	}
-	
 	
 	@RequestMapping(value = "/member/terms")
 	public String terms() {

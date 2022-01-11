@@ -237,15 +237,12 @@ public class HostClassController {
 		List<Map<String, Object>> classlist=hostClassService.selectClassbyCNo(cNo);
 		logger.info("클래스목록 결과, classlist.size={}",classlist.size());
 		
-		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
-		logger.info("디테일에서 해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
 		
 		HostVO vo = hostService.selectHostByHNo(hNo);
 		int classCnt = hostClassService.selectClassCnt(hNo);
 		int reviewCnt = reviewService.selectReviewByHost(hNo);
 		
 		model.addAttribute("classlist",classlist);
-		model.addAttribute("catelist",catelist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
 		model.addAttribute("hostVo", vo);
@@ -286,12 +283,17 @@ public class HostClassController {
 			return "common/message";
 		}
 		
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
 		List<Map<String,Object>> clist=hostClassService.selectClassAllContents();
 		List<CategoryVO> cate = hostClassService.selectCategoryAll();
 		logger.info("clist 클래스화면");
 		
 		model.addAttribute("clist", clist);
 		model.addAttribute("cate", cate);
+		model.addAttribute("hNo", hNo);
 		
 		return "class/updateclass";
 	}
@@ -305,9 +307,9 @@ public class HostClassController {
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
 		
 
-		//String hostid = session.getAttribute(""); //추후 호스트 회원가입되면 아이디저장
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
-		int hNo=1; //임의로 1로설정 test용
+		int hNo=hostService.selectHostNo(hId);
 		
 		int cnt1=2;
 		//로케이션 전체 조회.
@@ -386,5 +388,159 @@ public class HostClassController {
 		return "common/message";
 	}
 	
+	@RequestMapping("/listdelete")
+	public String classdelete_list(@RequestParam(defaultValue = "0") int cNo,HttpSession session,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
+		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
+		int hNo=hostService.selectHostNo(hId);
+		
+		List<Map<String,Object>> classlist=hostClassService.selectClassAllOfHost(hNo);
+		logger.info("호스트별전체 클래스목록 결과, classlist.size={}",classlist.size());
+		
+		model.addAttribute("classlist",classlist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/listdelete";
+	}
 	
+	@GetMapping("/deleteClass")
+	public String delete_get(@RequestParam(defaultValue = "0") int cNo,
+			Model model) {
+		logger.info("삭제화면");
+		if(cNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/class/listdelete");
+			return "common/message";
+		}
+		
+		return "class/deleteClass";
+	}
+	
+	@PostMapping("/deleteClass")
+	public String delete_post(@ModelAttribute HostClassVO hostClassvo, ContentsVO contentsvo,
+			@RequestParam(defaultValue = "0") int cNo,
+			HttpServletRequest request,Model model) {
+		logger.info("삭제 처리, 파라미터 hostClassvo={},contentsvo={}, cNo={}",hostClassvo,contentsvo,cNo);
+		
+		String msg="글삭제 실패", url="/class/deleteClass?cNo="
+				+cNo;
+			//삭제 - 저장 프로시저 이용
+			
+		hostClassService.deleteContents(cNo);
+		hostClassService.deleteClass(cNo);	
+			
+			msg="클래스가 삭제되었습니다.";
+			url="/class/listdelete";		
+			
+			//파일 삭제
+			String thumnail=contentsvo.getThumbnail();
+			String filename1=contentsvo.getcFilename1();
+			String filename2=contentsvo.getcFilename2();
+			String filename3=contentsvo.getcFilename3();
+			String filename4=contentsvo.getcFilename4();
+			String filename5=contentsvo.getcFilename5();
+			if(thumnail!=null && !thumnail.isEmpty()) {
+				String upPath
+			=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,thumnail);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename1!=null && !filename1.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename1);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename2!=null && !filename2.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename2);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename3!=null && !filename3.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename3);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename4!=null && !filename4.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename4);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+			if(filename5!=null && !filename5.isEmpty()) {
+				String upPath
+				=fileUploadUtil.getUploadPath(ConstUtil.UPLOAD_IMAGE_FLAG, request);
+				
+				File oldFile = new File(upPath ,filename5);
+				if(oldFile.exists()) {
+					boolean bool=oldFile.delete();
+					logger.info("파일삭제 여부:{}", bool);
+				}
+			}
+		
+		//3
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		//4
+		return "common/message";
+	}
+	
+	@RequestMapping("/menuCategory")
+	public String menu_category(@RequestParam String categoryName,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		
+		List<Map<String, Object>> catelist=hostClassService.selectClassCategory(categoryName);
+		logger.info("해당 카테고리 클래스목록 결과, catelist.size={}",catelist.size());
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/menuCategory";
+	}
+	
+	@RequestMapping("/menulocation")
+	public String menu_location(@RequestParam String addr,Model model) {
+		logger.info("클래스 전체목록보기");
+		
+		List<ReviewVO> rlist= reviewService.selectAllRate();
+		
+		//지역 앞두글자로 가져오기
+		List<Map<String,Object>> classlist=hostClassService.selectClassLoc(addr);
+		
+		logger.info("전체 클래스목록 결과, classlist.size={}",classlist.size());
+		
+		model.addAttribute("classlist",classlist);
+		model.addAttribute("rlist", rlist);
+		
+		return "class/menulocation";
+	}
 }

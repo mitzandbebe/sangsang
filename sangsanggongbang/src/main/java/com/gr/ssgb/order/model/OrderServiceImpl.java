@@ -18,11 +18,11 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	@Transactional
-	public int insertOrder(OrderVO vo) {
-		int cnt=orderDao.insertOrder(vo);
-		System.out.println("insert 후 orderVo="+ vo);
+	public int insertOrder(OrderVO orderVo) {
+		int cnt=orderDao.insertOrder(orderVo);
+		System.out.println("insert 후 orderVo="+ orderVo);
 		
-		cnt=orderDao.insertOrderDetail(vo);
+		cnt=orderDao.insertOrderDetail(orderVo);
 		//cnt=cartDao.deleteCartByUserid(vo.getCustomerId());
 		
 		return cnt;

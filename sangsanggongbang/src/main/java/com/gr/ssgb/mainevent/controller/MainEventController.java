@@ -51,9 +51,9 @@ public class MainEventController {
 	}
 
 	@PostMapping("/eventwrite")
-	public String write_post(@ModelAttribute MainEventVO vo, HttpServletRequest request,HttpSession session) {
+	public String write_post(@ModelAttribute MainEventVO vo, HttpServletRequest request,HttpSession session, Model model) {
 		logger.info("이벤트 등록 처리,파라미터 vo ={}", vo);
-		
+		String adId=(String) session.getAttribute("adId");
 		
 
 		// 파일 업로드 처리
@@ -86,14 +86,17 @@ public class MainEventController {
 
 		int cnt = mainEventService.insertEvent(vo);
 		logger.info("등록 결과, cnt={}", cnt);
+		
+		model.addAttribute("adId",adId);
 
 		return "redirect:/mainevent/eventlist";
 	}
 
 	@RequestMapping("/eventlist")
-	public String list(@ModelAttribute SearchVO searchVo, Model model) {
+	public String list(@ModelAttribute SearchVO searchVo,HttpSession session, Model model) {
 		logger.info("이벤트 목록");
-
+		String adId=(String) session.getAttribute("adId");
+		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
@@ -112,6 +115,7 @@ public class MainEventController {
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
+		model.addAttribute("adId", adId);
 
 		return "/mainevent/eventlist";
 	}

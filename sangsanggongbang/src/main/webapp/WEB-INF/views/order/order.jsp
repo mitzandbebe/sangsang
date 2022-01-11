@@ -3,43 +3,74 @@
 <%@ include file="../inc/top.jsp"%>
 <script type="text/javascript">
 	$(function() {
+		$(function() {
+			$("#sPpunm").on("propertychange change keyup paste input",
+				function() {
+					var ppnum = $('#sPpunm').val();
+					var price = $('#price').val();
+					var totalPrice = ppnum * price;
+					$('#showPrice').val(totalPrice + "원");
+					$('#totalPrice').val(totalPrice);
+				});
+		});
+
 		$('#apibtn').click(function() {
 			//가맹점 식별코드
 			IMP.init('imp73895922');
-			IMP.request_pay({
+			IMP.request_pay(
+							{
 				pg : 'html5_inicis',
 				pay_method : 'card',
-				merchant_uid : 'merchant_' + new Date().getTime(),
-				name : '상품1', //결제창에서 보여질 이름
-				amount : 1000, //실제 결제되는 가격
-				buyer_email : 'wlddj22@gmail.com',
-				buyer_name : '오정훈',
-				buyer_tel : '010-6385-1321',
-				buyer_addr : '서울 강남구 도곡동',
-				buyer_postcode : '123-456'
-			}, function(rsp) {
+				merchant_uid : 'merchant_'
+						+ new Date().getTime(),
+				name : $('#cname').html(), //결제창에서 보여질 이름
+				//amount : $('#totalPrice').val(), //실제 결제되는 가격
+				amount : 100, //실제 결제되는 가격
+				buyer_email : $('#mId').val(),
+				buyer_name : $('#name').val(),
+				buyer_tel : $('#phone').val(),
+				buyer_addr : $('#mAddress')
+						.val()
+						+ $('#mAddressDetail')
+								.val(),
+				buyer_postcode : $('#mZipcode')
+						.val(),
+				digital : true
+			// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+			},
+			function(rsp) {
 				console.log(rsp);
-				if (rsp.success) {
+				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+					// jQuery로 HTTP 요청
 					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
+					msg += '고유ID : '
+							+ rsp.imp_uid;
+					msg += '상점 거래ID : '
+							+ rsp.merchant_uid;
+					msg += '결제 금액 : '
+							+ rsp.paid_amount;
+					msg += '카드 승인번호 : '
+							+ rsp.apply_num;
+
+					jQuery.ajax({
+								url : "/class/orderComplete", // 가맹점 서버
+								method : "POST",
+								headers : {"Content-Type" : "application/json"},
+								data : {
+									imp_uid : rsp.imp_uid, //아임포트 유저아이디(상점아이디)
+									merchant_uid : rsp.merchant_uid //영수증번호 개념
+								//기타 필요한 데이터가 있으면 추가 전달
+								}
+					});
+					
+					location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete");
 				} else {
 					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
+					msg += '에러내용 : '
+							+ rsp.error_msg;
 				}
 				alert(msg);
 			});
-		});
-	});
-
-	$(function() {
-		$("#sPpunm").on("propertychange change keyup paste input", function() {
-			var ppnum = $('#sPpunm').val();
-			var price = $('#price').val();
-			var totalPrice = ppnum * price;
-			$('#totalPrice').val(totalPrice + "원");
 		});
 	});
 </script>
@@ -50,109 +81,110 @@
 	<div class="container z-2">
 		<div class="section section-lg pt-5">
 			<div class="container" style="background-color: beige;">
-				<div class="row">
-					<c:forEach var="map" items="${cVo}">
-						<c:if test="${map['C_NO'] eq param.cNo }">
-							<div class="col-12 col-lg-14">
-								<div class="row no-gutters align-items-center">
-									<div class="col-12 col-lg-4 col-xl-4">
-										<c:choose>
-											<c:when test="${not empty map['THUMBNAIL']}">
-												<img
-													src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> "
-													alt="썸네일">
-											</c:when>
-											<c:when test="${map['THUMBNAIL'] eq null}">
-												<h3>미리보기 이미지가 없습니다.</h3>
-												<img
-													src="<c:url value='/resources/upload_images/basic.png'/> "
-													height="400px" width="700px" alt="기본이미지">
-											</c:when>
-										</c:choose>
-									</div>
-									<div class="col-12 col-lg-7 col-xl-8">
-
-										<div class="card-body text-dark">
-											<h4 class="h4">${map["C_NAME"] }</h4>
-											</a>
-											<ul class="list-group mb-3">
-												<li class="list-group-item small p-0 border-0"><span
-													class="fas fa-map-marker-alt mr-2"> </span>${ map['L_ADDRESS']}
-													${ map['L_ADDRESS_DETAIL']}</li>
-											</ul>
-											<div class="d-flex justify-content-between">
-												<div class="col pl-0">
-													<span class="small d-block">가격</span> <span
-														class="h6 text-dark font-weight-bold"> <input
-														type="hidden" id="price" value="${map['C_PRICE'] }">
-														<fmt:formatNumber value="${map['C_PRICE'] }"
-															pattern="#,###" />원
-													</span>
-												</div>
-												<div class="col">
-													<span class="small d-block">모집 인원수</span> <span
-														class="h6 text-dark font-weight-bold" id="ppnum">
-														${map["PPNUM"] }명</span>
-												</div>
-												<div class="col pr-0">
-													<span class="small d-block">지역</span> <span
-														class="h6 text-dark font-weight-bold"> <c:set
-															var="addr" value="${ map['L_ADDRESS']}" />
-														${fn:substring(addr,0,2)}
-													</span>
-												</div>
-
-												<div class="row justify-content-center"></div>
-											</div>
+				<form method="post" class="card border-light p-3 mb-4" action="<c:url value='/class/orderComplete'/>">
+					<div class="row">
+						<c:forEach var="map" items="${cVo}">
+							<c:if test="${map['C_NO'] eq param.cNo }">
+								<div class="col-12 col-lg-14">
+									<div class="row no-gutters align-items-center">
+										<div class="col-12 col-lg-4 col-xl-4">
+											<c:choose>
+												<c:when test="${not empty map['THUMBNAIL']}">
+													<img
+														src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> "
+														alt="썸네일">
+												</c:when>
+												<c:when test="${map['THUMBNAIL'] eq null}">
+													<h3>미리보기 이미지가 없습니다.</h3>
+													<img
+														src="<c:url value='/resources/upload_images/basic.png'/> "
+														height="400px" width="700px" alt="기본이미지">
+												</c:when>
+											</c:choose>
 										</div>
-										<div class="col-12 col-lg-4" style="float: left;">
-											<!-- Form -->
-											<div class="form-group mb-4">
-												<label for="cartInputCity1">선택날짜</label> <input type="text"
-													readonly="readonly" class="form-control" id="M_NAME"
-													aria-describedby="M_NAME"
-													value="<fmt:formatDate value="${map['C_REGDATE'] }"
+										<div class="col-12 col-lg-7 col-xl-8">
+
+											<div class="card-body text-dark">
+												<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
+												</a>
+												<ul class="list-group mb-3">
+													<li class="list-group-item small p-0 border-0"><span
+														class="fas fa-map-marker-alt mr-2"> </span>${ map['L_ADDRESS']}
+														${ map['L_ADDRESS_DETAIL']}</li>
+												</ul>
+												<div class="d-flex justify-content-between">
+													<div class="col pl-0">
+														<span class="small d-block">가격</span> <span
+															class="h6 text-dark font-weight-bold"> <input
+															type="hidden" id="price" value="${map['C_PRICE'] }">
+															<fmt:formatNumber value="${map['C_PRICE'] }"
+																pattern="#,###" />원
+														</span>
+													</div>
+													<div class="col">
+														<span class="small d-block">모집 인원수</span> <span
+															class="h6 text-dark font-weight-bold" id="ppnum">
+															${map["PPNUM"] }명</span>
+													</div>
+													<div class="col pr-0">
+														<span class="small d-block">지역</span> <span
+															class="h6 text-dark font-weight-bold"> <c:set
+																var="addr" value="${ map['L_ADDRESS']}" />
+															${fn:substring(addr,0,2)}
+														</span>
+													</div>
+
+													<div class="row justify-content-center"></div>
+												</div>
+											</div>
+											<div class="col-12 col-lg-4" style="float: left;">
+												<!-- Form -->
+												<div class="form-group mb-4">
+													<label for="cartInputCity1">선택날짜</label> <input type="text"
+														readonly="readonly" class="form-control" id="M_NAME"
+														aria-describedby="M_NAME"
+														value="<fmt:formatDate value="${map['C_REGDATE'] }"
 												pattern="yyyy-MM-dd" />">
+												</div>
+												<!-- End of Form -->
+											</div>
+											<div class="col-12 col-lg-4" style="float: left;">
+												<!-- Form -->
+												<div class="form-group mb-4">
+													<label for="cartInputCity1">선택시간</label> <input type="text"
+														readonly="readonly" placeholder="M_NAME"
+														class="form-control" id="M_NAME" aria-describedby="M_NAME"
+														value="${map['C_TIME'] } 시">
+												</div>
+												<!-- End of Form -->
+											</div>
+											<div class="col-12 col-lg-3" style="float: left;">
+												<!-- Form -->
+												<div class="form-group mb-4">
+													<label for="cartInputCity1">선택인원수</label> <input
+														type="number" max="${map['PPNUM'] }" min=0 placeholder="0"
+														class="form-control" id="sPpunm">
+												</div>
 											</div>
 											<!-- End of Form -->
 										</div>
-										<div class="col-12 col-lg-4" style="float: left;">
-											<!-- Form -->
-											<div class="form-group mb-4">
-												<label for="cartInputCity1">선택시간</label> <input type="text"
-													readonly="readonly" placeholder="M_NAME"
-													class="form-control" id="M_NAME" aria-describedby="M_NAME"
-													value="${map['C_TIME'] } 시">
-											</div>
-											<!-- End of Form -->
-										</div>
-										<div class="col-12 col-lg-3" style="float: left;">
-											<!-- Form -->
-											<div class="form-group mb-4">
-												<label for="cartInputCity1">선택인원수</label> <input
-													type="number" max="${map['PPNUM'] }" min=0 placeholder="0"
-													class="form-control" id="sPpunm">
-											</div>
-										</div>
-										<!-- End of Form -->
 									</div>
-								</div>
-								<div class="col-12 col-lg-3" style="float: right;">
-									<!-- Form -->
-									<div class="form-group mb-4">
-										<h3 class="h6 mb-0">결제금액</h3>
-										<input class="form-control" type="text" id="totalPrice"
-											value="" readonly="readonly">
-										<%-- <fmt:formatNumber value="${totalPrice }" 
-												pattern="#,###" />원</span> --%>
+									<div class="col-12 col-lg-3" style="float: right;">
+										<!-- Form -->
+										<div class="form-group mb-4">
+											<h3 class="h6 mb-0">결제금액</h3>
+											<input class="form-control" type="text" id="showPrice"
+												value="" readonly="readonly"> <input
+												class="form-control" type="hidden" id="totalPrice" value=""
+												readonly="readonly">
+										</div>
 									</div>
+									<!-- End of Form -->
 								</div>
-								<!-- End of Form -->
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-				<form method="post" class="card border-light p-3 mb-4">
+							</c:if>
+						</c:forEach>
+					</div>
+
 					<div class="card-header border-light p-3 mb-4 mb-md-0">
 						<h3 class="h5 mb-0">클래스 수강신청</h3>
 					</div>
@@ -161,9 +193,8 @@
 							<div class="col-12 col-lg-6">
 								<!-- Form -->
 								<div class="form-group mb-4">
-									<label for="cartInputCity1">회원사진</label> <input type="text"
-										placeholder="${mVo.mOriginalname}" class="form-control"
-										id="mOriginalname" name="mOriginalname"
+									<label for="cartInputCity1">이름</label> <input type="text"
+										class="form-control" id="name" name="name"
 										aria-describedby="M_NAME">
 								</div>
 								<!-- End of Form -->
@@ -186,21 +217,6 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-
-							<!-- <div class="col-12 col-lg-6">
-									Form
-									<div class="form-group">
-										<label class="my-1 mr-2" for="cartFormCustomSelectPref1">Country</label>
-										<select class="custom-select my-1 mr-sm-2"
-											id="cartFormCustomSelectPref1">
-											<option selected>Choose...</option>
-											<option value="1">United States</option>
-											<option value="2">Germany</option>
-											<option value="3">Canada</option>
-										</select>
-									</div>
-									End of Form
-								</div> -->
 							<div class="col-12 col-lg-6">
 								<!-- Form -->
 								<div class="form-group mb-4">
@@ -229,7 +245,6 @@
 								<!-- End of Form -->
 							</div>
 							<div class="col-12 col-lg-6">
-
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="mAddress">주소</label> <input type="text"
@@ -249,8 +264,11 @@
 								<!-- End of Form -->
 							</div>
 						</div>
+						<input type="hidden" value="${mVo.mNo}">
 						<input type="button" class="btn btn-block btn-primary mt-4"
 							id="apibtn" value="결제하기">
+							
+						<input type="submit" id="wr_submit" value="결제하기2">
 					</div>
 				</form>
 				<!-- <form action="#" method="post" class="card border-light p-3 mb-4">

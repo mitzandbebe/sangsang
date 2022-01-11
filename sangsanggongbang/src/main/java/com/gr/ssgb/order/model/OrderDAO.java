@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OrderDAO {
-	int insertOrder(OrderVO vo);
-	int insertOrderDetail(OrderVO vo);
+	int insertOrder(OrderVO orderVo);
+	int insertOrderDetail(OrderVO orderVo);
 	List<Map<String, Object>> selectOrderDetailsView(int orderNo);
 	Map<String, Object> selectOrdersView(int orderNo);
 	/*

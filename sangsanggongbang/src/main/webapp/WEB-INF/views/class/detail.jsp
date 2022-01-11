@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../inc/top.jsp"  %>
+<%@ include file="../inc/new_top_user.jsp"  %>
 
 <!-- 결제모듈 -->
 
@@ -212,7 +212,7 @@
 															<span class="fas fa-users"></span>
 														</div>
 														<!-- Heading -->
-														<div class="h5 mt-3 mb-0">${map["PPNUM"] } 명</div>
+														<div class="h5 mt-3 mb-0">${map["FPNUM"] }/${map["PPNUM"] } 명</div>
 														<!-- Text -->
 														<span class="text-muted h6 font-weight-normal mb-0">
 															Person </span>

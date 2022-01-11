@@ -14,6 +14,9 @@
 	<c:when test="${!empty sessionScope.adId }">
 		<%@ include file="../inc/top_admin.jsp"%>
 	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/top.jsp"%>
+	</c:otherwise>
 </c:choose>
 
 <!-- 
@@ -47,7 +50,7 @@
 							style="width: 1100px;">
 							<a
 								href="<c:url value='/notice/noticeDetail?noticeNo=${list.noticeNo }'/>">
-								${list.noticeTitle } </a>
+								${list.noticeTitle }  <c:if test="${!empty sessionScope.adId }">(${list.noticeFlag })</c:if> </a>
 							<div class="card-body p-0 pt-4">
 								<a href="./blog-post.html" class="h4"></a>
 								<div class="d-flex align-items-center my-4">
@@ -73,14 +76,12 @@
 				</c:if>
 			</div>
 
-			<div class="d-flex justify-content-center w-100 mt-5">
+			<div class="d-flex justify-content-center w-100 mt-5"
+				style="margin-left: 149px;">
 				<nav aria-label="Page navigation example"
 					style="margin-top: -100px;">
-					<ul class="pagination" style="margin-left:-150px">
-						<a href="<c:url value='/notice/noticeWrite'/>">
-							<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
-								등록하기</button>
-						</a>
+					<ul class="pagination" style="margin-left: -150px">
+
 						<c:if test="${pagingInfo.firstPage>1 }">
 							<li class="page-item"><a class="page-link"
 								href="<c:url value='/notice/noticeList?currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
@@ -102,9 +103,16 @@
 								href="<c:url value='/notice/noticeList?currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
 							</li>
 						</c:if>
-
 					</ul>
 				</nav>
+			</div>
+			<div id="WriteButton" style="margin-top: -103px; margin-left: 959px;">
+				<c:if test="${!empty sessionScope.adId}">
+					<a href="<c:url value='/notice/noticeWrite'/>">
+						<button class="btn mb-2 mr-2 btn-white" type="button">공지사항
+							등록하기</button>
+					</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
