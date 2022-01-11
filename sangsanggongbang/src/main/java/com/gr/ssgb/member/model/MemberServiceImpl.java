@@ -102,7 +102,8 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int updateMGrade(MemberVO vo) {
 		return memberDao.updateMGrade(vo);
-  @Override
+	}
+	@Override
 	public int insertConcern(ConcernVO concernVo) {
 		return memberDao.insertConcern(concernVo);
 	}
