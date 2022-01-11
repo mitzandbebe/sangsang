@@ -2,7 +2,9 @@ package com.gr.ssgb.memberInquiry.model;
 
 import java.sql.Timestamp;
 
-public class BanVO {
+import com.gr.ssgb.member.model.MemberVO;
+
+public class BanVO extends MemberVO{
 	private int	bno; // 제한번호
 	private int	hno; // 호스트번호
 	private int mNo; // 개인회원번호
@@ -49,7 +51,7 @@ public class BanVO {
 	@Override
 	public String toString() {
 		return "BanVO [bno=" + bno + ", hno=" + hno + ", mNo=" + mNo + ", bcs=" + bcs + ", bc=" + bc + ", regdate="
-				+ regdate + "]";
+				+ regdate + ", toString()=" + super.toString() + "]";
 	}
 
 }
