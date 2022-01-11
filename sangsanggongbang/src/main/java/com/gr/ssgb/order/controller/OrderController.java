@@ -1,5 +1,6 @@
 package com.gr.ssgb.order.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MemberService;
@@ -60,42 +62,31 @@ public class OrderController {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		
+
 		return "login/login";
 	}
-	
-	@PostMapping("/orderComplete")
-	public String orderComplite_POST(HttpSession session, @ModelAttribute OrderVO orderVo) {
-			String mId=(String) session.getAttribute("mId");
-			orderVo.setmId(mId);
-			logger.info("로그인 세션 mId={}", mId);
-			
-			logger.info("매개변수 orderVo={}", orderVo);
-			
-			int cnt = orderService.insertOrder(orderVo);
-			logger.info("주문 처리 결과, cnt={}", cnt);
 
-		return "redirect:order/orderComplete?orderNo="+orderVo.getOrderId();	
-	}
-	
-	@RequestMapping("/orderComplete")
-	public String orderComplete(@RequestParam(defaultValue = "0") int orderNo,
-			Model model) {
-		logger.info("주문완료페이지, 파라미터 orderNo={}", orderNo);
-		
+	@PostMapping("/orderComplete")
+	public int orderComplite_POST(HttpSession session, OrderVO orderVo) {
+		String mId=(String) session.getAttribute("mId");
+		logger.info("로그인 세션 mId={}", mId);
+
+		int cnt = orderService.insertOrder(orderVo);
+		logger.info("주문 처리 결과, cnt={}", cnt);
+			
+		/*
 		List<Map<String, Object>> list 
-			=orderService.selectOrderDetailsView(orderNo);
+		=orderService.selectOrderDetailsView(orderVo.getOrderNo());
 		logger.info("주문완료, 상세주문 조회 결과 list.size={}", list.size());
-		
-		Map<String, Object> map=orderService.selectOrdersView(orderNo);
+
+		Map<String, Object> map=orderService.selectOrdersView(orderVo.getOrderNo());
 		logger.info("주문완료, 주문 조회 결과 map={}", map);
-		
+
 		model.addAttribute("list", list);
-		model.addAttribute("orderMap", map);
-		
-		return "shop/order/orderComplete";
+		model.addAttribute("orderMap", map);	*/
+
+		return cnt;
 	}
-	
 
 }
 

@@ -17,11 +17,12 @@
         <%@ include file="../inc/new_top_user.jsp"%>
     </c:otherwise>
 </c:choose>
+<script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
+
 	$(function() {
 		$(function() {
-			$("#sPpunm").on("propertychange change keyup paste input",
-				function() {
+			$("#sPpunm").on("propertychange change keyup paste input", function() {
 					var ppnum = $('#sPpunm').val();
 					var price = $('#price').val();
 					var totalPrice = ppnum * price;
@@ -45,48 +46,52 @@
 				buyer_email : $('#mId').val(),
 				buyer_name : $('#name').val(),
 				buyer_tel : $('#phone').val(),
-				buyer_addr : $('#mAddress')
-						.val()
-						+ $('#mAddressDetail')
-								.val(),
-				buyer_postcode : $('#mZipcode')
-						.val(),
-				digital : true
-			// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+				buyer_addr : $('#mAddress').val()
+						+ $('#mAddressDetail').val(),
+				buyer_postcode : $('#mZipcode').val(),
+				digital : true // 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
 			},
 			function(rsp) {
 				console.log(rsp);
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-					// jQuery로 HTTP 요청
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : '
-							+ rsp.imp_uid;
-					msg += '상점 거래ID : '
-							+ rsp.merchant_uid;
-					msg += '결제 금액 : '
-							+ rsp.paid_amount;
-					msg += '카드 승인번호 : '
-							+ rsp.apply_num;
-
-					jQuery.ajax({
-								url : "/class/orderComplete", // 가맹점 서버
-								method : "POST",
-								headers : {"Content-Type" : "application/json"},
-								data : {
-									imp_uid : rsp.imp_uid, //아임포트 유저아이디(상점아이디)
-									merchant_uid : rsp.merchant_uid //영수증번호 개념
-								//기타 필요한 데이터가 있으면 추가 전달
-								}
-					});
+					var msg = '결제가 완료되었습니다';
+					var result = {
+					"imp_uid" : rsp.imp_uid,
+					"merchant_uid" : rsp.merchant_uid,
+					"m_id" : $('#mId').val(),
+					"pay_date" : new Date().getTime(),
+					"price" : rsp.paid_amount,
+					"card_no" : rsp.apply_num,
+					"refund" : 'payed'
+					}
+					console.log("결제성공 " + msg);
+					$.ajax({
+						url : '/class/orderComplete', 
+				        type :'POST',
+				        data : JSON.stringify(result,
+				        		['imp_uid', 'merchant_uid', 'm_id', 
+				        			'pay_date', 'price', 'card_no', 'refund']),
+				        contentType:'application/json;charset=UTF-8',
+				        dataType: 'json', //서버에서 보내줄 데이터 타입
+				        success: function(cnt){
+				        			        	
+				          if(cnt == 1){
+							 console.log("추가성공");	
+				          }else{
+				             console.log("Insert Fail!!!");
+				          }
+				        },
+				        error:function(){
+				          console.log("Insert ajax 통신 실패!!!");
+				        }
+					}); //ajax
 					
-					location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete");
-				} else {
-					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : '
-							+ rsp.error_msg;
+				}else{//결제 실패시
+					var msg = '결제에 실패했습니다';
+					msg += '에러 : ' + rsp.error_msg
 				}
-				alert(msg);
-			});
+				console.log(msg);
+			});//pay
 		});
 	});
 </script>

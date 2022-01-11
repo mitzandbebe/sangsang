@@ -7,15 +7,15 @@
 		<selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
 			select orders_seq.nextval from dual 
 		</selectKey>
-		insert into orders(order_id, pay_type, c_no, pay_id, m_id, pay_date, price, card_no, ea, refund, order_no)
+		insert into orders(order_id, pay_type, c_no, pay_id, m_id, pay_date, price, card_no, refund, ea, order_no, imp_uid, merchant_uid)
 		values(#{orderId}, #{payType}, #{cNo}, #{payId}, 
-			#{mId},#{payDate}, #{price}, #{cardNo}, #{ea}, #{refund},#{orderNo})
+			#{mId},#{payDate}, #{price}, #{cardNo}, #{refund}, #{ea}, #{orderNo}, #{impUid}, #{merchantUid})
 	</insert>
 	
-	<select id="selectOrdersView" parameterType="int" resultType="map">
+	<!-- <select id="selectOrdersView" parameterType="int" resultType="map">
 		select * from orders
 		where orderno=#{orderNo}
-	</select>
+	</select> -->
 </mapper>
 
 
