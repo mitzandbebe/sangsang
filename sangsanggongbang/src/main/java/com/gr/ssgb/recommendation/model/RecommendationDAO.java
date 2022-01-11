@@ -26,7 +26,10 @@ public interface RecommendationDAO {
 	int selectTotalHostRecord(SearchVO searchVo);
 
 	public int updateRecommendation(RecommendationVO vo);
-
+	
 	public int deleteRecommendation(int recoNo);
 
+	int updateSortNo(RecommendationVO vo);
+	
+	int reply(RecommendationVO vo);
 }

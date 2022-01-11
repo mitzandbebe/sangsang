@@ -58,6 +58,8 @@
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist" type="button">	
 			<input value="불편사항 수정"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate" type="button">	
+			<input value="불편사항 답변"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btreply" type="button">	
 			<input value="불편사항 삭제"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete" type="button">	
 	</div>
@@ -83,6 +85,9 @@
 		});
 		$('#btupdate').click(function() {
 			location.href = "<c:url value='/recommendation/recommendUpdate?recoNo=${vo.recoNo}'/>";
+		});
+		$('#btreply').click(function() {
+			location.href = "<c:url value='/recommendation/recommendReply?recoNo=${vo.recoNo}'/>";
 		});
 		$('#btdelete').click(function() {
 			location.href = "<c:url value='/recommendation/recommendDelete?recoNo=${vo.recoNo}'/>";
