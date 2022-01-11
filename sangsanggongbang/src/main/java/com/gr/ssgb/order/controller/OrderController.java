@@ -67,9 +67,11 @@ public class OrderController {
 	}
 
 	@PostMapping("/orderComplete")
+	@ResponseBody
 	public int orderComplite_POST(HttpSession session, OrderVO orderVo) {
 		String mId=(String) session.getAttribute("mId");
 		logger.info("로그인 세션 mId={}", mId);
+		logger.info("orderVo={}", orderVo);
 
 		int cnt = orderService.insertOrder(orderVo);
 		logger.info("주문 처리 결과, cnt={}", cnt);
