@@ -3,33 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.paymentList.model.PaymentListDAO">
-<!-- 	<sql id="searchWhere">
-		<if test="searchKeyword!=null and searchKeyword!=''">
-	       	where ${searchCondition} like '%' || #{searchKeyword} || '%'
-		</if>		
-	</sql>
-	
-	<select id="selectAll" parameterType="searchVo" resultType="balancingVo">
-		select *
-		from
-		(
-		select rownum as RNUM, A.*
-		from
-		(
-		select * from balancing
-		<include refid="searchWhere"></include>
-		order by no desc
-		)A
-		)
-		<![CDATA[
-		where RNUM>#{firstRecordIndex} 
-			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
-	</select> -->
-	
-		<select id="selectPaymentListAll" resultType="paymentListVo">
-		select * from payment_list
-		order by col desc
+	<select id="selectPaymentListAll" parameterType="int" resultType="map">
+		select * from paymentListView where m_no = #{mNo}
 	</select>
+	
+	
 	
 </mapper>
 

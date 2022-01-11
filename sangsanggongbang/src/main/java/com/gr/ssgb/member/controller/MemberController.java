@@ -41,13 +41,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.TempPasswordUtil;
-import com.gr.ssgb.hostclass.model.CategoryVO;
+
+import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MailService;
 import com.gr.ssgb.member.model.MailVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.member.model.PaymentVO;
+import com.gr.ssgb.paymentList.model.PaymentListVO;
 
 
 @Controller
@@ -74,6 +76,8 @@ public class MemberController {
 	public String main() {
 		return "/main";
 	}
+
+	
 
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
@@ -581,8 +585,5 @@ public class MemberController {
 		return "common/message";
 	}
 	
-	@GetMapping("member/temp")
-	public void temp() {
-		logger.info("테스트 화면");
-	}
+	
 }
