@@ -43,6 +43,7 @@ import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.TempPasswordUtil;
 
 import com.gr.ssgb.host.model.HostService;
+import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MailService;
 import com.gr.ssgb.member.model.MailVO;
