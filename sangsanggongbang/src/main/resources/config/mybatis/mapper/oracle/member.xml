@@ -81,6 +81,12 @@
 		where m_id = #{mId}
 	</update>
 	
+	<update id="updateMGrade" parameterType="memberVo">
+		update member
+		set m_grade = #{mGrade}
+		where m_no = #{mNo}
+	</update>
+	
 	
 	
 </mapper>

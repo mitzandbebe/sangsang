@@ -41,5 +41,7 @@ public interface MemberService {
 
 	int updateAddiWithoutProfile(MemberVO vo);
 
+	int updateMGrade(MemberVO vo);
+
 
 }

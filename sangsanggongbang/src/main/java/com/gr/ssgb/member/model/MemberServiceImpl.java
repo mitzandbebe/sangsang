@@ -99,5 +99,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateAddiWithoutProfile(vo);
 
 	}
+	@Override
+	public int updateMGrade(MemberVO vo) {
+		return memberDao.updateMGrade(vo);
+	}
 	
 }
