@@ -105,42 +105,6 @@ summary="주문 상품 목록에 관한 표로써, 상품명,가격, 수량, 금
 </table>
 </div>
 <br>
- 
-<div class="divForm">   
-  	<p class="titleP">
-		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
-    	<span class="title">배송 정보</span>
-	</p>
-	<p>
-        <span class="sp1">보내시는 분 </span>
-        <span>${orderMap['SENDER'] }</span>        
-    </p>
-    <p>
-        <span class="sp1">받으시는 분 </span>
-        <span>${orderMap['CUSTOMERNAME'] }</span>
-    </p>
-    
-    <p>
-        <span class="sp1">배송지 주소</span>
-        <span>${orderMap['ADDRESS'] } ${orderMap['ADDRESSDETAIL'] }</span>
-    </p>
-    <p>
-        <span class="sp1">휴대폰 번호</span>
-        <span>${orderMap['HP'] }</span>
-    </p>        
-   
-	<br>
-	<p class="titleP">
-		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
-		<span class="title">결제 정보</span>
-	</p>	
-    <p>
-        <span class="sp1">결제금액</span>
-        <span>
-        	<fmt:formatNumber value="${orderMap['TOTALPRICE'] }" 
-        		pattern="#,###"/>원</span>
-    </p>
-</div>
 
 <c:choose>
     <c:when test="${!empty sessionScope.hId }">
