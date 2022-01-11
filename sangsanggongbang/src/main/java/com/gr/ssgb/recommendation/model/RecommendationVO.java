@@ -9,6 +9,9 @@ public class RecommendationVO {
 	private String recoPwd; 
 	private String recoContent;
 	private Timestamp regdate;
+	private String flag;
+
+	
 
 	public int getRecoNo() {
 		return recoNo;
@@ -57,11 +60,20 @@ public class RecommendationVO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+	
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 
 	@Override
 	public String toString() {
 		return "RecommendationVO [recoNo=" + recoNo + ", uNo=" + uNo + ", recoTitle=" + recoTitle + ", recoPwd="
-				+ recoPwd + ", recoContent=" + recoContent + ", regdate=" + regdate + "]";
+				+ recoPwd + ", recoContent=" + recoContent + ", regdate=" + regdate + ", flag=" + flag + "]";
 	}
+
 
 }

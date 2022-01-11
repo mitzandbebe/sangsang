@@ -5,8 +5,16 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gr.ssgb.common.PaymentSearchVO;
+
 @Mapper
 public interface PaymentListDAO {
-	public List<Map<String, Object>> selectPaymentListAll(int mNo);
+	public List<Map<String, Object>> selectPaymentListAll(PaymentSearchVO paySearchVo);
+
+	public int selectTotalPayment(int mNo);
+
+	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
+
+	public int deletePayment(String paylistNo);
 	
 }

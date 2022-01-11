@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>상상공방-탑</title>
+<title>상상공방</title>
 
 <!-- Primary Meta Tags -->
 <title>Spaces - All items list</title>
@@ -125,7 +126,9 @@
                             <span class="nav-link-inner-text mr-1">상상 클래스</span>
                             <i class="fas fa-angle-down nav-link-arrow"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-megamenu p-3 p-lg-4" aria-labelledby="mainPagesDropdown">
+                        <!-- 아랫줄 건들지 마세용 -->
+                         <div class="dropdown-menu dropdown-megamenu-sm p-3 p-lg-4" aria-labelledby="dashboardPagesDropdown">
+                         <!--위에줄 건들지 마세용-->
                             <div class="row">
                                 <div class="col-6 col-mb-4" >
                                     <h6 class="d-block mb-3 text-primary">Category</h6>
@@ -267,7 +270,7 @@
                         </div>
                     </li>
                     <!-- 두번째 탭 -->
-                    <!-- <li class="nav-item dropdown">
+                    <!--li class="nav-item dropdown">
                         <a href="#" id="dashboardPagesDropdown" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
                             <span class="nav-link-inner-text mr-1">상상클래스</span>
                             <i class="fas fa-angle-down nav-link-arrow"></i>
@@ -319,7 +322,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li> -->
+                    </li>  -->
                     <!--  세번쨰 탭 -->
                     <!-- <li class="nav-item dropdown">
                         <a href="#" id="supportDropdown" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">

@@ -15,8 +15,8 @@
 			<div class="col-6 col-xl-2 mb-5 mb-xl-0">
 				<span class="h5">SSGB</span>
 				<ul class="footer-links mt-2">
-					<li><a target="_blank" href="https://themesberg.com/blog">회사소개</a></li>
-					<li><a target="_blank" href="https://themesberg.com/about">FAQ</a></li>
+					<li><a target="_blank" href="<c:url value='/bottomview/aboutUs'/>">회사소개</a></li>
+					<li><a target="_blank" href="<c:url value='/bottomview/faq'/>">FAQ</a></li>
 					<li><a target="_blank" href="<c:url value='/host/hostInfo'/>">늘솜
 							지원하기</a></li>
 					<li><a target="_blank"
@@ -34,6 +34,7 @@
 					</a></li>
 					<li><a
 						href="http://localhost:9091/sangsanggongbang/recommendation/recommendList">불편사항</a></li>
+						
 					<li><a target="_blank" href="https://themesberg.com/licensing">이용약관</a>
 					</li>
 					<li><a target="_blank" href="https://themesberg.com/licensing">개인정보처리방침</a>
