@@ -73,6 +73,7 @@
 				        			'pay_date', 'price', 'card_no', 'refund']),
 				        contentType:'application/json;charset=UTF-8',
 				        dataType: 'json', //서버에서 보내줄 데이터 타입
+				        
 				        success: function(cnt){
 				        			        	
 				          if(cnt == 1){
