@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%@include file="../inc/top_admin.jsp"%>
-<!-- <style type="text/css">
-.card.border-light.p-md-2 {
-	margin-top: 100px;
-}
-</style> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+    <c:when test="${!empty sessionScope.hId }">
+        <%@ include file="../inc/top_host.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.mId }">
+        <%@ include file="../inc/top.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.adId }">
+        <%@ include file="../inc/top_admin.jsp"%>
+    </c:when>
+    <c:otherwise>
+        <%@ include file="../inc/top.jsp"%>
+    </c:otherwise>
+</c:choose>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -163,4 +170,17 @@
 		$("#privacyDto").submit();
 	}
 </script>
-<%@include file="../inc/bottom_admin.jsp"%>
+<c:choose>
+    <c:when test="${!empty sessionScope.hId }">
+        <%@ include file="../inc/bottom_host.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.mId }">
+        <%@ include file="../inc/bottom.jsp"%>
+    </c:when>
+    <c:when test="${!empty sessionScope.adId }">
+        <%@ include file="../inc/bottom_admin.jsp"%>
+    </c:when>
+    <c:otherwise>
+        <%@ include file="../inc/bottom.jsp"%>
+    </c:otherwise>
+</c:choose>
