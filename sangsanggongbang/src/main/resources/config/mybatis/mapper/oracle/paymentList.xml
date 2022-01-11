@@ -24,6 +24,14 @@
 		select count(*) from paymentListView where m_no = #{mNo}
 	</select>
 	
+	<select id="selectByNo" parameterType="paymentSearchVo" resultType="map">
+		select * from paymentListView where m_no = #{mNo} and paylist_no = #{paylistNo}
+	</select>
+	
+	<delete id="deletePayment" parameterType="string">
+		delete from payment_list where paylist_no = #{paylistNo}
+	</delete>
+	
 	
 </mapper>
 

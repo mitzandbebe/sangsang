@@ -27,6 +27,16 @@ public class PaymentListServiceImpl implements PaymentListService{
 		return paymentListDao.selectTotalPayment(mNo);
 	}
 
+	@Override
+	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo) {
+		return paymentListDao.selectByNo(paymentSearchVo);
+	}
+
+	@Override
+	public int deletePayment(String paylistNo) {
+		return paymentListDao.deletePayment(paylistNo);
+	}
+
 	/*
 	@Transactional
 	public int insertBoard(BalancingVO vo) {

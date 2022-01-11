@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.PaginationInfo;
@@ -81,16 +82,42 @@ public class PaymentListController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("now", now);
 		
-		
-
-				
-		
 		return "/dashboard/user/payment/myPayment";
 	}
-	/*@GetMapping("/payment/myPayment")
-	public void mypayment() {
-		logger.info("결제목록 화면");
-	}*/
+	@PostMapping("/payment/refund")
+	public String refund(@RequestParam String paylistNo, HttpSession session, Model model) {
+		logger.info("환불 화면");
+		
+		String mId = (String)session.getAttribute("mId");
+		int mNo = memberService.selectMno(mId);
+		
+		PaymentSearchVO paymentSearchVo = new PaymentSearchVO();
+		paymentSearchVo.setmNo(mNo);
+		paymentSearchVo.setPaylistNo(paylistNo);
+		
+		Map<String, Object> map = paymentListService.selectByNo(paymentSearchVo);
+		
+		model.addAttribute("map", map);
+		
+		return "dashboard/user/payment/refund";
+	}
+	
+	@PostMapping("/payment/refundSubmit")
+	public String refund_submit(@RequestParam String paylistNo, Model model) {
+		logger.info("paylistNo={}", paylistNo);
+		
+		int cnt = paymentListService.deletePayment(paylistNo);
+		String msg = "환불요청에 실패하였습니다.", url = "/dashboard/user/payment/myPayment";
+		if(cnt>0) {
+			msg="환불사유 검토 후 2~3 영업일 이내 환불될 예정입니다.";
+		}
+		
+		model.addAttribute("url", url);
+		model.addAttribute("msg", msg);
+		
+		return "common/message";
+		
+	}
 
 
 

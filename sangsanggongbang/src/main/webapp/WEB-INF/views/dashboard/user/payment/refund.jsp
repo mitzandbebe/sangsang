@@ -4,20 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		var startTime = new Date('${map["C_START_TIME"]}');
-		var d = new Date();
-		var bool = true;
-		if(startTime - d > 172800000){
-			bool = false;
-		}
-	});
-	
-	function pageFunc(curPage){
-		$('input[name=currentPage]').val(curPage);
-		$('form[name=frmPage]').submit();
-	}
-
 	
 </script>
 
@@ -47,8 +33,8 @@
             <div class="list-group dashboard-menu list-group-sm mt-4">
                 <a href="./account.html" class="d-flex list-group-item list-group-item-action ">Overview <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action active">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action">환불하기<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action active">환불하기<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="./billing.html" class="d-flex list-group-item list-group-item-action ">Billing<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="./messages.html" class="d-flex list-group-item list-group-item-action  border-0">Messages<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
             </div>
@@ -89,12 +75,10 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab-grid-1" role="tabpanel"
                                 aria-labelledby="tab-grid-1-tab">
-                                <h1 class="h3"><i class="fas fa-angle-double-right"></i>${sessionScope.mNickname}님의 결제 내역입니다.</h1>
-                                <h5 class="h6 mb-3">클래스 종료 후 2일 내의 결제내역에 한하여 환불요청이 가능합니다.</h5>
+                                <h1 class="h3"><i class="fas fa-angle-double-right"></i>클래스 환불 요청</h1>
+                                <h5 class="h6 mb-3">환불 요청 완료 시 환불 타탕성 검토를 거친 뒤 영업일 기준 2~3일 후에 환불됩니다.</h5>
                                 <div class="row justify-content-center">
                                     <div class="col-12 col-sm-10 col-md-6 col-lg-12 mb-4">
-                                    <c:forEach var = "map" items="${list }">
-                                   
                                         <div class="card border-light mb-4 animate-up-5">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-12 col-lg-6 col-xl-5">
@@ -103,95 +87,64 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-12 col-lg-6 col-xl-7">
-                                                    <div class="card-body p-3 p-md-1 mb-1">
+                                                    <div class="card-body p-3 p-md-1 ">
                                                         <h4 class="h5">${map['C_NAME'] }</h4>
                                                         <fmt:formatDate var="today" value="${now }" pattern="yyyyMMdd" />
                                                         <fmt:formatDate var="startTime" value="${map['C_START_TIME']}" pattern="yyyyMMdd" />
-                                                        
-                                               			<ul class="list-group mb-2">
+                                                        <ul class="list-group mb-2">
                                                             <li class="list-group-item small p-0 mb-1"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;결제일:&nbsp;&nbsp;&nbsp;
                                                             <fmt:formatDate value='${map["PAYDATE"] }' pattern="yyyy-MM-dd"/></li>
-                                                            <li class="list-group-item small p-0"><i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;진행일:&nbsp;
-                                                            <fmt:formatDate value='${map["C_START_TIME"] }' pattern="yyyy-MM-dd"/></li>
                                                        	</ul>
+                                               			
                                                         <div class="d-flex justify-content-between">
-                                                            <div class="col pl-0">
-                                                                <span class="text-muted font-small d-block">클래스가격</span>
-                                                                <span class="h6 text-dark font-weight-bold">${map['C_PRICE'] }원</span>
+                                                            <div class="col mt-4">
+                                                                <span class="text-muted font-middle d-block">환불예정금액</span>
                                                             </div>
-                                                            <div class="col">
-                                                                <span class="text-muted font-small d-block">결제인원</span>
-                                                                <span class="h6 text-dark font-weight-bold">${map['QTY'] }명</span>
+                                                            <div class="col" style="margin-top: 18px">
+                                                                <i class="fas fa-equals"></i>&nbsp;&nbsp;&nbsp;<span class="h4 text-dark font-weight-bold"><span style="color: red;">
+                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['QTY'] }" pattern="#,###"/></span>원</span>
                                                             </div>
-                                                            <div class="col">
-                                                                <span class="text-muted font-small d-block">총 결제금액</span>
-                                                                <span class="h6 text-dark font-weight-bold">
-                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['QTY'] }" pattern="#,###"/>원
-                                                                </span>
-                                                            </div>
-                                                            
-                                                            
-                                                            <c:if test="${ startTime-today > 0 }">
-                                                            <form action="<c:url value='/dashboard/user/payment/refund'/>" method="post" name="refund">
-                                                            <div class="col">
-	                                                            	<input type="hidden" id="paylistNo" name="paylistNo" value='${map["PAYLIST_NO"]}'>
-	                                                            	<input type="hidden" id="cStartTime" name="cStartTime" value=''>
-	                                                                
-                                                               <!-- <a href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORYNAME"] }&hNo=${map["H_NO"]}'/>">
-                                                                <span class="text-muted font-small d-block">리뷰작성 <i class="fas fa-angle-right"></i></span></div>-->
-                                                            </div> 
-                                                            <div class="col mt-2" >
-	                                                             <button type="submit" class="btn btn-sm btn-secondary" id="refundBtn">환불요청</button>
-                                                            </div> 
-                                                            </form>
-                                                            </c:if>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                       </c:forEach>
-                                    </div>
-                            	</div>
+                                            <div class="col-12 col-lg-12">
+				                       <div class="row mt-5">
+				                           <div class="col-lg-12">
+				                               <div class="card card-body bg-white border-light mb-4">
+				                                   <h2 class="h5 mb-4">환불 신청</h2>
+				                                   <form method="post" action="<c:url value='/dashboard/user/payment/refundSubmit'/> ">
+				                                   <!-- Form -->
+				                                   <label for="reason">환불사유</label>
+				                                  	<div class="input-group mb-4">
+				                               		<div class="input-group-prepend">
+				                                           <span class="input-group-text"><i class="fas fa-feather-alt"></i></span>
+				                                       </div>
+				                                       <input type="hidden" value='${map["PAYLIST_NO"]}' name="paylistNo">
+				                                      	<select class="custom-select" id="button-addon2" name = "reason">
+														<option selected>환불사유를 선택하세요.</option>
+														<option value="1">늘솜의 사정으로 클래스를 진행하지 않았어요.</option>
+														<option value="1">클래스 당일날 진행장소 변경으로 참여하지 못했어요.</option>
+														<option value="1">충분한 수업도구가 구비되어 있지 않아 수업을 진행할 수 없었어요.</option>
+													</select>
+				                                      	<button type="submit" id="button-addon2" class="btn btn-outline-primary" >환불요청</button>
+				                                   </div>
+				                                   </form>
+				                               </div>
+				                           </div>
+				                       </div>
+				                   </div>
+                               </div>
                             </div>
                          </div>
-                         <div style="width: 50%; margin: 0 auto;">
-                     <nav aria-label="Page navigation example" style="margin: 0 auto;">
-                     <div style="margin: 0 auto;">
-                      <ul class="pagination">
-		             <c:if test="${pagingInfo.firstPage>1 }">
-						 <li class="page-item">
-				            <a class="page-link" href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">Previous</a>
-				         </li>
-					</c:if>
-					<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-					end="${pagingInfo.lastPage }">
-						<c:if test="${i==pagingInfo.currentPage }">
-							 <li class="page-item active">
-					            <a class="page-link" href="#">${i }</a>
-					        </li>
-						</c:if>
-						<c:if test="${i!=pagingInfo.currentPage }">						
-							<li class="page-item">
-					            <a class="page-link" href="#" onclick="pageFunc(${i})">${i }</a>
-					        </li>
-						</c:if>
-					</c:forEach>
-						
-					<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-						<li class="page-item">
-				            <a class="page-link" href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">Next</a>
-				         </li>
-					</c:if>
-					
-					</ul>
-					</div>
-					</nav>
-					</div>
-                  </div>
-				</div>
+                     </div>
+                 </div>
              </div>
-          </div>
+         </div>
+     </div>
+</div>
+					
+           
        
 
 <%@ include file="../../../inc/bottom.jsp"%>
