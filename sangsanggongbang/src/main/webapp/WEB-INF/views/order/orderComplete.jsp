@@ -56,7 +56,7 @@
 <h2>주문 완료</h2>
 <p style="font-size:13pt;font-weight:bold">
 	주문과 결제가 정상적으로 완료되었습니다
-	[주문번호 : ${param.orderNo }]
+<%-- 	[주문번호 : ${param.orderNo }]
 </p>
 <br><br>
 <p class="titleP">
@@ -104,7 +104,7 @@ summary="주문 상품 목록에 관한 표로써, 상품명,가격, 수량, 금
 	</tbody>
 </table>
 </div>
-<br>
+<br> --%>
 
 <c:choose>
     <c:when test="${!empty sessionScope.hId }">

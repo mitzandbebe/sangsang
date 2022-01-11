@@ -46,14 +46,10 @@
 				buyer_email : $('#mId').val(),
 				buyer_name : $('#name').val(),
 				buyer_tel : $('#phone').val(),
-				buyer_addr : $('#mAddress')
-						.val()
-						+ $('#mAddressDetail')
-								.val(),
-				buyer_postcode : $('#mZipcode')
-						.val(),
-				digital : true
-			// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+				buyer_addr : $('#mAddress').val()
+						+ $('#mAddressDetail').val(),
+				buyer_postcode : $('#mZipcode').val(),
+				digital : true // 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
 			},
 			function(rsp) {
 				console.log(rsp);
@@ -75,7 +71,7 @@
 				        data : JSON.stringify(result,
 				        		['imp_uid', 'merchant_uid', 'm_id', 
 				        			'pay_date', 'price', 'card_no', 'refund']),
-				        contentType:'application/json;charset=utf-8',
+				        contentType:'application/json;charset=UTF-8',
 				        dataType: 'json', //서버에서 보내줄 데이터 타입
 				        success: function(cnt){
 				        			        	

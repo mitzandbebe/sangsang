@@ -1,5 +1,6 @@
 package com.gr.ssgb.order.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -65,18 +66,14 @@ public class OrderController {
 		return "login/login";
 	}
 
-	@RequestMapping("/orderComplete")
-	@ResponseBody
-	public int orderComplite_POST(HttpSession session, @RequestBody OrderVO orderVo, Model model) {
+	@PostMapping("/orderComplete")
+	public int orderComplite_POST(HttpSession session, OrderVO orderVo) {
 		String mId=(String) session.getAttribute("mId");
-		orderVo.setmId(mId);
 		logger.info("로그인 세션 mId={}", mId);
-
-		logger.info("매개변수 orderVo={}", orderVo);
 
 		int cnt = orderService.insertOrder(orderVo);
 		logger.info("주문 처리 결과, cnt={}", cnt);
-
+			
 		/*
 		List<Map<String, Object>> list 
 		=orderService.selectOrderDetailsView(orderVo.getOrderNo());
@@ -88,7 +85,7 @@ public class OrderController {
 		model.addAttribute("list", list);
 		model.addAttribute("orderMap", map);	*/
 
-		return cnt;	
+		return cnt;
 	}
 
 }
