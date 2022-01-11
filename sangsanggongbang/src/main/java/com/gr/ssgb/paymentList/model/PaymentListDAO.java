@@ -12,5 +12,9 @@ public interface PaymentListDAO {
 	public List<Map<String, Object>> selectPaymentListAll(PaymentSearchVO paySearchVo);
 
 	public int selectTotalPayment(int mNo);
+
+	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
+
+	public int deletePayment(String paylistNo);
 	
 }
