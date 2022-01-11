@@ -13,6 +13,10 @@ public interface PaymentListService {
 	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
 
 	public int deletePayment(String paylistNo);
+
+	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo);
+
+	public int selectTotalRefund(int mNo);
 	
 	/*
 	public List<BalancingVO> selectAll(SearchVO searchVo);

@@ -81,6 +81,14 @@
 		where m_id = #{mId}
 	</update>
 	
+
+	<update id="updateMGrade" parameterType="memberVo">
+		update member
+		set m_grade = #{mGrade}
+		where m_no = #{mNo}
+	</update>
+	
+
 	<insert id="insertConcern" parameterType="concernVo">
 		<selectKey keyProperty="concernNo" resultType="int" order="BEFORE">
 			select CONCERN_SEQ.nextval from dual
@@ -88,6 +96,7 @@
 		insert into concern(CONCERN_NO,C_NO,M_NO)
 		values(#{concernNo},#{cNo},#{mNo})
 	</insert>
+
 	
 	<delete id="deleteConcern" parameterType="int">
 		delete concern where CONCERN_NO=#{concernNo}

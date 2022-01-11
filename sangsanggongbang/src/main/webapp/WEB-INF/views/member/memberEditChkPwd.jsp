@@ -3,16 +3,8 @@
 <%@ include file="../inc/new_top_user.jsp" %>
 <script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
-<script>
-$(function(){
-	
-});
 
-
-
-</script>
-
-        <div class="section section-lg bg-soft">
+<div class="section section-lg bg-soft">
             <div class="container">
                 <div class="row pt-5 pt-md-0">
                 
@@ -26,19 +18,20 @@ $(function(){
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
                 <c:if test="${empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/assets/img/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+                	<img src="<c:url value='/resources/file_upload/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
                 </c:if>
             </div>
-            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
+            <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.mNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
-               <div class="list-group dashboard-menu list-group-sm mt-4">
-                <a href="./account.html" class="d-flex list-group-item list-group-item-action ">Overview <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+               <a href="<c:url value='/dashboard/user/payment/myAccount'/>" class="d-flex list-group-item list-group-item-action">내 정보조회 <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/memberEditChkPwd'/>" class="d-flex list-group-item list-group-item-action active">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="./security.html" class="d-flex list-group-item list-group-item-action ">Security<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+
+                <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="d-flex list-group-item list-group-item-action">환불내역조회<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+             
                 <a href="<c:url value='/member/interestClass'/>" class="d-flex list-group-item list-group-item-action ">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+
                 <a href="./messages.html" class="d-flex list-group-item list-group-item-action  border-0">Messages<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-            </div>
             </div>
         </div>
     </div>
