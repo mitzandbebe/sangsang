@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gr.ssgb.common.SearchVO;
 
@@ -65,6 +66,14 @@ public class RecommendationServiceImpl implements RecommendationService {
 	@Override
 	public int selectTotalHostRecord(SearchVO searchVo) {
 		return recommendationDAO.selectTotalHostRecord(searchVo);
+	}
+
+	@Transactional
+	@Override
+	public int reply(RecommendationVO vo) {
+		int cnt = recommendationDAO.updateSortNo(vo);
+		cnt = recommendationDAO.reply(vo);
+		return cnt;
 	}
 
 }

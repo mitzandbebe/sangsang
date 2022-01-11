@@ -62,7 +62,7 @@
 									<div class="d-flex align-items-center">${vo.recoTitle }
 									</div> 
 							</a></td>
-
+							
 							<td><fmt:formatDate value="${vo.regdate }"
 									pattern="yyyy-MM-dd HH:ss" /></td>
 						</tr>

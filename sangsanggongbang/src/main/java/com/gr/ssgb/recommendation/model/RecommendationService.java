@@ -3,7 +3,6 @@ package com.gr.ssgb.recommendation.model;
 import java.util.List;
 
 import com.gr.ssgb.common.SearchVO;
-import com.gr.ssgb.notice.model.NoticeVO;
 
 public interface RecommendationService {
 
@@ -24,7 +23,9 @@ public interface RecommendationService {
 	int selectTotalHostRecord(SearchVO searchVo);
 
 	public int updateRecommendation(RecommendationVO vo);
-
+	
 	public int deleteRecommendation(int recoNo);
+
+	int reply(RecommendationVO vo);
 
 }

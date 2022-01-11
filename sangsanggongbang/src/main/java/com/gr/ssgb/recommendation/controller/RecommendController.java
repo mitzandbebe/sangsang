@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
-import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.recommendation.model.RecommendationService;
@@ -229,5 +228,36 @@ public class RecommendController {
 		model.addAttribute("url", url);
 
 		return "/common/message";
+	}
+	
+	//6. 답글 남기기
+	@GetMapping("/recommendReply")
+	public String reply_get(@RequestParam(defaultValue = "0") int recoNo,
+			Model model) {	
+		logger.info("답변화면, 파라미터 no={}", recoNo);
+		
+		if(recoNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/recommendation/recommendReply");
+			
+			return "/common/message";			
+		}
+		
+		RecommendationVO vo=recommendationService.selectByNoRecommendation(recoNo);
+		logger.info("답변화면-조회 결과 vo={}", vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/recommendation/recommendReply";
+	}
+	
+	@PostMapping("/recommendReply")
+	public String reply_post(@ModelAttribute RecommendationVO vo) {
+		logger.info("답변하기, 파라미터 vo={}", vo);
+		
+		int cnt=recommendationService.reply(vo);
+		logger.info("답변하기 결과 cnt={}", cnt);
+		
+		return "redirect:/recommendation/recommendReply";
 	}
 }
