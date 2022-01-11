@@ -115,13 +115,6 @@
 		</div> --%>
 	</form>
 </div>
-<script type="text/javascript">
-	$(function() {
-		$('#btwrite').click(function() {
-			location.href = "<c:url value='/mainevent/eventwrite'/>";
-		});
-	});
-</script>
 
 <%@include file="../inc/bottom_host.jsp"%>
 </body>

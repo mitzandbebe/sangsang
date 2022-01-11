@@ -155,7 +155,12 @@
 										</ul>
 										<ul class="list-style-none mb-4">
 											<a href="<c:url value='/class/listofClass'/>"> 
-												<span class="nav-link-inner-text mr-1">클래스 목록</span> 
+												<span class="nav-link-inner-text mr-1">클래스 수정</span> 
+											</a>
+										</ul>
+										<ul class="list-style-none mb-4">
+											<a href="<c:url value='/class/listdelete'/>"> 
+												<span class="nav-link-inner-text mr-1">클래스 삭제</span> 
 											</a>
 										</ul>
 									</div>
