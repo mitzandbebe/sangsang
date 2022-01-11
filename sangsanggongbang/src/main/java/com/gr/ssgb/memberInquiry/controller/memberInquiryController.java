@@ -38,7 +38,7 @@ public class memberInquiryController {
 	@RequestMapping("/memberList")
 	public String memberList(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
 		String adId = (String) session.getAttribute("adId");
-		if (adId == null) {
+		if (adId == null || adId.isEmpty()) {
 			model.addAttribute("msg", "관리자만 접근 가능한 페이지입니다.");
 			model.addAttribute("url", "/index");
 			return "/common/message";
@@ -67,15 +67,21 @@ public class memberInquiryController {
 	}
 
 	@RequestMapping("/hostList")
-	public String hostList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String hostList(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
+		String adId = (String) session.getAttribute("adId");
+		if (adId == null || adId.isEmpty()) {
+			model.addAttribute("msg", "관리자만 접근 가능한 페이지입니다.");
+			model.addAttribute("url", "/index");
+			return "/common/message";
+		}
 		logger.info("호스트 회원 전체조회");
 
 		PaginationInfo hPagingInfo = new PaginationInfo(); // 멤버 페이징
 		hPagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		hPagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		hPagingInfo.setRecordCountPerPage(10);
 		hPagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setRecordCountPerPage(10);
 		searchVo.setFirstRecordIndex(hPagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}", searchVo);
 
@@ -92,15 +98,21 @@ public class memberInquiryController {
 	}
 
 	@RequestMapping("/banList")
-	public String banList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String banList(@ModelAttribute SearchVO searchVo,HttpSession session, Model model) {
+		String adId = (String) session.getAttribute("adId");
+		if (adId == null || adId.isEmpty()) {
+			model.addAttribute("msg", "관리자만 접근 가능한 페이지입니다.");
+			model.addAttribute("url", "/index");
+			return "/common/message";
+		}
 		logger.info("참여제한자 인원 리스트 등장");
 
 		PaginationInfo PagingInfo = new PaginationInfo();
 		PagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		PagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		PagingInfo.setRecordCountPerPage(10);
 		PagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setRecordCountPerPage(10);
 		searchVo.setFirstRecordIndex(PagingInfo.getFirstRecordIndex());
 		logger.info("searchVo={}", searchVo);
 

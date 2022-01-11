@@ -47,7 +47,7 @@ public class MemberInquiryServiceImpl implements MemberInquiryService {
 
 	@Override
 	public int selectBanTotalRecord(SearchVO searchVo) {
-		return memberInquirydao.selectHostTotalRecord(searchVo);
+		return memberInquirydao.selectBanTotalRecord(searchVo);
 	}
 
 	@Override
