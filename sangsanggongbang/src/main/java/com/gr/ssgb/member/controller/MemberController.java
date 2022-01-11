@@ -83,21 +83,21 @@ public class MemberController {
 
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
-		List<String> area = ImmutableList.<String>builder()
-				.add("서울")
-				.add("경기")
-				.add("인천")
-				.add("강원")
-				.add("충청")
-				.add("세종")
-				.add("전라")
-				.add("경상")
-				.add("제주")
-				.build();
-
-		List<CategoryVO> clist = hostClassService.selectCategoryAll();
-		model.addAttribute("clist", clist);
-		model.addAttribute("area", area);
+//		List<String> area = ImmutableList.<String>builder()
+//				.add("서울")
+//				.add("경기")
+//				.add("인천")
+//				.add("강원")
+//				.add("충청")
+//				.add("세종")
+//				.add("전라")
+//				.add("경상")
+//				.add("제주")
+//				.build();
+//
+//		List<CategoryVO> clist = hostClassService.selectCategoryAll();
+//		model.addAttribute("clist", clist);
+//		model.addAttribute("area", area);
 		return "/index";
 	}
 	
