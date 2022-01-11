@@ -83,16 +83,17 @@ hr {
 			<div style="margin-bottom: -50px; text-align: center;">
 				<a href="<c:url value='/notice/noticeList'/>">
 					<button class="btn mb-2 mr-2 btn-dark" type="button">목록</button>
-				</a> 
-				<c:if test="${!empty sessionScope.adId}">
-				<a
-					href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
-					<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
-				</a> <a
-					href="<c:url value='/notice/noticeDelete?noticeNo=${vo.noticeNo }'/>">
-					<button class="btn mb-2 mr-2 btn-dark" type="button"
-						id="noticeDelete">삭제</button>
 				</a>
+				<c:if test="${!empty sessionScope.adId}">
+					<a
+						href="<c:url value='/notice/noticeEdit?noticeNo=${vo.noticeNo }'/>">
+						<button class="btn mb-2 mr-2 btn-dark" type="button">수정</button>
+					</a>
+					<a
+						href="<c:url value='/notice/noticeDelete?noticeNo=${vo.noticeNo }'/>">
+						<button class="btn mb-2 mr-2 btn-dark" type="button"
+							id="noticeDelete">삭제</button>
+					</a>
 				</c:if>
 			</div>
 		</div>
@@ -135,7 +136,20 @@ hr {
 		</table>
 		<br>
 	</main>
-	<%@ include file="../inc/bottom.jsp"%>
+	<c:choose>
+		<c:when test="${!empty sessionScope.hId }">
+			<%@ include file="../inc/bottom_host.jsp"%>
+		</c:when>
+		<c:when test="${!empty sessionScope.mId }">
+			<%@ include file="../inc/bottom.jsp"%>
+		</c:when>
+		<c:when test="${!empty sessionScope.adId }">
+			<%@ include file="../inc/bottom_admin.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="../inc/bottom.jsp"%>
+		</c:otherwise>
+	</c:choose>
 
 	<script type="text/javascript">
 		$(function() {
