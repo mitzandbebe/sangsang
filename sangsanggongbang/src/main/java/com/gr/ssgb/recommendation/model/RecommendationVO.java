@@ -6,17 +6,15 @@ public class RecommendationVO {
 	private int recoNo;
 	private int uNo;
 	private String recoTitle;
-	private String recoPwd; 
+	private String recoPwd;
 	private String recoContent;
 	private Timestamp regdate;
 	private String flag;
-	
-	//답변형 게시판 필드 추가
-	private int groupNo;
-	private int step; 
-	private int sortNo;  //컬럼명 : SORT_NO
 
-	
+	// 답변형 게시판 필드 추가
+	private int groupNo;
+	private int step;
+	private int sortNo; // 컬럼명 : SORT_NO
 
 	public int getRecoNo() {
 		return recoNo;
@@ -65,7 +63,7 @@ public class RecommendationVO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
+
 	public String getFlag() {
 		return flag;
 	}
@@ -104,8 +102,5 @@ public class RecommendationVO {
 				+ recoPwd + ", recoContent=" + recoContent + ", regdate=" + regdate + ", flag=" + flag + ", groupNo="
 				+ groupNo + ", step=" + step + ", sortNo=" + sortNo + "]";
 	}
-
-
-
 
 }
