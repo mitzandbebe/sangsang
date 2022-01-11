@@ -129,7 +129,7 @@
 		 select * from selectClass where c_no=#{cNo}
 	</select>
 	<select id="selectClassAllOfHost" resultType="map" parameterType="int">
-		select * from selectClass where h_no=#{hNo}
+		select * from selectClass where h_no=#{hNo} order by c_start_time desc
 	</select>
 
 	<update id="updateBylocation" parameterType="locationVo">
