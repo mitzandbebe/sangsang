@@ -50,13 +50,13 @@
 			<!-- 여기가 거기다 이말이야 그 카테고리별 검색 ㅋㅋ -->
 			<div class="row mt-6">
 				<div class="col-12">
-					<h3 class="h4 mb-5">클래스 카테고리</h3>
+					<h3 class="h4 mb-5"><i class="fas fa-angle-double-right"></i>클래스 카테고리</h3>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=공예DIY"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../../resources/upload_images/do1_20220110152224023.jpg"> <!-- 이미지 못넣겠어ㅠㅠ -->
+						data-background-inner="<c:url value='/resources/category/knitting4.jpg'/> "> <!-- 이미지 못넣겠어ㅠㅠ -->
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -68,9 +68,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=베이킹"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/paris.jpg">
+						data-background-inner="<c:url value='/resources/category/bake.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -82,9 +82,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=쿠킹"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/cook.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -97,9 +97,9 @@
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0"
 					style="margin-bottom: 25px;">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=문화예술"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/mon.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -113,9 +113,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=자기계발"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/s5.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -127,9 +127,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=뷰티"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/c2.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -141,9 +141,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=여행"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/travle.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -155,9 +155,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=피트니스"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/yoga.PNG'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -171,9 +171,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스포츠"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/sports.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -185,9 +185,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=모임"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/upload_images/do1_20220110152224023.jpg'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -199,9 +199,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=스토어"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/london.jpg">
+						data-background-inner="<c:url value='/resources/category/store.PNG'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
@@ -213,9 +213,9 @@
 				</div>
 				<div class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0">
 					<!-- Card -->
-					<a href="./all-spaces.html"
+					<a href="${pageContext.request.contextPath }/class/menuCategory?categoryName=온라인"
 						class="card img-card fh-400 border-0 outer-bg"
-						data-background-inner="../assets/img/tokyo.jpg">
+						data-background-inner="<c:url value='/resources/category/online.PNG'/>">
 						<div class="inner-bg overlay-dark"></div>
 						<div class="card-img-overlay d-flex align-items-center">
 							<div class="card-body text-white p-3">
