@@ -33,7 +33,7 @@
                                 </c:choose>
                             </a>
                             <div class="card-body">
-                                <a href="<c:url value='/class/detail?cNo=${map["C_NO"]} '/>">
+                                <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }
                                 </a>
                                  <c:forEach var="vo" items="${rlist}">

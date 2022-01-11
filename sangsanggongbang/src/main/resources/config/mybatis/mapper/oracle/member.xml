@@ -90,7 +90,7 @@
 	</insert>
 	
 	<delete id="deleteConcern" parameterType="int">
-		delete concern where CONCERN_NO=#{concernNo}
+		delete concern where c_no=#{cNo}
 	</delete>	
 	
 	<select id="selectConcern" resultType="concernVo">

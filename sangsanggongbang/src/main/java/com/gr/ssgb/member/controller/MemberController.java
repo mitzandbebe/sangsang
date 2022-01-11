@@ -600,7 +600,7 @@ public class MemberController {
 	
 	@RequestMapping("member/interest")
 	@ResponseBody
-	public int interest(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo) {
+	public int interest(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo,Model model) {
 		logger.info("ajax 등록 실행");
 		
 		String mId=(String) session.getAttribute("mId");
@@ -620,11 +620,12 @@ public class MemberController {
 		}else {
 			logger.info("관심클래스 등록실패");
 		}
+		
 		return cnt;
 	}
 	@RequestMapping("member/interestdelete")
 	@ResponseBody
-	public int interestdelete(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo) {
+	public int interestdelete(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo,Model model) {
 		logger.info("ajax 삭제 실행");
 		
 		
@@ -640,6 +641,7 @@ public class MemberController {
 		}else {
 			logger.info("관심클래스 등록실패");
 		}
+		
 		return cnt;
 	}
 	

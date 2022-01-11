@@ -393,7 +393,15 @@
 						<form action="order" method="post" class="card border-light p-3 mb-4">
 						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<div class="card border-light mt-4 p-3">
-						 <i class="far fa-heart">&nbsp;<label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
+						<input type="hidden" id="con" value="${con }">
+						<c:if test="${con == 0 }">
+						 <i class="far fa-heart" id="heart">&nbsp;
+						 </c:if>
+						<c:if test="${con > 0}">
+						 <i class="fas fa-heart" id="heart">&nbsp;
+						 </c:if>
+						 <label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
+						 
 						 </div>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
@@ -493,11 +501,11 @@
 		const heart = document.querySelector('.fa-heart');
 
 		let cNo = ${param.cNo};
+		
 		let num = 0;
 		
-		if ($('.fa-heart').hasClass("far")===true) {
-
-			heart.addEventListener('click', function() {
+	heart.addEventListener('click', function() {
+			if ($('#heart').hasClass('far')) {
 				heart.classList.remove('far');
 				heart.classList.add('fas');
 
@@ -505,7 +513,6 @@
 					type : "POST",
 					url : '<c:url value="/member/interest"/>',
 					data : "cNo=" + cNo,
-					async:false,
 					success : function(res) {
 						alert("관심클래스로 등록하였습니다.");
 					},
@@ -516,14 +523,9 @@
 					}
 
 				}); //ajax 
-				
+
 				num++;
-				alert(num);
-			}); //하트클릭
-			
-		} 
-		if(num>0){
-			heart.addEventListener('click', function() {
+			} else if ($('#heart').hasClass('fas')) { //num==1
 				heart.classList.remove('fas');
 				heart.classList.add('far');
 
@@ -531,7 +533,6 @@
 					type : "POST",
 					url : '<c:url value="/member/interestdelete"/>',
 					data : "cNo=" + cNo,
-					async:false,
 					success : function(res) {
 						alert("관심클래스를 삭제하였습니다.");
 					},
@@ -542,13 +543,11 @@
 					}
 
 				}); //ajax 
-				
+
 				num--;
-				alert(num);
-				
-			}); //하트클릭
-			
-		} //if
+
+			}
+		}); //하트클릭
 
 	});
 
