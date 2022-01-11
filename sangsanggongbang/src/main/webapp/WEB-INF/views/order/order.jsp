@@ -61,12 +61,19 @@
 					"m_id" : $('#mId').val(),
 					"pay_date" : new Date().getTime(),
 					"price" : rsp.paid_amount,
-					"card_no" : rsp.apply_num,
+					"card_no" : "1243",
 					"refund" : 'payed'
 					}
-					console.log("결제성공 " + msg);
+					console.log("결제성공 " + result.imp_uid);
+					console.log("결제성공 " + result.merchant_uid);
+					console.log("결제성공 " + result.m_id);
+					console.log("결제성공 " + result.pay_date);
+					console.log("결제성공 " + result.price);
+					console.log("결제성공 " + result.card_no);
+					console.log("결제성공 " + result.refund);
+					
 					$.ajax({
-						url : '/class/orderComplete', 
+						url : '/sangsanggongbang/class/orderComplete', 
 				        type :'POST',
 				        data : JSON.stringify(result,
 				        		['imp_uid', 'merchant_uid', 'm_id', 
