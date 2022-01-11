@@ -5,13 +5,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.MemberVO;
 
 @Service
-public class MemberInquiryServiceImpl implements MemberInquiryService{
+public class MemberInquiryServiceImpl implements MemberInquiryService {
 	private final MemberInquiryDAO memberInquirydao;
 
 	@Autowired
@@ -28,6 +29,7 @@ public class MemberInquiryServiceImpl implements MemberInquiryService{
 	public int selectMemberTotalRecord(SearchVO searchVo) {
 		return memberInquirydao.selectMemberTotalRecord(searchVo);
 	}
+
 	@Override
 	public MemberVO selectMemberByNo(int mNo) {
 		return memberInquirydao.selectMemberByNo(mNo);
@@ -43,15 +45,19 @@ public class MemberInquiryServiceImpl implements MemberInquiryService{
 		return memberInquirydao.selectHostTotalRecord(searchVo);
 	}
 
-
 	@Override
 	public int selectBanTotalRecord(SearchVO searchVo) {
 		return memberInquirydao.selectHostTotalRecord(searchVo);
 	}
 
 	@Override
-	public int insertBan(BanVO vo) {
-		return memberInquirydao.insertBan(vo);
+	@Transactional
+	public int insertBan(BanVO bVo) {
+		int cnt1 = memberInquirydao.insertBan(bVo);
+		int cnt2 = memberInquirydao.insertBanF(bVo);
+		int result = cnt1+cnt2;
+		return result;
+	
 	}
 
 	@Override
@@ -60,7 +66,11 @@ public class MemberInquiryServiceImpl implements MemberInquiryService{
 	}
 
 	@Override
-	public int banDelete(int mNo) {
-		return memberInquirydao.banDelete(mNo);
+	@Transactional
+	public int deleteBan(BanVO bVo) {
+		int cnt1 = memberInquirydao.deleteBan(bVo);
+		int cnt2 = memberInquirydao.deleteBanF(bVo);
+		int result = cnt1+cnt2;
+		return result;
 	}
 }
