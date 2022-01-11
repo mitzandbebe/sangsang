@@ -197,5 +197,61 @@
 		select count(*) from hostclass where h_no = #{hNo}
 	</select>
 
-	
+	<select id="findBySearchClass" parameterType="hostClassVo" resultType="hostClassVo">
+		SELECT
+			  H.C_NO
+			, H.C_NAME
+			, H.CATEGORY_CODE
+			, H.H_NO
+			, H.L_NO
+			, H.C_PRICE
+			, H.PPNUM
+			, H.C_REGDATE
+			, H.C_START_TIME
+			, H.END_FLAG
+			, H.C_TIME
+			, H.FPNUM
+
+			, C.CATEGORY_CODE AS "category.categoryCode"
+			, C.CATEGORY_NAME AS "category.categoryName"
+
+			, L.L_NO AS "location.lNo"
+			, L.L_LATITUDE AS "location.lLatitude"
+			, L.L_LONGITUDE AS "location.lLongitude"
+			, L.ZIPCODE AS "location.zipcode"
+			, L.L_ADDRESS AS "location.lAddress"
+			, L.L_ADDRESS_DETAIL AS "location.lAddressDetail"
+			, L.H_NO AS "location.hNo"
+
+			, CC.CONTENTS_NO AS "contents.contentsNo"
+			, CC.C_NO AS "contents.cNo"
+			, CC.THUMBNAIL AS "contents.thumbnail"
+			, CC.CONTENTS_FILENAME1 AS "contents.contentsFilename1"
+			, CC.CONTENTS_FILENAME2 AS "contents.contentsFilename2"
+			, CC.CONTENTS_FILENAME3 AS "contents.contentsFilename3"
+			, CC.CONTENTS_FILENAME4 AS "contents.contentsFilename4"
+			, CC.CONTENTS_FILENAME5 AS "contents.contentsFilename5"
+			, CC.CONTENTS_CONTENT AS "contents.contentsContent"
+
+			, (SELECT ROUND(AVG(R_RATE), 1) FROM REVIEW WHERE C_NO = H.C_NO) AS TOTAL_R_RATE
+
+		FROM HOSTCLASS H
+		LEFT OUTER JOIN C_CONTENTS CC ON CC.C_NO = H.C_NO
+		LEFT OUTER JOIN CATEGORY C ON C.CATEGORY_CODE = H.CATEGORY_CODE
+		LEFT OUTER JOIN LOCATION L ON L.L_NO = H.L_NO
+		WHERE 1=1
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(cName) == false">
+			AND H.C_NAME LIKE '%' || #{cName} || '%'
+		</if>
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(categoryCode) == false">
+			AND H.CATEGORY_CODE = #{categoryCode}
+		</if>
+
+		<if test="@org.springframework.util.StringUtils@isEmpty(lAddress) == false">
+			AND L.L_ADDRESS LIKE '%' || #{lAddress} || '%'
+		</if>
+
+	</select>
 </mapper>

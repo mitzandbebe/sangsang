@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,12 +79,24 @@ public class MemberController {
 		return "/main";
 	}
 
-	
 
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
+		List<String> area = ImmutableList.<String>builder()
+				.add("서울")
+				.add("경기")
+				.add("인천")
+				.add("강원")
+				.add("충청")
+				.add("세종")
+				.add("전라")
+				.add("경상")
+				.add("제주")
+				.build();
+
 		List<CategoryVO> clist = hostClassService.selectCategoryAll();
-		model.addAttribute("clist",clist);
+		model.addAttribute("clist", clist);
+		model.addAttribute("area", area);
 		return "/index";
 	}
 	
