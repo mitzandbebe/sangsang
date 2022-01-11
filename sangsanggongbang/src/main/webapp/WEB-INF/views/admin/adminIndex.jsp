@@ -19,10 +19,9 @@
 
 
 
-        <!-- Section -->
+       <!-- Section -->
         <section class="section-header">
         <div class="section section-lg bg-soft">
-        <div class="container">
             
                 <div class="row pt-5 pt-md-0">
                 <div class="col-12 col-lg-8" style="margin: 0 auto;">
@@ -170,7 +169,6 @@
                     </div>
                 </div>
         </div>
-        </div>
         <figure class="highcharts-figure">
 		    <div id="container"></div>
 		    <p class="highcharts-description">
@@ -182,7 +180,6 @@
     </section>
 <script type="text/javascript">
 $(function(){
-	
 	function rangeDate(term){
 		var d = new Date();
 		var result = '';
@@ -246,6 +243,15 @@ $(function(){
 	        align: 'right',
 	        verticalAlign: 'middle'
 	    },
+
+	     /* plotOptions: {
+	        series: {
+	            label: {
+	                connectorAllowed: true
+	            },
+	            pointStart: 08
+	        }
+	    },  */
 
 	    series: [{
 	        name: '누적 매출 추이',
