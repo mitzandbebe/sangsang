@@ -66,17 +66,21 @@ public class OrderController {
 		return "login/login";
 	}
 
-	@PostMapping("/orderComplete")
+	
 	@ResponseBody
-	public int orderComplite_POST(HttpSession session, OrderVO orderVo) {
+	@RequestMapping("/orderComplete")
+	public int orderComplite_POST(HttpSession session, @RequestBody String orderId) {
 		String mId=(String) session.getAttribute("mId");
 		logger.info("로그인 세션 mId={}", mId);
-		logger.info("orderVo={}", orderVo);
+		logger.info("orderId={}", orderId);
+		
+			
+		/*
+		 * logger.info("orderVo={}", orderVo);
 
 		int cnt = orderService.insertOrder(orderVo);
 		logger.info("주문 처리 결과, cnt={}", cnt);
-			
-		/*
+		
 		List<Map<String, Object>> list 
 		=orderService.selectOrderDetailsView(orderVo.getOrderNo());
 		logger.info("주문완료, 상세주문 조회 결과 list.size={}", list.size());
@@ -87,7 +91,7 @@ public class OrderController {
 		model.addAttribute("list", list);
 		model.addAttribute("orderMap", map);	*/
 
-		return cnt;
+		return 1;
 	}
 
 }
