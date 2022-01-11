@@ -2,20 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:choose>
-	<c:when test="${!empty sessionScope.hId }">
-		<%@ include file="../inc/new_top_host.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.mId }">
-		<%@ include file="../inc/new_top_user.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.adId }">
-		<%@ include file="../inc/new_top_admin.jsp"%>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="../inc/new_top_user.jsp"%>
-	</c:otherwise>
-</c:choose>
+<%@ include file="../inc/new_top_admin.jsp"%>
 <br>
 <br>
 <br>
@@ -95,46 +82,33 @@
 								</nav>
 							</div>
 						</div>
-					<div class="divSearch" style="margin-left: 320px;">
-						<form name="frmSearch" method="post"
-							action='<c:url value="/memberInquiry/hostList"/>'>
-							<select name="searchCondition">
-								<option value="h_Id"
-									<c:if test="${param.searchCondition=='hId' }">            	
+						<div class="divSearch" style="margin-left: 320px;">
+							<form name="frmSearch" method="post"
+								action='<c:url value="/memberInquiry/hostList"/>'>
+								<select name="searchCondition">
+									<option value="h_Id"
+										<c:if test="${param.searchCondition=='hId' }">            	
             		selected="selected"
             	</c:if>>호스트
-									아이디</option>
-								<option value="h_Name"
-									<c:if test="${param.searchCondition=='hName' }">            	
+										아이디</option>
+									<option value="h_Name"
+										<c:if test="${param.searchCondition=='hName' }">            	
             		selected="selected"
             	</c:if>>호스트
-									이름</option>
-							</select> <input type="text" name="searchKeyword" title="검색어 입력"
-								value="${param.searchKeyword}"> <input type="submit"
-								value="검색">
-						</form>
-					</div>
+										이름</option>
+								</select> <input type="text" name="searchKeyword" title="검색어 입력"
+									value="${param.searchKeyword}"> <input type="submit"
+									value="검색">
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<%@ include file="../inc/bottom_admin.jsp"%>
 
-<c:choose>
-	<c:when test="${!empty sessionScope.hId }">
-		<%@ include file="../inc/bottom_host.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.mId }">
-		<%@ include file="../inc/bottom.jsp"%>
-	</c:when>
-	<c:when test="${!empty sessionScope.adId }">
-		<%@ include file="../inc/bottom_admin.jsp"%>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="../inc/bottom.jsp"%>
-	</c:otherwise>
-</c:choose>
 <script>
 	
 </script>

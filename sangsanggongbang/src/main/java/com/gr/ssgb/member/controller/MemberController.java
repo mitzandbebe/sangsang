@@ -652,7 +652,7 @@ public class MemberController {
 		if(cnt>0) {
 			logger.info("관심클래스 삭제성공");
 		}else {
-			logger.info("관심클래스 등록실패");
+			logger.info("관심클래스 삭제실패");
 		}
 		
 		return cnt;

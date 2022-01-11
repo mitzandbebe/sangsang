@@ -15,7 +15,9 @@ public interface RecommendationService {
 	int selectTotalRecord(SearchVO searchVo);
 
 	public int updateRecommendation(RecommendationVO vo);
-
+	
 	public int deleteRecommendation(int recoNo);
+
+	int reply(RecommendationVO vo);
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gr.ssgb.common.SearchVO;
 
@@ -46,5 +47,35 @@ public class RecommendationServiceImpl implements RecommendationService {
 	public int deleteRecommendation(int recoNo) {
 		return recommendationDAO.deleteRecommendation(recoNo);
 	}
+
+
+	@Override
+	public List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo) {
+		return recommendationDAO.selectAllMemberRecommendation(searchVo);
+	}
+
+	@Override
+	public List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo) {
+		return recommendationDAO.selectAllHostRecommendation(searchVo);
+	}
+
+	@Override
+	public int selectTotalMemberRecord(SearchVO searchVo) {
+		return recommendationDAO.selectTotalMemberRecord(searchVo);
+	}
+
+	@Override
+	public int selectTotalHostRecord(SearchVO searchVo) {
+		return recommendationDAO.selectTotalHostRecord(searchVo);
+	}
+
+	@Transactional
+	@Override
+	public int reply(RecommendationVO vo) {
+		int cnt = recommendationDAO.updateSortNo(vo);
+		cnt = recommendationDAO.reply(vo);
+		return cnt;
+	}
+
 
 }

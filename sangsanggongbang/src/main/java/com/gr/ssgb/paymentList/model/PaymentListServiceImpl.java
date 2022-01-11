@@ -20,6 +20,16 @@ public class PaymentListServiceImpl implements PaymentListService{
 		return paymentListDao.selectPaymentListAll(mNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo) {
+		return paymentListDao.selectRefundByNo(paymentSearchVo);
+	}
+
+	@Override
+	public int selectTotalRefund(int mNo) {
+		return paymentListDao.selectTotalRefund(mNo);
+	}
+
 	/*
 	@Transactional
 	public int insertBoard(BalancingVO vo) {
