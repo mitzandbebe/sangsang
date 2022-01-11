@@ -56,28 +56,23 @@
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 					var msg = '결제가 완료되었습니다';
 					var result = {
-					"imp_uid" : rsp.imp_uid,
-					"merchant_uid" : rsp.merchant_uid,
-					"m_id" : $('#mId').val(),
-					"pay_date" : new Date().getTime(),
-					"price" : rsp.paid_amount,
-					"card_no" : "1243",
-					"refund" : 'payed'
+					"impUid" : rsp.imp_uid,	//상점id
+					"merchantUid" : rsp.merchant_uid, //영수증번호
+					"mId" : $('#mId').val(), //유저id
+					"payDate" : new Date().getTime(), //결제일
+					"price" : rsp.paid_amount, //결제금액
+					"refund" : 'payed', //결제상태
+					"buyerName" : $('#name').val(), //구매자명
+					"ea" : $('#sPpunm').val(), //구매수량
+					"fDate" : $('#fDate').val(), //선택날짜
+					"fTime" : $('#fTime').val(), //선택시간
+					"cNo" : $('#cNo').val() //클래스넘버
 					}
-					console.log("결제성공 " + result.imp_uid);
-					console.log("결제성공 " + result.merchant_uid);
-					console.log("결제성공 " + result.m_id);
-					console.log("결제성공 " + result.pay_date);
-					console.log("결제성공 " + result.price);
-					console.log("결제성공 " + result.card_no);
-					console.log("결제성공 " + result.refund);
 					
 					$.ajax({
-						url : '/sangsanggongbang/class/orderComplete', 
+						url : '/sangsanggongbang/class/orderComplete',
 				        type :'POST',
-				        data : JSON.stringify(result,
-				        		['imp_uid', 'merchant_uid', 'm_id', 
-				        			'pay_date', 'price', 'card_no', 'refund']),
+ 				        data : JSON.stringify(result),
 				        contentType:'application/json;charset=UTF-8',
 				        dataType: 'json', //서버에서 보내줄 데이터 타입
 				        
@@ -110,10 +105,11 @@
 	<div class="container z-2">
 		<div class="section section-lg pt-5">
 			<div class="container" style="background-color: beige;">
-				<form method="post" class="card border-light p-3 mb-4" action="<c:url value='/class/orderComplete'/>">
+				<form method="post" class="card border-light p-3 mb-4" action="orderComplete">
 					<div class="row">
 						<c:forEach var="map" items="${cVo}">
 							<c:if test="${map['C_NO'] eq param.cNo }">
+							<input type="hidden" id="cNo" value="${map['C_NO'] }">
 								<div class="col-12 col-lg-14">
 									<div class="row no-gutters align-items-center">
 										<div class="col-12 col-lg-4 col-xl-4">
@@ -170,7 +166,7 @@
 												<!-- Form -->
 												<div class="form-group mb-4">
 													<label for="cartInputCity1">선택날짜</label> <input type="text"
-														readonly="readonly" class="form-control" id="M_NAME"
+														readonly="readonly" class="form-control" id="fDate"
 														aria-describedby="M_NAME"
 														value="<fmt:formatDate value="${map['C_REGDATE'] }"
 												pattern="yyyy-MM-dd" />">
@@ -182,8 +178,8 @@
 												<div class="form-group mb-4">
 													<label for="cartInputCity1">선택시간</label> <input type="text"
 														readonly="readonly" placeholder="M_NAME"
-														class="form-control" id="M_NAME" aria-describedby="M_NAME"
-														value="${map['C_TIME'] } 시">
+														class="form-control" id="fTime" aria-describedby="M_NAME"
+														value="${map['C_TIME'] }">시
 												</div>
 												<!-- End of Form -->
 											</div>
@@ -228,7 +224,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-6">
+							<%-- <div class="col-12 col-lg-6">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="mNickname">닉네임</label> <input type="text"
@@ -236,7 +232,7 @@
 										aria-describedby="M_NAME" value="${mVo.mNickname}">
 								</div>
 								<!-- End of Form -->
-							</div>
+							</div> --%>
 							<div class="col-12 col-lg-6">
 								<!-- Form -->
 								<div class="form-group mb-4">

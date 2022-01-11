@@ -56,8 +56,22 @@
 <h2>주문 완료</h2>
 <p style="font-size:13pt;font-weight:bold">
 	주문과 결제가 정상적으로 완료되었습니다
-<%-- 	[주문번호 : ${param.orderNo }]
 </p>
+<c:forEach var="map" items="${map}">
+${map["buyerName"] } <br>
+${map["ea"] } <br>
+${map["fDate"] } <br>
+${map["fTime"] } <br>
+${map["impUid"] } <br>
+${map["mId"] } <br>
+${map["merchantUid"] } <br>
+${map["payDate"] } <br>
+${map["price"] } <br>
+${map["refund"] } <br>
+
+</c:forEach>
+
+<%-- 	[주문번호 : ${param.orderNo }]
 <br><br>
 <p class="titleP">
 	<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
