@@ -25,7 +25,7 @@
 		(
 		select * from
 		recommendation 
-		order by group_no desc, sort_no, reco_no, regdate asc
+		order by group_no desc, sort_No
 		)A
 		)
 		<![CDATA[
@@ -112,11 +112,16 @@
 	</delete>
 	<!-- 답변 -->
 	<insert id="reply" parameterType="recommendationVo">
- 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+ 		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
 			select recommendation_seq.nextval from dual
 		</selectKey>
 		insert into recommendation(reco_no, reco_title, reco_content, group_No, sort_No, step)
 		values(#{recoNo},#{recoTitle}, #{recoContent}, #{groupNo}, #{sortNo}+1, #{step}+1)
  	</insert>
 
+ 	<update id="updateSortNo" parameterType="RecommendationVO">
+ 		update recommendation
+		set sort_no=sort_no+1
+		where group_no=#{groupNo} and sort_no>#{sortNo}
+ 	</update>
 </mapper>

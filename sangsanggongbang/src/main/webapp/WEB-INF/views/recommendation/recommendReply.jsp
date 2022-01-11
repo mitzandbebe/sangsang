@@ -62,11 +62,8 @@
 	<div class="card border-light p-md-2">
 		<div class="card-body p-4">
 			<form name="frmRCwrite" method="post" enctype="multipart/form-data"
-				action="<c:url value='/recommendation/recommendWrite'/> ">
-				<input type="text" name="groupNo" value="${vo.recoNo }" />
-				<input type="text" name="step" value="${vo.step }" />
-				<input type="text" name="sortNo" value="${vo.sortNo }" />
-				
+				action="<c:url value='/recommendation/recommendReply'/> ">
+
 				<div class="row">
 					<div class="col-lg-12 mb-5">
 						<input type="hidden" name="flag"<%-- <c:choose>
@@ -103,6 +100,10 @@
 						type="submit"> <input value="목록"
 						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
 				</div>
+				<input type="text" name="groupNo" value="${vo.groupNo}" />
+				<input type="text" name="step" value="${vo.step }" />
+				<input type="text" name="sortNo" value="${vo.sortNo }" />
+				
 			</form>
 		</div>
 	</div>
