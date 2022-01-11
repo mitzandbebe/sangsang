@@ -1,24 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../../../inc/new_top_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../../../inc/new_top_user.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../../../inc/new_top_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../../../inc/new_top_user.jsp"%>
-    </c:otherwise>
-</c:choose>	
-	
+<%@ include file="../../../inc/top_host.jsp"%>
 <%@ include file="../leftNavi.jsp"%>
 
 <div class="col-12 col-lg-8">
@@ -295,17 +277,5 @@
 </div>
 </div>
 </div>
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../../../inc/bottom_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../../../inc/bottom.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../../../inc/bottom_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../../../inc/bottom.jsp"%>
-    </c:otherwise>
-</c:choose>
+
+<%@ include file="../../../inc/bottom_host.jsp"%>

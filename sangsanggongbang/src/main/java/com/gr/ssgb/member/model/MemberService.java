@@ -1,5 +1,7 @@
 package com.gr.ssgb.member.model;
 
+import java.util.List;
+
 public interface MemberService {
 	public static final int LOGIN_OK=1;
 	public static final int ID_NONE=2;
@@ -38,5 +40,6 @@ public interface MemberService {
 	int updateNickname(MemberVO memberVo);
 
 	int updateAddiWithoutProfile(MemberVO vo);
+
 
 }

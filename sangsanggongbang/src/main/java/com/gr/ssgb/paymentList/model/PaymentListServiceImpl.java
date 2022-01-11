@@ -1,6 +1,7 @@
 package com.gr.ssgb.paymentList.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class PaymentListServiceImpl implements PaymentListService{
 	}
 	
 	@Override
-	public List<PaymentListVO> selectPaymentListAll() {
-		return paymentListDao.selectPaymentListAll();
+	public List<Map<String, Object>> selectPaymentListAll(int mNo) {
+		return paymentListDao.selectPaymentListAll(mNo);
 	}
 
 	/*
