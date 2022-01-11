@@ -2,17 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gr.ssgb.recommendation.model.RecommendationDAO">
+<mapper
+	namespace="com.gr.ssgb.recommendation.model.RecommendationDAO">
 
 	<insert id="insertRecommendation"
 		parameterType="recommendationVO">
-		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="recoNo" resultType="int"
+			order="BEFORE">
 			select RECOMMENDATION_SEQ.nextval from dual
 		</selectKey>
-		insert into recommendation(reco_no, reco_title, reco_content)
-		values(#{recoNo},#{recoTitle}, #{recoContent})
+		insert into recommendation(reco_no, reco_title, reco_content, flag)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}) 
 	</insert>
- 
+
 	<select id="selectAllRecommendation" parameterType="searchVo"
 		resultType="recommendationVO">
 		select *
@@ -21,7 +23,8 @@
 		select rownum as RNUM, A.*
 		from
 		(
-		select * from recommendation order by
+		select * from
+		recommendation order by
 		reco_no desc
 		)A
 		)
@@ -34,6 +37,59 @@
 	<select id="selectTotalRecord" parameterType="searchVo"
 		resultType="int">
 		select count(*) from recommendation
+	</select>
+
+	<select id="selectAllMemberRecommendation"
+		resultType="recommendationVo" parameterType="searchVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from
+		recommendation
+		where
+		flag = 'M'
+		order
+		by
+		reco_no desc
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalMemberRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from recommendation where flag = 'M'
+	</select>
+
+	<select id="selectAllHostRecommendation"
+		resultType="recommendationVo" parameterType="searchVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from
+		recommendation
+		where flag = 'H'
+		order
+		by
+		reco_no desc
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalHostRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from recommendation where flag = 'H'
 	</select>
 
 	<select id="selectByNoRecommendation" parameterType="int"

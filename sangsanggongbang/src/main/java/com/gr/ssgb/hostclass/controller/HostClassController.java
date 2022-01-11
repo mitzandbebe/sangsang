@@ -10,11 +10,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +53,36 @@ public class HostClassController {
 		this.fileUploadUtil = fileUploadUtil;
 		this.hostService = hostService;
 		logger.info("클래스 생성자 주입");
+	}
+
+	@GetMapping(value = "/search")
+	public String getSearchClassPage(HttpServletRequest request,
+									 @ModelAttribute("search") HostClassVO hostClassVO,
+									 ModelMap model) {
+
+		List<String> area = ImmutableList.<String>builder()
+				.add("서울")
+				.add("경기")
+				.add("인천")
+				.add("강원")
+				.add("충청")
+				.add("세종")
+				.add("전라")
+				.add("경상")
+				.add("제주")
+				.build();
+
+		List<CategoryVO> clist = hostClassService.selectCategoryAll();
+
+
+		List<HostClassVO> list = this.hostClassService.findBySearchClass(hostClassVO);
+
+
+		model.addAttribute("clist", clist);
+		model.addAttribute("area", area);
+		model.addAttribute("list", list);
+
+		return "class/search";
 	}
 
 	@GetMapping("/inputclass")

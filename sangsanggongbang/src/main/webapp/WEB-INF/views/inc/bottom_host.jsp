@@ -34,6 +34,7 @@
 					</a></li>
 					<li><a
 						href="http://localhost:9091/sangsanggongbang/recommendation/recommendList">불편사항</a></li>
+						
 					<li><a target="_blank" href="https://themesberg.com/licensing">이용약관</a>
 					</li>
 					<li><a target="_blank" href="https://themesberg.com/licensing">개인정보처리방침</a>

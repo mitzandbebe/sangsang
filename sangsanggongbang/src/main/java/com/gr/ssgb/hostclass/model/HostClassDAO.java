@@ -28,4 +28,6 @@ public interface HostClassDAO {
 	int deleteContents(int cNo);
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
+
+	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
 }

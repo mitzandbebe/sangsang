@@ -115,6 +115,11 @@ public class HostClassServiceImpl implements HostClassService{
 	}
 
 	@Override
+	public List<HostClassVO> findBySearchClass(HostClassVO hostClassVo) {
+		return hostClassDao.findBySearchClass(hostClassVo);
+	}
+
+	@Override
 	public List<Map<String, Object>> selectClassLoc(String loc) {
 		return hostClassDao.selectClassLoc(loc);
 	}

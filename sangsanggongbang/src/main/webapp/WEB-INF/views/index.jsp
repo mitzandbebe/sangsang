@@ -43,17 +43,20 @@
 								type="submit">상상 시작</button>
 						</div>
 					</form> -->
-					<form autocomplete="off" class="row justify-content-between"
-						method="get" action="./all-spaces.html">
+					<form class="row justify-content-between"
+						  autocomplete="off"
+						  method="get"
+						  action="<c:url value="/class/search"/>" >
+
 						<div class="col-11 col-lg-4 pr-lg-0">
 							<div class="form-group form-group-lg mb-lg-1">
 								<div class="input-group">
-								<div class="input-group-prepend">
+									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-search"></i></span>
 									</div>
-									<input id="search-activity" type="text"
-										class="form-control autocomplete"
-										placeholder="Find Your Class Name" required>
+									<input type="text" name="cName"
+										   class="form-control autocomplete"
+										   placeholder="Find Your Class Name" required>
 								</div>
 							</div>
 						</div>
@@ -63,8 +66,12 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-tags"></i></span>
 									</div>
-									<input id="search-location" type="text"
-										class="form-control autocomplete" placeholder="Category" required>
+									<select class="form-control" name="categoryCode">
+										<option value="">Category</option>
+										<c:forEach var="item" items="${clist}">
+											<option value="${item.categoryCode}">${item.categoryName}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -72,17 +79,19 @@
 							<div class="form-group form-group-lg mb-lg-1">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<span class="input-group-text"><span
-											class="fas fa-map-marker-alt"></span></span>
+										<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
 									</div>
-									<input id="search-location" type="text"
-										class="form-control autocomplete" placeholder="Area" required>
+									<select class="form-control" name="lAddress">
+										<option value="">Area</option>
+										<c:forEach var="item" items="${area}">
+											<option value="${item}">${item}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-11 col-lg-1 pl-lg-0">
-							<!--  <button class="btn btn-lg btn-dark btn-block" type="submit"><span class="icon icon-sm"><span class="fas fa-search-location"></span></span></button> -->
 							<button class="btn btn-lg btn-dark btn-block" type="submit">
 								<i class="fas fa-search"></i>
 							</button>
