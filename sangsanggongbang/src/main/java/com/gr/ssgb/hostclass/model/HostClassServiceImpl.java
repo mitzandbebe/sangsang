@@ -126,6 +126,11 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectConcernbyCNo(concernVo);
 	}
 
+	@Override
+   public List<HostClassVO> findBySearchClass(HostClassVO hostClassVo) {
+      return hostClassDao.findBySearchClass(hostClassVo);
+   }
+
 
 
 
