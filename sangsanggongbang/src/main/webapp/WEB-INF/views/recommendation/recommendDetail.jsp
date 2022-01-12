@@ -36,6 +36,7 @@
 
 <form name="frmRCdetail" method="post" enctype="multipart/form-data">
 	<!-- Hero -->
+
 	<section class="section-header pb-7 bg-primary text-white">
 		<input type="text" name="groupNo" value="${vo.groupNo}" /> <input
 			type="text" name="step" value="${vo.step }" /> <input type="text"
