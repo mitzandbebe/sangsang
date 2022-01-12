@@ -2,20 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gr.ssgb.recommendation.model.RecommendationDAO">
+<mapper
+	namespace="com.gr.ssgb.recommendation.model.RecommendationDAO">
 
 	<insert id="insertRecommendation"
 		parameterType="recommendationVO">
-		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="recoNo" resultType="int"
+			order="BEFORE">
 			select RECOMMENDATION_SEQ.nextval from dual
 		</selectKey>
-
-		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no)
-		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}) 
-
+		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no, m_id)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}, #{mId}) 
 	</insert>
- 
-	<select id="selectAllRecommendation" parameterType="searchVo"
+	
+	<!-- 	<insert id="insertRecommendation"
+		parameterType="recommendationVO">
+		<selectKey keyProperty="recoNo" resultType="int"
+			order="BEFORE">
+			select RECOMMENDATION_SEQ.nextval from dual
+		</selectKey>
+		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no, h_id)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}, #{hId}) 
+	</insert> -->
+
+	<select id="selectAllRecommendation" parameterType="RecommendationVo"
 		resultType="recommendationVO">
 		select *
 		from
@@ -23,11 +33,9 @@
 		select rownum as RNUM, A.*
 		from
 		(
-
 		select * from
 		recommendation 
-		order by group_no desc, sort_No
-
+		order by group_no desc, sort_no
 		)A
 		)
 		<![CDATA[
@@ -36,9 +44,57 @@
 		]]>
 	</select>
 
-	<select id="selectTotalRecord" parameterType="searchVo"
+	<select id="selectTotalRecord" parameterType="RecommendationVo"
 		resultType="int">
 		select count(*) from recommendation
+	</select>
+
+	<select id="selectAllMemberRecommendation"
+		resultType="recommendationVo" parameterType="RecommendationVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from
+		recommendation
+		where m_id=#{mId} 
+		order by group_no desc, sort_no
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalMemberRecord" parameterType="RecommendationVo"
+		resultType="int">
+		select count(*) from recommendation where flag = 'M'
+	</select>
+
+	<select id="selectAllHostRecommendation"
+		resultType="recommendationVo" parameterType="RecommendationVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from
+		recommendation
+		where flag = 'H' or flag='AD'
+		order by group_no desc, sort_no
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalHostRecord" parameterType="RecommendationVo"
+		resultType="int">
+		select count(*) from recommendation where flag = 'H'
 	</select>
 
 	<select id="selectByNoRecommendation" parameterType="int"
@@ -64,7 +120,7 @@
  		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
 			select recommendation_seq.nextval from dual
 		</selectKey>
-		insert into recommendation(reco_no, reco_title, reco_content, group_No, sort_No, step)
+		insert into recommendation(reco_no, reco_title, reco_content, group_no, sort_no, step)
 		values(#{recoNo},#{recoTitle}, #{recoContent}, #{groupNo}, #{sortNo}+1, #{step}+1)
  	</insert>
 

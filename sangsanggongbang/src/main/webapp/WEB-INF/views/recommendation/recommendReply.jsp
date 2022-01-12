@@ -53,16 +53,17 @@
 		
 		$('#btList').click(function(){
 			location.href="<c:url value='/recommendation/recommendList'/>";	
-		});		
+		});
+		
 	});
-</script> 
+</script>
 <!-- 유효성 검사 -->
 <div class=container>
 	<div class="card border-light p-md-2">
 		<div class="card-body p-4">
 			<form name="frmRCwrite" method="post" enctype="multipart/form-data"
 				action="<c:url value='/recommendation/recommendReply'/> ">
-			
+
 				<div class="row">
 					<div class="col-lg-12 mb-5">
 						<input type="hidden" name="flag"<%-- <c:choose>
@@ -209,5 +210,4 @@
 		<%@ include file="../inc/bottom.jsp"%>
 	</c:otherwise>
 </c:choose>
-
 

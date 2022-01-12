@@ -4,26 +4,24 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gr.ssgb.common.SearchVO;
-
 @Mapper
 public interface RecommendationDAO {
 
 	public int insertRecommendation(RecommendationVO vo);
 
-	List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllMemberRecommendation(RecommendationVO RecommendationVo);
 
-	List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllHostRecommendation(RecommendationVO RecommendationVo);
 
-	List<RecommendationVO> selectAllRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllRecommendation(RecommendationVO RecommendationVo);
 
 	public RecommendationVO selectByNoRecommendation(int recoNo);
 
-	int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord(RecommendationVO RecommendationVo);
 
-	int selectTotalMemberRecord(SearchVO searchVo);
+	int selectTotalMemberRecord(RecommendationVO RecommendationVo);
 
-	int selectTotalHostRecord(SearchVO searchVo);
+	int selectTotalHostRecord(RecommendationVO RecommendationVo);
 
 	public int updateRecommendation(RecommendationVO vo);
 	
