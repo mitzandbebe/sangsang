@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/new_top_host.jsp"  %>
-        <div class="container toast-container" style="margin-top: 500px">
+        <div class="container toast-container" style="margin-top: 150px">
 <div id="msgArea"></div>
-
-
+     <c:import url="/notice/hostNotice"/> 
             <div>
+      
                 <ul>
                 <c:forEach var = "ChatRoomDTO" items="${list }">
                 	<li><a href="<c:url value='/chat/room?roomId=${ChatRoomDTO.roomId }'/>" target="_blank">${ChatRoomDTO.name }</a></li>

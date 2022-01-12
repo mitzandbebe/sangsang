@@ -44,7 +44,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<%-- <div class="d-flex justify-content-center w-100 mt-5">
+		<div class="d-flex justify-content-center w-100 mt-5">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<c:if test="${pagingInfo.firstPage>1 }">
@@ -70,7 +70,7 @@
 					</c:if>
 				</ul>
 			</nav>
-		</div> --%>
+		</div> 
 	</div>
 </section>
 </main>
