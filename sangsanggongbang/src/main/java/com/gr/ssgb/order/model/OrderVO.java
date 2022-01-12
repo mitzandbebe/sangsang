@@ -1,7 +1,5 @@
 package com.gr.ssgb.order.model;
 
-import java.sql.Timestamp;
-
 public class OrderVO {
 	/*
 
@@ -12,7 +10,6 @@ public class OrderVO {
 	PRICE	NUMBER			결제금액
 	REFUND	VARCHAR2		결제상태
 	EA	NUMBER				결제수량
-	F_DATE	DATE			확정일자
 	F_TIME	NUMBER			확정시간
 
 	*/
@@ -24,7 +21,6 @@ public class OrderVO {
 	private int ea;
 	private String impUid;
 	private String merchantUid;
-	private Timestamp fDate;
 	private int fTime;
 	
 	public String getImpUid() {
@@ -70,12 +66,7 @@ public class OrderVO {
 	public void setEa(int ea) {
 		this.ea = ea;
 	}
-	public Timestamp getfDate() {
-		return fDate;
-	}
-	public void setfDate(Timestamp fDate) {
-		this.fDate = fDate;
-	}
+
 	public int getfTime() {
 		return fTime;
 	}
@@ -86,7 +77,7 @@ public class OrderVO {
 	@Override
 	public String toString() {
 		return "OrderVO [impUid=" + impUid + ", merchantUid=" + merchantUid + ", mId=" + mId + ", cNo=" + cNo
-				+ ", price=" + price + ", refund=" + refund + ", ea=" + ea + ", fDate=" + fDate + ", fTime=" + fTime
+				+ ", price=" + price + ", refund=" + refund + ", ea=" + ea + ", fTime=" + fTime
 				+ "]";
 	}
 	

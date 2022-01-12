@@ -63,7 +63,6 @@
  				        data : JSON.stringify(result),
 				        contentType:'application/json;charset=UTF-8',
 				        dataType: 'json', //서버에서 보내줄 데이터 타입
-				        
 				        success: function(cnt){
 				        			        	
 				          if(cnt == 1){
@@ -100,6 +99,7 @@
 						<c:forEach var="map" items="${cVo}">
 							<c:if test="${map['C_NO'] eq param.cNo }">
 							<input type="hidden" id="cNo" value="${map['C_NO'] }">
+							<input type="hidden" name="cVo" value="${cVo}">
 								<div class="col-12 col-lg-14">
 									<div class="row no-gutters align-items-center">
 										<div class="col-12 col-lg-4 col-xl-4">
@@ -139,7 +139,7 @@
 													<div class="col">
 														<span class="small d-block">모집 인원수</span> <span
 															class="h6 text-dark font-weight-bold" id="ppnum">
-															${map["PPNUM"] }명</span>
+															${map["FPNUM"] } / ${map["PPNUM"] }명</span>
 													</div>
 													<div class="col pr-0">
 														<span class="small d-block">지역</span> <span

@@ -22,24 +22,29 @@ public class OrderServiceImpl implements OrderService{
 		int cnt=orderDao.insertOrder(orderVo);
 		System.out.println("insert 후 orderVo="+ orderVo);
 		
-		cnt=orderDao.insertOrderDetail(orderVo);
+		//cnt=orderDao.insertOrderDetail(orderVo);
 		//cnt=cartDao.deleteCartByUserid(vo.getCustomerId());
 		
 		return cnt;
 	}
 
 	@Override
+	public OrderVO selectOrders(String merchantUid) {
+		return orderDao.selectOrders(merchantUid);
+	}
+
+
+	
+	/*
+	@Override
 	public List<Map<String, Object>> selectOrderDetailsView(int orderNo) {
 		return orderDao.selectOrderDetailsView(orderNo);
 	}
-
+	
 	@Override
 	public Map<String, Object> selectOrdersView(int orderNo) {
 		return orderDao.selectOrdersView(orderNo);
 	}
-
-	
-	/*
 	@Override
 	public List<OrderAllVO> selectOrderAll(DateSearchVO dateSearchVo) {
 		return orderDao.selectOrderAll(dateSearchVo);
