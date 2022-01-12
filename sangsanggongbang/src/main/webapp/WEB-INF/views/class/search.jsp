@@ -93,7 +93,10 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-12 col-lg-6 col-xl-5">
                                         <a href="<c:url value="/class/detail?cNo=${cls.cNo}&categoryName=${cls.category.categoryName}&hNo=${cls.hNo}"/>">
-                                            <img src="<c:url value="/resources/upload_images/${cls.contents.thumbnail}"/>" alt="private office" class="card-img p-2 rounded-xl">
+                                            <img src="<c:url value="/resources/upload_images/${cls.contents.thumbnail}"/>"
+                                                 onerror="this.src='<c:url value='/resources/upload_images/basic.png'/>';"
+                                                 alt="private office"
+                                                 class="card-img p-2 rounded-xl"/>
                                         </a>
                                     </div>
                                     <div class="col-12 col-lg-6 col-xl-7">

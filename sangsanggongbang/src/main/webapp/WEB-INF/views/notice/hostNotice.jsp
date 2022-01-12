@@ -16,7 +16,7 @@
 					style="margin-top: 225px;">
 					<c:if test="${!empty list }">
 						<c:forEach var="list" items="${list }">
-							<div class="card bg-white border-light p-3 rounded">
+							<div class="card bg-white border-light p-3 rounded" style="max-Width: 66.66666%;margin-left: 5%;">
 								<a
 									href="<c:url value='/notice/noticeDetail?noticeNo=${list.noticeNo }'/>">
 									${list.noticeTitle } <c:if test="${!empty sessionScope.adId }">(${list.noticeFlag })</c:if>

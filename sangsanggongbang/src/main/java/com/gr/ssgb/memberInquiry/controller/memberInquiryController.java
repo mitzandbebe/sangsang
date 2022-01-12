@@ -187,4 +187,9 @@ public class memberInquiryController {
 		model.addAttribute("url", url);
 		return "/common/message";
 	}
+	
+	@RequestMapping("/classUser")
+	public void classUser(@ModelAttribute HostVO vo, Model model) {
+		logger.info(null);
+	}
 }
