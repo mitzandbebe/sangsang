@@ -107,11 +107,11 @@ var InputImage =
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action active">내 클래스
+								class="d-flex list-group-item list-group-item-action  ">내 클래스
 								현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action ">클래스 이용회원<span
+								class="d-flex list-group-item list-group-item-action active">클래스 이용회원<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
