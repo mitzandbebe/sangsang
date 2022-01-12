@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-<%@ include file="../inc/top_host.jsp"  %>
+<%@ include file="../inc/new_top_host.jsp"  %>
 
 <div class="container toast-container" style="margin-top: 500px">
 <div id="msgArea"></div>

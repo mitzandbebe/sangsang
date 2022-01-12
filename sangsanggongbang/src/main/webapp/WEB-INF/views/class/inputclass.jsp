@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="../inc/top_host.jsp"%>
+<%@ include file="../inc/new_top_host.jsp"  %>
 
 <section style="margin-top: 150px">
 	<div class="container">
