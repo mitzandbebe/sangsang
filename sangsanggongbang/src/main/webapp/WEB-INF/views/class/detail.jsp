@@ -281,7 +281,8 @@
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<c:import url="/class/review?cNo=${map['C_NO'] }"/>
+							<div id="reviewlist"></div>
+								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
 								
 							</div>
@@ -552,6 +553,12 @@
 			}
 		}); //하트클릭
 
+	$('#nav-reviews').ready(function(){
+		$('#reviewlist').load("<c:url value='/class/review?cNo="+cNo+"'/>");
+		});
+		
+		
+		
 	});
 
 	function relayout() {
@@ -571,6 +578,10 @@
 		open(contextPath + '/chat/room?roomId=' + roomId, 'chat',
 				'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
 	}
+	
+	
+	
+	
 </script>
 
 <c:choose>
