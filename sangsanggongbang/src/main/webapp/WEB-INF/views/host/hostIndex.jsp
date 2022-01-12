@@ -1,38 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../inc/new_top_host.jsp"  %>
-        <div class="container toast-container" style="margin-top: 150px">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+
 <div id="msgArea"></div>
+
      <c:import url="/notice/hostNotice"/> 
-            <div>
-      
-                <ul>
-                <c:forEach var = "ChatRoomDTO" items="${list }">
-                	<li><a href="<c:url value='/chat/room?roomId=${ChatRoomDTO.roomId }'/>" target="_blank">${ChatRoomDTO.name }</a></li>
-                </c:forEach>
-                </ul>
-            </div>
-        <table>
-        	<tr>
-        		<th>호스트 닉네임</th>
-        		<th>버튼</th>
-        	</tr>
-        <c:forEach var="hostVo" items="${hlist }">
-        	<tr>
-        		<td>${hostVo.hNickname }</td>
-        		<td>
-		        	<!--  <form method="post" action="<c:url value='/chat/room'/> ">
-			            <input type="text" name="name" class="form-control" value="${hostVo.hNickname }">
-			            <button class="btn btn-secondary btn-create">채팅방 개설하기</button>
-		        	</form>-->
-		        	<a href="<c:url value='/chat/room?roomId=${hostVo.hNickname }'/>" target="_blank">${hostVo.hNickname }</a>
-	        	<td>
-	        	
-	        </tr>
-        </c:forEach>
-        </table>
-       </div>
+     
+
 
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
