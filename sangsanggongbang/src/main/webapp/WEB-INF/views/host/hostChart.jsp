@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
-<section class="section-header pt-md-0">
-        <div class="section section-lg bg-soft pt-md-0">
+<section class="section-header pt-mt-8 mb-0 pb-0">
+        <div class="section section-lg bg-soft pt-md-0 pb-0">
                 <div class="row pt-md-0">
-                <div class="col-12 col-lg-8" style="margin: 0 auto;">
+                <div class="col-6 col-lg-6" style="margin: 0 auto;">
                         <div class="row">
                             <div class="col-12 col-sm-6 mb-4">
                                <div class="card border-light">

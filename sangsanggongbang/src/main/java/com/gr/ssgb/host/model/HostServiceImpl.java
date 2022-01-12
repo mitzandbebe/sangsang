@@ -82,5 +82,10 @@ public class HostServiceImpl implements HostService{
 	public int selectMyProfit(MonthVO monVo) {
 		return hostDao.selectMyProfit(monVo);
 	}
+
+	@Override
+	public int updateHGrade(HostVO vo) {
+		return hostDao.updateHGrade(vo);
+	}
 	
 }

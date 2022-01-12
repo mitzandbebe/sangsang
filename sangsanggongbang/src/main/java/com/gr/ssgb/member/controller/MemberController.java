@@ -659,4 +659,6 @@ public class MemberController {
 		
 		return cnt;
 	}
+	
+	 
 }

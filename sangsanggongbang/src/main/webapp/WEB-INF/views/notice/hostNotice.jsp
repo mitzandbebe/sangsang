@@ -7,8 +7,8 @@
 
 
 
-	<section class="section-header pb-0">
-	<div class="section section-lg bg-soft pb-0" id="hInotice" style="text-align: center;">
+	<section class="section-header mt-2">
+	<div class="section section-lg bg-soft pt-0" id="hInotice" style="text-align: center;">
 
 		<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2 pb-0">
 			<div>

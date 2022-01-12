@@ -30,6 +30,7 @@ import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.host.model.HostVO;
+import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 
@@ -40,16 +41,19 @@ public class HostController {
 	private final HostService hostService;
 	private final MemberService memberService;
 	private final FileUploadUtil fileUploadUtil;
+	private final HostClassService hostClassService;
 	
 	@Autowired
-	public HostController(HostService hostService, MemberService memberService, FileUploadUtil fileUploadUtil) {
+	public HostController(HostService hostService, MemberService memberService, FileUploadUtil fileUploadUtil,
+			HostClassService hostClassService) {
 		super();
 		this.hostService = hostService;
 		this.memberService = memberService;
 		this.fileUploadUtil = fileUploadUtil;
+		this.hostClassService = hostClassService;
 	}
-	
-	
+
+
 	@RequestMapping(value = "/hostInfo")
 	public void hostInfo() {
 		logger.info("호스트 지원 정보 화면");
@@ -440,4 +444,35 @@ public class HostController {
 		
 		return "host/hostChart";
 	}
+	@RequestMapping("/hostAccount")
+	   public String myAccount(HttpSession session, Model model) {
+	      logger.info("호스트 정보 조회화면");
+	      
+	      String hId = (String)session.getAttribute("hId");
+	      HostVO vo = hostService.selectHostById(hId);
+	      int classCnt=  hostClassService.selectClassCnt(vo.gethNo());
+	      
+	      String hGrade = "silver";
+	      vo.sethGrade(hGrade);
+	      int cnt = 0;
+	      if(classCnt > 5 && classCnt <= 10) {
+	    	 hGrade = "gold";
+	         vo.sethGrade(hGrade);
+	         cnt=hostService.updateHGrade(vo);
+	      }else if(classCnt > 10 && classCnt <= 17) {
+	    	 hGrade = "platinum";
+	    	 vo.sethGrade(hGrade);
+	         cnt=hostService.updateHGrade(vo);
+	      }else if(classCnt > 5 && classCnt <= 10) {
+	    	 hGrade = "diamond";
+	    	 vo.sethGrade(hGrade);
+	         cnt=hostService.updateHGrade(vo);
+	      }
+	      
+	      model.addAttribute("vo", vo);
+	      model.addAttribute("classCnt", classCnt);
+	      
+	      return "host/hostAccount";
+	      
+	   }
 }
