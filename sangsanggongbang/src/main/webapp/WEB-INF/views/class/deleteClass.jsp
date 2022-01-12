@@ -3,13 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- 탑삽입해야함 -->
-<%@include file="../inc/top_host.jsp"%>
-<!-- <style type="text/css">
-.card.border-light.p-md-2 {
-	margin-top: 100px;
-}
-</style> -->
+<%@ include file="../inc/new_top_host.jsp"  %>
+
 <main>
 
 	<div

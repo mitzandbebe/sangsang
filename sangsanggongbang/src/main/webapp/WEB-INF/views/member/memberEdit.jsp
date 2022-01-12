@@ -84,11 +84,11 @@ var InputImage =
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
             	<c:if test="${!empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" 
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
                 <c:if test="${empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/default.png'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait">
+                	<img src="<c:url value='/resources/file_upload/default.png'/>" class="card-img-top rounded-circle border-white">
                 </c:if>
             </div>
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
