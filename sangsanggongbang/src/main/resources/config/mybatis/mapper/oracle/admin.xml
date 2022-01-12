@@ -12,7 +12,7 @@
 		select sum(total) 
 		from
 		(
-		    select (c_price*ppnum) as total 
+		    select (c_price*qty) as total 
 		    from hostclass
 		    <![CDATA[
 		    where c_start_time > TO_DATE(#{startDate}) and c_start_time < TO_DATE(#{endDate})

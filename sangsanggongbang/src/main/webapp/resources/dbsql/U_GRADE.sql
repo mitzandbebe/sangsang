@@ -1,0 +1,12 @@
+/* 일반회원등급 */
+CREATE TABLE U_GRADE (
+	M_GRADE VARCHAR2(50) NOT NULL, /* 회원등급명 */
+	M_ICON CLOB /* 회원등급아이콘 */
+);
+
+ALTER TABLE U_GRADE
+	ADD
+		CONSTRAINT PK_U_GRADE
+		PRIMARY KEY (
+			M_GRADE
+		);

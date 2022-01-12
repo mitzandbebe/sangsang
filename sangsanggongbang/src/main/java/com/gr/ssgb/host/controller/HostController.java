@@ -2,6 +2,8 @@ package com.gr.ssgb.host.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gr.ssgb.admin.model.MonthVO;
+import com.gr.ssgb.admin.model.ProfitVO;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.host.model.HostService;
@@ -401,5 +405,39 @@ public class HostController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@GetMapping("/hostChart")
+	public String adminIndex(HttpSession session, Model model) {
+		logger.info("호스트 차트 페이지");
+		String hId = (String)session.getAttribute("hId");
+		int hNo = hostService.selectHostNo(hId);
+
+		Date d = new Date();
+		int month = d.getMonth()+1;
+		logger.info("month={}", month);
+		MonthVO monVo = null;
+		ProfitVO profitVo = null;
+		Map<String, ProfitVO> profitMap = new HashMap<String, ProfitVO>();
+		
+		for(int i =0; i < 4; i++) {
+			monVo = new MonthVO();
+			monVo.setStartDate(month, i);
+			monVo.sethNo(hNo);
+			logger.info("monVo={}", monVo);
+			int count = hostService.findClassCnt(monVo);
+			logger.info("count={}", count);
+			int totalProfit =0;
+			if(count>1) {
+				totalProfit = hostService.selectMyProfit(monVo);
+			}
+			profitVo = new ProfitVO();
+			profitVo.setTotalProfit(totalProfit);
+			String index = (3-i)+"";
+			profitMap.put(index, profitVo);
+		}
+		model.addAttribute("profitMap", profitMap);
+		
+		return "host/hostChart";
 	}
 }

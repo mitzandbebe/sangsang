@@ -6,7 +6,14 @@ import java.util.Calendar;
 public class MonthVO {
 	private String startDate;
 	private String endDate;
+	private int hNo;
 	
+	public int gethNo() {
+		return hNo;
+	}
+	public void sethNo(int hNo) {
+		this.hNo = hNo;
+	}
 	public String getStartDate() {
 		return startDate;
 	}
@@ -32,7 +39,7 @@ public class MonthVO {
 	}
 	@Override
 	public String toString() {
-		return "MonthVO [startDate=" + startDate + ", endDate=" + endDate + "]";
+		return "MonthVO [startDate=" + startDate + ", endDate=" + endDate + ", hNo=" + hNo + "]";
 	}
 	
 }
