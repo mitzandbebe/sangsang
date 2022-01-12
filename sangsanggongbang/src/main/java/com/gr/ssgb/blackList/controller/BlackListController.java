@@ -31,27 +31,25 @@ public class BlackListController {
 	}
 
 	@GetMapping("/blackList")
-	public String blackList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String blackList(@ModelAttribute BlackListVO blackListvo, Model model) {
 		logger.info("블랙리스트 리스트 화면 등장");
-		/*
-		 * PaginationInfo pagingInfo = new PaginationInfo();
-		 * pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		 * pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		 * pagingInfo.setRecordCountPerPage(searchVo.getCurrentPage());
-		 * 
-		 * searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		 * searchVo.setFirstRecordIndex(pagingInfo.getLastRecordIndex());
-		 * logger.info("searchVO={}", searchVo);
-		 */
+
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(5);
+		pagingInfo.setRecordCountPerPage(blackListvo.getCurrentPage());
+
+		blackListvo.setRecordCountPerPage(5);
+		blackListvo.setFirstRecordIndex(pagingInfo.getLastRecordIndex());
+		logger.info("searchVO={}", blackListvo);
 
 		List<BlackListVO> list = blackListService.selectBlackListAll(1);
 		logger.info("블랙리스트 총 list.size={}", list.size());
-		/*
-		 * int totalRecord= blackListService.selectTotalRecord(searchVo);
-		 * pagingInfo.setTotalRecord(totalRecord);
-		 * 
-		 * model.addAttribute("pagingInfo",pagingInfo);
-		 */
+
+		int totalRecord = blackListService.selectTotalRecord(blackListvo);
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
 		return "blackList/blackList";
@@ -59,16 +57,16 @@ public class BlackListController {
 
 	@RequestMapping("/blackDelete")
 	public String blackDelete(@RequestParam(defaultValue = "0") int bno, Model model) {
-		logger.info("블랙리스트 제외 bno={}",bno);
-		
+		logger.info("블랙리스트 제외 bno={}", bno);
+
 		int cnt = blackListService.deleteBlackList(bno);
-		String msg="블랙리스트 제외처리에 실패했습니다", url="/blackList/blackList";
-		if(cnt>0) {
-			msg="블랙리스트 제외처리 성공";
+		String msg = "블랙리스트 제외처리에 실패했습니다", url = "/blackList/blackList";
+		if (cnt > 0) {
+			msg = "블랙리스트 제외처리 성공";
 		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
 		return "/common/message";
 	}
 }

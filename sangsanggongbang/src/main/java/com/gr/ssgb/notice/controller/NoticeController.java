@@ -123,7 +123,44 @@ public class NoticeController {
 
 		return "notice/noticeList";
 	}
+	
+	@RequestMapping("/hostNotice")
+	public String hostNotice(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
+		logger.info("공지화면 등장");
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(4);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
+		searchVo.setRecordCountPerPage(4);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("searchVo={}", searchVo);
+
+		String adId=(String) session.getAttribute("adId");
+		String hId=(String) session.getAttribute("hId");
+		
+		logger.info("hId={}",hId);
+		List<NoticeVO> list = new ArrayList<NoticeVO>();
+		int totalRecord = 0;
+		if (hId!=null && !hId.isEmpty()) {
+			list = noticeService.selectNoticeHostAll(searchVo);
+			totalRecord = noticeService.selectTotalHostRecord(searchVo);
+		} else if (adId!=null && !adId.isEmpty()) {
+			list = noticeService.selectNoticeAll(searchVo);
+			totalRecord = noticeService.selectTotalRecord(searchVo);
+		} else { //비회원은 멤버처럼 나오게
+			list = noticeService.selectNoticeMemberAll(searchVo);
+			totalRecord = noticeService.selectTotalMemberRecord(searchVo);
+		}
+		logger.info("공지화면 총 list.size={}", list.size());
+
+		pagingInfo.setTotalRecord(totalRecord);
+
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("list", list);
+
+		return "notice/hostNotice";
+	}
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(@RequestParam(defaultValue = "0") int noticeNo, Model model) {
 		logger.info("공지사항 디테일 화면 등장");
@@ -229,3 +266,4 @@ public class NoticeController {
 		return "common/message";
 	}
 }
+

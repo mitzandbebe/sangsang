@@ -3,26 +3,34 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gr.ssgb.blackList.model.BlackListDAO">
-	<!-- <select id="selectBlackListAll" parameterType="map" resultType="blackListVo"> 
-		select * from ( select rownum as RNUM, A.* from ( select * from ( select 
-		b.* , m.m_id as mid,m.m_originalname as m_img_url from blacklist b left join 
-		member m on b.u_no = m.m_no ) where hno = #{hno} order by regdate desc )A 
+	<select id="selectBlackListAll" parameterType="map"
+		resultType="blackListVo">
+		select * from ( select rownum as RNUM, A.* from ( select * from (
+		select
+		b.* , m.m_id as mid,m.m_originalname as m_img_url from blacklist b left
+		join
+		member m on b.u_no = m.m_no ) where hno = #{hno} order by regdate desc )A
 		) <![CDATA[where RNUM>#{firstRecordIndex} and RNUM<=#{firstRecordIndex}+ 
-		#{recordCountPerPage} ]]> </select> <select id="selectTotalRecord" parameterType="searchVo" 
-		resultType="int"> select count(*) from blackList </select> -->
+		#{recordCountPerPage} ]]>
+	</select>
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int"> select count(*) from blackList </select>
 
-	<select id="selectBlackListAll" resultType="blackListVo" parameterType="blackListVo">
+<!-- 	<select id="selectBlackListAll" resultType="blackListVo"
+		parameterType="blackListVo">
 		select *
 		from(
-		select b.* , m.m_id as mid,m.m_originalname as m_img_url
+		select b.* , m.m_id as mid,m.m_originalname
+		as m_img_url
 		from blacklist b left join member m
 		on b.u_no = m.m_no
 		)
 		where hno = #{hno} order by regdate desc
 	</select>
-	
+ -->
 	<delete id="deleteBlackList" parameterType="int">
-		delete blackList
+		delete
+		blackList
 		where bno=#{bno}
 	</delete>
 </mapper>
