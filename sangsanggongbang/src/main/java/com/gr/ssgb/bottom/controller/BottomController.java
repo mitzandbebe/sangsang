@@ -29,7 +29,7 @@ public class BottomController {
 		logger.info("customerService 등장?!");
 	}
 	
-	//4.이용약관
+	//4.이용약관  
 	
 	//5.개인정보처리방침
 }
