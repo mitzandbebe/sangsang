@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.member.model.ConcernVO;
 
 @Service
@@ -129,6 +130,16 @@ public class HostClassServiceImpl implements HostClassService{
 	@Override
 	public int selectConcernbyCNo(ConcernVO concernVo) {
 		return hostClassDao.selectConcernbyCNo(concernVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectClassAllContents2(SearchVO searchVo) {
+		return hostClassDao.selectClassAllContents2(searchVo);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return hostClassDao.selectTotalRecord(searchVo);
 	}
 
 

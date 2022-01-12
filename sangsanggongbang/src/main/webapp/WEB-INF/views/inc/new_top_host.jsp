@@ -145,6 +145,16 @@
 								<div class="col-auto px-0">
 									<div class="list-group list-group-flush">
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
+										<a href="<c:url value='/class/myclass'/>"
+											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+											<!-- <span class="icon icon-md icon-secondary"><i
+												class="fas fa-file-alt"></i></span> -->
+											<div class="ml-4">
+												<span class="text-dark d-block">클래스 현황</span>
+												<!-- <span class="small">Examples and guides</span> -->
+											</div>
+										</a>
+										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
 										<a href="<c:url value='/class/inputclass'/>" target="_blank"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i

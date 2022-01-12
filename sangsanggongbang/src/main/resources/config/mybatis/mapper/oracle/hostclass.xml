@@ -117,6 +117,26 @@
 		select * from selectClass order by c_start_time desc
 	</select>
 	
+	<select id="selectClassAllContents2" parameterType="searchVo" resultType="map">
+		select*
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from selectClass order by c_start_time desc
+		)A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectTotalRecord" parameterType="searchVo"
+		resultType="int">
+		select count(*) from selectClass
+	</select>
+	
 	<select id="selectClassLoc" parameterType="string" resultType="map">
 		select * from selectClass where loc=#{loc} order by c_start_time desc
 	</select>
