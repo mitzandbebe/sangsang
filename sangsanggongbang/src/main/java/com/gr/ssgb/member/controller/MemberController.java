@@ -3,19 +3,35 @@ package com.gr.ssgb.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +39,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.common.collect.ImmutableList;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.TempPasswordUtil;
+
+import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
-import com.gr.ssgb.member.model.ConcernVO;
 import com.gr.ssgb.member.model.MailService;
 import com.gr.ssgb.member.model.MailVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.member.model.PaymentVO;
+import com.gr.ssgb.paymentList.model.PaymentListVO;
 
 
 @Controller
@@ -580,64 +597,6 @@ public class MemberController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
-	}
-	
-	@GetMapping("member/interestClass")
-	public String interestClass_get(Model model) {
-		logger.info("관심클래스 보기");
-		
-		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
-		List<ConcernVO> interest= memberService.selectConcern();
-		model.addAttribute("classlist",classlist);
-		model.addAttribute("interest",interest);
-		return "member/interestClass";
-	}
-	
-	@RequestMapping("member/interest")
-	@ResponseBody
-	public int interest(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo,Model model) {
-		logger.info("ajax 등록 실행");
-		
-		String mId=(String) session.getAttribute("mId");
-		int mNo= memberService.selectMno(mId);
-		
-		conVo.setmNo(mNo);
-		conVo.setcNo(cNo);
-		logger.info("mNo={}",mNo);
-		logger.info("cNo={}",cNo);
-		
-		int cnt= memberService.insertConcern(conVo);
-		
-		logger.info("cnt={}",cnt);
-		
-		if(cnt>0) {
-			logger.info("관심클래스 등록성공");
-		}else {
-			logger.info("관심클래스 등록실패");
-		}
-		
-		return cnt;
-	}
-	@RequestMapping("member/interestdelete")
-	@ResponseBody
-	public int interestdelete(HttpSession session,ConcernVO conVo,@RequestParam(defaultValue = "0") int cNo,Model model) {
-		logger.info("ajax 삭제 실행");
-		
-		
-		conVo.setcNo(cNo);
-		logger.info("cNo={}",cNo);
-		
-		int cnt= memberService.deleteConcern(cNo);
-		
-		logger.info("cnt={}",cnt);
-		
-		if(cnt>0) {
-			logger.info("관심클래스 삭제성공");
-		}else {
-			logger.info("관심클래스 삭제실패");
-		}
-		
-		return cnt;
 	}
 	
 	

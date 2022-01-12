@@ -160,13 +160,41 @@
 		delete from C_Contents where c_no=#{cNo}
 	</delete>
 
+	
+	
+<!-- 	<resultMap  type="com.gr.ssgb.hostclass.model.ContentsVO" id="contents">
+		<result  property="contentsNo" column="contents_no" />
+		<result  property="thumbnail" column="thumbnail" />
+		<result  property="cFilename1" column="contents_filename1" />
+		<result  property="cFilename2" column="contents_filename2" />
+		<result  property="cFilename3" column="contents_filename3" />
+		<result  property="cFilename4" column="contents_filename4" />
+		<result  property="cFilename5" column="contents_filename5"/>
+	</resultMap>
+	
+	<resultMap  type="com.gr.ssgb.hostclass.model.HostClassVO" id="hostClass">
+		<result  property="cNo" column="c_no" />
+		<result  property="cName" column="C_NAME" />
+		<result  property="CateCode" column="CATEGORY_CODE" />
+		<result  property="hNo" column="H_NO" />
+		<result  property="lNo" column="L_NO" />
+		<result  property="cPrice" column="C_PRICE"/>
+		<result  property="ppnum" column="PPNUM" />
+		<result  property="cRegdate" column="C_REGDATE"/>
+		<result  property="cStart" column="C_START_TIME"/>
+		<result  property="cEnd" column="C_END_TIME" />
+		<result  property="endFlag" column="END_FLAG" />
+		<collection property="contentsVO" resultMap="contents"/>
+		
+	</resultMap> -->
+	
+	
+<!-- 	<resultMap type="com.gr.ssgb.hostclass.model.ClassAllVO" id="classAll">
+		<collection property="hostClassVO" resultMap="hostClass"/>
+		<collection property="contentsVO" resultMap="contents"/>
+	</resultMap> -->
 	<select id="selectClassCnt" parameterType="int" resultType="int">
 		select count(*) from hostclass where h_no = #{hNo}
-	</select>
-
-	
-	<select id="selectConcernbyCNo" parameterType="concernVo" resultType="int">
-		select count(*) from concern where c_no=#{cNo} and m_no=#{mNo}
 	</select>
 
 	<select id="findBySearchClass" parameterType="hostClassVo" resultType="hostClassVo">
@@ -226,5 +254,4 @@
 		</if>
 
 	</select>
-
 </mapper>

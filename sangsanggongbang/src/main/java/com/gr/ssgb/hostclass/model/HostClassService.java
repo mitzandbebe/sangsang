@@ -3,8 +3,6 @@ package com.gr.ssgb.hostclass.model;
 import java.util.List;
 import java.util.Map;
 
-import com.gr.ssgb.member.model.ConcernVO;
-
 public interface HostClassService {
 	List<CategoryVO> selectCategoryAll();
 	int insertLocation(LocationVO locationVo);
@@ -28,9 +26,5 @@ public interface HostClassService {
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
 
-	int selectConcernbyCNo(ConcernVO concernVo);
-
-
 	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
-
 }
