@@ -50,9 +50,9 @@
 				<div class="row">
 					<div class="col-lg-12 mb-5">
 						<span> 늘찬(멤버) <input type="radio" id="check"
-							name="noticeFlag" value="M" > <br>
-							늘솜(호스트) <input type="radio" id="check" name="noticeFlag"
-							value="H">
+							name="noticeFlag" value="M"> <br> 늘솜(호스트) <input
+							type="radio" id="check" name="noticeFlag" value="H"><br>
+							전체 회원 <input type="radio" id="check" name="noticeFlag" value="A">
 						</span> <br> <br>
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
@@ -118,7 +118,7 @@
 	});
 
 	$(function() {
-		
+
 		$('form[name=frmEwrite]').submit(function() {
 			$('.infobox').each(function(idx, item) {
 				if ($(this).val().length < 1) {
