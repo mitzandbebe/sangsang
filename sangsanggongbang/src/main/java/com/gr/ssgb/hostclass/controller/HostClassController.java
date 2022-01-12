@@ -35,6 +35,7 @@ import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
 import com.gr.ssgb.member.model.ConcernVO;
 import com.gr.ssgb.member.model.MemberService;
+import com.gr.ssgb.memberInquiry.model.MemberInquiryService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -47,15 +48,17 @@ public class HostClassController {
 	private final FileUploadUtil fileUploadUtil;
 	private final HostService hostService;
 	private final MemberService memberService;
-
+	private final MemberInquiryService memberInquiryService;
+	
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
-			FileUploadUtil fileUploadUtil, HostService hostService,MemberService memberService) {
+			FileUploadUtil fileUploadUtil, HostService hostService,MemberService memberService, MemberInquiryService memberInquiryService) {
 		this.hostClassService = hostClassService;
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.hostService = hostService;
 		this.memberService = memberService;
+		this.memberInquiryService = memberInquiryService;
 		logger.info("클래스 생성자 주입");
 	}
 
@@ -266,7 +269,15 @@ public class HostClassController {
 	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
 			@RequestParam String categoryName,HttpServletRequest request,HttpSession session,ConcernVO concern, Model model) {
 		logger.info("클래스 상세보기");
-		
+		//여기부터 김준영
+		String mId=(String) session.getAttribute("mId");
+		boolean result=false;
+		if(result=memberInquiryService.checkBan(mId)) {
+			model.addAttribute("msg","회원님은 참여제한된 회원입니다.");
+			model.addAttribute("url","/index");
+			return "/common/message";
+		}
+		//여기까지 김준영
 		Integer avgRate =reviewService.selectRate(cNo);
 		List<ReviewVO> rlist= reviewService.selectAllRate();
 		
@@ -279,7 +290,6 @@ public class HostClassController {
 		int reviewCnt = reviewService.selectReviewByHost(hNo);
 		
 
-		String mId=(String) session.getAttribute("mId");
 		int con=0;
 		try{
 			int mNo=memberService.selectMno(mId);

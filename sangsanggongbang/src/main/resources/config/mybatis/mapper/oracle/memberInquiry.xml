@@ -126,10 +126,14 @@
 		='N'
 		where M_NO =#{mNo}
 	</update>
-	
 
 	<delete id="deleteBan" parameterType="banVo">
 		delete ban
 		where m_No=#{mNo}
 	</delete>
+	
+	<select id="checkBan" parameterType="String" resultType="String">
+		select m_ban_flag from banview
+		where m_id=#{mId}
+	</select>
 </mapper>

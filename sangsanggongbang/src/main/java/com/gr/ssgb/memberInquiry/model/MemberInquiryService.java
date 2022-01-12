@@ -20,4 +20,6 @@ public interface MemberInquiryService {
 	
 	int insertBan(BanVO bVo);
 	int deleteBan(BanVO bVo);
+	
+	Boolean checkBan(String mId);
 }

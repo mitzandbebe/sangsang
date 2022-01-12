@@ -26,4 +26,6 @@ public interface MemberInquiryDAO {
 	int deleteBanF(BanVO bVo);
 	int deleteBan(BanVO bVo);
 	int selectBnobyMno(BanVO bVo);
+	
+	String checkBan(String mId);
 }
