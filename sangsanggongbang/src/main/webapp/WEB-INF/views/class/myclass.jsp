@@ -98,7 +98,7 @@ var InputImage =
 						</div>
 						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
 						<div class="list-group dashboard-menu list-group-sm mt-4">
-							<a href="<c:url value='/dashboard/host/account'/>"
+							<a href="<c:url value='/host/hostAccount'/>"
 								class="d-flex list-group-item list-group-item-action ">마이페이지
 								<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
@@ -134,7 +134,7 @@ var InputImage =
 					<div class="card-body">
 						<div class="row align-items-center">
 							<div class="col-10 d-flex">
-								<a href="<c:url value='/dashboard/host/account'/>"
+								<a href="<c:url value='/host/hostAccount'/>"
 									class="list-group-item list-group-item-action border-0 ">마이페이지</a>
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
 									class="list-group-item list-group-item-action border-0  active ">회원정보</a>

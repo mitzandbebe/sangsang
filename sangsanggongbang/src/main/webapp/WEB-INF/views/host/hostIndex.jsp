@@ -12,10 +12,12 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 
-<div id="msgArea"></div>
 
+	<c:if test="${!empty sessionScope.hId }">
+		<c:import url="/host/hostChart"/>
+	</c:if>
      <c:import url="/notice/hostNotice"/> 
-     <c:import url="/host/hostChart"/> 
+      
      
 
 

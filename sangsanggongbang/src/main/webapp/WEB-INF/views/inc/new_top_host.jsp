@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -89,7 +87,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
 	rel="stylesheet">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 </head>
 <!-- 헤드 설정 끝 -->
 
@@ -294,26 +292,26 @@
 				<div class="d-none d-lg-block @@cta_button_classes">
 
 					<!-- 로그인 -->
-					<c:if test="${empty sessionScope.mId }">
+					<c:if test="${empty sessionScope.hId }">
 						<a href="${pageContext.request.contextPath }/host/hostLogin"
 							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG IN</a>
 					</c:if>
 					<!-- 로그인 끝 -->
 					<!-- 로그아웃 -->
-					<c:if test="${!empty sessionScope.mId }">
+					<c:if test="${!empty sessionScope.hId }">
 						<a
-							href="${pageContext.request.contextPath }/member/memberEditChkPwd"
+							href="${pageContext.request.contextPath }/host/hostEditChkPwd"
 							alt="마이페이지"> <img
 							class="avatar-sm img-fluid rounded-circle mr-2" alt="avatar"
-							<c:if test="${!empty sessionScope.mFilename}">
-                                src="<c:url value='/resources/file_upload/${sessionScope.mFilename}'/>" 
+							<c:if test="${!empty sessionScope.hFilename}">
+                                src="<c:url value='/resources/file_upload/${sessionScope.hFilename}'/>" 
                             </c:if>
-							<c:if test="${!empty sessionScope.mFilename}">
+							<c:if test="${!empty sessionScope.hFilename}">
                                 src="<c:url value='/resources/file_upload/default.png'/>" 
                             </c:if>>
 						</a>
-						<span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.mNickname}님</span>
+						<span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.hNickname}님</span>
 						<a href="${pageContext.request.contextPath }/login/logout"
 							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG OUT</a>
@@ -322,7 +320,7 @@
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a
 						style="position: relative; width: 100px;"
-						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
+						href="<c:url value='note/noteList?mId=${sessionScope.hId }'/>">
 						<img id="letter" width="36px"
 						src="<c:url value='/resources/assets/img/logo/letter2_host.png'/>">
 						<span id="span1"
@@ -337,7 +335,7 @@
 						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>">
 						<span id="span2"
 						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;">9</span>
+						style="top: -10px; right: -5px;"></span>
 					</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- 채팅창 끝 -->
 
@@ -367,4 +365,77 @@
 			</div>
 		</div>
 	</main>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+var flag= "${sessionScope.uOrh}"
+console.log(flag);
+var roomName = "${room.name}";
+var roomId = "${room.roomId}";
+var username = null;
+   if(flag == 'u'){
+    username = "${sessionScope.mNickname}";
+   }else{
+   	username = "${sessionScope.hNickname}";
+   }
+$(document).ready(function(){
+	console.log(roomId)
+    console.log(roomName + ", " + roomId + ", ");
+
+    var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
+    //1. SockJS를 내부에 들고있는 stomp를 내어줌
+    var stomp = Stomp.over(sockJs);
+    var count = null;
+	var bool = null;
+	
+    //2. connection이 맺어지면 실행
+    stomp.connect({}, function (){
+       console.log("STOMP Connection") 
+       $('#chatBadge').css('visibility', 'visible');
+       //4. subscribe(path, callback)으로 메세지를 받을 수 있음
+       count=0;
+       stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
+    	   
+           var content = JSON.parse(chat.body);
+
+           var writer = content.writer;
+           var str = '';
+           console.log(count);
+           if(writer !== username){
+        	   if(count==0){
+        		   count=32;
+        		   bool=true;
+        	   }else{
+        		   bool=false;
+        	   }
+        	   console.log(count);
+        	   console.log(bool);
+        	   if(bool){
+        		  console.log("after Message :" + count);
+              	  var t = "+"+count;
+              	  console.log("t>>>>>>>>>>"+t);
+              	  $('#span2').html('N');
+            	  console.log("before Message :" + count);
+        	   }else{
+        		   
+        	   }
+        	   count = 100;
+        	   console.log("count!!!!!!!"+count);
+           }else{
+        	   $('#span2').html('');
+           }
+       });
+    });
+    $('#chat').click(function(){
+    	$('#span2').html('');
+    	var contextPath="/sangsanggongbang";
+    	$('#span2').html('');
+    	count =0;
+    	open(contextPath+'/chat/room?roomId=${sessionScope.hNickname}','chat',
+    	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+    });
+});
+
+</script>
 	<!-- 로딩창 끝 -->

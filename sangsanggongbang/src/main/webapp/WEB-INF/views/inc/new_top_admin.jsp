@@ -357,26 +357,14 @@
 				<div class="d-none d-lg-block @@cta_button_classes">
 
 					<!-- 로그인 -->
-					<c:if test="${empty sessionScope.mId }">
+					<c:if test="${empty sessionScope.adId }">
 						<a href="${pageContext.request.contextPath }/admin/adminLogin"
 							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG IN</a>
 					</c:if>
 					<!-- 로그인 끝 -->
 					<!-- 로그아웃 -->
-					<c:if test="${!empty sessionScope.mId }">
-						<a
-							href="${pageContext.request.contextPath }/member/memberEditChkPwd"
-							alt="마이페이지"> <img
-							class="avatar-sm img-fluid rounded-circle mr-2" alt="avatar"
-							<c:if test="${!empty sessionScope.mFilename}">
-                                src="<c:url value='/resources/file_upload/${sessionScope.mFilename}'/>" 
-                            </c:if>
-							<c:if test="${!empty sessionScope.mFilename}">
-                                src="<c:url value='/resources/file_upload/default.png'/>" 
-                            </c:if>>
-						</a>
-						<span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.mNickname}님</span>
+					<c:if test="${!empty sessionScope.adId }">
 						<a href="${pageContext.request.contextPath }/login/logout"
 							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG OUT</a>

@@ -68,4 +68,8 @@
 		    ]]>
 		)
 	</select>
+	
+	<update id="updateHGrade" parameterType="hostVo">
+		update host set h_grade = #{hGrade} where h_no = #{hNo}
+	</update>
 </mapper>
