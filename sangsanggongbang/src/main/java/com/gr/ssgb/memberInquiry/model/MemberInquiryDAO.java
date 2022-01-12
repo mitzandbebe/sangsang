@@ -28,4 +28,6 @@ public interface MemberInquiryDAO {
 	int selectBnobyMno(BanVO bVo);
 	
 	String checkBan(String mId);
+	
+	List<Map<String, Object>> classUser(int hNo);
 }
