@@ -24,6 +24,7 @@ public interface MemberDAO {
 
 	int updateMGrade(MemberVO vo);
 	
+	int deleteMember(int mNo);
 
 
 	int insertConcern(ConcernVO concernVo);
