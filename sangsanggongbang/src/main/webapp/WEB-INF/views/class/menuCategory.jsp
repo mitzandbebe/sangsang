@@ -34,7 +34,20 @@
                                 <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }
                                 </a>
-                                 <c:forEach var="vo" items="${rlist}">
+										<div class="d-flex my-4">
+										<c:forEach var="i" begin="1" end="5" step="1">
+                                 <c:choose>
+                                    <c:when test="${i <= map['TOTAL_R_RATE']}">
+                                       <i class="star fa-star text-warning fas mr-2"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <i class="star fa-star text-warning far mr-2"></i>
+                                    </c:otherwise>
+                                 </c:choose>
+                              </c:forEach>
+                              <span class="badge badge-pill badge-primary ml-2"><c:out value="${map['TOTAL_R_RATE']}" default="0.0"/></span>
+										</div>
+                                 <%-- <c:forEach var="vo" items="${rlist}">
                                         <c:if test="${vo.cNo eq map['C_NO'] }">
 
 										<div class="d-flex my-4">
@@ -78,7 +91,7 @@
 											</span>
 										</div>
 										</c:if>
-									 </c:forEach>
+									 </c:forEach> --%>
                                 </div> 
                                 <ul class="list-group mb-3" style="text-align: left;margin: 5%;">
                                     <li class="list-group-item small p-0 " ><span class="fas fa-map-marker-alt mr-2 "></span>
