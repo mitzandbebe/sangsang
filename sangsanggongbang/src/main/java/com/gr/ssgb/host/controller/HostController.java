@@ -188,7 +188,7 @@ public class HostController {
 				session.removeAttribute("mNickname");
 				session.removeAttribute("uOrh");
 				msg="늘솜님 안녕하세요!";
-				url="/host/hostChatTest";
+				url="/host/hostIndex";
 				vo = hostService.selectHostById(vo.gethId());
 				session.setAttribute("hFilename", vo.gethFilename());
 				session.setAttribute("hId", vo.gethId());
