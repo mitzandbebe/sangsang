@@ -1,13 +1,12 @@
 package com.gr.ssgb.blackList.model;
 
 import java.util.List;
-
-import com.gr.ssgb.common.SearchVO;
+import java.util.Map;
 
 public interface BlackListService {
-	List<BlackListVO> selectBlackListAll(int hno);
+	List<Map<String, Object>> selectBlackListAll(BlackListVO blackListVO);
 	int selectTotalRecord(BlackListVO blackListVO);
-	int deleteBlackList(int bno);
+	int deleteBlackList(int bno, String mId);
 	
 	int insertBlackList(BlackListVO vo, String hId);
 }
