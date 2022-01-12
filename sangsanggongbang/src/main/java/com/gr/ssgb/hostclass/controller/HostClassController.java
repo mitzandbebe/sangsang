@@ -356,7 +356,6 @@ public class HostClassController {
 		logger.info("클래스 등록처리, 파라미터 locationVo={}", locationVo);
 		logger.info("클래스 등록처리, 파라미터 hostClassVo={}", hostClassVo);
 		logger.info("클래스 등록처리, 파라미터 contentsVo={}", contentsVo);
-		
 
 		String hId = (String) session.getAttribute("hId"); //추후 호스트 회원가입되면 아이디저장
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
