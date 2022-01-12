@@ -18,13 +18,13 @@ public class BottomController {
 	}
 	
 	//2.AboutUS
-	@GetMapping
+	@GetMapping("/bottomview/aboutUs")
 	public void aboutUs() {
 		logger.info("aboutUs 등장?!");
 	}
 	
 	//3.CustomerService
-	@GetMapping
+	@GetMapping("/bottomview/customerService")
 	public void customerService() {
 		logger.info("customerService 등장?!");
 	}
