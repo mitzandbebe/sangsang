@@ -32,9 +32,14 @@
  		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
  			select BLACKLIST_SEQ.NEXTVAL from dual
  		</selectKey>
- 		insert into blackList()
- 		
+ 		insert into blacklist(bNo,m_no,hNo)
+		values(#{bno},#{mNo},#{hno})
  	</insert>
+ 	<update id="insertBlackListB" parameterType="blackListVo">
+ 		UPDATE MEMBER
+		SET M_BLACKLIST_FLAG = 'Y'
+		WHERE M_NO= #{mNo}
+ 	</update>
  	
 	<delete id="deleteBlackList" parameterType="int">
 		delete

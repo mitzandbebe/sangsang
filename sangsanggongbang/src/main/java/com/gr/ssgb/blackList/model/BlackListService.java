@@ -8,4 +8,6 @@ public interface BlackListService {
 	List<BlackListVO> selectBlackListAll(int hno);
 	int selectTotalRecord(BlackListVO blackListVO);
 	int deleteBlackList(int bno);
+	
+	int insertBlackList(BlackListVO vo, String hId);
 }

@@ -152,10 +152,10 @@
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
 									class="list-group-item list-group-item-action border-0  active ">회원정보</a>
 								<a href="<c:url value='/class/myclass'/>"
-									class="list-group-item list-group-item-action d-none d-sm-block border-0 active">내 클래스
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스 이용회원</a>
-								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+									class="list-group-item list-group-item-action d-none d-sm-block border-0 active">내
+									클래스 현황</a> <a href="./security.html"
+									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스
+									이용회원</a> 현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
 								현황</a> <a href="./security.html"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
@@ -171,9 +171,9 @@
 										</span> <span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<div class="dropdown-menu">
-										 <a href="./security.html"
-											class="list-group-item list-group-item-action d-md-none border-0 ">클래스 이용회원</a>
-										<a href="<c:url value='/dashboard/host/balancing'/>"
+										<a href="./security.html"
+											class="list-group-item list-group-item-action d-md-none border-0 ">클래스
+											이용회원</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
 										<a href="./messages.html"
 											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
@@ -192,7 +192,6 @@
 								<form name="frmList" id="frm"
 									action="<c:url value='/blackList/blackListInsert'/>"
 									method="post">
-									<input type="text" name="hno" value="${sessionScope.hno }">
 									<table class="table table-hover" style="font-size: 14px;">
 										<c:if test="${empty list }">
 											<h3 class="h4 mb-5">클래스를 이용한 회원이 없습니다.</h3>
@@ -213,20 +212,27 @@
 													<tr>
 														<td>${map['C_NAME'] }</td>
 														<td>${map['M_ID'] }</td>
-														<td>${map['M_NAME'] }<input type="hidden" name="mNo"
-															value=${map['M_NO'] }>
-														</td>
-
+														<td>${map['M_NAME'] }</td>
 														<td><fmt:formatDate value="${map['C_START_TIME'] }"
 																pattern="yyyy/MM/dd" /></td>
 														<td>
 															<div class="d-flex">
-																<a id="blackListButton"
-																	href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }'/>">
-																	<i data-toggle="tooltip" data-placement="top"
-																	title="블랙리스트등록"><input type="submit"
-																		value="블랙리스트등록"> </i>
-																</a>
+																<c:choose>
+																	<c:when test="${map['M_BLACKLIST_FLAG'] eq 'Y'}">
+																		<a id="blackListButton"
+																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }'/>">
+																			<i data-toggle="tooltip" data-placement="top"
+																			title="블랙리스트목록이동"> <input type="button" value="등록된 회원" style="background-color:red"> </i>
+																		</a>									
+																	</c:when>
+																	<c:otherwise>
+																		<a id="blackinsertButton"
+																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }&hId=${sessionScope.hId}'/>">
+																			<i data-toggle="tooltip" data-placement="top"
+																			title="블랙리스트등록">블랙리스트등록 </i>
+																		</a>
+																	</c:otherwise>
+																</c:choose>
 															</div>
 														</td>
 													</tr>
@@ -291,9 +297,7 @@
 
 <script>
 	$(function() {
-		$('#blackListButton').click(function() {
-			$('#frm').submit();
-		})
+	
 	})
 </script>
 
