@@ -394,7 +394,7 @@
 					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_light_without_letter.png"
 					height="35" alt="Logo loader"> <img
 					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_letter.png"
-					height="35" class="rotate-letter" alt="Letter loader">
+					height="35" class="rotate-letter" alt="Letter loader"> 
 			</div>
 		</div>
 	</main>
