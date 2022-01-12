@@ -33,6 +33,8 @@ import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.hostclass.model.HostClassVO;
 import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
+import com.gr.ssgb.member.model.ConcernVO;
+import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -44,14 +46,16 @@ public class HostClassController {
 	private final ReviewService reviewService;
 	private final FileUploadUtil fileUploadUtil;
 	private final HostService hostService;
+	private final MemberService memberService;
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
-			FileUploadUtil fileUploadUtil, HostService hostService) {
+			FileUploadUtil fileUploadUtil, HostService hostService,MemberService memberService) {
 		this.hostClassService = hostClassService;
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.hostService = hostService;
+		this.memberService = memberService;
 		logger.info("클래스 생성자 주입");
 	}
 
@@ -260,7 +264,7 @@ public class HostClassController {
 	
 	@GetMapping("/detail")
 	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
-			@RequestParam String categoryName,HttpServletRequest request, Model model) {
+			@RequestParam String categoryName,HttpServletRequest request,HttpSession session,ConcernVO concern, Model model) {
 		logger.info("클래스 상세보기");
 		
 		Integer avgRate =reviewService.selectRate(cNo);
@@ -276,11 +280,12 @@ public class HostClassController {
 		
 
 		String mId=(String) session.getAttribute("mId");
+		int con=0;
 		try{
 			int mNo=memberService.selectMno(mId);
 			concern.setmNo(mNo);
 			concern.setcNo(cNo);
-			int con=hostClassService.selectConcernbyCNo(concern);
+			con=hostClassService.selectConcernbyCNo(concern);
 			model.addAttribute("con",con);
 			
 		}catch(Exception e){
