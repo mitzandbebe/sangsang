@@ -196,6 +196,11 @@
 	<select id="selectClassCnt" parameterType="int" resultType="int">
 		select count(*) from hostclass where h_no = #{hNo}
 	</select>
+	
+	<select id="selectConcernbyCNo" parameterType="concernVo" resultType="int">
+		select count(*) from concern where c_no=#{cNo} and m_no=#{mNo}
+	</select>
+	
 
 	<select id="findBySearchClass" parameterType="hostClassVo" resultType="hostClassVo">
 		SELECT

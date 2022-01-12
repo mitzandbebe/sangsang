@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.member.model.ConcernVO;
+
 @Service
 public class HostClassServiceImpl implements HostClassService{
 	private final HostClassDAO hostClassDao;
@@ -124,12 +126,12 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectClassLoc(loc);
 	}
 
+	@Override
+	public int selectConcernbyCNo(ConcernVO concernVo) {
+		return hostClassDao.selectConcernbyCNo(concernVo);
+	}
 
 
-
-
-
-	
 
 
 	
