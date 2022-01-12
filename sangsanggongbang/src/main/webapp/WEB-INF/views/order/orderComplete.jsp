@@ -1,141 +1,176 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
-<style type="text/css">
-	.cartListTbl{
-		width:650px;		
-	}
-	.cartListTbl td{
-		padding:10px;
-	}
-	.cartListTbl caption{
-		visibility:hidden;
-	}
-	.cartListDiv1{
-		width:650px;
-		text-align:center;		
-		margin:10px;
-	}
-	
-	.divForm {
-		width: 650px;
-	}
-	.divForm span{
-		font-size:0.9em; 
-	}		
-	.divForm .sp1	{
-		text-align: left;
-	}
-	.divForm .title{
-		font-size:1.1em;
-		font-weight:bold;	
-	}
-	.divForm .titleP, .titleP{
-		margin:10px 0;	
-		border: none;
-	}
-	
-</style>
 
-<h2>주문 완료</h2>
+
+<h2></h2>
 <p style="font-size:13pt;font-weight:bold">
-	주문과 결제가 정상적으로 완료되었습니다
-</p>
-<%-- <c:forEach var="vo" items="${vo}"> --%>
-${vo.cNo}
-${vo.mId}
-${vo.price}
-${vo.refund}
-${vo.ea}
-${vo.impUid}
-${vo.merchantUid}
-${vo.fTime}
-
-<%-- </c:forEach> --%>
-
-<%--[주문번호 : ${param.orderNo }]
-<br><br>
-<p class="titleP">
-	<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
-	<span style="font-size:12pt;font-weight:bold">주문하신 상품</span>
+	클래스 신청과 결제가 정상적으로 완료되었습니다
 </p>
 
-<div>
-<table  class="cartListTbl box2"
-summary="주문 상품 목록에 관한 표로써, 상품명,가격, 수량, 금액 등의 정보를 제공합니다.">
-	<caption>주문 상품 목록</caption>
-	<colgroup>
-		<col width="49%" />
-		<col width="17%" />
-		<col width="17%" />
-		<col width="*" />		
-	</colgroup>
-	<thead>
-		<tr>
-			<th scope="col">상품명</th>
-			<th scope="col">판매가격</th>
-			<th scope="col">수량</th>
-			<th scope="col">합계</th>			
-		</tr>
-	</thead>
-	<tbody>
-	<!-- 데이터가 있는 경우 -->
-	<!-- 반복문 시작 -->				
-	<c:forEach var="map" items="${list }">
-		<tr>
-			<td>
-				<img src
-				="<c:url value='/resources/pd_images/${map["IMAGEURL"] }'/>" 
-					width="30" align="absmiddle">
-				${map['PRODUCTNAME'] }</td>
-			<td><fmt:formatNumber value="${map['SELLPRICE'] }" 
-				pattern="#,###"/>원</td>
-			<td>${map['QUANTITY'] }</td>
-			<td><fmt:formatNumber value="${map['SELLPRICE'] * map['QUANTITY'] }" 
-				pattern="#,###"/>원
-			</td>
-		</tr>
-	</c:forEach>
-	<!-- 반복문 끝 -->
-	</tbody>
-</table>
-</div>
-<br>
- 
-<div class="divForm">   
-  	<p class="titleP">
-		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
-    	<span class="title">배송 정보</span>
-	</p>
-	<p>
-        <span class="sp1">보내시는 분 </span>
-        <span>${orderMap['SENDER'] }</span>        
-    </p>
-    <p>
-        <span class="sp1">받으시는 분 </span>
-        <span>${orderMap['CUSTOMERNAME'] }</span>
-    </p>
-    
-    <p>
-        <span class="sp1">배송지 주소</span>
-        <span>${orderMap['ADDRESS'] } ${orderMap['ADDRESSDETAIL'] }</span>
-    </p>
-    <p>
-        <span class="sp1">휴대폰 번호</span>
-        <span>${orderMap['HP'] }</span>
-    </p>        
-   
-	<br>
-	<p class="titleP">
-		<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
-		<span class="title">결제 정보</span>
-	</p>	
-    <p>
-        <span class="sp1">결제금액</span>
-        <span>
-        	<fmt:formatNumber value="${orderMap['TOTALPRICE'] }" 
-        		pattern="#,###"/>원</span>
-    </p>
-</div>
+<input type="text" value="${oVo.cNo}">
+<input type="text" value="${oVo.mId}">
+<input type="text" value="${oVo.price}">
+<input type="text" value="${oVo.refund}">
+<input type="text" value="${oVo.ea}">
+<input type="text" value="${oVo.impUid}">
+<input type="text" value="${oVo.merchantUid}">
+<input type="text" value="${oVo.fTime}">
 
-<%@ include file="../inc/bottom.jsp"%>     --%>
+<section class="section bg-soft section-lg pt-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-10">
+				<div
+					class="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-4">
+					<a href="./billing.html" class="mb-4 mb-lg-0"><span
+						class="icon icon-xs"><span class="fas fa-chevron-left mr-2"></span></span>
+						Back to all billing</a>
+					<div>
+						<button class="btn btn-primary mr-2">
+							<span class="far fa-file-pdf mr-2"></span> Download PDF
+						</button>
+						<button class="btn btn-outline-gray">
+							<span class="fas fa-print mr-2"></span> Print Invoice
+						</button>
+					</div>
+				</div>
+				<div class="card border-light p-4 p-md-5 position-relative">
+					<div
+						class="d-flex justify-content-between pb-4 pb-md-5 mb-4 mb-md-5 border-bottom border-light">
+						<img src="../../assets/img/brand/dark.svg"
+							class="d-none d-lg-block" height="30" alt="Spaces Logo">
+						<div>
+							<h4>Spaces LLC.</h4>
+							<ul class="list-group simple-list">
+								<li class="list-group-item font-weight-norma pl-0 py-1">112
+									Washington Square</li>
+								<li class="list-group-item font-weight-normal pl-0 py-1">New
+									York, USA</li>
+								<li class="list-group-item font-weight-normal pl-0 py-1"><a
+									class="font-weight-bold text-primary" href="#">company@themesberg.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="mb-6 d-flex align-items-center justify-content-center">
+						<h2 class="h1 mb-0">클래스 신청 완료</h2>
+						<span class="badge badge-xl badge-success ml-2">Paid</span>
+					</div>
+					<div class="row justify-content-between mb-4 mb-md-5">
+						<div class="col-sm">
+							<h5>Client Information:</h5>
+							<div>
+								<ul class="list-group simple-list">
+									<li class="list-group-item font-weight-norma pl-0 py-1">Henry
+										M. Pike</li>
+									<li class="list-group-item font-weight-norma pl-0 py-1">Themesberg
+										LLC</li>
+									<li class="list-group-item font-weight-norma pl-0 py-1">311
+										West Mechanic Lane Middletown, NY 10940</li>
+									<li class="list-group-item font-weight-norma pl-0 py-1"><a
+										class="font-weight-bold text-primary" href="#">name@company.com</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm col-lg-4">
+							<dl class="row text-sm-right">
+								<dt class="col-6">
+									<strong>Invoice No.</strong>
+								</dt>
+								<dd class="col-6">00123</dd>
+								<dt class="col-6">
+									<strong>Date Issued:</strong>
+								</dt>
+								<dd class="col-6">31/03/2020</dd>
+								<dt class="col-6">
+									<strong>Date Due:</strong>
+								</dt>
+								<dd class="col-6">30/04/2020</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="table-responsive">
+								<table class="table mb-0">
+									<thead class="bg-light border-top">
+										<tr>
+											<th scope="row" class="border-0 text-left">Item</th>
+											<th scope="row" class="border-0">Description</th>
+											<th scope="row" class="border-0">Price</th>
+											<th scope="row" class="border-0">Qty</th>
+											<th scope="row" class="border-0">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row" class="text-left font-weight-bold h6">Origin
+												License</th>
+											<td>Extended License</td>
+											<td>999,00</td>
+											<td>1</td>
+											<td>999,00</td>
+										</tr>
+										<tr>
+											<th scope="row" class="text-left font-weight-bold h6">Custom
+												Services</th>
+											<td>Instalation and Customization</td>
+											<td>$150,00</td>
+											<td>20</td>
+											<td>3000,00</td>
+										</tr>
+										<tr>
+											<th scope="row" class="text-left font-weight-bold h6">Hosting</th>
+											<td>1 year subcription</td>
+											<td>$499,00</td>
+											<td>1</td>
+											<td>$499,00</td>
+										</tr>
+										<tr>
+											<th scope="row" class="text-left font-weight-bold h6">Gold
+												Support</th>
+											<td>1 year subcription 24/7</td>
+											<td>$3.999,00</td>
+											<td>1</td>
+											<td>$3.999,00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div
+								class="d-flex justify-content-end text-right mb-4 py-4 border-bottom">
+								<div class="mt-4">
+									<table class="table table-clear">
+										<tbody>
+											<tr>
+												<td class="left"><strong>Subtotal</strong></td>
+												<td class="right">$8.497,00</td>
+											</tr>
+											<tr>
+												<td class="left"><strong>Discount (20%)</strong></td>
+												<td class="right">$1,699,40</td>
+											</tr>
+											<tr>
+												<td class="left"><strong>VAT (10%)</strong></td>
+												<td class="right">$679,76</td>
+											</tr>
+											<tr>
+												<td class="left"><strong>Total</strong></td>
+												<td class="right"><strong>$7.477,36</strong></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<h4>Payments to:</h4>
+							<span>payment@company.com</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<%@ include file="../inc/bottom.jsp"%>     
