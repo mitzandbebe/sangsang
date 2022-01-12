@@ -44,14 +44,14 @@
 				action="<c:url value='/recommendation/recommendWrite'/> ">
 				<div class="row">
 					<div class="col-lg-12 mb-5">
-					<input type="text" name="mId" value="${sessionScope.mId} "/>
-					<input type="text" name="hId" value="${sessionScope.hId} "/>
+					<input type="text" name="mId" value="${sessionScope.mId}"/>
+					<input type="text" name="hId" value="${sessionScope.hId}"/>
 						<input type="hidden" name="flag"
                      <c:choose>
-                        <c:when test="${!empty sessionScope.hId }">
+                        <c:when test="${!empty sessionScope.hId}">
                            value="H"
                         </c:when>
-                        <c:when test="${!empty sessionScope.mId }">
+                        <c:when test="${!empty sessionScope.mId}">
                            value="M"
                         </c:when>
                         </c:choose>>

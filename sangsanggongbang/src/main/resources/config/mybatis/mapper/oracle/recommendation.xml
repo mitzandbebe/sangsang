@@ -59,7 +59,7 @@
 		(
 		select * from
 		recommendation
-		where m_id=#{mId} 
+		where M_ID=#{mId} and group_No= #{groupNo}
 		order by group_no desc, sort_no
 		)A
 		)

@@ -37,8 +37,8 @@
 <!-- 불편사항 목록 테이블로 보여주기 -->
 <div class="container">
 	<form name="frmList">
-		<input type="text" name="mId" value="${sessionScope.mId} " /> 
-		<input type="text" name="hId" value="${sessionScope.hId} " />
+		<input type="text" name="mId" value="${sessionScope.mId}" /> 
+		<input type="text" name="hId" value="${sessionScope.hId}" />
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -58,7 +58,7 @@
 					<!-- 불편사항 내용반복 -->
 					<c:forEach var="vo" items="${list }">
 						<tr>
-							<th scope="row"><c:if test="${!empty sessionScope.adId }">(${vo.flag })</c:if></th>
+							<th scope="row"><c:if test="${!empty sessionScope.adId }">(${vo.flag }) : ${vo.mId }</c:if></th>
 							<td><a
 								href="<c:url value='/recommendation/recommendDetail?recoNo=${vo.recoNo}'/>">
 									<div class="d-flex align-items-center">${vo.recoTitle }</div>
