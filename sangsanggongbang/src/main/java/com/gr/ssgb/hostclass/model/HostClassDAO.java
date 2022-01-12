@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.gr.ssgb.member.model.ConcernVO;
-
 @Mapper
 public interface HostClassDAO {
 	List<CategoryVO> selectCategoryAll();
@@ -30,9 +28,6 @@ public interface HostClassDAO {
 	int deleteContents(int cNo);
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
-	int selectConcernbyCNo(ConcernVO concernVo);
-
 
 	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
-
 }

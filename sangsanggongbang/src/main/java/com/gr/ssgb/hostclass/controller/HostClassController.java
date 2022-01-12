@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -34,8 +33,6 @@ import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.hostclass.model.HostClassVO;
 import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
-import com.gr.ssgb.member.model.ConcernVO;
-import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -47,16 +44,14 @@ public class HostClassController {
 	private final ReviewService reviewService;
 	private final FileUploadUtil fileUploadUtil;
 	private final HostService hostService;
-	private final MemberService memberService;
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
-			FileUploadUtil fileUploadUtil, HostService hostService,MemberService memberService) {
+			FileUploadUtil fileUploadUtil, HostService hostService) {
 		this.hostClassService = hostClassService;
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.hostService = hostService;
-		this.memberService = memberService;
 		logger.info("클래스 생성자 주입");
 	}
 
@@ -265,7 +260,7 @@ public class HostClassController {
 	
 	@GetMapping("/detail")
 	public String classDetail_get( @RequestParam(defaultValue = "0") int cNo , @RequestParam(defaultValue = "0") int hNo ,
-			@RequestParam String categoryName,HttpServletRequest request,HttpSession session,ConcernVO concern, Model model) {
+			@RequestParam String categoryName,HttpServletRequest request, Model model) {
 		logger.info("클래스 상세보기");
 		
 		Integer avgRate =reviewService.selectRate(cNo);
@@ -279,6 +274,7 @@ public class HostClassController {
 		int classCnt = hostClassService.selectClassCnt(hNo);
 		int reviewCnt = reviewService.selectReviewByHost(hNo);
 		
+
 		String mId=(String) session.getAttribute("mId");
 		try{
 			int mNo=memberService.selectMno(mId);
@@ -291,6 +287,7 @@ public class HostClassController {
 			e.printStackTrace();
 		}
 		
+
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
