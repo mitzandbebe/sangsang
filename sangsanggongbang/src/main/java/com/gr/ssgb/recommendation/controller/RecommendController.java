@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.recommendation.model.RecommendationService;

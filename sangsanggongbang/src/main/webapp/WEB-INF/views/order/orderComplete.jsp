@@ -58,7 +58,7 @@ ${map["refund"] } <br>
 
 </c:forEach>
 
-<%-- 	[주문번호 : ${param.orderNo }]
+<%--[주문번호 : ${param.orderNo }]
 <br><br>
 <p class="titleP">
 	<img src='<c:url value="/resources/images/dot7.JPG"/>' align="absmiddle" />
@@ -143,4 +143,4 @@ summary="주문 상품 목록에 관한 표로써, 상품명,가격, 수량, 금
     </p>
 </div>
 
-<%@ include file="../inc/bottom.jsp"%>    
+<%@ include file="../inc/bottom.jsp"%>     --%>

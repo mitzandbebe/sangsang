@@ -6,18 +6,26 @@ import com.gr.ssgb.common.SearchVO;
 
 public interface RecommendationService {
 
-	public int insertRecommendation(RecommendationVO vo);
+   public int insertRecommendation(RecommendationVO vo);
 
-	List<RecommendationVO> selectAllRecommendation(SearchVO searchVo);
+   List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo);
 
-	public RecommendationVO selectByNoRecommendation(int recoNo);
+   List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo);
 
-	int selectTotalRecord(SearchVO searchVo);
+   List<RecommendationVO> selectAllRecommendation(SearchVO searchVo);
 
-	public int updateRecommendation(RecommendationVO vo);
-	
-	public int deleteRecommendation(int recoNo);
+   public RecommendationVO selectByNoRecommendation(int recoNo);
 
-	int reply(RecommendationVO vo);
+   int selectTotalRecord(SearchVO searchVo);
+
+   int selectTotalMemberRecord(SearchVO searchVo);
+
+   int selectTotalHostRecord(SearchVO searchVo);
+
+   public int updateRecommendation(RecommendationVO vo);
+   
+   public int deleteRecommendation(int recoNo);
+
+   int reply(RecommendationVO vo);
 
 }

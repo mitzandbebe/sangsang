@@ -2,8 +2,6 @@ package com.gr.ssgb.order.model;
 
 import java.sql.Timestamp;
 
-import com.gr.ssgb.member.model.MemberVO;
-
 public class OrderVO {
 	/*
 
