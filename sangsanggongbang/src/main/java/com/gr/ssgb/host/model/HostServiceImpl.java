@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.admin.model.MonthVO;
+
 @Service
 public class HostServiceImpl implements HostService{
 	private final HostDAO hostDao;
@@ -69,6 +71,16 @@ public class HostServiceImpl implements HostService{
 	@Override
 	public HostVO selectHostByHNo(int hNo) {
 		return hostDao.selectHostByHNo(hNo);
+	}
+
+	@Override
+	public int findClassCnt(MonthVO monVo) {
+		return hostDao.findClassCnt(monVo);
+	}
+
+	@Override
+	public int selectMyProfit(MonthVO monVo) {
+		return hostDao.selectMyProfit(monVo);
 	}
 	
 }

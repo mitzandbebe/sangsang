@@ -49,4 +49,23 @@
 	<select id="selectHostByHNo" parameterType="int" resultType="hostVo">
 		select * from host where h_no = #{hNo}
 	</select>
+	
+	<select id="findClassCnt" parameterType="monthVo" resultType="int">
+		select count(*) from balancing  
+		<![CDATA[
+		   where b_req_date > TO_DATE(#{startDate}) and b_req_date < TO_DATE(#{endDate}) and h_no = #{hNo}
+		    ]]>
+	</select>
+	
+	<select id="selectMyProfit" parameterType="monthVo" resultType="int">
+		select sum(total) 
+		from
+		(
+		    select (c_price*qty) as total 
+		    from hostprofitview where h_No = #{hNo}
+		    <![CDATA[
+		     and b_req_date > TO_DATE(#{startDate}) and b_req_date < TO_DATE(#{endDate})
+		    ]]>
+		)
+	</select>
 </mapper>
