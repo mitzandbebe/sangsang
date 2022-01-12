@@ -46,9 +46,9 @@
 					<li><a target="_blank" href="<c:url value='/host/hostInfo'/>">늘솜
 							지원하기</a></li>
 					<li><a target="_blank"
-						href="<c:url value='/host/hostLogin'/> ">호스트로그인</a></li>
+						href="<c:url value='/login/login'/>">유저로그인</a></li>
 					<li><a target="_blank"
-						href="<c:url value='/admin/adminLogin'/>">관리자로그인</a></li>
+						href="<c:url value='/host/hostLogin'/> ">호스트로그인</a></li>
 				</ul>
 			</div>
 			<div class="col-6 col-xl-3 mb-5 mb-xl-0">
