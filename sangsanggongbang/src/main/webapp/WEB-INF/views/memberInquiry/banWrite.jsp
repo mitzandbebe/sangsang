@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@ include file="../inc/new_top_admin.jsp"%>
-
 <br>
 <br>
 <br>
@@ -19,7 +17,6 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
-
 
 <br>
 <br>
@@ -76,22 +73,12 @@
 					<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
 						type="submit"> <input value="취소"
 						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
-
 				</div>
-				<div>
-					<span >상세 내용 : </span>
-					<textarea rows="" cols="" name="bc">
-					</textarea>
-				</div>
-			</div>
-
-			<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
-				type="submit"> <input value="목록"
-				class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
-<br> 
+<br>
 <br>
 <br>
 <br>
@@ -180,6 +167,4 @@
 		$("#privacyDto").submit();
 	}
 </script>
-
 <%@ include file="../inc/bottom_admin.jsp"%>
-
