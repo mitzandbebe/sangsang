@@ -16,9 +16,8 @@
 				항상 생각해온 나만의 클래스
 				<p class="lead text-muted mt-4 px-md-6">
 					<!-- 글씨 시작~.~ -->
-					<span class="font-weight-bold">12,000+</span> coworking spaces with
-					desks, offices & meeting rooms in <span class="font-weight-bold">165+</span>
-					countries. Discover and reserve space today.
+					Here's the <span class="font-weight-bold">class</span>   you've always thought of.
+					 Make your day  <span class="font-weight-bold">special</span>.
 					<!--  글씨 끝~.~-->
 				</p>
 			</div>

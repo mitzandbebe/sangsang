@@ -202,10 +202,7 @@
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i
 												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
+											
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
 										<a href="<c:url value='#'/>" target="_blank"
@@ -232,59 +229,14 @@
 							</div></li>
 
 						<!-- 세번째 탭 -->
-						<li class="nav-item dropdown"><a href="#"
-							id="supportDropdown" class="nav-link dropdown-toggle"
-							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">My Page</span> <i
-								class="fas fa-angle-down nav-link-arrow"></i>
+						<li class="nav-item ">
+						<a href="<c:url value='/host/hostEditChkPwd'/>" 
+							class="nav-link "> 
+							<span class="nav-link-inner-text mr-1">
+							My Page
+							</span>
 						</a>
-							<div class="dropdown-menu dropdown-menu-lg"
-								aria-labelledby="supportDropdown">
-								<div class="col-auto px-0">
-									<div class="list-group list-group-flush">
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='../class/inputclass'/>" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-secondary"><i
-												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/class/listofClass'/>" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='../class/listdelete'/>" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='../class/listdelete'/>" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div></li>
+						</li>
 					</ul>
 				</div>
 
