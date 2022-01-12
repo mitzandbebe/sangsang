@@ -496,11 +496,11 @@
 <script>
 
 //하트 클릭시빨강, 비동기방식으로 저장/삭제
-
 	$(function() {
 		const heart = document.querySelector('.fa-heart');
 
 		let cNo = ${param.cNo};
+
 		
 		let num = 0;
 		
@@ -510,25 +510,36 @@
 				heart.classList.remove('far');
 				heart.classList.add('fas');
 
+
+		var bool = true;
+		heart.addEventListener('click', function() {
+			if (bool) {
+
 				$.ajax({
 					type : "POST",
 					url : '<c:url value="/member/interest"/>',
 					data : "cNo=" + cNo,
 					success : function(res) {
 						alert("관심클래스로 등록하였습니다.");
+						heart.classList.remove('far');
+						heart.classList.add('fas');
 					},
 					error : function() {
 						alert("관심클래스로 등록할 수 없습니다.");
 						heart.classList.remove('fas');
 						heart.classList.add('far');
 					}
-
 				}); //ajax 
+
 
 				num++;
 			} else if ($('#heart').hasClass('fas')) { //num==1
 				heart.classList.remove('fas');
 				heart.classList.add('far');
+
+			 //하트클릭
+				bool=false;
+			}else{
 
 				$.ajax({
 					type : "POST",
@@ -536,14 +547,16 @@
 					data : "cNo=" + cNo,
 					success : function(res) {
 						alert("관심클래스를 삭제하였습니다.");
+						heart.classList.remove('fas');
+						heart.classList.add('far');
 					},
 					error : function() {
 						alert("관심클래스 삭제를할 수 없습니다.");
 						heart.classList.remove('far');
 						heart.classList.add('fas');
 					}
-
 				}); //ajax 
+
 
 				num--;
 
@@ -551,6 +564,10 @@
 		}); //하트클릭
 
 	});
+
+			}
+		});
+
 
 	function relayout() {
 
@@ -569,6 +586,7 @@
 		open(contextPath + '/chat/room?roomId=' + roomId, 'chat',
 				'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
 	}
+	});
 </script>
 
 <c:choose>

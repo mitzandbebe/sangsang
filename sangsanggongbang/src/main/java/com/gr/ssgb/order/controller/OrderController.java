@@ -65,37 +65,51 @@ public class OrderController {
 		
 		return "login/login";
 	}
-	
-	@PostMapping("/orderComplete")
-	public String orderComplite_POST(HttpSession session, @ModelAttribute OrderVO orderVo) {
-			String mId=(String) session.getAttribute("mId");
-			orderVo.setmId(mId);
-			logger.info("로그인 세션 mId={}", mId);
-			
-			logger.info("매개변수 orderVo={}", orderVo);
-			
-			int cnt = orderService.insertOrder(orderVo);
-			logger.info("주문 처리 결과, cnt={}", cnt);
 
-		return "redirect:order/orderComplete?orderNo="+orderVo.getOrderId();	
-	}
-	
+	/*
+	@ResponseBody
 	@RequestMapping("/orderComplete")
-	public String orderComplete(@RequestParam(defaultValue = "0") int orderNo,
-			Model model) {
-		logger.info("주문완료페이지, 파라미터 orderNo={}", orderNo);
+	public int orderComplite_POST(HttpSession session, @RequestBody String orderId) {
+		String mId=(String) session.getAttribute("mId");
+		logger.info("로그인 세션 mId={}", mId);
+		logger.info("orderId={}", orderId);*/
+	
+	@ResponseBody
+	@RequestMapping("/orderComplete")
+	public int orderComplite_POST(HttpSession session, @RequestBody Map<String, Object> map) {
+		String mId=(String) session.getAttribute("mId");
+		logger.info("로그인 세션 mId={}", mId);
 		
-		List<Map<String, Object>> list 
-			=orderService.selectOrderDetailsView(orderNo);
-		logger.info("주문완료, 상세주문 조회 결과 list.size={}", list.size());
+		logger.info("ajax POST파라미터 map={}", map );
 		
-		Map<String, Object> map=orderService.selectOrdersView(orderNo);
-		logger.info("주문완료, 주문 조회 결과 map={}", map);
+		OrderVO vo = new OrderVO();
 		
-		model.addAttribute("list", list);
-		model.addAttribute("orderMap", map);
+		String impUid = (String) map.get("impUid");
+		String merchantUid = (String) map.get("merchantUid");
+		String mId2 = (String) map.get("mId");
+		//String price = (String) map.get("price");
+		String refund = (String) map.get("refund");
+		//String ea = (String)map.get("ea");
+		//Timestamp fDate = (Timestamp) map.get("fDate");
+		//String fTime = (String)map.get("fTime");
+		//String cNo = (String)map.get("cNo");
 		
-		return "shop/order/orderComplete";
+		vo.setImpUid(impUid); //아임포트 상점번호
+		vo.setMerchantUid(merchantUid); //영수증번호
+		vo.setmId(mId2); //맴버아이디
+		//vo.setcNo(cNo); //클래스넘버
+		//vo.setPrice(price); //결제금액
+		vo.setRefund(refund); //결제상태
+		//vo.setEa(ea); //결제수량
+		//vo.setfDate(fDate); //확정일자
+		//vo.setfTime(fTime); //확정시간
+		
+		logger.info("vo={}", vo);
+		
+		int cnt = orderService.insertOrder(vo);
+
+		return cnt;
+
 	}
 	
 
