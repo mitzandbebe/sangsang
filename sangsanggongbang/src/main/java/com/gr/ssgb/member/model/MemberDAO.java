@@ -28,6 +28,6 @@ public interface MemberDAO {
 
 	int insertConcern(ConcernVO concernVo);
 	int deleteConcern(int cNo);
-	List<ConcernVO> selectConcern();
+	List<ConcernVO> selectConcern(int mNo);
 
 }

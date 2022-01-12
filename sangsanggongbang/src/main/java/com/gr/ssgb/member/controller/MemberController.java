@@ -583,11 +583,14 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/interestClass")
-	public String interestClass_get(Model model) {
+	public String interestClass_get(HttpSession session,Model model) {
 		logger.info("관심클래스 보기");
 		
+		String mId=(String) session.getAttribute("mId");
+		int mNo= memberService.selectMno(mId);
+		
 		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
-		List<ConcernVO> interest= memberService.selectConcern();
+		List<ConcernVO> interest= memberService.selectConcern(mNo);
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("interest",interest);
 		return "member/interestClass";

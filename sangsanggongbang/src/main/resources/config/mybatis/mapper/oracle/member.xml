@@ -102,8 +102,8 @@
 		delete concern where c_no=#{cNo}
 	</delete>	
 	
-	<select id="selectConcern" resultType="concernVo">
-		select * from concern 
+	<select id="selectConcern" parameterType="int" resultType="concernVo">
+		select * from concern where m_no=#{mNo}
 	</select>
 	
 </mapper>
