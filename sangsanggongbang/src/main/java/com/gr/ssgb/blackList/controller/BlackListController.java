@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,7 +50,7 @@ public class BlackListController {
 
 		int totalRecord = blackListService.selectTotalRecord(blackListvo);
 		pagingInfo.setTotalRecord(totalRecord);
-		
+
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
@@ -57,13 +58,24 @@ public class BlackListController {
 	}
 
 	@RequestMapping("/blackListInsert")
-	public void blackListInsert(@ModelAttribute ClassUserVO vo, Model model) {
-		logger.info("vo={}",vo);
-		
-		/* int cnt = blackListService. */
-		
+	public String blackListInsert(@RequestParam(defaultValue = "0") int mNo, @RequestParam String hId, Model model) {
+		logger.info("mNo={},hId={}", mNo, hId);
+
+		BlackListVO vo = new BlackListVO();
+		vo.setmNo(mNo);
+		int cnt = blackListService.insertBlackList(vo, hId);
+		String msg = "블랙리스트 등록에 실패했습니다", url = "/memberInquiry/classUser";
+		if (cnt > 0) {
+			msg = "블랙리스트에 등록됐습니다.";
+			url = "/memberInquiry/classUser";
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "/common/message";
 	}
-	
+
 	@RequestMapping("/blackDelete")
 	public String blackDelete(@RequestParam(defaultValue = "0") int bno, Model model) {
 		logger.info("블랙리스트 제외 bno={}", bno);
