@@ -55,9 +55,9 @@ public class MemberInquiryServiceImpl implements MemberInquiryService {
 	public int insertBan(BanVO bVo) {
 		int cnt1 = memberInquirydao.insertBan(bVo);
 		int cnt2 = memberInquirydao.insertBanF(bVo);
-		int result = cnt1+cnt2;
+		int result = cnt1 + cnt2;
 		return result;
-	
+
 	}
 
 	@Override
@@ -70,7 +70,19 @@ public class MemberInquiryServiceImpl implements MemberInquiryService {
 	public int deleteBan(BanVO bVo) {
 		int cnt1 = memberInquirydao.deleteBan(bVo);
 		int cnt2 = memberInquirydao.deleteBanF(bVo);
-		int result = cnt1+cnt2;
+		int result = cnt1 + cnt2;
+		return result;
+	}
+
+	@Override
+	public Boolean checkBan(String mId) {
+		boolean result = false;
+		String check = memberInquirydao.checkBan(mId);
+		if (check != null && !check.isEmpty()) {
+			if (check.equals("Y")) {
+				result = true;
+			}
+		}
 		return result;
 	}
 }
