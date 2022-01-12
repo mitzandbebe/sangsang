@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../inc/top_host.jsp"%>
+<%@ include file="../inc/new_top_host.jsp"%>
 <script src="https://kit.fontawesome.com/2db6e9a548.js"
 	crossorigin="anonymous"></script>
 <script
