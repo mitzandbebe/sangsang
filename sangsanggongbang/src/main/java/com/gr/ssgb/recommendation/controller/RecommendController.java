@@ -3,6 +3,7 @@ package com.gr.ssgb.recommendation.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -106,7 +107,7 @@ public class RecommendController {
 	// 2. 불편사항 목록
 	@RequestMapping("/recommendList")
 	public String list(@ModelAttribute RecommendationVO recommendationVo, HttpSession session, Model model) {
-		logger.info("불편사항 목록");
+		logger.info("불편사항 목록 ");
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
@@ -116,9 +117,13 @@ public class RecommendController {
 		recommendationVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("값 셋팅 후 searchVo={}", recommendationVo);
 
+		String mId= (String) session.getAttribute("mId");
+		recommendationVo.setmId(mId);
 		String adId=(String) session.getAttribute("adId");
 		String hId=(String) session.getAttribute("hId");
+		recommendationVo.sethId(hId);
 		
+		logger.info("recommendationVo={}",recommendationVo);
 //		List<RecommendationVO> list = recommendationService.selectAllRecommendation(searchVo);
 		List<RecommendationVO> list = new ArrayList<RecommendationVO>();
 		int totalRecord = 0;
