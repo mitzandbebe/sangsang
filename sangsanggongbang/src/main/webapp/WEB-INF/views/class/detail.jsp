@@ -392,6 +392,7 @@
 						</div>
 						<form action="order" method="post" class="card border-light p-3 mb-4">
 						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
+						<c:if test="${!empty mId }">
 						<div class="card border-light mt-4 p-3">
 						<input type="hidden" id="con" value="${con }">
 						<c:if test="${con == 0 }">
@@ -403,6 +404,7 @@
 						 <label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
 						 
 						 </div>
+						 </c:if>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">

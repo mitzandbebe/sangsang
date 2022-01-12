@@ -274,13 +274,27 @@ public class HostClassController {
 		int classCnt = hostClassService.selectClassCnt(hNo);
 		int reviewCnt = reviewService.selectReviewByHost(hNo);
 		
+
+		String mId=(String) session.getAttribute("mId");
+		try{
+			int mNo=memberService.selectMno(mId);
+			concern.setmNo(mNo);
+			concern.setcNo(cNo);
+			int con=hostClassService.selectConcernbyCNo(concern);
+			model.addAttribute("con",con);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
 		model.addAttribute("hostVo", vo);
 		model.addAttribute("classCnt", classCnt);
 		model.addAttribute("reviewCnt", reviewCnt);
-		
+		model.addAttribute("mId",mId);
 		
 		
 		return "class/detail";
