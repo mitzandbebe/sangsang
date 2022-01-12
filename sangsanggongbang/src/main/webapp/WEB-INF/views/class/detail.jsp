@@ -41,8 +41,7 @@
 						<ol
 							class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
 							<li class="breadcrumb-item text-secondary"><a
-								href="<c:url value='/index'/> " style="color: #46746e;">➯목록으로
-									돌아가기</a></li>
+								href="<c:url value='/index'/> " style="color: #46746e;">➯메인으로 돌아가기</a></li>
 						</ol>
 					</nav>
 					<h1 class="mb-4">${map["C_NAME"] }</h1>

@@ -45,7 +45,7 @@ $(function() {
 	<input type="hidden" name="hNo" value="${param.hNo }">
 	<!-- 리뷰 내용반복 -->
 	<c:if test="${empty list }">
-			<p class="h5">소중한 첫 리뷰를 등록해주세요</p>
+			<p class="h5">리뷰를 등록해주세요</p>
 		</c:if>
 		<c:if test="${!empty list }">
 	<c:forEach var="vo" items="${list }">
