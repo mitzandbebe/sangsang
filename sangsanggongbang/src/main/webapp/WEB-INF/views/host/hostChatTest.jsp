@@ -100,11 +100,6 @@ $(document).ready(function(){
     });
    
 });
-function openChat(){
-	var contextPath="/sangsanggongbang";
-	open(contextPath+'/chat/room?roomId='+roomId,'chat',
-	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-}
 </script>
 
 <%@ include file="../inc/bottom_host.jsp"  %>

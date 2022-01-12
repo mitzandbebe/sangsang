@@ -59,21 +59,18 @@
 </style>
 </head>
 <body>
-	<div class="section section-lg bg-soft" style="height: 100%; width: 100%;">
+	<div class="section section-lg bg-soft pt-0" style="height: 80%; width: 100%;">
 		<div class="container">
-			<div class="col-12">
-				<div class="col-12 col-lg-12" style="margin:0 auto;">
-					<div id="msgArea" style="width: 90%; height: 700px; overflow-y: auto;" ></div>
-					<textarea class="form-control border border-light-gray" id="msg" style="width: 90%" placeholder="Your Message" rows="6" maxlength="1000"></textarea>
+			<div class="col-12" style = "margin:0 auto;">
+				<div class="col-8 col-lg-8"  style = "margin:0 auto;">
+					<div id="msgArea" style="width: 90%; height: 600px; overflow-y: auto;" ></div>
+					<textarea class="form-control border border-light-gray" id="msg" style="width: 90%" rows="6" maxlength="1000"></textarea>
 					<div>
 				    	<button id="button-send" class="btn btn-dark mt-0" style="width: 90%">전송</button>
 					</div>
 				</div>
-				
 			</div>
-			
 		</div>
-		
 	</div>
 	
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -101,10 +98,12 @@ $(document).ready(function(){
     var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
     //1. SockJS를 내부에 들고있는 stomp를 내어줌
     var stomp = Stomp.over(sockJs);
-	
+  	
     //2. connection이 맺어지면 실행
     stomp.connect({}, function (){
        console.log("STOMP Connection")
+       //3. send(path, header, message)로 메세지를 보낼 수 있음
+       
 
        //4. subscribe(path, callback)으로 메세지를 받을 수 있음
        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
@@ -113,13 +112,12 @@ $(document).ready(function(){
            
            var str = '';
            var d = new Date();
-      	   /*var today = (d.getMonth()+1)+"-"+d.getDate+" "+d.getHours+":"+d.getMinutes;*/
       	   var today = d.toLocaleString();
            if(writer === username){
-        	   str = "<div class='card bg-primary text-white border-light p-4 ml-md-5 ml-lg-6 mb-4'>";
+        	   str = "<div class='card bg-primary text-white border-light p-4 ml-md-6 ml-rg-6 mb-4'>";
                str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
                str += "<span class='font-small'>";
-               str += "<img class='avatar-sm img-fluid rounded-circle mr-3' src="+myprofile+">";
+               str += "<img class='avatar-sm img-fluid rounded-circle mr-4' src="+myprofile+">";
                str += "<span class='font-weight-bold'>"+writer+"</span>";
                str += "<span class='ml-2'>"+today+"</span>";
                str += "</span></div><p class='m-0'>"+content.message+"</p></div>";
@@ -129,10 +127,10 @@ $(document).ready(function(){
                console.log($('#msgArea')[0].scrollHeight);
            }else{
         	   
-        	   str =  "<div class='card bg-white border-light p-4 mb-4'>";
+        	   str =  "<div class='card bg-white border-light p-4 mr-md-6 mr-lg-6 mb-4'>";
                str += "<div class='d-flex justify-content-between align-items-center mb-2'>";
                str += "<span class='font-small'>";
-               str += "<img class='avatar-sm img-fluid rounded-circle mr-3' src="+content.profileUrl+">";
+               str += "<img class='avatar-sm img-fluid rounded-circle mr-4' src="+content.profileUrl+">";
                str += "<span class='font-weight-bold'>"+writer+"</span>";
                str += "<span class='ml-2'>"+today+"</span></span>";
                str += "</div><p class='m-0'>"+content.message+"</p></div>";
@@ -142,8 +140,7 @@ $(document).ready(function(){
            }
        });
 
-       //3. send(path, header, message)로 메세지를 보낼 수 있음
-       /*stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username, profileUrl: myprofile}))*/
+       
     });
 
     $("#button-send").on("click", function(e){
@@ -163,8 +160,7 @@ $(document).ready(function(){
         }
     });
 
-출처: https://alpreah.tistory.com/101 [생각에 취하는날]
-    function enterkey() {
+    /* function enterkey() {
     	if (window.event.keyCode == 13) {
         	// 엔터키가 눌렸을 때
     		var msg = document.getElementById("msg");
@@ -173,7 +169,7 @@ $(document).ready(function(){
             stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username, profileUrl: myprofile}));
             msg.value = '';
         }
-    }
+    } */
     
 });
 </script>

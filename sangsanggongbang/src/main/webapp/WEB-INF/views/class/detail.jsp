@@ -335,8 +335,8 @@
 								개설한 클래스 | ${classCnt}개&nbsp;&nbsp; 리뷰 | ${reviewCnt}개
 							</div>
 							<!-- Button Modal -->
-							<a href="#" onClick="openChat();">
-							<button type="button" class="btn btn-block btn-secondary mb-3">늘솜에게 실시간 문의하기</button></a>
+							
+							<button type="button" id ="openChat" class="btn btn-block btn-secondary mb-3">늘솜에게 실시간 문의하기</button>
 							<!-- Modal Content -->
 							<div class="modal fade" id="modal-form" tabindex="-1"
 								role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -495,19 +495,28 @@
 <!-- 카카오 맵 -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-
+var flag= "${sessionScope.uOrh}"
+console.log(flag);
+var roomName = "${hostVo.hNickname}";
+var roomId = "${hostVo.hNickname}";
+var username = null;
+if(flag == 'u'){
+	username = "${sessionScope.mNickname}";
+}else{
+	username = "${sessionScope.hNickname}";
+}
 //하트 클릭시빨강, 비동기방식으로 저장/삭제
 
 	$(function() {
 		const heart = document.querySelector('.fa-heart');
-
 		let cNo = ${param.cNo};
-		
 		let num = 0;
 		
 
-	heart.addEventListener('click', function() {
+		heart.addEventListener('click', function() {
 			if ($('#heart').hasClass('far')) {
 				heart.classList.remove('far');
 				heart.classList.add('fas');
@@ -563,14 +572,14 @@
 	}
 	$(document).ready(function() {
 		let hash = location.hash.substring(1);
-		$('.nav-tabs #' + hash).trigger('click');
+		$('.nav-tabs' + hash).trigger('click');
+	
+	    $('#openChat').click(function(){
+		    var contextPath="/sangsanggongbang";
+		    open(contextPath+'/chat/room?roomId=${hostVo.hNickname}','chat',
+		    'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+	    }); 
 	});
-	function openChat() {
-		var contextPath = "/sangsanggongbang";
-		var roomId = "${hostVo.hNickname}";
-		open(contextPath + '/chat/room?roomId=' + roomId, 'chat',
-				'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-	}
 </script>
 
 <c:choose>
