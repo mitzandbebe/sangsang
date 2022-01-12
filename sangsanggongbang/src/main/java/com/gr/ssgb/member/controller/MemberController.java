@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.common.collect.ImmutableList;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
+import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.common.TempPasswordUtil;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
@@ -583,14 +585,29 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/interestClass")
-	public String interestClass_get(HttpSession session,Model model) {
+	public String interestClass_get(@ModelAttribute SearchVO searchVo,HttpSession session,Model model) {
 		logger.info("관심클래스 보기");
 		
 		String mId=(String) session.getAttribute("mId");
 		int mNo= memberService.selectMno(mId);
 		
-		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents();
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+
+		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}", searchVo);
+		
+		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents2(searchVo);
 		List<ConcernVO> interest= memberService.selectConcern(mNo);
+		
+		int totalRecord = hostClassService.selectTotalRecord(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+
+		model.addAttribute("pagingInfo", pagingInfo);
+		
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("interest",interest);
 		return "member/interestClass";

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@include file="../inc/top_host.jsp"%>
+<%@ include file="../inc/new_top_host.jsp"  %>
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 <script
@@ -17,20 +17,13 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 
-<section class="section-header pb-7 bg-primary text-white">
+<section class="section-header pb-4 bg-primary text-white">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-12 col-lg-10 text-center"></div>
+			<div class="col-12 col-lg-10 text-center"><h3 class="mb-4">클래스 수정을 원하시면 클래스 이름을 선택해 주세요</h3></div>
 		</div>
 	</div>
 </section>
-<div class="container z-2" >
-			<div class="row justify-content-center pt-3">
-				<div class="col-12 text-center">
-					<h3 class="mb-4">클래스 수정을 원하시면 클래스 이름을 선택해 주세요</h3>
-				</div>
-			</div>
-		</div>
 <!-- 이벤트 목록 테이블로 보여주기 -->
 <div class="container">
 	<form name="frmList">
