@@ -102,6 +102,10 @@
 		delete concern where c_no=#{cNo}
 	</delete>	
 	
+	<delete id="deleteMember" parameterType="int">
+		delete member where m_no=#{mNo}
+	</delete>	
+	
 	<select id="selectConcern" parameterType="int" resultType="concernVo">
 		select * from concern where m_no=#{mNo}
 	</select>

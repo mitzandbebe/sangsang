@@ -44,7 +44,7 @@ public interface MemberService {
 
 	int updateMGrade(MemberVO vo);
 
-
+	int deleteMember(int mNo);
 
 	int insertConcern(ConcernVO concernVo);
 	int deleteConcern(int cNo);
