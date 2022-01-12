@@ -17,6 +17,7 @@ import com.gr.ssgb.blackList.model.BlackListVO;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.memberInquiry.model.ClassUserVO;
 
 @Controller
 @RequestMapping("/blackList")
@@ -55,6 +56,14 @@ public class BlackListController {
 		return "blackList/blackList";
 	}
 
+	@RequestMapping("/blackListInsert")
+	public void blackListInsert(@ModelAttribute ClassUserVO vo, Model model) {
+		logger.info("vo={}",vo);
+		
+		/* int cnt = blackListService. */
+		
+	}
+	
 	@RequestMapping("/blackDelete")
 	public String blackDelete(@RequestParam(defaultValue = "0") int bno, Model model) {
 		logger.info("블랙리스트 제외 bno={}", bno);

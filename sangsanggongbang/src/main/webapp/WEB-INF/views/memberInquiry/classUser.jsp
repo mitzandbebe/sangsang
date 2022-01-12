@@ -1,79 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../inc/top_host.jsp" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="../inc/top_host.jsp"%>
+<script src="https://kit.fontawesome.com/2db6e9a548.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <script>
-function kakaopost() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-           document.querySelector("#zipcode").value = data.zonecode;
-           document.querySelector("#address").value = data.address
-        }
-    }).open();
-}
-$(function(){
-	$('#pType').change(function(){
-		if($('#pType option:selected').val()=='카드'){
-			$('#accInput').css({'display':'none'});
-			$('#cardInput').css({'display':'flex'});
-			$('#cvc').css({'display':'flex'});
-		}else{
-			$('#cardInput').css({'display':'none'});
-			$('#cvc').css({'display':'none'});
-			$('#accInput').css({'display':'flex'});
+	function kakaopost() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				document.querySelector("#zipcode").value = data.zonecode;
+				document.querySelector("#address").value = data.address
+			}
+		}).open();
+	}
+	$(function() {
+		$('#pType').change(function() {
+			if ($('#pType option:selected').val() == '카드') {
+				$('#accInput').css({
+					'display' : 'none'
+				});
+				$('#cardInput').css({
+					'display' : 'flex'
+				});
+				$('#cvc').css({
+					'display' : 'flex'
+				});
+			} else {
+				$('#cardInput').css({
+					'display' : 'none'
+				});
+				$('#cvc').css({
+					'display' : 'none'
+				});
+				$('#accInput').css({
+					'display' : 'flex'
+				});
+			}
+		});
+
+		$('#memberEdit').submit(
+				function() {
+					var cardnum = $('#cardNum1').val() + $('#cardNum2').val()
+							+ $('#cardNum3').val() + $('#cardNum4').val();
+					$('#cardNum').val(cardnum);
+				});
+
+	});
+
+	var InputImage = (function loadImageFile() {
+		if (window.FileReader) {
+			var ImagePre;
+			var ImgReader = new window.FileReader();
+			var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+
+			ImgReader.onload = function(Event) {
+				if (!ImagePre) {
+					var newPreview = document.getElementById("imagePreview");
+					var older = document.getElementById("older");
+					ImagePre = new Image();
+					ImagePre.style.width = "127.99px";
+					ImagePre.style.height = "127.99px";
+					newPreview.removeChild(older);
+					newPreview.appendChild(ImagePre);
+					ImagePre.className = "card-img-top rounded-circle border-white";
+				}
+				ImagePre.src = Event.target.result;
+			};
+
+			return function() {
+				var img = document.getElementById("upfile").files;
+
+				if (!fileType.test(img[0].type)) {
+					alert("이미지 파일을 업로드 하세요");
+					return;
+				}
+
+				ImgReader.readAsDataURL(img[0]);
+			}
 		}
-	});
-	
-	$('#memberEdit').submit(function(){
-		var cardnum = $('#cardNum1').val()+$('#cardNum2').val()+$('#cardNum3').val()+$('#cardNum4').val();
-		$('#cardNum').val(cardnum);
-	});
-	
-	
-});
-
-var InputImage = 
-	 (function loadImageFile() {
-	    if (window.FileReader) {
-	        var ImagePre; 
-	        var ImgReader = new window.FileReader();
-	        var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i; 
-	 
-	        ImgReader.onload = function (Event) {
-	            if (!ImagePre) {
-	            	  var newPreview = document.getElementById("imagePreview");
-		              var older = document.getElementById("older");
-		              ImagePre = new Image();
-		              ImagePre.style.width = "127.99px";
-		              ImagePre.style.height = "127.99px"; 
-		              newPreview.removeChild(older);
-		              newPreview.appendChild(ImagePre);
-		              ImagePre.className = "card-img-top rounded-circle border-white";
-	            }
-	            ImagePre.src = Event.target.result;
-	        };
-	 
-	        return function () {
-	            var img = document.getElementById("upfile").files;
-	           
-	            if (!fileType.test(img[0].type)) { 
-	             alert("이미지 파일을 업로드 하세요"); 
-	             return; 
-	            }
-	            
-	            ImgReader.readAsDataURL(img[0]);
-	        }
-	    }
-		document.getElementById("imagePreview").src = document.getElementById("upfile").value;
+		document.getElementById("imagePreview").src = document
+				.getElementById("upfile").value;
 	})();
-
 </script>
-
 <div class="section section-lg bg-soft">
 	<div class="container">
 		<div class="row pt-5 pt-md-0">
@@ -107,12 +122,12 @@ var InputImage =
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action  ">내 클래스
-								현황<span class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action  ">내
+								클래스 현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action active">클래스 이용회원<span
-								class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action active">클래스
+								이용회원<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 								class="d-flex list-group-item list-group-item-action ">정산내역<span
@@ -172,52 +187,49 @@ var InputImage =
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
-								<form name="frmList">
+								<form name="frmList" id="frm"
+									action="<c:url value='/blackList/blackListInsert'/>"
+									method="post">
+									<input type="text" name="hno" value="${sessionScope.hno }">
 									<table class="table table-hover" style="font-size: 14px;">
-										
-
-											<c:if test="${empty classlist }">
-												<h3 class="h4 mb-5">늘솜님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>아직 클래스가 없네요
-													 &nbsp;</h3>
-												<h4>
-													<a href="<c:url value='/class/inputclass'/> "> ➯클래스
-														등록하러 가기</a>
-												</h4>
-											</c:if>
-											<c:if test="${!empty classlist }">
+										<c:if test="${empty list }">
+											<h3 class="h4 mb-5">클래스를 이용한 회원이 없습니다.</h3>
+										</c:if>
+										<c:if test="${!empty list }">
 											<thead>
-											<tr>
-												<th scope="col">클래스이름</th>
-												<th scope="col">카테고리</th>
-												<th scope="col">일자</th>
-												<th scope="col">시간</th>
-												<th scope="col">가격</th>
-												<th scope="col">인원</th>
-												<th scope="col">확정인원</th>
-												<th scope="col">종료여부</th>
-											</tr>
-										</thead>
-										<tbody>
-												<!-- 이벤트 내용반복 -->
-												<c:forEach var="map" items="${classlist}">
+												<tr>
+													<th scope="col">클래스 이름</th>
+													<th scope="col">늘찬 아이디</th>
+													<th scope="col">늘찬 이름</th>
+													<th scope="col">시간</th>
+													<th scope="col">블랙리스트</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!-- 이용회원 정보반복 -->
+												<c:forEach var="map" items="${list}">
 													<tr>
-														<td><a
-															href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
-																<div class="d-flex align-items-center">${map["C_NAME"] }</div>
-														</a></td>
-														<td>${map["CATEGORY_NAME"] }</td>
+														<td>${map['C_NAME'] }</td>
+														<td>${map['M_ID'] }</td>
+														<td>${map['M_NAME'] }<input type="hidden" name="mNo"
+															value=${map['M_NO'] }>
+														</td>
+
 														<td><fmt:formatDate value="${map['C_START_TIME'] }"
 																pattern="yyyy/MM/dd" /></td>
-														<td>${map["C_TIME"] }시</td>
-														<td><fmt:formatNumber value="${map['C_PRICE'] }"
-																pattern="#,###" />원</td>
-														<td>${map["PPNUM"] }</td>
-														<td>${map["FPNUM"] }</td>
-														<td>${map["END_FLAG"] }</td>
+														<td>
+															<div class="d-flex">
+																<a id="blackListButton"
+																	href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }'/>">
+																	<i data-toggle="tooltip" data-placement="top"
+																	title="블랙리스트등록"><input type="submit"
+																		value="블랙리스트등록"> </i>
+																</a>
+															</div>
+														</td>
 													</tr>
-
 												</c:forEach>
-											</c:if>
+										</c:if>
 										</tbody>
 									</table>
 
@@ -275,4 +287,12 @@ var InputImage =
 </div>
 
 
-<%@ include file="../inc/bottom_host.jsp" %>
+<script>
+	$(function() {
+		$('#blackListButton').click(function() {
+			$('#frm').submit();
+		})
+	})
+</script>
+
+<%@ include file="../inc/bottom_host.jsp"%>

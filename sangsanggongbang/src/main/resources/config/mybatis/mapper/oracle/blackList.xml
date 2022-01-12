@@ -28,6 +28,14 @@
 		where hno = #{hno} order by regdate desc
 	</select>
  -->
+ 	<insert id="insertBlackList" parameterType="blackListVo">
+ 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+ 			select BLACKLIST_SEQ.NEXTVAL from dual
+ 		</selectKey>
+ 		insert into blackList()
+ 		
+ 	</insert>
+ 	
 	<delete id="deleteBlackList" parameterType="int">
 		delete
 		blackList

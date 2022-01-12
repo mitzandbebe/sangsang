@@ -189,7 +189,15 @@ public class memberInquiryController {
 	}
 	
 	@RequestMapping("/classUser")
-	public void classUser(@ModelAttribute HostVO vo, Model model) {
-		logger.info(null);
+	public String classUser(HttpSession session, Model model) {
+		String hId=(String)session.getAttribute("hId");
+		logger.info("hId={}",hId);
+		
+		List<Map<String, Object>> list = memberInquiryService.classUser(hId);
+		logger.info("list.size={}",list.size());
+		
+		model.addAttribute("list",list);
+		
+		return "/memberInquiry/classUser";
 	}
 }

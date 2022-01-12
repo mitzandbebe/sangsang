@@ -3,21 +3,30 @@ package com.gr.ssgb.memberInquiry.model;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.host.model.HostDAO;
 import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.MemberVO;
+import com.gr.ssgb.memberInquiry.controller.memberInquiryController;
 
 @Service
 public class MemberInquiryServiceImpl implements MemberInquiryService {
+	private static final Logger logger = LoggerFactory.getLogger(memberInquiryController.class);
+	
 	private final MemberInquiryDAO memberInquirydao;
+	private final HostDAO hostDAO;
+	
 
 	@Autowired
-	public MemberInquiryServiceImpl(MemberInquiryDAO memberInquirydao) {
+	public MemberInquiryServiceImpl(MemberInquiryDAO memberInquirydao,HostDAO hostDAO) {
 		this.memberInquirydao = memberInquirydao;
+		this.hostDAO = hostDAO;
 	}
 
 	@Override
@@ -84,5 +93,12 @@ public class MemberInquiryServiceImpl implements MemberInquiryService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> classUser(String hId) {
+		HostVO vo = hostDAO.selectHostById(hId);
+		logger.info("vo={}",vo);
+		return memberInquirydao.classUser(vo.gethNo());
 	}
 }
