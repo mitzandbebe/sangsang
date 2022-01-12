@@ -107,8 +107,21 @@
                                         </a>
                                         <!-- <br> -->
                                         </div>
-
-                                        <c:forEach var="vo" items="${rlist}">
+								
+										<div class="d-flex my-4">
+										<c:forEach var="i" begin="1" end="5" step="1">
+                                 <c:choose>
+                                    <c:when test="${i <= map['TOTAL_R_RATE']}">
+                                       <i class="star fa-star text-warning fas mr-2"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <i class="star fa-star text-warning far mr-2"></i>
+                                    </c:otherwise>
+                                 </c:choose>
+                              </c:forEach>
+                              <span class="badge badge-pill badge-primary ml-2"><c:out value="${map['TOTAL_R_RATE']}" default="0.0"/></span>
+                              </div>
+                                        <%-- <c:forEach var="vo" items="${rlist}">
                                         <c:if test="${vo.cNo eq map['C_NO'] }">
 
 										<div class="d-flex my-4">
@@ -147,7 +160,7 @@
 											</span>
 										</div>
 										</c:if>
-									 </c:forEach>
+									 </c:forEach> --%>
 									 </div>
                                     <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">

@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gr.ssgb.common.SearchVO;
-
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
 
@@ -24,8 +22,8 @@ public class RecommendationServiceImpl implements RecommendationService {
 	}
 
 	@Override
-	public List<RecommendationVO> selectAllRecommendation(SearchVO searchVo) {
-		return recommendationDAO.selectAllRecommendation(searchVo);
+	public List<RecommendationVO> selectAllRecommendation(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectAllRecommendation(recommendationVo);
 	}
 
 	@Override
@@ -34,8 +32,8 @@ public class RecommendationServiceImpl implements RecommendationService {
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO searchVo) {
-		return recommendationDAO.selectTotalRecord(searchVo);
+	public int selectTotalRecord(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectTotalRecord(recommendationVo);
 	}
 
 	@Override
@@ -48,25 +46,24 @@ public class RecommendationServiceImpl implements RecommendationService {
 		return recommendationDAO.deleteRecommendation(recoNo);
 	}
 
-
 	@Override
-	public List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo) {
-		return recommendationDAO.selectAllMemberRecommendation(searchVo);
+	public List<RecommendationVO> selectAllMemberRecommendation(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectAllMemberRecommendation(recommendationVo);
 	}
 
 	@Override
-	public List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo) {
-		return recommendationDAO.selectAllHostRecommendation(searchVo);
+	public List<RecommendationVO> selectAllHostRecommendation(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectAllHostRecommendation(recommendationVo);
 	}
 
 	@Override
-	public int selectTotalMemberRecord(SearchVO searchVo) {
-		return recommendationDAO.selectTotalMemberRecord(searchVo);
+	public int selectTotalMemberRecord(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectTotalMemberRecord(recommendationVo);
 	}
 
 	@Override
-	public int selectTotalHostRecord(SearchVO searchVo) {
-		return recommendationDAO.selectTotalHostRecord(searchVo);
+	public int selectTotalHostRecord(RecommendationVO recommendationVo) {
+		return recommendationDAO.selectTotalHostRecord(recommendationVo);
 	}
 
 	@Transactional
@@ -76,6 +73,5 @@ public class RecommendationServiceImpl implements RecommendationService {
 		cnt = recommendationDAO.reply(vo);
 		return cnt;
 	}
-
 
 }

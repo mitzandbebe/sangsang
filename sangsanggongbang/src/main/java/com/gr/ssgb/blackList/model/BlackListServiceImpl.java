@@ -20,8 +20,8 @@ public class BlackListServiceImpl implements BlackListService{
 	public List<BlackListVO> selectBlackListAll(int hno){
 		return blackListdao.selectBlackListAll(hno);
 	}
-	public int selectTotalRecord(SearchVO searchVo) {
-		return blackListdao.selectTotalRecord(searchVo);
+	public int selectTotalRecord(BlackListVO blackListVO) {
+		return blackListdao.selectTotalRecord(blackListVO);
 	}
 	public int deleteBlackList(int bno) {
 		return blackListdao.deleteBlackList(bno);

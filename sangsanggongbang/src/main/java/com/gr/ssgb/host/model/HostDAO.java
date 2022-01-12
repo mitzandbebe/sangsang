@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gr.ssgb.admin.model.MonthVO;
+
 @Mapper
 public interface HostDAO {
 
@@ -24,4 +26,10 @@ public interface HostDAO {
 	int updateAddiWithoutProfile(HostVO vo);
 
 	HostVO selectHostByHNo(int hNo);
+
+	int findClassCnt(MonthVO monVo);
+
+	int selectMyProfit(MonthVO monVo);
+
+	int updateHGrade(HostVO vo);
 }

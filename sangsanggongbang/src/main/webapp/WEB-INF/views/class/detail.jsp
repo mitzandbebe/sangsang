@@ -41,8 +41,7 @@
 						<ol
 							class="breadcrumb breadcrumb-transparent justify-content-center mb-4">
 							<li class="breadcrumb-item text-secondary"><a
-								href="<c:url value='/index'/> " style="color: #46746e;">➯목록으로
-									돌아가기</a></li>
+								href="<c:url value='/index'/> " style="color: #46746e;">➯메인으로 돌아가기</a></li>
 						</ol>
 					</nav>
 					<h1 class="mb-4">${map["C_NAME"] }</h1>
@@ -281,7 +280,8 @@
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<c:import url="/class/review?cNo=${map['C_NO'] }"/>
+							<div id="reviewlist"></div>
+								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
 								
 							</div>
@@ -335,8 +335,8 @@
 								개설한 클래스 | ${classCnt}개&nbsp;&nbsp; 리뷰 | ${reviewCnt}개
 							</div>
 							<!-- Button Modal -->
-							<a href="#" onClick="openChat();">
-							<button type="button" class="btn btn-block btn-secondary mb-3">늘솜에게 실시간 문의하기</button></a>
+							
+							<button type="button" id ="openChat" class="btn btn-block btn-secondary mb-3">늘솜에게 실시간 문의하기</button>
 							<!-- Modal Content -->
 							<div class="modal fade" id="modal-form" tabindex="-1"
 								role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -392,6 +392,7 @@
 						</div>
 						<form action="order" method="post" class="card border-light p-3 mb-4">
 						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
+						<c:if test="${!empty mId }">
 						<div class="card border-light mt-4 p-3">
 						<input type="hidden" id="con" value="${con }">
 						<c:if test="${con == 0 }">
@@ -403,6 +404,7 @@
 						 <label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
 						 
 						 </div>
+						 </c:if>
 						<div class="card border-light mt-4 p-3">
 							<label for="exampleFormControlSelect1">클래스 신청일 </label>
 							<div class="form-group">
@@ -493,27 +495,31 @@
 <!-- 카카오 맵 -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531&libraries=services"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-
+var flag= "${sessionScope.uOrh}"
+console.log(flag);
+var roomName = "${hostVo.hNickname}";
+var roomId = "${hostVo.hNickname}";
+var username = null;
+if(flag == 'u'){
+	username = "${sessionScope.mNickname}";
+}else{
+	username = "${sessionScope.hNickname}";
+}
 //하트 클릭시빨강, 비동기방식으로 저장/삭제
+
 	$(function() {
 		const heart = document.querySelector('.fa-heart');
-
 		let cNo = ${param.cNo};
-
-		
 		let num = 0;
 		
 
-	heart.addEventListener('click', function() {
+		heart.addEventListener('click', function() {
 			if ($('#heart').hasClass('far')) {
 				heart.classList.remove('far');
 				heart.classList.add('fas');
-
-
-		var bool = true;
-		heart.addEventListener('click', function() {
-			if (bool) {
 
 				$.ajax({
 					type : "POST",
@@ -521,25 +527,19 @@
 					data : "cNo=" + cNo,
 					success : function(res) {
 						alert("관심클래스로 등록하였습니다.");
-						heart.classList.remove('far');
-						heart.classList.add('fas');
 					},
 					error : function() {
 						alert("관심클래스로 등록할 수 없습니다.");
 						heart.classList.remove('fas');
 						heart.classList.add('far');
 					}
-				}); //ajax 
 
+				}); //ajax 
 
 				num++;
 			} else if ($('#heart').hasClass('fas')) { //num==1
 				heart.classList.remove('fas');
 				heart.classList.add('far');
-
-			 //하트클릭
-				bool=false;
-			}else{
 
 				$.ajax({
 					type : "POST",
@@ -547,27 +547,27 @@
 					data : "cNo=" + cNo,
 					success : function(res) {
 						alert("관심클래스를 삭제하였습니다.");
-						heart.classList.remove('fas');
-						heart.classList.add('far');
 					},
 					error : function() {
 						alert("관심클래스 삭제를할 수 없습니다.");
 						heart.classList.remove('far');
 						heart.classList.add('fas');
 					}
-				}); //ajax 
 
+				}); //ajax 
 
 				num--;
 
 			}
 		}); //하트클릭
 
-	});
-
-			}
+	$('#nav-reviews').ready(function(){
+		$('#reviewlist').load("<c:url value='/class/review?cNo="+cNo+"'/>");
 		});
-
+		
+		
+		
+	});
 
 	function relayout() {
 
@@ -578,15 +578,15 @@
 	}
 	$(document).ready(function() {
 		let hash = location.hash.substring(1);
-		$('.nav-tabs #' + hash).trigger('click');
+		$('.nav-tabs' + hash).trigger('click');
+	
+	    $('#openChat').click(function(){
+		    var contextPath="/sangsanggongbang";
+		    open(contextPath+'/chat/room?roomId=${hostVo.hNickname}','chat',
+		    'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+	    }); 
 	});
-	function openChat() {
-		var contextPath = "/sangsanggongbang";
-		var roomId = "${hostVo.hNickname}";
-		open(contextPath + '/chat/room?roomId=' + roomId, 'chat',
-				'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-	}
-	});
+
 </script>
 
 <c:choose>

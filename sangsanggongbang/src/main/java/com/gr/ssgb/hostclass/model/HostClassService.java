@@ -3,6 +3,7 @@ package com.gr.ssgb.hostclass.model;
 import java.util.List;
 import java.util.Map;
 
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.member.model.ConcernVO;
 
 public interface HostClassService {
@@ -27,10 +28,9 @@ public interface HostClassService {
 	int deleteContents(int cNo);
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
-
 	int selectConcernbyCNo(ConcernVO concernVo);
-
-
 	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
-
+	
+	List<Map<String,Object>> selectClassAllContents2(SearchVO searchVo); //페이징위한거
+	int selectTotalRecord(SearchVO searchVo);
 }

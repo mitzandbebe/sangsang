@@ -112,8 +112,8 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.deleteConcern(cNo);
 	}
 	@Override
-	public List<ConcernVO> selectConcern() {
-		return memberDao.selectConcern();
+	public List<ConcernVO> selectConcern(int mNo) {
+		return memberDao.selectConcern(mNo);
 
 	}
 	

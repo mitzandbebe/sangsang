@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top_admin.jsp"  %>
+<%@ include file="../inc/new_top_admin.jsp"  %>
         <!-- Hero -->
 
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>

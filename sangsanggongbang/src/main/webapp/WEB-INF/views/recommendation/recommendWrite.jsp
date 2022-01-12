@@ -2,7 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@include file="../inc/new_top_user.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
 <br>
 <br>
 <br>
@@ -29,12 +42,23 @@
 		<div class="card-body p-4">
 			<form name="frmRCwrite" method="post" enctype="multipart/form-data"
 				action="<c:url value='/recommendation/recommendWrite'/> ">
-
 				<div class="row">
 					<div class="col-lg-12 mb-5">
+					<input type="text" name="mId" value="${sessionScope.mId}"/>
+					<input type="text" name="hId" value="${sessionScope.hId}"/>
+						<input type="hidden" name="flag"
+                     <c:choose>
+                        <c:when test="${!empty sessionScope.hId}">
+                           value="H"
+                        </c:when>
+                        <c:when test="${!empty sessionScope.mId}">
+                           value="M"
+                        </c:when>
+                        </c:choose>>
+						<hr>
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 :  </label> <input type="text" id="title"
+							<label for="title">제목 : </label> <input type="text" id="title"
 								name="recoTitle" class="infobox"
 								style="border: none; outline: none;" />
 						</div>
@@ -147,6 +171,18 @@
 		$("#privacyDto").submit();
 	}
 </script>
-<%@include file="../inc/bottom.jsp"%>
-
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>
 

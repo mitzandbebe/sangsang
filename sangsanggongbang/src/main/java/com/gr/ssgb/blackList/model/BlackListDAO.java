@@ -9,6 +9,6 @@ import com.gr.ssgb.common.SearchVO;
 @Mapper
 public interface BlackListDAO {
 	List<BlackListVO> selectBlackListAll(int hno);
-	int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord(BlackListVO blackListVO);
 	int deleteBlackList(int bno);
 }

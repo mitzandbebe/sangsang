@@ -272,8 +272,8 @@
 					
 						
 						
-						<img width="52px"
-						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>" onClick="openChat();">
+						<img id="openChat" width="52px"
+						src="<c:url value='/resources/assets/img/logo/chatting2_host_dark.png'/>">
 						<span id="chatBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge badge-danger"></span>
 						
 					<!-- 채팅창 끝 --> 
@@ -336,46 +336,57 @@ $(document).ready(function(){
     var sockJs = new SockJS("/sangsanggongbang/stomp/chat");
     //1. SockJS를 내부에 들고있는 stomp를 내어줌
     var stomp = Stomp.over(sockJs);
+    var count = null;
+	var bool = null;
 	
     //2. connection이 맺어지면 실행
     stomp.connect({}, function (){
-       console.log("STOMP Connection")
-       count =0; 
+       console.log("STOMP Connection") 
        $('#chatBadge').css('visibility', 'visible');
        //4. subscribe(path, callback)으로 메세지를 받을 수 있음
+       count=0;
        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
+    	   
            var content = JSON.parse(chat.body);
 
            var writer = content.writer;
            var str = '';
-           
+           console.log(count);
            if(writer !== username){
-         	  console.log("after Message :" + count);
-         	  var t = "+"+count;
-         	  console.log("t>>>>>>>>>>"+t);
-         	  $('#chatBadge').html('N');
-       		  console.log("before Message :" + count);
-       		  
+        	   if(count==0){
+        		   count=32;
+        		   bool=true;
+        	   }else{
+        		   bool=false;
+        	   }
+        	   console.log(count);
+        	   console.log(bool);
+        	   if(bool){
+        		  console.log("after Message :" + count);
+              	  var t = "+"+count;
+              	  console.log("t>>>>>>>>>>"+t);
+              	  $('#chatBadge').html('N');
+            	  console.log("before Message :" + count);
+        	   }else{
+        		   
+        	   }
+        	   count = 100;
+        	   console.log("count!!!!!!!"+count);
            }else{
-         	  $('#chatBadge').html('');
-       		  $('#chatBadge').css('visibility', 'hidden');
+        	   $('#chatBadge').html('');
            }
        });
 
        //3. send(path, header, message)로 메세지를 보낼 수 있음
        stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
     });
-    function openChat(){
+    $('#openChat').click(function(){
+    	$('#chatBadge').html('');
     	var contextPath="/sangsanggongbang";
-    	count=0;
-    	var what = document.getElementById("chatBadge");
-    	console.log("what????????????"+what.value);
-    	document.getElementById('chatBadge').val('');
-    	console.log("what????????????"+what.value);
-    	document.getElementById('chatBadge').hide();
+    	$('#chatBadge').html('');
     	open(contextPath+'/chat/room?roomId=${sessionScope.hNickname}','chat',
     	 'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-    }
+    });
 });
 
 </script>

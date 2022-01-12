@@ -2,21 +2,40 @@ package com.gr.ssgb.recommendation.model;
 
 import java.sql.Timestamp;
 
-public class RecommendationVO {
+import com.gr.ssgb.common.SearchVO;
+
+public class RecommendationVO extends SearchVO {
 	private int recoNo;
 	private int uNo;
 	private String recoTitle;
 	private String recoPwd;
 	private String recoContent;
 	private Timestamp regdate;
-
 	private String flag;
+	
+	private String mId;
+	private String hId;
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
+	public String gethId() {
+		return hId;
+	}
+
+	public void sethId(String hId) {
+		this.hId = hId;
+	}
 
 	// 답변형 게시판 필드 추가
 	private int groupNo;
 	private int step;
 	private int sortNo; // 컬럼명 : SORT_NO
-
 
 	public int getRecoNo() {
 		return recoNo;
@@ -66,7 +85,6 @@ public class RecommendationVO {
 		this.regdate = regdate;
 	}
 
-
 	public String getFlag() {
 		return flag;
 	}
@@ -74,7 +92,6 @@ public class RecommendationVO {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-
 
 	public int getGroupNo() {
 		return groupNo;
@@ -103,10 +120,10 @@ public class RecommendationVO {
 	@Override
 	public String toString() {
 		return "RecommendationVO [recoNo=" + recoNo + ", uNo=" + uNo + ", recoTitle=" + recoTitle + ", recoPwd="
-
-				+ recoPwd + ", recoContent=" + recoContent + ", regdate=" + regdate + ", flag=" + flag + ", groupNo="
-				+ groupNo + ", step=" + step + ", sortNo=" + sortNo + "]";
-
+				+ recoPwd + ", recoContent=" + recoContent + ", regdate=" + regdate + ", flag=" + flag + ", mId=" + mId
+				+ ", hId=" + hId + ", groupNo=" + groupNo + ", step=" + step + ", sortNo=" + sortNo + ", toString()="
+				+ super.toString() + "]";
 	}
+
 
 }

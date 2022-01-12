@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.member.model.ConcernVO;
 
 @Mapper
@@ -19,6 +20,10 @@ public interface HostClassDAO {
 	List<HostClassVO> selectClassAll();
 	String selectThumbnail(int cNo);
 	List<Map<String,Object>> selectClassAllContents();
+	
+	List<Map<String,Object>> selectClassAllContents2(SearchVO searchVo); //페이징위한거
+	int selectTotalRecord(SearchVO searchVo);
+	
 	List<Map<String,Object>> selectClassbyCNo(int cNo);
 	List<Map<String,Object>> selectClassAllOfHost(int hNo);
 	List<Map<String,Object>> selectClassLoc(String loc);
@@ -31,8 +36,5 @@ public interface HostClassDAO {
 	int deleteClass(int cNo);
 	int selectClassCnt(int hNo);
 	int selectConcernbyCNo(ConcernVO concernVo);
-
-
 	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
-
 }

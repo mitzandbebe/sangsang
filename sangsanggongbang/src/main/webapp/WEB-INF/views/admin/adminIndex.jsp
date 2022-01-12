@@ -21,10 +21,9 @@
 
        <!-- Section -->
         <section class="section-header">
-        <div class="section section-lg bg-soft">
-            
+        	<div class="section section-lg bg-soft">
                 <div class="row pt-5 pt-md-0">
-                <div class="col-12 col-lg-8" style="margin: 0 auto;">
+                	<div class="col-12 col-lg-8" style="margin: 0 auto;">
                         <div class="row">
                             <div class="col-12 col-sm-6 mb-4">
                                <div class="card border-light">
@@ -60,17 +59,15 @@
                                     </div>
                                 </div>
                             </div>
-                        
                           <div class="col-12 mb-4"> 
-                          <div class="row">
-                            <div class="col-12">
-                                <div class="card border-light">
-                                       <div id="container"></div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                       
+	                          <div class="row">
+		                            <div class="col-12">
+		                                <div class="card border-light">
+		                                       <div id="container"></div>
+		                                </div>
+		                            </div>
+	                        	</div>
+                        	</div>
                          <div class="col-12 col-md-6 mb-4">
                                 <div class="card border-light">
                                     <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">

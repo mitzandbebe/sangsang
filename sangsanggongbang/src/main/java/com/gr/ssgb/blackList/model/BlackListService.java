@@ -6,6 +6,6 @@ import com.gr.ssgb.common.SearchVO;
 
 public interface BlackListService {
 	List<BlackListVO> selectBlackListAll(int hno);
-	int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord(BlackListVO blackListVO);
 	int deleteBlackList(int bno);
 }

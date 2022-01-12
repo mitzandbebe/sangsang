@@ -74,7 +74,19 @@
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
                                             ${map["C_NAME"] }
                                         </a>
-                                        <c:forEach var="vo" items="${rlist}">
+                                        		<div class="d-flex my-4">
+										<c:forEach var="i" begin="1" end="5" step="1">
+                                 <c:choose>
+                                    <c:when test="${i <= map['TOTAL_R_RATE']}">
+                                       <i class="star fa-star text-warning fas mr-2"></i>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <i class="star fa-star text-warning far mr-2"></i>
+                                    </c:otherwise>
+                                 </c:choose>
+                              </c:forEach>
+                              <span class="badge badge-pill badge-primary ml-2"><c:out value="${map['TOTAL_R_RATE']}" default="0.0"/></span>
+                                 <%-- <c:forEach var="vo" items="${rlist}">
                                         <c:if test="${vo.cNo eq map['C_NO'] }">
 
 										<div class="d-flex my-4">
@@ -85,36 +97,41 @@
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
+													<span class="badge badge-pill badge-primary ml-2">5.0</span>
 												</c:if> <c:if test="${vo.totalrate eq 4}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2"></i>
+													<span class="badge badge-pill badge-primary ml-2">4.0</span>
 												</c:if> <c:if test="${vo.totalrate eq 3}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2"></i>
+													<span class="badge badge-pill badge-primary ml-2">3.0</span>
 												</c:if> <c:if test="${vo.totalrate eq 2}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2"></i>
 													<i class="star fa-star far text-gray mr-2"></i>
+													<span class="badge badge-pill badge-primary ml-2">2.0</span>
 												</c:if> <c:if test="${vo.totalrate eq 1}">
 													<i class="star fa-star fas text-warning mr-2"></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2 "></i>
 													<i class="star fa-star far text-gray mr-2"></i>
-												</c:if>
+													<span class="badge badge-pill badge-primary ml-2">1.0</span>
+												</c:if> 
 											</span>
-										</div>
 										</c:if>
-									 </c:forEach>
-                                    </div>
+									 </c:forEach> --%>
+										</div>
+                                </div> 
                                     <div class="card-footer border-top" style="background-color: #D6DCD2;">
                                         <div class="d-flex justify-content-between">
                                             <div class="col pl-0">

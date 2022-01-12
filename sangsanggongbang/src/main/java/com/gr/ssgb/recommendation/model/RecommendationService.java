@@ -2,30 +2,28 @@ package com.gr.ssgb.recommendation.model;
 
 import java.util.List;
 
-import com.gr.ssgb.common.SearchVO;
-
 public interface RecommendationService {
 
-   public int insertRecommendation(RecommendationVO vo);
+	public int insertRecommendation(RecommendationVO vo);
 
-   List<RecommendationVO> selectAllMemberRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllMemberRecommendation(RecommendationVO recommendationVo);
 
-   List<RecommendationVO> selectAllHostRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllHostRecommendation(RecommendationVO recommendationVo);
 
-   List<RecommendationVO> selectAllRecommendation(SearchVO searchVo);
+	List<RecommendationVO> selectAllRecommendation(RecommendationVO recommendationVo);
 
-   public RecommendationVO selectByNoRecommendation(int recoNo);
+	public RecommendationVO selectByNoRecommendation(int recoNo);
 
-   int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord(RecommendationVO recommendationVo);
 
-   int selectTotalMemberRecord(SearchVO searchVo);
+	int selectTotalMemberRecord(RecommendationVO recommendationVo);
 
-   int selectTotalHostRecord(SearchVO searchVo);
+	int selectTotalHostRecord(RecommendationVO recommendationVo);
 
-   public int updateRecommendation(RecommendationVO vo);
-   
-   public int deleteRecommendation(int recoNo);
+	public int updateRecommendation(RecommendationVO vo);
+	
+	public int deleteRecommendation(int recoNo);
 
-   int reply(RecommendationVO vo);
+	int reply(RecommendationVO vo);
 
 }

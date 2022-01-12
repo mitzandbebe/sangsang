@@ -1,6 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script
+	src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
+<script
+	src="<c:url value='/resources/vendor/popper.js/dist/umd/popper.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/bootstrap/dist/js/bootstrap.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
+<script type="text/javascript">
+$(function() {
+	let cNo=${param.cNo};
+	
+		$('#reviewlist #pagelinknum').click(function(){
+			var i=$(this).text();
+			console.log(i);
+			$('#reviewlist').load("<c:url value='/class/review?cNo="+cNo+"&currentPage="+i+"'/> ");
+		});
+		
+		/* 다음페이지 버튼(>) 클릭시 */
+		$('#reviewlist #nextpage').click(function(){
+			var a=$('#reviewlist #pagelinknum:nth-child(5n+1)').text();
+			++a;
+			console.log(a);
+			$('#reviewlist').load("<c:url value='/class/review?cNo="+cNo+"&currentPage="+a+"'/> " );
+		});
+		
+		/* 이전페이지 버튼(<) 클릭시 */
+		$('#reviewlist #backpage').click(function(){
+			var b=$('#reviewlist #pagelinknum:first').text();
+			--b;
+			console.log(b);
+			$('#reviewlist').load("<c:url value='/class/review?cNo="+cNo+"&currentPage="+b+"'/> ");
+		});
+});
+</script>
 
 <form name="frmreviewList" method="post" action="<c:url value='/review?cNo=${param.cNo }'/> ">
 	<input type="hidden" name="cNo" value="${param.cNo }">
@@ -8,7 +45,7 @@
 	<input type="hidden" name="hNo" value="${param.hNo }">
 	<!-- 리뷰 내용반복 -->
 	<c:if test="${empty list }">
-			<p class="h5">소중한 첫 리뷰를 등록해주세요</p>
+			<p class="h5">리뷰를 등록해주세요</p>
 		</c:if>
 		<c:if test="${!empty list }">
 	<c:forEach var="vo" items="${list }">
@@ -77,20 +114,26 @@
 					<!-- 이전블럭 -->
 					<c:if test="${pagingInfo.firstPage>1 }">
 							<li class="page-item">
-					<a class="page-link" href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${pagingInfo.firstPage -1 }'/> ">
+					<a class="page-link"  id="backpage"
+					<%-- href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${pagingInfo.firstPage -1 }'/> " --%>
+					>
 					<i
 									class="fas fa-angle-double-left"></i></a></li>
 					</c:if>
 					<!-- 페이징처리시작 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-							<li class="page-item">
-					<a class="page-link" href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+							<li class="page-item" >
+					<a class="page-link" id="pagelinknum"
+					<%-- href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${i}" onclick="pageFunc(${i})'/> " --%>
+					>${i }</a>
 					</li>
 					</c:forEach>
 					<!-- 다음블럭으로 이동 -->
 					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-							<li class="page-item">
-					<a class="page-link" href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${pagingInfo.lastPage +1 }'/> ">
+							<li class="page-item" >
+					<a class="page-link" id="nextpage"
+					<%--  href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${pagingInfo.lastPage +1 }'/> " --%>
+					 >
 					<i class="fas fa-angle-double-right"></i></a></li>
 					</c:if>
 						</ul>

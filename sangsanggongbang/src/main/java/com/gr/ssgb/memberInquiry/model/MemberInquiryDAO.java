@@ -21,6 +21,11 @@ public interface MemberInquiryDAO {
 	List<Map<String, Object>> selectBanAll(SearchVO searchVo);
 	int selectBanTotalRecord(SearchVO searchVo);
 	
-	int insertBan(BanVO vo);
-	int banDelete(int mNo);
+	int insertBanF(BanVO bVo); 
+	int insertBan(BanVO bVo);
+	int deleteBanF(BanVO bVo);
+	int deleteBan(BanVO bVo);
+	int selectBnobyMno(BanVO bVo);
+	
+	String checkBan(String mId);
 }
