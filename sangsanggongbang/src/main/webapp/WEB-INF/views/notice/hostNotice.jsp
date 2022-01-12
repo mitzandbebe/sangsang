@@ -6,11 +6,13 @@
 
 
 
-<div id="hInotice" style="text-align: center;">
-	<section class="section section-lg line-bottom-light" style="">
+
+	<section class="section-header">
+	<div class="section section-lg bg-soft" id="hInotice" style="text-align: center;">
+
 		<div class="container mt-n8 mt-md-n9 mt-lg-n12 z-2">
-			<div class="row">
-				<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5" id="noticeMain"
+			<div>
+				<div class="col-12 col-md-12 col-lg-12 mb-4 mb-lg-5" id="noticeMain"
 					style="margin-top: 225px;">
 					<c:if test="${!empty list }">
 						<c:forEach var="list" items="${list }">
@@ -45,9 +47,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
-</div>
-</main>
+	</div>
+</section>
+
 
 <script>
 	// here you should load content from an Ajax request and when it
