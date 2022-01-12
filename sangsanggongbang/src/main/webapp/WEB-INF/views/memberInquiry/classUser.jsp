@@ -220,13 +220,13 @@
 																<c:choose>
 																	<c:when test="${map['M_BLACKLIST_FLAG'] eq 'Y'}">
 																		<a id="blackListButton"
-																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }'/>">
+																			href="<c:url value='/blackList/blackList?hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
 																			title="블랙리스트목록이동"> <input type="button" value="등록된 회원" style="background-color:red"> </i>
 																		</a>									
 																	</c:when>
 																	<c:otherwise>
-																		<a id="blackinsertButton"
+																		<a id="blackinsertButton" 
 																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }&hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
 																			title="블랙리스트등록">블랙리스트등록 </i>
@@ -297,7 +297,12 @@
 
 <script>
 	$(function() {
-	
+		$('#blackinsertButton').click(function() {
+			var result = confirm('해당 유저를 블랙리스트에 등록하시겠습니까?');
+			if (!result) {
+				event.preventDefault();
+			}
+		})
 	})
 </script>
 
