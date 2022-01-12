@@ -113,7 +113,7 @@
 
 	<delete id="deleteRecommendation" parameterType="int">
 		delete
-		recommendation where reco_no=#{recoNo}
+		recommendation where group_no=#{groupNo}
 	</delete>
 	<!-- 답변 -->
 	<insert id="reply" parameterType="recommendationVo">
