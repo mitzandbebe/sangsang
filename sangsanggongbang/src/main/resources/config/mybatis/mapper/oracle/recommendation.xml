@@ -11,8 +11,8 @@
 			order="BEFORE">
 			select RECOMMENDATION_SEQ.nextval from dual
 		</selectKey>
-		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no, m_id)
-		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}, #{mId}) 
+		insert into recommendation(reco_no, reco_title, reco_content, flag, group_no, m_id, h_id)
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{flag}, #{recoNo}, #{mId}, #{hId}) 
 	</insert>
 	
 	<!-- 	<insert id="insertRecommendation"
@@ -83,7 +83,7 @@
 		(
 		select * from
 		recommendation
-		where flag = 'H' or flag='AD'
+		where H_ID=#{hId} and group_No= #{gruopNo}
 		order by group_no desc, sort_no
 		)A
 		)
