@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="inc/new_top_user.jsp"%>
+<%@ include file="inc/new_top_user.jsp"%> 
 <!-- Hero -->
 
 <section class="section-header">
