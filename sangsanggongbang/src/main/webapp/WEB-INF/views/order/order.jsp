@@ -41,24 +41,22 @@
 			function(rsp) {
 				console.log(rsp);
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-
+					var merchantUid = rsp.merchant_uid
 					var msg = '결제가 완료되었습니다';
 					var result = {
 					"impUid" : rsp.imp_uid,	//상점id
 					"merchantUid" : rsp.merchant_uid, //영수증번호
 					"mId" : $('#mId').val(), //유저id
-					"payDate" : new Date().getTime(), //결제일
 					"price" : rsp.paid_amount, //결제금액
 					"refund" : 'payed', //결제상태
 					"buyerName" : $('#name').val(), //구매자명
 					"ea" : $('#sPpunm').val(), //구매수량
-					"fDate" : $('#fDate').val(), //선택날짜
 					"fTime" : $('#fTime').val(), //선택시간
 					"cNo" : $('#cNo').val() //클래스넘버
 					}
 					
 					$.ajax({
-						url : '/sangsanggongbang/class/orderComplete',
+						url : '/sangsanggongbang/class/ajax/orderComplete',
 				        type :'POST',
  				        data : JSON.stringify(result),
 				        contentType:'application/json;charset=UTF-8',
@@ -67,6 +65,8 @@
 				        			        	
 				          if(cnt == 1){
 							 console.log("추가성공");	
+							location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete?merchantUid="+merchantUid);
+								
 				          }else{
 				             console.log("Insert Fail!!!");
 				          }
@@ -76,11 +76,9 @@
 				        }
 					}); //ajax
 					
-					location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete");
 				} else {
 					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : '
-							+ rsp.error_msg;
+					msg += '에러내용 : '+ rsp.error_msg;
 				}
 				alert(msg);
 			});
@@ -286,65 +284,7 @@
 						<input type="submit" id="wr_submit" value="결제하기2">
 					</div>
 				</form>
-				<!-- <form action="#" method="post" class="card border-light p-3 mb-4">
-					<div class="card-header border-light p-3 mb-4 mb-md-0">
-						<h3 class="h5 mb-0">Card details</h3>
-					</div>
-					<div class="card-body p-0 p-md-4">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<div class="form-group">
-									<label class="form-label" for="cardNameLabel"><span
-										class="small text-dark">(Full name as displayed on
-											card)</span></label>
-									<div class="input-group mb-4">
-										<input class="form-control" id="cardNameLabel"
-											placeholder="Name on Card *" type="text" required="">
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="form-group">
-									<label for="cardNumberLabel">Card Number <span
-										class="text-danger">*</span></label>
-									<div class="input-group mb-4">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><span
-												class="fas fa-credit-card"></span></span>
-										</div>
-										<input class="form-control" id="cardNumberLabel"
-											placeholder="0000 0000 0000 0000" type="number" required="">
-									</div>
-								</div>
-							</div>
-							<div class="col-12 col-md-6">
-								<div class="form-group">
-									<label for="cardCVCLabel">CVC <span class="text-danger">*</span></label>
-									<input class="form-control" id="cardCVCLabel" placeholder="CVC"
-										type="number" required="">
-								</div>
-							</div>
-							<div class="col-12 col-md-6">
-								<div class="form-group">
-									<label for="cardExpiryLabel">Card Expiry <span
-										class="text-danger">*</span></label>
-									<div class="input-group mb-4">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><span
-												class="fas fa-calendar-alt"></span></span>
-										</div>
-										<input class="form-control" id="cardExpiryLabel"
-											placeholder="MM / YY" type="number" required="">
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<button class="btn btn-primary btn-dark mt-2 animate-up-2"
-									type="submit">Update</button>
-							</div>
-						</div>
-					</div>
-				</form> -->
+
 			</div>
 		</div>
 	</div>
