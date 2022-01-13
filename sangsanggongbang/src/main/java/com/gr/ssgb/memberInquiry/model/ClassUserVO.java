@@ -12,6 +12,16 @@ public class ClassUserVO extends SearchVO {
 	private int mNo; // 멤버 넘버
 	private String mName; // 멤버 이름
 	private Timestamp cStartTime; // 클래스 실행날짜
+	private String mBlacklistFlag;
+	
+
+	public String getmBlacklistFlag() {
+		return mBlacklistFlag;
+	}
+
+	public void setmBlacklistFlag(String mBlacklistFlag) {
+		this.mBlacklistFlag = mBlacklistFlag;
+	}
 
 	public int getcNo() {
 		return cNo;
@@ -72,7 +82,7 @@ public class ClassUserVO extends SearchVO {
 	@Override
 	public String toString() {
 		return "ClassUserVO [cNo=" + cNo + ", cName=" + cName + ", hNo=" + hNo + ", mId=" + mId + ", mNo=" + mNo
-				+ ", mName=" + mName + ", cStartTime=" + cStartTime + ", toString()=" + super.toString() + "]";
+				+ ", mName=" + mName + ", cStartTime=" + cStartTime + ", mBlacklistFlag=" + mBlacklistFlag + "]";
 	}
 
 }

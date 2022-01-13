@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.memberInquiry.model.ClassUserVO;
 
 @Mapper
 public interface BlackListDAO {
@@ -17,4 +18,7 @@ public interface BlackListDAO {
 	
 	int insertBlackList(BlackListVO vo);
 	int insertBlackListB(BlackListVO vo);
+	
+	ClassUserVO selectClassUserbyId(ClassUserVO cVo);
+	String checkBlackList(ClassUserVO vo);
 }

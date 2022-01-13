@@ -55,4 +55,22 @@
 		SET M_BLACKLIST_FLAG = 'N'
 		where m_id=#{mId}
 	</update>
+	
+	<select id="selectClassUserbyId" parameterType="ClassUserVO" resultType="ClassUserVO">
+		select rownum, A.* from
+		(
+		select * from classuserview
+		where m_id=#{mId} and c_no=#{cNo}
+		)A
+		where rownum=1
+	</select>
+	
+	<select id="checkBlackList" parameterType="ClassUserVO" resultType="String">
+		select A.m_id
+		from(
+			select m_id from classuserview
+			where c_no=#{cNo} and m_blacklist_flag='Y' and m_id=#{mId}
+		)A
+		where rownum=1
+	</select>
 </mapper>
