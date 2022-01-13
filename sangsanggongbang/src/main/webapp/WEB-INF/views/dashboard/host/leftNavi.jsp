@@ -25,7 +25,7 @@
 						</div>
 						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
 						<div class="list-group dashboard-menu list-group-sm mt-4">
-							<a href="<c:url value='/dashboard/host/account'/>"
+							<a href="<c:url value='/host/hostAccount'/>"
 								class="d-flex list-group-item list-group-item-action ">마이페이지
 								<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
@@ -33,7 +33,7 @@
 								class="d-flex list-group-item list-group-item-action  active ">회원정보
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/my-items'/>"
+							</a> <a href="<c:url value='/class/myclass'/>"
 								class="d-flex list-group-item list-group-item-action ">내 클래스
 								현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>

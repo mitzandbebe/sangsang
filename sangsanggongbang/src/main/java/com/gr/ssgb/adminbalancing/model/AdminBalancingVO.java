@@ -1,26 +1,26 @@
-package com.gr.ssgb.balancing.model;
+package com.gr.ssgb.adminbalancing.model;
 
 import java.sql.Timestamp;
 
-public class BalancingVO {
+public class AdminBalancingVO {
 	private int bNo; //정산번호 
 	private int cNo; //클래스코드
 	private int hNo; //호스트번호
-	private int fpnum; //확정인원
+	private int ppnum; //진행인원
 	private Timestamp bReqDate; //정산신청일
 	private String bFlag; //정산신청여부
 	private int cPrice; //클래스 단가
 	
-	public BalancingVO() {
+	public AdminBalancingVO() {
 		super();
 	}
 	
-	public BalancingVO(int bNo, int cNo, int hNo, int fpnum, Timestamp bReqDate, String bFlag, int cPrice) {
+	public AdminBalancingVO(int bNo, int cNo, int hNo, int ppnum, Timestamp bReqDate, String bFlag, int cPrice) {
 		super();
 		this.bNo = bNo;
 		this.cNo = cNo;
 		this.hNo = hNo;
-		this.fpnum = fpnum;
+		this.ppnum = ppnum;
 		this.bReqDate = bReqDate;
 		this.bFlag = bFlag;
 		this.cPrice = cPrice;
@@ -43,11 +43,11 @@ public class BalancingVO {
 	public void sethNo(int hNo) {
 		this.hNo = hNo;
 	}
-	public int getFpnum() {
-		return fpnum;
+	public int getPpnum() {
+		return ppnum;
 	}
-	public void setfpnum(int fpnum) {
-		this.fpnum = fpnum;
+	public void setPpnum(int ppnum) {
+		this.ppnum = ppnum;
 	}
 	public Timestamp getbReqDate() {
 		return bReqDate;
@@ -69,7 +69,7 @@ public class BalancingVO {
 	}
 	@Override
 	public String toString() {
-		return "BalancingVO [bNo=" + bNo + ", cNo=" + cNo + ", hNo=" + hNo + ", fpnum=" + fpnum + ", bReqDate="
+		return "BalancingVO [bNo=" + bNo + ", cNo=" + cNo + ", hNo=" + hNo + ", ppnum=" + ppnum + ", bReqDate="
 				+ bReqDate + ", bFlag=" + bFlag + ", cPrice=" + cPrice + "]";
 	}
 	
