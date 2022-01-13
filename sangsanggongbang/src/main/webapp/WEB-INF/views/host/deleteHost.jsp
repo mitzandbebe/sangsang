@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../inc/new_top_host.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../inc/new_top_user.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+
 <div class="section section-lg bg-soft">
 	<div class="container">
 		<div class="row pt-5 pt-md-0">
@@ -18,7 +19,7 @@
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
 									alt="Joseph Portrait"
-									onerror="this.src='${sessionScope.mFilename }'">
+									onerror="this.src='${sessionScope.hFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
 								<img src="<c:url value='/resources/assets/img/default.png'/>"
@@ -33,7 +34,7 @@
 								<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
-								class="d-flex list-group-item list-group-item-action active">회원정보
+								class="d-flex list-group-item list-group-item-action ">회원정보
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/class/myclass'/>"
@@ -49,7 +50,7 @@
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
-								class="d-flex list-group-item list-group-item-action border-0 ">회원탈퇴<span
+								class="d-flex list-group-item list-group-item-action border-0 active">회원탈퇴<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a>
@@ -65,7 +66,7 @@
 								<a href="<c:url value='/host/hostAccount'/>"
 									class="list-group-item list-group-item-action border-0 ">마이페이지</a>
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
-									class="list-group-item list-group-item-action border-0 active">회원정보</a>
+									class="list-group-item list-group-item-action border-0 ">회원정보</a>
 								<a href="<c:url value='/class/myclass'/>"
 									class="list-group-item list-group-item-action d-none d-sm-block border-0">내 클래스
 								현황</a> <a href="./security.html"
@@ -73,7 +74,7 @@
 								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
 								현황</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
+									class="list-group-item list-group-item-action d-none d-md-block border-0 active">회원탈퇴</a>
 							</div>
 							<div class="col-2 d-flex justify-content-center">
 								<div class="btn-group dropleft">
@@ -91,7 +92,7 @@
 										<a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
 										<a href="<c:url value='/host/hostEditChkPwd2'/>"
-											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
+											class="list-group-item list-group-item-action border-0 active">회원탈퇴</a>
 									</div>
 								</div>
 							</div>
@@ -99,33 +100,29 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-12 col-lg-8">
+ 			<div class="col-12 col-lg-8">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
-							<h2 class="h5 mb-4">비밀번호 확인</h2>
-							<form method="post"
-								action="<c:url value='/host/hostEditChkPwd'/> ">
-								<!-- Form -->
-								<label for="pwd">비밀번호 입력</label>
-								<div class="input-group mb-4">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><span
-											class="fas fa-unlock-alt"></span></span>
-									</div>
-									<input name="hId" class="form-control" id="hId" type="hidden"
-										value="${sessionScope.hId }" aria-describedby="button-addon2">
-									<input name="hPwd" class="form-control" id="pwd"
-										placeholder="비밀번호를 입력하세요." type="password">
-									<button type="button" id="button-addon2"
-										class="btn btn-outline-primary">비밀번호 확인</button>
-								</div>
-								<!-- End of Form -->
-							</form>
-							<div>
-								<a href="<c:url value='/member/findPwd'/>"
-									class="small text-right">비밀번호를 잊으셨어요?</a>
+							<div class="container">
+								<form name="frmDelete" method="post" action="<c:url value='/host/deleteHost'/>">
+
+
+									<h3 class="h4 mb-5">
+										${sessionScope.hNickname }&nbsp;늘솜님, 너무 아쉬워요<br>
+										정말로 탈퇴 하실건가요?
+									</h3>
+									<h4>더 나은 상상공방이 되도록 노력할게요٩( *˙0˙*)✧ <br>
+										<a href="<c:url value='/index'/> "> ➯ 메인으로 돌아가기</a>
+									</h4>
+									<br>
+									<input type="hidden" name="hId" value="${sessionScope.hId }">
+									<input id="delete" type="submit" style="border:none;background-color:transparent;'"
+										value="➯ 탈퇴할래요 ε٩(๑> ₃ <)۶з"
+									/>
+
+
+								</form>
 							</div>
 						</div>
 					</div>
@@ -134,4 +131,6 @@
 		</div>
 	</div>
 </div>
-<%@ include file="../inc/bottom_host.jsp"%>
+
+    </main>
+ <%@ include file="../inc/bottom.jsp" %>
