@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../../inc/new_top_host.jsp"%>
+<%@ include file="../../../inc/new_top_admin.jsp"%>
 <div class="section section-lg bg-soft">
 	<div class="container">
-		<div class="row pt-5 pt-md-0">
+<%-- 		<div class="row pt-5 pt-md-0">
 
-			<div class="col-12 col-md-4 d-none d-lg-block">
+			<div class="col-12 col-md-8 d-none d-lg-block">
 				<!-- Navigation -->
 				<div class="card border-light p-2">
 					<div class="card-body p-2">
@@ -95,7 +95,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 
 <div class="col-12 col-lg-8">
 	<div class="row mb-5">
@@ -372,4 +372,4 @@
 </div>
 </div>
 
-<%@ include file="../../../inc/bottom_host.jsp"%>
+<%@ include file="../../../inc/bottom_admin.jsp"%>

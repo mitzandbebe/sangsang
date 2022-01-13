@@ -180,7 +180,7 @@
 	src="${pageContext.request.contextPath }/resources/assets/js/spaces.js"></script>
 
 <script
-	src="${pageContext.request.contextPath }/resources/assets/js/balancing.js"></script>
+	src="${pageContext.request.contextPath }/resources/assets/js/adminbalancing.js"></script>
 <!-- 아임포트 결제모듈-->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

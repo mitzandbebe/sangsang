@@ -9,7 +9,7 @@ $(function() {
 		$('#list1 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
-			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
+			$('#list1').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
 		});
 		
 		/* 다음페이지 버튼(>) 클릭시 */
@@ -17,7 +17,7 @@ $(function() {
 			var a=$('#list1 #pagelinknum:nth-child(5n+1)').text();
 			++a;
 			console.log(a);
-			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+a+"&searchCondition=&searchKeyword=");
+			$('#list1').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+a+"&searchCondition=&searchKeyword=");
 		});
 		
 		/* 이전페이지 버튼(<) 클릭시 */
@@ -25,7 +25,7 @@ $(function() {
 			var b=$('#list1 #pagelinknum:first').text();
 			--b;
 			console.log(b);
-			$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+b+"&searchCondition=&searchKeyword=");
+			$('#list1').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+b+"&searchCondition=&searchKeyword=");
 		});
 });
 $(function() {
@@ -33,7 +33,7 @@ $(function() {
 		$('#list2 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=N");
 		});
 		
 		/* 다음페이지 버튼(>) 클릭시 */
@@ -41,7 +41,7 @@ $(function() {
 			var c=$('#list2 #pagelinknum:nth-child(5n+1)').text();
 			++c;
 			console.log(c);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=N");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+c+"&searchCondition=b_flag&searchKeyword=N");
 		});
 		
 		/* 이전페이지 버튼(<) 클릭시 */
@@ -49,7 +49,7 @@ $(function() {
 			var d=$('#list2 #pagelinknum:first').text();
 			--d;
 			console.log(d);
-			$('#list2').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+d+"&searchCondition=b_flag&searchKeyword=N");
+			$('#list2').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+d+"&searchCondition=b_flag&searchKeyword=N");
 		});
 });
 $(function() {
@@ -57,7 +57,7 @@ $(function() {
 		$('#list3 #pagelinknum').click(function(){
 			var i=$(this).text();
 			console.log(i);
-			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=Y");
+			$('#list3').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+i+"&searchCondition=b_flag&searchKeyword=Y");
 		});
 		
 		/* 다음페이지 버튼(>) 클릭시 */
@@ -65,7 +65,7 @@ $(function() {
 			var e=$('#list3 #pagelinknum:nth-child(5n+1)').text();
 			++e;
 			console.log(e);
-			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+e+"&searchCondition=b_flag&searchKeyword=Y");
+			$('#list3').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+e+"&searchCondition=b_flag&searchKeyword=Y");
 		});
 		
 		/* 이전페이지 버튼(<) 클릭시 */
@@ -73,7 +73,7 @@ $(function() {
 			var f=$('#list3 #pagelinknum:first').text();
 			--f;
 			console.log(f);
-			$('#list3').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+f+"&searchCondition=b_flag&searchKeyword=Y");
+			$('#list3').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+f+"&searchCondition=b_flag&searchKeyword=Y");
 		});
 		
 		
@@ -84,7 +84,7 @@ $(function() {
 	$('#list1 #balsubmit').click(function(){
 		var i=$(this).text();
 		console.log(i);
-		$('#list1').load("http://localhost:9091/sangsanggongbang/dashboard/host/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
+		$('#list1').load("http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="+i+"&searchCondition=&searchKeyword=");
 	});
 	$('#list2 #balsubmit').click(function(){
 		document.getElementById('#tabs-text-2-tab').click();
