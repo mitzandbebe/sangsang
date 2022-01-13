@@ -301,13 +301,10 @@
 										<ul class="list-style-none mb-4">
 											<!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">이벤트 목록</a>
+												href="${pageContext.request.contextPath }/mainevent/eventlist">이벤트 목록</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">이벤트 작성</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
+												href="${pageContext.request.contextPath }/mainevent/eventwrite">이벤트 작성</a>
 											</li>
 										</ul>
 									</div>

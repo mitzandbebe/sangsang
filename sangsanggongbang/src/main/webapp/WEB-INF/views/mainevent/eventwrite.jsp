@@ -69,8 +69,8 @@
 				</div>
 				<!-- 버튼 가운데 정렬 -->
 				<div style="text-align: center;">
-					<input value="등록" class="btn mb-2 mr-2 btn-outline-gray"
-						type="submit"> <input value="목록"
+					<button  class="btn mb-2 mr-2 btn-outline-gray"
+						type="button" onclick="check();">등록</button> <input value="목록"
 						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
 				</div>
 			</form>
@@ -108,18 +108,19 @@
 
 	});
 
-	$(function() {
+/* 	$(function() {
 		$('form[name=frmEwrite]').submit(function() {
 			$('.infobox').each(function(idx, item) {
 				if ($(this).val().length < 1) {
-					alert($(this).prev().html() + "을 입력하세요");
+					alert("제목을 입력하세요");
 					$(this).focus();
 					event.preventDefault();
 					return false; //each 탈출
 				}
 
 			});
-
+		});
+		$('form[name=frmEwrite]').submit(function() {
 			$('#upfile').each(function(idx, item) {
 				if ($(this).val().length < 1) {
 					alert($(this).prev().html() + "을 입력하세요");
@@ -129,15 +130,31 @@
 				}
 
 			});
-
 		});
+		
 
 		$('#btlist').click(function() {
 			location.href = "<c:url value='/mainevent/eventlist'/>";
 		});
 
-	});
-
+	}); */
+	
+ 	function check(){
+		 if ($('#title').val().length<1){
+	         alert('제목을 입력해주세요.');
+	         $('#title').focus();
+	         event.preventDefault();
+	     	return false;
+		 }else if($('#upfile').val().length<1){
+	         alert('첨부파일를 등록해주세요.');
+	         $('#upfile').focus();
+	         event.preventDefault();
+	     	return false;
+		 }
+		 
+		 document.frmEwrite.submit(); // 서브밋으로보내기
+	}; 
+	
 	$(function() {
 		var privacy_editor = CKEDITOR.replace("termsContent", {
 			filebrowserUploadUrl : '${contextPath}/privacies/imgUpload'

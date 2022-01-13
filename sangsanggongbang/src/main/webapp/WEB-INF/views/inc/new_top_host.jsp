@@ -163,7 +163,7 @@
 											</div>
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/class/listofClass'/>" target="_blank"
+										<a href="<c:url value='/class/listofClass'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-primary"><i
 												class="fas fa-microphone-alt"></i></span> -->
@@ -173,7 +173,7 @@
 											</div>
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/class/listdelete'/>" target="_blank"
+										<a href="<c:url value='/class/listdelete'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-primary"><i
 												class="fas fa-microphone-alt"></i></span> -->

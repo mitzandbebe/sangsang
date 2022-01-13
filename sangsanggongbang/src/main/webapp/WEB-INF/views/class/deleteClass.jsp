@@ -35,7 +35,7 @@
 					<br> <br> <br> <br>
 					<div style="text-align: left;">
 						<div class="mb-4" style="font-size:15pt;">
-						정말로 <span style="color: red; font-size:15pt;">${param.cNo }번</span> 클래스를 삭제할까요?😧
+						정말로 <span style="color: red; font-size:15pt;">클래스</span> 를 삭제할까요?😧
 						<br> 삭제를 원할 시 <span style="color: red">클래스삭제</span> 버튼을 눌러주세요
 					</div>
 					<br> <br> <br> <br>

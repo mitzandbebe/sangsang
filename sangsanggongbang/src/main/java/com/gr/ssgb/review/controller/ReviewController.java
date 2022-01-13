@@ -22,6 +22,7 @@ import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.member.model.MemberService;
+import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
 
@@ -88,7 +89,9 @@ public class ReviewController {
 		int mNo= memberService.selectMno(mId);
 		
 		reviewVo.setmNo(mNo);
-		String nickname=(String) session.getAttribute("mId"); //임시로 엠아이디
+		String id=(String) session.getAttribute("mId"); 
+		MemberVO vo=memberService.selectMemberById(id);
+		String nickname=vo.getmNickname();
 		reviewVo.setNickname(nickname);
 		
 		logger.info("리뷰 등록 처리,파라미터 reviewVo ={}", reviewVo);
