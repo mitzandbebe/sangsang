@@ -4,9 +4,6 @@
 <%@ include file="../inc/new_top_admin.jsp"%>
     
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
-
-
-
        <!-- Section -->
         <section class="section-header">
         	<div class="section section-lg bg-soft">
@@ -52,6 +49,15 @@
 		                            <div class="col-12">
 		                                <div class="card border-light">
 		                                       <div id="container"></div>
+		                                </div>
+		                            </div>
+	                        	</div>
+                        	</div>
+                        	 <div class="col-12 mb-4"> 
+	                          <div class="row">
+		                            <div class="col-12">
+		                                <div class="card border-light">
+		                                       <div id="container2"></div>
 		                                </div>
 		                            </div>
 	                        	</div>
@@ -249,12 +255,62 @@ $(function(){
 	        data: [totalProfit1, totalProfit1+totalProfit2, totalProfit1+totalProfit2+totalProfit3,
 	        	totalProfit1+totalProfit2+totalProfit3+totalProfit4]
 	    }, {
+	        name: '월별 매출 추이',
+	        data: [totalProfit1, totalProfit2, totalProfit3, totalProfit4]
+	    }],
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 1200
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});
+	
+	Highcharts.chart('container2', {
+
+	    title: {
+	        text: '상상공방 매출추이'
+	    },
+	    
+	    yAxis: {
+	        title: {
+	            text: '매출액'
+	        }
+	    },
+
+	    xAxis: {
+	    	 categories: [profitXData1 , profitXData2, profitXData3, profitXData4 ]
+	    },
+
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle'
+	    },
+
+	     /* plotOptions: {
+	        series: {
+	            label: {
+	                connectorAllowed: true
+	            },
+	            pointStart: 08
+	        }
+	    },  */
+
+	    series: [{
 	        name: '누적 순이익 추이',
 	        data: [totalNet1, totalNet1+totalNet2, totalNet1+totalNet2+totalNet3, totalNet1+totalNet2+totalNet3+totalNet4]
 	    }, {
-	        name: '월별 매출 추이',
-	        data: [totalProfit1, totalProfit2, totalProfit3, totalProfit4]
-	    },{
 	        name: '월별 순이익 추이',
 	        data: [totalNet1, totalNet2, totalNet3, totalNet4]
 	    }],

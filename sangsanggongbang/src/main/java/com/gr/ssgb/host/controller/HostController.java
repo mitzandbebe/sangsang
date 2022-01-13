@@ -463,7 +463,7 @@ public class HostController {
 			hGrade = "platinum";
 			vo.sethGrade(hGrade);
 			cnt=hostService.updateHGrade(vo);
-		}else if(classCnt > 5 && classCnt <= 10) {
+		}else if(classCnt > 17) {
 			hGrade = "diamond";
 			vo.sethGrade(hGrade);
 			cnt=hostService.updateHGrade(vo);

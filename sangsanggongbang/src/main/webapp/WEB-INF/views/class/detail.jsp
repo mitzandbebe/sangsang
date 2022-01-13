@@ -430,10 +430,21 @@
 										<label for="exampleFormControlSelect2">&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
 							<div class="text-center">
-								
-								<button type="submit" class="btn btn-block btn-primary mt-4">
-								결제하기</a></button>
-								
+							
+								<button type="submit"  
+								<c:if test="${map['END_FLAG']=='Y' }">
+									disabled="disabled" class="btn btn-block btn-light mt-4"</c:if>
+								<c:if test="${map['END_FLAG']=='N' }">
+									class="btn btn-block btn-primary mt-4"
+								</c:if>
+								>
+								<c:if test="${map['END_FLAG']=='Y' }">
+									마감된 클래스입니다.
+								</c:if>
+								<c:if test="${map['END_FLAG']=='N' }">
+									결제하기
+								</c:if>
+								</a></button>
 							</div>
 						</div>
 						</form>
