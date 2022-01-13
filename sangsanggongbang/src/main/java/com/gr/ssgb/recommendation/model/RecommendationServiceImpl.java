@@ -74,4 +74,9 @@ public class RecommendationServiceImpl implements RecommendationService {
 		return cnt;
 	}
 
+	@Override
+	public int deleteRecommendationR(int recoNo) {
+		return recommendationDAO.deleteRecommendationR(recoNo);
+	}
+
 }

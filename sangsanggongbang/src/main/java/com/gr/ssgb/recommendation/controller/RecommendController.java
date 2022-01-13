@@ -38,30 +38,28 @@ public class RecommendController {
 		logger.info("불편사항 생성자 주입");
 	}
 
-
-	
 	@GetMapping("/recommendWrite")
-	   public String recommendationWrite() {
-	      logger.info("불편사항 글 작성");
-	      return "/recommendation/recommendWrite";
-	   }
+	public String recommendationWrite() {
+		logger.info("불편사항 글 작성");
+		return "/recommendation/recommendWrite";
+	}
 
-	   @PostMapping("/recommendWrite")
-	   public String recommendationWrite(@ModelAttribute RecommendationVO vo, Model model) {
-	      logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
+	@PostMapping("/recommendWrite")
+	public String recommendationWrite(@ModelAttribute RecommendationVO vo, Model model) {
+		logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
 
-	      int cnt = recommendationService.insertRecommendation(vo);
-	      logger.info("불편사항 작성 성공여부 cnt={}", cnt);
-	      String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendList";
-	      if (cnt > 0) {
-	         msg = "불편사항 작성에 성공했습니다";
-	      }
-	      model.addAttribute("msg", msg);
-	      model.addAttribute("url", url);
+		int cnt = recommendationService.insertRecommendation(vo);
+		logger.info("불편사항 작성 성공여부 cnt={}", cnt);
+		String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendList";
+		if (cnt > 0) {
+			msg = "불편사항 작성에 성공했습니다";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
-	      return "common/message";
-	   }
-	
+		return "common/message";
+	}
+
 	/*
 	 * @GetMapping("/host/hostRecommendWrite") public String
 	 * hostRecommendationWrite() { logger.info("불편사항 글 작성"); return
@@ -117,24 +115,23 @@ public class RecommendController {
 		recommendationVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("값 셋팅 후 searchVo={}", recommendationVo);
 
-		String mId= (String) session.getAttribute("mId");
+		String mId = (String) session.getAttribute("mId");
 		recommendationVo.setmId(mId);
-		String adId=(String) session.getAttribute("adId");
-		String hId=(String) session.getAttribute("hId");
+		String adId = (String) session.getAttribute("adId");
+		String hId = (String) session.getAttribute("hId");
 		recommendationVo.sethId(hId);
-	
-		
-		logger.info("recommendationVo={}",recommendationVo);
+
+		logger.info("recommendationVo={}", recommendationVo);
 //		List<RecommendationVO> list = recommendationService.selectAllRecommendation(searchVo);
 		List<RecommendationVO> list = new ArrayList<RecommendationVO>();
 		int totalRecord = 0;
-		if (hId!=null && !hId.isEmpty()) {
+		if (hId != null && !hId.isEmpty()) {
 			list = recommendationService.selectAllHostRecommendation(recommendationVo);
 			totalRecord = recommendationService.selectTotalHostRecord(recommendationVo);
-		} else if (adId!=null && !adId.isEmpty()) {
+		} else if (adId != null && !adId.isEmpty()) {
 			list = recommendationService.selectAllRecommendation(recommendationVo);
 			totalRecord = recommendationService.selectTotalRecord(recommendationVo);
-		} else if (mId!=null && !mId.isEmpty()) {
+		} else if (mId != null && !mId.isEmpty()) {
 			list = recommendationService.selectAllMemberRecommendation(recommendationVo);
 			totalRecord = recommendationService.selectTotalRecord(recommendationVo);
 		} else {
@@ -143,12 +140,12 @@ public class RecommendController {
 
 			return "/common/message";
 		}
-		
+
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
 		pagingInfo.setTotalRecord(totalRecord);
-		
+
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 
@@ -184,8 +181,8 @@ public class RecommendController {
 		}
 		RecommendationVO vo = recommendationService.selectByNoRecommendation(recoNo);
 		logger.info("수정화면, 조회결과 vo={}", vo);
-		
-		model.addAttribute("vo",vo);
+
+		model.addAttribute("vo", vo);
 		return "recommendation/recommendUpdate";
 	}
 
@@ -207,7 +204,7 @@ public class RecommendController {
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-		
+
 		return "/common/message";
 	}
 
@@ -225,51 +222,60 @@ public class RecommendController {
 
 	@RequestMapping("/recommendDelete")
 	public String delete_post(@ModelAttribute RecommendationVO vo, @RequestParam(defaultValue = "0") int recoNo,
-			HttpServletRequest request, Model model) {
+			HttpSession session, Model model) {
 		logger.info("삭제 처리, 파라미터 vo={}, recoNo={}", vo, recoNo);
 
 		String msg = "글삭제 실패", url = "/recommendation/recommendDelete?recoNo=" + recoNo;
 		// 삭제 - 저장 프로시저 이용
 
-		recommendationService.deleteRecommendation(recoNo);
-		msg = "글삭제되었습니다.";
-		url = "/recommendation/recommendList";
+		String adId = (String) session.getAttribute("adId");
+		if (adId != null && !adId.isEmpty()) {
+			int cnt = recommendationService.deleteRecommendationR(recoNo);
+			if (cnt > 0) {
+				msg = "글삭제되었습니다.";
+				url = "/recommendation/recommendList";
+			}
+		} else {
+			int cnt = recommendationService.deleteRecommendation(recoNo);
+			if (cnt > 0) {
+				msg = "글삭제되었습니다.";
+				url = "/recommendation/recommendList";
+			}
+		}
 
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
 		return "/common/message";
 	}
-	
-	//6. 답글 남기기
+
+	// 6. 답글 남기기
 	@GetMapping("/recommendReply")
-	public String reply_get(@RequestParam(defaultValue = "0") int recoNo,
-			Model model) {	
+	public String reply_get(@RequestParam(defaultValue = "0") int recoNo, Model model) {
 		logger.info("답변화면, 파라미터 no={}", recoNo);
-		
-		if(recoNo==0) {
+
+		if (recoNo == 0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/recommendation/recommendReply");
-			
-			return "/common/message";			
+
+			return "/common/message";
 		}
-		
-		RecommendationVO vo=recommendationService.selectByNoRecommendation(recoNo);
+
+		RecommendationVO vo = recommendationService.selectByNoRecommendation(recoNo);
 		logger.info("답변화면-조회 결과 vo={}", vo);
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return "/recommendation/recommendReply";
 	}
-	
+
 	@PostMapping("/recommendReply")
 	public String reply_post(@ModelAttribute RecommendationVO vo) {
 		logger.info("답변하기, 파라미터 vo={}", vo);
-		
-		int cnt=recommendationService.reply(vo);
+
+		int cnt = recommendationService.reply(vo);
 		logger.info("답변하기 결과 cnt={}", cnt);
-		
-		
+
 		return "redirect:/recommendation/recommendList";
 	}
 }

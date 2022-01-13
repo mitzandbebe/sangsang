@@ -27,6 +27,8 @@ public interface RecommendationDAO {
 	
 	public int deleteRecommendation(int recoNo);
 
+	public int deleteRecommendationR(int recoNo);
+	
 	int updateSortNo(RecommendationVO vo);
 	
 	int reply(RecommendationVO vo);

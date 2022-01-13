@@ -23,6 +23,8 @@ public interface RecommendationService {
 	public int updateRecommendation(RecommendationVO vo);
 	
 	public int deleteRecommendation(int recoNo);
+	
+	public int deleteRecommendationR(int recoNo);
 
 	int reply(RecommendationVO vo);
 
