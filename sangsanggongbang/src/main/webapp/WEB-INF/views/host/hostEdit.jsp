@@ -87,7 +87,7 @@ var InputImage =
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
+									alt="Joseph Portrait" width="129" height="129"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
@@ -182,7 +182,7 @@ var InputImage =
 								            	<c:if test="${sessionScope.hFilename!='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.hFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${vo.hFilename }" width="129" height="129" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group mb-3"  style = "text-align: center;">

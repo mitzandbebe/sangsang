@@ -115,6 +115,10 @@
 		delete
 		recommendation where group_no=#{groupNo}
 	</delete>
+	
+	<delete id="deleteRecommendationR" parameterType="int">
+		delete recommendation where reco_no =#{recoNo}
+	</delete>
 	<!-- 답변 -->
 	<insert id="reply" parameterType="recommendationVo">
  		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
