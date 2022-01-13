@@ -70,18 +70,19 @@
 		<!-- <input value="메인으로 돌아가기"
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain"
 			type="button">  -->
-			<input value="불편사항 목록"
-			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist"
-			type="button">
+		<input value="불편사항 목록" class="btn mb-2 mr-2 btn-primary animate-up-2"
+			id="btlist" type="button">
 		<c:if test="${!empty sessionScope.adId }">
 			<input value="불편사항 답변" class="btn mb-2 mr-2 btn-primary animate-up-2"
 				id="btreply" type="button">
 		</c:if>
 		<c:choose>
 			<c:when test="${!empty sessionScope.adId }">
-				<input value="불편사항 수정"
-					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
-					type="button">
+				<c:if test="${vo.flag eq 'AD' }">
+					<input value="불편사항 수정"
+						class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
+						type="button">
+				</c:if>
 				<input value="불편사항 삭제"
 					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
 					type="button">
@@ -91,11 +92,9 @@
 					<c:when test="${vo.step gt 0}">
 					</c:when>
 					<c:otherwise>
-						<%-- <c:if test="${vo.flag eq 'ad'}"> --%>
-							<input value="불편사항 수정"
-								class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
-								type="button">
-						<%-- </c:if> --%>
+						<input value="불편사항 수정"
+							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
+							type="button">
 						<input value="불편사항 삭제"
 							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
 							type="button">
@@ -117,11 +116,10 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 <script type="text/javascript">
-	
 	$(function() {
-	/* 	$('#btmain').click(function() {
-			location.href = "<c:url value='/index'/>";
-		}); */
+		/* 	$('#btmain').click(function() {
+				location.href = "<c:url value='/index'/>";
+			}); */
 		$('#btlist').click(function() {
 			location.href = "<c:url value='/recommendation/recommendList'/>";
 		});
