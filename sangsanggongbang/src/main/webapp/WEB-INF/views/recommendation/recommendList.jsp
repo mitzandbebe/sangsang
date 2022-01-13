@@ -100,10 +100,12 @@
 		</table>
 		<!-- 불편사항 작성 버튼 -->
 		<br>
+		<c:if test="${empty sessionScope.adId}">
 		<div class="d-flex justify-content-between mt-3" style="margin: auto">
 			<input value="불편사항 작성" class="btn mb-2 mr-2 btn-primary animate-up-2"
 				id="btwrite" type="button">
 		</div>
+		</c:if>
 		<br>
 		<div class="row">
 			<div class="col-lg-12 mb-5">
