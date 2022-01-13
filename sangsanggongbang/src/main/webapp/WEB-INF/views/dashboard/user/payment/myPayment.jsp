@@ -67,6 +67,13 @@
                                 aria-labelledby="tab-grid-1-tab">
                                 <div class="row justify-content-center">
                                     <div class="col-12 col-sm-10 col-md-6 col-lg-12 mb-4">
+                                    <c:if test="${empty list }">
+										<h3 class="h4 mb-5">늘찬님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>결제 내역이 없네요!
+											 &nbsp;</h3>
+										<h4>
+											<a href="<c:url value='/index'/> "> ➯클래스 둘러보기</a>
+										</h4>
+									</c:if>
                                     <c:forEach var = "map" items="${list }">
                                     <a href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORYNAME"] }&hNo=${map["H_NO"]}'/>">
                                         <div class="card border-light mb-4 animate-up-5">
