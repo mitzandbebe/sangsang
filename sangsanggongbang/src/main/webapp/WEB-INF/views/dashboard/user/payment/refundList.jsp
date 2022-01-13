@@ -93,6 +93,14 @@
                                 <h5 class="h6 mb-3">클래스 종료 후 2일 내의 결제내역에 한하여 환불요청이 가능합니다.</h5>
                                 <div class="row justify-content-center">
                                     <div class="col-12 col-sm-10 col-md-6 col-lg-12 mb-4">
+                                    <c:if test="${empty list }">
+												<h3 class="h4 mb-5">늘찬님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>환불 내역이 없네요!
+													 &nbsp;</h3>
+												<h4>
+													<a href="<c:url value='/dashboard/user/payment/myPayment'/> "> ➯내 결제내역 조회하기</a>
+												</h4>
+									</c:if>
+									<c:if test="${!empty list }">
                                     <c:forEach var = "map" items="${list }">
                                    
                                         <div class="card border-light mb-4 animate-up-5">
@@ -140,6 +148,7 @@
                                             </div>
                                         </div>
                                        </c:forEach>
+                                       </c:if>
                                     </div>
                             	</div>
                             </div>

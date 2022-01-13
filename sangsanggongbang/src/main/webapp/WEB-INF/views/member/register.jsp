@@ -58,7 +58,7 @@
 				alert('비밀번호를 입력하세요');
 				$('#password').focus();
 				event.preventDefault();
-			}else if($('#password').val().length>=10&&!passwordRule.test(pwd)){
+			}else if($('#password').val().length>=1&&!passwordRule.test(pwd)){
 				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
 				$('#password').focus();
 				event.preventDefault();
