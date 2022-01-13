@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gr.ssgb.blackList.model.BlackListService;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.host.model.HostService;
@@ -36,6 +37,7 @@ import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
 import com.gr.ssgb.member.model.ConcernVO;
 import com.gr.ssgb.member.model.MemberService;
+import com.gr.ssgb.memberInquiry.model.ClassUserVO;
 import com.gr.ssgb.memberInquiry.model.MemberInquiryService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
@@ -50,17 +52,19 @@ public class HostClassController {
 	private final HostService hostService;
 	private final MemberService memberService;
 	private final MemberInquiryService memberInquiryService;
+	private final BlackListService blackListService;
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
 			FileUploadUtil fileUploadUtil, HostService hostService, MemberService memberService,
-			MemberInquiryService memberInquiryService) {
+			MemberInquiryService memberInquiryService,BlackListService blackListService) {
 		this.hostClassService = hostClassService;
 		this.reviewService = reviewService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.hostService = hostService;
 		this.memberService = memberService;
 		this.memberInquiryService = memberInquiryService;
+		this.blackListService= blackListService;
 		logger.info("클래스 생성자 주입");
 	}
 
@@ -287,10 +291,16 @@ public class HostClassController {
 		logger.info("클래스 상세보기");
 		// 여기부터 김준영
 		String mId = (String) session.getAttribute("mId");
-		boolean result = false;
+		logger.info("mId={}",mId);
+		boolean ban = false; //참여제한
+		boolean blackList= false; //블랙리스트
 		if (mId != null && !mId.isEmpty()) {
-			if (result = memberInquiryService.checkBan(mId)) {
+			if (ban = memberInquiryService.checkBan(mId)) {
 				model.addAttribute("msg", "회원님은 참여제한된 회원입니다.");
+				model.addAttribute("url", "/index");
+				return "/common/message";
+			}else if(blackList = blackListService.checkBlackList(mId,cNo)) {
+				model.addAttribute("msg", "회원님은 블랙리스트처리된 회원입니다.");
 				model.addAttribute("url", "/index");
 				return "/common/message";
 			}
