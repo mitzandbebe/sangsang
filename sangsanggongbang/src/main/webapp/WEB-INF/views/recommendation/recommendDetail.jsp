@@ -90,9 +90,11 @@
 					<c:when test="${vo.step gt 0}">
 					</c:when>
 					<c:otherwise>
-						<input value="불편사항 수정"
-							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
-							type="button">
+						<%-- <c:if test="${vo.flag eq 'ad'}"> --%>
+							<input value="불편사항 수정"
+								class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
+								type="button">
+						<%-- </c:if> --%>
 						<input value="불편사항 삭제"
 							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
 							type="button">
