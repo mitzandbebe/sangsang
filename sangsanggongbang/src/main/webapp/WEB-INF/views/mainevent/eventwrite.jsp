@@ -63,7 +63,7 @@
 						<div class="form-group" style="display: block; width: 100%;">
 							<label for="exampleFormControlTextarea2">이벤트 내용</label>
 							<textarea class="ckediter" id="content" name="newsContent"
-								rows="20"></textarea>
+								rows="20" ></textarea>
 						</div>
 					</div>
 				</div>
@@ -108,36 +108,14 @@
 
 	});
 
-/* 	$(function() {
-		$('form[name=frmEwrite]').submit(function() {
-			$('.infobox').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert("제목을 입력하세요");
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				}
-
-			});
-		});
-		$('form[name=frmEwrite]').submit(function() {
-			$('#upfile').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).prev().html() + "을 입력하세요");
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				}
-
-			});
-		});
+ 	$(function() {
 		
 
 		$('#btlist').click(function() {
 			location.href = "<c:url value='/mainevent/eventlist'/>";
 		});
 
-	}); */
+	}); 
 	
  	function check(){
 		 if ($('#title').val().length<1){
@@ -148,6 +126,11 @@
 		 }else if($('#upfile').val().length<1){
 	         alert('첨부파일를 등록해주세요.');
 	         $('#upfile').focus();
+	         event.preventDefault();
+	     	return false;
+		 }else if($('#content').val().length<1){
+	         alert('내용을 등록해주세요.');
+	         $('#content').focus();
 	         event.preventDefault();
 	     	return false;
 		 }
