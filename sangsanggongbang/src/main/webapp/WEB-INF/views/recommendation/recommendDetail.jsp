@@ -67,9 +67,10 @@
 		</article>
 	</div>
 	<div class="" style="margin-left: 50px; margin-top: 25px;">
-		<input value="메인으로 돌아가기"
+		<!-- <input value="메인으로 돌아가기"
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain"
-			type="button"> <input value="불편사항 목록"
+			type="button">  -->
+			<input value="불편사항 목록"
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist"
 			type="button">
 		<c:if test="${!empty sessionScope.adId }">
@@ -116,10 +117,11 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 <script type="text/javascript">
+	
 	$(function() {
-		$('#btmain').click(function() {
+	/* 	$('#btmain').click(function() {
 			location.href = "<c:url value='/index'/>";
-		});
+		}); */
 		$('#btlist').click(function() {
 			location.href = "<c:url value='/recommendation/recommendList'/>";
 		});

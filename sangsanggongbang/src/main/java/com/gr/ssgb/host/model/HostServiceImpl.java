@@ -87,5 +87,25 @@ public class HostServiceImpl implements HostService{
 	public int updateHGrade(HostVO vo) {
 		return hostDao.updateHGrade(vo);
 	}
+
+	@Override
+	public int selectUndoneClass(int hNo) {
+		return hostDao.selectUndoneClass(hNo);
+	}
+
+	@Override
+	public int deleteHost(int hNo) {
+		int cnt1 = hostDao.updateHostDel(hNo);
+		if(cnt1==1) {
+			int cnt2 = hostDao.deleteBanList(hNo);
+			if(cnt2==1) {
+				int cnt3 = hostDao.deleteBlackList(hNo);
+			}
+		}
+		
+		return cnt1; 
+	}
+	
+	
 	
 }
