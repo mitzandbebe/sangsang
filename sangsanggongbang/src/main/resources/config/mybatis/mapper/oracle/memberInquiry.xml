@@ -136,4 +136,9 @@
 		select m_ban_flag from banview
 		where m_id=#{mId}
 	</select>
+	
+	<select id="classUser" parameterType="int" resultType="map">
+		select * from classuserview
+		where h_no=#{hNo} and m_Id like '%'
+	</select>
 </mapper>

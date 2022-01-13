@@ -59,7 +59,7 @@
 		(
 		select * from
 		recommendation
-		where M_ID=#{mId} and group_No= #{groupNo}
+		where M_ID=#{mId} 
 		order by group_no desc, sort_no
 		)A
 		)
@@ -83,7 +83,7 @@
 		(
 		select * from
 		recommendation
-		where H_ID=#{hId} and group_No= #{gruopNo}
+		where H_ID=#{hId}
 		order by group_no desc, sort_no
 		)A
 		)
@@ -113,15 +113,15 @@
 
 	<delete id="deleteRecommendation" parameterType="int">
 		delete
-		recommendation where reco_no=#{recoNo}
+		recommendation where group_no=#{groupNo}
 	</delete>
 	<!-- 답변 -->
 	<insert id="reply" parameterType="recommendationVo">
  		<selectKey keyProperty="recoNo" resultType="int" order="BEFORE">
 			select recommendation_seq.nextval from dual
 		</selectKey>
-		insert into recommendation(reco_no, reco_title, reco_content, group_no, sort_no, step)
-		values(#{recoNo},#{recoTitle}, #{recoContent}, #{groupNo}, #{sortNo}+1, #{step}+1)
+		insert into recommendation(reco_no, reco_title, reco_content, group_no, sort_no, step, m_id, h_id )
+		values(#{recoNo},#{recoTitle}, #{recoContent}, #{groupNo}, #{sortNo}+1, #{step}+1, #{mId}, #{hId})
  	</insert>
 
  	<update id="updateSortNo" parameterType="RecommendationVO">

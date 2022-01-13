@@ -78,8 +78,8 @@ public class OrderController {
 		logger.info("orderId={}", orderId);*/
 	
 	@ResponseBody
-	@RequestMapping("/order")
-	public String orderComplite(HttpSession session, @RequestBody Map<String, Object> map, Model model) {
+	@RequestMapping("/ajax/orderComplete")
+	public int orderComplite(HttpSession session, @RequestBody Map<String, Object> map, Model model) {
 		String mId=(String) session.getAttribute("mId");
 		logger.info("로그인 세션 mId={}", mId);
 		
@@ -122,19 +122,18 @@ public class OrderController {
 		int cnt = orderService.insertOrder(oVo);
 		logger.info("주문 insert 결과, cnt={}", cnt);
 		
-		return "redirect:/shop/order/orderComplete?merchantUid="+oVo.getMerchantUid();
+		return cnt;
 	}
 	
-	@RequestMapping("/orderComplete")
-	public String orderComplite_POST(@RequestParam String merchantUid, Model model) {
-		OrderVO vo=orderService.selectOrders(merchantUid);
+	@GetMapping("/orderComplete")
+	public String orderComplite_GET(@RequestParam String merchantUid, Model model) {
+		OrderVO oVo=orderService.selectOrders(merchantUid);
 		
-		model.addAttribute("vo", vo);
-		
+		model.addAttribute("oVo", oVo);
 		return "order/orderComplete";
-		
 	}
 	
+
 }
 
 

@@ -50,7 +50,8 @@
 							style="width: 1100px;">
 							<a
 								href="<c:url value='/notice/noticeDetail?noticeNo=${list.noticeNo }'/>">
-								${list.noticeTitle }  <c:if test="${!empty sessionScope.adId }">(${list.noticeFlag })</c:if> </a>
+								${list.noticeTitle } <c:if test="${!empty sessionScope.adId }">(${list.noticeFlag })</c:if>
+							</a>
 							<div class="card-body p-0 pt-4">
 								<a href="./blog-post.html" class="h4"></a>
 								<div class="d-flex align-items-center my-4">

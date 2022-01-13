@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="../inc/top_host.jsp"%>
+<%@include file="../inc/new_top_host.jsp"%>
 
 <section style="margin-top: 150px">
 	<div class="container">
@@ -86,7 +86,7 @@
 														class="far fa-calendar-alt">&nbsp;시작날짜</i></span>
 												</div>
 												<input class="form-control" placeholder="Start date" 
-													type="text" value="<fmt:formatDate value='${map["C_REGDATE"] }'  pattern="yyyy-MM-dd" />" name="cStart">
+													type="text" value="${now }" name="cStart">
 											</div>
 										</div>
 									</div>

@@ -36,6 +36,7 @@
 
 <form name="frmRCdetail" method="post" enctype="multipart/form-data">
 	<!-- Hero -->
+
 	<section class="section-header pb-7 bg-primary text-white">
 		<input type="text" name="groupNo" value="${vo.groupNo}" /> <input
 			type="text" name="step" value="${vo.step }" /> <input type="text"
@@ -70,13 +71,35 @@
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain"
 			type="button"> <input value="불편사항 목록"
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btlist"
-			type="button"> <input value="불편사항 수정"
-			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
-			type="button"> <input value="불편사항 답변"
-			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btreply"
-			type="button"> <input value="불편사항 삭제"
-			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
 			type="button">
+		<c:if test="${!empty sessionScope.adId }">
+			<input value="불편사항 답변" class="btn mb-2 mr-2 btn-primary animate-up-2"
+				id="btreply" type="button">
+		</c:if>
+		<c:choose>
+			<c:when test="${!empty sessionScope.adId }">
+				<input value="불편사항 수정"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
+					type="button">
+				<input value="불편사항 삭제"
+					class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
+					type="button">
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${vo.step gt 0}">
+					</c:when>
+					<c:otherwise>
+						<input value="불편사항 수정"
+							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btupdate"
+							type="button">
+						<input value="불편사항 삭제"
+							class="btn mb-2 mr-2 btn-primary animate-up-2" id="btdelete"
+							type="button">
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </form>
 </main>

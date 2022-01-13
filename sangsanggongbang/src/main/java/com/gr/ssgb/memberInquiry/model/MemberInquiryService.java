@@ -22,4 +22,6 @@ public interface MemberInquiryService {
 	int deleteBan(BanVO bVo);
 	
 	Boolean checkBan(String mId);
+	
+	List<Map<String, Object>> classUser(String hId);
 }

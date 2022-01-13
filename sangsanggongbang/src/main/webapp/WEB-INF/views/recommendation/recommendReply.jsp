@@ -39,22 +39,22 @@
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 <!-- 유효성 검사 -->
 <script type="text/javascript">
-	$(function(){
-		$('form[name=frmRCwrite]').submit(function(){
-			$('.infobox').each(function(idx, item){
-				if($(this).val().length<1){
+	$(function() {
+		$('form[name=frmRCwrite]').submit(function() {
+			$('.infobox').each(function(idx, item) {
+				if ($(this).val().length < 1) {
 					alert($(this).prev().html() + "을(를) 입력하세요");
 					$(this).focus();
 					event.preventDefault();
-					return false;  //each 탈출
+					return false; //each 탈출
 				}
 			});
 		});
-		
-		$('#btList').click(function(){
-			location.href="<c:url value='/recommendation/recommendList'/>";	
+
+		$('#btList').click(function() {
+			location.href = "<c:url value='/recommendation/recommendList'/>";
 		});
-		
+
 	});
 </script>
 <!-- 유효성 검사 -->
@@ -63,7 +63,8 @@
 		<div class="card-body p-4">
 			<form name="frmRCwrite" method="post" enctype="multipart/form-data"
 				action="<c:url value='/recommendation/recommendReply'/> ">
-
+					<input type="text" name="mId" value="${vo.mId }">
+					<input type="text" name="hId" value="${vo.hId }">
 				<div class="row">
 					<div class="col-lg-12 mb-5">
 						<input type="hidden" name="flag"<%-- <c:choose>
@@ -100,10 +101,10 @@
 						type="submit"> <input value="목록"
 						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
 				</div>
-				<input type="text" name="groupNo" value="${vo.groupNo}" />
-				<input type="text" name="step" value="${vo.step }" />
-				<input type="text" name="sortNo" value="${vo.sortNo }" />
-				
+				<input type="text" name="groupNo" value="${vo.groupNo}" /> <input
+					type="text" name="step" value="${vo.step }" /> <input type="text"
+					name="sortNo" value="${vo.sortNo }" />
+
 			</form>
 		</div>
 	</div>

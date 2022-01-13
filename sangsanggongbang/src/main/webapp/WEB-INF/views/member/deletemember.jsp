@@ -94,12 +94,11 @@ var InputImage =
             <h2 class="h5 font-weight-normal text-center mt-3 mb-0">${vo.mNickname}</h2>
             <div class="list-group dashboard-menu list-group-sm mt-4">
                <div class="list-group dashboard-menu list-group-sm mt-4">
-               <a href="<c:url value='/dashboard/user/payment/myAccount'/>" class="d-flex list-group-item list-group-item-action">내 정보조회 <span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/memberEditChkPwd'/>" class="d-flex list-group-item list-group-item-action">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/memberEdit'/>" class="d-flex list-group-item list-group-item-action">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="d-flex list-group-item list-group-item-action">환불내역조회<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/interestClass'/>" class="d-flex list-group-item list-group-item-action active">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/memberEditChkPwd2'/>" class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/interestClass'/>" class="d-flex list-group-item list-group-item-action ">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/memberEditChkPwd2'/>" class="d-flex list-group-item list-group-item-action active border-0">회원탈퇴<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
             </div>
             </div>
         </div>
@@ -110,8 +109,7 @@ var InputImage =
         <div class="card-body">
             <div class="row align-items-center">
                 <div class="col-10 d-flex">
-                    <a href="<c:url value='/dashboard/user/payment/myAccount'/>" class="list-group-item list-group-item-action border-0 ">내 정보조회</a>
-                    <a href="<c:url value='/member/memberEditChkPwd'/>" class="list-group-item list-group-item-action border-0 ">회원정보 수정</a>
+                    <a href="<c:url value='/member/memberEdit'/>" class="list-group-item list-group-item-action border-0 ">회원정보 수정</a>
                     <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="list-group-item list-group-item-action border-0   ">내 결제내역</a>
                     <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-none d-sm-block border-0 ">환불내역조회</a>
                     <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
@@ -127,7 +125,7 @@ var InputImage =
                         <div class="dropdown-menu">
                             <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-sm-none border-0 ">환불내역조회</a>
                             <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-md-none border-0 active">내 관심클래스</a>
-                            <a href="<c:url value='/member/memberEditChkPwd2'/>" class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
+                            <a href="<c:url value='/member/memberEditChkPwd2'/>" class="list-group-item list-group-item-action border-0 active ">회원탈퇴</a>
                         </div>
                     </div>
                 </div>
@@ -141,99 +139,22 @@ var InputImage =
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
-								<form name="frmList">
-									<table class="table table-hover" style="font-size: 14px;">
+								<form name="frmDelete" method="post" action="<c:url value='/member/deletemember'/>">
 
 
-										<c:if test="${empty interest }">
-											<h3 class="h4 mb-5">
-												늘찬님 환영합니다~! ⸜(*'ᗜ'*)⸝ &nbsp;<br>아직 관심등록 한 클래스가 없네요
-											</h3>
-											<h4>
-												<a href="<c:url value='/index'/> "> ➯메인으로 가기</a>
-											</h4>
-										</c:if>
-										<c:if test="${!empty interest }">
-											<thead>
-												<tr>
-													<th scope="col">클래스이름</th>
-													<th scope="col">카테고리</th>
-													<th scope="col">일자</th>
-													<th scope="col">시간</th>
-													<th scope="col">가격</th>
-													<th scope="col">인원</th>
-													<th scope="col">확정인원</th>
-													<th scope="col">종료여부</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- 이벤트 내용반복 -->
-												<c:forEach var="map" items="${classlist}">
-													<tr>
-														<td><a
-															href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">
-																<div class="d-flex align-items-center">${map["C_NAME"] }</div>
-														</a></td>
-														<td>${map["CATEGORY_NAME"] }</td>
-														<td><fmt:formatDate value="${map['C_START_TIME'] }"
-																pattern="yyyy/MM/dd" /></td>
-														<td>${map["C_TIME"] }시</td>
-														<td><fmt:formatNumber value="${map['C_PRICE'] }"
-																pattern="#,###" />원</td>
-														<td>${map["PPNUM"] }</td>
-														<td>${map["FPNUM"] }</td>
-														<td>${map["END_FLAG"] }</td>
-													</tr>
-
-												</c:forEach>
-										</c:if>
-										</tbody>
-									</table>
+									<h3 class="h4 mb-5">
+										${memberVo.mNickname }&nbsp;늘찬님, 너무 아쉬워요<br>
+										정말로 탈퇴 하실건가요?
+									</h3>
+									<h4>더 나은 상상공방이 되도록 노력할게요٩( *˙0˙*)✧ <br>
+										<a href="<c:url value='/index'/> "> ➯ 메인으로 돌아가기</a>
+									</h4>
+									<br>
+									<input id="delete" type="submit" style="border:none;background-color:transparent;'"
+										value="➯ 탈퇴할래요 ε٩(๑> ₃ <)۶з"
+									/>
 
 
-									<div class="row">
-										<div class="col-lg-12 mb-5">
-											<div class="col mt-3 d-flex justify-content-center">
-												<div style="text-align: center;">
-													<nav aria-label="Page navigation example">
-														<br>
-														<ul class="pagination">
-															<!-- 이전블럭 -->
-															<c:if test="${pagingInfo.firstPage>1 }">
-																<li class="page-item"><a class="page-link"
-																	href="<c:url value='/member/interestClass?currentPage=${pagingInfo.firstPage -1 }'/> ">
-																		<i class="fas fa-angle-double-left"></i>
-																</a></li>
-															</c:if>
-															<!-- 페이징처리시작 -->
-															<c:forEach var="i" begin="${pagingInfo.firstPage }"
-																end="${pagingInfo.lastPage }">
-																<c:if test="${i==pagingInfo.currentPage }">
-																	<li class="page-item"><a class="page-link"
-																		style="background-color: #9FB9AE; color: #ffffff;"
-																		href="<c:url value='/member/interestClass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-																	</li>
-																</c:if>
-																<c:if test="${i!=pagingInfo.currentPage }">
-																	<li class="page-item"><a class="page-link"
-																		href="<c:url value='/member/interestClass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-																	</li>
-																</c:if>
-															</c:forEach>
-															<!-- 다음블럭으로 이동 -->
-															<c:if
-																test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-																<li class="page-item"><a class="page-link"
-																	href="<c:url value='/member/interestClass?currentPage=${pagingInfo.lastPage +1 }'/> ">
-																		<i class="fas fa-angle-double-right"></i>
-																</a></li>
-															</c:if>
-														</ul>
-													</nav>
-												</div>
-											</div>
-										</div>
-									</div>
 								</form>
 							</div>
 						</div>

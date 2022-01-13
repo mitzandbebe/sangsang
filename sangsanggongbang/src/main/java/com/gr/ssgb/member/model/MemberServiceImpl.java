@@ -116,5 +116,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectConcern(mNo);
 
 	}
+	@Override
+	public int deleteMember(int mNo) {
+		return memberDao.deleteMember(mNo);
+	}
 	
 }

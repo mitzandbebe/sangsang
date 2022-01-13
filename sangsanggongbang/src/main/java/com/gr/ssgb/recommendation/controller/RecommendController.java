@@ -263,6 +263,7 @@ public class RecommendController {
 		int cnt=recommendationService.reply(vo);
 		logger.info("답변하기 결과 cnt={}", cnt);
 		
-		return "/recommendation/recommendReply";
+		
+		return "redirect:/recommendation/recommendList";
 	}
 }

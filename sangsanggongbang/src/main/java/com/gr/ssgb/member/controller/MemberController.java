@@ -37,6 +37,7 @@ import com.gr.ssgb.member.model.MailVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.member.model.PaymentVO;
+import com.gr.ssgb.note.model.NoteService;
 
 
 @Controller
@@ -48,13 +49,17 @@ public class MemberController {
 	private final FileUploadUtil fileUploadUtil;
 	private MailService mailService;
 	private HostClassService hostClassService;
+	private NoteService noteService;
 	
 	@Autowired
-	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService,HostClassService hostClassService) {
+	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, 
+			MailService mailService,HostClassService hostClassService,
+			NoteService noteService) {
 		this.memberService = memberService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.mailService = mailService;
 		this.hostClassService = hostClassService;
+		this.noteService = noteService;
 	}
 	
 	
@@ -660,5 +665,56 @@ public class MemberController {
 		return cnt;
 	}
 	
-	 
+	@GetMapping("member/deletemember")
+	public String deleteMember_get(@ModelAttribute MemberVO memberVo,HttpSession session,Model model) {
+		logger.info("회원탈퇴뷰");
+		
+		String mId=(String) session.getAttribute("mId");
+		memberVo= memberService.selectMemberById(mId);
+		
+		model.addAttribute("memberVo",memberVo);
+		return "member/deletemember";
+	} 
+	
+	@PostMapping("member/deletemember")
+	public String deleteMember_post( HttpSession session,Model model) {
+		logger.info("회원탈퇴실행");
+		
+		String mId=(String) session.getAttribute("mId");
+		int mNo= memberService.selectMno(mId);
+		
+		//멤버삭제 -> 동시에 concern 관심클래스 목록도 삭제됨
+		int cnt1=memberService.deleteMember(mNo);
+		
+		session.invalidate();
+		
+		
+		return "index";
+	} 
+	
+	@GetMapping("member/memberEditChkPwd2")
+	public String memberEditChkPwd2(HttpSession session, Model model) {
+		String mId=(String)session.getAttribute("mId");
+		MemberVO vo = memberService.selectMemberById(mId);
+		
+		model.addAttribute("vo", vo);
+		logger.info("회원정보 삭제 전 비밀번호 확인화면");
+		
+		return "member/memberEditChkPwd2";
+	}
+	
+	@PostMapping("member/memberEditChkPwd2")
+	public String memberEditChkPwd2_post(@ModelAttribute MemberVO vo, Model model) {
+		logger.info("회원정보 삭제 전 비밀번호 확인처리");
+		String msg = "비밀번호를 확인해주세요.", url="/member/memberEditChkPwd2";
+		int result=memberService.checkIdPwd(vo.getmId(), vo.getPwd());
+		logger.info("아이디 비밀번호 체크 결과, result={}",result);
+		if(result==MemberService.LOGIN_OK){
+			msg="비밀번호 확인이 완료되었습니다.";
+			url= "/member/deletemember";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
 }
