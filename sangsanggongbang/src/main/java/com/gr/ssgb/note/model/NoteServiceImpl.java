@@ -34,35 +34,39 @@ public class NoteServiceImpl implements NoteService {
 	public int sendNote(NoteVO noteVo) {
 		return noteDAO.sendNote(noteVo);
 	}
-
+	//멤버용
 	@Override
-	public List<Map<String, Object>> selectNoteView(NoteVO vo) {
+	public List<Map<String, Object>> selectNoteViewM(NoteVO vo) {
 		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
 		String nickname = mVo.getmNickname();
 		vo.setrNickname(nickname);
-		List<Map<String, Object>> list = noteDAO.selectNoteView(vo);
+		List<Map<String, Object>> list = noteDAO.selectNoteViewM(vo);
 		return list;
 	}
 
 	@Override
-	public List<Map<String, Object>> selectNoteBoxView(NoteVO vo) {
+	public List<Map<String, Object>> selectNoteBoxViewM(NoteVO vo) {
 		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
 		String nickname = mVo.getmNickname();
 		vo.setrNickname(nickname);
-		List<Map<String, Object>> list = noteDAO.selectNoteBoxView(vo);
+		List<Map<String, Object>> list = noteDAO.selectNoteBoxViewM(vo);
 		return list;
 	}
 
 	@Override
-	public int selectTotalNoteRecord(NoteVO vo) {
-		return noteDAO.selectTotalNoteRecord(vo);
+	public int selectTotalNoteRecordM(NoteVO vo) {
+		return noteDAO.selectTotalNoteRecordM(vo);
 	}
 
 	@Override
-	public int selectTotalNoteBoxRecord(NoteVO vo) {
-		return noteDAO.selectTotalNoteBoxRecord(vo);
+	public int selectTotalNoteBoxRecordM(NoteVO vo) {
+		return noteDAO.selectTotalNoteBoxRecordM(vo);
 	}
-
+	
+	//호스트용
+	
+	
+	
 	public int deleteNote(int[] noteNo) {
 		return noteDAO.deleteNote(noteNo);
 	}
