@@ -2,10 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../inc/new_top_admin.jsp"%>
+
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
 <style>
-
-
 a.tip:hover {
 	position: relative
 }
@@ -15,18 +27,18 @@ a.tip span {
 }
 
 a.tip:hover span {
-	border:  1px solid;
+	border: 1px solid;
 	padding: 5px 20px 5px 5px;
 	display: block;
 	z-index: 100;
-	 background: url(../images/status-info.png) #f0f0f0 no-repeat 100% 5%; 
+	background: url(../images/status-info.png) #f0f0f0 no-repeat 100% 5%;
 	left: 0px;
 	margin-left: 40px;
 	width: 250px;
 	position: absolute;
 	top: 10px;
 	text-decoration: none;
-	color:black;
+	color: black;
 }
 </style>
 <br>
@@ -68,7 +80,7 @@ a.tip:hover span {
 								</td>
 								<td>
 									<div class="d-flex align-items-center">
-										<a href="#" class="tip" style="color:black;"> <span>${map['BC'] }</span>${map['BCS'] }
+										<a href="#" class="tip" style="color: black;"> <span>${map['BC'] }</span>${map['BCS'] }
 										</a>
 									</div>
 								</td>
@@ -146,7 +158,20 @@ a.tip:hover span {
 		</div>
 	</div>
 </div>
-<%@ include file="../inc/bottom_admin.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>
 
 <script type="text/javascript">
 	$(function() {

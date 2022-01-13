@@ -1,20 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:choose>
-    <c:when test="${!empty sessionScope.hId }">
-        <%@ include file="../inc/new_top_host.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.mId }">
-        <%@ include file="../inc/new_top_user.jsp"%>
-    </c:when>
-    <c:when test="${!empty sessionScope.adId }">
-        <%@ include file="../inc/new_top_admin.jsp"%>
-    </c:when>
-    <c:otherwise>
-        <%@ include file="../inc/top.jsp"%>
-    </c:otherwise>
-</c:choose>
+<%@ include file="../inc/new_top_admin.jsp"%>
+    
 <script type="text/javascript" src="<c:url value='/resources/assets/js/jquery-3.6.0.min.js'/>"></script>
 
 
@@ -175,6 +163,12 @@
 		    </p>
 		</figure>
     </section>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>    
 <script type="text/javascript">
 $(function(){
 	function rangeDate(term){

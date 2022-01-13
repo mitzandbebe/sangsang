@@ -272,7 +272,7 @@
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a
 						style="position: relative; width: 100px;"
-						href="<c:url value='note/noteList?mId=${sessionScope.hId }'/>">
+						href="<c:url value='note/noteList?hId=${sessionScope.hId }'/>">
 						<img id="letter" width="36px"
 						src="<c:url value='/resources/assets/img/logo/letter2_host.png'/>">
 						<span id="span1"

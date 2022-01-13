@@ -93,10 +93,10 @@ public class NoteController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("vo={}", vo);
 
-		List<Map<String, Object>> list = noteService.selectNoteView(vo);
+		List<Map<String, Object>> list = noteService.selectNoteViewM(vo);
 		logger.info("쪽지 총 개수 list.size={}", list.size());
 
-		int totalRecord = noteService.selectTotalNoteRecord(vo);
+		int totalRecord = noteService.selectTotalNoteRecordM(vo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
@@ -122,10 +122,10 @@ public class NoteController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("vo={}", vo);
 
-		List<Map<String, Object>> list = noteService.selectNoteBoxView(vo);
+		List<Map<String, Object>> list = noteService.selectNoteBoxViewM(vo);
 		logger.info("쪽지보관함 총 개수 list.size={}", list.size());
 
-		int totalRecord = noteService.selectTotalNoteBoxRecord(vo);
+		int totalRecord = noteService.selectTotalNoteBoxRecordM(vo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);

@@ -144,22 +144,32 @@
 								<div class="col-auto px-0">
 									<div class="list-group list-group-flush">
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
+										<a href="<c:url value='/memberInquiry/memberList'/>" 
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i
 												class="fas fa-file-alt"></i></span> -->
 											<div class="ml-4">
-												<span class="text-dark d-block">user</span>
+												<span class="text-dark d-block">늘찬 조회</span>
 												<!-- <span class="small">Examples and guides</span> -->
 											</div>
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
+										<a href="<c:url value='/memberInquiry/hostList'/>" 
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-primary"><i
 												class="fas fa-microphone-alt"></i></span> -->
 											<div class="ml-4">
-												<span class="text-dark d-block">host</span>
+												<span class="text-dark d-block">늘솜 조회</span>
+												<!-- <span class="small">Looking for answers?</span> -->
+											</div>
+										</a>
+										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
+										<a href="<c:url value='/memberInquiry/banList'/>" 
+											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
+											<!-- <span class="icon icon-md icon-primary"><i
+												class="fas fa-microphone-alt"></i></span> -->
+											<div class="ml-4">
+												<span class="text-dark d-block">참여제한자 조회</span>
 												<!-- <span class="small">Looking for answers?</span> -->
 											</div>
 										</a>
@@ -276,10 +286,10 @@
 										<ul class="list-style-none mb-4">
 											<!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
+												href="${pageContext.request.contextPath }/notice/noticeList">공지사항 목록</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
+												href="${pageContext.request.contextPath }/notice/noticeWrite">공지사항 작성</a>
 											</li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
 												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
@@ -328,12 +338,12 @@
 								<div class="col-auto px-0">
 									<div class="list-group list-group-flush">
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
+										<a href="<c:url value='/mail/mailSend'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i
 												class="fas fa-file-alt"></i></span> -->
 											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
+												<span class="text-dark d-block">메일작성</span>
 												<!-- <span class="small">Examples and guides</span> -->
 											</div>
 										</a>

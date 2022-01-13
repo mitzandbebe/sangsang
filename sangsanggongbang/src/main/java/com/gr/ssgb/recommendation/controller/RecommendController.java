@@ -41,26 +41,26 @@ public class RecommendController {
 
 	
 	@GetMapping("/recommendWrite")
-	public String recommendationWrite() {
-		logger.info("불편사항 글 작성");
-		return "/recommendation/recommendWrite";
-	}
+	   public String recommendationWrite() {
+	      logger.info("불편사항 글 작성");
+	      return "/recommendation/recommendWrite";
+	   }
 
-	@PostMapping("/recommendWrite")
-	public String recommendationWrite(@ModelAttribute RecommendationVO vo, Model model) {
-		logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
+	   @PostMapping("/recommendWrite")
+	   public String recommendationWrite(@ModelAttribute RecommendationVO vo, Model model) {
+	      logger.info("불편사항 글 작성 처리, 불편사항 파라미터 vo={}", vo);
 
-		int cnt = recommendationService.insertRecommendation(vo);
-		logger.info("불편사항 작성 성공여부 cnt={}", cnt);
-		String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendList";
-		if (cnt > 0) {
-			msg = "불편사항 작성에 성공했습니다";
-		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
+	      int cnt = recommendationService.insertRecommendation(vo);
+	      logger.info("불편사항 작성 성공여부 cnt={}", cnt);
+	      String msg = "불편사항 작성에 실패했습니다", url = "/recommendation/recommendList";
+	      if (cnt > 0) {
+	         msg = "불편사항 작성에 성공했습니다";
+	      }
+	      model.addAttribute("msg", msg);
+	      model.addAttribute("url", url);
 
-		return "common/message";
-	}
+	      return "common/message";
+	   }
 	
 	/*
 	 * @GetMapping("/host/hostRecommendWrite") public String
@@ -122,6 +122,7 @@ public class RecommendController {
 		String adId=(String) session.getAttribute("adId");
 		String hId=(String) session.getAttribute("hId");
 		recommendationVo.sethId(hId);
+	
 		
 		logger.info("recommendationVo={}",recommendationVo);
 //		List<RecommendationVO> list = recommendationService.selectAllRecommendation(searchVo);
@@ -133,9 +134,14 @@ public class RecommendController {
 		} else if (adId!=null && !adId.isEmpty()) {
 			list = recommendationService.selectAllRecommendation(recommendationVo);
 			totalRecord = recommendationService.selectTotalRecord(recommendationVo);
-		} else { //비회원은 멤버처럼 나오게
+		} else if (mId!=null && !mId.isEmpty()) {
 			list = recommendationService.selectAllMemberRecommendation(recommendationVo);
-			totalRecord = recommendationService.selectTotalMemberRecord(recommendationVo);
+			totalRecord = recommendationService.selectTotalRecord(recommendationVo);
+		} else {
+			model.addAttribute("msg", "먼저 로그인을 해주세요!");
+			model.addAttribute("url", "/index");
+
+			return "/common/message";
 		}
 		
 		logger.info("전체조회 결과 list.size={}", list.size());

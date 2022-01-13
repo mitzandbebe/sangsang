@@ -445,34 +445,76 @@ public class HostController {
 		return "host/hostChart";
 	}
 	@RequestMapping("/hostAccount")
-	   public String myAccount(HttpSession session, Model model) {
-	      logger.info("호스트 정보 조회화면");
-	      
-	      String hId = (String)session.getAttribute("hId");
-	      HostVO vo = hostService.selectHostById(hId);
-	      int classCnt=  hostClassService.selectClassCnt(vo.gethNo());
-	      
-	      String hGrade = "silver";
-	      vo.sethGrade(hGrade);
-	      int cnt = 0;
-	      if(classCnt > 5 && classCnt <= 10) {
-	    	 hGrade = "gold";
-	         vo.sethGrade(hGrade);
-	         cnt=hostService.updateHGrade(vo);
-	      }else if(classCnt > 10 && classCnt <= 17) {
-	    	 hGrade = "platinum";
-	    	 vo.sethGrade(hGrade);
-	         cnt=hostService.updateHGrade(vo);
-	      }else if(classCnt > 5 && classCnt <= 10) {
-	    	 hGrade = "diamond";
-	    	 vo.sethGrade(hGrade);
-	         cnt=hostService.updateHGrade(vo);
-	      }
-	      
-	      model.addAttribute("vo", vo);
-	      model.addAttribute("classCnt", classCnt);
-	      
-	      return "host/hostAccount";
-	      
-	   }
+	public String myAccount(HttpSession session, Model model) {
+		logger.info("호스트 정보 조회화면");
+
+		String hId = (String)session.getAttribute("hId");
+		HostVO vo = hostService.selectHostById(hId);
+		int classCnt=  hostClassService.selectClassCnt(vo.gethNo());
+
+		String hGrade = "silver";
+		vo.sethGrade(hGrade);
+		int cnt = 0;
+		if(classCnt > 5 && classCnt <= 10) {
+			hGrade = "gold";
+			vo.sethGrade(hGrade);
+			cnt=hostService.updateHGrade(vo);
+		}else if(classCnt > 10 && classCnt <= 17) {
+			hGrade = "platinum";
+			vo.sethGrade(hGrade);
+			cnt=hostService.updateHGrade(vo);
+		}else if(classCnt > 5 && classCnt <= 10) {
+			hGrade = "diamond";
+			vo.sethGrade(hGrade);
+			cnt=hostService.updateHGrade(vo);
+		}
+		model.addAttribute("vo", vo);
+		model.addAttribute("classCnt", classCnt);
+		return "host/hostAccount";
+	}
+	@GetMapping("/hostEditChkPwd2")
+	public String hostEditChkPwd2_get(HttpSession session, Model model) {
+		logger.info("비밀번호 확인화면");
+		
+		String hId = (String)session.getAttribute("hId");
+		
+		HostVO vo = hostService.selectHostById(hId);
+		int cnt = hostService.selectUndoneClass(vo.gethNo());
+		logger.info("미종료 클래스 건수 cnt={}", cnt);
+		
+		model.addAttribute("cnt", cnt);
+		
+		return "host/hostEditChkPwd2";
+		
+	}
+	@PostMapping("/hostEditChkPwd2")
+	public String hostEditChkPwd2_post(@ModelAttribute HostVO vo, Model model) {
+		logger.info("회원탈퇴 수정 전 비밀번호 확인처리");
+		String msg = "비밀번호가 일치하지 않습니다.", url="/host/hostEditChkPwd2";
+		int result=hostService.checkIdPwd(vo.gethId(), vo.gethPwd());
+		logger.info("아이디 비밀번호 체크 결과, result={}",result);
+		if(result==HostService.LOGIN_OK){
+			msg="비밀번호 확인이 완료되었습니다.";
+			url= "/host/deleteHost";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+		
+	}
+	@PostMapping("/deleteHost")
+	public String hostDelete(@ModelAttribute HostVO vo, Model model) {
+		logger.info("회원탈퇴 처리");
+		int hNo = hostService.selectHostNo(vo.gethId());
+		int cnt = hostService.deleteHost(hNo);
+		String msg="회원탈퇴에 실패하였습니다.", url="/host/deleteHost";
+		if(cnt > 0) {
+			msg="회원탈퇴되셨습니다. 그동안 이용해주셔서 감사합니다.";
+			url = "/index";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+		
+	}
 }

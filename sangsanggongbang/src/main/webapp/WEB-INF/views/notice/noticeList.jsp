@@ -6,16 +6,16 @@
 
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
-		<%@ include file="../inc/top_host.jsp"%>
+		<%@ include file="../inc/new_top_host.jsp"%>
 	</c:when>
 	<c:when test="${!empty sessionScope.mId }">
-		<%@ include file="../inc/top.jsp"%>
+		<%@ include file="../inc/new_top_user.jsp"%>
 	</c:when>
 	<c:when test="${!empty sessionScope.adId }">
-		<%@ include file="../inc/top_admin.jsp"%>
+		<%@ include file="../inc/new_top_admin.jsp"%>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="../inc/top.jsp"%>
+		<%@ include file="../inc/new_top_user.jsp"%>
 	</c:otherwise>
 </c:choose>
 
@@ -32,9 +32,6 @@
 				<h1 class="display-2 mb-4">공지사항</h1>
 			</div>
 		</div>
-	</div>
-	<div>
-		<p>관리자 or 호스트로 로그인 했을때만 나타나게</p>
 	</div>
 	<br>
 </section>
