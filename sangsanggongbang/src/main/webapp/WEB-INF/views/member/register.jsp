@@ -214,7 +214,7 @@
 														document.getElementById('mId').value=kakao_account.email;
 														document.getElementById('bday').value=kakao_account.birthday;
 														document.getElementById('mNickname').value=kakao_account.nickname;
-														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
+														
 														document.getElementById('password').value="temppassword";
 														document.getElementById('password_confirm').value="temppassword";
 														document.getElementById('snsCheck').value="y";
