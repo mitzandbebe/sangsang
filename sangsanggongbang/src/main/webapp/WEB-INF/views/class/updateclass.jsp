@@ -35,7 +35,7 @@
 										<div class="form-group">
 											<label for="class_name">클래스 이름</label> <input
 												class="form-control" id="cName" type="text"
-												value="${map['C_NAME'] }" name="cName">
+												value="${map['C_NAME'] }" name="cName" required>
 										</div>
 										<div class="invalid-feedback" data-sb-feedback="message:required">클래스이름을 입력하세요</div>
 									</div>
@@ -50,7 +50,7 @@
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="category">클래스 유형</label> <select
-												class="custom-select" id="category" name="CateCode">
+												class="custom-select" id="category" name="CateCode" required>
 												<option disabled="disabled" selected="selected" value="">
 													클래스 유형을 선택해주세요.</option>
 												<c:forEach var="vo" items="${ cate}">
@@ -63,7 +63,7 @@
 										<div class="form-group">
 											<label for="ppnum">클래스 진행인원</label> <input
 												class="form-control" id="number" type="number" min="1"
-												placeholder="인원선택" name="ppnum" value="${map['PPNUM'] }">
+												placeholder="인원선택" name="ppnum" value="${map['PPNUM'] }" required>
 										</div>
 									</div>
 								</div>
@@ -72,7 +72,7 @@
 										<div class="form-group">
 											<label for="class_name">클래스 가격</label> <input
 												class="form-control" id="cprice" type="number" min="0"
-												placeholder="클래스가격을 입력해주세요." name="cPrice" value="${map['C_PRICE'] }">
+												placeholder="클래스가격을 입력해주세요." name="cPrice" value="${map['C_PRICE'] }" required>
 										</div>
 									</div>
 								</div>
@@ -85,15 +85,15 @@
 													<span class="input-group-text"> <i
 														class="far fa-calendar-alt">&nbsp;시작날짜</i></span>
 												</div>
-												<input class="form-control" placeholder="Start date" 
-													type="text" value="${now }" name="cStart">
+												<input class="form-control" placeholder="클래스 날짜를 선택하세요" 
+													type="text" value="${now }" name="cStart" required>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 											<label for="category">클래스 시간</label> <select
-												class="custom-select" id="cTime" name="cTime">
+												class="custom-select" id="cTime" name="cTime" required>
 												<option disabled="disabled" selected="selected" value="">
 													시간을 선택해주세요</option>
 													<option value="1">1:00</option>
@@ -216,7 +216,7 @@
 
 								</div>
 								<div class="mt-3">
-									<button type="submit" class="btn btn-primary">수정하기</button>
+									<button type="button" class="btn btn-primary"  onclick="check();">수정하기</button>
 								</div>
 								</c:if>
 							</c:forEach>
@@ -243,6 +243,18 @@
 
 
 <script type="text/javascript">
+
+function check(){
+	 if ($('#zipcode').val().length<1){
+        alert('우편번호를 검색해주세요.');
+        $('#zipcode').focus();
+        //event.preventDefault();
+    	return false;
+	 }
+	 
+	 document.frmClass.submit(); // 서브밋으로보내기
+};
+
 
 $(document).ready(function()
 		// input file 파일 첨부시 fileCheck 함수 실행
