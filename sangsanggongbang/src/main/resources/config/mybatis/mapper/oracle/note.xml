@@ -36,7 +36,7 @@
 		<result property="recReadFlag" column="REC_READFLAG" />
 	</resultMap> -->
 
-	<select id="selectNoteView" parameterType="noteVo" resultType="noteVo">
+	<select id="selectNoteViewM" parameterType="noteVo" resultType="noteVo"> <!-- 멤버용 -->
 		select *
 		from
 		(
@@ -56,7 +56,8 @@
 		]]>
 		
 	</select>
-	<select id="selectNoteBoxView" parameterType="noteVo" resultType="noteVo">
+
+	<select id="selectNoteBoxViewM" parameterType="noteVo" resultType="noteVo">
 		select *
 		from
 		(
@@ -76,13 +77,13 @@
 		]]>
 	</select>
 
-	<select id="selectTotalNoteRecord" parameterType="noteVo"
+	<select id="selectTotalNoteRecordM" parameterType="noteVo"
 		resultType="int">
 		select count(*) from noteview
 		where r_nickname=#{rNickname} and rec_impflag='N'
 	</select>
 	
-	<select id="selectTotalNoteBoxRecord" parameterType="noteVo"
+	<select id="selectTotalNoteBoxRecordM" parameterType="noteVo"
 		resultType="int">
 		select count(*) from noteview
 		where r_nickname=#{rNickname} and rec_impflag='Y'

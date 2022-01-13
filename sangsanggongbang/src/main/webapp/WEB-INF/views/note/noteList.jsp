@@ -37,8 +37,6 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
 				<h1 class="display-2 mb-3">쪽지함</h1>
-				<p class="lead">One place for our legal documentation and
-					policies</p>
 			</div>
 		</div>
 	</div>
@@ -128,7 +126,7 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" value="${param.mId }" id="id" name="mId">
+	<input type="hidden" value="${param.mId }" id="id" name="mId">
 </form>
 </main>
 <script type="text/javascript">

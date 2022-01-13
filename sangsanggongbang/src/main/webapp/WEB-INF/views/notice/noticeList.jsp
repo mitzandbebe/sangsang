@@ -33,9 +33,6 @@
 			</div>
 		</div>
 	</div>
-	<div>
-		<p>관리자 or 호스트로 로그인 했을때만 나타나게</p>
-	</div>
 	<br>
 </section>
 <section class="section section-lg line-bottom-light"

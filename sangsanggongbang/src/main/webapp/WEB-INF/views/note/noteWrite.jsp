@@ -16,7 +16,7 @@
 		<%@ include file="../inc/new_top_user.jsp"%>
 	</c:otherwise>
 </c:choose>
-top.jsp"%>
+
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script

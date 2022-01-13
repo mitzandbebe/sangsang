@@ -47,9 +47,9 @@
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
-					<a href="<c:url value='/note/noteWrite?mId=${vo.mId }'/>">
+					<a href="<c:url value='/note/noteList?mId=${vo.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-							type="button">쪽지쓰기</button>
+							type="button">쪽지목록</button>
 					</a> <a href="<c:url value='/note/noteBox?mId=${vo.mId }'/>">
 						<button class="btn mb-2 mr-2 btn-success" id="noteBox"
 							type="button">보관함</button>
