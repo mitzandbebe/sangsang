@@ -53,7 +53,7 @@ public class AdminBalancingController {
 		//세션 hId, hNo로 변경해서 받아야함.
 		//String hNo =(String) session.getAttribute("hNo");
 		//int hNo=222;
-		//logger.info("호스트번호 session hNo={}", hNo);
+		//logger.info("어드민번호 session hNo={}", hNo);
 
 		//[1] PaginationInfo 객체 생성 - 계산해줌
 		PaginationInfo pagingInfo = new PaginationInfo();
@@ -115,10 +115,10 @@ public class AdminBalancingController {
     public void excelDownload(@ModelAttribute AdminBalancingVO balancingVo, 
     		HttpServletResponse response, HttpSession session) throws IOException {
 		//로그인세션
-		int hNo=222;
+		//int hNo=222;
 				
 		//값할당
-		balancingVo.sethNo(hNo);
+		//balancingVo.sethNo(hNo);
 		
 		List<AdminBalancingVO> list=balancingService.totalPrice(balancingVo);
 		logger.info("엑셀다운 리스트 결과={}", list.size());
@@ -170,17 +170,17 @@ public class AdminBalancingController {
             cell = row.createCell(3);	//진행일자
             cell.setCellValue(simpleDateFormat.format(list.get(i).getbReqDate()));
             cell = row.createCell(4);	//참여인원
-            cell.setCellValue(list.get(i).getPpnum());
+            cell.setCellValue(list.get(i).getFpnum());
             cell = row.createCell(5);	//클래스단가
             cell.setCellValue(list.get(i).getcPrice());
             cell = row.createCell(6);	//매출액
-            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum());
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getFpnum());
             cell = row.createCell(7);	//수수료
-            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1);
+            cell.setCellValue(list.get(i).getcPrice()*list.get(i).getFpnum()*0.1);
             cell = row.createCell(8);	//정산금액
             cell.setCellValue(
-            		(list.get(i).getcPrice()*list.get(i).getPpnum())
-            		-(list.get(i).getcPrice()*list.get(i).getPpnum()*0.1));
+            		(list.get(i).getcPrice()*list.get(i).getFpnum())
+            		-(list.get(i).getcPrice()*list.get(i).getFpnum()*0.1));
             cell = row.createCell(9);	//정산유무
             cell.setCellValue(list.get(i).getbFlag());
         }
