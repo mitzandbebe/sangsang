@@ -264,7 +264,7 @@
                             </c:if>>
 						</a>
 						<span class="font-weight-bold" style="margin-right: 20px;">${sessionScope.hNickname}님</span>
-						<a href="${pageContext.request.contextPath }/login/logout"
+						<a href="${pageContext.request.contextPath }/host/logout"
 							class="btn btn-md btn-secondary animate-up-2"><i
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
@@ -277,7 +277,7 @@
 						src="<c:url value='/resources/assets/img/logo/letter2_host.png'/>">
 						<span id="span1"
 						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;">24</span>
+						style="top: -10px; right: -5px;"></span>
 					</a>
 					<!--쪽지함 끝-->
 					<!-- 채팅창 -->

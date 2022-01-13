@@ -42,8 +42,8 @@
 			}
 		});
 		
-		$('#termChk3').click(function(){
-			open("<c:url value='/host/terms3'/>", "term3", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
+		$('#terms3').click(function(){
+			open("<c:url value='/member/terms2'/>", "term2", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
 		});
 		
 		$('#additional').submit(function(){

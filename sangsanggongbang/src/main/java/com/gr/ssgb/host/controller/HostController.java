@@ -176,10 +176,13 @@ public class HostController {
 					
 				}else if(result==MemberService.NON_EXIST_ID) {
 					msg="존재하지 않는 아이디입니다.";
+					url="host/hostLogin";
 				}else if(result==MemberService.PWD_DISAGREE){
 					msg="비밀번호가 일치하지 않습니다.";
+					url="host/hostLogin";
 				}else {
 					msg="로그인 실패!";
+					url="host/hostLogin";
 				}
 			}
 		}else {
@@ -503,8 +506,9 @@ public class HostController {
 		
 	}
 	@PostMapping("/deleteHost")
-	public String hostDelete(@ModelAttribute HostVO vo, Model model) {
+	public String hostDelete(@ModelAttribute HostVO vo, Model model, HttpSession session) {
 		logger.info("회원탈퇴 처리");
+		String hId = (String)session.getAttribute("hId");
 		int hNo = hostService.selectHostNo(vo.gethId());
 		int cnt = hostService.deleteHost(hNo);
 		String msg="회원탈퇴에 실패하였습니다.", url="/host/deleteHost";

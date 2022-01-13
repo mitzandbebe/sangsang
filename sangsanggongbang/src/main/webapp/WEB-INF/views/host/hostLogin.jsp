@@ -126,7 +126,7 @@
 														document.getElementById('hId').value=userId;
 														document.getElementById('hPwd').value="temppassword";
 														document.getElementById('h_snsCheck').value="y";
-														document.getElementById('hFilename').value=kakao_account.profile.profile_image_url;
+														
 														document.getElementById('login').submit();
 													}
 												});
