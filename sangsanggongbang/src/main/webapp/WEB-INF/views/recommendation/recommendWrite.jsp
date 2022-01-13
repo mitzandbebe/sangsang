@@ -58,7 +58,7 @@
 						<hr>
 						<div
 							style="display: block; width: 100%; border-bottom: solid 1px gray">
-							<label for="title">제목 : </label> <input type="text" id="title"
+							<label for="title">제목</label> : <input type="text" id="title"
 								name="recoTitle" class="infobox"
 								style="border: none; outline: none;" />
 						</div>
@@ -115,8 +115,8 @@
 	});
 
 	$(function() {
-		$('form[name=frmEwrite]').submit(function() {
-			$('.infobox').each(function(idx, item) {
+		$('form[name=frmRCwrite]').submit(function() {
+			$('#title').each(function(idx, item) {
 				if ($(this).val().length < 1) {
 					alert($(this).prev().html() + "을 입력하세요");
 					$(this).focus();
@@ -126,7 +126,7 @@
 
 			});
 
-			$('#upfile').each(function(idx, item) {
+			$('#content').each(function(idx, item) {
 				if ($(this).val().length < 1) {
 					alert($(this).prev().html() + "을 입력하세요");
 					$(this).focus();
