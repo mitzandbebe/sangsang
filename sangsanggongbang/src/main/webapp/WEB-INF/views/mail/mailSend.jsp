@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
 <section
 	class="section section-header bg-primary overlay-primary text-white pb-11"
 	data-background="../assets/img/team-hero.jpg">
@@ -70,7 +84,20 @@
 			</div>
 	</form>
 </section>
-<%@ include file="../inc/bottom.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>
 <script type="text/javascript">
 	$(function(){
 		$('textarea').keyup(function(e){
