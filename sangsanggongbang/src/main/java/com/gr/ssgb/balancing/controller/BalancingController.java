@@ -28,6 +28,7 @@ import com.gr.ssgb.balancing.model.BalancingVO;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.ExtendSearchVO;
 import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.host.model.HostService;
 
 @Controller
 @RequestMapping("/dashboard/host")
@@ -36,11 +37,13 @@ public class BalancingController {
 	=LoggerFactory.getLogger(BalancingController.class);
 
 	private final BalancingService balancingService;
+	private final HostService hostService;
 
 	//DI - 생성자에 의한 종속객체 주입
 	@Autowired
-	public BalancingController(BalancingService balancingService) {
+	public BalancingController(BalancingService balancingService, HostService hostService) {
 		this.balancingService = balancingService;
+		this.hostService = hostService;
 		logger.info("정산요청목록 생성자주입");
 	}
 
@@ -50,9 +53,10 @@ public class BalancingController {
 		//1. 파라미터 읽어오기 - 출력
 		logger.info("정산목록 목록 페이지, 파라미터 extendSearchVo={}", extendSearchVo);
 		
-		//세션 hId, hNo로 변경해서 받아야함.
-		//String hNo =(String) session.getAttribute("hNo");
-		int hNo=222;
+		//세션 hId나 hNo로 변경해서 받아야함.
+		String hostId =(String)session.getAttribute("hId");
+        int hNo = hostService.selectHostNo(hostId);
+        
 		logger.info("호스트번호 session hNo={}", hNo);
 
 		//[1] PaginationInfo 객체 생성 - 계산해줌
@@ -86,7 +90,10 @@ public class BalancingController {
 	@RequestMapping("/balancing")
 	public String totalprice(@ModelAttribute BalancingVO balancingVo, Model model, HttpSession session) {
 		//로그인세션
-		int hNo=222;
+		String hostId =(String)session.getAttribute("hId");
+        int hNo = hostService.selectHostNo(hostId);
+        
+		logger.info("호스트번호 session hNo={}", hNo);
 		
 		//값할당
 		balancingVo.sethNo(hNo);
@@ -115,7 +122,10 @@ public class BalancingController {
     public void excelDownload(@ModelAttribute BalancingVO balancingVo, 
     		HttpServletResponse response, HttpSession session) throws IOException {
 		//로그인세션
-		int hNo=222;
+		String hostId =(String)session.getAttribute("hId");
+        int hNo = hostService.selectHostNo(hostId);
+        
+		logger.info("호스트번호 session hNo={}", hNo);
 				
 		//값할당
 		balancingVo.sethNo(hNo);
@@ -197,8 +207,6 @@ public class BalancingController {
         wb.write(response.getOutputStream());
         wb.close();
 
-
     }
-
 
 }

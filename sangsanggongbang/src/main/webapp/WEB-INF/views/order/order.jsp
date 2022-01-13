@@ -281,7 +281,6 @@
 						<input type="button" class="btn btn-block btn-primary mt-4"
 							id="apibtn" value="결제하기">
 							
-						<input type="submit" id="wr_submit" value="결제하기2">
 					</div>
 				</form>
 
