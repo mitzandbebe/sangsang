@@ -272,7 +272,7 @@
 						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
 						<span id="span1"
 						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;">24</span>
+						style="top: -10px; right: -5px;"></span>
 					</a>
 					<!--쪽지함 끝-->
 
@@ -283,7 +283,7 @@
 						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">
 						<span id="span2"
 						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;">9</span>
+						style="top: -10px; right: -5px;"></span>
 					</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- 채팅창 끝 -->
 				</div>

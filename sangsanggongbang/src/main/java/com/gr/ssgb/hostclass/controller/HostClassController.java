@@ -248,7 +248,7 @@ public class HostClassController {
 		int cnt;
 		Date startDay = null;
 		int cNo = 0;
-		for(HostClassVO vo: list) {
+		/*for(HostClassVO vo: list) {
 			startDay = vo.getcStartTime();
 			startTime = vo.getcTime();
 			startDay.setHours(startTime);
@@ -262,7 +262,7 @@ public class HostClassController {
 					cnt = hostClassService.updateClassFlag(cNo);
 				}
 			}
-		}
+		}*/
 
 		model.addAttribute("classlist", classlist);
 		model.addAttribute("rlist", rlist);

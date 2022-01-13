@@ -35,14 +35,14 @@
 	
 	<update id="updateAdditionalInfo" parameterType="hostVo">
 		update host set h_name = #{hName}, h_nickname=#{hNickname}, h_phone= #{hPhone}, h_bday= #{hBday},
-		h_zipcode= #{hZipcode}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail},
+		h_zipcode= #{hZipcode},h_account = #{hAccount}, h_bank_name=#{hBankName}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail},
 		h_originalname=#{hOriginalname}, h_filesize=#{hFilesize}, h_filename=#{hFilename}
 		where h_id = #{hId} 
 	</update>
 	
 	<update id="updateAddiWithoutProfile" parameterType="hostVo">
 		update host set h_name = #{hName}, h_nickname=#{hNickname}, h_phone= #{hPhone}, h_bday= #{hBday},
-		h_zipcode= #{hZipcode}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail}
+		h_zipcode= #{hZipcode}, h_address= #{hAddress}, h_ADDRESS_DETAIL= #{hAddressDetail},h_account = #{hAccount}, h_bank_name=#{hBankName}
 		where h_id = #{hId}
 	</update>
 	
