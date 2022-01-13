@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../inc/top.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
+top.jsp"%>
 <script type="text/javascript"
 	src="<c:url value='/resources/ckeditor/ckeditor.js'/> "></script>
 <script
@@ -28,8 +44,9 @@
 	<div class="pattern bottom"></div>
 </section>
 <form method="post" action="<c:url value='/note/noteWrite'/>">
-	<input type="hidden" id="mNickname" name="mNickname" value="${vo.mNickname }">
-	<input type="hidden" id="mId" name="mId" value="${vo.mId }">
+	<input type="hidden" id="mNickname" name="mNickname"
+		value="${vo.mNickname }"> <input type="hidden" id="mId"
+		name="mId" value="${vo.mId }">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
@@ -43,17 +60,17 @@
 									<span>받는사람</span> &nbsp; <input type="checkbox"
 										name="selfWrite" id="selfWrite">내게쓰기 <input
 										type="text" id="sendPeople" name="rNickname"
-										placeholder="닉네임을 입력해주세요" value="" style="width:350px"> <br>
-									<br>
+										placeholder="닉네임을 입력해주세요" value="" style="width: 350px">
+									<br> <br>
 									<textarea rows="10" cols="57" name="noteContent"
 										id="noteContent" style="resize: none"></textarea>
 									<div id="cnt">(0 / 1000)자</div>
 
 									<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 										type="submit">보내기</button>
-								<a href="<c:url value='/note/noteList?mId=${param.mId }'/>"><button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-										type="button">목록</button>
-								</a>
+									<a href="<c:url value='/note/noteList?mId=${param.mId }'/>"><button
+											class="btn mb-2 mr-2 btn-success" id="noteWrite"
+											type="button">목록</button> </a>
 								</div>
 
 								<div
@@ -91,4 +108,17 @@
 		})
 	})
 </script>
-<%@include file="../inc/bottom.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>
