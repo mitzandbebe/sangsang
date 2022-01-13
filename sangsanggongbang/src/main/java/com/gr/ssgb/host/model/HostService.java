@@ -36,4 +36,8 @@ public interface HostService {
 	int selectMyProfit(MonthVO monVo);
 
 	int updateHGrade(HostVO vo);
+
+	int selectUndoneClass(int gethNo);
+
+	int deleteHost(int hNo);
 }

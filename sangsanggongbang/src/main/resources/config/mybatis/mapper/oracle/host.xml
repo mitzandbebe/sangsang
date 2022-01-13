@@ -72,4 +72,21 @@
 	<update id="updateHGrade" parameterType="hostVo">
 		update host set h_grade = #{hGrade} where h_no = #{hNo}
 	</update>
+	
+	<select id="selectUndoneClass" parameterType="string" resultType="int">
+		select count(*) from hostclass where h_no = #{hNo} and end_flag='N'
+	</select>
+	
+	<update id="updateHostDel" parameterType="int">
+		update host set delflag='Y' where h_no = #{hNo}
+	</update>
+	
+	<delete id="deleteBanList" parameterType="int">
+		delete from ban where h_no=#{hNo}
+	</delete>
+	
+	<delete id="deleteBlackList" parameterType="int">
+		delete from blacklist where h_no = #{hNo}
+	</delete>
+	
 </mapper>
