@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.ConcernVO;
 
 public interface HostClassService {
@@ -33,4 +34,6 @@ public interface HostClassService {
 	
 	List<Map<String,Object>> selectClassAllContents2(SearchVO searchVo); //페이징위한거
 	int selectTotalRecord(SearchVO searchVo);
+	int updateClassFlag(int cNo);
+	List<HostClassVO> selectAllHostClasses();
 }

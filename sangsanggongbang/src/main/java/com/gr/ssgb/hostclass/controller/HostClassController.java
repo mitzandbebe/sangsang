@@ -2,6 +2,7 @@ package com.gr.ssgb.hostclass.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -136,7 +137,15 @@ public class HostClassController {
 
 		hostClassVo.setlNo(lno);
 		logger.info("lno={}", lno);
-
+		
+		
+		Date startTime = hostClassVo.getcStartTime();
+		int cTime = hostClassVo.getcTime();
+		startTime.setHours(cTime);
+		hostClassVo.setcStartTime(startTime);
+		
+		
+		
 		int cnt2 = hostClassService.insertClass(hostClassVo);
 		int cno = hostClassService.selectByCNo(hostClassVo);
 		contentsVo.setcNo(cno);
@@ -212,6 +221,7 @@ public class HostClassController {
 		int hNo = hostService.selectHostNo(hId);
 
 		List<Map<String, Object>> classlist = hostClassService.selectClassAllOfHost(hNo);
+		
 		logger.info("호스트별전체 클래스목록 결과, classlist.size={}", classlist.size());
 
 		model.addAttribute("classlist", classlist);
@@ -227,7 +237,28 @@ public class HostClassController {
 		List<ReviewVO> rlist = reviewService.selectAllRate();
 
 		List<Map<String, Object>> classlist = hostClassService.selectClassAllContents();
+		List<HostClassVO> list = hostClassService.selectAllHostClasses();
 		logger.info("전체 클래스목록 결과, classlist.size={}", classlist.size());
+		Date d = new Date();
+		int startTime = 0;
+		int cnt;
+		Date startDay = null;
+		int cNo = 0;
+		for(HostClassVO vo: list) {
+			startDay = vo.getcStartTime();
+			startTime = vo.getcTime();
+			startDay.setHours(startTime);
+			
+			if(d.getTime()-startDay.getTime() > 0) {
+				cNo = vo.getcNo();
+				String endFlag = vo.getEndFlag();
+				if(endFlag.equals("N")) {
+					logger.info("업데이트 된 cNo ={}", cNo);
+					logger.info(startDay.toLocaleString());
+					cnt = hostClassService.updateClassFlag(cNo);
+				}
+			}
+		}
 
 		model.addAttribute("classlist", classlist);
 		model.addAttribute("rlist", rlist);

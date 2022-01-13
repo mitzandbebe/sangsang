@@ -179,6 +179,10 @@
 	<delete id="deleteContents" parameterType="int">
 		delete from C_Contents where c_no=#{cNo}
 	</delete>
+	
+	<select id="selectAllHostClasses" resultType="hostclassVo">
+		select * from hostclass
+	</select>
 
 	
 	
@@ -279,4 +283,8 @@
 		</if>
 
 	</select>
+	
+	<update id="updateClassFlag" parameterType="int">
+		update hostclass set end_flag = 'Y' where c_no = #{cNo}
+	</update>
 </mapper>

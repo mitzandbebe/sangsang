@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.ConcernVO;
 
 @Mapper
@@ -37,4 +38,6 @@ public interface HostClassDAO {
 	int selectClassCnt(int hNo);
 	int selectConcernbyCNo(ConcernVO concernVo);
 	List<HostClassVO> findBySearchClass(HostClassVO hostClassVo);
+	int updateClassFlag(int cNo);
+	List<HostClassVO> selectAllHostClasses();
 }
