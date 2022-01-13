@@ -3,99 +3,6 @@
 <%@ include file="../../../inc/new_top_admin.jsp"%>
 <div class="section section-lg bg-soft">
 	<div class="container">
-<%-- 		<div class="row pt-5 pt-md-0">
-
-			<div class="col-12 col-md-8 d-none d-lg-block">
-				<!-- Navigation -->
-				<div class="card border-light p-2">
-					<div class="card-body p-2">
-						<div class="profile-thumbnail small-thumbnail mx-auto">
-							<c:if test="${!empty sessionScope.hFilename }">
-								<img
-									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
-									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
-									onerror="this.src='${sessionScope.mFilename }'">
-							</c:if>
-							<c:if test="${empty sessionScope.hFilename }">
-								<img src="<c:url value='/resources/assets/img/default.png'/>"
-									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait">
-							</c:if>
-						</div>
-						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
-						<div class="list-group dashboard-menu list-group-sm mt-4">
-							<a href="<c:url value='/host/hostAccount'/>"
-								class="d-flex list-group-item list-group-item-action ">마이페이지
-								<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
-								class="d-flex list-group-item list-group-item-action">회원정보
-								수정<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action ">내 클래스
-								현황<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action ">클래스 이용회원<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
-								class="d-flex list-group-item list-group-item-action active ">정산내역<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="./messages.html"
-								class="d-flex list-group-item list-group-item-action border-0">회원탈퇴<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 d-lg-none">
-				<div class="card bg-white border-light mb-4 mb-lg-5">
-					<div class="card-body">
-						<div class="row align-items-center">
-							<div class="col-10 d-flex">
-								<a href="<c:url value='/host/hostAccount'/>"
-									class="list-group-item list-group-item-action border-0">마이페이지</a>
-								<a href="<c:url value='/host/hostEditChkPwd'/>"
-									class="list-group-item list-group-item-action border-0 ">회원정보</a>
-								<a href="<c:url value='/class/myclass'/>"
-									class="list-group-item list-group-item-action d-none d-sm-block border-0">내 클래스
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스 이용회원</a>
-								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 active">정산내역</a>
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
-							</div>
-							<div class="col-2 d-flex justify-content-center">
-								<div class="btn-group dropleft">
-									<button
-										class="btn btn-link dropdown-toggle dropdown-toggle-split mr-2 m-0 p-0"
-										data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false">
-										<span class="icon icon-sm"> <span
-											class="fas fa-ellipsis-h icon-secondary fa-lg"></span>
-										</span> <span class="sr-only">Toggle Dropdown</span>
-									</button>
-									<div class="dropdown-menu">
-										 <a href="./security.html"
-											class="list-group-item list-group-item-action d-md-none border-0 ">클래스 이용회원</a>
-										<a href="<c:url value='/dashboard/host/balancing'/>"
-											class="list-group-item list-group-item-action border-0 ">정산내역</a>
-										<a href="./messages.html"
-											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> --%>
 
 <div class="col-12 col-lg-8">
 	<div class="row mb-5">
@@ -177,7 +84,7 @@
 						</c:if>
 					</c:if>
 				</c:forEach>
-
+<%-- 
  				전체 ${sumAllPrice }원<br>
 				전체 클래수개수 ${list.size()}<br>
 				미정산 총금액 ${sumFlagNPrice }원<br>
@@ -188,7 +95,7 @@
 				당월 미정산금액 ${sumFlagNmonthPrice}원<br>
 				당월 정산금액 ${sumFlagYmonthPrice}원<br>
 				당월 정산총액 ${sumFlagNmonthPrice+sumFlagYmonthPrice}원
-
+ --%>
 				<!-- Tab Content -->
 				<div class="card">
 					<div class="card-body p-0">
@@ -218,7 +125,7 @@
 													<div class="small mt-2">
 														<!-- <span class="fas fa-angle-up text-success"></span> <span
 															class="fas fa-angle-down text-success"></span> -->
-															<span class="text-success font-weight-bold">미정산내역 포함 / 수수료 10%제외</span>
+															<span class="text-success font-weight-bold">미정산 포함 / 수수료 10%제외</span>
 													</div>
 												</div>
 											</div>
@@ -242,7 +149,7 @@
 													<div class="small mt-2">
 														<!-- <span class="fas fa-angle-up text-success"></span> <span
 															class="fas fa-angle-down text-success"></span>  -->
-															<span class="text-success font-weight-bold">미정산내역 포함 / 수수료 10%제외</span>
+															<span class="text-success font-weight-bold">미정산 포함 / 수수료 10%제외</span>
 													</div>
 												</div>
 											</div>

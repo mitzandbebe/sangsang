@@ -218,7 +218,7 @@
 													<div class="small mt-2">
 														<!-- <span class="fas fa-angle-up text-success"></span> <span
 															class="fas fa-angle-down text-success"></span> -->
-															<span class="text-success font-weight-bold">미정산내역 포함 / 수수료 10%제외</span>
+															<span class="text-success font-weight-bold">미정산 포함 / 수수료 10%제외</span>
 													</div>
 												</div>
 											</div>
@@ -242,7 +242,7 @@
 													<div class="small mt-2">
 														<!-- <span class="fas fa-angle-up text-success"></span> <span
 															class="fas fa-angle-down text-success"></span>  -->
-															<span class="text-success font-weight-bold">미정산내역 포함 / 수수료 10%제외</span>
+															<span class="text-success font-weight-bold">미정산 포함 / 수수료 10%제외</span>
 													</div>
 												</div>
 											</div>

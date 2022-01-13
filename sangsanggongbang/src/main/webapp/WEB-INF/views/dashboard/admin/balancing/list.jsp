@@ -132,7 +132,7 @@ $(function() {
 								<button class="btn btn-sm btn-outline-dark"
 
 									style="font-weight: bold;" name="bNo" id="balsubmit"
-									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산신청</button>
+									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산처리하기</button>
 							</div>
 						</c:if>
 						<c:if test="${vo.bFlag == 'Y' }">
