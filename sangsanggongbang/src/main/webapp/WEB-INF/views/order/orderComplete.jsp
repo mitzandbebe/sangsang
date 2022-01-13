@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jsp" %>
-
-
-<h2></h2>
-<p style="font-size:13pt;font-weight:bold">
-	클래스 신청과 결제가 정상적으로 완료되었습니다
-</p>
+<%@ include file="../inc/new_top_user.jsp"%>
 
 <input type="hidden" value="${oVo.cNo}">
 <input type="hidden" value="${oVo.mId}">
