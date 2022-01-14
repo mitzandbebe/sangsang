@@ -35,10 +35,8 @@
 									<div class="card border-0 p-0 p-md-5">
 										<div class="card-header text-center p-0 pb-5">
 											<h2>관리자 이메일 전송</h2>
-											<p>Cool! Let’s talk about your project</p>
 										</div>
 										<div class="card-body p-0">
-											<form action="#" method="post">
 												<!-- Form -->
 												<div class="form-group">
 													<label for="name">받는사람</label>
@@ -82,7 +80,6 @@
 					</div>
 				</div>
 			</div>
-	</form>
 </section>
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">

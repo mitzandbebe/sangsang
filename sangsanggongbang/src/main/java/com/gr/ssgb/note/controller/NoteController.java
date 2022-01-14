@@ -60,7 +60,7 @@ public class NoteController {
 			return "/common/message";
 		} else {
 			logger.info("여긴");
-			int cnt = noteService.sendNote(vo);
+			int cnt = noteService.sendNoteM(vo);
 			if (cnt > 0) {
 				msg = "쪽지를 성공적으로 보냈습니다";
 				url = "/note/noteList?mId=" + vo.getmId();
