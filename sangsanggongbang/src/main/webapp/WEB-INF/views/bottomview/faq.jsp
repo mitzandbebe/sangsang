@@ -25,8 +25,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8 text-center">
-                        <h1 class="display-2 mb-3">Legal center</h1>
-                        <p class="lead">One place for our legal documentation and policies</p>
+                        <h1 class="display-2 mb-3"><span class="font-weight-bold">자주 묻는 질문</span></h1>
+                        <p class="lead">Frequently asked questions</p>
                     </div>
                 </div>
             </div>
@@ -40,80 +40,96 @@
                         <div class="accordion border-light">
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-what-is-pixel" data-target="#panel-what-is-pixel" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-what-is-pixel">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Terms of Service</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold">
+                                    <span class="font-weight-bold">상상공방(SSGB)이란?</span>
+                                    </span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-what-is-pixel">
                                     <div class="pt-3">
-                                        <p>By accessing and placing an order with Themesberg, you confirm that you are in agreement with and bound by the terms and conditions contained in the Terms Of Use outlined below. These terms apply to the entire website and any email or other type of communication between you and Themesberg.</p>
-                                        <p>Read more about <a href="./terms.html">terms of service</a>.</p>
+                                        <p>상상공방(SSGB)은 원데이 클래스를 모아놓은 플랫폼입니다. <br>
+                                        사람들을 모아 공예 DIY, 베이킹, 쿠킹, 문화예술, 자기계발, 
+                                        뷰티, 여행, 피트니스, 스포츠, 모임, 스토어, 온라인 등의<br> 
+                                        원데이 클래스를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.<br><br>
+                                        인터넷 홈페이지에서 이용 가능합니다.<br><br>
+                                        *인터넷 홈페이지 : http://localhost:9091/sangsanggongbang/index<br><br>
+                                        상상공방을 통해 지친 일상 속에서 활력을 찾고 일상을 바꾸는 경험을 하시기를 응원합니다.
+                                       </p>
+                                        <!-- <p>Read more about <a href="./terms.html">terms of service</a>.</p> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-clients" data-target="#panel-clients" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-clients">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Policies</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold">
+                                    <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-clients">
                                     <div class="pt-3">
-                                        <p>By accessing and placing an order with Themesberg, you confirm that you are in agreement with and bound by the terms and conditions contained in the Terms Of Use outlined below. These terms apply to the entire website and any email or other type of communication between you and Themesberg.</p>
+                                        <p>
+                                        내용을 써주세요
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-demo" data-target="#panel-demo" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-demo">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Agreements</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold"> 
+                                    <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-demo">
                                     <div class="pt-3">
-                                        <p>By accessing and placing an order with Themesberg, you confirm that you are in agreement with and bound by the terms and conditions contained in the Terms Of Use outlined below. These terms apply to the entire website and any email or other type of communication between you and Themesberg.</p>
+                                        <p>내용을 써주세요</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-money-back" data-target="#panel-money-back" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-money-back">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Forms
-                                        guarantee?</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold">
+                                     <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-money-back">
                                     <div class="pt-3">
-                                        <p>Please read the following page regarding refunds: <a href="./support.html" >Refund Policy</a></p>
+                                        <p>내용을 써주세요</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-updates" data-target="#panel-updates" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-updates">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Archive</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold"> 
+                                    <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-updates">
                                     <div class="pt-3">
-                                        <p>By accessing and placing an order with Themesberg, you confirm that you are in agreement with and bound by the terms and conditions contained in the Terms Of Use outlined below. These terms apply to the entire website and any email or other type of communication between you and Themesberg.</p>
+                                        <p>내용을 써주세요</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-support" data-target="#panel-support" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-support">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Cookies</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold">
+ 									<span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-support">
                                     <div class="pt-3">
-                                        <p class="mb-0">Got a question? Let us know and we'll try our best to answer you at the <a href="./support.html">support center</a>.</p>
+                                        <p class="mb-0">내용을 써주세요</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card card-sm card-body border-soft mb-0">
                                 <a href="#panel-copyright" data-target="#panel-copyright" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-copyright">
-                                    <span class="icon-title h6 mb-0 font-weight-bold">Copyright Notice</span>
+                                    <span class="icon-title h6 mb-0 font-weight-bold">
+                                    <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span>
                                     <span class="icon"><i class="fas fa-plus"></i></span>
                                 </a>
                                 <div class="collapse" id="panel-copyright">
                                     <div class="pt-3">
-                                        <p class="mb-0">Got a question? Let us know and we'll try our best to answer you at the <a href="./support.html">support center</a>.</p>
+                                        <p class="mb-0">내용을 써주세욘</p>
                                     </div>
                                 </div>
                             </div>
