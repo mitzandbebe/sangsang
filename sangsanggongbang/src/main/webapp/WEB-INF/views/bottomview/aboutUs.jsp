@@ -20,6 +20,7 @@
 	</c:otherwise>
 </c:choose>
 <!-- 탑 완료 -->
+
 <!-- Hero -->
 <section
 	class="section section-header bg-primary overlay-primary text-white pb-8 pb-lg-10"
