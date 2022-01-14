@@ -28,12 +28,10 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
-				<h1 class="display-2 mb-4">Working alone is bad</h1>
-				<p class="lead mb-4 text-muted">Our vision is for every business
-					to have the right workspace to attract amazing people and build a
-					brilliant reputation.</p>
-				<a href="#" class="btn btn-secondary mr-3">What we do <span
-					class="ml-2"><span class="fas fa-arrow-right"></span></span></a>
+				<h1 class="display-2 mb-4">Find Your Class.</h1><br>
+				<p class="lead mb-4 text-muted">Here's the class you've always thought of. Make your day special.</p>
+				<!-- <a href="#" class="btn btn-secondary mr-3">What we do <span
+					class="ml-2"><span class="fas fa-arrow-right"></span></span></a> -->
 			</div>
 		</div>
 	</div>
@@ -58,21 +56,20 @@
 			</div>
 			<div class="col-md-4">
 				<p class="lead">
-					<span class="font-weight-bold">Spaces</span> is the largest, real
-					time network for office space. The Spaces Network transforms the
-					entire commercial real estate process by connecting growing teams
-					and professionals looking for space, directly with venue partners,
-					space providers, real estate professionals and service providers.
+					지속되는 코로나 상황으로 코로나 블루가 만연한 요즘 건강한 생활을 위해서는 자기개발과 힐링이 필요하다.
+
+클래스를 이용하는 고객은 특별한 하루를 만들 수 있는 다양한 클래스를 이용하여 취미생활을 즐길 수 있고,
+
+클래스를 여는 사업자들에게는 새로운 유통 플랫폼을 제공한다.
 				</p>
 			</div>
 			<div class="col-md-4">
 				<p class="lead">
-					Individuals and teams from <span class="font-weight-bold">105,
-						000</span> businesses in <span class="font-weight-bold">900</span> cities
-					have connected to the Spaces network to solve their office needs.
+					<span class="font-weight-bold">상상공방은</span>
+					고객과 소통할 수 있는 창구를 열어 서로가 필요한 부분을 채울 수 있는 사이트를 만들고자 한다. 
 				</p>
-				<img class="mt-4" src="../assets/img/signature.svg" alt="signature"
-					width="100">
+				<!-- <img class="mt-4" src="../assets/img/signature.svg" alt="signature"
+					width="100"> -->
 			</div>
 		</div>
 	</div>
@@ -402,7 +399,7 @@
 				<!--End of Accordion-->
 				<p class="text-center mb-4 mt-6">Would you like to work with us?</p>
 				<p class="text-center">
-					<a href="./contact.html" class="btn btn-primary animate-up-2">Contact
+					<a href="<c:url value='/bottomview/customerService'/>" class="btn btn-primary animate-up-2">Contact
 						us.</a>
 				</p>
 			</div>
