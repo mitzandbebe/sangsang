@@ -1,30 +1,30 @@
 package com.gr.ssgb.common;
 
 public class PaymentSearchVO extends SearchVO{
-	private int mNo;
-	private String paylistNo;
-
-	public int getmNo() {
-		return mNo;
-	}
-
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
-	}
+	private String merchantUid;
+	private String mId;
 	
-
-	public String getPaylistNo() {
-		return paylistNo;
+	
+	public String getMerchantUid() {
+		return merchantUid;
 	}
-
-	public void setPaylistNo(String paylistNo) {
-		this.paylistNo = paylistNo;
+	public void setMerchantUid(String merchantUid) {
+		this.merchantUid = merchantUid;
 	}
-
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
 	@Override
 	public String toString() {
-		return "PaymentSearchVO [mNo=" + mNo + ", paylistNo=" + paylistNo + ", toString()=" + super.toString() + "]";
+		return "PaymentSearchVO [merchantUid=" + merchantUid + ", mId=" + mId + ", toString()=" + super.toString()
+				+ "]";
 	}
+	
+	
+
 	
 	
 }

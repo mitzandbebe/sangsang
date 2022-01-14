@@ -74,8 +74,8 @@
 				</div>
 				<!-- 버튼 가운데 정렬 -->
 				<div style="text-align: center;">
-					<input value="수정등록" class="btn mb-2 mr-2 btn-outline-gray"
-						type="submit"> <input value="목록"
+					<button  class="btn mb-2 mr-2 btn-outline-gray"
+						type="button" onclick="check();">수정등록</button> <input value="목록"
 						class="btn mb-2 mr-2 btn-outline-gray" id="btlist" type="button">
 				</div>
 			</form>
@@ -113,30 +113,25 @@
 
 	});
 
+	function check(){
+		 if ($('#title').val().length<1){
+	         alert('제목을 입력해주세요.');
+	         $('#title').focus();
+	         event.preventDefault();
+	     	return false;
+		 }else if($('#content').val().length<1){
+	         alert('내용을 등록해주세요.');
+	         $('#content').focus();
+	         event.preventDefault();
+	     	return false;
+		 }
+		 
+		 document.frmEwrite.submit(); // 서브밋으로보내기
+	}; 
+	
+	
 	$(function() {
-		$('form[name=frmEwrite]').submit(function() {
-			$('.infobox').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).prev().html() + "을 입력하세요");
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				}
-
-			});
-
-			/* $('.ckediter').each(function(idx, item) {
-				if ($(this).val().length < 1) {
-					alert($(this).prev().html() + "을 입력하세요");
-					$(this).focus();
-					event.preventDefault();
-					return false; //each 탈출
-				}
-			
-			}); */
-
-		});
-
+		
 		$('#btlist').click(function() {
 			location.href = "<c:url value='/mainevent/eventlist'/>";
 		});

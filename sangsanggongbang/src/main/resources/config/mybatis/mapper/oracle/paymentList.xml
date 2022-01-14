@@ -11,9 +11,9 @@
 		    select rownum as RNUM, A.*
 		    from
 		    (
-		        select * from paymentListView
-				where delflag='n' and m_no = #{mNo}
-				order by paylist_no desc		        
+		        select * from payview
+				where refund='payed' and m_id = #{mId}
+				order by pay_date desc		        
 		    )A
 		)
 		<![CDATA[
@@ -21,17 +21,17 @@
 			and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
 	</select>
 	
-	<select id="selectTotalPayment" parameterType="int" resultType="int">
-		select count(*) from paymentListView where m_no = #{mNo} and delflag='n'
+	<select id="selectTotalPayment" parameterType="string" resultType="int">
+		select count(*) from payview where m_id = #{mId} and refund='payed'
 	</select>
 	
 	<select id="selectByNo" parameterType="paymentSearchVo" resultType="map">
-		select * from paymentListView where m_no = #{mNo} and paylist_no = #{paylistNo}
+		select * from payview where m_id = #{mId} and merchant_uid = #{merchantUid}
 	</select>
 	
 	<update id="deletePayment" parameterType="string">
-		update payment_list 
-		set delflag='y' where paylist_no = #{paylistNo}
+		update orders
+		set refund='refund' where merchant_uid= #{merchantUid}
 	</update>
 
 	<select id="selectRefundByNo" parameterType="paymentSearchVo" resultType="Map">
@@ -41,9 +41,9 @@
 		    select rownum as RNUM, A.*
 		    from
 		    (
-		        select * from paymentListView
-				where delflag='y' and m_no = #{mNo}
-				order by paylist_no desc		        
+		        select * from payview
+				where refund='refund' and m_id = #{mId}
+				order by pay_date desc		        
 		    )A
 		)
 		<![CDATA[
@@ -51,8 +51,8 @@
 			and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
 	</select>
 	
-	<select id="selectTotalRefund" parameterType="int" resultType="int">
-		select count(*) from paymentListView where m_no = #{mNo} and delflag='y'
+	<select id="selectTotalRefund" parameterType="string" resultType="int">
+		select count(*) from payview where m_id = #{mId} and refund='refund'
 	</select>
 	
 </mapper>

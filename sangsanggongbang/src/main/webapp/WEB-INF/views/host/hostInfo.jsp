@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../inc/new_top_host.jsp"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
 
 <section
 	class="section section-header bg-primary overlay-primary text-white pb-8 pb-lg-10"
@@ -27,13 +41,13 @@
 				<p class="text-center"></p>
 			</div>
 		</div>
-	<figure 
-		class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
-		<svg class="fill-white" enable-background="new 0 0 1504 131.3"
-			viewBox="0 0 1504 131.3" xmlns="http://www.w3.org/2000/svg">
-			<path 
-				d="m877.8 85c139.5 24.4 348 33.5 632.2-48.2-.2 32.5-.3 65-.5 97.4-505.9 0-1011.6 0-1517.5 0 0-33.3 0-66.7 0-100.1 54.2-11.4 129.5-23.9 220-28.2 91-4.3 173.6 1 307.4 18.6 183.2 24.2 295.2 49.4 358.4 60.5z" /></svg>
-	</figure>
+		<figure
+			class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
+			<svg class="fill-white" enable-background="new 0 0 1504 131.3"
+				viewBox="0 0 1504 131.3" xmlns="http://www.w3.org/2000/svg">
+			<path
+					d="m877.8 85c139.5 24.4 348 33.5 632.2-48.2-.2 32.5-.3 65-.5 97.4-505.9 0-1011.6 0-1517.5 0 0-33.3 0-66.7 0-100.1 54.2-11.4 129.5-23.9 220-28.2 91-4.3 173.6 1 307.4 18.6 183.2 24.2 295.2 49.4 358.4 60.5z" /></svg>
+		</figure>
 	</div>
 </section>
 <!-- End of Hero section -->
@@ -201,7 +215,9 @@
 			</div>
 		</div>
 	</div>
-	<br><br><br>
+	<br>
+	<br>
+	<br>
 	<!--End of Accordion-->
 	<p class="text-center">
 		<span>이미 상상공방 계정이 있습니다.&nbsp;&nbsp;</span> <a
@@ -213,6 +229,8 @@
 			class="btn btn-primary animate-up-2">늘솜 계정생성하기<span class="ml-2"><span
 				class="fas fa-arrow-right"></span></span></a>
 	</p>
-	<br><br><br>
+	<br>
+	<br>
+	<br>
 </section>
 <%@ include file="../inc/bottom_host.jsp"%>

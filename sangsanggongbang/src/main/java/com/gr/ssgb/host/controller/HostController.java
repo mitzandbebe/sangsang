@@ -482,7 +482,11 @@ public class HostController {
 		String hId = (String)session.getAttribute("hId");
 		
 		HostVO vo = hostService.selectHostById(hId);
-		int cnt = hostService.selectUndoneClass(vo.gethNo());
+		Integer cnt = hostService.selectUndoneClass(vo.gethNo());
+		
+		if(cnt==null) {
+			cnt =0;
+		}
 		logger.info("미종료 클래스 건수 cnt={}", cnt);
 		
 		model.addAttribute("cnt", cnt);

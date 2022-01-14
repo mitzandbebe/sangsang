@@ -86,7 +86,10 @@ public class AdminController {
 		for(int i =0; i < 4; i++) {
 			monVo = new MonthVO();
 			monVo.setStartDate(month, i);
-			int totalProfit = adminService.selectTotalProfit(monVo);
+			Integer totalProfit = adminService.selectTotalProfit(monVo);
+			if(totalProfit == null) {
+				totalProfit = 0;
+			}
 			logger.info("monVo={}", monVo);
 			profitVo = new ProfitVO();
 			profitVo.setTotalProfit(totalProfit);

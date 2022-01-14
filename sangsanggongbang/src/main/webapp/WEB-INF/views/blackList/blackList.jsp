@@ -22,8 +22,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
 				<h1 class="display-2 mb-4">블랙리스트</h1>
-				<p class="lead d-none d-lg-inline">호스트(가제)님이 처리한 블랙리스트입니다 (관리자
-					호스트 구분하는 칼럼에 들어갈 것 도 넣어줘야 함)</p>
+			
 			</div>
 		</div>
 	</div>

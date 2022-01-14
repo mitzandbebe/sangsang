@@ -153,6 +153,16 @@ public class HostClassServiceImpl implements HostClassService{
 		return hostClassDao.selectAllHostClasses();
 	}
 
+	@Override
+	public List<Map<String, Object>> selectClassAllOfHost2(SearchVO searchVo) {
+		return hostClassDao.selectClassAllOfHost2(searchVo);
+	}
+
+	@Override
+	public int selectTotalRecord2(SearchVO searchVo) {
+		return hostClassDao.selectTotalRecord2(searchVo);
+	}
+
 
 
 

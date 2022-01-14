@@ -16,7 +16,7 @@
 		#{rOriginalname})
 	</insert>
 
-	<select id="selectAll" parameterType="reviewVo"
+	<select id="selectAll" parameterType="searchVo"
 		resultType="reviewVO">
 		select*
 		from
@@ -35,7 +35,7 @@
 
 	<select id="selectTotalRecord" parameterType="searchVo"
 		resultType="Integer">
-		select count(*) from review
+		select count(*) from review where c_no=#{cNo}
 	</select>
 	
 	<select id="selectRate" parameterType="int"

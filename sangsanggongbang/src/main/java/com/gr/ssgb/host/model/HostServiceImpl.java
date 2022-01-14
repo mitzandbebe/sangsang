@@ -89,7 +89,7 @@ public class HostServiceImpl implements HostService{
 	}
 
 	@Override
-	public int selectUndoneClass(int hNo) {
+	public Integer selectUndoneClass(int hNo) {
 		return hostDao.selectUndoneClass(hNo);
 	}
 
@@ -104,6 +104,11 @@ public class HostServiceImpl implements HostService{
 		}
 		
 		return cnt1; 
+	}
+
+	@Override
+	public int updatePwd(HostVO vo) {
+		return hostDao.updatePwd(vo);
 	}
 	
 	

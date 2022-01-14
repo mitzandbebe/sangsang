@@ -30,8 +30,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int selectTotalProfit(MonthVO monVo) {
-		
+	public Integer selectTotalProfit(MonthVO monVo) {
 		return adminDao.selectTotalProfit(monVo);
 	}
 

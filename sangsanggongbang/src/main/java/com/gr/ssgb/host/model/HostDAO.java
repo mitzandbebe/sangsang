@@ -33,11 +33,13 @@ public interface HostDAO {
 
 	int updateHGrade(HostVO vo);
 
-	int selectUndoneClass(int hNo);
+	Integer selectUndoneClass(int hNo);
 
 	int updateHostDel(int hNo);
 
 	int deleteBanList(int hNo);
 
 	int deleteBlackList(int hNo);
+
+	int updatePwd(HostVO vo);
 }
