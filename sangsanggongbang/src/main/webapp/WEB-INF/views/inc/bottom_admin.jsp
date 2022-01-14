@@ -65,7 +65,7 @@
 					<li><a target="_blank" href="#">개인정보처리방침</a>
 					</li>
 					<li><a
-						href="#">고객센터</a></li>
+						href="<c:url value='/bottomview/customerService'/>">고객센터</a></li>
 				</ul>
 			</div>
 			<div class="col-12 col-xl-4 mb-5 mb-xl-0">
