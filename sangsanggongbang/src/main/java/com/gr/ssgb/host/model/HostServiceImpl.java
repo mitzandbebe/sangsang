@@ -105,6 +105,11 @@ public class HostServiceImpl implements HostService{
 		
 		return cnt1; 
 	}
+
+	@Override
+	public int updatePwd(HostVO vo) {
+		return hostDao.updatePwd(vo);
+	}
 	
 	
 	

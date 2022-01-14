@@ -23,8 +23,8 @@ public class PaymentListServiceImpl implements PaymentListService{
    }
 
    @Override
-   public int selectTotalPayment(int mNo) {
-      return paymentListDao.selectTotalPayment(mNo);
+   public int selectTotalPayment(String mId) {
+      return paymentListDao.selectTotalPayment(mId);
    }
 
    @Override
@@ -43,8 +43,8 @@ public class PaymentListServiceImpl implements PaymentListService{
    }
 
    @Override
-   public int selectTotalRefund(int mNo) {
-      return paymentListDao.selectTotalRefund(mNo);
+   public int selectTotalRefund(String mId) {
+      return paymentListDao.selectTotalRefund(mId);
    }
 
    /*

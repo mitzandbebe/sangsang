@@ -263,7 +263,7 @@
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 					<!-- 로그아웃, 프로필 사진 띄우기 끝 -->
-
+					<c:if test="${!empty sessionScope.mId }">
 					<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a style="position: relative;"
 						width="100px;"
@@ -286,7 +286,9 @@
 						style="top: -10px; right: -5px;"></span>
 					</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- 채팅창 끝 -->
+					</c:if>
 				</div>
+				
 				<!-- 탑우측 버튼 끝 -->
 
 

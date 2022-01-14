@@ -40,4 +40,6 @@ public interface HostDAO {
 	int deleteBanList(int hNo);
 
 	int deleteBlackList(int hNo);
+
+	int updatePwd(HostVO vo);
 }

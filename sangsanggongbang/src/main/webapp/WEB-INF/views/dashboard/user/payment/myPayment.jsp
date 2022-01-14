@@ -110,10 +110,22 @@
 										<div class="card border-light mb-4 animate-up-5">
 											<div class="row no-gutters align-items-center">
 												<div class="col-12 col-lg-6 col-xl-5">
-													<img
+												<c:choose >
+			                                    	<c:when test="${!empty map['THUMBNAIL']}">
+			                                        	<img
 														src="<c:url value='/resources/file_upload/${map["THUMBNAIL"] }'/>"
 														alt="private office" class="card-img p-2 rounded-xl"
 														style="width: 290px; height: 192px">
+			                                    	</c:when>
+			                                    	<c:when test="${empty map['THUMBNAIL']}">
+			                                        	<img
+														src="<c:url value='/resources/file_upload/basic.png'/>"
+														alt="private office" class="card-img p-2 rounded-xl"
+														style="width: 290px; height: 192px">
+			                                    	</c:when>
+			                                    </c:choose>
+												
+													
 												</div>
 												 <div class="col-12 col-lg-6 col-xl-7">
                                                     <div class="card-body p-3 p-md-1 mb-1">
@@ -123,7 +135,7 @@
                                                         
                                                			<ul class="list-group mb-2">
                                                             <li class="list-group-item small p-0 mb-1"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;결제일:&nbsp;&nbsp;&nbsp;
-                                                            <fmt:formatDate value='${map["PAYDATE"] }' pattern="yyyy-MM-dd"/></li>
+                                                            <fmt:formatDate value='${map["PAY_DATE"] }' pattern="yyyy-MM-dd"/></li>
                                                             <li class="list-group-item small p-0"><i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;진행일:&nbsp;
                                                             <fmt:formatDate value='${map["C_START_TIME"] }' pattern="yyyy-MM-dd"/></li>
                                                        	</ul>
@@ -134,18 +146,18 @@
                                                             </div>
                                                             <div class="col">
                                                                 <span class="text-muted font-small d-block">결제인원</span>
-                                                                <span class="h6 text-dark font-weight-bold">${map['QTY'] }명</span>
+                                                                <span class="h6 text-dark font-weight-bold">${map['EA'] }명</span>
                                                             </div>
                                                             <div class="col">
                                                                 <span class="text-muted font-small d-block">총 결제금액</span>
                                                                 <span class="h6 text-dark font-weight-bold">
-                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['QTY'] }" pattern="#,###"/>원
+                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['EA'] }" pattern="#,###"/>원
                                                                 </span>
                                                             </div>
 																<c:if test="${ startTime-today > 0 }">
 																	 <form action="<c:url value='/dashboard/user/payment/refund'/>" method="post" name="refund">
                                                             <div class="col">
-	                                                            	<input type="hidden" id="paylistNo" name="paylistNo" value='${map["PAYLIST_NO"]}'>
+	                                                            	<input type="hidden" id="paylistNo" name="merchantUid" value='${map["MERCHANT_UID"]}'>
 	                                                            	<input type="hidden" id="cStartTime" name="cStartTime" value=''>
 	                                                                
                                                                <!-- <a href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORYNAME"] }&hNo=${map["H_NO"]}'/>">

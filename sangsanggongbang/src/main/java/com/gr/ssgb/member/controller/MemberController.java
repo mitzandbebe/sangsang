@@ -29,6 +29,8 @@ import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
 import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.common.TempPasswordUtil;
+import com.gr.ssgb.host.model.HostService;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.hostclass.model.CategoryVO;
 import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.ConcernVO;
@@ -49,21 +51,23 @@ public class MemberController {
 	private final FileUploadUtil fileUploadUtil;
 	private MailService mailService;
 	private HostClassService hostClassService;
+	private HostService hostService;
 	private NoteService noteService;
 	
 	@Autowired
-	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, 
-			MailService mailService,HostClassService hostClassService,
-			NoteService noteService) {
+	public MemberController(MemberService memberService, FileUploadUtil fileUploadUtil, MailService mailService,
+			HostClassService hostClassService, HostService hostService, NoteService noteService) {
+		super();
 		this.memberService = memberService;
 		this.fileUploadUtil = fileUploadUtil;
 		this.mailService = mailService;
 		this.hostClassService = hostClassService;
+		this.hostService = hostService;
 		this.noteService = noteService;
 	}
-	
-	
-	
+
+
+
 	@RequestMapping(value = "/main")
 	public String main() {
 		return "/main";
@@ -423,6 +427,9 @@ public class MemberController {
 		logger.info("ajax 아이디 중복확인, 파라미터 mId={}", mId);
 		
 		int result=memberService.selectMemberCnt(mId);
+		if(result == 0) {
+			result = hostService.selectHostCnt(mId);
+		}
 		logger.info("ajax 아이디 중복확인 결과 result={}", result);
 		
 		boolean bool=false;
@@ -526,6 +533,7 @@ public class MemberController {
 	public String findPwd_post(@RequestParam String mId, Model model){
 		logger.info("임시비밀번호 발급 처리, mId={}", mId);
 		int cnt = memberService.selectMemberCnt(mId);
+		int cnt2 = hostService.selectHostCnt(mId);
 		String msg="존재하지 않는 회원메일입니다.", url="/member/findPwd";
 		if(cnt==1) {
 			MemberVO vo = memberService.selectMemberById(mId);
@@ -539,7 +547,13 @@ public class MemberController {
 			String pwd = TempPasswordUtil.randomPwd();
 			vo.setPwd(pwd);
 			int up = memberService.updatePwd(vo);
-			if(up > 0) {
+			int update =0;
+			if(cnt2==1) {
+				HostVO hostVo = hostService.selectHostById(mId);
+				hostVo.sethPwd(pwd);
+				update = hostService.updatePwd(hostVo);
+			}
+			if(up > 0 && update > 0) {
 				String text = "\r\n안녕하세요 "+nick+"님! \r\n";
 				text += "임시비밀번호를 생성해드릴테니 로그인 후 꼭! 비밀번호를 변경해주세요. \r\n";	
 				text += nick+"님의 임시비밀번호는 \""+pwd+"\"입니다.";
@@ -553,6 +567,31 @@ public class MemberController {
 				url="/member/editPwd";
 			}
 			
+		}else if(cnt2==1) {
+			HostVO vo = hostService.selectHostById(mId);
+			MailVO mailVO = new MailVO();
+	    	
+			String addr = vo.gethId();
+			String nick = "늘솜"+vo.gethNo();
+			if(vo.gethNickname()!=null&&!vo.gethNickname().isEmpty()) {
+				nick = vo.gethNickname();
+			}
+			String pwd = TempPasswordUtil.randomPwd();
+			vo.sethPwd(pwd);
+			int up = hostService.updatePwd(vo);
+			if(up > 0) {
+				String text = "\r\n안녕하세요 "+nick+"님! \r\n";
+				text += "임시비밀번호를 생성해드릴테니 로그인 후 꼭! 비밀번호를 변경해주세요. \r\n";	
+				text += nick+"님의 임시비밀번호는 \""+pwd+"\"입니다.";
+				mailVO.setAddress(addr);
+				mailVO.setTitle("상상공방에서 임시 비밀번호를 안내드립니다.");
+				mailVO.setMessage(text);
+				
+				mailService.sendMail(mailVO);
+					
+				msg="이메일로 임시 비밀번호를 전송하였습니다. 임시 비밀번호를 확인하시고 비밀번호를 변경해주세요.";
+				url="/member/editPwd";
+			}
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -569,16 +608,39 @@ public class MemberController {
 		logger.info("비밀번호 변경 처리 화면");
 		
 		int result=memberService.checkIdPwd(vo.getmId(), vo.getPwd());
+		int result2 = hostService.checkIdPwd(vo.getmId(), vo.getPwd());
 		logger.info("아이디 비밀번호 체크 결과, result={}",result);
 		
 		String msg = "작성하신 임시비밀번호가 일치하지 않습니다. 이메일을 다시 확인해주세요.";
 		String url="/member/editPwd";
+		int up =0;
+		int update = 0;
 		if(result==MemberService.LOGIN_OK){
 			vo.setPwd(newPassword);
-			int up = memberService.updatePwd(vo);
+			up = memberService.updatePwd(vo);
 			if(up>0) {
+				if(result2 == hostService.LOGIN_OK) {
+					HostVO hostvo = new HostVO();
+					hostvo.sethId(vo.getmId());
+					hostvo.sethPwd(newPassword);
+					
+					update = hostService.updatePwd(hostvo);
+				}
 				msg="비밀번호가 성공적으로 변경되었습니다. 변경된 비밀번호로 로그인해주세요.";
 				url="/login/login";
+			}else {
+				msg="비밀번호 변경에 실패하였습니다.";
+			}
+		}else if(result2 == HostService.LOGIN_OK) {
+			HostVO hostvo = new HostVO();
+			hostvo.sethId(vo.getmId());
+			hostvo.sethPwd(newPassword);
+			
+			update = hostService.updatePwd(hostvo);
+			
+			if(up>0) {
+				msg="비밀번호가 성공적으로 변경되었습니다. 변경된 비밀번호로 로그인해주세요.";
+				url="/host/hostLogin";
 			}else {
 				msg="비밀번호 변경에 실패하였습니다.";
 			}

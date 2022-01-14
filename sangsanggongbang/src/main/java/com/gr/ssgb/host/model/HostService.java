@@ -40,4 +40,6 @@ public interface HostService {
 	int selectUndoneClass(int gethNo);
 
 	int deleteHost(int hNo);
+
+	int updatePwd(HostVO vo);
 }
