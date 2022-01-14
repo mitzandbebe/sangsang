@@ -31,8 +31,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public int sendNote(NoteVO noteVo) {
-		return noteDAO.sendNote(noteVo);
+	public int sendNoteM(NoteVO noteVo) {
+		return noteDAO.sendNoteM(noteVo);
 	}
 	//멤버용
 	@Override

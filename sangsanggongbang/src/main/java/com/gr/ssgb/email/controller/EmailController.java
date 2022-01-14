@@ -33,7 +33,7 @@ public class EmailController {
 	
 	@PostMapping("/mail/mailSend")
 	public String emailSend(@ModelAttribute EmailVo vo, HttpSession session) {
-		String userid = (String)session.getAttribute("mId");
+		String userid = (String)session.getAttribute("adId");
 		vo.setSendId(userid);
 		logger.info("vo={}",vo);
 		

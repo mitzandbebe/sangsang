@@ -61,10 +61,10 @@
 									</h3>
 									&emsp;<span>조회수 : ${list.noticeReadcount }</span>
 								</div>
-								<c:if test="${fn:length(list.noticeContent)>500 }">
-									${fn:substring(list.noticeContent,0,500) }...
+								<c:if test="${fn:length(list.noticeContent)>300 }">
+									${fn:substring(list.noticeContent,0,300) }...
 								</c:if>
-								<c:if test="${fn:length(list.noticeContent)<=500 }">
+								<c:if test="${fn:length(list.noticeContent)<=300 }">
 									<p class="mb-0">${list.noticeContent }</p>
 								</c:if>
 							</div>
