@@ -56,17 +56,17 @@
 			</div>
 			<div class="col-md-4">
 				<p class="lead">
-					지속되는 코로나 상황으로 코로나 블루가 만연한 요즘 건강한 생활을 위해서는 자기개발과 힐링이 필요하다.
-
-클래스를 이용하는 고객은 특별한 하루를 만들 수 있는 다양한 클래스를 이용하여 취미생활을 즐길 수 있고,
-
-클래스를 여는 사업자들에게는 새로운 유통 플랫폼을 제공한다.
+					지속되는 코로나 상황으로 코로나 <br>블루가 만연한 요즘,
+					건강한 생활을<br> 위해서는 자기개발과 힐링이 필요하다.<br><br>
+					클래스를 이용하는 고객은 특별한 <br>하루를 만들 수 있는
+					다양한 클래스를 이용하여 취미생활을 즐길 수 있고,<br><br>
+					클래스를 여는 사업자들에게는 새로운 유통 플랫폼을 제공한다.
 				</p>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4" >
 				<p class="lead">
 					<span class="font-weight-bold">상상공방은</span>
-					고객과 소통할 수 있는 창구를 열어 서로가 필요한 부분을 채울 수 있는 사이트를 만들고자 한다. 
+					고객과 소통할 수 있는<br> 창구를 열어, 서로가 필요한 부분을<br> 채울 수 있는 사이트를 만들고자 한다. 
 				</p>
 				<!-- <img class="mt-4" src="../assets/img/signature.svg" alt="signature"
 					width="100"> -->
@@ -98,42 +98,42 @@
 						<div class="card mb-0 bg-soft border-left">
 							<div class="card-body text-center">
 								<div class="icon icon-primary">
-									<span class="fas fa-city"></span>
+									<span class="fas fa-user"></span>
 								</div>
 								<!-- Heading -->
 								<h3 class="font-weight-normal mt-3 mb-0">
 									<span class="counter text-dark mr-1">13</span>K
 								</h3>
 								<!-- Text -->
-								<p class="text-muted mb-0">Spaces</p>
+								<p class="text-muted mb-0">Hosts</p>
 							</div>
 						</div>
 						<div class="card mb-0 bg-soft border-left">
 							<div class="card-body text-center">
 								<div class="icon icon-primary">
-									<span class="fas fa-map-marker-alt"></span>
+									<span class="fas fa-graduation-cap"></span>
 								</div>
 								<!-- Heading -->
 								<h3 class="font-weight-normal mt-3 mb-0">
-									<span class="counter text-dark mr-1">120</span>
+									<span class="counter text-dark mr-1">15</span>K
 								</h3>
 								<!-- Text -->
-								<p class="text-muted mb-0">Locations</p>
+								<p class="text-muted mb-0">Classes</p>
 							</div>
 						</div>
-						<div class="card mb-0 bg-soft border-left">
+						<!-- <div class="card mb-0 bg-soft border-left">
 							<div class="card-body text-center">
 								<div class="icon icon-primary">
 									<span class="fas fa-globe-americas"></span>
 								</div>
-								<!-- Heading -->
+								Heading
 								<h3 class="font-weight-normal mt-3 mb-0">
 									<span class="counter text-dark mr-1">15</span>
 								</h3>
-								<!-- Text -->
+								Text
 								<p class="text-muted mb-0">Countries</p>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="card-group">
 						<div class="card mb-0 border-top bg-soft rounded-0">
@@ -156,29 +156,29 @@
 								</div>
 								<!-- Heading -->
 								<h3 class="font-weight-normal mt-3 mb-0">
-									<span class="counter text-dark mr-1">192</span>$
+									<span class="counter text-dark mr-1">50</span>$
 								</h3>
 								<!-- Text -->
 								<p class="text-muted mb-0">Average Cost</p>
 							</div>
 						</div>
-						<div class="card mb-0 bg-soft border-top border-left">
+						<!-- <div class="card mb-0 bg-soft border-top border-left">
 							<div class="card-body text-center">
 								<div class="icon icon-primary">
 									<span class="fas fa-award"></span>
 								</div>
-								<!-- Heading -->
+								Heading
 								<h3 class="font-weight-normal mt-3 mb-0">
 									<span class="counter text-dark mr-1">10</span>
 								</h3>
-								<!-- Text -->
+								Text
 								<p class="text-muted mb-0">Awards</p>
 							</div>
-						</div>
+						</div> -->
 						<div class="card mb-0 bg-soft border-top border-left rounded-0">
 							<div class="card-body text-center">
 								<div class="icon icon-primary">
-									<span class="fas fa-users"></span>
+									<span class="fas fa-sign-in-alt"></span>
 								</div>
 								<!-- Heading -->
 								<h3 class="font-weight-normal mt-3 mb-0">
@@ -228,9 +228,9 @@
 		<div class="row justify-content-center mb-5 mb-lg-6">
 			<div class="col-12 col-md-8 text-center">
 				<h2>
-					<span class="font-weight-bold">Global</span> Experts & Offices
+					<span class="font-weight-bold"> Experts & Employees of &nbsp; SSGB</span>
 				</h2>
-				<p class="lead mt-4">Our globally distributed team allows us to
+				<p class="lead mt-4">Team of SSGB allows us to
 					maintain operational efficiency and provide 24/7 customer service
 					while working toward a shared goal.</p>
 			</div>
@@ -239,9 +239,9 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../assets/img/team/profile-picture-1.jpg"
-						class="card-img-top rounded-top" alt="Joseph Portrait">
+						class="card-img-top rounded-top" alt="강유빈">
 					<div class="card-body">
-						<h3 class="h4 card-title mb-2">Joseph Garth</h3>
+						<h3 class="h4 card-title mb-2">강유빈</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
@@ -269,9 +269,9 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../assets/img/team/profile-picture-2.jpg"
-						class="card-img-top rounded-top" alt="Bonnie portrait">
+						class="card-img-top rounded-top" alt="최원정">
 					<div class="card-body">
-						<h3 class="h4 card-title mb-2">Bonnie Green</h3>
+						<h3 class="h4 card-title mb-2">최원정</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Agent</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
@@ -299,9 +299,9 @@
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card border-light">
 					<img src="../assets/img/team/profile-picture-3.jpg"
-						class="card-img-top rounded-top" alt="Jose Avatar">
+						class="card-img-top rounded-top" alt="최수빈">
 					<div class="card-body">
-						<h3 class="h4 card-title mb-2">Jose Leos</h3>
+						<h3 class="h4 card-title mb-2">최수빈</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
@@ -333,6 +333,11 @@
 				<iframe class="map rounded" id="gmap_canvas"
 					src="https://maps.google.com/maps?q=san%20francisco&t=&z=8&ie=UTF8&iwloc=&output=embed"></iframe>
 			</div>
+		</div><br><br><br>
+			<div class="row mb-5 mb-lg-2">
+			<div class="col text-center">
+				<h3 class="mb-5">About SSGB</h3>
+				</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-8">
@@ -342,18 +347,16 @@
 						<a href="#panel-1" data-target="#panel-1"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">I’m looking for a
-								space…</span> <span class="icon"><span class="fas fa-plus"></span></span>
+							<span class="h6 mb-0 font-weight-bold">
+							 <span class="font-weight-bold">상상공방(SSGB)이란?</span></span> <span class="icon"><span class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-1">
 							<div class="pt-3">
-								<p class="mb-0">At Themesberg, our mission has always been
-									focused on bringing openness and transparency to the design
-									process. We've always believed that by providing a space where
-									designers can share ongoing work not only empowers them to make
-									better products, it also helps them grow. We're proud to be a
-									part of creating a more open culture and to continue building a
-									product that supports this vision.</p>
+								<p class="mb-0">상상공방(SSGB)은 원데이 클래스를 모아놓은 플랫폼입니다. <br>
+                                        사람들을 모아 공예 DIY, 베이킹, 쿠킹, 문화예술, 자기계발, 
+                                        뷰티, 여행, 피트니스, 스포츠, 모임, 스토어, 온라인 등의<br> 
+                                        원데이 클래스를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.<br><br>
+                                        인터넷 홈페이지에서 이용 가능합니다.</p>
 							</div>
 						</div>
 					</div>
@@ -361,18 +364,17 @@
 						<a href="#panel-2" data-target="#panel-2"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">How does it work?</span> <span
+							<span class="h6 mb-0 font-weight-bold">
+							 <span class="font-weight-bold">상상공방은 누가 진행하나요?</span></span> 
+							 <span
 							class="icon"><span class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-2">
 							<div class="pt-3">
-								<p class="mb-0">At Themesberg, our mission has always been
-									focused on bringing openness and transparency to the design
-									process. We've always believed that by providing a space where
-									designers can share ongoing work not only empowers them to make
-									better products, it also helps them grow. We're proud to be a
-									part of creating a more open culture and to continue building a
-									product that supports this vision.</p>
+								<p class="mb-0">상상공방은 [늘솜]이 진행합니다.<br><br>
+                                        상상공방의 [늘솜]은 상상공방을 통해 다양한 원데이 클래스를 진행하는 진행자입니다.<br><br>
+                                        상상공방의 [늘솜]은 본인만이 가지고 있는 컨텐츠가 있나면 누구나 신청이 가능합니다.<br>
+                                        </p>
 							</div>
 						</div>
 					</div>
@@ -380,24 +382,25 @@
 						<a href="#panel-3" data-target="#panel-3"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">Licenses</span> <span
+							<span class="h6 mb-0 font-weight-bold">
+							 <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span> 
+							 <span
 							class="icon"><span class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-3">
 							<div class="pt-3">
-								<p class="mb-0">At Themesberg, our mission has always been
-									focused on bringing openness and transparency to the design
-									process. We've always believed that by providing a space where
-									designers can share ongoing work not only empowers them to make
-									better products, it also helps them grow. We're proud to be a
-									part of creating a more open culture and to continue building a
-									product that supports this vision.</p>
+								<p class="mb-0">저희 상상공방은 플랫폼에 올라와 있는 프로그램들을 [상상 클래스] 이라고 칭하고 있습니다.<br><br>
+                                        상상공방을 진행하시는 분들을 [늘솜], 참여하시는 분을 [늘찬]이라고 칭하고 있습니다.<br><br>
+                                        <참고><br>
+                                        - '늘솜'은 순우리말로 '늘 솜씨가 좋은'이라는 뜻이예요.<br>
+                                        - '늘차다'라는 말은 '능란하고 재빠르다'는 의미의 형용사로 능력이 있으며 옹골차다는 뜻이에요.
+                                        </p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!--End of Accordion-->
-				<p class="text-center mb-4 mt-6">Would you like to work with us?</p>
+				<p class="text-center mb-4 mt-6">More things to ASK?</p>
 				<p class="text-center">
 					<a href="<c:url value='/bottomview/customerService'/>" class="btn btn-primary animate-up-2">Contact
 						us.</a>
