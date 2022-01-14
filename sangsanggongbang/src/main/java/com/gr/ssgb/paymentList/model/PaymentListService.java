@@ -9,7 +9,7 @@ public interface PaymentListService {
 
 	public List<Map<String, Object>> selectPaymentListAll(PaymentSearchVO paySearchVo);
 
-	public int selectTotalPayment(int mNo);
+	public int selectTotalPayment(String mId);
 
 	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
 
@@ -17,7 +17,7 @@ public interface PaymentListService {
 
 	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo);
 
-	public int selectTotalRefund(int mNo);
+	public int selectTotalRefund(String mId);
 
 	
 	/*

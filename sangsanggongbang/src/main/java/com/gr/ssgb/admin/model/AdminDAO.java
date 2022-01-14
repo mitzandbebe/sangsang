@@ -7,6 +7,6 @@ public interface AdminDAO {
 
 	String checkPwd(AdminVO vo);
 
-	int selectTotalProfit(MonthVO monthVo);
+	Integer selectTotalProfit(MonthVO monthVo);
 
 }

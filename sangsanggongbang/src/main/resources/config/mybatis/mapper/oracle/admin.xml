@@ -12,8 +12,8 @@
 		select sum(total) 
 		from
 		(
-		    select (c_price*ppnum) as total 
-		    from hostclass
+		    select (c_price * fpnum) as total 
+		    from profitview
 		    <![CDATA[
 		    where c_start_time > TO_DATE(#{startDate}) and c_start_time < TO_DATE(#{endDate})
 		    ]]>

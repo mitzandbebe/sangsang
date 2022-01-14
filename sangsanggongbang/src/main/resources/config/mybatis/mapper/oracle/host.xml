@@ -62,7 +62,7 @@
 		from
 		(
 		    select (c_price*qty) as total 
-		    from hostprofitview where h_No = #{hNo}
+		    from profitview where h_No = #{hNo}
 		    <![CDATA[
 		     and b_req_date > TO_DATE(#{startDate}) and b_req_date < TO_DATE(#{endDate})
 		    ]]>
@@ -88,5 +88,9 @@
 	<delete id="deleteBlackList" parameterType="int">
 		delete from blacklist where h_no = #{hNo}
 	</delete>
+	
+	<update id="updatePwd" parameterType="hostVo">
+		update host set h_pwd = #{hPwd} where h_id = #{hId}
+	</update>
 	
 </mapper>

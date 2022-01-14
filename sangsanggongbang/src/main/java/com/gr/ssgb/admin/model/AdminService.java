@@ -11,5 +11,5 @@ public interface AdminService {
 	
 	public int checkPwd(AdminVO vo);
 
-	public int selectTotalProfit(MonthVO monVo);
+	public Integer selectTotalProfit(MonthVO monVo);
 }
