@@ -35,12 +35,12 @@ public class AdminBalancingController {
 	private static final Logger logger
 	=LoggerFactory.getLogger(AdminBalancingController.class);
 
-	private final AdminBalancingService balancingService;
+	private final AdminBalancingService adminBalancingService;
 
 	//DI - 생성자에 의한 종속객체 주입
 	@Autowired
-	public AdminBalancingController(AdminBalancingService balancingService) {
-		this.balancingService = balancingService;
+	public AdminBalancingController(AdminBalancingService adminBalancingService) {
+		this.adminBalancingService = adminBalancingService;
 		logger.info("정산요청목록 생성자주입");
 	}
 
@@ -67,12 +67,12 @@ public class AdminBalancingController {
 		//extendSearchVo.sethNo(hNo);
 		logger.info("값 셋팅 후 extendSearchVo={}", extendSearchVo);
 
-		List<AdminBalancingVO> list=balancingService.selectBalancingAll(extendSearchVo);
+		List<AdminBalancingVO> list=adminBalancingService.selectBalancingAll(extendSearchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
 		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
-		int totalRecord=balancingService.selectTotalRecord(extendSearchVo);
+		int totalRecord=adminBalancingService.selectTotalRecord(extendSearchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		//3. model에 결과 저장
@@ -92,7 +92,7 @@ public class AdminBalancingController {
 		balancingVo.sethNo(hNo);
 		
 		//1. 파라미터 읽어오기 - 출력
-		List<AdminBalancingVO> list=balancingService.totalPrice(balancingVo);
+		List<AdminBalancingVO> list=adminBalancingService.totalPrice(balancingVo);
 		logger.info("정산총액 조회,결과 list.size={}", list.size());
 		
 		model.addAttribute("list", list);
@@ -104,23 +104,23 @@ public class AdminBalancingController {
 	public String submitUpdateBflag(@RequestParam(defaultValue = "0") int bNo, Model model) {
 		logger.info("정산신청 파라미터 bNo={}", bNo);
 		
-		Integer cnt=balancingService.submitUpdate(bNo);
+		Integer cnt=adminBalancingService.submitUpdate(bNo);
 		logger.info("정산신청 결과 cnt={}", cnt);
 		
-		return "redirect:/dashboard/admin/balancing";
+		return "redirect:/admin/balancing";
 	}
 
 	
 	@GetMapping("/excel/download")
-    public void excelDownload(@ModelAttribute AdminBalancingVO balancingVo, 
+    public void excelDownload(@ModelAttribute AdminBalancingVO adminBalancingVo, 
     		HttpServletResponse response, HttpSession session) throws IOException {
 		//로그인세션
 		//int hNo=222;
 				
 		//값할당
-		//balancingVo.sethNo(hNo);
+		//adminBalancingVo.sethNo(hNo);
 		
-		List<AdminBalancingVO> list=balancingService.totalPrice(balancingVo);
+		List<AdminBalancingVO> list=adminBalancingService.totalPrice(adminBalancingVo);
 		logger.info("엑셀다운 리스트 결과={}", list.size());
 		
 	    // 파일명 설정

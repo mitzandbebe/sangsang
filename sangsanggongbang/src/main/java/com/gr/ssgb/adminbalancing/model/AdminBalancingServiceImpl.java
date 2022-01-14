@@ -27,8 +27,8 @@ public class AdminBalancingServiceImpl implements AdminBalancingService{
 	}
 
 	@Override
-	public List<AdminBalancingVO> totalPrice(AdminBalancingVO balancingVo) {
-		return balancingDao.totalPrice(balancingVo);
+	public List<AdminBalancingVO> totalPrice(AdminBalancingVO adminBalancingVo) {
+		return balancingDao.totalPrice(adminBalancingVo);
 	}
 
 	@Override

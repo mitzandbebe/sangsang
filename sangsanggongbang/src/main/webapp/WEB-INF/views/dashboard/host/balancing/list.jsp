@@ -164,8 +164,8 @@ $(function() {
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
 		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
 			<c:if test="${i==pagingInfo.currentPage }">
-				<span style="color: blue; font-weight: bold; font-size: 1em"
-					id="pagelinknum"> ${i}</span>
+				<li class="page-item active">
+					<a class="page-link" id="pagelinknum"> ${i} </a></li>
 			</c:if>
 			<c:if test="${i!=pagingInfo.currentPage }">
 				<li class="page-item" id="pagelinknum"><a class="page-link"

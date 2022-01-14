@@ -3,6 +3,27 @@
 <%@ include file="../inc/new_top_user.jsp"%>
 <script type="text/javascript">
 	$(function() {
+/* 		$(function() {
+			$('#apibtn').submit(function(){
+				if($('#mId').val().length<1){
+					alert('아이디를 입력하세요.');
+					$('#mId').focus();
+					event.preventDefault();
+				}else if(!validate_userid($('#mId').val())){
+					alert('아이디는 이메일 형식으로만 가능합니다.');
+					$('#mId').focus();
+					event.preventDefault();
+				}else if($('#name').val().length<1){
+					alert('이름을 입력하세요');
+					$('#name').focus();
+					event.preventDefault();
+				}else if($('#sPpunm').val()==0){
+					alert('인원수를 선택하세요!');
+					$('#sPpunm').focus();
+					event.preventDefault();
+				}		
+			});
+		}); */
 		$(function() {
 			$("#sPpunm").on("propertychange change keyup paste input",
 				function() {
@@ -13,7 +34,7 @@
 					$('#totalPrice').val(totalPrice);
 				});
 		});
-
+		
 		$('#apibtn').click(function() {
 			//가맹점 식별코드
 			IMP.init('imp73895922');
@@ -83,7 +104,9 @@
 				alert(msg);
 			});
 		});
+
 	});
+	
 </script>
 
 <div
@@ -91,7 +114,7 @@
 	style="color: #46746e;">
 	<div class="container z-2">
 		<div class="section section-lg pt-5">
-			<div class="container" style="background-color: beige;">
+			<div class="container">
 				<form method="post" class="card border-light p-3 mb-4" action="orderComplete">
 					<div class="row">
 						<c:forEach var="map" items="${cVo}">
@@ -167,11 +190,11 @@
 													<label for="cartInputCity1">선택시간</label> <input type="text"
 														readonly="readonly" placeholder="M_NAME"
 														class="form-control" id="fTime" aria-describedby="M_NAME"
-														value="${map['C_TIME'] }">시
+														value="${map['C_TIME'] }">
 												</div>
 												<!-- End of Form -->
 											</div>
-											<div class="col-12 col-lg-3" style="float: left;">
+											<div class="col-12 col-lg-4" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
 													<label for="cartInputCity1">선택인원수</label> <input
@@ -185,7 +208,7 @@
 									<div class="col-12 col-lg-3" style="float: right;">
 										<!-- Form -->
 										<div class="form-group mb-4">
-											<h3 class="h6 mb-0">결제금액</h3>
+											<h3 class="h6 mb-0"><strong>결제금액</strong></h3>
 											<input class="form-control" type="text" id="showPrice"
 												value="" readonly="readonly"> <input
 												class="form-control" type="hidden" id="totalPrice" value=""
@@ -280,7 +303,6 @@
 						<input type="hidden" value="${mVo.mNo}">
 						<input type="button" class="btn btn-block btn-primary mt-4"
 							id="apibtn" value="결제하기">
-							
 					</div>
 				</form>
 
