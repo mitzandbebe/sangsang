@@ -19,7 +19,7 @@
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
+									alt="Joseph Portrait" width="129" height="129"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">

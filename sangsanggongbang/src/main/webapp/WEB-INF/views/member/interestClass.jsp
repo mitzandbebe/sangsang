@@ -190,7 +190,7 @@ var InputImage =
 										</tbody>
 									</table>
 
-
+									<c:if test="${!empty interest }">
 									<div class="row">
 										<div class="col-lg-12 mb-5">
 											<div class="col mt-3 d-flex justify-content-center">
@@ -234,6 +234,7 @@ var InputImage =
 											</div>
 										</div>
 									</div>
+									</c:if>
 								</form>
 							</div>
 						</div>

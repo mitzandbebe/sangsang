@@ -73,7 +73,7 @@
 		update host set h_grade = #{hGrade} where h_no = #{hNo}
 	</update>
 	
-	<select id="selectUndoneClass" parameterType="string" resultType="int">
+	<select id="selectUndoneClass" parameterType="int" resultType="int">
 		select count(*) from hostclass where h_no = #{hNo} and end_flag='N'
 	</select>
 	

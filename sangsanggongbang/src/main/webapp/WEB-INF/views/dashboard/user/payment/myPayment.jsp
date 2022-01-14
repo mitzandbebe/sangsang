@@ -113,13 +113,13 @@
 												<c:choose >
 			                                    	<c:when test="${!empty map['THUMBNAIL']}">
 			                                        	<img
-														src="<c:url value='/resources/file_upload/${map["THUMBNAIL"] }'/>"
+														src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>"
 														alt="private office" class="card-img p-2 rounded-xl"
 														style="width: 290px; height: 192px">
 			                                    	</c:when>
 			                                    	<c:when test="${empty map['THUMBNAIL']}">
 			                                        	<img
-														src="<c:url value='/resources/file_upload/basic.png'/>"
+														src="<c:url value='/resources/upload_images/basic.png'/>"
 														alt="private office" class="card-img p-2 rounded-xl"
 														style="width: 290px; height: 192px">
 			                                    	</c:when>

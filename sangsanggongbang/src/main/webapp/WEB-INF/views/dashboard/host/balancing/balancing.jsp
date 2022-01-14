@@ -14,7 +14,7 @@
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
+									alt="Joseph Portrait" width="129" height="129"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
@@ -30,23 +30,23 @@
 								<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
-								class="d-flex list-group-item list-group-item-action">회원정보
+								class="d-flex list-group-item list-group-item-action   ">회원정보
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action ">내 클래스
-								현황<span class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action  ">내
+								클래스 현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action ">클래스 이용회원<span
-								class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action ">클래스
+								이용회원<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
-								class="d-flex list-group-item list-group-item-action active ">정산내역<span
+								class="d-flex list-group-item list-group-item-action active">정산내역<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
-							</a> <a href="./messages.html"
-								class="d-flex list-group-item list-group-item-action border-0">회원탈퇴<span
+							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
+								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a>
@@ -60,15 +60,15 @@
 						<div class="row align-items-center">
 							<div class="col-10 d-flex">
 								<a href="<c:url value='/host/hostAccount'/>"
-									class="list-group-item list-group-item-action border-0">마이페이지</a>
+									class="list-group-item list-group-item-action border-0 ">마이페이지</a>
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
-									class="list-group-item list-group-item-action border-0 ">회원정보</a>
+									class="list-group-item list-group-item-action border-0  active ">회원정보</a>
 								<a href="<c:url value='/class/myclass'/>"
-									class="list-group-item list-group-item-action d-none d-sm-block border-0">내 클래스
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스 이용회원</a>
-								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 active">정산내역</a>
+									class="list-group-item list-group-item-action d-none d-sm-block border-0 active">내
+									클래스 현황</a> <a href="./security.html"
+									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스
+									이용회원</a> 현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
 								현황</a> <a href="./security.html"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
 							</div>
@@ -83,9 +83,9 @@
 										</span> <span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<div class="dropdown-menu">
-										 <a href="./security.html"
-											class="list-group-item list-group-item-action d-md-none border-0 ">클래스 이용회원</a>
-										<a href="<c:url value='/dashboard/host/balancing'/>"
+										<a href="./security.html"
+											class="list-group-item list-group-item-action d-md-none border-0 ">클래스
+											이용회원</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
 										<a href="./messages.html"
 											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
@@ -96,7 +96,6 @@
 					</div>
 				</div>
 			</div>
-
 <div class="col-12 col-lg-8">
 	<div class="row mb-5">
 		<div class="col-12 mb-4">

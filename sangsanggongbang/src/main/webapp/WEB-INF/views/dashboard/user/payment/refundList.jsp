@@ -107,7 +107,20 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-12 col-lg-6 col-xl-5">
                                                  	<a href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORYNAME"] }&hNo=${map["H_NO"]}'/>">
-                                                        <img src="<c:url value='/resources/file_upload/${map["THUMBNAIL"] }'/>" alt="private office" class="card-img p-2 rounded-xl" style="width: 290px; height:192px">
+                                                    <c:choose >
+				                                    	<c:when test="${!empty map['THUMBNAIL']}">
+				                                        	<img
+															src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>"
+															alt="private office" class="card-img p-2 rounded-xl"
+															style="width: 290px; height: 192px">
+				                                    	</c:when>
+				                                    	<c:when test="${empty map['THUMBNAIL']}">
+				                                        	<img
+															src="<c:url value='/resources/upload_images/basic.png'/>"
+															alt="private office" class="card-img p-2 rounded-xl"
+															style="width: 290px; height: 192px">
+				                                    	</c:when>
+			                                        </c:choose>
                                                     </a>
                                                 </div>
                                                 <div class="col-12 col-lg-6 col-xl-7">

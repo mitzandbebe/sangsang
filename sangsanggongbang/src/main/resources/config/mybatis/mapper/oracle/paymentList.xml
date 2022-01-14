@@ -51,7 +51,7 @@
 			and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
 	</select>
 	
-	<select id="selectTotalRefund" parameterType="int" resultType="int">
+	<select id="selectTotalRefund" parameterType="string" resultType="int">
 		select count(*) from payview where m_id = #{mId} and refund='refund'
 	</select>
 	

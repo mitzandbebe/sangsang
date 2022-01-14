@@ -75,10 +75,10 @@ var InputImage =
 </script>
 
 <div class="section section-lg bg-soft">
-	<div class="container">
+	<div class="col-12">
 		<div class="row pt-5 pt-md-0">
 
-			<div class="col-12 col-md-4 d-none d-lg-block">
+			<div class="col-md-2 d-none d-lg-block" style="margin-left: 350px">
 				<!-- Navigation -->
 				<div class="card border-light p-2">
 					<div class="card-body p-2">
@@ -87,7 +87,7 @@ var InputImage =
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
+									alt="Joseph Portrait" width="129" height="129"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
@@ -173,7 +173,7 @@ var InputImage =
 			</div>
 			<div class="col-12 col-lg-8">
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-10">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
 								<form name="frmList">
