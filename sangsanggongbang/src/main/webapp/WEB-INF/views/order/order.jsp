@@ -142,7 +142,6 @@
 
 											<div class="card-body text-dark">
 												<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
-												</a>
 												<ul class="list-group mb-3">
 													<li class="list-group-item small p-0 border-0"><span
 														class="fas fa-map-marker-alt mr-2"> </span>${ map['L_ADDRESS']}
