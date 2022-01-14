@@ -191,12 +191,12 @@
 								<div class="col-auto px-0">
 									<div class="list-group list-group-flush">
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
+										<a href="<c:url value='/admin/balancing'/>" target="_blank"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i
 												class="fas fa-file-alt"></i></span> -->
 											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
+												<span class="text-dark d-block">정산내역/승인</span>
 												<!-- <span class="small">Examples and guides</span> -->
 											</div>
 										</a>

@@ -132,7 +132,7 @@ $(function() {
 								<button class="btn btn-sm btn-outline-dark"
 
 									style="font-weight: bold;" name="bNo" id="balsubmit"
-									onclick="location.href	='<c:url value="/dashboard/host/balancing/submit?bNo=${vo.bNo}"/>'">정산처리하기</button>
+									onclick="location.href	='<c:url value="/admin/balancing/submit?bNo=${vo.bNo}"/>'">정산처리하기</button>
 							</div>
 						</c:if>
 						<c:if test="${vo.bFlag == 'Y' }">
@@ -153,19 +153,20 @@ $(function() {
 
 <!-- 페이지 번호 추가 -->
 <nav aria-label="Page navigation example" style="margin-left: 50px">
-	<ul class="pagination circle-pagination">
+	<ul class="pagination">
 		<!-- 이전 블럭으로 이동 -->
 		<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
-		<li class="page-item" id="backpage"><a class="page-link"> <i
-				class="fas fa-angle-double-left"></i>
+		<li class="page-item" id="backpage">
+		<a class="page-link">
+		<i class="fas fa-angle-double-left"></i>
 		</a></li>
 		<%-- </c:if> --%>
 
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
 		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
 			<c:if test="${i==pagingInfo.currentPage }">
-				<span style="color: blue; font-weight: bold; font-size: 1em"
-					id="pagelinknum"> ${i}</span>
+				<li class="page-item active">
+					<a class="page-link" id="pagelinknum"> ${i} </a></li>
 			</c:if>
 			<c:if test="${i!=pagingInfo.currentPage }">
 				<li class="page-item" id="pagelinknum"><a class="page-link"
@@ -178,9 +179,9 @@ $(function() {
 				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
 			</a></li>
 		</c:if>
-		<!--  페이지 번호 끝 -->
+		<!-- 엑셀 다운로드 -->
 		<a class="btn btn-sm btn-outline-dark" id="excelDown"
-				style="font-weight: bold; margin-left: 10%" href="<c:url value="/dashboard/host/excel/download"/>">
+				style="font-weight: bold; margin-left: 10%" href="<c:url value="/admin/excel/download"/>">
 				엑셀다운로드</a>
 	</ul>
 			

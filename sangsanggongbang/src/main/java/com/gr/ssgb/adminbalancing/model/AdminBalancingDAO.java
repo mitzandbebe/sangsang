@@ -12,7 +12,7 @@ public interface AdminBalancingDAO {
 	public List<AdminBalancingVO> selectBalancingAll(SearchVO searchVo);
 	int selectTotalRecord(SearchVO searchVo);
 	public String balancing();
-	public List<AdminBalancingVO> totalPrice(AdminBalancingVO balancingVo);
+	public List<AdminBalancingVO> totalPrice(AdminBalancingVO adminBalancingVo);
 	public Integer submitUpdate(int bNo);
 
 }

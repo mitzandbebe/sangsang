@@ -55,9 +55,11 @@
 								</ul>
 							</div>
 						</div>
-
 						<div class="mb-6 d-flex align-items-center justify-content-center">
-							<h2 class="h1 mb-0">클래스 신청 완료</h2>
+							<a class="navbar-brand @@logo_classes">
+							<img class="navbar-brand-light common" src="/sangsanggongbang/resources/assets/img/brand/1230_top_light.png" height="35" alt="Logo dark">
+							</a>
+							<h2 class="h2 mb-0">클래스 신청 완료</h2>
 							<span class="badge badge-xl badge-success ml-2"
 								style="background-color: #9FB9AE;">Success</span>
 						</div>

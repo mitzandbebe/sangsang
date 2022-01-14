@@ -10,7 +10,7 @@
 		</if>
 	</sql>
 
-	<select id="selectBalancingAll" parameterType="extendSearchVo" resultType="balancingVo">
+	<select id="selectBalancingAll" parameterType="extendSearchVo" resultType="adminBalancingVo">
 	select *
 		from
 		(
@@ -36,7 +36,7 @@
 		)
 	</select>
 	
-	<select id="totalPrice" parameterType="int" resultType="balancingVo">
+	<select id="totalPrice" parameterType="int" resultType="adminBalancingVo">
 		select a.*, b.*
 		from balancing a join hostclass b
 		 on a.c_no=b.c_no
