@@ -139,10 +139,10 @@ public class PaymentListController {
    }
    
    @PostMapping("/payment/refundSubmit")
-   public String refund_submit(@RequestParam String mId, Model model) {
-      logger.info("paylistNo={}", mId);
+   public String refund_submit(@RequestParam String merchantUid, Model model) {
+      logger.info("paylistNo={}", merchantUid);
       
-      int cnt = paymentListService.deletePayment(mId);
+      int cnt = paymentListService.deletePayment(merchantUid);
       String msg = "환불요청에 실패하였습니다.", url = "/dashboard/user/payment/myPayment";
       if(cnt>0) {
          msg="환불사유 검토 후 2~3 영업일 이내 환불될 예정입니다.";
@@ -173,7 +173,10 @@ public class PaymentListController {
       
       List<Map<String, Object>> list = paymentListService.selectRefundByNo(paymentSearchVo);
       
-      int totalPayment = paymentListService.selectTotalRefund(mId);
+      Integer totalPayment = paymentListService.selectTotalRefund(mId);
+      if(totalPayment == null) {
+    	  totalPayment =0;
+      }
       pagingInfo.setTotalRecord(totalPayment);
       Date now = new Date();
       int date = now.getDate();

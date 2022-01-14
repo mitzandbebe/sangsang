@@ -33,7 +33,7 @@ public interface HostDAO {
 
 	int updateHGrade(HostVO vo);
 
-	int selectUndoneClass(int hNo);
+	Integer selectUndoneClass(int hNo);
 
 	int updateHostDel(int hNo);
 

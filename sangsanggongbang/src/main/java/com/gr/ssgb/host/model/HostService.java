@@ -37,7 +37,7 @@ public interface HostService {
 
 	int updateHGrade(HostVO vo);
 
-	int selectUndoneClass(int gethNo);
+	Integer selectUndoneClass(int hNo);
 
 	int deleteHost(int hNo);
 

@@ -58,6 +58,12 @@
 				});
 			}
 		});
+		$('#openChat').click(function(){
+			var userName = $(this).text();
+		    var contextPath="/sangsanggongbang";
+		    open(contextPath+'/chat/room?roomId='+userName,'chat',
+		    'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+	    });
 
 		$('#memberEdit').submit(
 				function() {
@@ -116,7 +122,7 @@
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait"
+									alt="Joseph Portrait" width="129" height="129"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
@@ -147,7 +153,7 @@
 								class="d-flex list-group-item list-group-item-action ">정산내역<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
-							</a> <a href="./messages.html"
+							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
 								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
@@ -189,7 +195,7 @@
 											class="list-group-item list-group-item-action d-md-none border-0 ">클래스
 											이용회원</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
-										<a href="./messages.html"
+										<a href="<c:url value='/host/hostEditChkPwd2'/>"
 											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
 									</div>
 								</div>
@@ -215,7 +221,7 @@
 												<tr>
 													<th scope="col">클래스 이름</th>
 													<th scope="col">늘찬 아이디</th>
-													<th scope="col">늘찬 이름</th>
+													<th scope="col">늘찬 닉네임</th>
 													<th scope="col">시간</th>
 													<th scope="col">블랙리스트</th>
 												</tr>
@@ -226,7 +232,7 @@
 													<tr>
 														<td>${map['C_NAME'] }</td>
 														<td>${map['M_ID'] }</td>
-														<td>${map['M_NAME'] }</td>
+														<td><a href="#" id="openChat" onclick ="openChat();">${map['M_NICKNAME'] }</a></td>
 														<td><fmt:formatDate value="${map['C_START_TIME'] }"
 																pattern="yyyy/MM/dd" /></td>
 														<td>

@@ -83,7 +83,17 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-12 col-lg-6 col-xl-5">
                                                  	<a href="<c:url value='/class/detail?cNo=${map["C_NO"] }&categoryName=${map["CATEGORYNAME"] }&hNo=${map["H_NO"]}'/>">
-                                                        <img src="<c:url value='/resources/file_upload/${map["THUMBNAIL"] }'/>" alt="private office" class="card-img p-2 rounded-xl" style="width: 290px; height:192px">
+                                                       <c:choose >
+                                                        <c:when test="${!empty map['THUMBNAIL']}">
+			                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/>" alt="private office" class="card-img p-2 rounded-xl" style="width: 290px; height:192px">
+			                                    	</c:when>
+			                                    	<c:when test="${empty map['THUMBNAIL']}">
+			                                        	<img
+														src="<c:url value='/resources/upload_images/basic.png'/>"
+														alt="private office" class="card-img p-2 rounded-xl"
+														style="width: 290px; height: 192px">
+			                                    	</c:when>
+			                                    	</c:choose>
                                                     </a>
                                                 </div>
                                                 <div class="col-12 col-lg-6 col-xl-7">
@@ -120,7 +130,7 @@
 				                               		<div class="input-group-prepend">
 				                                           <span class="input-group-text"><i class="fas fa-feather-alt"></i></span>
 				                                       </div>
-				                                       <input type="hidden" value='${map["PAYLIST_NO"]}' name="paylistNo">
+				                                       <input type="hidden" value='${map["MERCHANT_UID"]}' name="merchantUid">
 				                                      	<select class="custom-select" id="button-addon2" name = "reason">
 														<option selected>환불사유를 선택하세요.</option>
 														<option value="1">늘솜의 사정으로 클래스를 진행하지 않았어요.</option>
