@@ -31,7 +31,29 @@ public class SearchVO {
     /**페이지 별 레코드 갯수 (pageSize) */
     private int recordCountPerPage; 
     
-   /**
+    //페이징처리를 위한 호스트번호
+    private int hNo;
+    //페이징처리를 위한 호스트번호
+    private int cNo;
+    
+    
+   public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+
+public int gethNo() {
+		return hNo;
+	}
+
+	public void sethNo(int hNo) {
+		this.hNo = hNo;
+	}
+
+/**
      * 검색 조건을  설정한다.
      * @param bean 검색조건
      */
@@ -44,6 +66,8 @@ public class SearchVO {
     	this.firstRecordIndex = bean.firstRecordIndex;
     	this.lastRecordIndex = bean.lastRecordIndex;
     	this.recordCountPerPage = bean.recordCountPerPage;
+    	this.hNo = bean.hNo;
+    	this.cNo = bean.cNo;
     }
 
     public String getSearchCondition() {
@@ -113,12 +137,10 @@ public class SearchVO {
 
 	@Override
 	public String toString() {
-		return "SearchVO [searchCondition=" + searchCondition
-				+ ", searchKeyword=" + searchKeyword + ", searchUseYn="
-				+ searchUseYn + ", currentPage=" + currentPage
-				+ ", blockSize=" + blockSize + ", firstRecordIndex="
-				+ firstRecordIndex + ", lastRecordIndex=" + lastRecordIndex
-				+ ", recordCountPerPage=" + recordCountPerPage + "]";
+		return "SearchVO [searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + ", searchUseYn="
+				+ searchUseYn + ", currentPage=" + currentPage + ", blockSize=" + blockSize + ", firstRecordIndex="
+				+ firstRecordIndex + ", lastRecordIndex=" + lastRecordIndex + ", recordCountPerPage="
+				+ recordCountPerPage + ", hNo=" + hNo + ", cNo=" + cNo + "]";
 	}
 
 	

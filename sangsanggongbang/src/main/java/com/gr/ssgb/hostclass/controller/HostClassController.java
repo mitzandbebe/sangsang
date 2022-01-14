@@ -2,7 +2,6 @@ package com.gr.ssgb.hostclass.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +22,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.common.collect.ImmutableList;
 import com.gr.ssgb.blackList.model.BlackListService;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
+import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.host.model.HostService;
 import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.hostclass.model.CategoryVO;
@@ -37,7 +38,6 @@ import com.gr.ssgb.hostclass.model.LocationVO;
 import com.gr.ssgb.mainevent.controller.MainEventController;
 import com.gr.ssgb.member.model.ConcernVO;
 import com.gr.ssgb.member.model.MemberService;
-import com.gr.ssgb.memberInquiry.model.ClassUserVO;
 import com.gr.ssgb.memberInquiry.model.MemberInquiryService;
 import com.gr.ssgb.review.model.ReviewService;
 import com.gr.ssgb.review.model.ReviewVO;
@@ -614,14 +614,33 @@ public class HostClassController {
 	}
 
 	@GetMapping("/myclass")
-	public String classlist_get(@RequestParam(defaultValue = "0") int cNo, HttpSession session, Model model) {
+	public String classlist_get(@ModelAttribute SearchVO searchVo ,@RequestParam(defaultValue = "0") int cNo, HttpSession session, Model model) {
 		logger.info("호스트 내 클래스화면");
 
 		String hId = (String) session.getAttribute("hId"); // 추후 호스트 회원가입되면 아이디저장
 		// 이 아이디로 hno 가져오기,-> xml 에 만들고 메서드가져오기
 		int hNo = hostService.selectHostNo(hId);
+		searchVo.sethNo(hNo);
 
-		List<Map<String, Object>> classlist = hostClassService.selectClassAllOfHost(hNo);
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+
+		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}", searchVo);
+
+		List<Map<String, Object>> classlist = hostClassService.selectClassAllOfHost2(searchVo);
+		logger.info("전체조회 결과 list.size={}", classlist.size());
+
+		int totalRecord = hostClassService.selectTotalRecord2(searchVo);
+		pagingInfo.setTotalRecord(totalRecord);
+
+		model.addAttribute("pagingInfo", pagingInfo);
+		
+		
+		//List<Map<String, Object>> classlist = hostClassService.selectClassAllOfHost(hNo);
 
 		model.addAttribute("classlist", classlist);
 
