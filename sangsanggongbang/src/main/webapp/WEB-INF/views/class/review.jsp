@@ -108,7 +108,7 @@ $(function() {
 		<div class="col-lg-12 mb-5" >
 			<div
 				class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
-				<div>
+				<div style="text-align: center;">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination pagination-sm">
 					<!-- 이전블럭 -->
@@ -122,11 +122,24 @@ $(function() {
 					</c:if>
 					<!-- 페이징처리시작 -->
 					<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-							<li class="page-item" >
+					<c:if test="${i==pagingInfo.currentPage }">
+							<li class="page-item"><a class="page-link"
+									style="background-color: #9FB9AE; color: #ffffff;" id="pagelinknum"
+									<%-- href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> " --%>
+									>${i }</a>
+							</li>
+					</c:if>
+					<c:if test="${i!=pagingInfo.currentPage }">
+							<li class="page-item"><a class="page-link"  id="pagelinknum"
+								<%-- 	href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> " --%>
+									>${i }</a>
+							</li>
+					</c:if>		
+					<%-- 		<li class="page-item" >
 					<a class="page-link" id="pagelinknum"
-					<%-- href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${i}" onclick="pageFunc(${i})'/> " --%>
+					href="<c:url value='/class/detail?cNo=${param.cNo }&categoryName=${param.categoryName }&hNo=${param.hNo }&currentPage=${i}" onclick="pageFunc(${i})'/> "
 					>${i }</a>
-					</li>
+					</li> --%>
 					</c:forEach>
 					<!-- 다음블럭으로 이동 -->
 					<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.FileUploadUtil;
 import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.review.model.ReviewService;
@@ -44,28 +45,28 @@ public class ReviewController {
 
 
 	@RequestMapping("/review" )
-	public String list(@ModelAttribute ReviewVO reviewVo, Model model ,
+	public String list(@ModelAttribute SearchVO searchVo, Model model ,
 			@RequestParam(defaultValue = "0") int cNo ) {
 		logger.info("리뷰 목록 cNo={}",cNo);
 		
-		reviewVo.setcNo(cNo);
+		searchVo.setcNo(cNo);
 		
 		//int avgRate =reviewService.selectRate(cNo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		pagingInfo.setCurrentPage(reviewVo.getCurrentPage());
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 
-		reviewVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
-		reviewVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-		logger.info("값 셋팅 후 searchVo={}", reviewVo);
+		searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("값 셋팅 후 searchVo={}", searchVo);
 
-		List<ReviewVO> list = reviewService.selectAll(reviewVo);
+		List<ReviewVO> list = reviewService.selectAll(searchVo);
 		logger.info("전체조회 결과 list.size={}", list.size());
 		logger.info("전체조회 결과 list={}", list);
 
-		int totalRecord = reviewService.selectTotalRecord(reviewVo);
+		int totalRecord = reviewService.selectTotalRecord(searchVo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);

@@ -22,8 +22,10 @@ public interface HostClassDAO {
 	String selectThumbnail(int cNo);
 	List<Map<String,Object>> selectClassAllContents();
 	
+	List<Map<String,Object>> selectClassAllOfHost2(SearchVO searchVo); //페이징위한거
 	List<Map<String,Object>> selectClassAllContents2(SearchVO searchVo); //페이징위한거
 	int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord2(SearchVO searchVo);
 	
 	List<Map<String,Object>> selectClassbyCNo(int cNo);
 	List<Map<String,Object>> selectClassAllOfHost(int hNo);

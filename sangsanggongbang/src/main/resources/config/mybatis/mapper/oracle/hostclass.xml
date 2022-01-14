@@ -151,6 +151,25 @@
 	<select id="selectClassAllOfHost" resultType="map" parameterType="int">
 		select * from selectClass where h_no=#{hNo} order by c_start_time desc
 	</select>
+	<!-- 페이징처리위한것 -->
+	<select id="selectClassAllOfHost2" resultType="map" parameterType="searchVo">
+	select*
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		select * from selectClass where h_no=#{hNo} order by c_start_time desc
+		)A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}]]>
+	</select>
+	<select id="selectTotalRecord2" parameterType="searchVo"
+		resultType="int">
+		select count(*) from selectClass where h_no=#{hNo} 
+	</select>
 
 	<update id="updateBylocation" parameterType="locationVo">
 		update location set 

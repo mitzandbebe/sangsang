@@ -36,4 +36,6 @@ public interface HostClassService {
 	int selectTotalRecord(SearchVO searchVo);
 	int updateClassFlag(int cNo);
 	List<HostClassVO> selectAllHostClasses();
+	List<Map<String,Object>> selectClassAllOfHost2(SearchVO searchVo); //페이징위한거
+	int selectTotalRecord2(SearchVO searchVo);
 }

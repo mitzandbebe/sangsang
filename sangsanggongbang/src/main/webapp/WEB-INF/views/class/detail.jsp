@@ -280,6 +280,7 @@
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
+								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
 							<div id="reviewlist"></div>
 								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
