@@ -217,7 +217,7 @@ var InputImage =
 			<div class="col-12" style="width: 100%; height: 70px; background-color: #82AFC5; opacity: 0.9;">
 				<div class="collapse-brand" style="margin-top: 22px; margin-left: 45px; float: left;">
 					<a
-						href="${pageContext.request.contextPath }/resources/index.html">
+						href="${pageContext.request.contextPath }/host/hostInfo">
 						<img
 						src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
 						height="35" alt="Logo Impact">
@@ -252,11 +252,11 @@ var InputImage =
                                         </div>
                                         <input type ="hidden" name="chkId" id="chkId" value="N">
                                         <input name="hId" class="form-control" type="text" id="hId" aria-label="email adress"
-                                        <c:if test="${!empty sessionScope.hId }">
+                                        <c:if test="${!empty vo.hId }">
                                         	readonly = "readonly"
-                                        	value="${sessionScope.hId}"
+                                        	value="${vo.hId}"
                                         </c:if>
-                                        <c:if test="${empty sessionScope.hId }">
+                                        <c:if test="${empty vo.hId }">
                                         	placeholder = "아이디를 입력하세요."
                                         </c:if>
                                         >
@@ -273,7 +273,7 @@ var InputImage =
                                     	<span id="message" style="visibility:hidden">아이디를 입력하세요.</span>
                                     </div>
                                 </div>
-                               <c:if test="${(cookie.new_sns.value=='y'||empty cookie.new_sns) && empty sessionScope.hId}">
+                               <c:if test="${pwdInputNecessity=='y' ||empty pwdInputNecessity}">
 	                                <!-- Form -->
 	                              	<div class="row mb-0">
 		                                <div class="col-6">
@@ -306,8 +306,8 @@ var InputImage =
 		                                 </div>
 		                              </div>
 		                       </c:if>
-                               <c:if test="${cookie.new_sns.value=='n' }">
-                                   <input name ="hPwd" class="form-control" id="hPwd" type="hidden" aria-label="Password" value="${vo.pwd }">
+                               <c:if test="${pwdInputNecessity=='n' }">
+                                   <input name ="hPwd" class="form-control" id="hPwd" type="hidden" aria-label="Password" value="${vo.hPwd }">
                                </c:if>
 		                             
                                     <!-- End of Form -->
@@ -317,31 +317,21 @@ var InputImage =
                                    <div class="card border-light p-2" style ="margin-bottom: 10px">
 								        <div class="card-body p-2">
 								        <div style="float: left; margin-left: 0px; margin-top:0px; " >
-								        <input type="hidden" name="memFilename" value="${sessionScope.hFilename }">
-								            	<c:if test="${!empty sessionScope.hFilename && sessionScope.h_snsCheck=='y'}">
+								        <input type="hidden" name="memFilename" value="${vo.hFilename }">
+								            	<c:if test="${!empty vo.hFilename}">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${sessionScope.hFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="<c:url value='/resources/file_upload/${vo.hFilename }'/>" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group"  style = "text-align: center;">
-														  <input type="file" id="inputGroupFile02" class="form-control " name = "upfile" onchange="InputImage();" style="display: none;" value="${sessionScope.hFilename}">
+														  <input type="file" id="inputGroupFile02" class="form-control " name = "upfile" onchange="InputImage();" style="display: none;" value="${vo.hFilename}">
 														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
 														  
 													  </div>
 								                </c:if>
-								                <c:if test="${!empty sessionScope.hFilename && sessionScope.h_snsCheck=='n'}">
-								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
-								            			<div id="older">
-								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${sessionScope.hFilename}" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
-								                		</div>
-								           			 </div>
-								           			  <div class="input-group"  style = "text-align: center;">
-														  <input type="file" id="inputGroupFile02" class="form-control " name = "upfile"onchange="InputImage();" style="display: none;" value="${sessionScope.hFilename}">
-														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
-													  </div>
-								                </c:if>
-								                <c:if test="${empty sessionScope.hFilename }">
+								               
+								                <c:if test="${empty vo.hFilename }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
 								                			<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
@@ -361,10 +351,10 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
 			                                            </div>
                                            				<input name ="hName" class="form-control" id="hName" type="text"  
-                                           				<c:if test="${!empty vo.mName}">
-                                           					value="${vo.mName}"
+                                           				<c:if test="${!empty vo.hName}">
+                                           					value="${vo.hName}"
                                            				</c:if>
-                                           				<c:if test="${empty vo.mName}">
+                                           				<c:if test="${empty vo.hName}">
                                            					placeholder="이름을 입력하세요."
                                            				</c:if>
                                            				>
@@ -379,10 +369,10 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="far fa-smile"></i></span>
 			                                            </div>
                                            				<input name ="hNickname" class="form-control" id="hNickname" type="text" 
-                                           				<c:if test="${!empty vo.mNickname}">
-                                           					value="${vo.mNickname}"
+                                           				<c:if test="${!empty vo.hNickname}">
+                                           					value="${vo.hNickname}"
                                            				</c:if>
-                                           				<c:if test="${empty vo.mNickname}">
+                                           				<c:if test="${empty vo.hNickname}">
                                            					placeholder="닉네임을 입력해주세요."
                                            				</c:if>
                                            				>
@@ -401,10 +391,10 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
 			                                            </div>
 	                                           	 		<input name ="hPhone" class="form-control" id="hPhone" maxlength="11" type="text"
-	                                           	 		<c:if test="${!empty vo.phone}">
-                                           					 value="${vo.phone}"
+	                                           	 		<c:if test="${!empty vo.hPhone}">
+                                           					 value="${vo.hPhone}"
                                            				</c:if>
-                                           				<c:if test="${empty vo.phone}">
+                                           				<c:if test="${empty vo.hPhone}">
                                            					placeholder="휴대폰 번호를 입력해주세요. (-제외)" 
                                            				</c:if>
 	                                           	 		>
@@ -419,10 +409,10 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
 			                                            </div>
 	                                           			 <input name ="hBday" class="form-control" id="hBday" maxlength="6" type="text" 
-	                                           			 <c:if test="${!empty vo.bday}">
-                                           					 value="${vo.bday}"
+	                                           			 <c:if test="${!empty vo.hBday}">
+                                           					 value="${vo.hBday}"
                                            				 </c:if>
-                                           				 <c:if test="${empty vo.bday}">
+                                           				 <c:if test="${empty vo.hBday}">
                                            					 placeholder="생년월일 6자리를 입력하세요. ex)950720"
                                            				 </c:if>
 	                                           			 >
@@ -441,11 +431,11 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="fas fa-compass"></i></span>
 			                                            </div>
 			                                           	<input name ="hZipcode" class="form-control" id="zipcode" readonly="readonly" placeholder="우편번호를 검색하세요." type="text"  aria-describedby="button-addon2" 
-			                                           	<c:if test="${!empty vo.bday}">
-                                           					 value="${vo.bday}"
+			                                           	<c:if test="${!empty vo.hZipcode}">
+                                           					 value="${vo.hZipcode}"
                                            				</c:if>
-                                           				<c:if test="${empty vo.bday}">
-                                           					 placeholder="생년월일 6자리를 입력하세요. ex)950720"
+                                           				<c:if test="${empty vo.hZipcode}">
+                                           					 placeholder="우편번호를 검색하세요. ex)950720"
                                            				</c:if>
 			                                           	>
 			                                           	<button type="button" id="button-addon2" class="btn btn-outline-primary btn-sm" onclick="kakaopost()" >우편번호 검색</button>
@@ -460,10 +450,10 @@ var InputImage =
 			                                                <span class="input-group-text"><i class="far fa-compass"></i></span>
 			                                            </div>
                                            			  <input name ="hAddress" class="form-control" id="address" readonly="readonly" type="text" 
-                                           			  	<c:if test="${!empty vo.mAddress}">
-                                           					value="${vo.mAddress}"
+                                           			  	<c:if test="${!empty vo.hAddress}">
+                                           					value="${vo.hAddress}"
                                            				</c:if>
-                                           				<c:if test="${empty vo.mAddress}">
+                                           				<c:if test="${empty vo.hAddress}">
                                            					 placeholder="우편번호 검색시 자동으로 입력됩니다."
                                            				</c:if>
                                            			  >
@@ -479,10 +469,10 @@ var InputImage =
                                             <span class="input-group-text"><i class="far fa-compass"></i></span>
                                         </div>
                                        	<input name ="hAddressDetail" class="form-control" id="hAddressDetail"  type="text" 
-                                       	<c:if test="${!empty vo.mAddressDetail}">
-                          					value="${vo.mAddressDetail}"
+                                       	<c:if test="${!empty vo.hAddressDetail}">
+                          					value="${vo.hAddressDetail}"
                           				</c:if>
-                          				<c:if test="${empty vo.mAddressDetail}">
+                          				<c:if test="${empty vo.hAddressDetail}">
                           					 placeholder="상세주소를 입력하세요. ex)대원빌 101호" 
                           				</c:if>
                                        	>

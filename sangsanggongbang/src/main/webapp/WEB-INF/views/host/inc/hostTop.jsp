@@ -126,7 +126,7 @@
 						<div class="row">
 							<div class="col-6 collapse-brand">
 								<a
-									href="${pageContext.request.contextPath }/resources/index.html">
+									href="${pageContext.request.contextPath }/index">
 									<img
 									src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
 									height="35" alt="Logo Impact">

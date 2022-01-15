@@ -66,14 +66,8 @@ public class HostController {
 		logger.info("호스트 로그인 화면");
 	}
 	@GetMapping("/hostIndex")
-	public String hostIndex(Model model) {
+	public void hostIndex(Model model) {
 		logger.info("호스트 메인화면");
-		
-		List<HostVO> hlist = hostService.selectAllHost();
-		
-		model.addAttribute("hlist", hlist); 
-		
-		return "host/hostIndex";
 	}
 	
 	@GetMapping("/hostRegister")
@@ -87,90 +81,50 @@ public class HostController {
 		HttpSession session = request.getSession();
 		String msg="늘솜 계정생성을 위한 필수정보입력 창으로 이동합니다.", url="/host/hostRegister";
 		int hAccountCnt=hostService.selectHostCnt(vo.gethId());
-		String new_sns = "n";
+		String pwdInputNecessity = "n";
 		if(hAccountCnt < 1) {
 			int accountCnt = memberService.selectMemberCnt(vo.gethId());
 			if(h_snsCheck.equals("y")) {
-				session.removeAttribute("mId");
-				session.removeAttribute("snsCheck");
-				session.removeAttribute("mFilename");
-				session.removeAttribute("mNickname");
-				session.removeAttribute("uOrh");
-				session.setAttribute("hId", vo.gethId());
-				session.setAttribute("hFilename", vo.gethFilename());
-				session.setAttribute("h_snsCheck", h_snsCheck);
-				session.setAttribute("uOrh", "h");
-
-				new_sns="y";
-				Cookie ck2 = new Cookie("new_sns", new_sns);
-				ck2.setPath("/");
-				ck2.setMaxAge(60*60); 
-				response.addCookie(ck2);
-				Cookie ck = new Cookie("host_userid", vo.gethId());
-				ck.setPath("/");
-				if(remember!=null){ 
-					ck.setMaxAge(1000*24*60*60); 
-					response.addCookie(ck);
-				}else{ 
-					ck.setMaxAge(0);
-					response.addCookie(ck);
-				}
-				
 				if(accountCnt==1){
-					new_sns = "n";
-					ck2 = new Cookie("new_sns", new_sns);
-					ck2.setPath("/");
-					ck2.setMaxAge(60*60); 
-					response.addCookie(ck2);
-					
 					MemberVO memVo=memberService.selectMemberById(vo.gethId());
-					if(memVo.getmFilename()!=null && !memVo.getmFilename().isEmpty()) {
-						session.setAttribute("hFilename", memVo.getmFilename());
-					}
-					model.addAttribute("vo", memVo);
-					model.addAttribute("h_snsCheck", h_snsCheck);
-					
-					return "host/hostRegister";
+					vo.sethFilename(memVo.getmFilename());
+					vo.sethPhone(memVo.getPhone());
+					vo.sethBday(memVo.getBday());
+					vo.sethZipcode(memVo.getmZipcode());
+					vo.sethAddress(memVo.getmAddress());
+					vo.sethAddressDetail(memVo.getmAddressDetail());
+					vo.sethName(memVo.getmName());
+					vo.sethNickname(memVo.getmNickname());
+					vo.sethPwd(memVo.getPwd());
+				}else if(accountCnt < 0) {
+					pwdInputNecessity = "y";
 				}
+					
+				model.addAttribute("vo", vo);
+				model.addAttribute("h_snsCheck", h_snsCheck);
+				model.addAttribute("pwdInputNecessity", pwdInputNecessity);
+				model.addAttribute("remember", remember);
+				
+				return "host/hostRegister";
 			}else {
 				int result = memberService.checkIdPwd(vo.gethId(), vo.gethPwd());
 				if(result==MemberService.LOGIN_OK) { 
-					
-					if(session.getAttribute("mId")!=null) {
-						session.removeAttribute("mId");
-						session.removeAttribute("snsCheck");
-						session.removeAttribute("mFilename");
-						session.removeAttribute("mNickname");
-						session.removeAttribute("uOrh");
-					}
-					
 					MemberVO memVo=memberService.selectMemberById(vo.gethId());
-					session.setAttribute("hId", vo.gethId());
-					session.setAttribute("hFilename", memVo.getmFilename());
-					session.setAttribute("h_snsCheck", h_snsCheck);
-					session.setAttribute("uOrh", "h");
 					
+					vo.sethFilename(memVo.getmFilename());
+					vo.sethPhone(memVo.getPhone());
+					vo.sethBday(memVo.getBday());
+					vo.sethZipcode(memVo.getmZipcode());
+					vo.sethAddress(memVo.getmAddress());
+					vo.sethAddressDetail(memVo.getmAddressDetail());
+					vo.sethName(memVo.getmName());
+					vo.sethNickname(memVo.getmNickname());
+					vo.sethPwd(memVo.getPwd());
 					
-					Cookie ck = new Cookie("host_userid", vo.gethId());
-					Cookie ck2 = new Cookie("new_sns", new_sns);
-					ck2.setPath("/");
-					ck2.setMaxAge(60*60); 
-					response.addCookie(ck2);
-					
-					ck.setPath("/");
-					if(remember!=null){ 
-						ck.setMaxAge(1000*24*60*60); 
-						response.addCookie(ck);
-					}else{ 
-						ck.setMaxAge(0);
-						response.addCookie(ck);
-					}
-					
-					
-					model.addAttribute("vo", memVo);
+					model.addAttribute("vo", vo);
 					model.addAttribute("h_snsCheck", h_snsCheck);
-					
-					
+					model.addAttribute("pwdInputNecessity", pwdInputNecessity);
+					model.addAttribute("remember", remember);
 					
 					return "host/hostRegister";
 					
@@ -225,6 +179,8 @@ public class HostController {
 				url="/host/hostLogin";
 			}
 		}
+		
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		
@@ -232,7 +188,8 @@ public class HostController {
 	}
 	
 	@PostMapping("/hostRegister")
-	public String hostRegister_post(@ModelAttribute HostVO vo, @RequestParam String h_snsCheck,HttpServletRequest request, Model model) {
+	public String hostRegister_post(@ModelAttribute HostVO vo, @RequestParam String h_snsCheck, String remember, 
+			HttpServletRequest request,HttpServletResponse response, Model model) {
 		logger.info("호스트 회원등록 처리, vo={}, h_snsCheck={}", vo, h_snsCheck);
 		HttpSession session = request.getSession();
 		String hFilename = (String)session.getAttribute("hFilename");
@@ -267,15 +224,28 @@ public class HostController {
 			vo.sethOriginalname(hFilename);
 		}
 
-		
-			
-		
 		int cnt = hostService.insertHost(vo);
 		String msg="회원등록 실패!", url="/host/hostRegister";
 		if(cnt>0) {
+			session.setAttribute("hFilename", vo.gethFilename());
+			session.setAttribute("hId", vo.gethId());
+			session.setAttribute("h_snsCheck", h_snsCheck);
+			session.setAttribute("hNickname", vo.gethNickname());
+			session.setAttribute("uOrh", "h");
+			Cookie ck = new Cookie("host_userid", vo.gethId());
+			ck.setPath("/");
+			if(remember!=null){ 
+				ck.setMaxAge(1000*24*60*60); 
+				response.addCookie(ck);
+			}else{ 
+				ck.setMaxAge(0);
+				response.addCookie(ck);
+			}
+			
 			msg="늘솜 회원 계정이 생성되었습니다.";
 			url="/host/index";
 		}
+		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 		return "common/message";
