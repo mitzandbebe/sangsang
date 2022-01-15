@@ -75,17 +75,18 @@
 										</div>
 									</div>
 								</div>
-								<div class="input-daterange datepicker row align-items-center">
+								<div class="input-daterange datepicker row align-items-center" id="date">
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
-										<label for="category">클래스 날짜(월/일/년도)</label>
+										<label for="frmdate">클래스 날짜(월/일/년도)</label>
 											<div class="input-group input-group-border">
 												<div class="input-group-prepend">
 													<span class="input-group-text"> <i
 														class="far fa-calendar-alt">&nbsp;시작날짜</i></span>
 												</div>
-												<input class="form-control" placeholder="Start date"
-													type="text" value="${now }" name="cStart" required>
+												<input class="form-control datepicker" placeholder="${now }"
+													<%-- type="text" value="${now }" name="cStart" required> --%>
+													type="text" id="date" name="cStart" required>
 											</div>
 										</div>
 									</div>
@@ -227,7 +228,8 @@
 
 								</div>
 								<div class="mt-3">
-									<button type="button" class="btn btn-primary"  onclick="check();">등록하기</button>
+									<button type="submit" class="btn btn-primary" onclick="check();">등록하기</button>
+									<!-- <button type="button" class="btn btn-primary"  onclick="check();">등록하기</button> -->
 								</div>
 
 							</form>
@@ -254,31 +256,33 @@
 
 <script type="text/javascript">
 function check(){
-	 if ($('#zipcode').val().length<1){
+	
+      if ($('#zipcode').val().length<1){
          alert('우편번호를 검색해주세요.');
          $('#zipcode').focus();
-         //event.preventDefault();
+         event.preventDefault();
      	return false;
 	 }
-	 
-	 document.frmClass.submit(); // 서브밋으로보내기
+	  
+	// document.frmClass.submit(); // 서브밋으로보내기
 };
 
+/*
 $(document).ready(function()
 		// input file 파일 첨부시 fileCheck 함수 실행
 		{
 			$("#input_file").on("change", fileCheck);
 		});
-/**
- * 첨부파일로직
- */
+
+ // 첨부파일로직
+
 $(function () {
     $('#btn-upload').click(function (e) {
         e.preventDefault();
         $('#input_file').click();
     });
 });
-
+ 
 // 파일 현재 필드 숫자 totalCount랑 비교값
 var fileCount = 0;
 // 해당 숫자를 수정하여 전체 업로드 갯수를 정한다.
@@ -331,9 +335,8 @@ function fileDelete(fileNum){
     console.log(content_files);
 }
 
-/*
- * 폼 submit 로직
- */
+ //폼 submit 로직
+ 
 	function registerAction(){
 		
 	var form = $("form")[0];        
@@ -344,9 +347,9 @@ function fileDelete(fileNum){
 				 formData.append("article_file", content_files[x]);
 			}
 		}
-   /*
-   * 파일업로드 multiple ajax처리
-   */    
+  
+   //파일업로드 multiple ajax처리
+     
 	$.ajax({
    	      type: "POST",
    	   	  enctype: "multipart/form-data",
@@ -367,14 +370,10 @@ function fileDelete(fileNum){
    	    });
    	    return false;
 	}
+ */
 
 
-	$('.datepicker')[0] && $('.datepicker').each(function() {
-		$('.datepicker').datepicker({
-			disableTouchKeyboard : true,
-			autoclose : false
-		});
-	});
+
 
 	function kakaopost() {
 		new daum.Postcode({
