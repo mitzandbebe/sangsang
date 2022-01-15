@@ -353,15 +353,17 @@ $(document).ready(function () {
         });
     });
   
-	/*
+	//데이트피커
+	$('.selectdate')[0] && $('.selectdate').each(function () {
         $('.selectdate').datepicker({
             dateFormat: 'yy-mm-dd',
             prevText:'이전 달',
             nextText:'다음 달',
             monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-            
+            minDate:0,
         });
-   */
+    });
+   
 
     $('.availability')[0] && $('.availability').each(function () {
         $('.availability').datepicker({

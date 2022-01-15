@@ -143,10 +143,11 @@ public class HostClassController {
 		logger.info("lno={}", lno);
 		
 		
-		Date startTime = hostClassVo.getcStartTime();
-		int cTime = hostClassVo.getcTime();
-		startTime.setHours(cTime);
-		hostClassVo.setcStartTime(startTime);
+		/*
+		 * Date startTime = hostClassVo.getcStartTime(); int cTime =
+		 * hostClassVo.getcTime(); startTime.setHours(cTime);
+		 * hostClassVo.setcStartTime(startTime);
+		 */
 		
 		
 		
