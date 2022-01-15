@@ -216,7 +216,7 @@
 
 								</div>
 								<div class="mt-3">
-									<button type="button" class="btn btn-primary"  onclick="check();">수정하기</button>
+									<button type="submit" class="btn btn-primary"  onclick="check();">수정하기</button>
 								</div>
 								</c:if>
 							</c:forEach>
@@ -248,11 +248,11 @@ function check(){
 	 if ($('#zipcode').val().length<1){
         alert('우편번호를 검색해주세요.');
         $('#zipcode').focus();
-        //event.preventDefault();
+        event.preventDefault();
     	return false;
 	 }
 	 
-	 document.frmClass.submit(); // 서브밋으로보내기
+	 //document.frmClass.submit(); // 서브밋으로보내기
 };
 
 
