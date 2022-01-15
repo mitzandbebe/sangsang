@@ -128,15 +128,16 @@
 							</div>
 						</nav>
 						<!-- About Tab -->
-						<div class="tab-content mt-5 mb-3" id="nav-tabContent">
+						<div class="tab-content mt-5 mb-3" id="nav-tabContent" >
 							<div class="tab-pane fade show active" id="nav-about"
 								role="tabpanel" aria-labelledby="nav-about-tab">
+								<div class="container">
 								<div class="row mb-5">
 									<div class="col-12">
 										<div class="fancy-gallery mb-5">
 											<div class="row">
 												<div id="Carousel2" class="carousel slide" data-ride="carousel">
-												    <div class="carousel-inner">
+												    <div class="carousel-inner" >
 												        <div class="carousel-item active">
 												        <c:choose >
 					                                    	<c:when test="${not empty map['THUMBNAIL']}">
@@ -197,7 +198,8 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								</div>
+								<div class="row" >
 									<div class="col">
 										<div class="card card-body bg-soft border-light p-2">
 											<div class="card-group bg-soft">
@@ -391,6 +393,7 @@
 							</div>
 							<!-- End of Modal Content -->
 						</div>
+						<br>
 						<form action="order" method="post" class="card border-light p-3 mb-4">
 						<input type="hidden" id="cNo" name="cNo" value="${map['C_NO'] }">
 						<c:if test="${!empty mId }">
@@ -403,11 +406,11 @@
 						 <i class="fas fa-heart" id="heart">&nbsp;
 						 </c:if>
 						 <label for="exampleFormControlSelect2">관심클래스로 등록하기 </label></i>
-						 
 						 </div>
 						 </c:if>
 						<div class="card border-light mt-4 p-3">
-							<label for="exampleFormControlSelect1">클래스 신청일 </label>
+							<label for="exampleFormControlSelect1">클래스 신청일</label>
+							<br> 
 							<div class="form-group">
 								<div class="input-group input-group-border">
 										<span class="input-group-text">
@@ -428,7 +431,7 @@
 										<span class="input-group-text">
 											<i class="fas fa-coins"></i>
 										</span>
-										<label for="exampleFormControlSelect2">&nbsp;${map["C_PRICE"] }</label></div>
+										<label for="exampleFormControlSelect2">&nbsp;&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
 							
 							<div class="text-center">
