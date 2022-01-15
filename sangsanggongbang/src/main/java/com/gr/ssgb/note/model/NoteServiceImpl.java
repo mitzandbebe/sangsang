@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.host.model.HostDAO;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.MemberDAO;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.note.controller.NoteController;
@@ -17,12 +19,14 @@ public class NoteServiceImpl implements NoteService {
 	private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
 	private final NoteDAO noteDAO;
 	private final MemberDAO memberDAO;
-
+	private final HostDAO hostDAO;
+	
 	@Autowired
-	public NoteServiceImpl(NoteDAO noteDAO, MemberDAO memberDAO) {
+	public NoteServiceImpl(NoteDAO noteDAO, MemberDAO memberDAO, HostDAO hostDAO) {
 		super();
 		this.noteDAO = noteDAO;
 		this.memberDAO = memberDAO;
+		this.hostDAO =hostDAO;
 	}
 
 	@Override
@@ -31,8 +35,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public int sendNoteM(NoteVO noteVo) {
-		return noteDAO.sendNoteM(noteVo);
+	public int sendNote(NoteVO noteVo) {
+		return noteDAO.sendNote(noteVo);
 	}
 	//멤버용
 	@Override
@@ -43,7 +47,7 @@ public class NoteServiceImpl implements NoteService {
 		List<Map<String, Object>> list = noteDAO.selectNoteViewM(vo);
 		return list;
 	}
-
+		
 	@Override
 	public List<Map<String, Object>> selectNoteBoxViewM(NoteVO vo) {
 		MemberVO mVo = memberDAO.selectMemberById(vo.getmId());
@@ -51,20 +55,49 @@ public class NoteServiceImpl implements NoteService {
 		vo.setrNickname(nickname);
 		List<Map<String, Object>> list = noteDAO.selectNoteBoxViewM(vo);
 		return list;
-	}
-
+	}	
+		
 	@Override
 	public int selectTotalNoteRecordM(NoteVO vo) {
 		return noteDAO.selectTotalNoteRecordM(vo);
-	}
-
+	}	
+		
 	@Override
 	public int selectTotalNoteBoxRecordM(NoteVO vo) {
 		return noteDAO.selectTotalNoteBoxRecordM(vo);
-	}
-	
+	}	
+		
 	//호스트용
-	
+	@Override
+	public List<Map<String, Object>> selectNoteViewH(NoteVO vo) {
+		HostVO hVo = hostDAO.selectHostById(vo.gethId());
+		
+		String nickname = hVo.gethNickname();
+		vo.setrNickname(nickname);
+		List<Map<String, Object>> list = noteDAO.selectNoteViewH(vo);
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectNoteBoxViewH(NoteVO vo) {
+		HostVO hVo = hostDAO.selectHostById(vo.gethId());
+		
+		String nickname = hVo.gethNickname();
+		vo.setrNickname(nickname);
+		List<Map<String, Object>> list = noteDAO.selectNoteBoxViewH(vo);
+		return list;
+	}
+
+	@Override
+	public int selectTotalNoteRecordH(NoteVO vo) {
+		return noteDAO.selectTotalNoteBoxRecordH(vo);
+	}
+
+	@Override
+	public int selectTotalNoteBoxRecordH(NoteVO vo) {
+		return noteDAO.selectTotalNoteBoxRecordH(vo);
+	}
+
 	
 	
 	public int deleteNote(int[] noteNo) {
@@ -90,5 +123,6 @@ public class NoteServiceImpl implements NoteService {
 	public int readNum(String userid) {
 		return noteDAO.readNum(userid);
 	}
+
 
 }
