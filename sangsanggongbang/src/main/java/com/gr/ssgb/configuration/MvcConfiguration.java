@@ -6,18 +6,32 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.gr.ssgb.controller.AdminLoginInterceptor;
+import com.gr.ssgb.controller.HostLoginInterceptor;
+import com.gr.ssgb.controller.UserLoginInterceptor;
+
 
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer{
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(new LoginInterceptor())
-//		.addPathPatterns("/shop/cart/*", "/shop/order/*","/member/memberEdit.do","/member/memberOut.do");
-//		
-//		registry.addInterceptor(new AdminLoginInterceptor())
-//		.excludePathPatterns("/admin/login/adminLogin.do")
-//		.addPathPatterns("/admin/*/*", "/admin/*");
+		registry.addInterceptor(new UserLoginInterceptor())
+		.addPathPatterns("/member/memberEditChkPwd", "/member/memberEditChkPwd2","/dashboard/user/payment/*","/member/interestClass", "/class/order");
+		
+		
+		
+		 registry.addInterceptor(new HostLoginInterceptor())
+		 .addPathPatterns("/host/hostEditChkPwd",
+		 "/host/hostEditChkPwd2","/class/myclass","/dashboard/host/*", "/memberInquiry/classUser", "/host/hostAccount", "/class/inputclass","/class/listofClass","/class/listdelete" );
+		 
+		 
+		
+		registry.addInterceptor(new AdminLoginInterceptor())
+		.excludePathPatterns("/admin/adminLogin")
+		.addPathPatterns("/admin/**", "/memberInquiry/memberList","/memberInquiry/hostList",
+				"/memberInquiry/banList", "/admin/balancing",
+				"/notice/noticeWrite","/mainevent/eventwrite","/mail/mailSend" );
 		
 		
 	}

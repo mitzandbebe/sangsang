@@ -57,7 +57,7 @@ public class AdminController {
 			session.removeAttribute("hNickname");
 			session.setAttribute("adId", vo.getAdId());
 			session.setAttribute("adNick", vo.getAdNick());
-			session.setAttribute("flag", "admin");
+			session.setAttribute("uOrh", "admin");
 			msg="관리자님 환영합니다.";
 			url="/admin/adminIndex";
 		}else if(result == AdminService.NON_EXIST_ID){
