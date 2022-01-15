@@ -330,8 +330,8 @@
 		<div class="row mb-5 mb-lg-6">
 			<div class="col text-center">
 				<h3 class="mb-5">You can find us here</h3>
-				<iframe class="map rounded" id="gmap_canvas"
-					src="https://maps.google.com/maps?q=san%20francisco&t=&z=8&ie=UTF8&iwloc=&output=embed"></iframe>
+				<div class="" id="map" style="width:1110px;height:400px;"></div>
+
 			</div>
 		</div><br><br><br>
 			<div class="row mb-5 mb-lg-2">
@@ -409,6 +409,29 @@
 		</div>
 	</div>
 </section>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(37.500180037784375, 127.0289849392321),
+			level: 4
+		};
+
+		var map = new kakao.maps.Map(container, options);
+		
+		var markerPosition  = new kakao.maps.LatLng(37.500180037784375, 127.02898493923217); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+
+		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+		// marker.setMap(null);
+	</script>
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
 		<%@ include file="../inc/bottom_host.jsp"%>
