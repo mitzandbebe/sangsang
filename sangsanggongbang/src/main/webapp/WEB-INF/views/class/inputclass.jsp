@@ -75,7 +75,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="input-daterange datepicker row align-items-center" id="date">
+								<div class="input-daterange datepicker row align-items-center" >
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
 										<label for="frmdate">클래스 날짜(월/일/년도)</label>
@@ -85,8 +85,7 @@
 														class="far fa-calendar-alt">&nbsp;시작날짜</i></span>
 												</div>
 												<input class="form-control datepicker" placeholder="${now }"
-													<%-- type="text" value="${now }" name="cStart" required> --%>
-													type="text" id="date" name="cStart" required>
+													type="text" id="date" name="cStart" required min="${now }">
 											</div>
 										</div>
 									</div>
@@ -263,9 +262,19 @@ function check(){
          event.preventDefault();
      	return false;
 	 }
-	  
+      
+      let now = ${now};
+      
+/* 	  if($('#date').val()<now){
+		  alert('현재날짜보다 작은 날짜입니다.');
+		  $('#date').focus();
+		  event.preventDefault();
+		  return false;
+	  }
+       */
 	// document.frmClass.submit(); // 서브밋으로보내기
 };
+
 
 /*
 $(document).ready(function()
