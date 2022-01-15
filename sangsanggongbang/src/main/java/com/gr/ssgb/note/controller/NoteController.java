@@ -1,5 +1,6 @@
 package com.gr.ssgb.note.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gr.ssgb.common.ConstUtil;
 import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.host.model.HostService;
+import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.note.model.NoteService;
@@ -29,20 +32,36 @@ public class NoteController {
 	private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
 	private final NoteService noteService;
 	private final MemberService memberService;
+	private final HostService hostService;
 
 	@Autowired
-	public NoteController(NoteService noteService, MemberService memberService) {
+	public NoteController(NoteService noteService, MemberService memberService, HostService hostService) {
 		this.noteService = noteService;
 		this.memberService = memberService;
+		this.hostService = hostService;
 	}
 
 	@GetMapping("/note/noteWrite") // 쪽지 보내기 화면 출력
-	public String noteWrite_get(@RequestParam String mId, Model model) {
-		logger.info("쪽지 작성 페이지 등장 mId={}", mId);
-		MemberVO vo = memberService.selectMemberById(mId);
-		logger.info("회원 정보 vo={}", vo);
+	public String noteWrite_get(HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
+		logger.info("회원 아이디 mId={}, hId", mId, hId);
 
-		model.addAttribute("vo", vo);
+		MemberVO mVo = new MemberVO();
+		HostVO hVo = new HostVO();
+
+		if (mId != null && !mId.isEmpty()) {
+			logger.info("회원 아이디 mId={}", mId);
+			mVo = memberService.selectMemberById(mId);
+		} else if (hId != null && !hId.isEmpty()) {
+			logger.info("호스트 아이디 hId={}", hId);
+			hVo = hostService.selectHostById(hId);
+		}
+
+		logger.info("회원 정보 mVo={}, hVo={}", mVo, hVo);
+
+		model.addAttribute("mVo", mVo);
+		model.addAttribute("hVo", hVo);
 
 		return "note/noteWrite";
 	}
@@ -60,7 +79,7 @@ public class NoteController {
 			return "/common/message";
 		} else {
 			logger.info("여긴");
-			int cnt = noteService.sendNoteM(vo);
+			int cnt = noteService.sendNote(vo);
 			if (cnt > 0) {
 				msg = "쪽지를 성공적으로 보냈습니다";
 				url = "/note/noteList?mId=" + vo.getmId();
@@ -74,16 +93,17 @@ public class NoteController {
 		return "/common/message";
 	}
 
-	@RequestMapping("/note/noteList") // 쪽지리스트
+	@RequestMapping("/note/noteList") // 멤버 쪽지리스트
 	public String noteList(@ModelAttribute NoteVO vo, Model model) { // searchVO 상속 받은 noteVO
-		logger.info("쪽지리스트 등장 아이디 mId={}", vo.getmId());
+		logger.info("쪽지리스트 등장 아이디 mId={} ,hId={}", vo.getmId(), vo.gethId());
 
-		if (vo.getmId() == null || vo.getmId().isEmpty()) {
+		if ((vo.getmId() == null || vo.getmId().isEmpty()) && (vo.gethId() == null || vo.gethId().isEmpty())) {
 			model.addAttribute("msg", "해당하는 아이디가 없습니다");
 			model.addAttribute("url", "/index");
 			return "/common/message";
 		}
 
+		logger.info("vo={}", vo);
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
 		pagingInfo.setRecordCountPerPage(10);
@@ -93,16 +113,53 @@ public class NoteController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("vo={}", vo);
 
-		List<Map<String, Object>> list = noteService.selectNoteViewM(vo);
-		logger.info("쪽지 총 개수 list.size={}", list.size());
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		int totalRecord = 0;
+		if (vo.getmId() != null && !vo.getmId().isEmpty()) {
+			list = noteService.selectNoteViewM(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalNoteRecordM(vo);
+		} else {
+			logger.info("확인1");
+			list = noteService.selectNoteViewH(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalNoteRecordH(vo);
+		}
 
-		int totalRecord = noteService.selectTotalNoteRecordM(vo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("list", list);
 		return "note/noteList";
 	}
+
+	/*
+	 * @RequestMapping("/note/noteList") // 호스트 쪽지리스트 public String
+	 * noteListH(@ModelAttribute NoteVO vo, Model model) { // searchVO 상속 받은 noteVO
+	 * logger.info("쪽지리스트 등장 아이디 hId={}", vo.gethId());
+	 * 
+	 * if (vo.getmId() == null || vo.getmId().isEmpty()) { model.addAttribute("msg",
+	 * "해당하는 아이디가 없습니다"); model.addAttribute("url", "/index"); return
+	 * "/common/message"; }
+	 * 
+	 * PaginationInfo pagingInfo = new PaginationInfo();
+	 * pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+	 * pagingInfo.setRecordCountPerPage(10);
+	 * pagingInfo.setCurrentPage(vo.getCurrentPage());
+	 * 
+	 * vo.setRecordCountPerPage(10);
+	 * vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	 * logger.info("vo={}", vo);
+	 * 
+	 * List<Map<String, Object>> list = noteService.selectNoteViewM(vo);
+	 * logger.info("쪽지 총 개수 list.size={}", list.size());
+	 * 
+	 * int totalRecord = noteService.selectTotalNoteRecordM(vo);
+	 * pagingInfo.setTotalRecord(totalRecord);
+	 * 
+	 * model.addAttribute("pagingInfo", pagingInfo); model.addAttribute("list",
+	 * list); return "note/noteList"; }
+	 */
 
 	@RequestMapping("/note/noteBox") // 쪽지보관함 리스트
 	public String noteBox(@ModelAttribute NoteVO vo, @RequestParam String mId, Model model) {
@@ -182,6 +239,5 @@ public class NoteController {
 
 		return "note/noteDetail";
 	}
-
 
 }

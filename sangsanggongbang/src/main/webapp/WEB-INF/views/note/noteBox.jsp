@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
@@ -35,8 +35,6 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
 				<h1 class="display-2 mb-3">쪽지보관함</h1>
-				<p class="lead">One place for our legal documentation and
-					policies</p>
 			</div>
 		</div>
 	</div>
@@ -73,8 +71,8 @@
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
 											<td>${map['mId'] }</td>
-											<td>
-											<a <c:choose>
+											<td><a
+												<c:choose>
 											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
 											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
 											</c:choose>

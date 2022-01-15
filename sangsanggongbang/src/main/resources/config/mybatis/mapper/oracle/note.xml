@@ -8,7 +8,7 @@
 		select * from member where m_nickname=#{rNickname}
 	</select>
 
-	<insert id="sendNoteM" parameterType="noteVo">
+	<insert id="sendNote" parameterType="noteVo">
 		<selectKey keyProperty="noteNo" resultType="int"
 			order="BEFORE">
 			select note_seq.nextval from dual
@@ -22,21 +22,17 @@
 		select * from dual
 	</insert>
 
-<!-- 	<resultMap type="map" id="noteView">
-		<result property="noteContent" column="NOTE_CONTENT"
-			javaType="java.lang.String" />
-		<result property="noteNo" column="NOTE_NO" />
-		<result property="noteTitle" column="NOTE_TITLE" />
-		<result property="noteRegdate" column="NOTE_REGDATE" />
-		<result property="noteDelFag" column="NOTE_DELFLAG" />
-		<result property="mId" column="M_ID" />
-		<result property="rNickname" column="R_NICKNAME" />
-		<result property="recNo" column="REC_NO" />
-		<result property="recDelFlag" column="REC_DELFLAG" />
-		<result property="recReadFlag" column="REC_READFLAG" />
-	</resultMap> -->
+	<!-- <resultMap type="map" id="noteView"> <result property="noteContent" 
+		column="NOTE_CONTENT" javaType="java.lang.String" /> <result property="noteNo" 
+		column="NOTE_NO" /> <result property="noteTitle" column="NOTE_TITLE" /> <result 
+		property="noteRegdate" column="NOTE_REGDATE" /> <result property="noteDelFag" 
+		column="NOTE_DELFLAG" /> <result property="mId" column="M_ID" /> <result 
+		property="rNickname" column="R_NICKNAME" /> <result property="recNo" column="REC_NO" 
+		/> <result property="recDelFlag" column="REC_DELFLAG" /> <result property="recReadFlag" 
+		column="REC_READFLAG" /> </resultMap> -->
 
-	<select id="selectNoteViewM" parameterType="noteVo" resultType="noteVo"> <!-- 멤버용 -->
+	<select id="selectNoteViewM" parameterType="noteVo"
+		resultType="noteVo"> <!-- 멤버용 -->
 		select *
 		from
 		(
@@ -54,10 +50,70 @@
 		<![CDATA[where RNUM>#{firstRecordIndex} and 
 		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
 		]]>
-		
+
 	</select>
 
-	<select id="selectNoteBoxViewM" parameterType="noteVo" resultType="noteVo">
+	<select id="selectNoteBoxViewM" parameterType="noteVo"
+		resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE
+		R_NICKNAME=#{rNickname} and
+		REC_IMPFLAG='Y'
+		order BY
+		NOTE_NO DESC
+		)A
+		)	
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+
+	<select id="selectTotalNoteRecordM" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where r_nickname=#{rNickname}
+		and rec_impflag='N'
+	</select>
+
+	<select id="selectTotalNoteBoxRecordM" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where r_nickname=#{rNickname}
+		and rec_impflag='Y'
+	</select>
+
+	<!-- 호스트용 -->
+
+	<select id="selectNoteViewH" parameterType="noteVo"
+		resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE
+		R_NICKNAME=#{rNickname} and
+		REC_IMPFLAG='N'
+		order BY
+		NOTE_NO DESC
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+
+	</select>
+
+	<select id="selectNoteBoxViewH" parameterType="noteVo"
+		resultType="noteVo">
 		select *
 		from
 		(
@@ -77,84 +133,20 @@
 		]]>
 	</select>
 
-	<select id="selectTotalNoteRecordM" parameterType="noteVo"
+	<select id="selectTotalNoteRecordH" parameterType="noteVo"
 		resultType="int">
 		select count(*) from noteview
-		where r_nickname=#{rNickname} and rec_impflag='N'
-	</select>
-	
-	<select id="selectTotalNoteBoxRecordM" parameterType="noteVo"
-		resultType="int">
-		select count(*) from noteview
-		where r_nickname=#{rNickname} and rec_impflag='Y'
-	</select>
-	<!-- 호스트용 --><!-- 
-		<insert id="sendNote" parameterType="noteVo">
-		<selectKey keyProperty="noteNo" resultType="int"
-			order="BEFORE">
-			select note_seq.nextval from dual
-		</selectKey>
-		insert all
-		into note(NOTE_NO,NOTE_CONTENT,M_ID,R_NICKNAME)
-		VALUES(#{noteNo},#{noteContent},#{mId},#{rNickname})
-		into
-		note_rec(REC_NO,NOTE_NO,R_NICKNAME)
-		VALUES(#{noteNo},#{noteNo},#{rNickname})
-		select * from dual
-	</insert>
-	<select id="selectNoteViewM" parameterType="noteVo" resultType="noteVo"> 
-		select *
-		from
-		(
-		select rownum as RNUM, A.*
-		from
-		(
-		SELECT * FROM NOTEVIEW
-		WHERE
-		R_NICKNAME=#{rNickname} and
-		REC_IMPFLAG='N'
-		order BY
-		NOTE_NO DESC
-		)A
-		)
-		<![CDATA[where RNUM>#{firstRecordIndex} and 
-		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
-		]]>
-		
+		where r_nickname=#{rNickname}
+		and rec_impflag='N'
 	</select>
 
-	<select id="selectNoteBoxViewM" parameterType="noteVo" resultType="noteVo">
-		select *
-		from
-		(
-		select rownum as RNUM, A.*
-		from
-		(
-		SELECT * FROM NOTEVIEW
-		WHERE
-		R_NICKNAME=#{rNickname} and
-		REC_IMPFLAG='Y'
-		order BY
-		NOTE_NO DESC
-		)A
-		)
-		<![CDATA[where RNUM>#{firstRecordIndex} and 
-		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
-		]]>
-	</select>
-
-	<select id="selectTotalNoteRecordM" parameterType="noteVo"
+	<select id="selectTotalNoteBoxRecordH" parameterType="noteVo"
 		resultType="int">
 		select count(*) from noteview
-		where r_nickname=#{rNickname} and rec_impflag='N'
+		where r_nickname=#{rNickname}
+		and rec_impflag='Y'
 	</select>
-	
-	<select id="selectTotalNoteBoxRecordM" parameterType="noteVo"
-		resultType="int">
-		select count(*) from noteview
-		where r_nickname=#{rNickname} and rec_impflag='Y'
-	</select> -->
-
+	<!-- 여기까지 -->
 	<delete id="deleteNote" parameterType="int[]">
 		delete from NOTE
 		<where>
@@ -193,15 +185,17 @@
 		SELECT * FROM NOTEVIEW WHERE
 		note_no=#{noteNo}
 	</select>
-	
+
 	<update id="noteRead" parameterType="int">
 		update NOTE_REC
-		set REC_READFLAG = 'Y'
+		set
+		REC_READFLAG = 'Y'
 		where NOTE_NO = #{noteNo}
 	</update>
-	
+
 	<select id="readNum" parameterType="String" resultType="int">
-		select count(*) from noteview
+		select
+		count(*) from noteview
 		where m_id =#{mId} and rec_readflag ='N'
 	</select>
 </mapper>
