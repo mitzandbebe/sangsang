@@ -41,10 +41,10 @@ public class BlackListController {
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(5);
+		pagingInfo.setRecordCountPerPage(9);
 		pagingInfo.setCurrentPage(blackListvo.getCurrentPage());
 
-		blackListvo.setRecordCountPerPage(5);
+		blackListvo.setRecordCountPerPage(9);
 		blackListvo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("blackListvo={}", blackListvo);
 
