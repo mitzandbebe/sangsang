@@ -75,10 +75,10 @@ var InputImage =
 </script>
 
 <div class="section section-lg bg-soft">
-	<div class="col-12">
+	<div class="container">
 		<div class="row pt-5 pt-md-0">
 
-			<div class="col-md-2 d-none d-lg-block" style="margin-left: 350px">
+			<div class="col-12 col-md-4 d-none d-lg-block">
 				<!-- Navigation -->
 				<div class="card border-light p-2">
 					<div class="card-body p-2">
@@ -87,7 +87,7 @@ var InputImage =
 								<img
 									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
 									class="card-img-top rounded-circle border-white"
-									alt="Joseph Portrait" width="129" height="129"
+									alt="Joseph Portrait"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
 							<c:if test="${empty sessionScope.hFilename }">
@@ -173,19 +173,18 @@ var InputImage =
 			</div>
 			<div class="col-12 col-lg-8">
 				<div class="row">
-					<div class="col-lg-10">
+					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
 								<form name="frmList">
 									<table class="table table-hover" style="font-size: 14px;">
-										
+																	
 
 											<c:if test="${empty classlist }">
 												<h3 class="h4 mb-5">늘솜님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>아직 클래스가 없네요
 													 &nbsp;</h3>
 												<h4>
-													<a href="<c:url value='/class/inputclass'/> "> ➯클래스
-														등록하러 가기</a>
+													<a href="<c:url value='/class/inputclass'/> "> ➯클래스 등록하러 가기</a>
 												</h4>
 											</c:if>
 											<c:if test="${!empty classlist }">
@@ -226,7 +225,7 @@ var InputImage =
 									</table>
 
 
-									<%-- 		<div class="row">
+		<div class="row"> 
 			<div class="col-lg-12 mb-5">
 				<div class="col mt-3 d-flex justify-content-center">
 					<div style="text-align: center;">
@@ -236,7 +235,7 @@ var InputImage =
 								<!-- 이전블럭 -->
 								<c:if test="${pagingInfo.firstPage>1 }">
 									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.firstPage -1 }'/> ">
+										href="<c:url value='/class/myclass?currentPage=${pagingInfo.firstPage -1 }'/> ">
 											<i class="fas fa-angle-double-left"></i>
 									</a></li>
 								</c:if>
@@ -246,19 +245,19 @@ var InputImage =
 									<c:if test="${i==pagingInfo.currentPage }">
 										<li class="page-item"><a class="page-link"
 											style="background-color: #9FB9AE; color: #ffffff;"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+											href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 										</li>
 									</c:if>
 									<c:if test="${i!=pagingInfo.currentPage }">
 										<li class="page-item"><a class="page-link"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+											href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 										</li>
 									</c:if>
 								</c:forEach>
 								<!-- 다음블럭으로 이동 -->
 								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.lastPage +1 }'/> ">
+										href="<c:url value='/class/myclass?currentPage=${pagingInfo.lastPage +1 }'/> ">
 											<i class="fas fa-angle-double-right"></i>
 									</a></li>
 								</c:if>
@@ -267,7 +266,7 @@ var InputImage =
 					</div>
 				</div>
 			</div>
-		</div> --%>
+		</div> 
 								</form>
 							</div>
 						</div>

@@ -430,6 +430,7 @@
 										</span>
 										<label for="exampleFormControlSelect2">&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
+							
 							<div class="text-center">
 							
 								<button type="submit"  

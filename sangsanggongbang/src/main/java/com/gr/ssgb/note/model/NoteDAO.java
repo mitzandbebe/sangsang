@@ -8,12 +8,17 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface NoteDAO {
 	String selectSendUser(String rNickname);
-	int sendNoteM(NoteVO noteVo);
+	int sendNote(NoteVO noteVo);
 	
 	List<Map<String, Object>> selectNoteViewM(NoteVO vo);
 	List<Map<String, Object>> selectNoteBoxViewM(NoteVO vo);
 	int selectTotalNoteRecordM(NoteVO vo);
 	int selectTotalNoteBoxRecordM(NoteVO vo);
+	
+	List<Map<String, Object>> selectNoteViewH(NoteVO vo);
+	List<Map<String, Object>> selectNoteBoxViewH(NoteVO vo);
+	int selectTotalNoteRecordH(NoteVO vo);
+	int selectTotalNoteBoxRecordH(NoteVO vo);
 	
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 

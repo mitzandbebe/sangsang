@@ -126,7 +126,8 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" value="${param.mId }" id="id" name="mId">
+	 	<input type="text" value="${param.mId }" id="id" name="mId"> 
+	 	<input type="text" value="${param.hId }" id="id" name="hId">
 </form>
 </main>
 <script type="text/javascript">

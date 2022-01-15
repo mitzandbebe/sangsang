@@ -36,17 +36,21 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
 				<h1 class="display-2 mb-3">쪽지쓰기</h1>
-				<p class="lead">One place for our legal documentation and
-					policies</p>
 			</div>
 		</div>
 	</div>
 	<div class="pattern bottom"></div>
 </section>
 <form method="post" action="<c:url value='/note/noteWrite'/>">
-	<input type="hidden" id="mNickname" name="mNickname"
-		value="${vo.mNickname }"> <input type="hidden" id="mId"
-		name="mId" value="${vo.mId }">
+	<c:if test="${!empty sessionScope.mId }">
+		<input type="text" id="mNickname" name="mNickname"
+			value="${mVo.mNickname }">
+	</c:if>
+	<c:if test="${!empty sessionScope.hId }">
+		<input type="text" id="mNickname" name="mNickname"
+			value="${hVo.hNickname }">
+	</c:if>
+	<input type="text" id="mId" name="mId" value="${mVo.mId }">
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
