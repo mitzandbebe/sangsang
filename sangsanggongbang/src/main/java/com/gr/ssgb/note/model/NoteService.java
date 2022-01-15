@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface NoteService {
-	String selectSendUser(String rNickname);
+	String selectSendUserM(String rNickname);
+	String selectSendUserH(String rNickname);
 	int sendNote(NoteVO noteVo);
+	int sendNoteH(NoteVO noteVo);
 	
 	List<Map<String, Object>> selectNoteViewM(NoteVO vo);
 	List<Map<String, Object>> selectNoteBoxViewM(NoteVO vo);

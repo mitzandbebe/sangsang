@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -67,24 +68,55 @@ public class NoteController {
 	}
 
 	@PostMapping("/note/noteWrite") // 쪽지보내기
-	public String noteWrite_post(@ModelAttribute NoteVO vo, @RequestParam String mId, Model model) {
-		logger.info("쪽지 vo={},mId={}", vo, mId);
-		String receiveNickname = noteService.selectSendUser(vo.getrNickname());
+	public String noteWrite_post(@ModelAttribute NoteVO vo, HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
+		logger.info("쪽지 vo={},mId={},hId={}", vo, mId, hId);
+		
+		logger.info("snickname={}",vo.getsNickname());
+		
+		String receiveNickname = noteService.selectSendUserM(vo.getrNickname());
+		String receiveNicknameH = noteService.selectSendUserH(vo.getrNickname());
+		logger.info("receiv={}", receiveNickname);
 		vo.setmId(mId);
+		vo.sethId(hId);
 
-		String msg = "해당하는 닉네임이 없습니다", url = "/note/noteWrite?mId=" + vo.getmId();
-		if (receiveNickname == null || receiveNickname.isEmpty()) {
+		String msg = "해당하는 닉네임이 없습니다", url = "";
+		if (mId != null && !mId.isEmpty()) {
+			url = "/note/noteWrite?mId=" + mId;
+		} else {
+			url = "/note/noteWrite?hId=" + hId;
+		}
+		if ((receiveNickname == null || receiveNickname.isEmpty()) && receiveNicknameH == null
+				|| receiveNicknameH.isEmpty()) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return "/common/message";
 		} else {
 			logger.info("여긴");
-			int cnt = noteService.sendNote(vo);
-			if (cnt > 0) {
-				msg = "쪽지를 성공적으로 보냈습니다";
-				url = "/note/noteList?mId=" + vo.getmId();
-			} else {
-				msg = "쪽지를 보내는데 실패했습니다";
+			int cnt = 0;
+			if (mId != null && !mId.isEmpty()) {
+				MemberVO mVo= memberService.selectMemberById(mId);
+				vo.setsNickname(mVo.getmNickname());
+				logger.info("보내는사람={}",vo.getsNickname());
+				cnt = noteService.sendNote(vo);
+				if (cnt > 0) {
+					msg = "쪽지를 성공적으로 보냈습니다";
+					url = "/note/noteList?mId=" + vo.getmId();
+				} else {
+					msg = "쪽지를 보내는데 실패했습니다";
+				}
+			} else if (hId != null && !hId.isEmpty()) {
+				HostVO hVo = hostService.selectHostById(hId);
+				vo.setsNickname(hVo.gethNickname());
+				logger.info("보내는사람={}",vo.getsNickname());
+				cnt = noteService.sendNoteH(vo);
+				if (cnt > 0) {
+					msg = "쪽지를 성공적으로 보냈습니다";
+					url = "/note/noteList?hId=" + vo.gethId();
+				} else {
+					msg = "쪽지를 보내는데 실패했습니다";
+				}
 			}
 		}
 		model.addAttribute("msg", msg);
@@ -113,7 +145,7 @@ public class NoteController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("vo={}", vo);
 
-		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		int totalRecord = 0;
 		if (vo.getmId() != null && !vo.getmId().isEmpty()) {
 			list = noteService.selectNoteViewM(vo);
@@ -133,39 +165,13 @@ public class NoteController {
 		return "note/noteList";
 	}
 
-	/*
-	 * @RequestMapping("/note/noteList") // 호스트 쪽지리스트 public String
-	 * noteListH(@ModelAttribute NoteVO vo, Model model) { // searchVO 상속 받은 noteVO
-	 * logger.info("쪽지리스트 등장 아이디 hId={}", vo.gethId());
-	 * 
-	 * if (vo.getmId() == null || vo.getmId().isEmpty()) { model.addAttribute("msg",
-	 * "해당하는 아이디가 없습니다"); model.addAttribute("url", "/index"); return
-	 * "/common/message"; }
-	 * 
-	 * PaginationInfo pagingInfo = new PaginationInfo();
-	 * pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
-	 * pagingInfo.setRecordCountPerPage(10);
-	 * pagingInfo.setCurrentPage(vo.getCurrentPage());
-	 * 
-	 * vo.setRecordCountPerPage(10);
-	 * vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-	 * logger.info("vo={}", vo);
-	 * 
-	 * List<Map<String, Object>> list = noteService.selectNoteViewM(vo);
-	 * logger.info("쪽지 총 개수 list.size={}", list.size());
-	 * 
-	 * int totalRecord = noteService.selectTotalNoteRecordM(vo);
-	 * pagingInfo.setTotalRecord(totalRecord);
-	 * 
-	 * model.addAttribute("pagingInfo", pagingInfo); model.addAttribute("list",
-	 * list); return "note/noteList"; }
-	 */
-
 	@RequestMapping("/note/noteBox") // 쪽지보관함 리스트
-	public String noteBox(@ModelAttribute NoteVO vo, @RequestParam String mId, Model model) {
-		logger.info("쪽지보관함 등장 아이디 mId={}", mId);
+	public String noteBox(@ModelAttribute NoteVO vo, HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
+		logger.info("쪽지보관함 등장 아이디 mId={},hId={}", mId, hId);
 
-		if (mId == null || mId.isEmpty()) {
+		if ((vo.getmId() == null || vo.getmId().isEmpty()) && (vo.gethId() == null || vo.gethId().isEmpty())) {
 			model.addAttribute("msg", "해당하는 아이디가 없습니다");
 			model.addAttribute("url", "/index");
 			return "/common/message";
@@ -179,10 +185,19 @@ public class NoteController {
 		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("vo={}", vo);
 
-		List<Map<String, Object>> list = noteService.selectNoteBoxViewM(vo);
-		logger.info("쪽지보관함 총 개수 list.size={}", list.size());
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		int totalRecord = 0;
+		if (vo.getmId() != null && !vo.getmId().isEmpty()) {
+			list = noteService.selectNoteBoxViewM(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalNoteBoxRecordM(vo);
+		} else {
+			logger.info("확인1");
+			list = noteService.selectNoteBoxViewH(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalNoteBoxRecordH(vo);
+		}
 
-		int totalRecord = noteService.selectTotalNoteBoxRecordM(vo);
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
@@ -209,10 +224,17 @@ public class NoteController {
 	}
 
 	@PostMapping("/note/noteSave") // 쪽지 보관함 시키는것
-	public String noteSave(@RequestParam int[] noteNo, @RequestParam String mId, Model model) {
+	public String noteSave(@RequestParam int[] noteNo, HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
 		logger.info("noteNo={}", noteNo);
 		int cnt = noteService.saveNote(noteNo);
-		String msg = "쪽지 보관 실패", url = "/note/noteBox?mId=" + mId;
+		String msg = "쪽지 보관 실패",url="";
+		if (mId != null && !mId.isEmpty()) {
+			url = "/note/noteBox?mId=" + mId;
+		}else if(hId !=null && !hId.isEmpty()) {
+			url = "/note/noteBox?hId=" + hId;
+		}
 		if (cnt > 0) {
 			msg = "쪽지 보관 성공";
 		}
