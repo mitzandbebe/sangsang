@@ -50,7 +50,12 @@
 		<input type="text" id="mNickname" name="mNickname"
 			value="${hVo.hNickname }">
 	</c:if>
+		<c:if test="${!empty sessionScope.mId }">
 	<input type="text" id="mId" name="mId" value="${mVo.mId }">
+		</c:if>
+	<c:if test="${!empty sessionScope.hId }">
+		<input type="text" id="hId" name="hId" value="${hVo.hId }">
+	</c:if>
 	<div class="section section-lg pt-0">
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">

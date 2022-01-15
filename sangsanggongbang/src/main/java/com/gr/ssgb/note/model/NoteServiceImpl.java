@@ -30,13 +30,21 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public String selectSendUser(String rNickname) {
-		return noteDAO.selectSendUser(rNickname);
+	public String selectSendUserM(String rNickname) {
+		return noteDAO.selectSendUserM(rNickname);
+	}
+	@Override
+	public String selectSendUserH(String rNickname) {
+		return noteDAO.selectSendUserH(rNickname);
 	}
 
 	@Override
 	public int sendNote(NoteVO noteVo) {
 		return noteDAO.sendNote(noteVo);
+	}
+	@Override
+	public int sendNoteH(NoteVO noteVo) {
+		return noteDAO.sendNoteH(noteVo);
 	}
 	//멤버용
 	@Override

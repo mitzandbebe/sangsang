@@ -14,12 +14,21 @@ public class NoteVO extends SearchVO {
 	private String mId;
 	private String rNickname;
 	private String hId;
+	private String sNickname;
 
 	// 쪽지함(수신)
 	private int recNo;
 	private String recDelFalg;
 	private String recImpFlag;
 	private String recReadFlag;
+	
+	public String getsNickname() {
+		return sNickname;
+	}
+
+	public void setsNickname(String sNickname) {
+		this.sNickname = sNickname;
+	}
 
 	private int check;
 
@@ -132,8 +141,8 @@ public class NoteVO extends SearchVO {
 		return "NoteVO [noteNo=" + noteNo + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent
 				+ ", noteRegdate=" + noteRegdate + ", noteDelFlg=" + noteDelFlg + ", mId=" + mId + ", rNickname="
 				+ rNickname + ", hId=" + hId + ", recNo=" + recNo + ", recDelFalg=" + recDelFalg + ", recImpFlag="
-				+ recImpFlag + ", recReadFlag=" + recReadFlag + ", check=" + check + ", toString()=" + super.toString()
-				+ "]";
+				+ recImpFlag + ", recReadFlag=" + recReadFlag + ", sNickname=" + sNickname + ", check=" + check
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }

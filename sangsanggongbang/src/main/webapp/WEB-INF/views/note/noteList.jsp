@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
@@ -29,8 +29,8 @@
 	src="<c:url value='/resources/vendor/headroom.js/dist/headroom.min.js'/>"></script>
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
-	
-	
+
+
 <section
 	class="section-header bg-primary text-white pb-9 pb-lg-12 mb-4 mb-lg-6">
 	<div class="container">
@@ -48,13 +48,26 @@
 		<div class="container mt-n8 mt-lg-n12 z-2">
 			<div class="row justify-content-center">
 				<div class="col col-md-10">
-					<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
-						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-							type="button">쪽지쓰기</button>
-					</a> <a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
-						<button class="btn mb-2 mr-2 btn-success" id="noteBox"
-							type="button">보관함</button>
-					</a>
+					<c:if test="${!empty sessionScope.mId }">
+						<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
+							<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
+								type="button">쪽지쓰기</button>
+						</a>
+						<a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
+							<button class="btn mb-2 mr-2 btn-success" id="noteBox"
+								type="button">보관함</button>
+						</a>
+					</c:if>
+					<c:if test="${!empty sessionScope.hId }">
+						<a href="<c:url value='/note/noteWrite?hId=${param.hId }'/>">
+							<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
+								type="button">쪽지쓰기</button>
+						</a>
+						<a href="<c:url value='/note/noteBox?hId=${param.hId }'/>">
+							<button class="btn mb-2 mr-2 btn-success" id="noteBox"
+								type="button">보관함</button>
+						</a>
+					</c:if>
 					<button class="btn mb-2 mr-2 btn-success" id="noteSave"
 						type="button">보관하기</button>
 					<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
@@ -75,8 +88,9 @@
 										<tr>
 											<td><input type="checkbox" id="check" name="noteNo"
 												value="${map['noteNo'] }"></td>
-											<td>${map['mId'] }</td>
-											<td><a <c:choose>
+											<td>${map['sNickname'] }</td>
+											<td><a
+												<c:choose>
 											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
 											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
 											</c:choose>
@@ -126,8 +140,8 @@
 			</div>
 		</div>
 	</div>
-	 	<input type="text" value="${param.mId }" id="id" name="mId"> 
-	 	<input type="text" value="${param.hId }" id="id" name="hId">
+	<input type="text" value="${param.mId }" id="id" name="mId"> <input
+		type="text" value="${param.hId }" id="id" name="hId">
 </form>
 </main>
 <script type="text/javascript">
