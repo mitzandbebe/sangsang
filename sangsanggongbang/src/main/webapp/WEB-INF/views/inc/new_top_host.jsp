@@ -238,7 +238,7 @@
 					</c:if>
 					<!-- 로그아웃 끝 -->
 					<c:if test="${!empty sessionScope.hId }">
-					<!--쪽지함-->
+				<%-- 	<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a
 						style="position: relative; width: 100px;"
 						href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>">
@@ -248,7 +248,7 @@
 						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
 						style="top: -10px; right: -5px;"></span>
 					</a>
-					<!--쪽지함 끝-->
+					<!--쪽지함 끝--> --%>
 					<!-- 채팅창 -->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a
 						style="position: relative; width: 100px;"
