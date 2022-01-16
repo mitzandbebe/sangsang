@@ -169,24 +169,14 @@
 						<h3 class="h4 card-title mt-2">강유빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
 							<li><a href="#" target="_blank"
-								aria-label="facebook social link"
-								class="icon icon-sm icon-facebook mr-3"> <span
-									class="fab fa-facebook-f"></span>
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link"
-								class="icon icon-sm icon-twitter mr-3"> <span
-									class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link"
-								class="icon icon-sm icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link"
-								class="icon icon-sm icon-dribbble mr-3"> <span
-									class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -204,24 +194,14 @@
 						<h3 class="h4 card-title mt-2">최원정</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
 							<li><a href="#" target="_blank"
-								aria-label="facebook social link"
-								class="icon icon-sm icon-facebook mr-3"> <span
-									class="fab fa-facebook-f"></span>
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link"
-								class="icon icon-sm icon-twitter mr-3"> <span
-									class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link"
-								class="icon icon-sm icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link"
-								class="icon icon-sm icon-dribbble mr-3"> <span
-									class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -238,25 +218,15 @@
 						<span class="card-subtitle text-gray font-weight-normal">Invoice</span>
 						<h3 class="h4 card-title mt-2">최수빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
-							<li><a href="#" target="_blank"
-								aria-label="facebook social link"
-								class="icon icon-sm icon-facebook mr-3"> <span
-									class="fab fa-facebook-f"></span>
+							<li><a href="https://github.com/mitzandbebe/sangsang/tree/subin" target="_blank"
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="twitter social link"
-								class="icon icon-sm icon-twitter mr-3"> <span
-									class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link"
-								class="icon icon-sm icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link"
-								class="icon icon-sm icon-dribbble mr-3"> <span
-									class="fab fa-dribbble"></span>
+							<li><a href="https://www.instagram.com/csb9762/" target="_blank"
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
