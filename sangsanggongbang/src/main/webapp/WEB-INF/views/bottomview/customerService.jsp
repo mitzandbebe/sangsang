@@ -160,7 +160,7 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card text-center">
 					<div class="card-header bg-white">
-						<img src="../assets/img/team/profile-picture-2.jpg"
+						<img src="../resources/assets/img/group2_photo/kangyubin.jpg"
 							class="card-img-top rounded shadow border-0"
 							alt="Christopher Avatar">
 					</div>

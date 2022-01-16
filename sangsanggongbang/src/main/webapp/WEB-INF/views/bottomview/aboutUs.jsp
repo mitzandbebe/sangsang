@@ -238,7 +238,7 @@
 		<div class="row mb-5 mb-lg-4">
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
-					<img src="../assets/img/team/profile-picture-1.jpg"
+					<img src="../resources/assets/img/group2_photo/kangyubin.jpg"
 						class="card-img-top rounded-top" alt="강유빈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">강유빈</h3>
@@ -278,7 +278,7 @@
 			</div>
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
-					<img src="../assets/img/team/profile-picture-2.jpg"
+					<img src="../resources/assets/img/group2_photo/ohjeonghun.jpg"
 						class="card-img-top rounded-top" alt="오정훈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">오정훈</h3>
