@@ -45,10 +45,11 @@ public class BottomController {
 
 	@PostMapping("/bottomview/mail")
 	public String emailSend(@ModelAttribute EmailVo vo, HttpSession session) {
-		String userid = "";
+		String userid = "temp@naver.com";
 		String adId = (String) session.getAttribute("adId");
 		String hId = (String) session.getAttribute("hId");
 		String mId = (String) session.getAttribute("mId");
+		vo.setReceiveId("csb9762@gmail.com");
 		if(adId!=null && !adId.isEmpty()) {
 			userid = adId;
 		}else if (hId !=null && !hId.isEmpty()) {
