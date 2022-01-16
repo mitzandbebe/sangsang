@@ -1,5 +1,8 @@
 package com.gr.ssgb.admin.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,16 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectTotalProfit(MonthVO monVo) {
 		return adminDao.selectTotalProfit(monVo);
+	}
+
+	@Override
+	public int selectTotalClassCnt() {
+		return adminDao.selectTotalClassCnt();
+	}
+
+	@Override
+	public List<ClassRatioVO> selectRatio() {
+		return adminDao.selectRatio();
 	}
 
 	

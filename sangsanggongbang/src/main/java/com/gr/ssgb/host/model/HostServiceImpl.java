@@ -79,7 +79,7 @@ public class HostServiceImpl implements HostService{
 	}
 
 	@Override
-	public int selectMyProfit(MonthVO monVo) {
+	public Integer selectMyProfit(MonthVO monVo) {
 		return hostDao.selectMyProfit(monVo);
 	}
 

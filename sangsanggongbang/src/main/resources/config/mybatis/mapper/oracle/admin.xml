@@ -19,4 +19,11 @@
 		    ]]>
 		)
 	</select>
+	<select id="selectTotalClassCnt" resultType="int">
+		select count(*) from hostclass
+	</select>
+	
+	<select id="selectRatio" resultType="classRatioVo">
+		select * from classratioview
+	</select>
 </mapper>

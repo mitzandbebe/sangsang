@@ -1,5 +1,8 @@
 package com.gr.ssgb.admin.model;
 
+import java.util.List;
+import java.util.Map;
+
 public interface AdminService {
 	public static final int LOGIN_OK=1;
 	public static final int ID_NONE=2;
@@ -12,4 +15,8 @@ public interface AdminService {
 	public int checkPwd(AdminVO vo);
 
 	public Integer selectTotalProfit(MonthVO monVo);
+
+	public int selectTotalClassCnt();
+
+	public List<ClassRatioVO> selectRatio();
 }

@@ -404,9 +404,9 @@ public class HostController {
 			logger.info("monVo={}", monVo);
 			int count = hostService.findClassCnt(monVo);
 			logger.info("count={}", count);
-			int totalProfit =0;
-			if(count>1) {
-				totalProfit = hostService.selectMyProfit(monVo);
+			Integer totalProfit =hostService.selectMyProfit(monVo);
+			if(totalProfit == null) {
+				totalProfit = 0;
 			}
 			profitVo = new ProfitVO();
 			profitVo.setTotalProfit(totalProfit);

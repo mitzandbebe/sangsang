@@ -85,42 +85,25 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-2">
-                                        <div class="ct-chart-5 ct-golden-section ct-series-e"></div>
+                                        <div id="container3"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 mb-4">
                                 <div class="card border-light">
                                     <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
-                                        <div class="d-block">
-                                            <div class="h6 font-weight-normal text-gray mb-2">Revenues</div>
-                                            <h2 class="h3">10,567</h2>
+                                        <div class="d-block" style="width: 70%">
+                                            <div class="h6 font-weight-normal text-gray mb-2">최다 생성 클래스 카테고리: <span style=""><strong>${ratioMap['1'].categoryName }</strong></span></div>
+                                            <h2 class="h3">${bigOne }개</h2>
                                             <div class="small mt-2">                               
                                                 <span class="fas fa-angle-up text-success"></span>                                   
-                                                <span class="text-success font-weight-bold">$10.57%</span>
+                                                <span class="text-success font-weight-bold">${ratioMap['1'].ratio }%</span>
                                             </div>
                                         </div>
-                                        <div class="d-block ml-auto">
-                                            <div class="d-flex align-items-center text-right mb-2">
-                                                <span class="shape-xs rounded-circle bg-dark mr-2"></span>
-                                                <span class="font-weight-normal small">Meeting Space</span>
-                                            </div>
-                                            <div class="d-flex align-items-center text-right mb-2">
-                                                <span class="shape-xs rounded-circle bg-tertiary mr-2"></span>
-                                                <span class="font-weight-normal small">Loft Space</span>
-                                            </div>
-                                            <div class="d-flex align-items-center text-right mb-2">
-                                                <span class="shape-xs rounded-circle bg-primary mr-2"></span>
-                                                <span class="font-weight-normal small">Private Space</span>
-                                            </div>
-                                            <div class="d-flex align-items-center text-right">
-                                                <span class="shape-xs rounded-circle bg-success mr-2"></span>
-                                                <span class="font-weight-normal small">Conference Space</span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="card-body p-2">
-                                        <div class="ct-chart-7 ct-golden-section ct-series-e"></div>
+                                        <div id="container4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -330,6 +313,74 @@ $(function(){
 	        }]
 	    }
 
+	});
+	
+	var categName1= "${ratioMap['1'].categoryName}";
+	var categName2= "${ratioMap['2'].categoryName}";
+	var categName3= "${ratioMap['3'].categoryName}";
+	var categName4= "${ratioMap['4'].categoryName}";
+	var categName5= "${ratioMap['5'].categoryName}";
+	
+	var ratio1 = ${ratioMap["1"].ratio};
+	var ratio2 = ${ratioMap["2"].ratio};
+	var ratio3 = ${ratioMap["3"].ratio};
+	var ratio4 = ${ratioMap["4"].ratio};
+	var ratio5 = ${ratioMap["5"].ratio};
+	var ratio6 = 100-(ratio1+ratio2+ratio3+ratio4+ratio5);
+	
+	Highcharts.chart('container4', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: '카테고리별 클래스 개설 점유율'
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	            }
+	        }
+	    },
+	    series: [{
+	        name: 'Brands',
+	        colorByPoint: true,
+	        data: [{
+	            name: categName1,
+	            y: ratio1,
+	            sliced: true,
+	            selected: true
+	        }, {
+	            name: categName2,
+	            y: ratio2
+	        }, {
+	            name: categName3,
+	            y: ratio3
+	        }, {
+	            name: categName4,
+	            y: ratio4
+	        }, {
+	            name: categName5,
+	            y: ratio5
+	        }, {
+	            name: '기타',
+	            y: ratio6
+	        }]
+	    }]
 	});
 });
 
