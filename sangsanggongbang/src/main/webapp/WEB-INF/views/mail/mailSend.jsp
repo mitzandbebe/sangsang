@@ -46,7 +46,7 @@
 																class="far fa-user-circle"></span></span>
 														</div>
 														<input class="form-control" id="name"
-															placeholder="아이디를 입력해주세요" type="text" name="receiveId"
+															placeholder="이메일을 입력해주세요" type="text" name="receiveId"
 															aria-label="contact name input" required>
 													</div>
 												</div>
