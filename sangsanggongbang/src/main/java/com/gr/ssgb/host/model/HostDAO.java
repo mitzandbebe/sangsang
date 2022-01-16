@@ -29,7 +29,7 @@ public interface HostDAO {
 
 	int findClassCnt(MonthVO monVo);
 
-	int selectMyProfit(MonthVO monVo);
+	Integer selectMyProfit(MonthVO monVo);
 
 	int updateHGrade(HostVO vo);
 

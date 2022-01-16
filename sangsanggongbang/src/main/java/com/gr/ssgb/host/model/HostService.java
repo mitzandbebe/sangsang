@@ -33,7 +33,7 @@ public interface HostService {
 
 	int findClassCnt(MonthVO monVo);
 
-	int selectMyProfit(MonthVO monVo);
+	Integer selectMyProfit(MonthVO monVo);
 
 	int updateHGrade(HostVO vo);
 

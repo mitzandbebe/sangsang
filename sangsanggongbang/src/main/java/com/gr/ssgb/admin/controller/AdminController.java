@@ -1,7 +1,9 @@
 package com.gr.ssgb.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gr.ssgb.admin.model.AdminService;
 import com.gr.ssgb.admin.model.AdminVO;
+import com.gr.ssgb.admin.model.ClassRatioVO;
 import com.gr.ssgb.admin.model.MonthVO;
 import com.gr.ssgb.admin.model.ProfitVO;
 
@@ -96,7 +99,24 @@ public class AdminController {
 			String index = (3-i)+"";
 			profitMap.put(index, profitVo);
 		}
+		int totalClassCnt = adminService.selectTotalClassCnt();
+		ClassRatioVO ratioVo = null;
+		Map<String, Object> ratioMap = new HashMap<String,Object>();
+		List<ClassRatioVO> list = adminService.selectRatio();
+		int bigOne = 0;
+		for(int i =0; i < list.size(); i++) {
+			ClassRatioVO tempVo = list.get(i);
+			tempVo.setRatio(totalClassCnt);
+			if(i==0) {
+				bigOne = tempVo.getCnt();
+			}
+			String index = (i+1)+"";
+			ratioMap.put(index, tempVo);
+			logger.info("classratio={}", tempVo);
+		}
+		model.addAttribute("bigOne", bigOne);
 		model.addAttribute("profitMap", profitMap);
+		model.addAttribute("ratioMap", ratioMap);
 		
 		return "admin/adminIndex";
 	}
