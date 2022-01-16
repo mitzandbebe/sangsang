@@ -58,9 +58,7 @@
 						<!-- Contact Card -->
 						<div class="card border-0 p-0 p-md-5">
 							<div class="card-header text-center p-0 pb-5">
-								<br>
-								<br>
-								<br>
+								<br> <br> <br>
 								<h2>Want to work with us?</h2>
 								<p>Cool! Let’s talk about your project</p>
 							</div>
@@ -142,8 +140,7 @@
 									<h2 class="h5 icon-box-title">Email</h2>
 									<a href="mailto:﻿csb9762@gmail.com"><br>csb9762@gamil.com</a>
 								</div>
-								<br>
-								<br>
+								<br> <br>
 								<!-- End of Email Box -->
 							</div>
 						</div>
@@ -168,8 +165,11 @@
 						<span class="card-subtitle text-gray font-weight-normal">Sales</span>
 						<h3 class="h4 card-title mt-2">강유빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
-							<li><a href="#" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="#" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
@@ -186,15 +186,19 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card text-center">
 					<div class="card-header bg-white">
-						<img src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
+						<img
+							src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
 							class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
 					</div>
 					<div class="card-body">
 						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
 						<h3 class="h4 card-title mt-2">최원정</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
-							<li><a href="#" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="#" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
@@ -218,13 +222,18 @@
 						<span class="card-subtitle text-gray font-weight-normal">Invoice</span>
 						<h3 class="h4 card-title mt-2">최수빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
-							<li><a href="https://github.com/mitzandbebe/sangsang/tree/subin" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a
+								href="https://github.com/mitzandbebe/sangsang/tree/subin"
+								target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="https://www.instagram.com/csb9762/" target="_blank"
-								aria-label="instagram social link"
+							<li><a href="https://www.instagram.com/csb9762/"
+								target="_blank" aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
 							</a></li>
