@@ -311,7 +311,7 @@ public class HostClassController {
 		List<ReviewVO> rlist = reviewService.selectAllRate();
 
 		List<Map<String, Object>> classlist = hostClassService.selectClassbyCNo(cNo);
-		logger.info("클래스목록 결과, classlist.size={}", classlist.size());
+		//logger.info("클래스목록 결과, classlist.size={}", classlist.size());
 
 		HostVO vo = hostService.selectHostByHNo(hNo);
 		int classCnt = hostClassService.selectClassCnt(hNo);
@@ -344,7 +344,7 @@ public class HostClassController {
 	public String map(@ModelAttribute HostClassVO hostClassVO, @RequestParam(defaultValue = "0") int cNo,
 			HttpServletRequest request, Model model) {
 		List<Map<String, Object>> classlist = hostClassService.selectClassbyCNo(cNo);
-		logger.info("클래스목록 결과, classlist.size={}", classlist.size());
+		//logger.info("클래스목록 결과, classlist.size={}", classlist.size());
 
 		model.addAttribute("classlist", classlist);
 
