@@ -263,15 +263,16 @@ function check(){
      	return false;
 	 }
       
-      let now = ${now};
+   /*    let now = ${now};
+      let date = $('#date').getTime();
       
-/* 	  if($('#date').val()<now){
+	  if(Number(date)<Number(now)){
 		  alert('현재날짜보다 작은 날짜입니다.');
 		  $('#date').focus();
 		  event.preventDefault();
 		  return false;
-	  }
-       */
+	  } */
+      
 	// document.frmClass.submit(); // 서브밋으로보내기
 };
 
