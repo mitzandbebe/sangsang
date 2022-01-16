@@ -58,12 +58,15 @@
 				});
 			}
 		});
-		$('#openChat').click(function(){
-			var userName = $(this).text();
-		    var contextPath="/sangsanggongbang";
-		    open(contextPath+'/chat/room?roomId='+userName,'chat',
-		    'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
-	    });
+		$('#openChat')
+				.click(
+						function() {
+							var userName = $(this).text();
+							var contextPath = "/sangsanggongbang";
+							open(contextPath + '/chat/room?roomId=' + userName,
+									'chat',
+									'width=1000,height=840,left=0,top=0,location=yes,resizable=no');
+						});
 
 		$('#memberEdit').submit(
 				function() {
@@ -153,6 +156,11 @@
 								class="d-flex list-group-item list-group-item-action ">정산내역<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
+							</a> <a
+								href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
+								class="d-flex list-group-item list-group-item-action border-0">쪽지함<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
 								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
 								class="icon icon-xs ml-auto"><span
@@ -232,7 +240,7 @@
 													<tr>
 														<td>${map['C_NAME'] }</td>
 														<td>${map['M_ID'] }</td>
-														<td><a href="#" id="openChat" onclick ="openChat();">${map['M_NICKNAME'] }</a></td>
+														<td><a href="#" id="openChat" onclick="openChat();">${map['M_NICKNAME'] }</a></td>
 														<td><fmt:formatDate value="${map['C_START_TIME'] }"
 																pattern="yyyy/MM/dd" /></td>
 														<td>
@@ -242,11 +250,13 @@
 																		<a id="blackListButton"
 																			href="<c:url value='/blackList/blackList?hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
-																			title="블랙리스트목록이동"> <input type="button" value="등록된 회원" style="background-color:red"> </i>
-																		</a>									
+																			title="블랙리스트목록이동"> <input type="button"
+																				value="등록된 회원" style="background-color: red">
+																		</i>
+																		</a>
 																	</c:when>
 																	<c:otherwise>
-																		<a id="blackinsertButton" 
+																		<a id="blackinsertButton"
 																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }&hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
 																			title="블랙리스트등록">블랙리스트등록 </i>

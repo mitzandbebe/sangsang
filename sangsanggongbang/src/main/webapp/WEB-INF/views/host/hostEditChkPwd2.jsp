@@ -43,11 +43,16 @@
 								현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action ">클래스 이용회원<span
-								class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action ">클래스
+								이용회원<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 								class="d-flex list-group-item list-group-item-action ">정산내역<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a
+								href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
+								class="d-flex list-group-item list-group-item-action border-0">쪽지함<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
@@ -69,10 +74,10 @@
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
 									class="list-group-item list-group-item-action border-0 ">회원정보</a>
 								<a href="<c:url value='/class/myclass'/>"
-									class="list-group-item list-group-item-action d-none d-sm-block border-0">내 클래스
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스 이용회원</a>
-								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+									class="list-group-item list-group-item-action d-none d-sm-block border-0">내
+									클래스 현황</a> <a href="./security.html"
+									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스
+									이용회원</a> 현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
 								현황</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 active">회원탈퇴</a>
@@ -88,9 +93,9 @@
 										</span> <span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<div class="dropdown-menu">
-										 <a href="./security.html"
-											class="list-group-item list-group-item-action d-md-none border-0 ">클래스 이용회원</a>
-										<a href="<c:url value='/dashboard/host/balancing'/>"
+										<a href="./security.html"
+											class="list-group-item list-group-item-action d-md-none border-0 ">클래스
+											이용회원</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
 										<a href="<c:url value='/host/hostEditChkPwd2'/>"
 											class="list-group-item list-group-item-action border-0 active">회원탈퇴</a>
@@ -106,37 +111,38 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
-						<c:if test="${cnt > 0 }">
-							<h3 class="h4 mb-5">이런... ⸜(*'ㅡ'*)⸝ <br>아직 진행 중인 클래스가 ${cnt}건 있네요.
-											 &nbsp;</h3>
-										<h4>
-											<a href="<c:url value='/class/myclass'/> "> ➯내 클래스 현황 보러가기</a>
-										</h4>
-						</c:if>
-						<c:if test="${cnt == 0 }">
-							<h2 class="h5 mb-4">회원탈퇴 전 비밀번호를 확인합니다.</h2>
-							<form method="post"
-								action="<c:url value='/host/hostEditChkPwd2'/> ">
-								<!-- Form -->
-								<label for="pwd">비밀번호 입력</label>
-								<div class="input-group mb-4">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><span
-											class="fas fa-unlock-alt"></span></span>
+							<c:if test="${cnt > 0 }">
+								<h3 class="h4 mb-5">
+									이런... ⸜(*'ㅡ'*)⸝ <br>아직 진행 중인 클래스가 ${cnt}건 있네요. &nbsp;
+								</h3>
+								<h4>
+									<a href="<c:url value='/class/myclass'/> "> ➯내 클래스 현황 보러가기</a>
+								</h4>
+							</c:if>
+							<c:if test="${cnt == 0 }">
+								<h2 class="h5 mb-4">회원탈퇴 전 비밀번호를 확인합니다.</h2>
+								<form method="post"
+									action="<c:url value='/host/hostEditChkPwd2'/> ">
+									<!-- Form -->
+									<label for="pwd">비밀번호 입력</label>
+									<div class="input-group mb-4">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><span
+												class="fas fa-unlock-alt"></span></span>
+										</div>
+										<input name="hId" class="form-control" id="hId" type="hidden"
+											value="${sessionScope.hId }" aria-describedby="button-addon2">
+										<input name="hPwd" class="form-control" id="pwd"
+											placeholder="비밀번호를 입력하세요." type="password">
+										<button type="button" id="button-addon2"
+											class="btn btn-outline-primary">비밀번호 확인</button>
 									</div>
-									<input name="hId" class="form-control" id="hId" type="hidden"
-										value="${sessionScope.hId }" aria-describedby="button-addon2">
-									<input name="hPwd" class="form-control" id="pwd"
-										placeholder="비밀번호를 입력하세요." type="password">
-									<button type="button" id="button-addon2"
-										class="btn btn-outline-primary">비밀번호 확인</button>
+									<!-- End of Form -->
+								</form>
+								<div>
+									<a href="<c:url value='/member/findPwd'/>"
+										class="small text-right">비밀번호를 잊으셨어요?</a>
 								</div>
-								<!-- End of Form -->
-							</form>
-							<div>
-								<a href="<c:url value='/member/findPwd'/>"
-									class="small text-right">비밀번호를 잊으셨어요?</a>
-							</div>
 							</c:if>
 						</div>
 					</div>
