@@ -1,77 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../inc/new_top_host.jsp"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script src="https://kit.fontawesome.com/2db6e9a548.js" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	pageEncoding="UTF-8"%>
+<%@ include file="../inc/new_top_host.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script src="https://kit.fontawesome.com/2db6e9a548.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <script>
-function kakaopost() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-           document.querySelector("#zipcode").value = data.zonecode;
-           document.querySelector("#address").value = data.address
-        }
-    }).open();
-}
-$(function(){
-	$('#pType').change(function(){
-		if($('#pType option:selected').val()=='카드'){
-			$('#accInput').css({'display':'none'});
-			$('#cardInput').css({'display':'flex'});
-			$('#cvc').css({'display':'flex'});
-		}else{
-			$('#cardInput').css({'display':'none'});
-			$('#cvc').css({'display':'none'});
-			$('#accInput').css({'display':'flex'});
+	function kakaopost() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				document.querySelector("#zipcode").value = data.zonecode;
+				document.querySelector("#address").value = data.address
+			}
+		}).open();
+	}
+	$(function() {
+		$('#pType').change(function() {
+			if ($('#pType option:selected').val() == '카드') {
+				$('#accInput').css({
+					'display' : 'none'
+				});
+				$('#cardInput').css({
+					'display' : 'flex'
+				});
+				$('#cvc').css({
+					'display' : 'flex'
+				});
+			} else {
+				$('#cardInput').css({
+					'display' : 'none'
+				});
+				$('#cvc').css({
+					'display' : 'none'
+				});
+				$('#accInput').css({
+					'display' : 'flex'
+				});
+			}
+		});
+
+		$('#memberEdit').submit(
+				function() {
+					var cardnum = $('#cardNum1').val() + $('#cardNum2').val()
+							+ $('#cardNum3').val() + $('#cardNum4').val();
+					$('#cardNum').val(cardnum);
+				});
+
+	});
+
+	var InputImage = (function loadImageFile() {
+		if (window.FileReader) {
+			var ImagePre;
+			var ImgReader = new window.FileReader();
+			var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+
+			ImgReader.onload = function(Event) {
+				if (!ImagePre) {
+					var newPreview = document.getElementById("imagePreview");
+					var older = document.getElementById("older");
+					ImagePre = new Image();
+					ImagePre.style.width = "127.99px";
+					ImagePre.style.height = "127.99px";
+					newPreview.removeChild(older);
+					newPreview.appendChild(ImagePre);
+					ImagePre.className = "card-img-top rounded-circle border-white";
+				}
+				ImagePre.src = Event.target.result;
+			};
+
+			return function() {
+				var img = document.getElementById("upfile").files;
+
+				if (!fileType.test(img[0].type)) {
+					alert("이미지 파일을 업로드 하세요");
+					return;
+				}
+
+				ImgReader.readAsDataURL(img[0]);
+			}
 		}
-	});
-	
-	$('#memberEdit').submit(function(){
-		var cardnum = $('#cardNum1').val()+$('#cardNum2').val()+$('#cardNum3').val()+$('#cardNum4').val();
-		$('#cardNum').val(cardnum);
-	});
-	
-	
-});
-
-var InputImage = 
-	 (function loadImageFile() {
-	    if (window.FileReader) {
-	        var ImagePre; 
-	        var ImgReader = new window.FileReader();
-	        var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i; 
-	 
-	        ImgReader.onload = function (Event) {
-	            if (!ImagePre) {
-	            	  var newPreview = document.getElementById("imagePreview");
-		              var older = document.getElementById("older");
-		              ImagePre = new Image();
-		              ImagePre.style.width = "127.99px";
-		              ImagePre.style.height = "127.99px"; 
-		              newPreview.removeChild(older);
-		              newPreview.appendChild(ImagePre);
-		              ImagePre.className = "card-img-top rounded-circle border-white";
-	            }
-	            ImagePre.src = Event.target.result;
-	        };
-	 
-	        return function () {
-	            var img = document.getElementById("upfile").files;
-	           
-	            if (!fileType.test(img[0].type)) { 
-	             alert("이미지 파일을 업로드 하세요"); 
-	             return; 
-	            }
-	            
-	            ImgReader.readAsDataURL(img[0]);
-	        }
-	    }
-		document.getElementById("imagePreview").src = document.getElementById("upfile").value;
+		document.getElementById("imagePreview").src = document
+				.getElementById("upfile").value;
 	})();
-
 </script>
 
 <div class="section section-lg bg-soft">
@@ -107,17 +122,21 @@ var InputImage =
 								수정<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action active">내 클래스
-								현황<span class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action active">내
+								클래스 현황<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 
 							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-
-								class="d-flex list-group-item list-group-item-action ">클래스 이용회원<span
-								class="icon icon-xs ml-auto"><span
+								class="d-flex list-group-item list-group-item-action ">클래스
+								이용회원<span class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 								class="d-flex list-group-item list-group-item-action ">정산내역<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a
+								href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
+								class="d-flex list-group-item list-group-item-action border-0">쪽지함<span
 								class="icon icon-xs ml-auto"><span
 									class="fas fa-chevron-right"></span></span>
 							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
@@ -139,10 +158,10 @@ var InputImage =
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
 									class="list-group-item list-group-item-action border-0  active ">회원정보</a>
 								<a href="<c:url value='/class/myclass'/>"
-									class="list-group-item list-group-item-action d-none d-sm-block border-0 active">내 클래스
-								현황</a> <a href="./security.html"
-									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스 이용회원</a>
-								현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+									class="list-group-item list-group-item-action d-none d-sm-block border-0 active">내
+									클래스 현황</a> <a href="./security.html"
+									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스
+									이용회원</a> 현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
 								현황</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
@@ -158,9 +177,9 @@ var InputImage =
 										</span> <span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<div class="dropdown-menu">
-										 <a href="./security.html"
-											class="list-group-item list-group-item-action d-md-none border-0 ">클래스 이용회원</a>
-										<a href="<c:url value='/dashboard/host/balancing'/>"
+										<a href="./security.html"
+											class="list-group-item list-group-item-action d-md-none border-0 ">클래스
+											이용회원</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 											class="list-group-item list-group-item-action border-0 ">정산내역</a>
 										<a href="<c:url value='/host/hostEditChkPwd2'/>"
 											class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
@@ -178,29 +197,31 @@ var InputImage =
 							<div class="container">
 								<form name="frmList">
 									<table class="table table-hover" style="font-size: 14px;">
-																	
 
-											<c:if test="${empty classlist }">
-												<h3 class="h4 mb-5">늘솜님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>아직 클래스가 없네요
-													 &nbsp;</h3>
-												<h4>
-													<a href="<c:url value='/class/inputclass'/> "> ➯클래스 등록하러 가기</a>
-												</h4>
-											</c:if>
-											<c:if test="${!empty classlist }">
+
+										<c:if test="${empty classlist }">
+											<h3 class="h4 mb-5">
+												늘솜님 환영합니다~! ⸜(*'ᗜ'*)⸝ <br>아직 클래스가 없네요 &nbsp;
+											</h3>
+											<h4>
+												<a href="<c:url value='/class/inputclass'/> "> ➯클래스 등록하러
+													가기</a>
+											</h4>
+										</c:if>
+										<c:if test="${!empty classlist }">
 											<thead>
-											<tr>
-												<th scope="col">클래스이름</th>
-												<th scope="col">카테고리</th>
-												<th scope="col">일자</th>
-												<th scope="col">시간</th>
-												<th scope="col">가격</th>
-												<th scope="col">인원</th>
-												<th scope="col">확정인원</th>
-												<th scope="col">종료여부</th>
-											</tr>
-										</thead>
-										<tbody>
+												<tr>
+													<th scope="col">클래스이름</th>
+													<th scope="col">카테고리</th>
+													<th scope="col">일자</th>
+													<th scope="col">시간</th>
+													<th scope="col">가격</th>
+													<th scope="col">인원</th>
+													<th scope="col">확정인원</th>
+													<th scope="col">종료여부</th>
+												</tr>
+											</thead>
+											<tbody>
 												<!-- 이벤트 내용반복 -->
 												<c:forEach var="map" items="${classlist}">
 													<tr>
@@ -220,53 +241,54 @@ var InputImage =
 													</tr>
 
 												</c:forEach>
-											</c:if>
+										</c:if>
 										</tbody>
 									</table>
 
 
-		<div class="row"> 
-			<div class="col-lg-12 mb-5">
-				<div class="col mt-3 d-flex justify-content-center">
-					<div style="text-align: center;">
-						<nav aria-label="Page navigation example">
-								<br>
-							<ul class="pagination">
-								<!-- 이전블럭 -->
-								<c:if test="${pagingInfo.firstPage>1 }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/class/myclass?currentPage=${pagingInfo.firstPage -1 }'/> ">
-											<i class="fas fa-angle-double-left"></i>
-									</a></li>
-								</c:if>
-								<!-- 페이징처리시작 -->
-								<c:forEach var="i" begin="${pagingInfo.firstPage }"
-									end="${pagingInfo.lastPage }">
-									<c:if test="${i==pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											style="background-color: #9FB9AE; color: #ffffff;"
-											href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-									<c:if test="${i!=pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-								</c:forEach>
-								<!-- 다음블럭으로 이동 -->
-								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/class/myclass?currentPage=${pagingInfo.lastPage +1 }'/> ">
-											<i class="fas fa-angle-double-right"></i>
-									</a></li>
-								</c:if>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div> 
+									<div class="row">
+										<div class="col-lg-12 mb-5">
+											<div class="col mt-3 d-flex justify-content-center">
+												<div style="text-align: center;">
+													<nav aria-label="Page navigation example">
+														<br>
+														<ul class="pagination">
+															<!-- 이전블럭 -->
+															<c:if test="${pagingInfo.firstPage>1 }">
+																<li class="page-item"><a class="page-link"
+																	href="<c:url value='/class/myclass?currentPage=${pagingInfo.firstPage -1 }'/> ">
+																		<i class="fas fa-angle-double-left"></i>
+																</a></li>
+															</c:if>
+															<!-- 페이징처리시작 -->
+															<c:forEach var="i" begin="${pagingInfo.firstPage }"
+																end="${pagingInfo.lastPage }">
+																<c:if test="${i==pagingInfo.currentPage }">
+																	<li class="page-item"><a class="page-link"
+																		style="background-color: #9FB9AE; color: #ffffff;"
+																		href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+																	</li>
+																</c:if>
+																<c:if test="${i!=pagingInfo.currentPage }">
+																	<li class="page-item"><a class="page-link"
+																		href="<c:url value='/class/myclass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+																	</li>
+																</c:if>
+															</c:forEach>
+															<!-- 다음블럭으로 이동 -->
+															<c:if
+																test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+																<li class="page-item"><a class="page-link"
+																	href="<c:url value='/class/myclass?currentPage=${pagingInfo.lastPage +1 }'/> ">
+																		<i class="fas fa-angle-double-right"></i>
+																</a></li>
+															</c:if>
+														</ul>
+													</nav>
+												</div>
+											</div>
+										</div>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -278,4 +300,4 @@ var InputImage =
 </div>
 
 
-<%@ include file="../inc/bottom_host.jsp" %>
+<%@ include file="../inc/bottom_host.jsp"%>

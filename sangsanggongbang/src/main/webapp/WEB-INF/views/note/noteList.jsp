@@ -46,6 +46,7 @@
 									alt="Joseph Portrait">
 							</c:if>
 						</div>
+						<c:if test="${!empty sessionScope.mId }">
 						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.mNickname}</h2>
 						<div class="list-group dashboard-menu list-group-sm mt-4">
 							<a href="<c:url value='/dashboard/user/payment/myAccount'/>"
@@ -79,6 +80,43 @@
 									class="fas fa-chevron-right"></span></span>
 							</a>
 						</div>
+						</c:if>
+						<c:if test="${!empty sessionScope.hId }">
+						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
+						<div class="list-group dashboard-menu list-group-sm mt-4">
+							<a href="<c:url value='/dashboard/host/account'/>"
+								class="d-flex list-group-item list-group-item-action">마이페이지
+								<span class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
+								class="d-flex list-group-item list-group-item-action   ">회원정보
+								수정<span class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a href="<c:url value='/class/myclass'/>"
+								class="d-flex list-group-item list-group-item-action">내 클래스
+								현황<span class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+
+							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
+								class="d-flex list-group-item list-group-item-action ">클래스
+								이용회원<span class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+								class="d-flex list-group-item list-group-item-action ">정산내역<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a
+								href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
+								class="d-flex list-group-item list-group-item-action active border-0">쪽지함<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
+								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
+								class="icon icon-xs ml-auto"><span
+									class="fas fa-chevron-right"></span></span>
+							</a>
+						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
