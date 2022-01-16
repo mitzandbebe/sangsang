@@ -235,7 +235,7 @@
 					while working toward a shared goal.</p>
 			</div>
 		</div>
-		<div class="row mb-5 mb-lg-7">
+		<div class="row mb-5 mb-lg-4">
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../assets/img/team/profile-picture-1.jpg"
@@ -269,9 +269,9 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../assets/img/team/profile-picture-2.jpg"
-						class="card-img-top rounded-top" alt="최원정">
+						class="card-img-top rounded-top" alt="오정훈">
 					<div class="card-body">
-						<h3 class="h4 card-title mb-2">최원정</h3>
+						<h3 class="h4 card-title mb-2">오정훈</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Agent</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
@@ -298,11 +298,103 @@
 			</div>
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card border-light">
-					<img src="../assets/img/team/profile-picture-3.jpg"
+					<img src="../resources/assets/img/group2_photo/baejaeyoung.jpg"
+						class="card-img-top rounded-top" alt="배재영">
+					<div class="card-body">
+						<h3 class="h4 card-title mb-2">배재영</h3>
+						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
+						<p class="card-text my-3">Some quick example text to build on
+							the card title and make up the bulk of the card's content.</p>
+						<ul class="list-unstyled d-flex mt-3 mb-0">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link" class="icon-facebook mr-3">
+									<span class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link" class="icon-twitter mr-3">
+									<span class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link" class="icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link" class="icon-dribbble mr-3">
+									<span class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="row mb-5 mb-lg-7">
+			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+				<div class="card border-light">
+					<img src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
+						class="card-img-top rounded-top" alt="최원정">
+					<div class="card-body">
+						<h3 class="h4 card-title mb-2">최원정</h3>
+						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<p class="card-text my-3">Some quick example text to build on
+							the card title and make up the bulk of the card's content.</p>
+						<ul class="list-unstyled d-flex mt-3 mb-0">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link" class="icon-facebook mr-3">
+									<span class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link" class="icon-twitter mr-3">
+									<span class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link" class="icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link" class="icon-dribbble mr-3">
+									<span class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+				<div class="card border-light">
+					<img src="../resources/assets/img/group2_photo/choisubin.jpg"
 						class="card-img-top rounded-top" alt="최수빈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">최수빈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
+						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<p class="card-text my-3">Some quick example text to build on
+							the card title and make up the bulk of the card's content.</p>
+						<ul class="list-unstyled d-flex mt-3 mb-0">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link" class="icon-facebook mr-3">
+									<span class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link" class="icon-twitter mr-3">
+									<span class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link" class="icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link" class="icon-dribbble mr-3">
+									<span class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+				<div class="card border-light">
+					<img src="../resources/assets/img/group2_photo/kimjunyoung.jpg"
+						class="card-img-top rounded-top" alt="김준영">
+					<div class="card-body">
+						<h3 class="h4 card-title mb-2">김준영</h3>
+						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">

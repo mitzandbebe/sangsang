@@ -21,43 +21,51 @@
 </c:choose>
 <!-- 탑 완료 -->
 <!-- Hero -->
-        <!-- Hero -->
-        <section class="section section-header bg-primary overlay-primary text-white pb-11" data-background="../assets/img/team-hero.jpg">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-xl-7 text-center">
-                        <h1 class="display-2 mb-3">상상공방 고객센터</h1>
-                        <p class="lead">안녕하세요! 상상공방의 고객센터입니다.<br> 문의사항이 있으시면 언제든지 편하게 연락주세요!</p>        
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Section -->
-        <!-- 지도 api -->
-        <div class="section py-0">
-            <div class="container mt-n10">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="" id="map" style="width:1140px;height:400px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 지도 api -->
-        <!-- Section -->
-        <section class="section section-lg pt-6">
-            <div class="container">
-                <div class="row justify-content-center mb-5 mb-lg-6">
-                    <div class="col-12 ">
-                        <div class="row justify-content-center mt-4 mt-lg-5">
-                                    <div class="col-12">
-                                        <!-- Contact Card -->
-                                        <div class="card border-0 p-0 p-md-5">
-                                            <div class="card-header text-center p-0 pb-5">
-                                                <br><br><br><h2>Want to work with us?</h2>
-                                                <p>Cool! Let’s talk about your project</p>
-                                            </div><hr>
-                                          <!--   <div class="card-body p-0">
+<!-- Hero -->
+<section
+	class="section section-header bg-primary overlay-primary text-white pb-11"
+	data-background="../assets/img/team-hero.jpg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-xl-7 text-center">
+				<h1 class="display-2 mb-3">상상공방 고객센터</h1>
+				<p class="lead">
+					안녕하세요! 상상공방의 고객센터입니다.<br> 문의사항이 있으시면 언제든지 편하게 연락주세요!
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Section -->
+<!-- 지도 api -->
+<div class="section py-0">
+	<div class="container mt-n10">
+		<div class="row">
+			<div class="col-12">
+				<div class="" id="map" style="width: 1140px; height: 400px;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 지도 api -->
+<!-- Section -->
+<section class="section section-lg pt-6">
+	<div class="container">
+		<div class="row justify-content-center mb-5 mb-lg-6">
+			<div class="col-12 ">
+				<div class="row justify-content-center mt-4 mt-lg-5">
+					<div class="col-12">
+						<!-- Contact Card -->
+						<div class="card border-0 p-0 p-md-5">
+							<div class="card-header text-center p-0 pb-5">
+								<br>
+								<br>
+								<br>
+								<h2>Want to work with us?</h2>
+								<p>Cool! Let’s talk about your project</p>
+							</div>
+							<hr>
+							<!--   <div class="card-body p-0">
                                                 <form action="#" method="post">
                                                     Form
                                                     <div class="form-group">
@@ -91,277 +99,179 @@
                                                 </div>
                                                 </form>
                                             </div> -->
-                                        </div>
-                                        <!-- End of Contact Card -->
-                                    </div>
-                                </div>
-                        <!-- Contact Card -->
-                        <div class="card border-0 p-2 p-md-3">
-                            <div class="card-body px-0">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-4 text-center">
-                                        <!-- Visit Box -->
-                                        <div class="icon-box mb-4">
-                                            <div class="icon icon-dark mb-4">
-                                                <span class="fas fa-map-marker-alt"></span>
-                                            </div>
-                                            <h2 class="h5 icon-box-title">Visit us</h2>
-                                            <span>
-                                                서울특별시 서초구<br> 서초대로 309 <br>장안빌딩 4층
-                                            </span>
-                                        </div>
-                                        <!-- End of Visit Box -->
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 text-center d-sm-none d-md-block">
-                                        <!-- Call Box -->
-                                        <div class="icon-box mb-4">
-                                            <div class="icon icon-dark mb-4">
-                                                <span class="fas fa-phone-volume"></span>
-                                            </div>
-                                            <h2 class="h5 icon-box-title">Call</h2>
-                                            <span>010-3673-0143</span>
-                                            <div class="text-small text-gray">
-                                                Mon - Fri<br>9:30am - 6:30pm
-                                            </div>
-                                        </div>
-                                        <!-- End of Call Box -->
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 text-center">
-                                        <!-- Email Box -->
-                                        <div class="icon-box mb-4">
-                                            <div class="icon icon-dark mb-4">
-                                                <span class="far fa-paper-plane"></span>
-                                            </div>
-                                            <h2 class="h5 icon-box-title">Email</h2>
-                                            <a href="mailto:﻿csb9762@gmail.com"><br>csb9762@gamil.com</a>
-                                        </div>
-                                        <br><br>
-                                        <!-- End of Email Box -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Contact Card -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center mb-5">
-                        <h2>Our support team</h2>
-                    </div>
-                    <!-- 강유빈 -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-2.jpg" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Sales</span>
-                                <h3 class="h4 card-title mt-2">강유빈</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 오정훈 -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-3.jpg" class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Marketing</span>
-                                <h3 class="h4 card-title mt-2">오정훈</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 배재영 -->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-4.jpg" class="card-img-top rounded shadow border-0" alt="Neil Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Invoice</span>
-                                <h3 class="h4 card-title mt-2">배재영</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 text-center mb-2">
-                        <br>
-                    </div>
-                    <!-- 최원정 -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-2.jpg" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Sales</span>
-                                <h3 class="h4 card-title mt-2">최원정</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 최수빈 -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-2.jpg" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Sales</span>
-                                <h3 class="h4 card-title mt-2">최수빈</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 김준영 -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="card text-center">
-                            <div class="card-header bg-white">
-                                <img src="../assets/img/team/profile-picture-2.jpg" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
-                            </div>
-                            <div class="card-body">
-                                <span class="card-subtitle text-gray font-weight-normal">Sales</span>
-                                <h3 class="h4 card-title mt-2">김준영</h3>
-                                <ul class="list-unstyled d-flex justify-content-center mt-3">
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="facebook social link" class="icon icon-sm icon-facebook mr-3">
-                                            <span class="fab fa-facebook-f"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="twitter social link" class="icon icon-sm icon-twitter mr-3">
-                                            <span class="fab fa-twitter"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="slack social link" class="icon icon-sm icon-slack mr-3">
-                                            <span class="fab fa-slack-hash"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" aria-label="dribbble social link" class="icon icon-sm icon-dribbble mr-3">
-                                            <span class="fab fa-dribbble"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
-        </section>
-      	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531"></script>
-	<script>
+						</div>
+						<!-- End of Contact Card -->
+					</div>
+				</div>
+				<!-- Contact Card -->
+				<div class="card border-0 p-2 p-md-3">
+					<div class="card-body px-0">
+						<div class="row">
+							<div class="col-sm-6 col-md-4 text-center">
+								<!-- Visit Box -->
+								<div class="icon-box mb-4">
+									<div class="icon icon-dark mb-4">
+										<span class="fas fa-map-marker-alt"></span>
+									</div>
+									<h2 class="h5 icon-box-title">Visit us</h2>
+									<span> 서울특별시 서초구<br> 서초대로 309 <br>장안빌딩 4층
+									</span>
+								</div>
+								<!-- End of Visit Box -->
+							</div>
+							<div class="col-sm-6 col-md-4 text-center d-sm-none d-md-block">
+								<!-- Call Box -->
+								<div class="icon-box mb-4">
+									<div class="icon icon-dark mb-4">
+										<span class="fas fa-phone-volume"></span>
+									</div>
+									<h2 class="h5 icon-box-title">Call</h2>
+									<span>010-3673-0143</span>
+									<div class="text-small text-gray">
+										Mon - Fri<br>9:30am - 6:30pm
+									</div>
+								</div>
+								<!-- End of Call Box -->
+							</div>
+							<div class="col-sm-6 col-md-4 text-center">
+								<!-- Email Box -->
+								<div class="icon-box mb-4">
+									<div class="icon icon-dark mb-4">
+										<span class="far fa-paper-plane"></span>
+									</div>
+									<h2 class="h5 icon-box-title">Email</h2>
+									<a href="mailto:﻿csb9762@gmail.com"><br>csb9762@gamil.com</a>
+								</div>
+								<br>
+								<br>
+								<!-- End of Email Box -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of Contact Card -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 text-center mb-5">
+				<h2>Our support team</h2>
+			</div>
+			<!-- 강유빈 -->
+			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+				<div class="card text-center">
+					<div class="card-header bg-white">
+						<img src="../assets/img/team/profile-picture-2.jpg"
+							class="card-img-top rounded shadow border-0"
+							alt="Christopher Avatar">
+					</div>
+					<div class="card-body">
+						<span class="card-subtitle text-gray font-weight-normal">Sales</span>
+						<h3 class="h4 card-title mt-2">강유빈</h3>
+						<ul class="list-unstyled d-flex justify-content-center mt-3">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link"
+								class="icon icon-sm icon-facebook mr-3"> <span
+									class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link"
+								class="icon icon-sm icon-twitter mr-3"> <span
+									class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link"
+								class="icon icon-sm icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link"
+								class="icon icon-sm icon-dribbble mr-3"> <span
+									class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 최원정 -->
+			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+				<div class="card text-center">
+					<div class="card-header bg-white">
+						<img src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
+							class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
+					</div>
+					<div class="card-body">
+						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
+						<h3 class="h4 card-title mt-2">최원정</h3>
+						<ul class="list-unstyled d-flex justify-content-center mt-3">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link"
+								class="icon icon-sm icon-facebook mr-3"> <span
+									class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link"
+								class="icon icon-sm icon-twitter mr-3"> <span
+									class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link"
+								class="icon icon-sm icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link"
+								class="icon icon-sm icon-dribbble mr-3"> <span
+									class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 최수빈 -->
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card text-center">
+					<div class="card-header bg-white">
+						<img src="../resources/assets/img/group2_photo/choisubin.jpg"
+							class="card-img-top rounded shadow border-0" alt="Neil Avatar">
+					</div>
+					<div class="card-body">
+						<span class="card-subtitle text-gray font-weight-normal">Invoice</span>
+						<h3 class="h4 card-title mt-2">최수빈</h3>
+						<ul class="list-unstyled d-flex justify-content-center mt-3">
+							<li><a href="#" target="_blank"
+								aria-label="facebook social link"
+								class="icon icon-sm icon-facebook mr-3"> <span
+									class="fab fa-facebook-f"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="twitter social link"
+								class="icon icon-sm icon-twitter mr-3"> <span
+									class="fab fa-twitter"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="slack social link"
+								class="icon icon-sm icon-slack mr-3"> <span
+									class="fab fa-slack-hash"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="dribbble social link"
+								class="icon icon-sm icon-dribbble mr-3"> <span
+									class="fab fa-dribbble"></span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 text-center mb-2">
+				<br>
+			</div>
+		</div>
+	</div>
+
+</section>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531"></script>
+<script>
 		var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(37.500180037784375, 127.0289849392321),
