@@ -246,7 +246,7 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank"
+							<!-- <li><a href="#" target="_blank"
 								aria-label="facebook social link" class="icon-facebook mr-3">
 									<span class="fab fa-facebook-f"></span>
 							</a></li>
@@ -261,6 +261,16 @@
 							<li><a href="#" target="_blank"
 								aria-label="dribbble social link" class="icon-dribbble mr-3">
 									<span class="fab fa-dribbble"></span>
+							</a></li> -->
+							<li><a href="#" target="_blank"
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
+							</a></li>
+							<li><a href="#" target="_blank"
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -276,21 +286,15 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
+						<li><a href="#" target="_blank"
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -307,20 +311,14 @@
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -339,20 +337,14 @@
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -368,21 +360,15 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
+							<li><a href="https://github.com/mitzandbebe/sangsang/tree/subin" target="_blank"
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
+							<li><a href="https://www.instagram.com/csb9762/" target="_blank"
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
@@ -399,20 +385,14 @@
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
+								aria-label="git branch link"
+								class="icon icon-sm icon-branch mr-3"> <span
+									class="fas fa-code-branch"></span>
 							</a></li>
 							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
+								aria-label="instagram social link"
+								class="icon icon-sm icon-instagram"> <span
+									class="fab fa-instagram"></span>
 							</a></li>
 						</ul>
 					</div>
