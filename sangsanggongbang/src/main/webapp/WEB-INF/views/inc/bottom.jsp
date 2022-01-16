@@ -56,16 +56,17 @@
 				<ul class="footer-links mt-2">
 					<li><a
 						href="http://localhost:9091/sangsanggongbang/notice/noticeList">공지사항
-							<span class="badge badge-sm badge-secondary ml-2">new</span>
+							<!-- <span class="badge badge-sm badge-secondary ml-2">new</span> -->
 					</a></li>
 					<li><a
 						href="http://localhost:9091/sangsanggongbang/recommendation/recommendList">불편사항</a></li>
-					<li><a target="_blank" href="#">이용약관</a>
-					</li>
-					<li><a target="_blank" href="#">개인정보처리방침</a>
-					</li>
+					
+					<!-- <li><a target="_blank" href="#">개인정보처리방침</a>
+					</li> -->
 					<li><a
 						href="<c:url value='/bottomview/customerService'/>">고객센터</a></li>
+						<li><a target="_blank" href="#">이용약관</a>
+					</li>
 				</ul>
 			</div>
 			<div class="col-12 col-xl-4 mb-5 mb-xl-0">

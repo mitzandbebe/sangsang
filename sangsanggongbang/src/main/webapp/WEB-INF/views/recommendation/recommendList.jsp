@@ -41,16 +41,18 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col">🔨</th>
+					<th scope="col">작성자🙍‍♂️</th>
 					<th scope="col">불편사항 제목</th>
 					<!-- <th scope="col">불편사항 내용</th> -->
 					<th scope="col">작성일</th>
 				</tr>
 			</thead>
+			
 			<tbody>
 				<c:if test="${empty list }">
 					<tr>
-						<td colspan="5">데이터가 없습니다.</td>
+					
+						<td colspan="5"><hr>데이터가 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${!empty list }">
@@ -58,7 +60,8 @@
 					<c:forEach var="vo" items="${list }">
 						<tr>
 							<th scope="row">
-								<c:if test="${!empty sessionScope.adId }">(${vo.flag }) : 
+							
+								<c:if test="${!empty sessionScope.adId }">(${vo.flag } )  
 									<c:choose>
 										<c:when test="${!empty vo.mId }">
 											${vo.mId }
@@ -70,17 +73,17 @@
 								</c:if>
 								<c:if test="${!empty sessionScope.mId }"> 
 									<c:choose>
-										<c:when test="${vo.flag eq'AD' }">(RE)</c:when>
+										<c:when test="${vo.flag eq'_RE' }">&ensp;&ensp;ㄴ답변 :  </c:when>
 										<c:otherwise>
-											${vo.flag }									
+										${vo.flag }								
 										</c:otherwise>
 									</c:choose>
 								</c:if>
 								<c:if test="${!empty sessionScope.hId }"> 
 									<c:choose>
-										<c:when test="${vo.flag eq'AD' }">(RE)</c:when>
+										<c:when test="${vo.flag eq'_RE' }">&ensp;&ensp;ㄴ답변 : </c:when>
 										<c:otherwise>
-											${vo.flag }									
+											 ${vo.flag }							
 										</c:otherwise>
 									</c:choose>
 								</c:if>
@@ -124,8 +127,7 @@
 								<c:forEach var="i" begin="${pagingInfo.firstPage }"
 									end="${pagingInfo.lastPage }">
 									<c:if test="${i==pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											style="background-color: #9FB9AE; color: #ffffff;"
+										<li class="page-item"><a class="page-link" style="background-color:#e4e4e4"
 											href="<c:url value='/recommendation/recommendList?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 										</li>
 									</c:if>

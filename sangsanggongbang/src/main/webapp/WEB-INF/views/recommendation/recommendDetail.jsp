@@ -38,8 +38,8 @@
 	<!-- Hero -->
 
 	<section class="section-header pb-7 bg-primary text-white">
-		<input type="text" name="groupNo" value="${vo.groupNo}" /> <input
-			type="text" name="step" value="${vo.step }" /> <input type="text"
+		<input type="hidden" name="groupNo" value="${vo.groupNo}" /> <input
+			type="hidden" name="step" value="${vo.step }" /> <input type="hidden"
 			name="sortNo" value="${vo.sortNo }" />
 		<div class="container">
 			<div class="row justify-content-center">
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</section>
-	<div class="section section-sm bg-white pt-6">
+	<div class="section section-sm pt-6">
 		<article class="container">
 			<div class="row justify-content-center">
 				<div class="col-12 col-lg-8">${vo.recoContent }</div>
@@ -66,7 +66,8 @@
 
 		</article>
 	</div>
-	<div class="" style="margin-left: 50px; margin-top: 25px;">
+	<div style="text-align:center">
+<!-- 	<div class="" style="margin-left: 50px; margin-top: 25px;"> -->
 		<!-- <input value="메인으로 돌아가기"
 			class="btn mb-2 mr-2 btn-primary animate-up-2" id="btmain"
 			type="button">  -->
