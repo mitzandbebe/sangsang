@@ -24,5 +24,5 @@ public interface NoteService {
 	int saveNote(int[] noteNo);
 	NoteVO selectNoteDetail(int noteNo);
 	
-	int readNum(String userid);
+	CharSequence readNum(String userid);
 }
