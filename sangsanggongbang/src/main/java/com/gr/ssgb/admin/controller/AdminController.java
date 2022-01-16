@@ -118,7 +118,7 @@ public class AdminController {
 		model.addAttribute("profitMap", profitMap);
 		model.addAttribute("ratioMap", ratioMap);
 		
-		return "admin/adminIndex";
+		return "admin/adminIndex"; 
 	}
 
 }
