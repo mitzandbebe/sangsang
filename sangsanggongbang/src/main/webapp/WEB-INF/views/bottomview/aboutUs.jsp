@@ -28,8 +28,10 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 text-center">
-				<h1 class="display-2 mb-4">Find Your Class.</h1><br>
-				<p class="lead mb-4 text-muted">Here's the class you've always thought of. Make your day special.</p>
+				<h1 class="display-2 mb-4">Find Your Class.</h1>
+				<br>
+				<p class="lead mb-4 text-muted">Here's the class you've always
+					thought of. Make your day special.</p>
 				<!-- <a href="#" class="btn btn-secondary mr-3">What we do <span
 					class="ml-2"><span class="fas fa-arrow-right"></span></span></a> -->
 			</div>
@@ -56,17 +58,17 @@
 			</div>
 			<div class="col-md-4">
 				<p class="lead">
-					지속되는 코로나 상황으로 코로나 <br>블루가 만연한 요즘,
-					건강한 생활을<br> 위해서는 자기개발과 힐링이 필요하다.<br><br>
-					클래스를 이용하는 고객은 특별한 <br>하루를 만들 수 있는
-					다양한 클래스를 이용하여 취미생활을 즐길 수 있고,<br><br>
-					클래스를 여는 사업자들에게는 새로운 유통 플랫폼을 제공한다.
+					지속되는 코로나 상황으로 코로나 <br>블루가 만연한 요즘, 건강한 생활을<br> 위해서는 자기개발과
+					힐링이 필요하다.<br>
+					<br> 클래스를 이용하는 고객은 특별한 <br>하루를 만들 수 있는 다양한 클래스를 이용하여
+					취미생활을 즐길 수 있고,<br>
+					<br> 클래스를 여는 사업자들에게는 새로운 유통 플랫폼을 제공한다.
 				</p>
 			</div>
-			<div class="col-md-4" >
+			<div class="col-md-4">
 				<p class="lead">
-					<span class="font-weight-bold">상상공방은</span>
-					고객과 소통할 수 있는<br> 창구를 열어, 서로가 필요한 부분을<br> 채울 수 있는 사이트를 만들고자 한다. 
+					<span class="font-weight-bold">상상공방은</span> 고객과 소통할 수 있는<br>
+					창구를 열어, 서로가 필요한 부분을<br> 채울 수 있는 사이트를 만들고자 한다.
 				</p>
 				<!-- <img class="mt-4" src="../assets/img/signature.svg" alt="signature"
 					width="100"> -->
@@ -228,11 +230,12 @@
 		<div class="row justify-content-center mb-5 mb-lg-6">
 			<div class="col-12 col-md-8 text-center">
 				<h2>
-					<span class="font-weight-bold"> Experts & Employees of &nbsp; SSGB</span>
+					<span class="font-weight-bold"> Experts & Employees of
+						&nbsp; SSGB</span>
 				</h2>
-				<p class="lead mt-4">Team of SSGB allows us to
-					maintain operational efficiency and provide 24/7 customer service
-					while working toward a shared goal.</p>
+				<p class="lead mt-4">Team of SSGB allows us to maintain
+					operational efficiency and provide 24/7 customer service while
+					working toward a shared goal.</p>
 			</div>
 		</div>
 		<div class="row mb-5 mb-lg-4">
@@ -262,11 +265,15 @@
 								aria-label="dribbble social link" class="icon-dribbble mr-3">
 									<span class="fab fa-dribbble"></span>
 							</a></li> -->
-							<li><a href="#" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="#" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
+
 							<li><a href="#" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
@@ -286,11 +293,15 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-						<li><a href="#" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="#" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
+
 							<li><a href="#" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
@@ -310,11 +321,15 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="#" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
+
 							<li><a href="#" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
@@ -324,8 +339,8 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			<div class="row mb-5 mb-lg-7">
+		</div>
+		<div class="row mb-5 mb-lg-7">
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
@@ -336,13 +351,18 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="https://github.com/uujploy/sangsang" target="_blank"
-								aria-label="git branch link"
+
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a href="https://github.com/uujploy/sangsang"
+								target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="https://www.instagram.com/uuj_ploy/" target="_blank"
-								aria-label="instagram social link"
+							<li><a href="https://www.instagram.com/uuj_ploy/"
+								target="_blank" aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
 							</a></li>
@@ -360,13 +380,18 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="https://github.com/mitzandbebe/sangsang/tree/subin" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a
+								href="https://github.com/mitzandbebe/sangsang/tree/subin"
+								target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="https://www.instagram.com/csb9762/" target="_blank"
-								aria-label="instagram social link"
+							<li><a href="https://www.instagram.com/csb9762/"
+								target="_blank" aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
 							</a></li>
@@ -384,13 +409,17 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="https://github.com/mitzandbebe/sangsang/tree/kimjun" target="_blank"
-								aria-label="git branch link"
+							<li><a href="#" target="_blank" aria-label="email link"
+								class="icon icon-sm icon-emial mr-3"> <span
+									class="far fa-paper-plane"></span>
+							</a></li>
+							<li><a
+								href="https://github.com/mitzandbebe/sangsang/tree/kimjun"
+								target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="#" 
-								aria-label="instagram social link"
+							<li><a href="#" aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
 							</a></li>
@@ -402,14 +431,17 @@
 		<div class="row mb-5 mb-lg-6">
 			<div class="col text-center">
 				<h3 class="mb-5">You can find us here</h3>
-				<div class="" id="map" style="width:1110px;height:400px;"></div>
+				<div class="" id="map" style="width: 1110px; height: 400px;"></div>
 
 			</div>
-		</div><br><br><br>
-			<div class="row mb-5 mb-lg-2">
+		</div>
+		<br>
+		<br>
+		<br>
+		<div class="row mb-5 mb-lg-2">
 			<div class="col text-center">
 				<h3 class="mb-5">About SSGB</h3>
-				</div>
+			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-8">
@@ -419,16 +451,18 @@
 						<a href="#panel-1" data-target="#panel-1"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">
-							 <span class="font-weight-bold">상상공방(SSGB)이란?</span></span> <span class="icon"><span class="fas fa-plus"></span></span>
+							<span class="h6 mb-0 font-weight-bold"> <span
+								class="font-weight-bold">상상공방(SSGB)이란?</span></span> <span class="icon"><span
+								class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-1">
 							<div class="pt-3">
-								<p class="mb-0">상상공방(SSGB)은 원데이 클래스를 모아놓은 플랫폼입니다. <br>
-                                        사람들을 모아 공예 DIY, 베이킹, 쿠킹, 문화예술, 자기계발, 
-                                        뷰티, 여행, 피트니스, 스포츠, 모임, 스토어, 온라인 등의<br> 
-                                        원데이 클래스를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.<br><br>
-                                        인터넷 홈페이지에서 이용 가능합니다.</p>
+								<p class="mb-0">
+									상상공방(SSGB)은 원데이 클래스를 모아놓은 플랫폼입니다. <br> 사람들을 모아 공예 DIY,
+									베이킹, 쿠킹, 문화예술, 자기계발, 뷰티, 여행, 피트니스, 스포츠, 모임, 스토어, 온라인 등의<br>
+									원데이 클래스를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.<br>
+									<br> 인터넷 홈페이지에서 이용 가능합니다.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -436,17 +470,17 @@
 						<a href="#panel-2" data-target="#panel-2"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">
-							 <span class="font-weight-bold">상상공방은 누가 진행하나요?</span></span> 
-							 <span
+							<span class="h6 mb-0 font-weight-bold"> <span
+								class="font-weight-bold">상상공방은 누가 진행하나요?</span></span> <span
 							class="icon"><span class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-2">
 							<div class="pt-3">
-								<p class="mb-0">상상공방은 [늘솜]이 진행합니다.<br><br>
-                                        상상공방의 [늘솜]은 상상공방을 통해 다양한 원데이 클래스를 진행하는 진행자입니다.<br><br>
-                                        상상공방의 [늘솜]은 본인만이 가지고 있는 컨텐츠가 있나면 누구나 신청이 가능합니다.<br>
-                                        </p>
+								<p class="mb-0">
+									상상공방은 [늘솜]이 진행합니다.<br>
+									<br> 상상공방의 [늘솜]은 상상공방을 통해 다양한 원데이 클래스를 진행하는 진행자입니다.<br>
+									<br> 상상공방의 [늘솜]은 본인만이 가지고 있는 컨텐츠가 있나면 누구나 신청이 가능합니다.<br>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -454,19 +488,21 @@
 						<a href="#panel-3" data-target="#panel-3"
 							class="accordion-panel-header" data-toggle="collapse"
 							role="button" aria-expanded="false" aria-controls="panel-1">
-							<span class="h6 mb-0 font-weight-bold">
-							 <span class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span> 
-							 <span
+							<span class="h6 mb-0 font-weight-bold"> <span
+								class="font-weight-bold">늘솜과 늘찬은 무엇인가요?</span></span> <span
 							class="icon"><span class="fas fa-plus"></span></span>
 						</a>
 						<div class="collapse" id="panel-3">
 							<div class="pt-3">
-								<p class="mb-0">저희 상상공방은 플랫폼에 올라와 있는 프로그램들을 [상상 클래스] 이라고 칭하고 있습니다.<br><br>
-                                        상상공방을 진행하시는 분들을 [늘솜], 참여하시는 분을 [늘찬]이라고 칭하고 있습니다.<br><br>
-                                        <참고><br>
-                                        - '늘솜'은 순우리말로 '늘 솜씨가 좋은'이라는 뜻이예요.<br>
-                                        - '늘차다'라는 말은 '능란하고 재빠르다'는 의미의 형용사로 능력이 있으며 옹골차다는 뜻이에요.
-                                        </p>
+								<p class="mb-0">
+									저희 상상공방은 플랫폼에 올라와 있는 프로그램들을 [상상 클래스] 이라고 칭하고 있습니다.<br>
+									<br> 상상공방을 진행하시는 분들을 [늘솜], 참여하시는 분을 [늘찬]이라고 칭하고 있습니다.<br>
+									<br>
+									<참고>
+									<br>
+									- '늘솜'은 순우리말로 '늘 솜씨가 좋은'이라는 뜻이예요.<br>
+									- '늘차다'라는 말은 '능란하고 재빠르다'는 의미의 형용사로 능력이 있으며 옹골차다는 뜻이에요. 
+								</p>
 							</div>
 						</div>
 					</div>
@@ -474,15 +510,16 @@
 				<!--End of Accordion-->
 				<p class="text-center mb-4 mt-6">More things to ASK?</p>
 				<p class="text-center">
-					<a href="<c:url value='/bottomview/customerService'/>" class="btn btn-primary animate-up-2">Contact
-						us.</a>
+					<a href="<c:url value='/bottomview/customerService'/>"
+						class="btn btn-primary animate-up-2">Contact us.</a>
 				</p>
 			</div>
 		</div>
 	</div>
 </section>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531"></script>
-	<script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0610dd037b7ecb430d9b2d53aa551531"></script>
+<script>
 		var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(37.500180037784375, 127.0289849392321),
