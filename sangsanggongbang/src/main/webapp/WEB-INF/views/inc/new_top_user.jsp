@@ -328,7 +328,6 @@
 						onMessage(evt);
 					};
 					websocket.onerror = function(evt) {
-						alert('에러');
 						onError(evt);
 					};
 				}
@@ -341,7 +340,6 @@
 					$('#span1').append(evt.data);
 				}
 				function onError(evt) {
-					alert('에러-');
 				}
 				$(document).ready(function() {
 					send_message();
