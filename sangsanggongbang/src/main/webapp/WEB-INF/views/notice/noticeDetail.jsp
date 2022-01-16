@@ -76,7 +76,7 @@ hr {
 									src="<c:url value='/resources/upload_images/${vo.noticeImgUrl}'/>">
 							</div>
 						</c:if>
-						<p>${vo.noticeContent }</p>
+						<p><br><br>${vo.noticeContent }<br></p>
 					</div>
 				</div>
 			</article>
