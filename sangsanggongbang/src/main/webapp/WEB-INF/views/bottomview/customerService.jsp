@@ -51,11 +51,11 @@
 <!-- Section -->
 <section class="section section-lg pt-6">
 	<div class="container">
-		<div class="row justify-content-center mb-5 mb-lg-6">
+		<!-- <div class="row justify-content-center mb-5 mb-lg-6">
 			<div class="col-12 ">
 				<div class="row justify-content-center mt-4 mt-lg-5">
 					<div class="col-12">
-						<!-- Contact Card -->
+						Contact Card
 						<div class="card border-0 p-0 p-md-5">
 							<div class="card-header text-center p-0 pb-5">
 								<br> <br> <br>
@@ -63,7 +63,7 @@
 								<p>Cool! Let’s talk about your project</p>
 							</div>
 							<hr>
-							<!--   <div class="card-body p-0">
+							  <div class="card-body p-0">
                                                 <form action="#" method="post">
                                                     Form
                                                     <div class="form-group">
@@ -96,17 +96,17 @@
                                                     <button type="submit" class="btn btn-block rounded btn-secondary"><a href="mailto:﻿csb9762@gmail.com">Send message</a></button>
                                                 </div>
                                                 </form>
-                                            </div> -->
+                                            </div>
 						</div>
-						<!-- End of Contact Card -->
+						End of Contact Card
 					</div>
 				</div>
-				<!-- Contact Card -->
+				Contact Card
 				<div class="card border-0 p-2 p-md-3">
 					<div class="card-body px-0">
 						<div class="row">
 							<div class="col-sm-6 col-md-4 text-center">
-								<!-- Visit Box -->
+								Visit Box
 								<div class="icon-box mb-4">
 									<div class="icon icon-dark mb-4">
 										<span class="fas fa-map-marker-alt"></span>
@@ -115,10 +115,10 @@
 									<span> 서울특별시 서초구<br> 서초대로 309 <br>장안빌딩 4층
 									</span>
 								</div>
-								<!-- End of Visit Box -->
+								End of Visit Box
 							</div>
 							<div class="col-sm-6 col-md-4 text-center d-sm-none d-md-block">
-								<!-- Call Box -->
+								Call Box
 								<div class="icon-box mb-4">
 									<div class="icon icon-dark mb-4">
 										<span class="fas fa-phone-volume"></span>
@@ -129,10 +129,10 @@
 										Mon - Fri<br>9:30am - 6:30pm
 									</div>
 								</div>
-								<!-- End of Call Box -->
+								End of Call Box
 							</div>
 							<div class="col-sm-6 col-md-4 text-center">
-								<!-- Email Box -->
+								Email Box
 								<div class="icon-box mb-4">
 									<div class="icon icon-dark mb-4">
 										<span class="far fa-paper-plane"></span>
@@ -141,14 +141,115 @@
 									<a href="mailto:﻿csb9762@gmail.com"><br>csb9762@gamil.com</a>
 								</div>
 								<br> <br>
-								<!-- End of Email Box -->
+								End of Email Box 
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End of Contact Card -->
+				End of Contact Card
 			</div>
-		</div>
+		</div> -->
+		 
+		 <div class="row justify-content-center mb-5 mb-lg-6">
+                    <div class="col-12 col-md-10 col-lg-8">
+                        <!-- Contact Card -->
+                        <div class="card border-0 p-2 p-md-3">
+                            <div class="card-body px-0">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 text-center">
+                                        <!-- Visit Box -->
+                                        <div class="icon-box mb-4">
+                                            <div class="icon icon-dark mb-4">
+                                                <span class="fas fa-map-marker-alt"></span>
+                                            </div>
+                                            <h2 class="h5 icon-box-title">Visit us</h2>
+                                            <span>
+                                                서울특별시 서초구<br> 서초대로 309 <br>장안빌딩 4층
+                                            </span>
+                                        </div>
+                                        <!-- End of Visit Box -->
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 text-center d-sm-none d-md-block">
+                                        <!-- Call Box -->
+                                        <div class="icon-box mb-4">
+                                            <div class="icon icon-dark mb-4">
+                                                <span class="fas fa-phone-volume"></span>
+                                            </div>
+                                            <h2 class="h5 icon-box-title">Call</h2>
+                                            <span>010-3673-0143</span>
+									<div class="text-small text-gray">
+										Mon - Fri<br>9:30am - 6:30pm
+                                            </div>
+                                        </div>
+                                        <!-- End of Call Box -->
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 text-center">
+                                        <!-- Email Box -->
+                                        <div class="icon-box mb-4">
+                                            <div class="icon icon-dark mb-4">
+                                                <span class="far fa-paper-plane"></span>
+                                            </div>
+                                            <h2 class="h5 icon-box-title">Email</h2>
+                                           <a href="mailto:﻿csb9762@gmail.com"><br>csb9762@gamil.com</a>
+                                        </div>
+                                        <!-- End of Email Box -->
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-4 mt-lg-5">
+                                    <div class="col-12">
+                                        <!-- Contact Card -->
+                                        <div class="card border-0 p-0 p-md-5">
+                                            <div class="card-header text-center p-0 pb-5">
+                                                <h2>Want to work with us?</h2>
+                                                <p>Cool! Let’s talk about your project</p>
+                                            </div>
+                                            <div class="card-body p-0">
+                                                 <form action="<c:url value='/bottomview/mail'/>" method="post"> 
+                                                  <!-- Form -->
+												<div class="form-group">
+<!-- 													<label for="name">받는사람</label>
+ -->													<!-- <div class="input-group mb-4">
+														<div class="input-group-prepend">
+															<span class="input-group-text"><span
+																class="far fa-user-circle"></span></span>
+														</div>
+														<input class="form-control" id="name"
+															placeholder="csb9762@gamil.com" type="text" name="receiveId"
+															aria-label="contact name input" required>
+													</div> -->
+												</div>
+												<!-- Form -->
+												<div class="form-group">
+													<label for="email">Your Email</label>
+													<div class="input-group mb-4">
+														<div class="input-group-prepend">
+															<span class="input-group-text"><span
+																class="far fa-envelope"></span></span>
+														</div>
+														<input class="form-control" id="title"
+															placeholder="이메일을 입력해주세요" type="text" name="emailTitle"
+															aria-label="contact email input">
+													</div>
+												</div>
+												<!-- Form -->
+												<div class="form-group">
+													<textarea class="form-control" placeholder="성함과 연락처, 내용을 입력해주세요"
+														id="message" name="message" rows="4" style="resize:none; overflow:hidden;"></textarea>
+												</div>
+												<!-- End of Form -->
+												<button type="submit"
+													class="btn btn-block rounded btn-secondary">전송하기</button>
+											</form>
+                                            </div>
+                                        </div>
+                                        <!-- End of Contact Card -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Contact Card -->
+                    </div>
+                </div>
 		<div class="row">
 			<div class="col-12 text-center mb-5">
 				<h2>Our support team</h2>
@@ -272,6 +373,14 @@
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 	</script>
+	<script type="text/javascript">
+	$(function(){
+		$('textarea').keyup(function(e){
+			$(this).css('height','auto');
+			$(this).height(this.scrollHeight);
+		})		
+	})
+</script>
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
 		<%@ include file="../inc/bottom_host.jsp"%>
