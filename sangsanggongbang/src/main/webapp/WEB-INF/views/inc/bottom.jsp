@@ -69,24 +69,25 @@
 				</ul>
 			</div>
 			<div class="col-12 col-xl-4 mb-5 mb-xl-0">
-				<span class="h5">Get the app</span>
+				<span class="h5">Get the SSGB</span>
 				<p class="text-muted font-small mt-2">It's easy. Just select
-					your device.</p>
-				<a href="#" class="btn btn-sm btn-white mb-xl-0 mr-2"> <span
+					the Git Hub.</p>
+				<a href="https://github.com/mitzandbebe/sangsang" class="btn btn-sm btn-white mb-xl-0 mr-2"> <span
 					class="d-flex align-items-center"> <span
-						class="icon icon-brand mr-2"><span class="fab fa-apple"></span></span>
+						class="icon icon-brand mr-2"><span class="fab fa-github"></span></span>
 						<span class="d-inline-block text-left"> <small
-							class="font-weight-normal d-block">Available on</small> App Store
+							class="font-weight-normal d-block">Available on</small> Git Hub
 					</span>
 				</span>
-				</a> <a href="#" class="btn btn-sm btn-white"> <span
+				</a> 
+				<!-- <a href="#" class="btn btn-sm btn-white"> <span
 					class="icon icon-brand mr-2"><span
 						class="fab fa-google-play"></span></span> <span
 					class="d-inline-block text-left"> <small
 						class="font-weight-normal d-block">Available on</small> Google
 						Play
 				</span>
-				</a>
+				</a> -->
 			</div>
 		</div>
 		<hr class="my-3 my-lg-5">
