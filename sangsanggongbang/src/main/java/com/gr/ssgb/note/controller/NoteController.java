@@ -72,12 +72,11 @@ public class NoteController {
 		String mId = (String) session.getAttribute("mId");
 		String hId = (String) session.getAttribute("hId");
 		logger.info("쪽지 vo={},mId={},hId={}", vo, mId, hId);
-		
-		logger.info("snickname={}",vo.getsNickname());
-		
+
+		logger.info("snickname={}", vo.getsNickname());
+
 		String receiveNickname = noteService.selectSendUserM(vo.getrNickname());
 		String receiveNicknameH = noteService.selectSendUserH(vo.getrNickname());
-		logger.info("receiv={}", receiveNickname);
 		vo.setmId(mId);
 		vo.sethId(hId);
 
@@ -87,8 +86,8 @@ public class NoteController {
 		} else {
 			url = "/note/noteWrite?hId=" + hId;
 		}
-		if ((receiveNickname == null || receiveNickname.isEmpty()) && receiveNicknameH == null
-				|| receiveNicknameH.isEmpty()) {
+		if ((receiveNickname == null || receiveNickname.isEmpty())
+				&& (receiveNicknameH == null || receiveNicknameH.isEmpty())) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			return "/common/message";
@@ -96,9 +95,9 @@ public class NoteController {
 			logger.info("여긴");
 			int cnt = 0;
 			if (mId != null && !mId.isEmpty()) {
-				MemberVO mVo= memberService.selectMemberById(mId);
+				MemberVO mVo = memberService.selectMemberById(mId);
 				vo.setsNickname(mVo.getmNickname());
-				logger.info("보내는사람={}",vo.getsNickname());
+				logger.info("보내는사람={}", vo.getsNickname());
 				cnt = noteService.sendNote(vo);
 				if (cnt > 0) {
 					msg = "쪽지를 성공적으로 보냈습니다";
@@ -109,7 +108,7 @@ public class NoteController {
 			} else if (hId != null && !hId.isEmpty()) {
 				HostVO hVo = hostService.selectHostById(hId);
 				vo.setsNickname(hVo.gethNickname());
-				logger.info("보내는사람={}",vo.getsNickname());
+				logger.info("보내는사람={}", vo.getsNickname());
 				cnt = noteService.sendNoteH(vo);
 				if (cnt > 0) {
 					msg = "쪽지를 성공적으로 보냈습니다";
@@ -229,10 +228,10 @@ public class NoteController {
 		String hId = (String) session.getAttribute("hId");
 		logger.info("noteNo={}", noteNo);
 		int cnt = noteService.saveNote(noteNo);
-		String msg = "쪽지 보관 실패",url="";
+		String msg = "쪽지 보관 실패", url = "";
 		if (mId != null && !mId.isEmpty()) {
 			url = "/note/noteBox?mId=" + mId;
-		}else if(hId !=null && !hId.isEmpty()) {
+		} else if (hId != null && !hId.isEmpty()) {
 			url = "/note/noteBox?hId=" + hId;
 		}
 		if (cnt > 0) {
@@ -260,6 +259,13 @@ public class NoteController {
 		model.addAttribute("vo", vo);
 
 		return "note/noteDetail";
+	}
+
+	public String readNum(String userId) {
+		logger.info("씨발 오긴 오냐");
+		String count = (String) noteService.readNum(userId);
+		return count;
+
 	}
 
 }

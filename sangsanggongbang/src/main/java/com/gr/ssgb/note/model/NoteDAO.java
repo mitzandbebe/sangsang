@@ -1,5 +1,6 @@
 package com.gr.ssgb.note.model;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -28,5 +29,5 @@ public interface NoteDAO {
 	int noteRead(int noteNo);
 	NoteVO selectNoteDetail(int noteNo);
 	
-	int readNum(String userid);//안읽은 쪽지 개수
+	CharSequence readNum(String userId);//안읽은 쪽지 개수
 }

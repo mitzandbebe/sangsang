@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/assets/js/jquery-3.6.0.min.js"></script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -130,8 +131,7 @@
 
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
 						<!-- 첫번째 탭 -->
-						<li class="nav-item dropdown">
-						<a href="#"
+						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
 								class="nav-link-inner-text mr-1">상상클래스</span> <i
@@ -218,17 +218,13 @@
 										</ul>
 									</div>
 								</div>
-							</div>
-						</li>
+							</div></li>
 						<!--  두번째 탭 -->
-						<li class="nav-item ">
-						<a href="<c:url value='/member/memberEditChkPwd'/>" 
-							class="nav-link "> 
-							<span class="nav-link-inner-text mr-1">
-							My Page
-							</span>
-						</a>
-						</li>
+						<li class="nav-item "><a
+							href="<c:url value='/member/memberEditChkPwd'/>"
+							class="nav-link "> <span class="nav-link-inner-text mr-1">
+									My Page </span>
+						</a></li>
 					</ul>
 				</div>
 
@@ -264,33 +260,32 @@
 					</c:if>
 					<!-- 로그아웃, 프로필 사진 띄우기 끝 -->
 					<c:if test="${!empty sessionScope.mId }">
-					<!--쪽지함-->
+						<!--쪽지함-->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a style="position: relative;"
-						width="100px;"
-						href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
-						<img id="letter" width="36px"
-						src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
-						<span id="span1"
-						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;"></span>
-					</a>
-					<!--쪽지함 끝-->
+							width="100px;"
+							href="<c:url value='note/noteList?mId=${sessionScope.mId }'/>">
+							<img id="letter" width="36px"
+							src="<c:url value='/resources/assets/img/kjy/letter_neulchan.png'/>">
+							<span id="span1"
+							class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+							style="top: -10px; right: -5px;"></span>
+						</a>
+						<!--쪽지함 끝-->
 
-					<!-- 채팅창 -->
+						<!-- 채팅창 -->
 					&nbsp;&nbsp;&nbsp;&nbsp; <a style="position: relative;"
-						width="100px;" href="<c:url value='#'/>"> <img id="chat"
-						width="50px"
-						src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">
-						<span id="span2"
-						class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-						style="top: -10px; right: -5px;"></span>
-					</a> &nbsp;&nbsp;&nbsp;&nbsp;
+							width="100px;" href="<c:url value='#'/>"> <img id="chat"
+							width="50px"
+							src="<c:url value='/resources/assets/img/logo/chatting2_user_light.png'/>">
+							<span id="span2"
+							class="badge badge-danger position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+							style="top: -10px; right: -5px;"></span>
+						</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- 채팅창 끝 -->
 					</c:if>
 				</div>
-				
-				<!-- 탑우측 버튼 끝 -->
 
+				<!-- 탑우측 버튼 끝 -->
 
 				<!-- 화면 크기 줄일 때 반응형 네비게이션 바 -->
 				<div class="d-flex d-lg-none align-items-center">
@@ -318,3 +313,38 @@
 		</div>
 	</main>
 	<!-- 로딩창 끝 -->
+		<script type="text/javascript">
+			$(function() {
+				 /* var wsUri = "ws://localhost:8080/readNum"; */
+
+				function send_message() {
+					const websocket = new WebSocket("ws://localhost:8080/read/num");
+					websocket.onopen = function(evt) {
+						alert('여긴1');
+						onOpen(evt);
+					};
+					websocket.onmessage = function(evt) {
+						alert('여긴2');
+						onMessage(evt);
+					};
+					websocket.onerror = function(evt) {
+						alert('에러');
+						onError(evt);
+					};
+				}
+				function onOpen(evt) {
+						alert('여긴-1');
+					websocket.send("${sessionScope.mId}");
+				}
+				function onMessage(evt) {
+						alert('여긴-2');
+					$('#span1').append(evt.data);
+				}
+				function onError(evt) {
+					alert('에러-');
+				}
+				$(document).ready(function() {
+					send_message();
+				});
+			})
+		</script>

@@ -18,12 +18,13 @@
 			select note_seq.nextval from dual
 		</selectKey>
 		insert all
-		into note(NOTE_NO,NOTE_CONTENT,M_ID,R_NICKNAME,S_NICKNAME))
+		into note(NOTE_NO, NOTE_CONTENT, M_ID, R_NICKNAME, S_NICKNAME)
 		VALUES(#{noteNo},#{noteContent},#{mId},#{rNickname},#{sNickname})
 		into
 		note_rec(REC_NO,NOTE_NO,R_NICKNAME,S_NICKNAME)
 		VALUES(#{noteNo},#{noteNo},#{rNickname},#{sNickname})
-		select * from dual
+		select * from
+		dual
 	</insert>
 	<insert id="sendNoteH" parameterType="noteVo">
 		<selectKey keyProperty="noteNo" resultType="int"
@@ -36,7 +37,8 @@
 		into
 		note_rec(REC_NO,NOTE_NO,R_NICKNAME,S_NICKNAME)
 		VALUES(#{noteNo},#{noteNo},#{rNickname},#{sNickname})
-		select * from dual
+		select * from
+		dual
 	</insert>
 
 	<!-- <resultMap type="map" id="noteView"> <result property="noteContent" 
@@ -196,13 +198,13 @@
 			</foreach>
 		</where>
 	</update>
-
+ 	
 	<select id="selectNoteDetail" parameterType="int"
 		resultType="noteVo">
 		SELECT * FROM NOTEVIEW WHERE
 		note_no=#{noteNo}
 	</select>
-
+	
 	<update id="noteRead" parameterType="int">
 		update NOTE_REC
 		set

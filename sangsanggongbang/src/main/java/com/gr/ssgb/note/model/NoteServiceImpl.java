@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gr.ssgb.host.model.HostDAO;
 import com.gr.ssgb.host.model.HostVO;
@@ -128,9 +129,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public int readNum(String userid) {
-		return noteDAO.readNum(userid);
+	public CharSequence readNum(String userid) {
+		return noteDAO.readNum(userid); 	
 	}
-
 
 }
