@@ -249,43 +249,26 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<!-- <li><a href="#" target="_blank"
-								aria-label="facebook social link" class="icon-facebook mr-3">
-									<span class="fab fa-facebook-f"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="twitter social link" class="icon-twitter mr-3">
-									<span class="fab fa-twitter"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="slack social link" class="icon-slack mr-3"> <span
-									class="fab fa-slack-hash"></span>
-							</a></li>
-							<li><a href="#" target="_blank"
-								aria-label="dribbble social link" class="icon-dribbble mr-3">
-									<span class="fab fa-dribbble"></span>
-							</a></li> -->
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:hwaseo0314@naver.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
-							<li><a href="#" target="_blank" aria-label="git branch link"
+							<li><a href="https://github.com/mitzandbebe/sangsang/tree/kyb" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-
-							<li><a href="#" target="_blank"
+							<!-- <li><a href="#" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
-							</a></li>
+							</a></li> -->
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
-					<img src="../resources/assets/img/group2_photo/ohjeonghun.jpg"
+					<img src="../resources/assets/img/group2_photo/ohjunghun.jpg"
 						class="card-img-top rounded-top" alt="오정훈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">오정훈</h3>
@@ -293,16 +276,16 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:wlddj22@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
-							<li><a href="#" target="_blank" aria-label="git branch link"
+							<li><a href="https://github.com/JHoon1321/sangsang/tree/jhoon" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
 
-							<li><a href="#" target="_blank"
+							<li><a href="https://www.instagram.com/wjdgns3226/" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
@@ -321,20 +304,19 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:blc2000y@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
-							<li><a href="#" target="_blank" aria-label="git branch link"
+							<li><a href="https://github.com/mitzandbebe/sangsang/tree/bae-jae-young" target="_blank" aria-label="git branch link"
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-
-							<li><a href="#" target="_blank"
+							<!-- <li><a href="#" target="_blank"
 								aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
-							</a></li>
+							</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -352,7 +334,7 @@
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:jung9201@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
@@ -380,7 +362,7 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:csb9762@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
@@ -409,7 +391,7 @@
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
-							<li><a href="#" target="_blank" aria-label="email link"
+							<li><a href="mailto:qkqkdldy@naver.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
 									class="far fa-paper-plane"></span>
 							</a></li>
@@ -419,10 +401,10 @@
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<li><a href="#" aria-label="instagram social link"
+							<!-- <li><a href="#" aria-label="instagram social link"
 								class="icon icon-sm icon-instagram"> <span
 									class="fab fa-instagram"></span>
-							</a></li>
+							</a></li> -->
 						</ul>
 					</div>
 				</div>

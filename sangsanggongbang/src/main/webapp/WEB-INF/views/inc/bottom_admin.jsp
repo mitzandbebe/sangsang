@@ -3,7 +3,6 @@
 
 <footer class="footer py-6 bg-primary text-white">
 
-	<!-- 수빈 바텀 수정 중!!시발!! -->
 	<!-- <div class="container">
 		<div class="customer_service">
 			<div class="row">
