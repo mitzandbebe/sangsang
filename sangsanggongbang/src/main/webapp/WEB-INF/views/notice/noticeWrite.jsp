@@ -128,8 +128,18 @@
 					return false; //each 탈출
 				}
 
+				if($('#content').val()==""){
+					alert('내용을 입력해주세요');
+					event.preventDefault();
+				}
+				
+				if($("input[name=noticeFlag]:radio:checked").length<1){
+					alert("대상을 선택해주세요");
+					event.preventDefault();
+				}
 			});
 
+			
 			/* 		$('#upfile').each(function(idx, item) {
 						if ($(this).val().length < 1) {
 							alert($(this).prev().html() + "을 입력하세요");
