@@ -26,19 +26,18 @@
 			<div class="col-12">
 				<br> <br> <br> <br> <a
 					href="<c:url value='/memberInquiry/memberList'/>"><button
-						class="btn mb-2 mr-2 btn-dark" type="button">일반회원</button></a> <a
+						class="btn mb-2 mr-2 btn-dark" type="button">늘찬 조회</button></a> <a
 					href="<c:url value='/memberInquiry/hostList'/>"><button
-						class="btn mb-2 mr-2 btn-dark" type="button">호스트 회원</button></a> <a
+						class="btn mb-2 mr-2 btn-dark" type="button">늘솜 조회</button></a> <a
 					href="<c:url value='/memberInquiry/banList'/>">
 					<button class="btn mb-2 mr-2 btn-dark" type="button">참여제한회원</button>
 				</a> <br> <br>
 				<table class="table table-hover">
 					<tbody>
 						<tr>
-							<th scope="col">호스트 아이디</th>
-							<th scope="col">호스트 이름</th>
+							<th scope="col">늘솜 아이디</th>
+							<th scope="col">늘솜 이름</th>
 							<th scope="col">가입일</th>
-							<th scope="col">수정하기</th>
 						</tr>
 					</tbody>
 					<tbody>
@@ -55,10 +54,6 @@
 								<td><fmt:formatDate value="${vo.regdate}"
 										pattern="yyyy-MM-dd" /></td>
 								<td>
-									<div class="d-flex">
-										<i class="fas fa-edit mr-3" data-toggle="tooltip"
-											data-placement="top" title="Edit item"></i>
-									</div>
 								</td>
 							</tr>
 						</c:forEach>
