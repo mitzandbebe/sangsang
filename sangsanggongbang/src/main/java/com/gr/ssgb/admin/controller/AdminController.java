@@ -117,6 +117,7 @@ public class AdminController {
 		}
 		NewUserVO  newUserVo= null;
 		Map<String, Object> newUserMap = new HashMap<String,Object>();
+		int totalCnt = 0;
 		for(int i =0; i < 4; i++) {
 			monVo = new MonthVO();
 			monVo.setStartDate(month, i);
@@ -125,9 +126,12 @@ public class AdminController {
 			if(newHost==null) newHost=0;
 			if(newMember==null) newMember=0;
 			newUserVo = new NewUserVO();
-			newUserVo.setNewhost(newHost);
+			newUserVo.setNewHost(newHost);
 			newUserVo.setNewMember(newMember);
-			String index = (3-i)+"";
+			String index = (i+1)+"";
+			if(i==0) {
+				totalCnt+=newHost+newMember;
+			}
 			newUserMap.put(index, newUserVo);
 			logger.info("newUserVo={}", newUserVo);
 		}
@@ -135,6 +139,7 @@ public class AdminController {
 		model.addAttribute("bigOne", bigOne);
 		model.addAttribute("profitMap", profitMap);
 		model.addAttribute("ratioMap", ratioMap);
+		model.addAttribute("totalCnt", totalCnt);
 		
 		return "admin/adminIndex"; 
 	}
