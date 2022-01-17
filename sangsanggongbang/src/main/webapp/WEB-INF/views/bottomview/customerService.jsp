@@ -260,7 +260,7 @@
 					<div class="card-header bg-white">
 						<img src="../resources/assets/img/group2_photo/kangyubin.jpg"
 							class="card-img-top rounded shadow border-0"
-							alt="Christopher Avatar">
+							alt="Christopher Avatar" style="height: 400px;">
 					</div>
 					<div class="card-body">
 						<span class="card-subtitle text-gray font-weight-normal">CEO</span>
