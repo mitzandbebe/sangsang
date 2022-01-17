@@ -18,7 +18,8 @@
 			select note_seq.nextval from dual
 		</selectKey>
 		insert all
-		into note(NOTE_NO, NOTE_CONTENT, M_ID, R_NICKNAME, S_NICKNAME)
+		into note(NOTE_NO, NOTE_CONTENT, M_ID, R_NICKNAME,
+		S_NICKNAME)
 		VALUES(#{noteNo},#{noteContent},#{mId},#{rNickname},#{sNickname})
 		into
 		note_rec(REC_NO,NOTE_NO,R_NICKNAME,S_NICKNAME)
@@ -198,13 +199,13 @@
 			</foreach>
 		</where>
 	</update>
- 	
+
 	<select id="selectNoteDetail" parameterType="int"
 		resultType="noteVo">
 		SELECT * FROM NOTEVIEW WHERE
 		note_no=#{noteNo}
 	</select>
-	
+
 	<update id="noteRead" parameterType="int">
 		update NOTE_REC
 		set
@@ -216,5 +217,52 @@
 		select
 		count(*) from noteview
 		where m_id =#{mId} and rec_readflag ='N'
+	</select>
+
+	<select id="sendListM" parameterType="noteVo"
+		resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE m_id=#{mId}
+		order BY
+		NOTE_NO DESC
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+	<select id="sendListH" parameterType="noteVo"
+		resultType="noteVo">
+		select *
+		from
+		(
+		select rownum as RNUM, A.*
+		from
+		(
+		SELECT * FROM NOTEVIEW
+		WHERE h_id=#{hId}
+		order BY
+		NOTE_NO DESC
+		)A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex} and 
+		RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}
+		]]>
+	</select>
+	<select id="selectTotalSendListM" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where m_id=#{mId}
+	</select>
+	<select id="selectTotalSendListH" parameterType="noteVo"
+		resultType="int">
+		select count(*) from noteview
+		where h_id=#{hId}
 	</select>
 </mapper>

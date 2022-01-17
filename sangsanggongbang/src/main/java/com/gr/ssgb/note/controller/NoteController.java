@@ -205,7 +205,9 @@ public class NoteController {
 	}
 
 	@RequestMapping("/note/noteDelete") // 쪽지삭제
-	public String noteDelete(@RequestParam int[] noteNo, @RequestParam String mId, Model model) {
+	public String noteDelete(@RequestParam int[] noteNo, HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
 		logger.info("noteNo={},mid={}", noteNo, mId);
 
 		int cnt1 = noteService.deleteNote(noteNo);
@@ -218,8 +220,13 @@ public class NoteController {
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
-
-		return "redirect:/note/noteList?mId=" + mId;
+		String result = "";
+		if (mId != null && !mId.isEmpty()) {
+			result = "redirect:/note/noteList?mId=" + mId;
+		} else if (hId != null && !hId.isEmpty()) {
+			result = "redirect:/note/noteList?hId=" + hId;
+		}
+		return result;
 	}
 
 	@PostMapping("/note/noteSave") // 쪽지 보관함 시키는것
@@ -261,11 +268,45 @@ public class NoteController {
 		return "note/noteDetail";
 	}
 
-	public String readNum(String userId) {
-		logger.info("씨발 오긴 오냐");
-		String count = (String) noteService.readNum(userId);
-		return count;
+	@RequestMapping("/note/sendList")
+	public String sendList(@ModelAttribute NoteVO vo, HttpSession session, Model model) {
+		String mId = (String) session.getAttribute("mId");
+		String hId = (String) session.getAttribute("hId");
 
+		if ((vo.getmId() == null || vo.getmId().isEmpty()) && (vo.gethId() == null || vo.gethId().isEmpty())) {
+			model.addAttribute("msg", "해당하는 아이디가 없습니다");
+			model.addAttribute("url", "/index");
+			return "/common/message";
+		}
+
+		logger.info("vo={}", vo);
+		PaginationInfo pagingInfo = new PaginationInfo();
+		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(5);
+		pagingInfo.setCurrentPage(vo.getCurrentPage());
+
+		vo.setRecordCountPerPage(5);
+		vo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("vo={}", vo);
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		int totalRecord = 0;
+		if (mId != null && !mId.isEmpty()) {
+			list = noteService.sendListM(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalSendListM(vo);
+		} else {
+			logger.info("확인1");
+			list = noteService.sendListH(vo);
+			logger.info("쪽지 총 개수 list.size={}", list.size());
+			totalRecord = noteService.selectTotalSendListH(vo);
+		}
+
+		pagingInfo.setTotalRecord(totalRecord);
+
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("list", list);
+		return "note/sendList";
 	}
 
 }
