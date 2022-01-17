@@ -185,39 +185,30 @@
 								<div class="container">
 									<div>
 										<span>받는사람 :</span> &nbsp; <input type="checkbox"
-											name="selfWrite" id="selfWrite">내게쓰기 <input
+											name="selfWrite" id="selfWrite">&nbsp;내게쓰기&ensp; <input
 											type="text" id="sendPeople" name="rNickname"
-											placeholder="닉네임을 입력해주세요" value="" style="width: 350px">
+											placeholder="닉네임을 입력해주세요" value="" style="width:70%;">
 										<br> <br>
-										<textarea rows="10" cols="57" name="noteContent"
-											id="noteContent" style="resize: none"></textarea>
+										<textarea style="height: auto; width: 100%;"
+											name="noteContent" id="noteContent" style="resize: none"></textarea>
 										<div id="cnt">(0 / 1000)자</div>
+										<br>
 
-										<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-											type="submit">보내기</button>
+										<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+											id="noteWrite" type="submit">보내기</button>
 										<c:if test="${!empty sessionScope.mId }">
 											<a
 												href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"><button
-													class="btn mb-2 mr-2 btn-success" id="noteWrite"
-													type="button">목록</button> </a>
+													class="btn mb-2 mr-2 btn-primary animate-up-2"
+													id="noteWrite" type="button">목록</button> </a>
 										</c:if>
 										<c:if test="${!empty sessionScope.hId }">
 											<a
 												href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"><button
-													class="btn mb-2 mr-2 btn-success" id="noteWrite"
-													type="button">목록</button> </a>
+													class="btn mb-2 mr-2 btn-primary animate-up-2"
+													id="noteWrite" type="button">목록</button> </a>
 										</c:if>
 									</div>
-
-									<div
-										class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
-										<div class="d-flex align-items-center mt-3"></div>
-									</div>
-								</div>
-
-								<div
-									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
-									<div class="d-flex align-items-center mt-3"></div>
 								</div>
 							</div>
 						</div>
