@@ -168,7 +168,7 @@
 				<input type="checkbox" id="allCheck" name="allCheck"> <label
 					for="allCheck">전체선택</label>
 				<div class="d-flex align-items-center mb-3">
-					<h1 class="h5 mb-3">Save List</h1>
+					<h1 class="h5 mb-3">Send List</h1>
 
 				</div>
 				<%-- 	<div class="row">
@@ -187,7 +187,7 @@
 				<form method="post" action="" name="frm">
 					<table class="table table-hover" style="font-size: 14px;">
 						<c:if test="${empty list }">
-							<h3 class="h4 mb-5">보관한 쪽지가 없습니다.</h3>
+							<h3 class="h4 mb-5">보낸 쪽지가 없습니다.</h3>
 						</c:if>
 						<c:if test="${!empty list }">
 							<tbody>
@@ -255,6 +255,13 @@
 					</table>
 				</form>
 				<!-- 버튼 -->
+				<%-- <div class="d-flex align-items-center mb-3">
+					<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+						id="allCheck" type="button" value="${map['noteNo'] }">
+						전체선택</button>
+					<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+						id="allCheck" type="button" value="${map['noteNo'] }">
+						전체해제</button> --%>
 				<div class="ml-auto" style="text-align: center;">
 					<div class="form-group">
 						<c:if test="${!empty sessionScope.mId }">
@@ -266,9 +273,9 @@
 								<button class="btn mb-2 mr-2 btn-primary animate-up-2"
 									id="noteBox" type="button">쪽지함</button>
 							</a>
-							<a href="<c:url value='/note/sendList?mId=${param.mId }'/>">
+							<a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
 								<button class="btn mb-2 mr-2 btn-primary animate-up-2"
-									id="noteBox" type="button">보낸쪽지함</button>
+									id="noteBox" type="button">보관함</button>
 							</a>
 						</c:if>
 						<c:if test="${!empty sessionScope.hId }">
@@ -280,9 +287,9 @@
 								<button class="btn mb-2 mr-2 btn-primary animate-up-2"
 									id="noteBox" type="button">쪽지함</button>
 							</a>
-							<a href="<c:url value='/note/sendList?hId=${param.hId }'/>">
+							<a href="<c:url value='/note/noteBox?hId=${param.hId }'/>">
 								<button class="btn mb-2 mr-2 btn-primary animate-up-2"
-									id="noteBox" type="button">보낸쪽지함</button>
+									id="noteBox" type="button">보관함</button>
 							</a>
 						</c:if>
 						<button class="btn mb-2 mr-2 btn-primary animate-up-2"
@@ -298,7 +305,7 @@
 												<ul class="pagination">
 													<c:if test="${pagingInfo.firstPage>1 }">
 														<li class="page-item"><a class="page-link"
-															href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+															href="<c:url value='/note/sendList?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
 														</li>
 													</c:if>
 													<c:forEach var="i" begin="${pagingInfo.firstPage}"
@@ -309,13 +316,13 @@
 														</c:if>
 														<c:if test="${i!=pagingInfo.currentPage }">
 															<li class="page-item"><a class="page-link"
-																href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${i}'/>">
+																href="<c:url value='/note/sendList?mId=${param.mId }&currentPage=${i}'/>">
 																	${i }</a></li>
 														</c:if>
 													</c:forEach>
 													<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 														<li class="page-item"><a class="page-link"
-															href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+															href="<c:url value='/note/sendList?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
 														</li>
 													</c:if>
 												</ul>
@@ -326,7 +333,7 @@
 												<ul class="pagination">
 													<c:if test="${pagingInfo.firstPage>1 }">
 														<li class="page-item"><a class="page-link"
-															href="<c:url value='/note/noteBox?hId=${param.hId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+															href="<c:url value='/note/sendList?hId=${param.hId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
 														</li>
 													</c:if>
 													<c:forEach var="i" begin="${pagingInfo.firstPage}"
@@ -337,13 +344,13 @@
 														</c:if>
 														<c:if test="${i!=pagingInfo.currentPage }">
 															<li class="page-item"><a class="page-link"
-																href="<c:url value='/note/noteBox?hId=${param.hId }&currentPage=${i}'/>">
+																href="<c:url value='/note/sendList?hId=${param.hId }&currentPage=${i}'/>">
 																	${i }</a></li>
 														</c:if>
 													</c:forEach>
 													<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 														<li class="page-item"><a class="page-link"
-															href="<c:url value='/note/noteBox?hId=${param.hId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+															href="<c:url value='/note/sendList?hId=${param.hId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
 														</li>
 													</c:if>
 												</ul>

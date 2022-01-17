@@ -107,7 +107,25 @@ public class NoteServiceImpl implements NoteService {
 		return noteDAO.selectTotalNoteBoxRecordH(vo);
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> sendListM(NoteVO vo) {
+		return noteDAO.sendListM(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> sendListH(NoteVO vo) {
+		return noteDAO.sendListH(vo);
+	}
+
+	@Override
+	public int selectTotalSendListM(NoteVO vo) {
+		return noteDAO.selectTotalSendListM(vo);
+	}
+
+	@Override
+	public int selectTotalSendListH(NoteVO vo) {
+		return noteDAO.selectTotalSendListH(vo);
+	}
 	
 	public int deleteNote(int[] noteNo) {
 		return noteDAO.deleteNote(noteNo);
@@ -132,5 +150,7 @@ public class NoteServiceImpl implements NoteService {
 	public CharSequence readNum(String userid) {
 		return noteDAO.readNum(userid); 	
 	}
+
+
 
 }

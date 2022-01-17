@@ -19,6 +19,11 @@ public interface NoteService {
 	int selectTotalNoteRecordH(NoteVO vo);
 	int selectTotalNoteBoxRecordH(NoteVO vo);
 	
+	List<Map<String, Object>> sendListM(NoteVO vo);
+	List<Map<String, Object>> sendListH(NoteVO vo);
+	int selectTotalSendListM(NoteVO vo);
+	int selectTotalSendListH(NoteVO vo);
+	
 	int deleteNote(int[] noteNo);
 	int deleteNoteRec(int[] noteNo); 
 	int saveNote(int[] noteNo);
