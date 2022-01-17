@@ -319,24 +319,24 @@ public class HostClassController {
 
 		int con = 0;
 		try {
-			if(mId!=null) {
-				int mNo = memberService.selectMno(mId);
-				concern.setmNo(mNo);
-				concern.setcNo(cNo);
-				con = hostClassService.selectConcernbyCNo(concern);
-				model.addAttribute("con", con);
-			}
+
+			int mNo = memberService.selectMno(mId);
+			concern.setmNo(mNo);
+			concern.setcNo(cNo);
+			con = hostClassService.selectConcernbyCNo(concern);
+			model.addAttribute("con", con);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			model.addAttribute("classlist", classlist);
-			model.addAttribute("avgRate", avgRate);
-			model.addAttribute("rlist", rlist);
-			model.addAttribute("hostVo", vo);
-			model.addAttribute("classCnt", classCnt);
-			model.addAttribute("reviewCnt", reviewCnt);
-			model.addAttribute("mId", mId);
 		}
+		model.addAttribute("classlist", classlist);
+		model.addAttribute("avgRate", avgRate);
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("hostVo", vo);
+		model.addAttribute("classCnt", classCnt);
+		model.addAttribute("reviewCnt", reviewCnt);
+		model.addAttribute("mId", mId);
+
 
 		
 
