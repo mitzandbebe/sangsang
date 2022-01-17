@@ -57,6 +57,7 @@ public class BalancingController {
 		String hostId =(String)session.getAttribute("hId");
         int hNo = hostService.selectHostNo(hostId);
         
+        
 		logger.info("호스트번호 session hNo={}", hNo);
 
 		//[1] PaginationInfo 객체 생성 - 계산해줌
@@ -70,10 +71,7 @@ public class BalancingController {
 		extendSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		extendSearchVo.sethId(hostId);
 		extendSearchVo.sethNo(hNo);
-		/*
-		SearchVO searchVO= new SearchVO();
-		searchVO.sethNo(hNo);
-		*/
+		
 		logger.info("값 셋팅 후 extendSearchVo={}", extendSearchVo);
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(extendSearchVo);
