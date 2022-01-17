@@ -147,7 +147,6 @@
 														alt="썸네일">
 												</c:when>
 												<c:when test="${map['THUMBNAIL'] eq null}">
-													<h3>미리보기 이미지가 없습니다.</h3>
 													<img
 														src="<c:url value='/resources/upload_images/basic.png'/> "
 														height="400px" width="700px" alt="기본이미지">
@@ -251,7 +250,7 @@
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="cartInputCity1">이름</label> <input type="text"
-										class="form-control" id="name" name="name"
+										class="form-control" id="name" value="${mVo.mName}" name="name"
 										aria-describedby="M_NAME">
 								</div>
 								<!-- End of Form -->

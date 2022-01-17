@@ -26,7 +26,7 @@
 			<div class="col-12" style="width: 100%; height: 70px; background-color: #82AFC5; opacity: 0.9;">
 				<div class="collapse-brand" style="margin-top: 22px; margin-left: 45px; float: left;">
 					<a
-						href="${pageContext.request.contextPath }/host/hostIndex">
+						href="${pageContext.request.contextPath }/host/hostInfo">
 						<img
 						src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_top_light.png"
 						height="35" alt="Logo Impact">

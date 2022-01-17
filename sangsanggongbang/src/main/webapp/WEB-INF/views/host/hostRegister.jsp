@@ -41,6 +41,38 @@
 				$('#chkId').val('N');
 			}
 		});
+		$('#hBankName').focus(function(){
+			var id =$('#hId').val();
+			if(validate_userid(id) && id.length>=10){
+				$.ajax({
+					url:"<c:url value='/host/ajaxDuplicate'/>",
+					type:"post",
+					data:"hId="+id,
+					success:function(res){
+						var str="";
+						if(res){
+							$('#message').css('color', 'orange');
+							str="중복된 아이디입니다.";
+							$('#chkId').val('N');
+						}else{
+							str="사용가능한 아이디입니다.";
+							$('#message').css('color', 'green');
+							$('#chkId').val('Y');
+						}
+						
+						$('#message').html(str);
+					},
+					error:function(xhr, status, error){
+						alert("error : "+ error);
+					}
+				});
+			}else{
+				$('#message').css('color', 'red');
+				$('#message').css('visibility', 'visible');
+				$('#message').html('올바른 이메일 형식이 아닙니다.');
+				$('#chkId').val('N');
+			}
+		});
 		
 		$('#terms3').click(function(){
 			open("<c:url value='/member/terms2'/>", "term2", "width=1600, height=1800px, left=0, top=0, resizable=yes, location=yes")
@@ -58,16 +90,12 @@
 				alert('아이디는 이메일 형식으로만 가능합니다.');
 				$('#hId').focus();
 				event.preventDefault();
-			}else if($('#chkId').val()!='Y'){
-				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
-				$('#hId').focus();
-				event.preventDefault();
 			}else if($('#hPwd').val().length<1){
 				alert('비밀번호를 입력하세요');
 				$('#hPwd').focus();
 				event.preventDefault();
-			}else if($('#hPwd').val().length>=10&&!passwordRule.test(pwd)){
-				alert('숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
+			}else if($('#hPwd').val().length>=10&&!passwordRule.test(pwd)&& $('#hPwd').val()!=='temppassword'){
+				alert('비밀번호는 숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
 				$('#hPwd').focus();
 				event.preventDefault();
 			}else if($('#hPwd2').val().length<1){
@@ -122,11 +150,15 @@
 				alert('정산계좌를 입력하세요.');
 				$('#hAccount').focus();
 				event.preventDefault();
-			}/* else if(!$('#termChk3').is(':checked')){
+			} else if(!$('#termChk2').is(':checked')){
 				alert('늘솜 이용약관에 동의해야합니다.');
-				$('#termChk3').focus();
+				$('#termChk2').focus();
 				event.preventDefault();
-			} */
+			}else if($('#chkId').val()!='Y'){
+				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
+				$('#hId').focus();
+				event.preventDefault();
+			}
 		});
 		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
@@ -325,9 +357,9 @@ var InputImage =
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group"  style = "text-align: center;">
-														  <input type="file" id="inputGroupFile02" class="form-control " name = "upfile" onchange="InputImage();" style="display: none;" value="${vo.hFilename}">
-														  <label class="input-group-text btn btn-outline-primary" for="inputGroupFile02" style="margin-top: 30px">프로필 사진 업로드하기</label>
-														  
+														  <input type="file" id="upfile" class="form-control " name = "upfile" onchange="InputImage();" style="display: none;" value="${vo.hFilename}">
+														  <label class="input-group-text btn btn-outline-primary" for="upfile" style="margin-top: 30px">프로필 사진 업로드하기</label>
+														  <input type="hidden" name="memberFilename" value="${vo.hFilename }">
 													  </div>
 								                </c:if>
 								               
@@ -516,11 +548,11 @@ var InputImage =
                                         </div>
                                     <!-- End of Form -->
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="termChk3">
+                                        <input class="form-check-input" type="checkbox" id="termChk2">
                                         <label class="form-check-label" for="terms">
                                             <span class="small"><a class="text-secondary" href="#" id="terms3">약관</a>에 동의합니다. </span> 
                                         </label>
-                                        <span class="small" style="float: right;"><a class="text-secondary" href="<c:url value='/host/main'/> " >늘솜 메인 홈페이지로 이동하기</a></span>
+                                        <span class="small" style="float: right;"><a class="text-secondary" href="<c:url value='/host/hostIndex'/> " >늘솜 메인 홈페이지로 이동하기</a></span>
                                     </div>
                                 <button type="submit" class="btn btn-block btn-primary">늘솜계정 등록하기</button>
                             </form>

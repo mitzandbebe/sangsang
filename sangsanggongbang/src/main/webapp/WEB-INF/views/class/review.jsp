@@ -12,7 +12,7 @@
 <script
 	src="<c:url value='/resources/vendor/onscreen/dist/on-screen.umd.min.js'/>"></script>
 <script type="text/javascript">
-$(function() {
+$(function() { 
 	let cNo=${param.cNo};
 	
 		$('#reviewlist #pagelinknum').click(function(){

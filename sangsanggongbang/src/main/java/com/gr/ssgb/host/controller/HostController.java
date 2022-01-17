@@ -84,6 +84,7 @@ public class HostController {
 		String pwdInputNecessity = "n";
 		if(hAccountCnt < 1) {
 			int accountCnt = memberService.selectMemberCnt(vo.gethId());
+			
 			if(h_snsCheck.equals("y")) {
 				if(accountCnt==1){
 					MemberVO memVo=memberService.selectMemberById(vo.gethId());
@@ -96,10 +97,10 @@ public class HostController {
 					vo.sethName(memVo.getmName());
 					vo.sethNickname(memVo.getmNickname());
 					vo.sethPwd(memVo.getPwd());
-				}else if(accountCnt < 0) {
+				}else if(accountCnt < 1) {
 					pwdInputNecessity = "y";
 				}
-					
+				logger.info("pwdInputNecessity={}",pwdInputNecessity);
 				model.addAttribute("vo", vo);
 				model.addAttribute("h_snsCheck", h_snsCheck);
 				model.addAttribute("pwdInputNecessity", pwdInputNecessity);
@@ -188,11 +189,10 @@ public class HostController {
 	}
 	
 	@PostMapping("/hostRegister")
-	public String hostRegister_post(@ModelAttribute HostVO vo, @RequestParam String h_snsCheck, String remember, 
+	public String hostRegister_post(@ModelAttribute HostVO vo, @RequestParam String h_snsCheck, String memberFilename, String remember, 
 			HttpServletRequest request,HttpServletResponse response, Model model) {
 		logger.info("호스트 회원등록 처리, vo={}, h_snsCheck={}", vo, h_snsCheck);
 		HttpSession session = request.getSession();
-		String hFilename = (String)session.getAttribute("hFilename");
 		
 		String fileName="", originName="";
 		long fileSize=0;
@@ -214,14 +214,21 @@ public class HostController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if((hFilename==null || !hFilename.isEmpty())&& fileName!=null && !fileName.isEmpty()) {
+		if(fileName!=null && !fileName.isEmpty()) {
 			vo.sethFilename(fileName);
 			vo.sethFilesize(fileSize);
 			vo.sethOriginalname(originName);
 		}else{
-			vo.sethFilename(hFilename);
-			vo.sethFilesize(0);
-			vo.sethOriginalname(hFilename);
+			if(memberFilename!=null && !memberFilename.isEmpty()&& !memberFilename.equals("default.png")) {
+				vo.sethFilename(memberFilename);
+				vo.sethFilesize(0);
+				vo.sethOriginalname(memberFilename);
+			}else {
+				vo.sethFilename("default.png");
+				vo.sethFilesize(0);
+				vo.sethOriginalname("default.png");
+			}
+			
 		}
 
 		int cnt = hostService.insertHost(vo);
@@ -243,7 +250,7 @@ public class HostController {
 			}
 			
 			msg="늘솜 회원 계정이 생성되었습니다.";
-			url="/host/index";
+			url="/host/hostIndex";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -265,11 +272,10 @@ public class HostController {
 		logger.info("ajax 아이디 중복확인, 파라미터 hId={}", hId);
 		
 		int result=hostService.selectHostCnt(hId);
-		int result2 = memberService.selectMemberCnt(hId);
-		logger.info("ajax 아이디 중복확인 결과 result={}, result2={}", result, result2);
+		logger.info("ajax 아이디 중복확인 결과 result={}, result2={}", result);
 		
 		boolean bool=false;
-		if(result!=0 || result2!=0) {
+		if(result!=0) {
 			bool=true;
 		}
 		logger.info("bool={}", bool);
@@ -278,7 +284,7 @@ public class HostController {
 	
 	
 	@GetMapping("/hostEditChkPwd")
-	public void hostEditChkPwd_get() {
+	public void hostEditChkPwd_get(HttpSession session) {
 		logger.info("비밀번호 확인화면");
 	}
 	
@@ -351,7 +357,7 @@ public class HostController {
 		
 		if(cnt>0) {
 			msg="호스트정보가 정상적으로 수정되었습니다.";
-			url="/host/hostIndex";
+			url="/host/hostAccount";
 			HostVO vo2 = hostService.selectHostById(vo.gethId());
 			HttpSession session = request.getSession();
 			session.setAttribute("hNickname", vo2.gethNickname());
