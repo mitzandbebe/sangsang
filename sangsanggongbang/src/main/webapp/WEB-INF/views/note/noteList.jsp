@@ -47,75 +47,75 @@
 							</c:if>
 						</div>
 						<c:if test="${!empty sessionScope.mId }">
-						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.mNickname}</h2>
-						<div class="list-group dashboard-menu list-group-sm mt-4">
-							<a href="<c:url value='/dashboard/user/payment/myAccount'/>"
-								class="d-flex list-group-item list-group-item-action">내 정보조회
-								<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/member/memberEditChkPwd'/>"
-								class="d-flex list-group-item list-group-item-action">회원정보
-								수정<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/dashboard/user/payment/myPayment'/>"
-								class="d-flex list-group-item list-group-item-action ">내
-								결제내역<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/dashboard/user/payment/refundList'/>"
-								class="d-flex list-group-item list-group-item-action">환불내역조회<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/member/interestClass'/>"
-								class="d-flex list-group-item list-group-item-action ">내
-								관심클래스<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a
-								href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"
-								class="d-flex list-group-item list-group-item-action  active  border-0">쪽지함<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/member/memberEditChkPwd2'/>"
-								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a>
-						</div>
+							<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.mNickname}</h2>
+							<div class="list-group dashboard-menu list-group-sm mt-4">
+								<a href="<c:url value='/dashboard/user/payment/myAccount'/>"
+									class="d-flex list-group-item list-group-item-action">내
+									정보조회 <span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/member/memberEditChkPwd'/>"
+									class="d-flex list-group-item list-group-item-action">회원정보
+									수정<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/dashboard/user/payment/myPayment'/>"
+									class="d-flex list-group-item list-group-item-action ">내
+									결제내역<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/dashboard/user/payment/refundList'/>"
+									class="d-flex list-group-item list-group-item-action">환불내역조회<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/member/interestClass'/>"
+									class="d-flex list-group-item list-group-item-action ">내
+									관심클래스<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a
+									href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"
+									class="d-flex list-group-item list-group-item-action  active  border-0">쪽지함<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/member/memberEditChkPwd2'/>"
+									class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a>
+							</div>
 						</c:if>
 						<c:if test="${!empty sessionScope.hId }">
-						<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
-						<div class="list-group dashboard-menu list-group-sm mt-4">
-							<a href="<c:url value='/dashboard/host/account'/>"
-								class="d-flex list-group-item list-group-item-action">마이페이지
-								<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
-								class="d-flex list-group-item list-group-item-action   ">회원정보
-								수정<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/class/myclass'/>"
-								class="d-flex list-group-item list-group-item-action">내 클래스
-								현황<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
+							<h2 class="h5 font-weight-normal text-center mt-3 mb-0">${sessionScope.hNickname}</h2>
+							<div class="list-group dashboard-menu list-group-sm mt-4">
+								<a href="<c:url value='/dashboard/host/account'/>"
+									class="d-flex list-group-item list-group-item-action">마이페이지
+									<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/host/hostEditChkPwd'/>"
+									class="d-flex list-group-item list-group-item-action   ">회원정보
+									수정<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/class/myclass'/>"
+									class="d-flex list-group-item list-group-item-action">내 클래스
+									현황<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
 
-							</a> <a href="<c:url value='/memberInquiry/classUser'/>"
-								class="d-flex list-group-item list-group-item-action ">클래스
-								이용회원<span class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/dashboard/host/balancing'/>"
-								class="d-flex list-group-item list-group-item-action ">정산내역<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a
-								href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
-								class="d-flex list-group-item list-group-item-action active border-0">쪽지함<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
-								class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
-								class="icon icon-xs ml-auto"><span
-									class="fas fa-chevron-right"></span></span>
-							</a>
-						</div>
+								</a> <a href="<c:url value='/memberInquiry/classUser'/>"
+									class="d-flex list-group-item list-group-item-action ">클래스
+									이용회원<span class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/dashboard/host/balancing'/>"
+									class="d-flex list-group-item list-group-item-action ">정산내역<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a
+									href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>"
+									class="d-flex list-group-item list-group-item-action active border-0">쪽지함<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
+									class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span
+									class="icon icon-xs ml-auto"><span
+										class="fas fa-chevron-right"></span></span>
+								</a>
+							</div>
 						</c:if>
 					</div>
 				</div>
@@ -167,61 +167,72 @@
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
-
-								<table class="table table-hover" style="font-size: 14px;">
-									<c:if test="${empty list }">
-										<h3 class="h4 mb-5">클래스를 이용한 회원이 없습니다.</h3>
-									</c:if>
-									<c:if test="${!empty list }">
-										<tbody>
-											<!-- 이용회원 정보반복 -->
-											<c:forEach var="map" items="${list}">
-												<div class="card border-light mb-3 py-3">
-													<div
-														class="card-body d-flex align-items-center flex-wrap flex-lg-nowrap py-0">
+								<form method="post" action="" name="frm">
+									<table class="table table-hover" style="font-size: 14px;">
+										<c:if test="${empty list }">
+											<h3 class="h4 mb-5">받은 쪽지가 없습니다.</h3>
+										</c:if>
+										<c:if test="${!empty list }">
+											<tbody>
+												<tr>
+													<th><input type="checkbox" id="allCheck"
+														value="${map['noteNo'] }"></th>
+													<th>보낸사람</th>
+													<th>내용</th>
+													<th>날짜</th>
+												</tr>
+												<c:forEach var="map" items="${list}">
+													<div class="card border-light mb-3 py-3">
 														<div
-															class="col-auto col-lg-1 d-flex align-items-center px-0">
-															<input class="form-check-input" type="checkbox"
-																name="noteNo" value="${map['noteNo'] }" id="check">
-															<label class="form-check-label" for="defaultCheck2"></label>
-														</div>
-														<div class="col-lg-3 col-8 pl-0 ml-2">
-															<a href="./single-message.html" class="h6 text-sm">${map['sNickname'] }</a>
-														</div>
-														<div class="col col-lg-1 text-right px-0 order-lg-4"
-															id="time"
-															style="flex: 3 0 8.33333%; max-width: 17.33333%;">
-															<span class="text-muted text-sm"><fmt:formatDate
-																	value="${map['noteRegdate']}"
-																	pattern="yyyy-MM-dd [HH:mm]" /></span>
-														</div>
-														<div
-															class="col-12 col-lg-7 d-flex align-items-center px-0"
-															style="flex: 0 0 58.33333%; max-width: 49.33333%;">
-															<div class="col col-lg-11 px-0">
-																<div
-																	class="d-flex flex-wrap flex-lg-nowrap align-items-center"
-																	id="content">
-																	<a
-																		<c:choose>
+															class="card-body d-flex align-items-center flex-wrap flex-lg-nowrap py-0">
+															<div
+																class="col-auto col-lg-1 d-flex align-items-center px-0">
+																<input class="form-check-input" type="checkbox"
+																	name="noteNo" value="${map['noteNo'] }" id="check">
+																<label class="form-check-label" for="defaultCheck2"></label>
+															</div>
+															<div class="col-lg-3 col-8 pl-0 ml-2">
+																<a href="./single-message.html" class="h6 text-sm">${map['sNickname'] }</a>
+															</div>
+															<div class="col col-lg-1 text-right px-0 order-lg-4"
+																id="time"
+																style="flex: 3 0 8.33333%; max-width: 17.33333%;">
+																<span class="text-muted text-sm"><fmt:formatDate
+																		value="${map['noteRegdate']}"
+																		pattern="yyyy-MM-dd [HH:mm]" /></span>
+															</div>
+															<div
+																class="col-12 col-lg-7 d-flex align-items-center px-0"
+																style="flex: 0 0 58.33333%; max-width: 49.33333%;">
+																<div class="col col-lg-11 px-0">
+																	<div
+																		class="d-flex flex-wrap flex-lg-nowrap align-items-center"
+																		id="content">
+																		<a
+																			<c:choose>
 											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
 											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
 											</c:choose>
-																		href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
-																		${map['noteContent'] }</a>
+																			href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
+																			<c:if test="${fn:length(map['noteContent'])>30 }">
+																				${fn:substring(map['noteContent'],0,30) }...
+																			</c:if> <c:if test="${fn:length(map['noteContent'])<=30 }">
+																				${map['noteContent'] }
+																			</c:if>
+																		</a>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-												</div>
-											</c:forEach>
-									</c:if>
-									</tbody>
-								</table>
-								<div
-									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
-									<div class="d-flex align-items-center mt-3"></div>
-								</div>
+												</c:forEach>
+										</c:if>
+										</tbody>
+									</table>
+									<div
+										class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
+										<div class="d-flex align-items-center mt-3"></div>
+									</div>
 							</div>
 							<div class="d-flex justify-content-center w-100 mt-5">
 								<nav aria-label="Page navigation example"
@@ -285,68 +296,44 @@
 	<input type="hidden" value="${param.mId }" id="id" name="mId">
 	<input type="hidden" value="${param.hId }" id="id" name="hId">
 	</form>
-
-	<%-- 		<div class="row">
-			<div class="col-lg-12 mb-5">
-				<div class="col mt-3 d-flex justify-content-center">
-					<div style="text-align: center;">
-						<nav aria-label="Page navigation example">
-								<br>
-							<ul class="pagination">
-								<!-- 이전블럭 -->
-								<c:if test="${pagingInfo.firstPage>1 }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.firstPage -1 }'/> ">
-											<i class="fas fa-angle-double-left"></i>
-									</a></li>
-								</c:if>
-								<!-- 페이징처리시작 -->
-								<c:forEach var="i" begin="${pagingInfo.firstPage }"
-									end="${pagingInfo.lastPage }">
-									<c:if test="${i==pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											style="background-color: #9FB9AE; color: #ffffff;"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-									<c:if test="${i!=pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-								</c:forEach>
-								<!-- 다음블럭으로 이동 -->
-								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.lastPage +1 }'/> ">
-											<i class="fas fa-angle-double-right"></i>
-									</a></li>
-								</c:if>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div> --%>
-	</form>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 
-<script>
+<script type="text/javascript">
 	$(function() {
-		$('#blackinsertButton').click(function() {
-			var result = confirm('해당 유저를 블랙리스트에 등록하시겠습니까?');
-			if (!result) {
-				event.preventDefault();
+		$('#allCheck').change(function() {
+			if ($(this).is(':checked')) {
+				$("input[type=checkbox]").each(function() {
+					$(this).prop("checked", true);
+				})
+			} else {
+				$("input[type=checkbox]").each(function() {
+					$(this).prop("checked", false);
+				})
 			}
 		})
+		$('#check').click(function() {
+			if ($('input[name=check]:checked').length == 3) {
+				$('#allCheck').prop("checked", true)
+			} else {
+				$('#allCheck').prop("checked", false)
+			}
+		})
+
+		$("#noteDelete").click(
+				function() {
+					$('form[name=frm]').prop('action',
+							"<c:url value='/note/noteDelete'/>");
+					$('form[name=frm]').submit();
+				})
+
+		$("#noteSave").click(
+				function() {
+					$('form[name=frm]').prop('action',
+							"<c:url value='/note/noteSave'/>");
+					$('form[name=frm]').submit();
+				})
+
 	})
 </script>
 
