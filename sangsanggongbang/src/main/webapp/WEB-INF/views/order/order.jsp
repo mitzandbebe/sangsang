@@ -128,22 +128,18 @@
 	class="section section-header section-image bg-primary overlay-primary  overflow-hidden pb-6"
 	style="color: #46746e;">
 	<div class="container z-2">
-		<div class="section section-lg pt-5">
+		<div class="section section-lg pt-0">
 			<div class="container">
-				<form method="post" class="card border-light p-3 mb-4"
+				<form method="post" class="card border-light p-4 mb-4"
 					action="orderComplete">
 					<div class="row">
 						<c:forEach var="map" items="${cVo}">
 							<c:if test="${map['C_NO'] eq param.cNo }">
 								<input type="hidden" id="cNo" value="${map['C_NO'] }">
 								<input type="hidden" name="cVo" value="${cVo}">
-								<!-- 사진+ -->
 								<div class="col-12 col-lg-14">
 									<div class="row no-gutters align-items-center">
-
-										<div class="col-12 col-lg-4 col-xl-6"
-											style="margin-left: 20px; margin-right: 20px">
-
+										<div class="col-12 col-lg-4 col-xl-6">
 											<c:choose>
 												<c:when test="${not empty map['THUMBNAIL']}">
 													<img
@@ -158,7 +154,7 @@
 												</c:when>
 											</c:choose>
 										</div>
-										<div class="col-12 col-lg-6 col-xl-6">
+										<div class="col-12 col-lg-12 col-xl-6 p-2">
 
 											<div class="card-body text-dark">
 												<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
@@ -179,57 +175,64 @@
 															value="${map['C_PRICE'] }" pattern="#,###" />원 (인당)
 													</li>
 												</ul>
+												<div style="display: none;">
+														<div class="col">
+															<span class="small d-block">가격</span> <span
+																class="h6 text-dark font-weight-bold"> <input
+																type="hidden" id="price" value="${map['C_PRICE'] }">
+																<fmt:formatNumber value="${map['C_PRICE'] }"
+																	pattern="#,###" />원
+															</span>
+														</div>
+														<div class="col">
+															<span class="small d-block">모집 인원수</span> <span
+																class="h6 text-dark font-weight-bold" id="ppnum">
+																${map["FPNUM"] } / ${map["PPNUM"] }명</span>
+														</div>
+														<div class="col">
+															<span class="small d-block">지역</span> <span
+																class="h6 text-dark font-weight-bold"> <c:set
+																	var="addr" value="${ map['L_ADDRESS']}" />
+																${fn:substring(addr,0,2)}
+															</span>
+														</div>
+												</div>
 											</div>
-
-											<div class="col-12 col-lg-5" style="float: left;">
-
+											<div class="col-12 col-lg-6" style="float: left;">
 												<!-- Form -->
-												<div class="col-12 col-lg-3" style="float: left;">
-													<div class="form-group mb-4">
-														<label for="cartInputCity1">선택날짜</label> <input
-															type="text" readonly="readonly" class="form-control"
-															id="fDate" aria-describedby="M_NAME"
-															value="<fmt:formatDate value="${map['C_REGDATE'] }"
+												<div class="form-group mb-4">
+													<label>선택날짜</label> <input type="text" readonly="readonly"
+														class="form-control" id="fDate" aria-describedby="M_NAME"
+														value="<fmt:formatDate value="${map['C_REGDATE'] }"
 												pattern="yyyy-MM-dd" />">
-													</div>
 												</div>
 												<!-- End of Form -->
-
 											</div>
-											<div class="col-12 col-lg-5" style="float: left;">
-
-												<!-- Form -->
-												<div class="col-12 col-lg-3" style="float: left;">
-													<div class="form-group mb-4">
-														<label for="cartInputCity1">선택시간</label> <input
-															type="text" readonly="readonly" placeholder="M_NAME"
-															class="form-control" id="fTime" aria-describedby="M_NAME"
-															value="${map['C_TIME'] }">
-													</div>
-												</div>
-												<!-- End of Form -->
-
-											</div>
-											<div class="col-12 col-lg-5" style="float: left;">
+											<div class="col-12 col-lg-6" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
-													<label>선택인원수</label> <input
-														type="number" max="${map['PPNUM'] }" min=0 placeholder="0"
+													<label>선택시간</label> <input type="text" readonly="readonly"
+														placeholder="M_NAME" class="form-control" id="fTime"
+														aria-describedby="M_NAME" value="${map['C_TIME'] }">
+												</div>
+												<!-- End of Form -->
+											</div>
+											<div class="col-12 col-lg-6" style="float: left;">
+												<!-- Form -->
+												<div class="form-group mb-4">
+													<label>선택인원수</label> <input type="number"
+														max="${map['PPNUM'] }" min=0 placeholder="0"
 														class="form-control" id="sPpunm">
-
 												</div>
-
 											</div>
-
-											<div class="col-12 col-lg-5" style="float: left;">
+											<div class="col-12 col-lg-6" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
-											<label><strong>결제금액</strong></label>
-											<input class="form-control" type="text" id="showPrice"
-												value="" readonly="readonly"> <input
-												class="form-control" type="hidden" id="totalPrice" value=""
-												readonly="readonly">
-										</div>
+													<label><strong>결제금액</strong></label> <input
+														class="form-control" type="text" id="showPrice" value=""
+														readonly="readonly"><input class="form-control"
+														type="hidden" id="totalPrice" value="" readonly="readonly">
+												</div>
 											</div>
 											<!-- End of Form -->
 										</div>
@@ -244,7 +247,7 @@
 					</div>
 					<div class="card-body p-0 p-md-4">
 						<div class="row justify-content-center">
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-5">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="cartInputCity1">이름</label> <input type="text"
@@ -262,7 +265,7 @@
 								</div>
 								<!-- End of Form -->
 							</div> --%>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-5">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="mId">아이디</label> <input type="text"
@@ -271,7 +274,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-5">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="phone">핸드폰 번호</label> <input type="number"
@@ -280,7 +283,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-5">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="bday">생년월일</label> <input type="text"
@@ -289,7 +292,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-3">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="zipcode">우편번호</label> <input type="number"
@@ -298,7 +301,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-4">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="mAddress">주소</label> <input type="text"
@@ -307,7 +310,7 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-							<div class="col-12 col-lg-12">
+							<div class="col-12 col-lg-3">
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="mAddressDetail">상세주소</label> <input type="text"
@@ -317,10 +320,17 @@
 								</div>
 								<!-- End of Form -->
 							</div>
-						</div>
-						<input type="hidden" value="${mVo.mNo}"> <input
+							<div class="col-12 col-lg-5">
+								<!-- Form -->
+								<div class="form-group mb-4">
+								<input type="hidden" value="${mVo.mNo}"> <input
 							type="button" class="btn btn-block btn-primary mt-4" id="apibtn"
 							value="결제하기">
+								</div>
+								<!-- End of Form -->
+							</div>
+						</div>
+						
 					</div>
 				</form>
 
