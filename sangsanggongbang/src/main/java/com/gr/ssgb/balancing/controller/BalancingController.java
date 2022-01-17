@@ -68,12 +68,16 @@ public class BalancingController {
 		//[2] searchVo에 값 세팅
 		extendSearchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
 		extendSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		extendSearchVo.sethId(hostId);
 		extendSearchVo.sethNo(hNo);
+		/*
+		SearchVO searchVO= new SearchVO();
+		searchVO.sethNo(hNo);
+		*/
 		logger.info("값 셋팅 후 extendSearchVo={}", extendSearchVo);
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(extendSearchVo);
 		logger.info("정산목록 조회,결과 list.size={}", list.size());
-		logger.info("{}", list);
 
 		//[3] totalRecord 구하기
 		int totalRecord=balancingService.selectTotalRecord(extendSearchVo);
