@@ -214,7 +214,7 @@ public class MemberController {
 					memberVo.setmNickname("늘찬"+memberVo.getmNo());
 					int result = memberService.updateNickname(memberVo);
 					
-					session.setAttribute("mFilename", memberVo.getmFilename());
+					session.setAttribute("mFilename", "default.png");
 					session.setAttribute("mId", memberVo.getmId());
 					session.setAttribute("snsCheck", snsCheck);
 					session.setAttribute("mNickname", memberVo.getmNickname());
@@ -230,7 +230,7 @@ public class MemberController {
 						response.addCookie(ck);
 					}
 					msg="SNS 계정을 통한 회원가입이 성공적으로 완료되었습니다.";
-					url="/member/askAdditional";
+					url="/member/editPwd?pwdFlag=snsMember";
 				}else {
 					msg="비유효한 SNS 계정입니다.";
 					url="/login/login";
@@ -590,7 +590,7 @@ public class MemberController {
 				mailService.sendMail(mailVO);
 					
 				msg="이메일로 임시 비밀번호를 전송하였습니다. 임시 비밀번호를 확인하시고 비밀번호를 변경해주세요.";
-				url="/member/editPwd";
+				url="/member/editPwd?editFlag=temp";
 			}
 		}
 		model.addAttribute("msg", msg);
@@ -598,23 +598,34 @@ public class MemberController {
 		
 		return "common/message";
 	}
+	
 	@GetMapping("member/editPwd")
-	public void editPwd_get() {
+	public void editPwd_get(@RequestParam String pwdFlag, Model model) {
+		model.addAttribute("pwdFlag", pwdFlag);
 		logger.info("비밀번호 변경 화면");
 	}
 	
 	@PostMapping("member/editPwd")
-	public String editPwd_post(@ModelAttribute MemberVO vo, @RequestParam String newPassword, Model model) {
+	public String editPwd_post(@ModelAttribute MemberVO vo, @RequestParam String newPassword, String pwdFlag, Model model) {
 		logger.info("비밀번호 변경 처리 화면");
+		int result=0;
+		int result2=0;
+		if(pwdFlag.equals("temp")||pwdFlag.equals("editMember")||pwdFlag.equals("editHost")) {
+			result=memberService.checkIdPwd(vo.getmId(), vo.getPwd());
+			result2 = hostService.checkIdPwd(vo.getmId(), vo.getPwd());
+		}else if(pwdFlag.equals("snsMember")) {
+			result=MemberService.LOGIN_OK;
+		}else if(pwdFlag.equals("snsHost")) {
+			result2 = HostService.LOGIN_OK;
+		}
 		
-		int result=memberService.checkIdPwd(vo.getmId(), vo.getPwd());
-		int result2 = hostService.checkIdPwd(vo.getmId(), vo.getPwd());
 		logger.info("아이디 비밀번호 체크 결과, result={}",result);
 		
 		String msg = "작성하신 임시비밀번호가 일치하지 않습니다. 이메일을 다시 확인해주세요.";
-		String url="/member/editPwd";
+		String url="/member/editPwd?pwdFlag="+pwdFlag;
 		int up =0;
 		int update = 0;
+		logger.info("result={}, result2={}", result, result2);
 		if(result==MemberService.LOGIN_OK){
 			vo.setPwd(newPassword);
 			up = memberService.updatePwd(vo);
@@ -627,7 +638,16 @@ public class MemberController {
 					update = hostService.updatePwd(hostvo);
 				}
 				msg="비밀번호가 성공적으로 변경되었습니다. 변경된 비밀번호로 로그인해주세요.";
-				url="/login/login";
+				
+				if(pwdFlag.equals("snsMember")||pwdFlag.equals("editMember")) {
+					url="/member/askAdditional";
+					msg="비밀번호가 성공적으로 설정되었습니다.";
+				}else if(pwdFlag.equals("snsHost")||pwdFlag.equals("editHost")) {
+					msg="비밀번호가 성공적으로 설정되었습니다.";
+					url="/host/hostLogin";
+				}else if(pwdFlag.equals("temp")) {
+					url="/login/login";
+				}
 			}else {
 				msg="비밀번호 변경에 실패하였습니다.";
 			}

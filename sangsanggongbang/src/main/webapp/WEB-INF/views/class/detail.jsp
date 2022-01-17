@@ -439,7 +439,7 @@
 										</span>
 										<label for="exampleFormControlSelect2">&nbsp;&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
-							
+							 
 							<div class="text-center">
 							
 								<button type="submit"  
@@ -465,7 +465,7 @@
 		</div>
 </c:forEach>
 		<section class="section bg-soft">
-			<div class="container" >
+			<div class="container" > 
 				<div class="row" id="categoryName">
 					<c:import url="/class/listbyCategory" />
 	            </div>

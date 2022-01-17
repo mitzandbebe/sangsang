@@ -116,7 +116,7 @@
 														document.getElementById('mId').value=userId;
 														document.getElementById('password').value="temppassword";
 														document.getElementById('snsCheck').value="y";
-														document.getElementById('mFilename').value=kakao_account.profile.profile_image_url;
+														
 														console.log(kakao_account.profile.profile_image_url);
 														document.getElementById('login').submit();
 													}

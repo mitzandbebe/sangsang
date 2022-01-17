@@ -38,6 +38,38 @@
 				$('#chkId').val('N');
 			}
 		});
+		$('#mId').keyup(function(){
+			var id =$('#mId').val();
+			if(validate_userid(id) && id.length>=10){
+				$.ajax({
+					url:"<c:url value='/member/ajaxDuplicate'/>",
+					type:"post",
+					data:"mId="+id,
+					success:function(res){
+						var str="";
+						if(res){
+							$('#message').css('color', 'green');
+							str="늘찬님 안녕하세요!";
+							$('#chkId').val('Y');
+						}else{
+							str="가입하신 이메일이 맞나요?";
+							$('#message').css('color', 'red');
+							$('#chkId').val('N');
+						}
+						
+						$('#message').html(str);
+					},
+					error:function(xhr, status, error){
+						alert("error : "+ error);
+					}
+				});
+			}else{
+				$('#message').css('color', 'red');
+				$('#message').css('visibility', 'visible');
+				$('#message').html('가입하신 이메일이 맞나요?');
+				$('#chkId').val('N');
+			}
+		});
 		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
 		$('#signup').submit(function(){
@@ -113,8 +145,22 @@
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="text-center text-md-center mb-5 mt-md-0 text-white">
-                            <h1 class="mb-0 h3">임시비밀번호를 새로 발급받으셨군요.&nbsp;
-                            지금 바로 비밀번호를 변경하세요!</h1>
+                        	<c:if test="${pwdFlag=='temp' }">
+                            	<h1 class="mb-0 h3">임시비밀번호를 새로 발급받으셨군요.&nbsp;
+                            	지금 바로 비밀번호를 변경하세요!</h1>
+                            </c:if>
+                            <c:if test="${pwdFlag=='editHost' }">
+                            	<h1 class="mb-0 h3">비밀번호를 변경합니다.</h1>
+                            </c:if>
+                            <c:if test="${pwdFlag=='editMember' }">
+                            	<h1 class="mb-0 h3">비밀번호를 변경합니다.</h1>
+                            </c:if>
+                             <c:if test="${pwdFlag=='snsHost' }">
+                            	<h1 class="mb-0 h3">SNS 회원이신 경우 원활한 페이지 이용을 위해 비밀번호를 설정해야 합니다.</h1>
+                            </c:if>
+                            <c:if test="${pwdFlag=='snsMember' }">
+                            	<h1 class="mb-0 h3">SNS 회원이신 경우 원활한 페이지 이용을 위해 비밀번호를 설정해야 합니다.</h1>
+                            </c:if>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-center">
@@ -127,8 +173,33 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input name="mId" class="form-control" id="mId" placeholder="임시비밀번호를 발급받은 계정을 입력하세요." type="text" aria-label="email adress">
-                                        <input type ="hidden" name="chkId" id="chkId">
+                                        <input name="pwdFlag" class="form-control" id="pwdFlag" aria-label="email adress" type="hidden" value="${pwdFlag}">
+                                        <input name="mId" class="form-control" id="mId" aria-label="email adress" type="text"
+                                        <c:if test="${pwdFlag=='temp'}">
+                                        placeholder="임시비밀번호를 발급받은 계정을 입력하세요."  
+                                        </c:if>
+                                        <c:if test="${pwdFlag=='editHost'}">
+                                        value="${sessionScope.hId }"
+                                        readonly="readonly"  
+                                        </c:if>
+                                        <c:if test="${pwdFlag=='editMember'}">
+                                        value="${sessionScope.mId }"
+                                        readonly="readonly"  
+                                        </c:if>
+                                        <c:if test="${pwdFlag=='snsMember'}">
+                                        value="${sessionScope.mId }"
+                                        readonly="readonly"  
+                                        </c:if>
+                                         <c:if test="${pwdFlag=='snsHost'}">
+                                        value="${sessionScope.hId }"
+                                        readonly="readonly"  
+                                        </c:if>
+                                        >
+                                        <input type ="hidden" name="chkId" id="chkId"
+                                        <c:if test="${pwdFlag!='temp'}">
+                                        value="Y"
+                                        </c:if>
+                                        >
                                         <input type="hidden" name="snsCheck" id="snsCheck" value="n" >
                                     </div>
                                     <div>
@@ -136,6 +207,22 @@
                                     </div>
                                 
                                 <!-- End of Form --> 
+                                <c:if test="${pwdFlag=='editMember' ||  pwdFlag=='editHost'}">
+                                <!-- Form -->
+                                <div class="form-group">
+                                        <label for="password">기존비밀번호</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
+                                            </div>
+                                            <input name ="pwd" class="form-control" id="password" placeholder="임시 비밀번호를 입력하세요." type="password" aria-label="Password" >
+                                        </div>
+                                    
+                                 </div>
+                                    <!-- End of Form -->
+                                 </c:if>
+                                
+                                 <c:if test="${pwdFlag=='temp' }">
                                 <!-- Form -->
                                 <div class="form-group">
                                         <label for="password">임시비밀번호</label>
@@ -148,6 +235,7 @@
                                     
                                  </div>
                                     <!-- End of Form -->
+                                 </c:if>
                                     <!-- Form -->
                                     <div class="form-group">
                                         <label for="newPassword">새 비밀번호</label>

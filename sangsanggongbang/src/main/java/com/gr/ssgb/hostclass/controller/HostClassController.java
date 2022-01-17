@@ -52,7 +52,7 @@ public class HostClassController {
 	private final HostService hostService;
 	private final MemberService memberService;
 	private final MemberInquiryService memberInquiryService;
-	private final BlackListService blackListService;
+	private final BlackListService blackListService; 
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,
@@ -319,16 +319,16 @@ public class HostClassController {
 
 		int con = 0;
 		try {
+
 			int mNo = memberService.selectMno(mId);
 			concern.setmNo(mNo);
 			concern.setcNo(cNo);
 			con = hostClassService.selectConcernbyCNo(concern);
 			model.addAttribute("con", con);
-
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		model.addAttribute("classlist", classlist);
 		model.addAttribute("avgRate", avgRate);
 		model.addAttribute("rlist", rlist);
@@ -336,6 +336,9 @@ public class HostClassController {
 		model.addAttribute("classCnt", classCnt);
 		model.addAttribute("reviewCnt", reviewCnt);
 		model.addAttribute("mId", mId);
+
+
+		
 
 		return "class/detail";
 	}
