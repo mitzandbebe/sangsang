@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gr.ssgb.common.PaymentSearchVO;
+import com.gr.ssgb.order.model.OrderVO;
 
 @Mapper
 public interface PaymentListDAO {
@@ -16,7 +17,7 @@ public interface PaymentListDAO {
 
 	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
 
-	public int deletePayment(String paylistNo);
+	public int deletePayment(OrderVO orderVo);
 
 	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo);
 

@@ -152,9 +152,16 @@
                                                                 <fmt:formatNumber value="${map['C_PRICE'] * map['EA'] }" pattern="#,###"/>원
                                                                 </span>
                                                             </div>
-                                                            <div class="col">
+                                                            <div class="col"> 
                                                                 <span class="text-muted font-small d-block">환불결과</span>
-                                                                <span class="h6 text-dark font-weight-bold">환불 완료</span>
+                                                                <span class="h6 text-dark font-weight-bold">
+                                                                <c:if test="${map['REFUNDRESULT']==null || empty map['REFUNDRESULT']}">
+                                                                	처리중
+                                                                </c:if>
+                                                                <c:if test="${map['REFUNDRESULT']!=null || !empty map['REFUNDRESULT']}">
+                                                                	환불 완료
+                                                                </c:if>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>

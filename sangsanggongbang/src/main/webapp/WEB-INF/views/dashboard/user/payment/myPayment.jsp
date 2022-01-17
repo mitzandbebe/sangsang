@@ -182,7 +182,7 @@
                          <div style="width: 50%; margin: 0 auto;">
                      <nav aria-label="Page navigation example" style="margin: 0 auto;">
                      <div style="margin: 0 auto;">
-                      <ul class="pagination">
+                      <ul class="pagination justify-content-center mt-5">
 		             <c:if test="${pagingInfo.firstPage>1 }">
 						 <li class="page-item">
 				            <a class="page-link" href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">Previous</a>
