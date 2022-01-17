@@ -4,7 +4,7 @@
 <div class="section section-lg bg-soft">
 	<div class="container">
 
-<div class="col-12 col-lg-8">
+<div class="col-12 col-lg-12">
 	<div class="row mb-5">
 		<div class="col-12 mb-4">
 			<div class="card card-body bg-white border-light p-0 p-md-4">
