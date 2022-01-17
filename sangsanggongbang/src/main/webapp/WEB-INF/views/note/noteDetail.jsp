@@ -198,21 +198,21 @@
 							</div>
 						</div>
 						<c:if test="${!empty sessionScope.mId }">
-						<a href="<c:url value='/note/noteList?mId=${vo.mId }' />">
+						<a href="<c:url value='/note/noteList?mId=${sessionScope.mId }' />">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 								type="button">쪽지목록</button>
 							</a>
-							<a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
+							<a href="<c:url value='/note/noteBox?mId=${sessionScope.mId }'/>">
 								<button class="btn mb-2 mr-2 btn-success" id="noteBox"
 									type="button">보관함</button>
 							</a>
 						</c:if>
 						<c:if test="${!empty sessionScope.hId }">
-							<a href="<c:url value='/note/noteList?hId=${vo.hId }' />">
+							<a href="<c:url value='/note/noteList?hId=${sessionScope.hId }' />">
 						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 								type="button">쪽지목록</button>
 							</a>
-							<a href="<c:url value='/note/noteBox?hId=${param.hId }'/>">
+							<a href="<c:url value='/note/noteBox?hId=${sessionScope.hId }'/>">
 								<button class="btn mb-2 mr-2 btn-success" id="noteBox"
 									type="button">보관함</button>
 							</a>
