@@ -123,7 +123,7 @@
 							<input type="hidden" name="cVo" value="${cVo}">
 								<div class="col-12 col-lg-14">
 									<div class="row no-gutters align-items-center">
-										<div class="col-12 col-lg-4 col-xl-4">
+										<div class="col-12 col-lg-6 col-xl-6">
 											<c:choose>
 												<c:when test="${not empty map['THUMBNAIL']}">
 													<img
@@ -138,7 +138,7 @@
 												</c:when>
 											</c:choose>
 										</div>
-										<div class="col-12 col-lg-7 col-xl-8">
+										<div class="col-12 col-lg-6 col-xl-6">
 
 											<div class="card-body text-dark">
 												<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
@@ -184,7 +184,7 @@
 													<div class="row justify-content-center"></div>
 												</div>
 											</div>
-											<div class="col-12 col-lg-4" style="float: left;">
+											<div class="col-12 col-lg-5" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
 													<label for="cartInputCity1">선택날짜</label> <input type="text"
@@ -195,7 +195,7 @@
 												</div>
 												<!-- End of Form -->
 											</div>
-											<div class="col-12 col-lg-4" style="float: left;">
+											<div class="col-12 col-lg-5" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
 													<label for="cartInputCity1">선택시간</label> <input type="text"
@@ -205,28 +205,27 @@
 												</div>
 												<!-- End of Form -->
 											</div>
-											<div class="col-12 col-lg-4" style="float: left;">
+											<div class="col-12 col-lg-5" style="float: left;">
 												<!-- Form -->
 												<div class="form-group mb-4">
-													<label for="cartInputCity1">선택인원수</label> <input
+													<label>선택인원수</label> <input
 														type="number" max="${map['PPNUM'] }" min=0 placeholder="0"
 														class="form-control" id="sPpunm">
 												</div>
 											</div>
-											<!-- End of Form -->
-										</div>
-									</div>
-									<div class="col-12 col-lg-3" style="float: right;">
-										<!-- Form -->
-										<div class="form-group mb-4">
-											<h3 class="h6 mb-0"><strong>결제금액</strong></h3>
+											<div class="col-12 col-lg-5" style="float: left;">
+												<!-- Form -->
+												<div class="form-group mb-4">
+											<label><strong>결제금액</strong></label>
 											<input class="form-control" type="text" id="showPrice"
 												value="" readonly="readonly"> <input
 												class="form-control" type="hidden" id="totalPrice" value=""
 												readonly="readonly">
 										</div>
+											</div>
+											<!-- End of Form -->
+										</div>
 									</div>
-									<!-- End of Form -->
 								</div>
 							</c:if>
 						</c:forEach>
