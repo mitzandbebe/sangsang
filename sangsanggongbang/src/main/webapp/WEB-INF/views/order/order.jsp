@@ -143,9 +143,21 @@
 											<div class="card-body text-dark">
 												<h4 class="h4" id="cname">${map["C_NAME"] }</h4>
 												<ul class="list-group mb-3">
-													<li class="list-group-item small p-0 border-0"><span
-														class="fas fa-map-marker-alt mr-2"> </span>${ map['L_ADDRESS']}
-														${ map['L_ADDRESS_DETAIL']}</li>
+													<li class="list-group-item font-weight-normal pl-0 py-1">
+													<i class="fas fa-award mr-2"></i> ${map['CATEGORY_NAME'] }
+												</li>
+												<li class="list-group-item font-weight-normal pl-0 py-1">
+													<i class="fas fa-map-marker-alt mr-2"></i> ${ map['L_ADDRESS']}
+													${ map['L_ADDRESS_DETAIL']}
+												</li>
+												<li class="list-group-item font-weight-normal pl-0 py-1">
+													<i class="fas fa-users"></i> 모집인원 ${map["FPNUM"] } /
+													${map["PPNUM"] }명
+												</li>
+												<li class="list-group-item font-weight-normal pl-0 py-1">
+													<i class="far fa-clock mr-1 pr-1"></i> 수강료 <fmt:formatNumber
+														value="${map['C_PRICE'] }" pattern="#,###" />원 (인당)
+												</li>
 												</ul>
 												<div class="d-flex justify-content-between">
 													<div class="col pl-0">
