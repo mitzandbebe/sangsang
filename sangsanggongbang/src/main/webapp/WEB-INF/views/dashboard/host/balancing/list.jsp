@@ -108,7 +108,7 @@ $(function() {
 					<div class="row align-items-center">
 						<div class="col">
 							<h3 class="h5 mb-1">
-								<a href="#">클래스번호 # ${vo.cNo}</a>
+								<a href="<c:url value="/class/detail?cNo=${vo.cNo}&categoryName=&hNo=${vo.hNo}" />">클래스번호 # ${vo.cNo}</a>
 							</h3>
 							<c:set var="sales" value="${vo.fpnum * vo.cPrice }"/> <!-- 매출액 -->
 							<c:set var="fee" value="${sales * 0.1 }"/> <!-- 수수료 -->
@@ -117,7 +117,7 @@ $(function() {
 							<small class="text-gray-700"> 
 							진행일자 : <fmt:formatDate value="${vo.bReqDate}" pattern="yyyy-MM-dd" /></small><br>
 							<small class="text-gray-700"> 
-							진행인원 : ${vo.fpnum}명</small><br>
+							확정인원 : ${vo.fpnum}명</small><br>
 							<small class="text-gray-700"> 
 							매출액 : <fmt:formatNumber value="${sales}" pattern="#,###,###"/>원</small><br>
 							<small class="text-gray-700"> 
