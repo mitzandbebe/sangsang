@@ -30,7 +30,7 @@ public interface AdminService {
 
 	public List<Map<String, Object>> selectRefundList(SearchVO searchVo);
 
-	public int selectTotalrefund();
+	public int selectTotalrefund(); 
 
 	public int updateAllRefund();
 

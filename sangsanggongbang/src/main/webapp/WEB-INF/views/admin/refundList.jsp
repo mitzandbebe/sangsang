@@ -17,7 +17,7 @@
                         <div class="d-flex align-items-center mb-3 mt-4"">
                             <h1 class="h5 mb-3">환불내역</h1>
                             <div class="ml-auto">
-                                <div class="form-group">
+                                <div class="form-group"> 
                                    <a href="<c:url value='/admin/refundAll'/>"><input type="button" class="btn btn-sm btn-primary"  value ="일괄 승인"></a> 
                                 </div>
                             </div>

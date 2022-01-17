@@ -152,7 +152,7 @@
                                                                 <fmt:formatNumber value="${map['C_PRICE'] * map['EA'] }" pattern="#,###"/>원
                                                                 </span>
                                                             </div>
-                                                            <div class="col">
+                                                            <div class="col"> 
                                                                 <span class="text-muted font-small d-block">환불결과</span>
                                                                 <span class="h6 text-dark font-weight-bold">
                                                                 <c:if test="${map['REFUNDRESULT']==null || empty map['REFUNDRESULT']}">
