@@ -167,72 +167,72 @@
 					<div class="col-lg-12">
 						<div class="card card-body bg-white border-light mb-4">
 							<div class="container">
-
-								<table class="table table-hover" style="font-size: 14px;">
-									<c:if test="${empty list }">
-										<h3 class="h4 mb-5">받은 쪽지가 없습니다.</h3>
-									</c:if>
-									<c:if test="${!empty list }">
-										<tbody>
-											<tr>
-												<th><input type="checkbox" id="allCheck"
-													value="${map['noteNo'] }"></th>
-												<th>보낸사람</th>
-												<th>내용</th>
-												<th>날짜</th>
-											</tr>
-											<c:forEach var="map" items="${list}">
-												<div class="card border-light mb-3 py-3">
-													<div
-														class="card-body d-flex align-items-center flex-wrap flex-lg-nowrap py-0">
+								<form method="post" action="" name="frm">
+									<table class="table table-hover" style="font-size: 14px;">
+										<c:if test="${empty list }">
+											<h3 class="h4 mb-5">받은 쪽지가 없습니다.</h3>
+										</c:if>
+										<c:if test="${!empty list }">
+											<tbody>
+												<tr>
+													<th><input type="checkbox" id="allCheck"
+														value="${map['noteNo'] }"></th>
+													<th>보낸사람</th>
+													<th>내용</th>
+													<th>날짜</th>
+												</tr>
+												<c:forEach var="map" items="${list}">
+													<div class="card border-light mb-3 py-3">
 														<div
-															class="col-auto col-lg-1 d-flex align-items-center px-0">
-															<input class="form-check-input" type="checkbox"
-																name="noteNo" value="${map['noteNo'] }" id="check">
-															<label class="form-check-label" for="defaultCheck2"></label>
-														</div>
-														<div class="col-lg-3 col-8 pl-0 ml-2">
-															<a href="./single-message.html" class="h6 text-sm">${map['sNickname'] }</a>
-														</div>
-														<div class="col col-lg-1 text-right px-0 order-lg-4"
-															id="time"
-															style="flex: 3 0 8.33333%; max-width: 17.33333%;">
-															<span class="text-muted text-sm"><fmt:formatDate
-																	value="${map['noteRegdate']}"
-																	pattern="yyyy-MM-dd [HH:mm]" /></span>
-														</div>
-														<div
-															class="col-12 col-lg-7 d-flex align-items-center px-0"
-															style="flex: 0 0 58.33333%; max-width: 49.33333%;">
-															<div class="col col-lg-11 px-0">
-																<div
-																	class="d-flex flex-wrap flex-lg-nowrap align-items-center"
-																	id="content">
-																	<a
-																		<c:choose>
+															class="card-body d-flex align-items-center flex-wrap flex-lg-nowrap py-0">
+															<div
+																class="col-auto col-lg-1 d-flex align-items-center px-0">
+																<input class="form-check-input" type="checkbox"
+																	name="noteNo" value="${map['noteNo'] }" id="check">
+																<label class="form-check-label" for="defaultCheck2"></label>
+															</div>
+															<div class="col-lg-3 col-8 pl-0 ml-2">
+																<a href="./single-message.html" class="h6 text-sm">${map['sNickname'] }</a>
+															</div>
+															<div class="col col-lg-1 text-right px-0 order-lg-4"
+																id="time"
+																style="flex: 3 0 8.33333%; max-width: 17.33333%;">
+																<span class="text-muted text-sm"><fmt:formatDate
+																		value="${map['noteRegdate']}"
+																		pattern="yyyy-MM-dd [HH:mm]" /></span>
+															</div>
+															<div
+																class="col-12 col-lg-7 d-flex align-items-center px-0"
+																style="flex: 0 0 58.33333%; max-width: 49.33333%;">
+																<div class="col col-lg-11 px-0">
+																	<div
+																		class="d-flex flex-wrap flex-lg-nowrap align-items-center"
+																		id="content">
+																		<a
+																			<c:choose>
 											<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
 											<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
 											</c:choose>
-																		href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
-																		<c:if test="${fn:length(map['noteContent'])>30 }">
+																			href="<c:url value='/note/noteDetail?noteNo=${map["noteNo"] }'/>">
+																			<c:if test="${fn:length(map['noteContent'])>30 }">
 																				${fn:substring(map['noteContent'],0,30) }...
 																			</c:if> <c:if test="${fn:length(map['noteContent'])<=30 }">
 																				${map['noteContent'] }
 																			</c:if>
-																	</a>
+																		</a>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-												</div>
-											</c:forEach>
-									</c:if>
-									</tbody>
-								</table>
-								<div
-									class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
-									<div class="d-flex align-items-center mt-3"></div>
-								</div>
+												</c:forEach>
+										</c:if>
+										</tbody>
+									</table>
+									<div
+										class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
+										<div class="d-flex align-items-center mt-3"></div>
+									</div>
 							</div>
 							<div class="d-flex justify-content-center w-100 mt-5">
 								<nav aria-label="Page navigation example"
@@ -240,7 +240,7 @@
 									<ul class="pagination">
 										<c:if test="${pagingInfo.firstPage>1 }">
 											<li class="page-item"><a class="page-link"
-												href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
+												href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.firstPage-1}'/>">Previous</a>
 											</li>
 										</c:if>
 										<c:forEach var="i" begin="${pagingInfo.firstPage}"
@@ -251,29 +251,20 @@
 											</c:if>
 											<c:if test="${i!=pagingInfo.currentPage }">
 												<li class="page-item"><a class="page-link"
-													href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${i}'/>">
+													href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${i}'/>">
 														${i }</a></li>
 											</c:if>
 										</c:forEach>
 										<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 											<li class="page-item"><a class="page-link"
-												href="<c:url value='/note/noteList?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
+												href="<c:url value='/note/noteBox?mId=${param.mId }&currentPage=${pagingInfo.lastPage+1}'/>">Next</a>
 											</li>
 										</c:if>
 									</ul>
 								</nav>
 							</div>
 						</div>
-						<c:if test="${!empty sessionScope.mId }">
-							<a href="<c:url value='/note/noteWrite?mId=${param.mId }'/>">
-								<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-									type="button">쪽지쓰기</button>
-							</a>
-							<a href="<c:url value='/note/noteBox?mId=${param.mId }'/>">
-								<button class="btn mb-2 mr-2 btn-success" id="noteBox"
-									type="button">보관함</button>
-							</a>
-						</c:if>
+
 						<c:if test="${!empty sessionScope.mId }">
 							<a href="<c:url value='/note/noteList?mId=${param.mId }'/>">
 								<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
@@ -331,16 +322,18 @@
 
 			$("#noteDelete").click(
 					function() {
-						$('form[name=frm]').prop('action',
-								"<c:url value='/note/noteDelete'/>");
-						$('form[name=frm]').submit();
-					})
-
-			$("#noteSave").click(
-					function() {
-						$('form[name=frm]').prop('action',
-								"<c:url value='/note/noteSave'/>");
-						$('form[name=frm]').submit();
+						var cnt = $('input[type=checkbox]:checked').length;
+						if (cnt > 0) {
+							var result = confirm('선택한 쪽지를 삭제하시겠습니까?');
+							if (result) {
+								$('form[name=frm]').prop('action',
+										"<c:url value='/note/noteDelete'/>");
+								$('form[name=frm]').submit();
+							}
+						} else {
+							alert('선택하신 쪽지가 없습니다.');
+							event.preventDefault;
+						}
 					})
 
 		})

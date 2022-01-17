@@ -322,16 +322,35 @@
 
 		$("#noteDelete").click(
 				function() {
-					$('form[name=frm]').prop('action',
-							"<c:url value='/note/noteDelete'/>");
-					$('form[name=frm]').submit();
+					var cnt = $('input[type=checkbox]:checked').length;
+					if (cnt > 0) {
+						var result = confirm('선택한 쪽지를 삭제하시겠습니까?');
+						if (result) {
+							$('form[name=frm]').prop('action',
+									"<c:url value='/note/noteDelete'/>");
+							$('form[name=frm]').submit();
+						}
+					} else {
+						alert('선택하신 쪽지가 없습니다.');
+						event.preventDefault;
+					}
 				})
 
 		$("#noteSave").click(
 				function() {
-					$('form[name=frm]').prop('action',
-							"<c:url value='/note/noteSave'/>");
-					$('form[name=frm]').submit();
+					var cnt = $('input[type=checkbox]:checked').length;
+					if (cnt > 0) {
+						var result = confirm('선택한 쪽지를 보관하시겠습니까?');
+						if (result) {
+							$('form[name=frm]').prop('action',
+									"<c:url value='/note/noteSave'/>");
+							$('form[name=frm]').submit();
+						}
+					} else {
+						alert('선택하신 쪽지가 없습니다.');
+						event.preventDefault;
+					}
+
 				})
 
 	})

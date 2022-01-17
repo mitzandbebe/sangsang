@@ -125,6 +125,7 @@
 					<div class="card-body">
 						<div class="row align-items-center">
 							<div class="col-10 d-flex">
+							
 								<a href="<c:url value='/host/hostAccount'/>"
 									class="list-group-item list-group-item-action border-0 ">마이페이지</a>
 								<a href="<c:url value='/host/hostEditChkPwd'/>"
@@ -194,7 +195,7 @@
 
 										<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
 											type="submit">보내기</button>
-										<a href="<c:url value='/note/noteList?mId=${param.mId }'/>"><button
+										<a href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"><button
 												class="btn mb-2 mr-2 btn-success" id="noteWrite"
 												type="button">목록</button> </a>
 									</div>
@@ -215,8 +216,8 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" value="${param.mId }" id="id" name="mId">
-	<input type="hidden" value="${param.hId }" id="id" name="hId">
+	<input type="hidden" value="${sessionScope.mId }" id="id" name="mId">
+	<input type="hidden" value="${sessionScope.hId }" id="id" name="hId">
 	</form>
 </div>
 
