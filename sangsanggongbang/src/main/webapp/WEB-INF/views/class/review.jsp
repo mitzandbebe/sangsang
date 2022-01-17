@@ -103,7 +103,7 @@ $(function() {
 				<textarea readonly>${vo.rContent }</textarea>
 			</div>
 	</c:forEach>
-	
+	<c:if test="${mId !=null }">
 		<div class="row">
 		<div class="col-lg-12 mb-5" >
 			<div
@@ -156,5 +156,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
+	</c:if>
 		</c:if>
 </form>
