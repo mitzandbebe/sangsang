@@ -112,7 +112,7 @@
                                                             </div>
                                                             <div class="col" style="margin-top: 18px">
                                                                 <i class="fas fa-equals"></i>&nbsp;&nbsp;&nbsp;<span class="h4 text-dark font-weight-bold"><span style="color: red;">
-                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['QTY'] }" pattern="#,###"/></span>원</span>
+                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['EA'] }" pattern="#,###"/></span>원</span>
                                                             </div>
                                                         </div>
                                                     </div>
