@@ -149,7 +149,6 @@
 				$('#message2').css('color', 'red');
 				$('#message2').html('비밀번호 보안수준 : 위험');
 			}
-			
 		});
 		$('#pwd2').keyup(function(){
 			var pwd2 = $(this).val();
@@ -242,40 +241,7 @@ var InputImage =
                                         <input name="snsCheck" readonly="readonly" class="form-control" id="exampleInputIcon4" type="hidden" aria-label="email adress" value="${sessionScope.snsCheck}">
                                     </div>
                                 </div>
-                                <c:if test="${sessionScope.snsCheck=='y' }">
-	                                <!-- Form -->
-	                              	<div class="row">
-		                                <div class="col-md-6 mb-3">
-			                                <div class="form-group">
-				                                <label for="password">비밀번호</label>
-				                           		<div class="input-group">
-					                                <div class="input-group-prepend">
-					                                	<span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-					                                </div>
-					                            	<input name ="pwd" class="form-control" id="pwd" placeholder="상상공방에서 사용할 비밀번호를 설정하세요." type="password" aria-label="Password" >
-			                            		</div>
-			                            		<div>
-                                    				<span id="message2" style="visibility:hidden">비밀번호를 입력하세요.</span>
-                                    			</div>
-			                        		</div>
-		                                </div>
-		                                <div class="col-md-6 mb-3">
-		                                	<div class="form-group">
-		                                    	<label for="password">비밀번호 확인</label>
-		                                     	<div class="input-group">
-		                                        	<div class="input-group-prepend">
-		                                            	<span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-		                                        	</div>
-		                                      		<input name ="pwd2" class="form-control" id="pwd2" placeholder="2차 비밀번호를 입력하세요." type="password" aria-label="Password">
-		                                      	</div>
-		                                      	<div>
-                                    				<span id="message3" style="visibility:hidden">비밀번호를 입력하세요.</span>
-                                    			</div>
-		                                  	</div>
-		                                 </div>
-		                             </div>
-                                    <!-- End of Form -->
-                               </c:if>
+                                
                                     <!-- Form -->
                                     <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
