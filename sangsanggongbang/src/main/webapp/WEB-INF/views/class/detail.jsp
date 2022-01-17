@@ -282,11 +282,15 @@
 							<!-- Reviews Tab -->
 							<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 								aria-labelledby="nav-reviews-tab">
-								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
+								<c:if test="${empty mId }">
+								<c:import url="/class/review?cNo=${map['C_NO'] }"/>
+								<div class="form-control border"><i class="fas fa-lock"></i>&nbsp;리뷰를 작성하려면 로그인 해주세요!</div>
+								</c:if>
 							<div id="reviewlist"></div>
 								<%-- <c:import url="/class/review?cNo=${map['C_NO'] }"/> --%>
+								<c:if test="${!empty mId }">
 								<c:import url="/class/addreview?cNo=${map['C_NO'] }"/>
-								
+								</c:if>
 							</div>
 							<!-- End of Reviews Tab -->
 							<!-- Q&A Tab -->
@@ -449,7 +453,7 @@
 								<c:if test="${map['END_FLAG']=='N' }">
 									결제하기
 								</c:if>
-								</a></button>
+								</button>
 							</div>
 						</div>
 						</form>
