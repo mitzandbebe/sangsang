@@ -37,7 +37,7 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 	
-	@GetMapping("/adminLogin")
+	@GetMapping("/adminLogin") 
 	public void adminLogin_get() {
 		logger.info("관리자 로그인 페이지");
 	}
