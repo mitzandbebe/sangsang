@@ -52,7 +52,7 @@ public class HostClassController {
 	private final HostService hostService;
 	private final MemberService memberService;
 	private final MemberInquiryService memberInquiryService;
-	private final BlackListService blackListService;
+	private final BlackListService blackListService; 
 
 	@Autowired
 	public HostClassController(HostClassService hostClassService, ReviewService reviewService,

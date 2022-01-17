@@ -45,7 +45,7 @@
                                     	<c:when test="${map['THUMBNAIL'] eq null}">
                                         	<img src="<c:url value='/resources/upload_images/basic.png'/> " width="auto" height="200px" align="top" class="card-img-top p-2 rounded-xl" alt="기본이미지">
                                     	</c:when>
-                                    </c:choose>
+                                    </c:choose> 
                                     </a>
                                     <div class="card-body" style="width:330px; height:120px;">
                                         <a href="<c:url value='/class/detail?cNo=${map["C_NO"]}&categoryName=${map["CATEGORY_NAME"] }&hNo=${map["H_NO"]} '/>">

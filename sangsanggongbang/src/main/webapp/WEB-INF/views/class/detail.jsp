@@ -465,7 +465,7 @@
 		</div>
 </c:forEach>
 		<section class="section bg-soft">
-			<div class="container" >
+			<div class="container" > 
 				<div class="row" id="categoryName">
 					<c:import url="/class/listbyCategory" />
 	            </div>
