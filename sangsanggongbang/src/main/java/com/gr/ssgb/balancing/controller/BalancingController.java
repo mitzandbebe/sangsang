@@ -71,7 +71,7 @@ public class BalancingController {
 		extendSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		extendSearchVo.sethId(hostId);
 		extendSearchVo.sethNo(hNo);
-		
+
 		logger.info("값 셋팅 후 extendSearchVo={}", extendSearchVo);
 
 		List<BalancingVO> list=balancingService.selectBalancingAll(extendSearchVo);
