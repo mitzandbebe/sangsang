@@ -263,7 +263,7 @@
 							alt="Christopher Avatar">
 					</div>
 					<div class="card-body">
-						<span class="card-subtitle text-gray font-weight-normal">Sales</span>
+						<span class="card-subtitle text-gray font-weight-normal">CEO</span>
 						<h3 class="h4 card-title mt-2">강유빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
 							<li><a href="mailto:hwaseo0314@naver.com" target="_blank" aria-label="email link"
@@ -283,7 +283,7 @@
 				<div class="card text-center">
 					<div class="card-header bg-white">
 						<img
-							src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
+							src="../resources/assets/img/group2_photo/choiwonjung.jpg"
 							class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
 					</div>
 					<div class="card-body">
@@ -316,7 +316,7 @@
 							class="card-img-top rounded shadow border-0" alt="Neil Avatar">
 					</div>
 					<div class="card-body">
-						<span class="card-subtitle text-gray font-weight-normal">Invoice</span>
+						<span class="card-subtitle text-gray font-weight-normal">Design</span>
 						<h3 class="h4 card-title mt-2">최수빈</h3>
 						<ul class="list-unstyled d-flex justify-content-center mt-3">
 							<li><a href="mailto:csb9762@gmail.com" target="_blank" aria-label="email link"
