@@ -66,23 +66,14 @@
                                 <div class="card border-light">
                                     <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                         <div class="d-block">
-                                            <div class="h6 font-weight-normal text-gray mb-2">신규 유저 생성 비율</div>
-                                            <h2 class="h3">명</h2>
+                                            <div class="h6 font-weight-normal text-gray mb-2">신규 유저 생성</div>
+                                            <h2 class="h3">${totalCnt }명</h2>
                                             <div class="small mt-2">                               
                                                 <span class="fas fa-angle-up text-success"></span>                                   
                                                 <span class="text-success font-weight-bold">18.2%</span>
                                             </div>
                                         </div>
-                                        <div class="d-block ml-auto">
-                                            <div class="d-flex align-items-center text-right mb-2">
-                                                <span class="shape-xs rounded-circle bg-dark mr-2"></span>
-                                                <span class="font-weight-normal small">Last month</span>
-                                            </div>
-                                            <div class="d-flex align-items-center text-right">
-                                                <span class="shape-xs rounded-circle bg-tertiary mr-2"></span>
-                                                <span class="font-weight-normal small">This month</span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="card-body p-2">
                                         <div id="container3"></div>
@@ -350,9 +341,12 @@ $(function(){
 	var newMember1 = ${newUserMap["1"].newMember};
 	var newMember2 = ${newUserMap["2"].newMember};
 	var newMember3 = ${newUserMap["3"].newMember};
-	var newMember4 = ${newUserMap["4"].newMember};
+	var newMember4 = ${newUserMap["4"].newMember};;
 	
-	var newHost1 = ${newUserMap["4"].newMember};
+	var newHost1 = ${newUserMap["1"].newHost};
+	var newHost2 = ${newUserMap["2"].newHost};
+	var newHost3 = ${newUserMap["3"].newHost};
+	var newHost4 = ${newUserMap["4"].newMember};
 	Highcharts.chart('container3', {
 
 	    chart: {
@@ -361,19 +355,19 @@ $(function(){
 	    },
 
 	    title: {
-	        text: '신규 가입 회원비율'
+	        text: '신규 가입 회원'
 	    },
 
 	    yAxis: [{
 	        className: 'highcharts-color-0',
 	        title: {
-	            text: '가입 수(명)'
+	            text: '일반유저 가입자 수(명)'
 	        }
 	    }, {
 	        className: 'highcharts-color-1',
 	        opposite: true,
 	        title: {
-	            text: '비율(%)'
+	            text: '호스트 생성 가입자수(명)'
 	        }
 	    }],
 
@@ -386,9 +380,9 @@ $(function(){
 	    	 categories: [profitXData1 , profitXData2, profitXData3, profitXData4 ]
 	    },
 	    series: [{
-	        data: [1, 3, 2, 4]
+	        data: [newMember4, newMember3, newMember2, newMember1]
 	    }, {
-	        data: [324, 124, 547, 221],
+	        data: [newHost4, newHost3, newHost2, newHost1],
 	        yAxis: 1
 	    }]
 
