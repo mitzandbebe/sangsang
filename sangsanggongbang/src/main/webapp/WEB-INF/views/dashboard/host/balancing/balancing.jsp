@@ -74,7 +74,7 @@
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">클래스
 									이용회원</a> 현황</a> <a href="<c:url value='/dashboard/host/balancing'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">정산내역</a>
-								현황</a> <a href="./security.html"
+								현황</a> <a href="<c:url value='/host/hostEditChkPwd2'/>"
 									class="list-group-item list-group-item-action d-none d-md-block border-0 ">회원탈퇴</a>
 							</div>
 							<div class="col-2 d-flex justify-content-center">

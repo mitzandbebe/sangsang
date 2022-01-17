@@ -200,6 +200,7 @@ public class MemberController {
 					memberVo.setmFilename("default.png");
 				}
 				memberVo.setPwd(memberVo.getPwd());
+				memberVo.setmFilename("default.png");
 				int cnt = memberService.insertSnsMember(memberVo);
 				logger.info("SNS 회원가입 결과, cnt={}", cnt);
 				
@@ -498,7 +499,7 @@ public class MemberController {
 		if(cnt>0) {
 			
 			msg="회원정보가 정상적으로 수정되었습니다.";
-			url="/index";
+			url="/dashboard/user/payment/myAccount";
 			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
 			HttpSession session = request.getSession();
 			session.setAttribute("mNickname", vo2.getmNickname());

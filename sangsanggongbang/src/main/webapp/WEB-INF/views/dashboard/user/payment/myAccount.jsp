@@ -133,7 +133,7 @@
                                     <h2 class="h5 mb-4">내 정보 조회</h2>
                                         <div class="card border-light p-2" style ="margin-bottom: 20px">
 								        <div class="card-body p-2">
-								        <div style="float: left; margin-left: 0px; margin-top:0px; " >
+								        <div style="float: left; margin-left: 30px; margin-top:20px; " >
 								            	<c:if test="${sessionScope.mFilename!='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
@@ -142,14 +142,14 @@
 								           			 </div>
 								                </c:if>
 								                <c:if test="${sessionScope.mFilename=='default.png' }">
-							                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
-								            			<div id="older">
+							                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview" >
+								            			<div id="older" >
 									                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" class="card-img-top rounded-circle border-white">
 								                		</div>
 								            		</div>
 								                </c:if>
 											</div>
-										  <div class="col-md-8 mb-3" style = "float: left; margin-left: 0px; margin-top:10px;" >
+										  <div class="col-md-8 mb-3" style = "float: right; margin-left: 10px; margin-top:30px;" >
                                                 <div class="form-group">
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">
@@ -159,7 +159,7 @@
                                             		</div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 mb-3" style = "float: left; margin-left: 0px;">
+                                            <div class="col-md-8 mb-3" style = "float: right; margin-left: 10px;">
                                                 <div class="form-group">
                                                     <div class="input-group mb-4">
 			                                            <div class="input-group-prepend">

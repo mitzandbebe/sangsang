@@ -502,7 +502,7 @@ var InputImage =
                                         <label class="form-check-label" for="terms">
                                             <span class="small"><a class="text-secondary" href="#" id="terms2">약관</a>에 동의합니다. </span> 
                                         </label>
-                                        <span class="small" style="float: right;"><a class="text-secondary" href="<c:url value='/main'/> " >메인 홈페이지로 이동하기</a></span>
+                                        <span class="small" style="float: right;"><a class="text-secondary" href="<c:url value='/index'/> " >메인 홈페이지로 이동하기</a></span>
                                     </div>
                                 <button type="submit" class="btn btn-block btn-primary">부가정보입력 완료하기</button>
                             </form>

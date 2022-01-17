@@ -150,7 +150,7 @@
 				alert('정산계좌를 입력하세요.');
 				$('#hAccount').focus();
 				event.preventDefault();
-			} else if(!$('#termChk3').is(':checked')){
+			} else if(!$('#termChk2').is(':checked')){
 				alert('늘솜 이용약관에 동의해야합니다.');
 				$('#termChk2').focus();
 				event.preventDefault();

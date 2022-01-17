@@ -122,7 +122,7 @@
 									<dt class="col-3 text-sm-center">
 										<strong>총 결제금액 :</strong>
 									</dt>
-									<dd class="col-9">${oVo.price}원</dd>
+									<dd class="col-9">${oVo.ea*map['C_PRICE']}원</dd>
 									<dt class="col-12 text-md-center">
 									<hr><br>
 									<span>클래스 시작 1주일 전까지 취소가 가능하며, 이후 클래스 참여유무와
