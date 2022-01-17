@@ -256,7 +256,7 @@ public class HostController {
 		
 		session.invalidate();
 		
-		return "redirect:/host/hostIndex"; 
+		return "redirect:/host/hostLogin"; 
 	}
 	
 	@ResponseBody
@@ -276,16 +276,6 @@ public class HostController {
 		return bool;
 	}
 	
-	@RequestMapping("/hostChatTest")
-	public String hostList(Model model) {
-		logger.info("채팅 테스트 화면");
-		
-		List<HostVO> hlist = hostService.selectAllHost();
-		
-		model.addAttribute("hlist", hlist); 
-		
-		return "host/hostChatTest";
-	}
 	
 	@GetMapping("/hostEditChkPwd")
 	public void hostEditChkPwd_get() {

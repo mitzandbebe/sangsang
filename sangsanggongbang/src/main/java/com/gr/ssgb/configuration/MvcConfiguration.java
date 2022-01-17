@@ -22,7 +22,7 @@ public class MvcConfiguration implements WebMvcConfigurer{
 		
 		
 		 registry.addInterceptor(new HostLoginInterceptor())
-		 .addPathPatterns("/host/hostEditChkPwd",
+		 .addPathPatterns("/host/hostEditChkPwd","/host/hostIndex",
 		 "/host/hostEditChkPwd2","/class/myclass","/dashboard/host/*", "/memberInquiry/classUser", "/host/hostAccount", "/class/inputclass","/class/listofClass","/class/listdelete" );
 		 
 		 
