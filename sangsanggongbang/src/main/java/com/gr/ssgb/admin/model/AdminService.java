@@ -3,6 +3,9 @@ package com.gr.ssgb.admin.model;
 import java.util.List;
 import java.util.Map;
 
+import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.order.model.OrderVO;
+
 public interface AdminService {
 	public static final int LOGIN_OK=1;
 	public static final int ID_NONE=2;
@@ -24,4 +27,12 @@ public interface AdminService {
 	public Integer selectNewMemberCnt(MonthVO monVo);
 
 	public Integer selectNewHostCnt(MonthVO monVo);
+
+	public List<Map<String, Object>> selectRefundList(SearchVO searchVo);
+
+	public int selectTotalrefund();
+
+	public int updateAllRefund();
+
+	public int cancleRefund(OrderVO orderVo);
 }

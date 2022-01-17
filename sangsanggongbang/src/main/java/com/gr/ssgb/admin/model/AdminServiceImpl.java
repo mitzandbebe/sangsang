@@ -6,6 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.order.model.OrderVO;
+
 @Service
 public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDao;
@@ -55,6 +58,26 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Integer selectNewMemberCnt(MonthVO monVo) {
 		return adminDao.selectNewMemberCnt(monVo);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectRefundList(SearchVO searchVo) {
+		return adminDao.selectRefundList(searchVo);
+	}
+
+	@Override
+	public int selectTotalrefund() {
+		return adminDao.selectTotalrefund();
+	}
+
+	@Override
+	public int updateAllRefund() {
+		return adminDao.updateAllRefund();
+	}
+
+	@Override
+	public int cancleRefund(OrderVO orderVo) {
+		return adminDao.cancleRefund(orderVo);
 	}
 
 	

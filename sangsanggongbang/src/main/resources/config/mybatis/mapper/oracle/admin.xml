@@ -39,4 +39,37 @@
 			    where regdate > TO_DATE(#{startDate}) and regdate < TO_DATE(#{endDate})
 			    ]]>
 	</select>
+	
+	<select id="selectRefundList" parameterType="searchVo" resultType="map">
+		select *
+		from
+		(
+		    select rownum as RNUM, A.*
+		    from
+		    (
+		        select * from payview
+				where refund='refund' and refundResult is null
+				order by pay_date desc		        
+		    )A
+		)
+		<![CDATA[
+		where RNUM>#{firstRecordIndex} 
+			and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]> 
+	</select>
+	
+	<select id="selectTotalrefund" resultType="int">
+		select count(*) from orders where refund='refund'
+	</select>
+	
+	<update id="updateAllRefund">
+		update orders
+		set refundResult = 'done'
+		where refund='refund'
+	</update>
+	
+	<update id="cancleRefund" parameterType="orderVo">
+		update orders
+		set refund= 'payed', reason=''
+		where merchant_uid=#{merchantUid}
+	</update>
 </mapper>

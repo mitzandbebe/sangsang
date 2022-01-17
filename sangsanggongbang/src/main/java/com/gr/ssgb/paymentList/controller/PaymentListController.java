@@ -25,6 +25,7 @@ import com.gr.ssgb.hostclass.model.HostClassService;
 import com.gr.ssgb.member.model.MemberService;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.member.model.PaymentVO;
+import com.gr.ssgb.order.model.OrderVO;
 import com.gr.ssgb.paymentList.model.PaymentListService;
 import com.gr.ssgb.paymentList.model.PaymentListVO;
 
@@ -139,10 +140,12 @@ public class PaymentListController {
    }
    
    @PostMapping("/payment/refundSubmit")
-   public String refund_submit(@RequestParam String merchantUid, Model model) {
+   public String refund_submit(@RequestParam String merchantUid, String reason, Model model) {
       logger.info("paylistNo={}", merchantUid);
-      
-      int cnt = paymentListService.deletePayment(merchantUid);
+      OrderVO orderVo = new OrderVO();
+      orderVo.setMerchantUid(merchantUid);
+      orderVo.setReason(reason);
+      int cnt = paymentListService.deletePayment(orderVo);
       String msg = "환불요청에 실패하였습니다.", url = "/dashboard/user/payment/myPayment";
       if(cnt>0) {
          msg="환불사유 검토 후 2~3 영업일 이내 환불될 예정입니다.";

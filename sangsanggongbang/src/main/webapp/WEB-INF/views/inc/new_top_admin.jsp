@@ -224,51 +224,11 @@
 								</div>
 							</div></li>
 						<!-- 세번째 탭 -->
-							<li class="nav-item dropdown">
-							<!-- 드랍다운 없이 탭자체에 링크 걸거면 바로밑줄 #에다! -->
-							<a href="#"
-							id="supportDropdown" class="nav-link dropdown-toggle"
-							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">환불 승인</span> <i
-								class="fas fa-angle-down nav-link-arrow"></i>
-						</a>
-							<div class="dropdown-menu dropdown-menu-lg"
-								aria-labelledby="supportDropdown">
-								<div class="col-auto px-0">
-									<div class="list-group list-group-flush">
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-secondary"><i
-												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div></li>
+							<li class="nav-item "><a
+							href="<c:url value='/admin/refundList'/>"
+							class="nav-link "> <span class="nav-link-inner-text mr-1">
+									환불내역/승인 </span>
+						</a></li>
 						<!-- 네번째 탭 -->
 							<li class="nav-item dropdown">
 						<a href="#"

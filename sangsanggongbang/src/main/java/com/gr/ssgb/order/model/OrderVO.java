@@ -22,6 +22,8 @@ public class OrderVO {
 	private String impUid;
 	private String merchantUid;
 	private int fTime;
+	private String refundResult;
+	private String reason;
 	
 	public String getImpUid() {
 		return impUid;
@@ -74,11 +76,24 @@ public class OrderVO {
 		this.fTime = fTime;
 	}
 	
+	
+	public String getRefundResult() {
+		return refundResult;
+	}
+	public void setRefundResult(String refundResult) {
+		this.refundResult = refundResult;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	@Override
 	public String toString() {
-		return "OrderVO [impUid=" + impUid + ", merchantUid=" + merchantUid + ", mId=" + mId + ", cNo=" + cNo
-				+ ", price=" + price + ", refund=" + refund + ", ea=" + ea + ", fTime=" + fTime
-				+ "]";
+		return "OrderVO [cNo=" + cNo + ", mId=" + mId + ", price=" + price + ", refund=" + refund + ", ea=" + ea
+				+ ", impUid=" + impUid + ", merchantUid=" + merchantUid + ", fTime=" + fTime + ", refundResult="
+				+ refundResult + ", reason=" + reason + "]";
 	}
 	
 	

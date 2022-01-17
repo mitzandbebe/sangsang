@@ -29,9 +29,9 @@
 		select * from payview where m_id = #{mId} and merchant_uid = #{merchantUid}
 	</select>
 	
-	<update id="deletePayment" parameterType="string">
+	<update id="deletePayment" parameterType="orderVo">
 		update orders
-		set refund='refund' where merchant_uid= #{merchantUid}
+		set refund='refund', reason=#{reason} where merchant_uid= #{merchantUid}
 	</update>
 
 	<select id="selectRefundByNo" parameterType="paymentSearchVo" resultType="Map">

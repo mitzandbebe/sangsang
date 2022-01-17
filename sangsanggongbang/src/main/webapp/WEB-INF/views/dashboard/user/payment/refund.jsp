@@ -133,9 +133,9 @@
 				                                       <input type="hidden" value='${map["MERCHANT_UID"]}' name="merchantUid">
 				                                      	<select class="custom-select" id="button-addon2" name = "reason">
 														<option selected>환불사유를 선택하세요.</option>
-														<option value="1">늘솜의 사정으로 클래스를 진행하지 않았어요.</option>
-														<option value="1">클래스 당일날 진행장소 변경으로 참여하지 못했어요.</option>
-														<option value="1">충분한 수업도구가 구비되어 있지 않아 수업을 진행할 수 없었어요.</option>
+														<option value="늘솜의 사정으로 클래스를 진행하지 않았어요.">늘솜의 사정으로 클래스를 진행하지 않았어요.</option>
+														<option value="클래스 당일날 진행장소 변경으로 참여하지 못했어요.">클래스 당일날 진행장소 변경으로 참여하지 못했어요.</option>
+														<option value="충분한 수업도구가 구비되어 있지 않아 수업을 진행할 수 없었어요.">충분한 수업도구가 구비되어 있지 않아 수업을 진행할 수 없었어요.</option>
 													</select>
 				                                      	<button type="submit" id="button-addon2" class="btn btn-outline-primary" >환불요청</button>
 				                                   </div>
