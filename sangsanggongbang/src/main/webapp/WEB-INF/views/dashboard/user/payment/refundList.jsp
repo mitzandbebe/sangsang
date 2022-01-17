@@ -131,8 +131,8 @@
                                                         <fmt:formatDate var="startTime" value="${map['C_START_TIME']}" pattern="yyyyMMdd" />
                                                         
                                                			<ul class="list-group mb-2">
-                                                            <li class="list-group-item small p-0 mb-1"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;결제일:&nbsp;&nbsp;&nbsp;
-                                                            <fmt:formatDate value='${map["PAYDATE"] }' pattern="yyyy-MM-dd"/></li>
+                                                            <li class="list-group-item small p-0 mb-1"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;결제일:&nbsp;
+                                                            <fmt:formatDate value='${map["PAY_DATE"] }' pattern="yyyy-MM-dd"/></li>
                                                             <li class="list-group-item small p-0"><i class="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;진행일:&nbsp;
                                                             <fmt:formatDate value='${map["C_START_TIME"] }' pattern="yyyy-MM-dd"/></li>
                                                        	</ul>
@@ -144,12 +144,12 @@
                                                             </div>
                                                             <div class="col">
                                                                 <span class="text-muted font-small d-block">결제인원</span>
-                                                                <span class="h6 text-dark font-weight-bold">${map['QTY'] }명</span>
+                                                                <span class="h6 text-dark font-weight-bold">${map['EA'] }명</span>
                                                             </div>
                                                             <div class="col">
                                                                 <span class="text-muted font-small d-block">총 결제금액</span>
                                                                 <span class="h6 text-dark font-weight-bold">
-                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['QTY'] }" pattern="#,###"/>원
+                                                                <fmt:formatNumber value="${map['C_PRICE'] * map['EA'] }" pattern="#,###"/>원
                                                                 </span>
                                                             </div>
                                                             <div class="col">
