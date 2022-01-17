@@ -22,6 +22,7 @@ import com.gr.ssgb.admin.model.AdminService;
 import com.gr.ssgb.admin.model.AdminVO;
 import com.gr.ssgb.admin.model.ClassRatioVO;
 import com.gr.ssgb.admin.model.MonthVO;
+import com.gr.ssgb.admin.model.NewUserVO;
 import com.gr.ssgb.admin.model.ProfitVO;
 
 @Controller
@@ -114,6 +115,23 @@ public class AdminController {
 			ratioMap.put(index, tempVo);
 			logger.info("classratio={}", tempVo);
 		}
+		NewUserVO  newUserVo= null;
+		Map<String, Object> newUserMap = new HashMap<String,Object>();
+		for(int i =0; i < 4; i++) {
+			monVo = new MonthVO();
+			monVo.setStartDate(month, i);
+			Integer newHost = adminService.selectNewHostCnt(monVo);
+			Integer newMember = adminService.selectNewMemberCnt(monVo);
+			if(newHost==null) newHost=0;
+			if(newMember==null) newMember=0;
+			newUserVo = new NewUserVO();
+			newUserVo.setNewhost(newHost);
+			newUserVo.setNewMember(newMember);
+			String index = (3-i)+"";
+			newUserMap.put(index, newUserVo);
+			logger.info("newUserVo={}", newUserVo);
+		}
+		model.addAttribute("newUserMap", newUserMap);
 		model.addAttribute("bigOne", bigOne);
 		model.addAttribute("profitMap", profitMap);
 		model.addAttribute("ratioMap", ratioMap);

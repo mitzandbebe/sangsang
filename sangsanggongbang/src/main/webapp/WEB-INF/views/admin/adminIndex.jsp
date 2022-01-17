@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                          <div class="col-12 mb-4"> 
+                          <!-- <div class="col-12 mb-4"> 
 	                          <div class="row">
 		                            <div class="col-12">
 		                                <div class="card border-light">
@@ -52,7 +52,7 @@
 		                                </div>
 		                            </div>
 	                        	</div>
-                        	</div>
+                        	</div> -->
                         	 <div class="col-12 mb-4"> 
 	                          <div class="row">
 		                            <div class="col-12">
@@ -66,8 +66,8 @@
                                 <div class="card border-light">
                                     <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                         <div class="d-block">
-                                            <div class="h6 font-weight-normal text-gray mb-2">New customers</div>
-                                            <h2 class="h3">452</h2>
+                                            <div class="h6 font-weight-normal text-gray mb-2">신규 유저 생성 비율</div>
+                                            <h2 class="h3">명</h2>
                                             <div class="small mt-2">                               
                                                 <span class="fas fa-angle-up text-success"></span>                                   
                                                 <span class="text-success font-weight-bold">18.2%</span>
@@ -108,48 +108,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card border-light">
-                                    <div class="card-body d-flex justify-content-between align-items-center flex-0 border-bottom">
-                                        <div class="d-block">
-                                            <div class="h6 font-weight-normal text-gray mb-2">Top Locations</div>
-                                            <h2 class="h3">Sessions by states</h2>
-                                            <div class="small mt-2">                               
-                                                <span class="fas fa-angle-up text-success"></span>                                   
-                                                <span class="text-success font-weight-bold">38.2%</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="custom-select" id="country">
-                                            <option>United States</option>
-                                            <option>Germany</option>
-                                            <option>France</option>
-                                            <option>Spain</option>
-                                            <option>Italy</option>
-                                            <option>Russia</option>
-                                            <option>Japan</option>
-                                            <option>India</option>
-                                            <option>China</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-2">
-                                        <div id="vmap" style="width: 100%; height: 400px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
         </div>
         <figure class="highcharts-figure">
-		    <div id="container"></div>
-		    <p class="highcharts-description">
-		        Basic line chart showing trends in a dataset. This chart includes the
-		        <code>series-label</code> module, which adds a label to each line for
-		        enhanced readability.
-		    </p>
+		    <div style="display: none;" id="container"></div>
+		   
 		</figure>
     </section>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
@@ -382,10 +347,132 @@ $(function(){
 	        }]
 	    }]
 	});
+	var newMember1 = ${newUserMap["1"].newMember};
+	var newMember2 = ${newUserMap["2"].newMember};
+	var newMember3 = ${newUserMap["3"].newMember};
+	var newMember4 = ${newUserMap["4"].newMember};
+	
+	var newHost1 = ${newUserMap["4"].newMember};
+	Highcharts.chart('container3', {
+
+	    chart: {
+	        type: 'column',
+	        styledMode: true
+	    },
+
+	    title: {
+	        text: '신규 가입 회원비율'
+	    },
+
+	    yAxis: [{
+	        className: 'highcharts-color-0',
+	        title: {
+	            text: '가입 수(명)'
+	        }
+	    }, {
+	        className: 'highcharts-color-1',
+	        opposite: true,
+	        title: {
+	            text: '비율(%)'
+	        }
+	    }],
+
+	    plotOptions: {
+	        column: {
+	            borderRadius: 5
+	        }
+	    },
+	    xAxis: {
+	    	 categories: [profitXData1 , profitXData2, profitXData3, profitXData4 ]
+	    },
+	    series: [{
+	        data: [1, 3, 2, 4]
+	    }, {
+	        data: [324, 124, 547, 221],
+	        yAxis: 1
+	    }]
+
+	});
 });
 
 </script>
+<style>
+@import "https://code.highcharts.com/css/highcharts.css";
 
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+.highcharts-yaxis .highcharts-axis-line {
+    stroke-width: 2px;
+}
+
+/* Link the series colors to axis colors */
+.highcharts-color-0 {
+    fill: #7cb5ec;
+    stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+    stroke: #7cb5ec;
+}
+
+.highcharts-axis.highcharts-color-0 text {
+    fill: #7cb5ec;
+}
+
+.highcharts-color-1 {
+    fill: #90ed7d;
+    stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+    stroke: #90ed7d;
+}
+
+.highcharts-axis.highcharts-color-1 text {
+    fill: #90ed7d;
+}
+</style>
 <c:choose>
     <c:when test="${!empty sessionScope.hId }">
         <%@ include file="../inc/bottom_host.jsp"%>

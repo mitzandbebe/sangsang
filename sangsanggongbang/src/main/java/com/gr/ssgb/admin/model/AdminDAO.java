@@ -16,4 +16,9 @@ public interface AdminDAO {
 
 	List<ClassRatioVO> selectRatio();
 
+
+	Integer selectNewHostCnt(MonthVO monVo);
+
+	Integer selectNewMemberCnt(MonthVO monVo);
+
 }

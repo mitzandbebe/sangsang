@@ -26,4 +26,17 @@
 	<select id="selectRatio" resultType="classRatioVo">
 		select * from classratioview
 	</select>
+	
+	<select id="selectTotalHostCnt" parameterType="monthVo" resultType="int">
+		select count(*) from host
+		<![CDATA[
+		    where regdate > TO_DATE(#{startDate}) and regdate < TO_DATE(#{endDate})
+		    ]]>
+	</select>
+	<select id="selectNewMemberCnt">
+		select count(*) from member
+			<![CDATA[
+			    where regdate > TO_DATE(#{startDate}) and regdate < TO_DATE(#{endDate})
+			    ]]>
+	</select>
 </mapper>

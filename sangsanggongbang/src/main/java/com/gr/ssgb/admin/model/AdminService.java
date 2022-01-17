@@ -19,4 +19,9 @@ public interface AdminService {
 	public int selectTotalClassCnt();
 
 	public List<ClassRatioVO> selectRatio();
+
+
+	public Integer selectNewMemberCnt(MonthVO monVo);
+
+	public Integer selectNewHostCnt(MonthVO monVo);
 }

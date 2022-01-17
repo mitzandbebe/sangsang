@@ -47,6 +47,16 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.selectRatio();
 	}
 
+	@Override
+	public Integer selectNewHostCnt(MonthVO monVo) {
+		return adminDao.selectNewHostCnt(monVo);
+	}
+
+	@Override
+	public Integer selectNewMemberCnt(MonthVO monVo) {
+		return adminDao.selectNewMemberCnt(monVo);
+	}
+
 	
 	
 }
