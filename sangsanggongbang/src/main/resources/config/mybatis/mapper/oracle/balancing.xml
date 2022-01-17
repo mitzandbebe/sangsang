@@ -21,12 +21,13 @@
 				from balancing a join hostclass b
 				on a.c_no=b.c_no
 				<include refid="searchWhere"></include>
+				and a.h_no=#{hNo}
 				order by a.b_no desc
 			)C
 		)
 		<![CDATA[
 		where RNUM>#{firstRecordIndex} 
-			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage} and h_no=#{hNo} ]]>
+			and RNUM<=#{firstRecordIndex}+ #{recordCountPerPage}  ]]>
 	</select>
 
 	<select id="selectTotalRecord" parameterType="extendSearchVo" resultType="int">

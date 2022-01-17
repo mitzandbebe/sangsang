@@ -35,90 +35,80 @@
 					});
 		});
 
-		$('#apibtn')
-				.click(
-						function() {
+		$('#apibtn').click(function() {
 							//가맹점 식별코드
 							IMP.init('imp73895922');
-							IMP
-									.request_pay(
-											{
-												pg : 'html5_inicis',
-												pay_method : 'card',
-												merchant_uid : 'merchant_'
-														+ new Date().getTime(),
-												name : $('#cname').html(), //결제창에서 보여질 이름
-												//amount : $('#totalPrice').val(), //실제 결제되는 가격
-												amount : 100, //실제 결제되는 가격
-												buyer_email : $('#mId').val(),
-												buyer_name : $('#name').val(),
-												buyer_tel : $('#phone').val(),
-												buyer_addr : $('#mAddress')
-														.val()
-														+ $('#mAddressDetail')
-																.val(),
-												buyer_postcode : $('#mZipcode')
-														.val(),
-												digital : true
-											// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
-											},
-											function(rsp) {
-												console.log(rsp);
-												if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-													var merchantUid = rsp.merchant_uid
-													var msg = '결제가 완료되었습니다';
-													var result = {
-														"impUid" : rsp.imp_uid, //상점id
-														"merchantUid" : rsp.merchant_uid, //영수증번호
-														"mId" : $('#mId').val(), //유저id
-														"price" : rsp.paid_amount, //결제금액
-														"refund" : 'payed', //결제상태
-														"buyerName" : $('#name')
-																.val(), //구매자명
-														"ea" : $('#sPpunm')
-																.val(), //구매수량
-														"fTime" : $('#fTime')
-																.val(), //선택시간
-														"cNo" : $('#cNo').val()
-													//클래스넘버
-													}
+							IMP.request_pay({
+								pg : 'html5_inicis',
+								pay_method : 'card',
+								merchant_uid : 'merchant_'
+										+ new Date().getTime(),
+								name : $('#cname').html(), //결제창에서 보여질 이름
+								//amount : $('#totalPrice').val(), //실제 결제되는 가격
+								amount : 100, //실제 결제되는 가격
+								buyer_email : $('#mId').val(),
+								buyer_name : $('#name').val(),
+								buyer_tel : $('#phone').val(),
+								buyer_addr : $('#mAddress')
+										.val()
+										+ $('#mAddressDetail')
+												.val(),
+								buyer_postcode : $('#mZipcode')
+										.val(),
+								digital : true
+							// 실제 물품인지 무형의 상품인지(핸드폰 결제에서 필수 파라미터)
+							},
+							function(rsp) {
+								console.log(rsp);
+								if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+									var merchantUid = rsp.merchant_uid
+									var msg = '결제가 완료되었습니다';
+									var result = {
+										"impUid" : rsp.imp_uid, //상점id
+										"merchantUid" : rsp.merchant_uid, //영수증번호
+										"mId" : $('#mId').val(), //유저id
+										"price" : rsp.paid_amount, //결제금액
+										"refund" : 'payed', //결제상태
+										"buyerName" : $('#name')
+												.val(), //구매자명
+										"ea" : $('#sPpunm')
+												.val(), //구매수량
+										"fTime" : $('#fTime')
+												.val(), //선택시간
+										"cNo" : $('#cNo').val()
+									//클래스넘버
+									}
+									$.ajax({
+										url : '/sangsanggongbang/class/ajax/orderComplete',
+										type : 'POST',
+										data : JSON
+												.stringify(result),
+										contentType : 'application/json;charset=UTF-8',
+										dataType : 'json', //서버에서 보내줄 데이터 타입
+										success : function(cnt) {
 
-													$
-															.ajax({
-																url : '/sangsanggongbang/class/ajax/orderComplete',
-																type : 'POST',
-																data : JSON
-																		.stringify(result),
-																contentType : 'application/json;charset=UTF-8',
-																dataType : 'json', //서버에서 보내줄 데이터 타입
-																success : function(
-																		cnt) {
+											if (cnt == 1) {
+												console.log("추가성공");
+												location.replace("http://localhost:9091/sangsanggongbang/class/orderComplete?merchantUid="
+																+ merchantUid);
 
-																	if (cnt == 1) {
-																		console
-																				.log("추가성공");
-																		location
-																				.replace("http://localhost:9091/sangsanggongbang/class/orderComplete?merchantUid="
-																						+ merchantUid);
-
-																	} else {
-																		console
-																				.log("Insert Fail!!!");
-																	}
-																},
-																error : function() {
-																	console
-																			.log("Insert ajax 통신 실패!!!");
-																}
-															}); //ajax
-
-												} else {
-													var msg = '결제에 실패하였습니다.';
-													msg += '에러내용 : '
-															+ rsp.error_msg;
-												}
-												alert(msg);
-											});
+											} else {
+												console
+														.log("Insert Fail!!!");
+											}
+										},
+										error : function() {
+											console
+													.log("Insert ajax 통신 실패!!!");
+										}
+									}); //ajax
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : '
+											+ rsp.error_msg;
+								}
+								alert(msg);
+							});
 						});
 
 	});
@@ -175,26 +165,26 @@
 													</li>
 												</ul>
 												<div style="display: none;">
-														<div class="col">
-															<span class="small d-block">가격</span> <span
-																class="h6 text-dark font-weight-bold"> <input
-																type="hidden" id="price" value="${map['C_PRICE'] }">
-																<fmt:formatNumber value="${map['C_PRICE'] }"
-																	pattern="#,###" />원
-															</span>
-														</div>
-														<div class="col">
-															<span class="small d-block">모집 인원수</span> <span
-																class="h6 text-dark font-weight-bold" id="ppnum">
-																${map["FPNUM"] } / ${map["PPNUM"] }명</span>
-														</div>
-														<div class="col">
-															<span class="small d-block">지역</span> <span
-																class="h6 text-dark font-weight-bold"> <c:set
-																	var="addr" value="${ map['L_ADDRESS']}" />
-																${fn:substring(addr,0,2)}
-															</span>
-														</div>
+													<div class="col">
+														<span class="small d-block">가격</span> <span
+															class="h6 text-dark font-weight-bold"> <input
+															type="hidden" id="price" value="${map['C_PRICE'] }">
+															<fmt:formatNumber value="${map['C_PRICE'] }"
+																pattern="#,###" />원
+														</span>
+													</div>
+													<div class="col">
+														<span class="small d-block">모집 인원수</span> <span
+															class="h6 text-dark font-weight-bold" id="ppnum">
+															${map["FPNUM"] } / ${map["PPNUM"] }명</span>
+													</div>
+													<div class="col">
+														<span class="small d-block">지역</span> <span
+															class="h6 text-dark font-weight-bold"> <c:set
+																var="addr" value="${ map['L_ADDRESS']}" />
+															${fn:substring(addr,0,2)}
+														</span>
+													</div>
 												</div>
 											</div>
 											<div class="col-12 col-lg-6" style="float: left;">
@@ -250,8 +240,8 @@
 								<!-- Form -->
 								<div class="form-group mb-4">
 									<label for="cartInputCity1">이름</label> <input type="text"
-										class="form-control" id="name" value="${mVo.mName}" name="name"
-										aria-describedby="M_NAME">
+										class="form-control" id="name" value="${mVo.mName}"
+										name="name" aria-describedby="M_NAME">
 								</div>
 								<!-- End of Form -->
 							</div>
@@ -322,14 +312,14 @@
 							<div class="col-12 col-lg-5">
 								<!-- Form -->
 								<div class="form-group mb-4">
-								<input type="hidden" value="${mVo.mNo}"> <input
-							type="button" class="btn btn-block btn-primary mt-4" id="apibtn"
-							value="결제하기">
+									<input type="hidden" value="${mVo.mNo}"> <input
+										type="button" class="btn btn-block btn-primary mt-4"
+										id="apibtn" value="결제하기">
 								</div>
 								<!-- End of Form -->
 							</div>
 						</div>
-						
+
 					</div>
 				</form>
 
