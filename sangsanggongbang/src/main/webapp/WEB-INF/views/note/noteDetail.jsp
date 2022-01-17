@@ -183,40 +183,44 @@
 												<hr style="background: black">
 												<div>
 													<p>
-														<textarea rows="10" cols="69%" readonly="readonly"
+														<textarea readonly="readonly"
 															style="resize: none; border: 0px solid black">${vo.noteContent}</textarea>
 													</p>
 												</div>
 											</section>
-											<div
-												class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-3 p-xl-5">
-												<div class="d-flex align-items-center mt-3"></div>
-											</div>
 										</div>
 									</div>
+									<!-- 버튼 시작 -->
+									<div style="margin-left:2%;">
+									<c:if test="${!empty sessionScope.mId }">
+										<a
+											href="<c:url value='/note/noteList?mId=${sessionScope.mId }' />">
+											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+												id="noteWrite" type="button">쪽지목록</button>
+										</a>
+										<a
+											href="<c:url value='/note/noteBox?mId=${sessionScope.mId }'/>">
+											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+												id="noteBox" type="button">보관함</button>
+										</a>
+									</c:if>
+									<c:if test="${!empty sessionScope.hId }">
+										<a
+											href="<c:url value='/note/noteList?hId=${sessionScope.hId }' />">
+											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+												id="noteWrite" type="button">쪽지목록</button>
+										</a>
+										<a
+											href="<c:url value='/note/noteBox?hId=${sessionScope.hId }'/>">
+											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
+												id="noteBox" type="button">보관함</button>
+										</a>
+									</c:if>
+									</div>
+									<!-- 버튼 종료 -->
 								</div>
 							</div>
 						</div>
-						<c:if test="${!empty sessionScope.mId }">
-						<a href="<c:url value='/note/noteList?mId=${sessionScope.mId }' />">
-						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-								type="button">쪽지목록</button>
-							</a>
-							<a href="<c:url value='/note/noteBox?mId=${sessionScope.mId }'/>">
-								<button class="btn mb-2 mr-2 btn-success" id="noteBox"
-									type="button">보관함</button>
-							</a>
-						</c:if>
-						<c:if test="${!empty sessionScope.hId }">
-							<a href="<c:url value='/note/noteList?hId=${sessionScope.hId }' />">
-						<button class="btn mb-2 mr-2 btn-success" id="noteWrite"
-								type="button">쪽지목록</button>
-							</a>
-							<a href="<c:url value='/note/noteBox?hId=${sessionScope.hId }'/>">
-								<button class="btn mb-2 mr-2 btn-success" id="noteBox"
-									type="button">보관함</button>
-							</a>
-						</c:if>
 						<!-- <button class="btn mb-2 mr-2 btn-success" id="noteSave"
 							type="button">보관하기</button>
 						<button class="btn mb-2 mr-2 btn-success" id="noteDelete"
@@ -273,17 +277,18 @@
 								result = confirm('선택한 쪽지를 보관하시겠습니까?'); if (result) {
 								$('form[name=frm]').prop('action', "<c:url
 									value='/note/noteSave' />"); $('form[name=frm]').submit(); } }
-								else { alert('선택하신 쪽지가 없습니다.'); event.preventDefault; } }) }) </script> <c:choose>
-									<c:when test="${!empty sessionScope.hId }">
-										<%@ include file="../inc/bottom_host.jsp"%>
-									</c:when>
-									<c:when test="${!empty sessionScope.mId }">
-										<%@ include file="../inc/bottom.jsp"%>
-									</c:when>
-									<c:when test="${!empty sessionScope.adId }">
-										<%@ include file="../inc/bottom_admin.jsp"%>
-									</c:when>
-									<c:otherwise>
-										<%@ include file="../inc/bottom.jsp"%>
-									</c:otherwise>
-								</c:choose>
+								else { alert('선택하신 쪽지가 없습니다.'); event.preventDefault; } }) }) </script>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>

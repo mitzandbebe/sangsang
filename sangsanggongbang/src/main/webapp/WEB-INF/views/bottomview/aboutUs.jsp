@@ -245,7 +245,7 @@
 						class="card-img-top rounded-top" alt="강유빈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">강유빈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<span class="card-subtitle text-gray font-weight-normal">CEO</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
@@ -272,7 +272,7 @@
 						class="card-img-top rounded-top" alt="오정훈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">오정훈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Agent</span>
+						<span class="card-subtitle text-gray font-weight-normal">Financial</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
@@ -300,7 +300,7 @@
 						class="card-img-top rounded-top" alt="배재영">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">배재영</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
+						<span class="card-subtitle text-gray font-weight-normal">Sales</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
@@ -325,11 +325,11 @@
 		<div class="row mb-5 mb-lg-7">
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
-					<img src="../resources/assets/img/group2_photo/choiwonjung_ani.jpg"
+					<img src="../resources/assets/img/group2_photo/choiwonjung.jpg"
 						class="card-img-top rounded-top" alt="최원정">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">최원정</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
@@ -358,7 +358,7 @@
 						class="card-img-top rounded-top" alt="최수빈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">최수빈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<span class="card-subtitle text-gray font-weight-normal">Design</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
@@ -387,7 +387,7 @@
 						class="card-img-top rounded-top" alt="김준영">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">김준영</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Founder</span>
+						<span class="card-subtitle text-gray font-weight-normal">Engineering</span>
 						<p class="card-text my-3">Some quick example text to build on
 							the card title and make up the bulk of the card's content.</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">

@@ -71,6 +71,9 @@ public class BottomController {
 	}
 
 	// 4.이용약관
+		@GetMapping("/bottomview/terms")
+		public void terms() {
+			logger.info("terms 등장?!");
+		}
 
-	// 5.개인정보처리방침
 }

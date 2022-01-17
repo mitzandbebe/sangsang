@@ -65,7 +65,7 @@
 					</li> -->
 					<li><a
 						href="<c:url value='/bottomview/customerService'/>">고객센터</a></li>
-						<li><a target="_blank" href="#">이용약관</a>
+						<li><a target="_blank" href="<c:url value='/bottomview/terms'/>">이용약관</a>
 					</li>
 				</ul>
 			</div>
