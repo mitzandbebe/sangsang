@@ -242,7 +242,7 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../resources/assets/img/group2_photo/kangyubin.jpg"
-						class="card-img-top rounded-top" alt="강유빈">
+						class="card-img-top rounded-top" alt="강유빈" style="height: 462px;">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">강유빈</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Kang Yu-bin</span>
@@ -263,7 +263,7 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../resources/assets/img/group2_photo/ohjunghun.jpg"
-						class="card-img-top rounded-top" alt="오정훈">
+						class="card-img-top rounded-top" alt="오정훈" style="height: 462px;">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">오정훈</h3>
 						<span class="card-subtitle text-gray font-weight-normal">Oh Jung-hun</span>
