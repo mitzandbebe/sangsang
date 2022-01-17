@@ -38,9 +38,9 @@
 			<div class="col-12">
 				<br> <br> <br> <br> <a
 					href="<c:url value='/memberInquiry/memberList'/>"><button
-						class="btn mb-2 mr-2 btn-dark" type="button">일반회원</button></a> <a
+						class="btn mb-2 mr-2 btn-dark" type="button">늘찬 조회</button></a> <a
 					href="<c:url value='/memberInquiry/hostList'/>"><button
-						class="btn mb-2 mr-2 btn-dark" type="button">호스트 회원</button></a> <a
+						class="btn mb-2 mr-2 btn-dark" type="button">늘솜 조회</button></a> <a
 					href="<c:url value='/memberInquiry/banList'/>">
 					<button class="btn mb-2 mr-2 btn-dark" type="button">참여제한회원</button>
 				</a> <br> <br>
@@ -66,10 +66,10 @@
 										pattern="yyyy-MM-dd" /></td>
 								<td>
 									<div class="d-flex" >
-										<a id="banbutton"
+										<a id="banbutton" 
 											href="<c:url value='/memberInquiry/banWrite?mNo=${vo.mNo }'/>">
-											<i class="fas fa-trash text-danger mr-2"
-											data-toggle="tooltip" data-placement="top" title="참여제한하기"></i>
+											<i class="fas fa-trash text-danger mr-2" 
+											data-toggle="tooltip" data-placement="top" title="참여제한하기" ></i>
 										</a>
 									</div>
 								</td>

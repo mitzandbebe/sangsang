@@ -229,7 +229,7 @@
 												<tr>
 													<th scope="col">클래스 이름</th>
 													<th scope="col">늘찬 아이디</th>
-													<th scope="col">늘찬 닉네임</th>
+													<th scope="col">늘찬<br> 닉네임</th>
 													<th scope="col">시간</th>
 													<th scope="col">블랙리스트</th>
 												</tr>
@@ -259,7 +259,7 @@
 																		<a id="blackinsertButton"
 																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }&hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
-																			title="블랙리스트등록">블랙리스트등록 </i>
+																			title="블랙리스트등록"> <input type="button" value="블랙리스트등록"></i>
 																		</a>
 																	</c:otherwise>
 																</c:choose>

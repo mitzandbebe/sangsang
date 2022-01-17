@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
 	<c:when test="${!empty sessionScope.hId }">
@@ -48,24 +48,24 @@
 			<form name="frmEwrite" method="post" enctype="multipart/form-data"
 				action="<c:url value='/memberInquiry/banWrite'/> ">
 				<div class="row">
-				<input type="hidden" name="mNo" value="${param.mNo}">
+					<input type="hidden" name="mNo" value="${param.mNo}">
 					<div class="col-lg-12 mb-5">
 						<div>
 							회원 아이디 : <input type="text" name="mId" readonly="readonly"
 								style="border: none; outline: none;" value="${vo.mId }">
 						</div>
-						<hr style='margin:5px; color:none;'>
+						<hr style='margin: 5px; color: none;'>
 						<div>
 							회원 이름 : <input type="text" name="mName" readonly="readonly"
 								style="border: none; outline: none;" value="${vo.mName }">
 						</div>
-						<hr style='margin:5px'>
+						<hr style='margin: 5px'>
 						<div>
 							가입일 : <input type="text" name="regdate" readonly="readonly"
 								style="border: none; outline: none;"
 								value='<fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd hh:mm:ss" />'>
 						</div>
-						<hr style='margin:5px'>
+						<hr style='margin: 5px'>
 						<div>
 							사유 선택 : <select name="bcs">
 								<option value="욕설">욕설</option>
@@ -73,13 +73,12 @@
 								<option value="허위정보">허위정보</option>
 							</select>
 						</div>
-						<hr style='margin:5px'>
-						
+						<hr style='margin: 5px'>
+
 						<!-- 이벤트 글쓰기 -->
 						<div class="form-group" style="display: block; width: 100%;">
 							<label for="exampleFormControlTextarea2">상세사유 내용 </label>
-							<textarea class="ckediter" id="content" name="bc"
-								rows="20" ></textarea>
+							<textarea class="ckediter" id="content" name="bc" rows="20"></textarea>
 						</div>
 					</div>
 				</div>
@@ -134,7 +133,10 @@
 					event.preventDefault();
 					return false; //each 탈출
 				}
-
+				if ($('#content').val() == "") {
+					alert('내용을 입력해주세요');
+					event.preventDefault();
+				}
 			});
 
 			/* 		$('#upfile').each(function(idx, item) {
