@@ -339,6 +339,8 @@ public class MemberController {
 		MemberVO vo = memberService.selectMemberById(mId);
 		
 		model.addAttribute("vo", vo);
+		int mNo = (Integer)session.getAttribute("mNo");
+		logger.info("mNo={}", mNo);
 		logger.info("회원정보 수정 전 비밀번호 확인화면");
 		
 		return "member/memberEditChkPwd";
