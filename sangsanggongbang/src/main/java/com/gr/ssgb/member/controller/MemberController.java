@@ -680,12 +680,14 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/interestClass")
-	public String interestClass_get(@ModelAttribute SearchVO searchVo,@RequestParam(defaultValue = "0") int mNo,HttpSession session,Model model) {
+	public String interestClass_get(@ModelAttribute SearchVO searchVo,HttpSession session,Model model) {
 		logger.info("관심클래스 보기");
 		
 		String mId=(String) session.getAttribute("mId");
 		//mNo= memberService.selectMno(mId);
-		mNo=(int) session.getAttribute("mNo");
+		int mNo = (Integer)session.getAttribute("mNo");
+        logger.info("mNo={}", mNo);
+        searchVo.setmNo(mNo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -697,6 +699,8 @@ public class MemberController {
 		logger.info("값 셋팅 후 searchVo={}", searchVo);
 		
 		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents2(searchVo);
+		logger.info("classlist={}", classlist.size());
+		
 		List<ConcernVO> interest= memberService.selectConcern(mNo);
 		
 		int totalRecord = hostClassService.selectTotalRecord(searchVo);
