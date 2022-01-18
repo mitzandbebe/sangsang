@@ -22,7 +22,7 @@
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
             	<c:if test="${!empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" style = "width:129px; height:129px;"class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
                 <c:if test="${empty sessionScope.mFilename }">
@@ -137,7 +137,7 @@
 								            	<c:if test="${sessionScope.mFilename!='default.png' }">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${sessionScope.mFilename }" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="${pageContext.request.contextPath }/resources/file_upload/${sessionScope.mFilename }" style = "width:129px; height:129px;" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								                </c:if>
