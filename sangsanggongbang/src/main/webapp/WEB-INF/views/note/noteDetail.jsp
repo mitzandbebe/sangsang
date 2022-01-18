@@ -199,9 +199,9 @@
 												id="noteWrite" type="button">쪽지목록</button>
 										</a>
 										<a
-											href="<c:url value='/note/noteBox?mId=${sessionScope.mId }'/>">
+											href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>">
 											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
-												id="noteBox" type="button">보관함</button>
+												id="noteBox" type="button">쪽지함</button>
 										</a>
 									</c:if>
 									<c:if test="${!empty sessionScope.hId }">
@@ -211,9 +211,9 @@
 												id="noteWrite" type="button">쪽지목록</button>
 										</a>
 										<a
-											href="<c:url value='/note/noteBox?hId=${sessionScope.hId }'/>">
+											href="<c:url value='/note/noteList?hId=${sessionScope.hId }'/>">
 											<button class="btn mb-2 mr-2 btn-primary animate-up-2"
-												id="noteBox" type="button">보관함</button>
+												id="noteBox" type="button">쪽지함</button>
 										</a>
 									</c:if>
 									</div>
