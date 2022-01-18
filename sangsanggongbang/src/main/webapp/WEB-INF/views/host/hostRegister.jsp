@@ -353,7 +353,7 @@ var InputImage =
 								            	<c:if test="${!empty vo.hFilename}">
 								            		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-								                			<img src="<c:url value='/resources/file_upload/${vo.hFilename }'/>" id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
+								                			<img src="<c:url value='/resources/file_upload/${vo.hFilename }'/>" style="width: 129px; height:129px;"id="nImg" class="card-img-top rounded-circle border-white" alt="프로필사진">
 								                		</div>
 								           			 </div>
 								           			  <div class="input-group"  style = "text-align: center;">

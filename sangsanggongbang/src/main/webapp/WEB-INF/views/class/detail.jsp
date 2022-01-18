@@ -141,46 +141,46 @@
 												        <div class="carousel-item active">
 												        <c:choose >
 					                                    	<c:when test="${not empty map['THUMBNAIL']}">
-					                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " alt="썸네일">
+					                                        	<img src="<c:url value='/resources/upload_images/${map["THUMBNAIL"] }'/> " height="621px" width="745px" alt="썸네일">
 					                                    	</c:when>
 					                                    	<c:when test="${map['THUMBNAIL'] eq null}">
 					                                    		<h3>미리보기 이미지가 없습니다.</h3>
-					                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " height="400px" width="700px"  alt="기본이미지">
+					                                        	<img src="<c:url value='/resources/upload_images/basic.png'/> " height="621px" width="745px"  alt="기본이미지">
 					                                    	</c:when>
 					                                    </c:choose>
 												        </div>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME1']}">
 												        <div class="carousel-item">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME1"] }'/> " alt="Second slide">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME1"] }'/> "height="621px" width="745px"  alt="Second slide">
 												        </div>
 												        </c:when>
 												        </c:choose>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME2']}">
 												        <div class="carousel-item">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME2"] }'/> " alt="Third slide">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME2"] }'/> "height="621px" width="745px"   alt="Third slide">
 												        </div>
 												        </c:when>
 												        </c:choose>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME3']}">
 												        <div class="carousel-item">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME3"] }'/> " alt="Third slide">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME3"] }'/> " height="621px" width="745px" alt="Third slide">
 												        </div>
 												        </c:when>
 												        </c:choose>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME4']}">
 												        <div class="carousel-item">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME4"] }'/> " alt="Third slide">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME4"] }'/> " height="621px" width="745px" alt="Third slide">
 												        </div>
 												        </c:when>
 												        </c:choose>
 												        <c:choose >
 												        <c:when test="${not empty map['CONTENTS_FILENAME5']}">
 												        <div class="carousel-item">
-												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME5"] }'/> " alt="Third slide">
+												            <img class="d-block w-100" src="<c:url value='/resources/upload_images/${map["CONTENTS_FILENAME5"] }'/> " height="621px" width="745px" alt="Third slide">
 												        </div>
 												        </c:when>
 												        </c:choose>
