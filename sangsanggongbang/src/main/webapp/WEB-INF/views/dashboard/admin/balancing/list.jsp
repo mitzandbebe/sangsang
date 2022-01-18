@@ -215,7 +215,7 @@
 
 						<c:if test="${vo.bFlag == 'N' }">
 							<div class="col-auto">
-								<button class="btn btn-sm btn-outline-dark"
+								<button class="btn mb-2 mr-2 btn-primary animate-up-2"
 									style="font-weight: bold;" name="bNo" id="balsubmit"
 									onclick="location.href	='<c:url value="/admin/balancing/submit?bNo=${vo.bNo}"/>'">정산처리하기</button>
 							</div>
