@@ -124,7 +124,7 @@
 		select rownum as RNUM, A.*
 		from
 		(
-		select * from selectClass order by c_start_time desc
+		select * from ClassConcern where m_no = #{mNo} order by c_start_time desc
 		)A
 		)
 		<![CDATA[
@@ -134,7 +134,7 @@
 	
 	<select id="selectTotalRecord" parameterType="searchVo"
 		resultType="int">
-		select count(*) from selectClass
+		select count(*) from ClassConcern
 	</select>
 	
 	<select id="selectClassLoc" parameterType="string" resultType="map">
