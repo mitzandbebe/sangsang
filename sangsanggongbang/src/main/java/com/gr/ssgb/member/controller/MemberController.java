@@ -142,7 +142,8 @@ public class MemberController {
 			 session.setAttribute("mFilename", memberVo.getmFilename());
 			 session.setAttribute("mNickname", memberVo.getmNickname());
 			 session.setAttribute("uOrh", "u");
-			 session.setAttribute("mNo", memberVo.getmNo());
+			 String mNo = memberVo.getmNo()+"";
+			 session.setAttribute("mNo", mNo);
 			 
 			 Cookie ck = new Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
 			 ck.setMaxAge(1000*24*60*60); 
@@ -172,7 +173,8 @@ public class MemberController {
 				session.setAttribute("mFilename", memberVo.getmFilename());
 				session.setAttribute("mNickname", memberVo.getmNickname());
 				session.setAttribute("uOrh", "u");
-				session.setAttribute("mNo", memberVo.getmNo());
+				String mNo = memberVo.getmNo()+"";
+				session.setAttribute("mNo", mNo);
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
 			}	
@@ -222,7 +224,8 @@ public class MemberController {
 					session.setAttribute("snsCheck", snsCheck);
 					session.setAttribute("mNickname", memberVo.getmNickname());
 					session.setAttribute("uOrh", "u");
-					session.setAttribute("mNo", memberVo.getmNo());
+					String mNo = memberVo.getmNo()+"";
+					session.setAttribute("mNo", mNo);
 					
 					Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 					ck.setPath("/");
@@ -252,7 +255,8 @@ public class MemberController {
 				session.setAttribute("snsCheck", snsCheck);
 				session.setAttribute("mNickname", vo2.getmNickname());
 				session.setAttribute("uOrh", "u");
-				session.setAttribute("mNo", vo2.getmNo());
+				String mNo = vo2.getmNo()+"";
+				session.setAttribute("mNo", mNo);
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -284,7 +288,8 @@ public class MemberController {
 				session.setAttribute("uOrh", "u");
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mNickname", vo2.getmNickname());
-				session.setAttribute("mNo", vo2.getmNo());
+				String mNo = vo2.getmNo()+"";
+				session.setAttribute("mNo", mNo);;
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
