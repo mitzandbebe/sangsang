@@ -148,38 +148,90 @@ $(function() {
 	</c:forEach>
 	<!--반복처리 끝  -->
 </c:if>
-
 <!-- 페이지 번호 추가 -->
-<nav aria-label="Page navigation example" style="margin-left: 50px">
-	<ul class="pagination circle-pagination">
-		<!-- 이전 블럭으로 이동 -->
-		<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
-		<li class="page-item" id="backpage"><a class="page-link"> <i
-				class="fas fa-angle-double-left"></i>
-		</a></li>
-		<%-- </c:if> --%>
-
-		<!-- [1][2][3][4][5][6][7][8][9][10] -->
-		<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">
-			<c:if test="${i==pagingInfo.currentPage }">
-				<li class="page-item active">
-					<a class="page-link" id="pagelinknum"> ${i} </a></li>
-			</c:if>
-			<c:if test="${i!=pagingInfo.currentPage }">
-				<li class="page-item" id="pagelinknum"><a class="page-link"
-					id="pagelinknum2">${i }</a></li>
-			</c:if>
-		</c:forEach>
-		<!-- 다음 블럭으로 이동 -->
-		<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-			<li class="page-item" id="nextpage"><a class="page-link"
-				id="pagelinknum2"> <i class="fas fa-angle-double-right"> </i>
-			</a></li>
-		</c:if>
-		<!--  페이지 번호 끝 -->
-		<a class="btn btn-sm btn-outline-dark" id="excelDown"
-				style="font-weight: bold; margin-left: 10%" href="<c:url value="/dashboard/host/excel/download"/>">
-				엑셀다운로드</a>
-	</ul>
-			
-</nav>
+<div class="container" style="text-align: right;">
+	<br>
+	<!-- 엑셀 다운로드 -->
+	<a class="btn btn-sm btn-outline-dark" id="excelDown"
+		style="font-weight: bold; margin-left: 10%"
+		href="<c:url value="/admin/excel/download"/>"> 엑셀다운로드</a> <br>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 mb-5">
+			<div class="col mt-3 d-flex justify-content-center">
+				<div style="text-align: center;">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<!-- 이전 블럭으로 이동 -->
+							<%-- <c:if test="${pagingInfo.firstPage>1 }"> --%>
+								<li class="page-item" id="backpage"><a class="page-link">
+										<i class="fas fa-angle-double-left"></i>
+								</a></li>
+							<%-- </c:if> --%>
+							<!-- [1][2][3][4][5][6][7][8][9][10] -->
+							<c:forEach var="i" begin="${pagingInfo.firstPage}"
+								end="${pagingInfo.lastPage }">
+								<c:if test="${i==pagingInfo.currentPage }">
+									<li class="page-item active"><a class="page-link"
+										id="pagelinknum"> ${i} </a></li>
+								</c:if>
+								<c:if test="${i!=pagingInfo.currentPage }">
+									<li class="page-item" id="pagelinknum"><a
+										class="page-link" id="pagelinknum2">${i }</a></li>
+								</c:if>
+							</c:forEach>
+							<!-- 다음 블럭으로 이동 -->
+							<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+								<li class="page-item" id="nextpage"><a class="page-link"
+									id="pagelinknum2"> <i class="fas fa-angle-double-right">
+									</i>
+								</a></li>
+							</c:if>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%-- <div class="row">
+			<div class="col-lg-12 mb-5">
+				<div class="col mt-3 d-flex justify-content-center">
+					<div style="text-align: center;">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<!-- 이전블럭 -->
+								<c:if test="${pagingInfo.firstPage>1 }">
+									<li class="page-item disabled"><a class="page-link"
+										href="<c:url value='/dashboard/admin/list?currentPage=${pagingInfo.firstPage -1 }'/> ">
+											<i class="fas fa-angle-double-left"></i>
+									</a></li>
+								</c:if>
+								<!-- 페이징처리시작 -->
+								<c:forEach var="i" begin="${pagingInfo.firstPage }"
+									end="${pagingInfo.lastPage }">
+									<c:if test="${i==pagingInfo.currentPage }">
+										<li class="page-item"><a class="page-link" style="background-color:#e4e4e4"
+											href="<c:url value='/dashboard/admin/list?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+										</li>
+									</c:if>
+									<c:if test="${i!=pagingInfo.currentPage }">
+										<li class="page-item"><a class="page-link"
+											href="<c:url value='/dashboard/admin/list?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+										</li>
+									</c:if>
+								</c:forEach>
+								<!-- 다음블럭으로 이동 -->
+								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
+									<li class="page-item"><a class="page-link"
+										href="<c:url value='/dashboard/admin/list?currentPage=${pagingInfo.lastPage +1 }'/> ">
+											<i class="fas fa-angle-double-right"></i>
+									</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div> --%>
+</div>
