@@ -131,18 +131,23 @@ public class HostController {
 					
 				}else if(result==MemberService.NON_EXIST_ID) {
 					msg="존재하지 않는 아이디입니다.";
-					url="host/hostLogin";
+					url="/host/hostLogin";
 				}else if(result==MemberService.PWD_DISAGREE){
 					msg="비밀번호가 일치하지 않습니다.";
-					url="host/hostLogin";
+					url="/host/hostLogin";
 				}else {
 					msg="로그인 실패!";
-					url="host/hostLogin";
+					url="/host/hostLogin";
 				}
 			}
 		}else {
 			MemberVO memvo = memberService.selectMemberById(vo.gethId());
-			int result=hostService.checkIdPwd(vo.gethId(), memvo.getPwd());
+			int result=0;
+			if(h_snsCheck.equals("y")) {
+				result = hostService.checkIdPwd(vo.gethId(), memvo.getPwd());
+			}else {
+				result = hostService.checkIdPwd(vo.gethId(), vo.gethPwd());
+			}
 			
 			if(result==HostService.LOGIN_OK) {
 				session.removeAttribute("mId");
