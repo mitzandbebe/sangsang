@@ -115,7 +115,7 @@ var InputImage =
                     <a href="<c:url value='/member/memberEditChkPwd'/>" class="list-group-item list-group-item-action border-0 ">회원정보 수정</a>
                     <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="list-group-item list-group-item-action border-0   ">내 결제내역</a>
                     <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-none d-sm-block border-0 ">환불내역조회</a>
-                    <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
+                    <a href="<c:url value='/member/interestClass?mNo=${mNo }'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                     <div class="btn-group dropleft">
@@ -127,7 +127,7 @@ var InputImage =
                         </button>
                         <div class="dropdown-menu">
                             <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-sm-none border-0 ">환불내역조회</a>
-                            <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-md-none border-0 active">내 관심클래스</a>
+                            <a href="<c:url value='/member/interestClass?mNo=${mNo }'/>" class="list-group-item list-group-item-action d-md-none border-0 active">내 관심클래스</a>
                             <a href="<c:url value='/member/memberEditChkPwd2'/>" class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
                         </div>
                     </div>
