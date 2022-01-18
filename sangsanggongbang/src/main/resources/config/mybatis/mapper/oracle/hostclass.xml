@@ -102,7 +102,7 @@
 	</select>
 	
 	<select id="selectByCNo" parameterType="hostclassVo" resultType="int">
-		select C_NO from hostclass where C_START_TIME=#{cStart} and C_TIME=#{cTime}
+		select C_NO from hostclass where C_START_TIME=#{cStart} and C_TIME=#{cTime} and C_NAME=#{cName}
 	</select>
 	
 	<select id="selectClassAll" resultType="hostClassVo">
