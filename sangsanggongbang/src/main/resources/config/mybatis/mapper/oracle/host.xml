@@ -62,9 +62,9 @@
 		from
 		(
 		    select (c_price*ea) as total 
-		    from profitview where h_No = #{hNo}
+		    from payview where h_No = #{hNo}
 		    <![CDATA[
-		     and b_req_date > TO_DATE(#{startDate}) and b_req_date < TO_DATE(#{endDate})
+		     and pay_date > TO_DATE(#{startDate}) and pay_date < TO_DATE(#{endDate}) and refund='payed'
 		    ]]>
 		)
 	</select>
