@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gr.ssgb.common.PaymentSearchVO;
+import com.gr.ssgb.order.model.OrderVO;
 
 @Service
 public class PaymentListServiceImpl implements PaymentListService{
@@ -33,8 +34,8 @@ public class PaymentListServiceImpl implements PaymentListService{
    }
 
    @Override
-   public int deletePayment(String paylistNo) {
-      return paymentListDao.deletePayment(paylistNo);
+   public int deletePayment(OrderVO orderVo) {
+      return paymentListDao.deletePayment(orderVo);
    }
 
    @Override

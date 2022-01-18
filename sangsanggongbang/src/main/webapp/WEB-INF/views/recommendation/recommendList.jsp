@@ -15,7 +15,7 @@
 	</c:when>
 	<c:otherwise>
 		<%@ include file="../inc/new_top_user.jsp"%>
-	</c:otherwise>
+	</c:otherwise> 
 </c:choose>
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 <script

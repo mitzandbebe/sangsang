@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gr.ssgb.common.PaymentSearchVO;
+import com.gr.ssgb.order.model.OrderVO;
 
 public interface PaymentListService {
 
@@ -13,7 +14,7 @@ public interface PaymentListService {
 
 	public Map<String, Object> selectByNo(PaymentSearchVO paymentSearchVo);
 
-	public int deletePayment(String paylistNo);
+	public int deletePayment(OrderVO orderVo);
 
 	public List<Map<String, Object>> selectRefundByNo(PaymentSearchVO paymentSearchVo);
 

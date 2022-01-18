@@ -130,10 +130,9 @@
 					</div>
 
 					<ul class="navbar-nav navbar-nav-hover justify-content-center">
-					<!-- 첫번째 탭 -->
+						<!-- 첫번째 탭 -->
 						<li class="nav-item dropdown">
-						<!-- 드랍다운 없이 탭자체에 링크 걸거면 바로밑줄 #에다! -->
-						<a href="#"
+							<!-- 드랍다운 없이 탭자체에 링크 걸거면 바로밑줄 #에다! --> <a href="#"
 							id="supportDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
 								class="nav-link-inner-text mr-1">회원관리</span> <i
@@ -144,7 +143,7 @@
 								<div class="col-auto px-0">
 									<div class="list-group list-group-flush">
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/memberInquiry/memberList'/>" 
+										<a href="<c:url value='/memberInquiry/memberList'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-secondary"><i
 												class="fas fa-file-alt"></i></span> -->
@@ -154,7 +153,7 @@
 											</div>
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/memberInquiry/hostList'/>" 
+										<a href="<c:url value='/memberInquiry/hostList'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-primary"><i
 												class="fas fa-microphone-alt"></i></span> -->
@@ -164,7 +163,7 @@
 											</div>
 										</a>
 										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/memberInquiry/banList'/>" 
+										<a href="<c:url value='/memberInquiry/banList'/>"
 											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
 											<!-- <span class="icon icon-md icon-primary"><i
 												class="fas fa-microphone-alt"></i></span> -->
@@ -178,100 +177,7 @@
 							</div>
 						</li>
 						<!-- 두번째 탭 -->
-							<li class="nav-item dropdown">
-							<!-- 드랍다운 없이 탭자체에 링크 걸거면 바로밑줄 #에다! -->
-							<a href="#"
-							id="supportDropdown" class="nav-link dropdown-toggle"
-							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">정산관리</span> <i
-								class="fas fa-angle-down nav-link-arrow"></i>
-						</a>
-							<div class="dropdown-menu dropdown-menu-lg"
-								aria-labelledby="supportDropdown">
-								<div class="col-auto px-0">
-									<div class="list-group list-group-flush">
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/admin/balancing'/>" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-secondary"><i
-												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">정산내역/승인</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div></li>
-						<!-- 세번째 탭 -->
-							<li class="nav-item dropdown">
-							<!-- 드랍다운 없이 탭자체에 링크 걸거면 바로밑줄 #에다! -->
-							<a href="#"
-							id="supportDropdown" class="nav-link dropdown-toggle"
-							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">환불 승인</span> <i
-								class="fas fa-angle-down nav-link-arrow"></i>
-						</a>
-							<div class="dropdown-menu dropdown-menu-lg"
-								aria-labelledby="supportDropdown">
-								<div class="col-auto px-0">
-									<div class="list-group list-group-flush">
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-secondary"><i
-												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="#" target="_blank"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-primary"><i
-												class="fas fa-microphone-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">★★여기에 택스트★★</span>
-												<!-- <span class="small">Looking for answers?</span> -->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div></li>
-						<!-- 네번째 탭 -->
-							<li class="nav-item dropdown">
-						<a href="#"
+						<li class="nav-item dropdown"><a href="#"
 							id="mainPagesDropdown" class="nav-link dropdown-toggle"
 							aria-expanded="false" data-toggle="dropdown"> <span
 								class="nav-link-inner-text mr-1">게시판 관리</span> <i
@@ -286,14 +192,11 @@
 										<ul class="list-style-none mb-4">
 											<!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/notice/noticeList">공지사항 목록</a>
-											</li>
+												href="${pageContext.request.contextPath }/notice/noticeList">공지사항
+													목록</a></li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/notice/noticeWrite">공지사항 작성</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
-											</li>
+												href="${pageContext.request.contextPath }/notice/noticeWrite">공지사항
+													작성</a></li>
 										</ul>
 									</div>
 									<div class="col-6">
@@ -301,11 +204,11 @@
 										<ul class="list-style-none mb-4">
 											<!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/mainevent/eventlist">이벤트 목록</a>
-											</li>
+												href="${pageContext.request.contextPath }/mainevent/eventlist">이벤트
+													목록</a></li>
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/mainevent/eventwrite">이벤트 작성</a>
-											</li>
+												href="${pageContext.request.contextPath }/mainevent/eventwrite">이벤트
+													작성</a></li>
 										</ul>
 									</div>
 									<div class="col-6">
@@ -313,41 +216,25 @@
 										<ul class="list-style-none mb-4">
 											<!-- 정렬 건들지 말 것 -->
 											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
-											</li>
-											<li class="mb-2 megamenu-item"><a class="megamenu-link"
-												href="${pageContext.request.contextPath }/#">★★여기에 택스트★★</a>
+												href="${pageContext.request.contextPath }/recommendation/recommendList">불편사항 목록</a>
 											</li>
 										</ul>
 									</div>
-						<!-- 다섯번째 탭 -->
-							<li class="nav-item dropdown"><a href="#"
-							id="supportDropdown" class="nav-link dropdown-toggle"
-							aria-expanded="false" data-toggle="dropdown"> <span
-								class="nav-link-inner-text mr-1">메일 보내기</span> <i
-								class="fas fa-angle-down nav-link-arrow"></i>
-						</a>
-							<div class="dropdown-menu dropdown-menu-lg"
-								aria-labelledby="supportDropdown">
-								<div class="col-auto px-0">
-									<div class="list-group list-group-flush">
-										<!-- a태그에 href 링크, span태그 사이에 택스트 제외 아무것도 건들지 마세용!!! -->
-										<a href="<c:url value='/mail/mailSend'/>"
-											class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-											<!-- <span class="icon icon-md icon-secondary"><i
-												class="fas fa-file-alt"></i></span> -->
-											<div class="ml-4">
-												<span class="text-dark d-block">메일작성</span>
-												<!-- <span class="small">Examples and guides</span> -->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							</li>
+									<!-- 세번째 탭 -->
+									<li class="nav-item "><a
+										href="<c:url value='/admin/balancing'/>" class="nav-link ">
+											<span class="nav-link-inner-text mr-1"> 정산내역/승인</span>
+									</a></li>
+									<!-- 네번째 탭 -->
+									<li class="nav-item "><a
+										href="<c:url value='/admin/refundList'/>" class="nav-link ">
+											<span class="nav-link-inner-text mr-1"> 환불내역/승인 </span>
+									</a></li>
+									<!-- 다섯번째 탭 -->
+									<li class="nav-item "><a
+										href="<c:url value='/mail/mailSend'/>" class="nav-link ">
+											<span class="nav-link-inner-text mr-1"> 메일 보내기</span>
+									</a></li>
 					</ul>
 				</div>
 				<!-- 탑 우측 버튼들 -->
@@ -367,7 +254,7 @@
 							class="fas fa-user-lock"></i> LOG OUT</a>
 					</c:if>
 					<!-- 로그아웃 끝 -->
-				
+
 
 				</div>
 				<!-- 화면 크기 줄일 때 반응형 네비게이션 바 -->
@@ -391,7 +278,7 @@
 					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_light_without_letter.png"
 					height="35" alt="Logo loader"> <img
 					src="${pageContext.request.contextPath }/resources/assets/img/brand/1230_letter.png"
-					height="35" class="rotate-letter" alt="Letter loader"> 
+					height="35" class="rotate-letter" alt="Letter loader">
 			</div>
 		</div>
 	</main>

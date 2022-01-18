@@ -242,12 +242,11 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../resources/assets/img/group2_photo/kangyubin.jpg"
-						class="card-img-top rounded-top" alt="강유빈">
+						class="card-img-top rounded-top" alt="강유빈" style="height: 462px;">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">강유빈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">CEO</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Kang Yu-bin</span>
+						<p class="card-text my-3">로그인, 회원가입, 회원정보, 채팅,<br> 차트, 회원 결제내역 및 환불,<br> 호스트 탈퇴, 임시 비밀번호</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="mailto:hwaseo0314@naver.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
@@ -257,11 +256,6 @@
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<!-- <li><a href="#" target="_blank"
-								aria-label="instagram social link"
-								class="icon icon-sm icon-instagram"> <span
-									class="fab fa-instagram"></span>
-							</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -269,12 +263,11 @@
 			<div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
 				<div class="card border-light">
 					<img src="../resources/assets/img/group2_photo/ohjunghun.jpg"
-						class="card-img-top rounded-top" alt="오정훈">
+						class="card-img-top rounded-top" alt="오정훈" style="height: 462px;">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">오정훈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Financial</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Oh Jung-hun</span>
+						<p class="card-text my-3">호스트 정산목록<br>클래스 결제 관련파트<br>관리자/호스트 정산현황</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="mailto:wlddj22@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
@@ -300,9 +293,8 @@
 						class="card-img-top rounded-top" alt="배재영">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">배재영</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Sales</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Bae Jae-young</span>
+						<p class="card-text my-3">Q&A<br>유형별 클래스 검색<br>컨텐츠 자료조사</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="mailto:blc2000y@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
@@ -312,11 +304,6 @@
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<!-- <li><a href="#" target="_blank"
-								aria-label="instagram social link"
-								class="icon icon-sm icon-instagram"> <span
-									class="fab fa-instagram"></span>
-							</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -329,9 +316,9 @@
 						class="card-img-top rounded-top" alt="최원정">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">최원정</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Marketing</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Choi Won-jung</span>
+						<p class="card-text my-3">메인이벤트, 클래스 관련 파트,<br>회원 관심클래스, 호스트 마이클래스,<br>클래스 목록 및 메뉴, 리뷰, 회원탈퇴 
+</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 
 							<li><a href="mailto:jung9201@gmail.com" target="_blank" aria-label="email link"
@@ -358,9 +345,8 @@
 						class="card-img-top rounded-top" alt="최수빈">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">최수빈</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Design</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Choi Su-bin</span>
+						<p class="card-text my-3">탑/바텀(멤버, 호스트, 관리자),<br> CSS 총괄, UX/UI Design, 불편사항,<br> FAQ, 고객센터, 회사소개, 이용약관</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="mailto:csb9762@gmail.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
@@ -387,9 +373,9 @@
 						class="card-img-top rounded-top" alt="김준영">
 					<div class="card-body">
 						<h3 class="h4 card-title mb-2">김준영</h3>
-						<span class="card-subtitle text-gray font-weight-normal">Engineering</span>
-						<p class="card-text my-3">Some quick example text to build on
-							the card title and make up the bulk of the card's content.</p>
+						<span class="card-subtitle text-gray font-weight-normal">Kim Jun-young</span>
+						<p class="card-text my-3">공지사항, 블랙리스트 및 참여제한자 설정,<br>멤버/호스트/참여제한자 조회,<br>
+						쪽지, 클래스 이용 회원 목록, 메일 보내기</p>
 						<ul class="list-unstyled d-flex mt-3 mb-0">
 							<li><a href="mailto:qkqkdldy@naver.com" target="_blank" aria-label="email link"
 								class="icon icon-sm icon-emial mr-3"> <span
@@ -401,10 +387,6 @@
 								class="icon icon-sm icon-branch mr-3"> <span
 									class="fas fa-code-branch"></span>
 							</a></li>
-							<!-- <li><a href="#" aria-label="instagram social link"
-								class="icon icon-sm icon-instagram"> <span
-									class="fab fa-instagram"></span>
-							</a></li> -->
 						</ul>
 					</div>
 				</div>

@@ -24,6 +24,10 @@ import com.gr.ssgb.admin.model.ClassRatioVO;
 import com.gr.ssgb.admin.model.MonthVO;
 import com.gr.ssgb.admin.model.NewUserVO;
 import com.gr.ssgb.admin.model.ProfitVO;
+import com.gr.ssgb.common.ConstUtil;
+import com.gr.ssgb.common.PaginationInfo;
+import com.gr.ssgb.common.SearchVO;
+import com.gr.ssgb.order.model.OrderVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -142,6 +146,55 @@ public class AdminController {
 		model.addAttribute("totalCnt", totalCnt);
 		
 		return "admin/adminIndex"; 
+	}
+	
+	@GetMapping("/refundList")
+	public String refundList_get(@ModelAttribute SearchVO searchVo, Model model) {
+		logger.info("환불승인화면");
+		
+		PaginationInfo pagingInfo  = new PaginationInfo();
+	    pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+	    pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+	    pagingInfo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+	      
+	    searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+	    searchVo.setRecordCountPerPage(ConstUtil.RECORD_COUNT);
+		List<Map<String, Object>> list = adminService.selectRefundList(searchVo);
+		logger.info("list.size={}", list.size());
+		int totalRefundCnt = adminService.selectTotalrefund();
+	    pagingInfo.setTotalRecord(totalRefundCnt);
+	    
+	    model.addAttribute("list", list);
+	    model.addAttribute("pagingInfo", pagingInfo);
+		
+		return "admin/refundList";
+	}
+	
+	@GetMapping("/refundAll")
+	public String refund_All(@ModelAttribute SearchVO searchVo, Model model) {
+		logger.info("환불일괄승인처리");
+		
+		int cnt = adminService.updateAllRefund();
+		String msg="승인 실패!", url="/admin/refundList";
+		if(cnt>0) {
+			msg="일괄 승인이 정상적으로 완료되었습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
+	}
+	@PostMapping("/refundCancle")
+	public String refundCancle(@ModelAttribute OrderVO orderVo, Model model) {
+		logger.info("환불취소 처리");
+		
+		int cnt = adminService.cancleRefund(orderVo);
+		String msg="취소 실패!", url="/admin/refundList";
+		if(cnt>0) {
+			msg="1건의 환불신청이 반려되었습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		return "common/message";
 	}
 
 }

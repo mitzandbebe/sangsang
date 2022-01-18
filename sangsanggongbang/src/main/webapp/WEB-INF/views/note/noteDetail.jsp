@@ -173,7 +173,7 @@
 											class="card bg-white border-light flex-lg-row align-items-center no-gutters p-4">
 											<section style="width: 100%">
 												<div>
-													<p>보낸사람 : ${vo.rNickname }</p>
+													<p>보낸사람 : ${vo.sNickname }</p>
 												</div>
 												<div>
 													<span> 받은시간 : <fmt:formatDate

@@ -4,7 +4,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 탑삽입해야함 -->
-<%@include file="../inc/top.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/new_top_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/new_top_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/new_top_user.jsp"%>
+	</c:otherwise>
+</c:choose>
 <style type="text/css">
 .card.border-light.p-md-2 {
     margin-top: 100px;
@@ -22,7 +36,7 @@
 					height="35" class="rotate-letter" alt="Letter loader">
 			</div>
 		</div>
-	<!-- 로딩창 -->
+	<!-- 로딩창 --> 
 <form name="frmDelete" method="post" 
 	action="<c:url value='/recommendation/recommendDelete'/>" >
 	<input type="hidden" name="recoNo" value="${param.recoNo}">
@@ -78,4 +92,17 @@
 
 </script>
 <!-- 푸터삽입해야함 -->
-<%@include file="../inc/bottom.jsp" %>
+<c:choose>
+	<c:when test="${!empty sessionScope.hId }">
+		<%@ include file="../inc/bottom_host.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.mId }">
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:when>
+	<c:when test="${!empty sessionScope.adId }">
+		<%@ include file="../inc/bottom_admin.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="../inc/bottom.jsp"%>
+	</c:otherwise>
+</c:choose>

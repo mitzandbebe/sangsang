@@ -189,8 +189,8 @@
 											type="text" id="sendPeople" name="rNickname"
 											placeholder="닉네임을 입력해주세요" value="" style="width:70%;">
 										<br> <br>
-										<textarea style="height: auto; width: 100%;"
-											name="noteContent" id="noteContent" style="resize: none"></textarea>
+										<textarea style="height: auto; width: 96%;resize:none;"
+											name="noteContent" id="noteContent" ></textarea>
 										<div id="cnt">(0 / 1000)자</div>
 										<br>
 
