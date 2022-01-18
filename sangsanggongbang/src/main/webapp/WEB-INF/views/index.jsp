@@ -167,7 +167,7 @@
         </section> -->
 			<br> <br>
 			<c:import url="/mainevent/eventmain"></c:import>
-
+			<c:import url="/class/classlist"></c:import>
 			<!-- 여기가 거기다 이말이야 그 카테고리별 검색 ㅋㅋ -->
 			<div class="row mt-6">
 				<div class="col-12">
@@ -362,7 +362,7 @@
 					<!-- End of Card -->
 				</div>
 			</div>
-			<c:import url="/class/classlist"></c:import>
+
 		</div>
 		</div>
 </section>
