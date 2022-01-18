@@ -142,6 +142,7 @@ public class MemberController {
 			 session.setAttribute("mFilename", memberVo.getmFilename());
 			 session.setAttribute("mNickname", memberVo.getmNickname());
 			 session.setAttribute("uOrh", "u");
+			 session.setAttribute("mNo", memberVo.getmNo());
 			 
 			 Cookie ck = new Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
 			 ck.setMaxAge(1000*24*60*60); 
@@ -171,6 +172,7 @@ public class MemberController {
 				session.setAttribute("mFilename", memberVo.getmFilename());
 				session.setAttribute("mNickname", memberVo.getmNickname());
 				session.setAttribute("uOrh", "u");
+				session.setAttribute("mNo", memberVo.getmNo());
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
 			}	
@@ -220,6 +222,7 @@ public class MemberController {
 					session.setAttribute("snsCheck", snsCheck);
 					session.setAttribute("mNickname", memberVo.getmNickname());
 					session.setAttribute("uOrh", "u");
+					session.setAttribute("mNo", memberVo.getmNo());
 					
 					Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 					ck.setPath("/");
@@ -249,6 +252,7 @@ public class MemberController {
 				session.setAttribute("snsCheck", snsCheck);
 				session.setAttribute("mNickname", vo2.getmNickname());
 				session.setAttribute("uOrh", "u");
+				session.setAttribute("mNo", vo2.getmNo());
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -280,7 +284,7 @@ public class MemberController {
 				session.setAttribute("uOrh", "u");
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mNickname", vo2.getmNickname());
-				
+				session.setAttribute("mNo", vo2.getmNo());
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -392,12 +396,14 @@ public class MemberController {
 			session.removeAttribute("h_snsCheck");
 			session.removeAttribute("hNickname");
 			session.removeAttribute("uOrh");
+			
 			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
 			session.setAttribute("mId", vo2.getmId());
 			session.setAttribute("snsCheck", snsCheck);
 			session.setAttribute("uOrh", "u");
 			session.setAttribute("mFilename", vo2.getmFilename());
 			session.setAttribute("mNickname", vo2.getmNickname());
+			session.setAttribute("mNo", vo2.getmNo());
 		}else{
 			msg="결제정보 입력 실패!";
 		}
