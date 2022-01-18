@@ -154,7 +154,7 @@ $(function() {
 	<!-- 엑셀 다운로드 -->
 	<a class="btn btn-sm btn-outline-dark" id="excelDown"
 		style="font-weight: bold; margin-left: 10%"
-		href="<c:url value="/admin/excel/download"/>"> 엑셀다운로드</a> <br>
+		href="<c:url value="/dashboard/host/excel/download"/>"> 엑셀다운로드</a> <br>
 </div>
 <div class="container">
 	<div class="row">
