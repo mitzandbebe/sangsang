@@ -22,7 +22,7 @@
         <div class="card-body p-2">
             <div class="profile-thumbnail small-thumbnail mx-auto">
             	<c:if test="${!empty sessionScope.mFilename }">
-                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
+                	<img src="<c:url value='/resources/file_upload/${sessionScope.mFilename }'/>" style = "width:129; height:129;"class="card-img-top rounded-circle border-white" alt="Joseph Portrait"
                 	onerror="this.src='${sessionScope.mFilename }'">
                 </c:if>
                 <c:if test="${empty sessionScope.mFilename }">

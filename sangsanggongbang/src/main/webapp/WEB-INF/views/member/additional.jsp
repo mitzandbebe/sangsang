@@ -84,49 +84,9 @@
 				alert('우편번호 검색 시 주소는 자동으로 입력됩니다.');
 				$('#address').focus();
 				event.preventDefault();
-			}else if ($('#mAddressDetail').val().length<1){
+			}else if ($('#addressDetail').val().length<1){
 				alert('상세주소를 입력하세요.');
-				$('#mAddressDetail').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val().length<1){
-				alert('결제유형을 입력하세요.');
-				$('#pType').focus();
-				event.preventDefault();
-			}else if ($('#nCard').val()<1){
-				alert('결제수단 별칭을 입력하세요.');
-				$('#nCard').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='자동이체'&& $('#bankName').val().length<1){
-				alert('은행명을 선택하세요.');
-				$('#bankName').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='자동이체'&& $('#accNum').val().length<1){
-				alert('계좌번호를 입력하세요.');
-				$('#accNum').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && $('#cardCom option:selected').val()==''){
-				alert('카드사를 선택하세요.');
-				$('#cardCom').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum1').val())){
-				alert('카드번호는 숫자만 입력가능합니다.');
-				$('#cardNum1').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum2').val())){
-				alert('카드번호는 숫자만 입력가능합니다.');
-				$('#cardNum2').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum3').val())){
-				alert('카드번호는 숫자만 입력가능합니다.');
-				$('#cardNum3').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && !validate_phone($('#cardNum4').val())){
-				alert('카드번호는 숫자만 입력가능합니다.');
-				$('#cardNum4').focus();
-				event.preventDefault();
-			}else if ($('#pType option:selected').val()=='카드' && $('#cardNum').val().length<16){
-				alert('카드번호 입력을 완료하세요.');
-				$('#cardNum1').focus();
+				$('#addressDetail').focus();
 				event.preventDefault();
 			}else if(!$('#termChk2').is(':checked')){
 				alert('이용약관에 동의해야합니다.');
