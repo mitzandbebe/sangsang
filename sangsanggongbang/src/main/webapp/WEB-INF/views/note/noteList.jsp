@@ -72,7 +72,7 @@
 									class="d-flex list-group-item list-group-item-action">환불내역조회<span
 									class="icon icon-xs ml-auto"><span
 										class="fas fa-chevron-right"></span></span>
-								</a> <a href="<c:url value='/member/interestClass'/>"
+								</a> <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo}'/>"
 									class="d-flex list-group-item list-group-item-action ">내
 									관심클래스<span class="icon icon-xs ml-auto"><span
 										class="fas fa-chevron-right"></span></span>

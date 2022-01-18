@@ -27,7 +27,7 @@
                 <a href="<c:url value='/member/memberEditChkPwd'/>" class="d-flex list-group-item list-group-item-action active">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="d-flex list-group-item list-group-item-action">환불내역조회<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/interestClass'/>" class="d-flex list-group-item list-group-item-action ">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo}'/>" class="d-flex list-group-item list-group-item-action ">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"	class="d-flex list-group-item list-group-item-action border-0">쪽지함<span class="icon icon-xs ml-auto"><span	class="fas fa-chevron-right"></span></span>	</a>
                 <a href="<c:url value='/member/memberEditChkPwd2'/>" class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
             </div>
@@ -43,7 +43,7 @@
                     <a href="<c:url value='/member/memberEditChkPwd'/>" class="list-group-item list-group-item-action border-0 active">회원정보 수정</a>
                     <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="list-group-item list-group-item-action border-0   ">내 결제내역</a>
                     <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-none d-sm-block border-0 ">환불내역조회</a>
-                    <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
+                    <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo}'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                     <div class="btn-group dropleft">
@@ -55,7 +55,7 @@
                         </button>
                         <div class="dropdown-menu">
                            <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-sm-none border-0 ">환불내역조회</a>
-                            <a href="<c:url value='/member/interestClass'/>" class="list-group-item list-group-item-action d-md-none border-0 ">내 관심클래스</a>
+                            <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo}'/>" class="list-group-item list-group-item-action d-md-none border-0 ">내 관심클래스</a>
                             <a href="<c:url value='/member/memberEditChkPwd2'/>" class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
                         </div>
                     </div>

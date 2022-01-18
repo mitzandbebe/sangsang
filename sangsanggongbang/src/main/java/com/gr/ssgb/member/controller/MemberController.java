@@ -677,7 +677,8 @@ public class MemberController {
 		logger.info("관심클래스 보기");
 		
 		String mId=(String) session.getAttribute("mId");
-		mNo= memberService.selectMno(mId);
+		//mNo= memberService.selectMno(mId);
+		mNo=(int) session.getAttribute("mNo");
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -696,6 +697,7 @@ public class MemberController {
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("mNo",mNo);
+		model.addAttribute("mId",mId);
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("interest",interest);
 		return "member/interestClass";
