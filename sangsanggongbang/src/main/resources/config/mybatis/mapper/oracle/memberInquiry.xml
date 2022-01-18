@@ -141,4 +141,8 @@
 		select * from classuserview
 		where h_no=#{hNo} and m_Id like '%'
 	</select>
+	<select id="selectTotalClassUser" parameterType="ClassUserVo" resultType="int">
+		select count(*) from classuserview
+		where h_no=#{hNo} and m_Id like '%'
+	</select>
 </mapper>

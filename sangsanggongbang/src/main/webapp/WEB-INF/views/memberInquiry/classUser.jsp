@@ -229,7 +229,8 @@
 												<tr>
 													<th scope="col">클래스 이름</th>
 													<th scope="col">늘찬 아이디</th>
-													<th scope="col">늘찬<br> 닉네임</th>
+													<th scope="col">늘찬<br> 닉네임
+													</th>
 													<th scope="col">시간</th>
 													<th scope="col">블랙리스트</th>
 												</tr>
@@ -259,7 +260,8 @@
 																		<a id="blackinsertButton"
 																			href="<c:url value='/blackList/blackListInsert?mNo=${map["M_NO"] }&hId=${sessionScope.hId}'/>">
 																			<i data-toggle="tooltip" data-placement="top"
-																			title="블랙리스트등록"> <input type="button" value="블랙리스트등록"></i>
+																			title="블랙리스트등록"> <input type="button"
+																				value="블랙리스트등록"></i>
 																		</a>
 																	</c:otherwise>
 																</c:choose>
@@ -270,51 +272,35 @@
 										</c:if>
 										</tbody>
 									</table>
-
-
-									<%-- 		<div class="row">
-			<div class="col-lg-12 mb-5">
-				<div class="col mt-3 d-flex justify-content-center">
-					<div style="text-align: center;">
-						<nav aria-label="Page navigation example">
-								<br>
-							<ul class="pagination">
-								<!-- 이전블럭 -->
-								<c:if test="${pagingInfo.firstPage>1 }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.firstPage -1 }'/> ">
-											<i class="fas fa-angle-double-left"></i>
-									</a></li>
-								</c:if>
-								<!-- 페이징처리시작 -->
-								<c:forEach var="i" begin="${pagingInfo.firstPage }"
-									end="${pagingInfo.lastPage }">
-									<c:if test="${i==pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											style="background-color: #9FB9AE; color: #ffffff;"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-									<c:if test="${i!=pagingInfo.currentPage }">
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/mainevent/eventlist?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
-										</li>
-									</c:if>
-								</c:forEach>
-								<!-- 다음블럭으로 이동 -->
-								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage }">
-									<li class="page-item"><a class="page-link"
-										href="<c:url value='/mainevent/eventlist?currentPage=${pagingInfo.lastPage +1 }'/> ">
-											<i class="fas fa-angle-double-right"></i>
-									</a></li>
-								</c:if>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div> --%>
 								</form>
+							<div style="text-align:center;margin-left: 42%;">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<c:if test="${PagingInfo.firstPage>1 }">
+											<li class="page-item"><a class="page-link" id="mPaging"
+												href="<c:url value='/memberInquiry/classUser?hId=${sessionScope.hId}&currentPage=${PagingInfo.firstPage-1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">Previous</a>
+											</li>
+										</c:if>
+										<c:forEach var="i" begin="${PagingInfo.firstPage}"
+											end="${PagingInfo.lastPage }">
+											<c:if test="${i==PagingInfo.currentPage }">
+												<li class="page-item active"><a class="page-link"
+													href="#">${i }</a>
+											</c:if>
+											<c:if test="${i!=PagingInfo.currentPage }">
+												<li class="page-item"><a class="page-link" id="mPaging"
+													href="<c:url value='/memberInquiry/classUser?hId=${sessionScope.hId}&currentPage=${i}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">
+														${i }</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${PagingInfo.lastPage < PagingInfo.totalPage }">
+											<li class="page-item"><a class="page-link" id="mPaging"
+												href="<c:url value='/memberInquiry/classUser?hId=${sessionScope.hId}&currentPage=${PagingInfo.lastPage+1}&searchCondition=${param.searchCondition}&searchKeyword=${param.searchKeyword}'/>">Next</a>
+											</li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
 							</div>
 						</div>
 					</div>
