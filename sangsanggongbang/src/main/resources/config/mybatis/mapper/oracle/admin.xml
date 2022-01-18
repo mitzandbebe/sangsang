@@ -15,7 +15,7 @@
 		    select (c_price * fpnum) as total 
 		    from profitview
 		    <![CDATA[
-		    where c_start_time > TO_DATE(#{startDate}) and c_start_time < TO_DATE(#{endDate})
+		    where b_req_date > TO_DATE(#{startDate}) and b_req_date < TO_DATE(#{endDate})
 		    ]]>
 		)
 	</select>
