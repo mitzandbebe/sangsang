@@ -141,7 +141,8 @@ public class HostController {
 				}
 			}
 		}else {
-			int result=hostService.checkIdPwd(vo.gethId(), vo.gethPwd());
+			MemberVO memvo = memberService.selectMemberById(vo.gethId());
+			int result=hostService.checkIdPwd(vo.gethId(), memvo.getPwd());
 			
 			if(result==HostService.LOGIN_OK) {
 				session.removeAttribute("mId");
