@@ -12,13 +12,12 @@
 		<div class="row justify-content-center mb-4 mb-xl-5">
 			<div class="col-12 col-xl-10 text-center">
 				<!-- 글씨 넣을 수 이뜸 -->
-				<h1 class="display-2">Find Your Class.</h1>
-				항상 생각해온 나만의 클래스
-				<p class="lead text-muted mt-4 px-md-6">
-					<!-- 글씨 시작~.~ -->
-					Here's the <span class="font-weight-bold">class</span>   you've always thought of.
-					 Make your day  <span class="font-weight-bold">special</span>.
-					<!--  글씨 끝~.~-->
+				<h1 class="display-2">Find Your Class</h1>
+                상상공방을 진행하시는 분들을 [늘솜], 참여하시는 분을 [늘찬]이라고 칭하고 있습니다.
+                <p class="lead text-muted mt-4 px-md-6">
+                    <!-- 글씨 시작~.~ -->
+                    <span class="font-weight-bold">늘솜</span>은 순우리말로 '늘 솜씨가 좋은'이라는 뜻이예요.<br>
+                    <span class="font-weight-bold">늘찬</span>은 '능란하고 재빠르다'는 의미의 형용사로 능력이 있으며 옹골차다는 뜻이에요.
 				</p>
 			</div>
 		</div>
@@ -58,7 +57,7 @@
 									</div>
 									<input type="text" name="cName"
 										   class="form-control autocomplete"
-										   placeholder="Find Your Class Name" required>
+										   placeholder="항상 생각해온 나만의 클래스" required>
 								</div>
 							</div>
 						</div>
@@ -69,7 +68,7 @@
 										<span class="input-group-text"><i class="fas fa-tags"></i></span>
 									</div>
 									<select class="form-control" name="categoryCode">
-										<option value="">Category</option>
+										<option value="">카테고리</option>
 										<c:forEach var="item" items="${clist}">
 											<option value="${item.categoryCode}">${item.categoryName}</option>
 										</c:forEach>
@@ -84,7 +83,7 @@
 										<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
 									</div>
 									<select class="form-control" name="lAddress">
-										<option value="">Area</option>
+										<option value="">지역</option>
 										<c:forEach var="item" items="${area}">
 											<option value="${item}">${item}</option>
 										</c:forEach>
