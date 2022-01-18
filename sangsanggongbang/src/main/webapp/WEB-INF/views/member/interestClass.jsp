@@ -98,7 +98,7 @@ var InputImage =
                 <a href="<c:url value='/member/memberEditChkPwd'/>" class="d-flex list-group-item list-group-item-action">회원정보 수정<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="d-flex list-group-item list-group-item-action ">내 결제내역<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="d-flex list-group-item list-group-item-action">환불내역조회<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
-                <a href="<c:url value='/member/interestClass?mNo=${mNo }'/>" class="d-flex list-group-item list-group-item-action active">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
+                <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo }'/>" class="d-flex list-group-item list-group-item-action active">내 관심클래스<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
                 <a href="<c:url value='/note/noteList?mId=${sessionScope.mId }'/>"	class="d-flex list-group-item list-group-item-action border-0">쪽지함<span class="icon icon-xs ml-auto"><span	class="fas fa-chevron-right"></span></span>	</a>
                 <a href="<c:url value='/member/memberEditChkPwd2'/>" class="d-flex list-group-item list-group-item-action  border-0">회원탈퇴<span class="icon icon-xs ml-auto"><span class="fas fa-chevron-right"></span></span> </a>
             </div>
@@ -115,7 +115,7 @@ var InputImage =
                     <a href="<c:url value='/member/memberEditChkPwd'/>" class="list-group-item list-group-item-action border-0 ">회원정보 수정</a>
                     <a href="<c:url value='/dashboard/user/payment/myPayment'/>" class="list-group-item list-group-item-action border-0   ">내 결제내역</a>
                     <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-none d-sm-block border-0 ">환불내역조회</a>
-                    <a href="<c:url value='/member/interestClass?mNo=${mNo }'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
+                    <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo }'/>" class="list-group-item list-group-item-action d-none d-md-block border-0 active">내 관심클래스</a>
                 </div>
                 <div class="col-2 d-flex justify-content-center">
                     <div class="btn-group dropleft">
@@ -127,7 +127,7 @@ var InputImage =
                         </button>
                         <div class="dropdown-menu">
                             <a href="<c:url value='/dashboard/user/payment/refundList'/>" class="list-group-item list-group-item-action d-sm-none border-0 ">환불내역조회</a>
-                            <a href="<c:url value='/member/interestClass?mNo=${mNo }'/>" class="list-group-item list-group-item-action d-md-none border-0 active">내 관심클래스</a>
+                            <a href="<c:url value='/member/interestClass?mNo=${sessionScope.mNo }'/>" class="list-group-item list-group-item-action d-md-none border-0 active">내 관심클래스</a>
                             <a href="<c:url value='/member/memberEditChkPwd2'/>" class="list-group-item list-group-item-action border-0 ">회원탈퇴</a>
                         </div>
                     </div>
@@ -202,7 +202,7 @@ var InputImage =
 															<!-- 이전블럭 -->
 															<c:if test="${pagingInfo.firstPage>1 }">
 																<li class="page-item"><a class="page-link"
-																	href="<c:url value='/member/interestClass?currentPage=${pagingInfo.firstPage -1 }'/> ">
+																	href="<c:url value='/member/interestClass?mNo=${mNo }&currentPage=${pagingInfo.firstPage -1 }'/> ">
 																		<i class="fas fa-angle-double-left"></i>
 																</a></li>
 															</c:if>
@@ -212,12 +212,12 @@ var InputImage =
 																<c:if test="${i==pagingInfo.currentPage }">
 																	<li class="page-item"><a class="page-link"
 																		style="background-color: #9FB9AE; color: #ffffff;"
-																		href="<c:url value='/member/interestClass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+																		href="<c:url value='/member/interestClass?mNo=${mNo }&currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 																	</li>
 																</c:if>
 																<c:if test="${i!=pagingInfo.currentPage }">
 																	<li class="page-item"><a class="page-link"
-																		href="<c:url value='/member/interestClass?currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
+																		href="<c:url value='/member/interestClass?mNo=${mNo }&currentPage=${i}" onclick="pageFunc(${i})'/> ">${i }</a>
 																	</li>
 																</c:if>
 															</c:forEach>
@@ -225,7 +225,7 @@ var InputImage =
 															<c:if
 																test="${pagingInfo.lastPage < pagingInfo.totalPage }">
 																<li class="page-item"><a class="page-link"
-																	href="<c:url value='/member/interestClass?currentPage=${pagingInfo.lastPage +1 }'/> ">
+																	href="<c:url value='/member/interestClass?mNo=${mNo }&currentPage=${pagingInfo.lastPage +1 }'/> ">
 																		<i class="fas fa-angle-double-right"></i>
 																</a></li>
 															</c:if>
