@@ -103,7 +103,8 @@
 									</div> --%>
 									<div class="col-md-6 mb-3">
 										<div class="form-group">
-											<label for="category">클래스 시간</label> <select
+											<label for="category">클래스 시간</label>
+											 <select
 												class="custom-select" id="cTime" name="cTime" required>
 												<option disabled="disabled" selected="selected" value="">
 													시간을 선택해주세요</option>
