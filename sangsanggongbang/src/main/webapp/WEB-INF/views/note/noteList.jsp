@@ -40,7 +40,14 @@
 									alt="Joseph Portrait" style = "width:129px; height:129px;"
 									onerror="this.src='${sessionScope.mFilename }'">
 							</c:if>
-							<c:if test="${empty sessionScope.mFilename }">
+							<c:if test="${!empty sessionScope.hFilename }">
+								<img
+									src="<c:url value='/resources/file_upload/${sessionScope.hFilename }'/>"
+									class="card-img-top rounded-circle border-white"
+									alt="Joseph Portrait" style = "width:129px; height:129px;"
+									onerror="this.src='${sessionScope.hFilename }'">
+							</c:if>
+							<c:if test="${empty sessionScope.mFilename &&  empty sessionScope.hFilename}">
 								<img src="<c:url value='/resources/file_upload/default.png'/>"
 									class="card-img-top rounded-circle border-white"
 									alt="Joseph Portrait">
