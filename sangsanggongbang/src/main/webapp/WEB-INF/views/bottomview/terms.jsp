@@ -206,15 +206,15 @@
 						</div>
 					</div>
 				<div class="card card-sm card-body border-soft mb-0">
-					<a href="#panel-copyright" data-target="#panel-copyright"
+					<a href="#panel-copyright1" data-target="#panel-copyright1"
 						class="accordion-panel-header" data-toggle="collapse"
 						role="button" aria-expanded="false"
-						aria-controls="panel-copyright"> <span
+						aria-controls="panel-copyright1"> <span
 						class="icon-title h6 mb-0 font-weight-bold"> <span
 							class="font-weight-bold">제8조 (이용제한 등)</span></span> <span
 						class="icon"><i class="fas fa-plus"></i></span>
 					</a>
-					<div class="collapse" id="panel-copyright">
+					<div class="collapse" id="panel-copyright1">
 						<div class="pt-3">
 							<p>1. 회사는 늘찬이 다음 각 호의 사유에 해당하는 경우 경고 조치를 통해 시정을 요구하고, 지체 없이 하자가 치유되지 않는 경우 늘솜에 대한 위반사항 게시, 일시정지 또는 영구이용정지 등으로 서비스의 이용을 단계적으로 제한할 수 있습니다. 다만, 아래 제3호 내지 제10호의 경우에는 회복할 수 없는 손해를 방지하기 위하여 늘찬에 대한 별도 경고 없이 즉시 일시정지 조치를 할 수 있으며, 중대한 범죄와 관련된다고 판단되는 경우 민형사상 조치와 함께 늘찬자격의 영구이용정지 조치를 통해 서비스 이용을 제한할 수 있습니다.
 <br>(1)	가입 신청 시 허위 내용을 등록한 경우
@@ -238,14 +238,14 @@
 					</div>
 			</div>
 			<div class="card card-sm card-body border-soft mb-0">
-				<a href="#panel-copyright" data-target="#panel-copyright"
+				<a href="#panel-copyright2" data-target="#panel-copyright2"
 					class="accordion-panel-header" data-toggle="collapse" role="button"
-					aria-expanded="false" aria-controls="panel-copyright"> <span
+					aria-expanded="false" aria-controls="panel-copyright2"> <span
 					class="icon-title h6 mb-0 font-weight-bold"> <span
 						class="font-weight-bold">제9조 (늘찬의 이메일 및 비밀번호에 대한 의무)</span></span> <span
 					class="icon"><i class="fas fa-plus"></i></span>
 				</a>
-				<div class="collapse" id="panel-copyright">
+				<div class="collapse" id="panel-copyright2">
 					<div class="pt-3">
 						<p>1. 늘찬은 자신의 이메일과 비밀번호에 관한 관리책임이 있으며 이를 소홀히 하여 발생한 모든 민형〮사상의 책임은 회사의 고의 또는 중과실이 없는 한 늘찬 자신에게 있습니다. 늘찬은 자신의 이메일 및 비밀번호를 제3자에게 알려주어서는 안되며, 늘찬이 이메일과 비밀번호를 제3자에게 알려줌으로써 발생한 손해에 대해서 회사는 책임을 지지 않습니다. 이메일과 비밀번호가 늘찬의 의사에 반하여 유출되거나 기타의 사정으로 제3자가 사용하고 있음을 인지한 경우 즉시 비밀번호를 변경하여야 하고, 회사에 통보한 다음 회사의 안내를 따라야 합니다. 이를 소홀히 하여 발생한 모든 책임은 늘찬이 집니다.
 <br>2. 늘찬은 자신의 이메일 및 비밀번호를 제3자에게 이용하게 해서는 안됩니다.
@@ -256,14 +256,14 @@
 				</div>
 			</div>
 		<div class="card card-sm card-body border-soft mb-0">
-			<a href="#panel-copyright" data-target="#panel-copyright"
+			<a href="#panel-copyright3" data-target="#panel-copyright3"
 				class="accordion-panel-header" data-toggle="collapse" role="button"
-				aria-expanded="false" aria-controls="panel-copyright"> <span
+				aria-expanded="false" aria-controls="panel-copyright3"> <span
 				class="icon-title h6 mb-0 font-weight-bold"> <span
 					class="font-weight-bold">제10조 (늘찬의 의무)</span></span> <span
 				class="icon"><i class="fas fa-plus"></i></span>
 			</a>
-			<div class="collapse" id="panel-copyright">
+			<div class="collapse" id="panel-copyright3">
 				<div class="pt-3">
 					<p>
 1. 늘찬은 관계법령, 이 약관의 규정, 이용안내 등 회사가 통지하는 사항을 준수하여야 하며, 기타 타인의 권익을 침해하거나, 회사 업무에 방해되는 행위를 하여서는 안됩니다.
@@ -297,14 +297,14 @@
 		</div>
 	</div>
 	<div class="card card-sm card-body border-soft mb-0">
-		<a href="#panel-copyright" data-target="#panel-copyright"
+		<a href="#panel-copyright4" data-target="#panel-copyright4"
 			class="accordion-panel-header" data-toggle="collapse" role="button"
-			aria-expanded="false" aria-controls="panel-copyright"> <span
+			aria-expanded="false" aria-controls="panel-copyright4"> <span
 			class="icon-title h6 mb-0 font-weight-bold"> <span
 				class="font-weight-bold">제11조 (회사의 의무)</span></span> <span
 			class="icon"><i class="fas fa-plus"></i></span>
 		</a>
-		<div class="collapse" id="panel-copyright">
+		<div class="collapse" id="panel-copyright4">
 			<div class="pt-3">
 				<p>1. 회사는 관련법령과 이 약관이 금지하거나 공공질서, 미풍양속에 반하는 행위를 하지 않으며, 이 약관이 정하는 바에 따라 지속적이고 안정적으로 서비스를 제공하기 위하여 최선을 다하여야 합니다.
 <br>2. 회사는 늘찬이 안전하게 서비스를 이용할 수 있도록 늘찬의 개인정보(신용정보 포함) 보호를 위한 보안 시스템을 갖추어야 하며 개인정보 처리방침을 공시하고 준수합니다.
@@ -315,14 +315,14 @@
 	</div>
 </div>
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright5" data-target="#panel-copyright5"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright5"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제12조 (회사가 제공하는 서비스에 대한 약관 및 이용조건)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright5">
 		<div class="pt-3">
 			<p>1. 회사는 통신판매중개자로서 늘찬 상호간의 거래를 위한 온라인 거래장소를 제공할 뿐이므로 물품을 판매하거나 구매하고자 하는 늘찬을 대리하지 않습니다. 또한, 회사의 어떠한 행위도 전문가 또는 의뢰인을 대리하는 행위로 간주되지 않습니다.
 <br>2. 회사는 중개서비스를 통하여 이루어지는 늘찬간의 판매 및 구매와 관련하여 판매의사 또는 구매의사의 존부 및 진정성, 등록물품의 품질, 완전성, 안전성, 적법성 및 타인의 권리에 대한 비침해성, 늘찬이 입력하는 정보 및 그 정보를 통하여 링크된 URL에 게재된 자료의 진실성 등 일체에 대하여 보증하지 아니하며, 이와 관련한 일체의 위험과 책임은 해당 늘찬이 부담해야 합니다.
@@ -333,14 +333,14 @@
 </div>
 
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright6" data-target="#panel-copyright6"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright6"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제12조의2 (사용후기의 작성 등)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright6">
 		<div class="pt-3">
 			<p>1. 회사는 늘찬에게 서비스의 사용 또는 경험 후 의견(이하 “사용후기”)을 작성해 줄 것을 요청할 수 있습니다. 이 경우 사용후기는 실제 사용한 늘찬에 한하여 해당 서비스에 대하여 작성할 수 있으며, 공개를 원칙으로 합니다. 단, 늘찬이 자신이 사용한 서비스에 대한 사용후기를 게시하였다가 삭제한 경우에는, 동일 서비스를 다시 이용하지 않는 한 재차 사용후기를 작성할 수 없습니다.
 <br>2. 전항의 사용후기 및 서비스 이용에 대한 만족도 평가 등은 전적으로 평가당사자인 각 늘찬의 책임 하에 이루어지며, 회사는 늘찬이 게재한 사용후기, 평가, 사진 등을 포함한 정보, 자료, 사실의 신뢰도 또는 정확성에 대하여 책임지지 않습니다. 
@@ -360,14 +360,14 @@
 </div>
 
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright7" data-target="#panel-copyright7"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright7"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제12조의3 (사용후기의 이용 등)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright7">
 		<div class="pt-3">
 			<p>1. 회사는 제12조의2에 따른 사용후기 작성 당시 당해 늘찬이 명시적인 반대의 의사를 통보하지 않는 한 게시, 전달, 공유 등의 목적으로 서비스와 관련된 목적 범위 내에서 사용후기를 무상으로 사용(사이트 등에 대한 복제, 배포, 전시 등 지식재산권 관련 법령에 따른 사용방법을 포함함)할 수 있으며, 늘찬은 이에 동의한 것으로 봅니다.
 <br>2. 전항의 경우 늘찬은 명시적인 반대의 의사를 통보하지 않는 한 회사로 하여금 사용 목적에 따라 본질적인 내용에 변경을 가하지 않는 범위 내에서 사용후기를 일부 수정, 편집하여 사용할 수 있는 권한(이용후기들을 해당 이용 서비스 페이지와 별도의 페이지로 편집하여 게시하는 경우를 포함함)을 부여한 것으로 봅니다.
@@ -377,14 +377,14 @@
 	</div>
 </div>
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright8" data-target="#panel-copyright8"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright8"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제13조 (서비스 이용시간)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright8">
 		<div class="pt-3">
 			<p>서비스의 이용은 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴 1일 24시간을 원칙으로 합니다. 다만 정기점검 등의 필요로 회사가 정한 날 또는 시간은 제외됩니다.
 			</p>
@@ -392,14 +392,14 @@
 	</div>
 </div>
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright9" data-target="#panel-copyright9"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright9"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제14조 (서비스 제공의 중지)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright9">
 		<div class="pt-3">
 			<p>1. 회사는 다음 각 호에 해당하는 경우 서비스 제공을 중지할 수 있습니다.
 <br>(1)	서비스용 하드웨어, 소프트웨어 등의 보수, 정기 및 비상 점검의 경우
@@ -411,14 +411,14 @@
 	</div>
 </div>
 <div class="card card-sm card-body border-soft mb-0">
-	<a href="#panel-copyright" data-target="#panel-copyright"
+	<a href="#panel-copyright10" data-target="#panel-copyright10"
 		class="accordion-panel-header" data-toggle="collapse" role="button"
-		aria-expanded="false" aria-controls="panel-copyright"> <span
+		aria-expanded="false" aria-controls="panel-copyright10"> <span
 		class="icon-title h6 mb-0 font-weight-bold"> <span
 			class="font-weight-bold">제15조 (사용 가능한 결제 수단)</span></span> <span
 		class="icon"><i class="fas fa-plus"></i></span>
 	</a>
-	<div class="collapse" id="panel-copyright">
+	<div class="collapse" id="panel-copyright10">
 		<div class="pt-3">
 			<p>늘찬은 회사가 운영하는 사이트에서 이루어지는 물품 또는 서비스 거래에 대한 대금 지급방법을 다음 각 호의 하나로 할 수 있습니다.
 <br>1. 신용카드
