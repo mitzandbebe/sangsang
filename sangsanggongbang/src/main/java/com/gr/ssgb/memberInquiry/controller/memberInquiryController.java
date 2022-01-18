@@ -22,6 +22,7 @@ import com.gr.ssgb.common.SearchVO;
 import com.gr.ssgb.host.model.HostVO;
 import com.gr.ssgb.member.model.MemberVO;
 import com.gr.ssgb.memberInquiry.model.BanVO;
+import com.gr.ssgb.memberInquiry.model.ClassUserVO;
 import com.gr.ssgb.memberInquiry.model.MemberInquiryService;
 
 @Controller
@@ -189,14 +190,27 @@ public class memberInquiryController {
 	}
 	
 	@RequestMapping("/classUser")
-	public String classUser(HttpSession session, Model model) {
+	public String classUser(HttpSession session,@ModelAttribute ClassUserVO ClassUserVo ,Model model) {
 		String hId=(String)session.getAttribute("hId");
 		logger.info("hId={}",hId);
 		
+		PaginationInfo PagingInfo = new PaginationInfo();
+		PagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
+		PagingInfo.setRecordCountPerPage(5);
+		PagingInfo.setCurrentPage(ClassUserVo.getCurrentPage());
+
+		ClassUserVo.setRecordCountPerPage(5);
+		ClassUserVo.setFirstRecordIndex(PagingInfo.getFirstRecordIndex());
+		logger.info("searchVo={}", ClassUserVo);
+
 		List<Map<String, Object>> list = memberInquiryService.classUser(hId);
 		logger.info("list.size={}",list.size());
-		
-		model.addAttribute("list",list);
+
+		int TotalRecord = memberInquiryService.selectTotalClassUser(hId);
+		PagingInfo.setTotalRecord(TotalRecord);
+
+		model.addAttribute("list", list);
+		model.addAttribute("PagingInfo", PagingInfo);
 		
 		return "/memberInquiry/classUser";
 	}

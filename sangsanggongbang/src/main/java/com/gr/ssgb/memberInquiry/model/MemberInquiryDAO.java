@@ -30,4 +30,5 @@ public interface MemberInquiryDAO {
 	String checkBan(String mId);
 	
 	List<Map<String, Object>> classUser(int hNo);
+	 int selectTotalClassUser(ClassUserVO ClassUserVo); 
 }

@@ -24,4 +24,5 @@ public interface MemberInquiryService {
 	Boolean checkBan(String mId);
 	
 	List<Map<String, Object>> classUser(String hId);
+	int selectTotalClassUser(String hId); 
 }

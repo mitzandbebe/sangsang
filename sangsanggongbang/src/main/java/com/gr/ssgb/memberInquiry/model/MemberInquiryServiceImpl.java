@@ -18,13 +18,12 @@ import com.gr.ssgb.memberInquiry.controller.memberInquiryController;
 @Service
 public class MemberInquiryServiceImpl implements MemberInquiryService {
 	private static final Logger logger = LoggerFactory.getLogger(memberInquiryController.class);
-	
+
 	private final MemberInquiryDAO memberInquirydao;
 	private final HostDAO hostDAO;
-	
 
 	@Autowired
-	public MemberInquiryServiceImpl(MemberInquiryDAO memberInquirydao,HostDAO hostDAO) {
+	public MemberInquiryServiceImpl(MemberInquiryDAO memberInquirydao, HostDAO hostDAO) {
 		this.memberInquirydao = memberInquirydao;
 		this.hostDAO = hostDAO;
 	}
@@ -98,7 +97,15 @@ public class MemberInquiryServiceImpl implements MemberInquiryService {
 	@Override
 	public List<Map<String, Object>> classUser(String hId) {
 		HostVO vo = hostDAO.selectHostById(hId);
-		logger.info("vo={}",vo);
+		logger.info("vo={}", vo);
 		return memberInquirydao.classUser(vo.gethNo());
 	}
+
+	public int selectTotalClassUser(String hId) {
+		HostVO hVo= hostDAO.selectHostById(hId);
+		ClassUserVO cVo = new ClassUserVO();
+		cVo.sethNo(hVo.gethNo());
+		return memberInquirydao.selectTotalClassUser(cVo);
+	}
+
 }
