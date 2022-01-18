@@ -228,7 +228,7 @@
 							class="col-12 col-lg pl-0 font-weight-normal text-dark d-none d-sm-block mt-2 mt-lg-0">
 							I want to rent today, is the house still valid ... </a> -->
 														<a
-															class="col-12 col-lg pl-0 font-weight-normal text-dark d-none d-sm-block mt-2 mt-lg-0"
+															
 															<c:choose>
 							<c:when test="${map['recReadFlag']=='N'}">style="color:blue" </c:when> 
 							<c:when test="${map['recReadFlag']=='Y'}">style="color:gray" </c:when> 
