@@ -673,11 +673,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/interestClass")
-	public String interestClass_get(@ModelAttribute SearchVO searchVo,HttpSession session,Model model) {
+	public String interestClass_get(@ModelAttribute SearchVO searchVo,@RequestParam(defaultValue = "0") int mNo,HttpSession session,Model model) {
 		logger.info("관심클래스 보기");
 		
 		String mId=(String) session.getAttribute("mId");
-		int mNo= memberService.selectMno(mId);
+		mNo= memberService.selectMno(mId);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -695,7 +695,7 @@ public class MemberController {
 		pagingInfo.setTotalRecord(totalRecord);
 
 		model.addAttribute("pagingInfo", pagingInfo);
-		
+		model.addAttribute("mNo",mNo);
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("interest",interest);
 		return "member/interestClass";

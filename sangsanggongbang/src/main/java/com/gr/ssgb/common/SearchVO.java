@@ -35,9 +35,18 @@ public class SearchVO {
     private int hNo;
     //페이징처리를 위한 호스트번호
     private int cNo;
+    private int mNo;
     
     
-   public int getcNo() {
+   public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+
+public int getcNo() {
 		return cNo;
 	}
 
@@ -140,7 +149,7 @@ public int gethNo() {
 		return "SearchVO [searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + ", searchUseYn="
 				+ searchUseYn + ", currentPage=" + currentPage + ", blockSize=" + blockSize + ", firstRecordIndex="
 				+ firstRecordIndex + ", lastRecordIndex=" + lastRecordIndex + ", recordCountPerPage="
-				+ recordCountPerPage + ", hNo=" + hNo + ", cNo=" + cNo + "]";
+				+ recordCountPerPage + ", hNo=" + hNo + ", cNo=" + cNo + ", mNo=" + mNo + "]";
 	}
 
 	
