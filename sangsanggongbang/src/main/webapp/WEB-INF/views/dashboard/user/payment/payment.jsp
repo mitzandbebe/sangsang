@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../../inc/top.jsp"  %>
+<%@ include file="../../../inc/new_top_user.jsp"  %>
 <form name="frmPage" method="post" 
 	action="<c:url value='/dashboard/user/payment/myPayment'/>">
 	<input type="hidden" name="currentPage">
