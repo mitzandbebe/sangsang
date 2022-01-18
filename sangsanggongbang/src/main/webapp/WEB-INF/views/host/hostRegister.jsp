@@ -41,6 +41,7 @@
 				$('#chkId').val('N');
 			}
 		});
+		
 		$('#hBankName').focus(function(){
 			var id =$('#hId').val();
 			if(validate_userid(id) && id.length>=10){
@@ -81,7 +82,30 @@
 		$('#additional').submit(function(){
 			var pwd = $('#hPwd').val();
 			var id = $('#hId').val();
+			var pwdNec = "${pwdInputNecessity}";
 			
+			console.log(pwd);
+			console.log(id);
+			console.log(pwdNec);
+			if(pwdNec=='y'){
+				if(pwdNec=='y'&& $('#hPwd').val().length<1){
+					alert('비밀번호를 입력하세요');
+					$('#hPwd').focus();
+					event.preventDefault();
+				}else if(pwdNec=='y'&&$('#hPwd').val().length>=10&&!passwordRule.test(pwd)&& $('#hPwd').val()!=='temppassword'){
+					alert('비밀번호는 숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
+					$('#hPwd').focus();
+					event.preventDefault();
+				}else if($('#hPwd2').val().length<1){
+					alert('2차 비밀번호를 입력하세요');
+					$('#hPwd2').focus();
+					event.preventDefault();
+				}else if($('#hPwd').val()!=$('#hPwd2').val()){
+					alert('비밀번호 확인이 일치하지 않습니다!');
+					$('#hPwd2').focus();
+					event.preventDefault();
+				}
+			}
 			if($('#hId').val().length<1){
 				alert('아이디를 입력하세요.');
 				$('#hId').focus();
@@ -89,22 +113,6 @@
 			}else if(!validate_userid(id)){
 				alert('아이디는 이메일 형식으로만 가능합니다.');
 				$('#hId').focus();
-				event.preventDefault();
-			}else if($('#hPwd').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('#hPwd').focus();
-				event.preventDefault();
-			}else if($('#hPwd').val().length>=10&&!passwordRule.test(pwd)&& $('#hPwd').val()!=='temppassword'){
-				alert('비밀번호는 숫자, 영문자, 특수문자(!@#$%^&*-)를 포함한 10~20자리여야 합니다.');
-				$('#hPwd').focus();
-				event.preventDefault();
-			}else if($('#hPwd2').val().length<1){
-				alert('2차 비밀번호를 입력하세요');
-				$('#hPwd2').focus();
-				event.preventDefault();
-			}else if($('#hPwd').val()!=$('#hPwd2').val()){
-				alert('비밀번호 확인이 일치하지 않습니다!');
-				$('#hPwd2').focus();
 				event.preventDefault();
 			}else if ($('#hName').val().length<1){
 				alert('성명을 입력해주세요.');
@@ -150,15 +158,18 @@
 				alert('정산계좌를 입력하세요.');
 				$('#hAccount').focus();
 				event.preventDefault();
-			} else if(!$('#termChk2').is(':checked')){
-				alert('늘솜 이용약관에 동의해야합니다.');
-				$('#termChk2').focus();
-				event.preventDefault();
-			}else if($('#chkId').val()!='Y'){
+			}else if($('#chkId').val()=='N'||$('#chkId').val()==null){
 				alert('중복된 아이디입니다. 다른 아이디를 입력하세요.');
 				$('#hId').focus();
 				event.preventDefault();
+			}else if(!$('#termChk2').is(':checked')){
+				alert('늘솜 이용약관에 동의해야합니다.');
+				$('#termChk2').focus();
+				event.preventDefault();
 			}
+
+			
+			
 		});
 		var passwordRule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,20}$/;
 		
@@ -282,7 +293,14 @@ var InputImage =
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                         </div>
-                                        <input type ="hidden" name="chkId" id="chkId" value="N">
+                                        <input type ="hidden" name="chkId" id="chkId" 
+                                        <c:if test="${!empty vo.hId }">
+                                        value="N"
+                                        </c:if>
+                                        <c:if test="${empty vo.hId }">
+                                        value="Y"
+                                        </c:if>
+                                        >
                                         <input name="hId" class="form-control" type="text" id="hId" aria-label="email adress"
                                         <c:if test="${!empty vo.hId }">
                                         	readonly = "readonly"
