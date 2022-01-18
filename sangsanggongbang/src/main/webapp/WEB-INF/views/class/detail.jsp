@@ -271,8 +271,7 @@
 											<div class="row">
 											</div>
 										</div>
-										<textarea class="form-control"id="exampleFormControlTextarea2" rows="20">
-											${map["CONTENTS_CONTENT"] }
+										<textarea class="form-control"id="exampleFormControlTextarea2" rows="20" readonly="readonly">${map["CONTENTS_CONTENT"] }
 										</textarea>
 									</div>
 								</div>
