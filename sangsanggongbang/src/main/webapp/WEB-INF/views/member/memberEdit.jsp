@@ -158,7 +158,7 @@ var InputImage =
 								                <c:if test="${sessionScope.mFilename=='default.png' }">
 							                		<div class="profile-thumbnail small-thumbnail mx-auto" id="imagePreview">
 								            			<div id="older">
-									                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" style = "width:129; height:129;" class="card-img-top rounded-circle border-white">
+									                		<img src="${pageContext.request.contextPath }/resources/assets/img/default.png" style = "width:129px; height:129px;" class="card-img-top rounded-circle border-white">
 								                		</div>
 								            		</div>
 								            		<div class="input-group mb-3"  style = "text-align: center;">
