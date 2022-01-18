@@ -34,7 +34,6 @@
                                             <h5 class="h3 font-weight-bold mb-1" id="totalNetProfit"></h5>
                                             <div class="small mt-2">                               
                                                 <span class="fas fa-angle-up text-success"></span>                                   
-                                                전월 대비 <span class="text-success font-weight-bold">16.4%</span>증가 
                                             </div>
                                         </div>
                                     </div>
@@ -85,13 +84,13 @@ $(function(){
 	console.log(profitXData1);
 	
 	var totalProfit1 = ${profitMap["0"].totalProfitPerMonth};
-	var totalNet1 = ${profitMap["0"].totalNetProfitPerMonth*9};
+	var totalNet1 = ${profitMap["0"].totalNetProfitPerMonth};
 	var totalProfit2 = ${profitMap["1"].totalProfitPerMonth};
-	var totalNet2 = ${profitMap["1"].totalNetProfitPerMonth*9};
+	var totalNet2 = ${profitMap["1"].totalNetProfitPerMonth};
 	var totalProfit3 = ${profitMap["2"].totalProfitPerMonth};
-	var totalNet3 = ${profitMap["2"].totalNetProfitPerMonth*9};
+	var totalNet3 = ${profitMap["2"].totalNetProfitPerMonth};
 	var totalProfit4 = ${profitMap["3"].totalProfitPerMonth};
-	var totalNet4 = ${profitMap["3"].totalNetProfitPerMonth*9};
+	var totalNet4 = ${profitMap["3"].totalNetProfitPerMonth};
 	
 	
 	function AddComma(num){
@@ -144,7 +143,7 @@ $(function(){
 	        	totalProfit1+totalProfit2+totalProfit3+totalProfit4]
 	    }, {
 	        name: '누적 순이익 추이',
-	        data: [totalNet1, totalNet1+totalNet2, totalNet1+totalNet2+totalNet3, totalNet1+totalNet2+totalNet3+totalNet4]
+	        data: [totalNet1, (totalNet1+totalNet2)*9, (totalNet1+totalNet2+totalNet3)*9, (totalNet1+totalNet2+totalNet3+totalNet4)*9]
 	    }],
 
 	    responsive: {
@@ -200,7 +199,7 @@ $(function(){
 	        data: [totalProfit1, totalProfit2, totalProfit3, totalProfit4]
 	    },{
 	        name: '월별 순이익 추이',
-	        data: [totalNet1, totalNet2, totalNet3, totalNet4]
+	        data: [totalNet1*9, totalNet2*9, totalNet3*9, totalNet4*9]
 	    }],
 
 	    responsive: {
