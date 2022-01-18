@@ -142,6 +142,7 @@ public class MemberController {
 			 session.setAttribute("mFilename", memberVo.getmFilename());
 			 session.setAttribute("mNickname", memberVo.getmNickname());
 			 session.setAttribute("uOrh", "u");
+			 session.setAttribute("mNo", memberVo.getmNo());
 			 
 			 Cookie ck = new Cookie("ck_userid", memberVo.getmId()); ck.setPath("/");
 			 ck.setMaxAge(1000*24*60*60); 
@@ -171,6 +172,7 @@ public class MemberController {
 				session.setAttribute("mFilename", memberVo.getmFilename());
 				session.setAttribute("mNickname", memberVo.getmNickname());
 				session.setAttribute("uOrh", "u");
+				session.setAttribute("mNo", memberVo.getmNo());
 				msg="회원가입이 성공적으로 완료되었습니다.";
 				url="/member/askAdditional";
 			}	
@@ -221,6 +223,8 @@ public class MemberController {
 					session.setAttribute("mNickname", memberVo.getmNickname());
 					session.setAttribute("uOrh", "u");
 					
+					session.setAttribute("mNo", memberVo.getmNo());
+					
 					Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 					ck.setPath("/");
 					if(remember!=null){ 
@@ -249,6 +253,7 @@ public class MemberController {
 				session.setAttribute("snsCheck", snsCheck);
 				session.setAttribute("mNickname", vo2.getmNickname());
 				session.setAttribute("uOrh", "u");
+				session.setAttribute("mNo", vo2.getmNo());
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -280,7 +285,7 @@ public class MemberController {
 				session.setAttribute("uOrh", "u");
 				session.setAttribute("mFilename", vo2.getmFilename());
 				session.setAttribute("mNickname", vo2.getmNickname());
-				
+				session.setAttribute("mNo", vo2.getmNo());
 				Cookie ck = new Cookie("ck_userid", memberVo.getmId());
 				ck.setPath("/");
 				if(remember!=null){ 
@@ -334,6 +339,8 @@ public class MemberController {
 		MemberVO vo = memberService.selectMemberById(mId);
 		
 		model.addAttribute("vo", vo);
+		int mNo = (Integer)session.getAttribute("mNo");
+		logger.info("mNo={}", mNo);
 		logger.info("회원정보 수정 전 비밀번호 확인화면");
 		
 		return "member/memberEditChkPwd";
@@ -392,12 +399,14 @@ public class MemberController {
 			session.removeAttribute("h_snsCheck");
 			session.removeAttribute("hNickname");
 			session.removeAttribute("uOrh");
+			
 			MemberVO vo2 = memberService.selectMemberById(vo.getmId());
 			session.setAttribute("mId", vo2.getmId());
 			session.setAttribute("snsCheck", snsCheck);
 			session.setAttribute("uOrh", "u");
 			session.setAttribute("mFilename", vo2.getmFilename());
 			session.setAttribute("mNickname", vo2.getmNickname());
+			session.setAttribute("mNo", vo2.getmNo());
 		}else{
 			msg="결제정보 입력 실패!";
 		}
@@ -673,11 +682,14 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/interestClass")
-	public String interestClass_get(@ModelAttribute SearchVO searchVo,@RequestParam(defaultValue = "0") int mNo,HttpSession session,Model model) {
+	public String interestClass_get(@ModelAttribute SearchVO searchVo,HttpSession session,Model model) {
 		logger.info("관심클래스 보기");
 		
 		String mId=(String) session.getAttribute("mId");
-		mNo= memberService.selectMno(mId);
+		//mNo= memberService.selectMno(mId);
+		int mNo = (Integer)session.getAttribute("mNo");
+        logger.info("mNo={}", mNo);
+        searchVo.setmNo(mNo);
 		
 		PaginationInfo pagingInfo = new PaginationInfo();
 		pagingInfo.setBlockSize(ConstUtil.BLOCK_SIZE);
@@ -689,6 +701,8 @@ public class MemberController {
 		logger.info("값 셋팅 후 searchVo={}", searchVo);
 		
 		List<Map<String,Object>> classlist=hostClassService.selectClassAllContents2(searchVo);
+		logger.info("classlist={}", classlist.size());
+		
 		List<ConcernVO> interest= memberService.selectConcern(mNo);
 		
 		int totalRecord = hostClassService.selectTotalRecord(searchVo);
@@ -696,6 +710,7 @@ public class MemberController {
 
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("mNo",mNo);
+		model.addAttribute("mId",mId);
 		model.addAttribute("classlist",classlist);
 		model.addAttribute("interest",interest);
 		return "member/interestClass";

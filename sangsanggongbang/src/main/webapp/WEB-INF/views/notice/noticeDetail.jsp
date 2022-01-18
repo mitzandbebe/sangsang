@@ -51,7 +51,6 @@ hr {
 				<div class="row justify-content-center">
 					<div class="col-12 col-lg-10 text-center">
 						<div class="mb-4">
-							<a href="#" class="badge badge-danger text-uppercase mr-2 px-3">관리자</a>
 						</div>
 						<h1 class="display-3 mb-4 px-lg-5">${vo.noticeTitle }</h1>
 						<div class="post-meta">
