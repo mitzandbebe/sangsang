@@ -65,14 +65,6 @@ public class OrderController {
 		
 		return "login/login";
 	}
-
-	/*
-	@ResponseBody
-	@RequestMapping("/orderComplete")
-	public int orderComplite_POST(HttpSession session, @RequestBody String orderId) {
-		String mId=(String) session.getAttribute("mId");
-		logger.info("로그인 세션 mId={}", mId);
-		logger.info("orderId={}", orderId);*/
 	
 	@ResponseBody
 	@RequestMapping("/ajax/orderComplete")

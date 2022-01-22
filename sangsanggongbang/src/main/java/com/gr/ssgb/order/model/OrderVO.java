@@ -2,7 +2,6 @@ package com.gr.ssgb.order.model;
 
 public class OrderVO {
 	/*
-
 	IMP_UID	VARCHAR2		아임포트 상점번호
 	MERCHANT_UID	VARCHAR2	영수증번호
 	M_ID	NUMBER			맴버아이디
@@ -11,7 +10,6 @@ public class OrderVO {
 	REFUND	VARCHAR2		결제상태
 	EA	NUMBER				결제수량
 	F_TIME	NUMBER			확정시간
-
 	*/
 	
 	private int cNo;
