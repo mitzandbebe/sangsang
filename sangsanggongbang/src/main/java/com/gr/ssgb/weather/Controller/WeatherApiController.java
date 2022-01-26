@@ -11,9 +11,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,13 +25,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             클라이언트에게 JSON 객체를 받아야 할 경우는 @RequestBody, 자바 객체를 클라이언트에게 JSON으로 전달해야할 경우에는 @ResponseBody 어노테이션을 붙여주면 된다. 
     @ResponseBody를 사용한 경우 View가 아닌 자바 객체를 리턴해주면 된다.
 */
-@RestController
+
+@Controller
 @RequestMapping("/api")
 public class WeatherApiController {
+	
+	
+	@GetMapping("/weather2")
+    public String restApiGetWeather2(){
+		return "weather/weather2";
+	}
     
+	@ResponseBody
     @GetMapping("/weather")
     public String restApiGetWeather() throws Exception {
-        /* 
+        /*
             @ API LIST ~
             
             getUltraSrtNcst 초단기실황조회 
@@ -48,7 +57,7 @@ public class WeatherApiController {
             + "&numOfRows=10"             // 페이지 ROWS
             + "&pageNo=1"                 // 페이지 번호
             + "&base_date="+strToday       // 발표일자
-            + "&base_time=0600"           // 발표시각
+            + "&base_time=0500"           // 발표시각
             + "&nx=60"                    // 예보지점 X 좌표
             + "&ny=127";                  // 예보지점 Y 좌표
         
@@ -56,6 +65,11 @@ public class WeatherApiController {
         System.out.println("# RESULT : " + resultMap);
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("result", resultMap);
+        
+		/*
+		 * for(String key : resultMap.keySet() ) { System.out.println("key:"+key);
+		 * System.out.println("value:"+resultMap.get(key)); }
+		 */
         
         return jsonObj.toString();
         
@@ -127,5 +141,4 @@ public class WeatherApiController {
 
         return resultMap;
     }
-    
 }
