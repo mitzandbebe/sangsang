@@ -438,6 +438,9 @@
 										</span>
 										<label for="exampleFormControlSelect2">&nbsp;&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
+							<div class="input-group input-group-border">
+							<%@ include file="../weather/weather.jsp"%>
+							</div>
 							 
 							<div class="text-center">
 							
