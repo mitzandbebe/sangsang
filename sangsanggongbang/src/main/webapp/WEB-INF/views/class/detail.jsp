@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script
+    src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
+<script type="text/javascript">
+$(function() {
+	$(document).ready(function(){
+	$('#weather').load("http://localhost:9091/sangsanggongbang/api/weather2");
+	});
+});
+</script>
 <style>
 .fa-heart:hover {
     cursor: pointer;
@@ -439,11 +448,8 @@
 										</span>
 										<label for="exampleFormControlSelect2">&nbsp;&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
-							<div class="vis-weather">
-								<h1>전국날씨</h1>
-								<ul class="list-group list-group-flush weather" style="font-weight: 600;">
-								<!-- <li class="list-group-item weather"></li> -->
-								</ul>
+							<div id="weather">
+							<!-- 날씨 -->
 							</div>
 							<div class="text-center">
 							

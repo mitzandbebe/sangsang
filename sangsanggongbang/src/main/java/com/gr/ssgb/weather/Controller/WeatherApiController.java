@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,13 +30,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class WeatherApiController {
 	
 	
-	@GetMapping("/weather2")
+	@RequestMapping("/weather2")
     public String restApiGetWeather2(){
-		return "weather/weather2";
+		return "weather/weather";
 	}
     
 	@ResponseBody
-    @GetMapping("/weather")
+	@RequestMapping("/weather")
     public String restApiGetWeather() throws Exception {
         /*
             @ API LIST ~
@@ -57,7 +56,7 @@ public class WeatherApiController {
             + "&numOfRows=10"             // 페이지 ROWS
             + "&pageNo=1"                 // 페이지 번호
             + "&base_date="+strToday       // 발표일자
-            + "&base_time=0500"           // 발표시각
+            + "&base_time=0800"           // 발표시각
             + "&nx=60"                    // 예보지점 X 좌표
             + "&ny=127";                  // 예보지점 Y 좌표
         
@@ -98,8 +97,8 @@ public class WeatherApiController {
 
         try {
             conn = (HttpURLConnection) apiURL.openConnection();
-            conn.setConnectTimeout(5000);
-            conn.setReadTimeout(5000);
+            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(15000);
             conn.setDoOutput(true);
 
             if (isPost) {

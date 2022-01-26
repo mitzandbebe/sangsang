@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script type="text/javascript">
-/* $(document).ready(function(){
+/*
+$(document).ready(function(){
 var arr=[];
 var today= new Date();
 var week =new Array('일','월','화','수','목','금','토');
@@ -125,31 +126,13 @@ var korea = [ {'region' : '서울', 'nx' : 60, 'ny':127},
 	});
 });
  */
- var xhr = new XMLHttpRequest();
- var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'; /*URL*/
- var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'Ptp6i7A8F620ZpPnV9Zye4M4IPShUQQe04TI1%2B1hILUxna8fFX%2BPiku6RwQJ7JXiM9O5A7pRJspBRumxxnbH7Q%3D%3D'; /*Service Key*/
- queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
- queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1000'); /**/
- queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('XML'); /**/
- queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20220126'); /**/
- queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0500'); /**/
- queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55'); /**/
- queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127'); /**/
- xhr.open('GET', url + queryParams);
- xhr.onreadystatechange = function () {
-     if (this.readyState == 4) {
-         alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-     }
- };
-
- xhr.send('');
 </script>
-<div class="vis-weather">
+<!-- <div class="vis-weather">
 	<h1>전국날씨</h1>
 	<ul class="list-group list-group-flush weather" style="font-weight: 600;">
-	<!-- <li class="list-group-item weather"></li> -->
+	<li class="list-group-item weather"></li>
 	</ul>
-</div>
+</div> -->
 
 
 
