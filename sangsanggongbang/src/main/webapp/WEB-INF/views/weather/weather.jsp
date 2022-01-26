@@ -1,67 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<script
+    src="<c:url value='/resources/vendor/jquery/dist/jquery.min.js'/> "></script>
 <script type="text/javascript">
-  $(function weather() {
-	jQuery.ajax({
-		url : "/api/weather",
-		type : "get",
-		contentType : "application/json",
-		dataType : "json",
-		success : function(data) {
-			console.log(item[0]);
-			console.log(RESULT[0]);
-			console.log(data);
-			console.log(status);
-			console.log(xhr);
-			
-			let dataHeader = data.result.response.header.resultCode;
-			console.log("성공!! : ");
-			if(resultCode =="00"){
-				console.log("성공!! : ");
-				console.log(data);
-				
-			}else{
-				console.log("실패.. : ");
-				console.log(data);
-			}
-		},
-		error : function(e, status, xhr, data){
-			console.log("error : ");
-			console.log(e);
-		}
+ 	$(function weather() {
+		$(document).ready(function() {
+			jQuery.ajax({
+				url : "<c:url value='/api/weather'/>",
+				type : "GET",
+				contentType : "application/json",
+				dataType : "json",
+				success : function(data) {
+					console.log(data);
+					var sky=data.result.response.body.items.item[5].fcstValue;
+					var rain=data.result.response.body.items.item[6].fcstValue;
+					var str="현재 서울은 ";
+					if (sky == "1") {
+						str+="맑고";
+						$('#result').html(str); 
+					}
+					if (sky == "3") {
+						str+="구름이 많고 ";
+						$('#result').html(str); 
+					}
+					if (sky == "4") {
+						str+="흐리고 ";
+						$('#result').html(str); 
+					}
+					if (rain == "0") {
+						str+=" 비 예보는 없습니다. ";
+						$('#result').html(str); 
+					}
+					if (rain == "1") {
+						str+=" 비가 내립니다.";
+						$('#result').html(str); 
+					}
+					if (rain == "2") {
+						str+=" 비나 눈이 오겠습니다.";
+						$('#result').html(str); 
+					}
+					if (rain == "3") {
+						str+=" 눈이 옵니다.";
+						$('#result').html(str); 
+					}
+					if (rain == "4") {
+						str+=" 소나기가 있겠습니다.";
+						$('#result').html(str); 
+					}
+				}, 
+				error : function(e, status, xhr, data) {
+					console.log("error : ");
+					console.log(e);
+				}
+			});
+		});
 	});
-});
-/*
-var xhr = new XMLHttpRequest();
-var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst';
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'Ptp6i7A8F620ZpPnV9Zye4M4IPShUQQe04TI1%2B1hILUxna8fFX%2BPiku6RwQJ7JXiM9O5A7pRJspBRumxxnbH7Q%3D%3D';
-queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1');
-queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1000');
-queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('XML');
-queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20220126');
-queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0600');
-queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55');
-queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127');
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
-
-xhr.send(''); 
-*/
-</script> 
-							<div class="vis-weather">
-								<h1>전국날씨</h1>
-								<ul class="list-group list-group-flush weather" style="font-weight: 600;">
-								<!-- <li class="list-group-item weather"></li> -->
-								</ul>
-							</div>
-<%-- <div><h1>123123</h1>
- <c:forEach var="map" items="${jsonObj}">
-</c:forEach> 
-</div> --%>
-
-
+</script>
+<head>
+</head>
+<body>
+	<div id="result"></div>
+</body>
+</html>
 
