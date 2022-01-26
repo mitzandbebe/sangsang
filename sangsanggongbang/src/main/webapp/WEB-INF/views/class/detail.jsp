@@ -12,6 +12,7 @@
     color:red;
 }
 </style>
+
 <c:choose>
     <c:when test="${!empty sessionScope.hId }">
         <%@ include file="../inc/new_top_host.jsp"%>
@@ -438,10 +439,12 @@
 										</span>
 										<label for="exampleFormControlSelect2">&nbsp;&nbsp;${map["C_PRICE"] }</label></div>
 							</div>
-							<div class="input-group input-group-border">
-							<%@ include file="../weather/weather.jsp"%>
+							<div class="vis-weather">
+								<h1>전국날씨</h1>
+								<ul class="list-group list-group-flush weather" style="font-weight: 600;">
+								<!-- <li class="list-group-item weather"></li> -->
+								</ul>
 							</div>
-							 
 							<div class="text-center">
 							
 								<button type="submit"  
