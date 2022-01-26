@@ -1,4 +1,4 @@
-package com.gr.ssgb.weather.Controller;
+package com.gr.ssgb.weather.model;
 
 import org.apache.ibatis.annotations.Mapper;
 

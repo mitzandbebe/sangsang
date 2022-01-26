@@ -1,4 +1,4 @@
-package com.gr.ssgb.weather.Controller;
+package com.gr.ssgb.weather.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
