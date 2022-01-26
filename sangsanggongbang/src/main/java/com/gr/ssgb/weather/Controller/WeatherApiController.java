@@ -11,7 +11,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +48,7 @@ public class WeatherApiController {
             + "&numOfRows=10"             // 페이지 ROWS
             + "&pageNo=1"                 // 페이지 번호
             + "&base_date="+strToday       // 발표일자
-            + "&base_time=0800"           // 발표시각
+            + "&base_time=0600"           // 발표시각
             + "&nx=60"                    // 예보지점 X 좌표
             + "&ny=127";                  // 예보지점 Y 좌표
         
@@ -60,8 +59,6 @@ public class WeatherApiController {
         
         return jsonObj.toString();
         
-        //model.addAttribute(jsonObj);
-        //return "/api/weather";
     }
     
     public HashMap<String, Object> getDataFromJson(String url, String encoding, String type, String jsonStr) throws Exception {
