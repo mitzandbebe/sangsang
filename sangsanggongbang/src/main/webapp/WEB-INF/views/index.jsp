@@ -5,7 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="inc/new_top_user.jsp"%> 
 <!-- Hero -->
-
+<script type="text/javascript">
+//페이지 처음 로딩시 자동 새로고침 1회
+window.onload = function(){
+    if (location.href.indexOf('reloaded')==-1) location.replace(location.href+'?reloaded');
+}
+</script>
 <section class="section-header">
 	<div class="container">
 
