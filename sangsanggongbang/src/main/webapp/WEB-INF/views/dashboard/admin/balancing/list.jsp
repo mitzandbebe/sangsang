@@ -5,13 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
 	$(function() {
+		var hostName = window.location.hostname; //localhost 또는 ip 주소 대응 변수바인딩
 		/* 전체 정산내역 */
 		$('#list1 #pagelinknum').click(
 				function() {
+					
 					var i = $(this).text();
 					console.log(i);
+					console.log(hostName);
 					$('#list1').load(
-							"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+							"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 									+ i + "&searchCondition=&searchKeyword=");
 				});
 
@@ -22,7 +25,7 @@
 					++a;
 					console.log(a);
 					$('#list1').load(
-							"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+							"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 									+ a + "&searchCondition=&searchKeyword=");
 				});
 
@@ -33,11 +36,12 @@
 					--b;
 					console.log(b);
 					$('#list1').load(
-							"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+							"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 									+ b + "&searchCondition=&searchKeyword=");
 				});
 	});
 	$(function() {
+		var hostName = window.location.hostname;
 		/* 정산 완료내역 */
 		$('#list2 #pagelinknum')
 				.click(
@@ -46,7 +50,7 @@
 							console.log(i);
 							$('#list2')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ i
 													+ "&searchCondition=b_flag&searchKeyword=N");
 						});
@@ -61,7 +65,7 @@
 							console.log(c);
 							$('#list2')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ c
 													+ "&searchCondition=b_flag&searchKeyword=N");
 						});
@@ -75,12 +79,13 @@
 							console.log(d);
 							$('#list2')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ d
 													+ "&searchCondition=b_flag&searchKeyword=N");
 						});
 	});
 	$(function() {
+		var hostName = window.location.hostname;
 		/* 미정산 내역 */
 		$('#list3 #pagelinknum')
 				.click(
@@ -89,7 +94,7 @@
 							console.log(i);
 							$('#list3')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ i
 													+ "&searchCondition=b_flag&searchKeyword=Y");
 						});
@@ -104,7 +109,7 @@
 							console.log(e);
 							$('#list3')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ e
 													+ "&searchCondition=b_flag&searchKeyword=Y");
 						});
@@ -118,7 +123,7 @@
 							console.log(f);
 							$('#list3')
 									.load(
-											"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+											"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 													+ f
 													+ "&searchCondition=b_flag&searchKeyword=Y");
 						});
@@ -126,12 +131,13 @@
 	});
 
 	$(function() {
+		var hostName = window.location.hostname;
 		$('#list1 #balsubmit').click(
 				function() {
 					var i = $(this).text();
 					console.log(i);
 					$('#list1').load(
-							"http://localhost:9091/sangsanggongbang/admin/balancing/list?currentPage="
+							"http://"+hostName+":9091/sangsanggongbang/admin/balancing/list?currentPage="
 									+ i + "&searchCondition=&searchKeyword=");
 				});
 		$('#list2 #balsubmit').click(function() {
